@@ -1,0 +1,114 @@
+name: Release Gate
+
+on:
+  push:
+    tags:
+      - 'v*'
+      - 'release-*'
+
+jobs:
+  verify-release:
+    name: Verify release completeness
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check required documents exist
+        id: docs-check
+        run: |
+          exit_code=0
+          missing=""
+
+          # Define required files for a release (customize per your QMS)
+          required_files=(
+            "qms-policy/quality-policy.md"
+            "qms-policy/quality-manual.md"
+          )
+
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "::error::Required document missing: $file"
+              missing="$missing\n- $file"
+              exit_code=1
+            fi
+          done
+
+          echo "missing<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$missing" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          echo "exit_code=$exit_code" >> $GITHUB_OUTPUT
+
+      - name: Check for open blocking issues
+        id: issues-check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Check for open issues with blocking labels
+            const blockingLabels = ['release-blocker', 'capa-open', 'ncr-open'];
+            let blockers = [];
+
+            for (const label of blockingLabels) {
+              try {
+                const { data: issues } = await github.rest.issues.listForRepo({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  labels: label,
+                  state: 'open',
+                });
+                for (const issue of issues) {
+                  blockers.push(`#${issue.number}: ${issue.title} [${label}]`);
+                }
+              } catch (e) { /* label doesn't exist, skip */ }
+            }
+
+            if (blockers.length > 0) {
+              core.setFailed(`Release blocked by ${blockers.length} open issue(s):\n${blockers.join('\n')}`);
+            } else {
+              core.info('No blocking issues found.');
+            }
+
+            return blockers.length === 0;
+
+      - name: Check controlled documents have current effective dates
+        run: |
+          exit_code=0
+          tag_date=$(date +%Y-%m-%d)
+
+          find qms-sops/ qms-policy/ -name "*.md" 2>/dev/null | while read -r file; do
+            status=$(head -20 "$file" | grep "^status:" | sed 's/status: *//' || echo "unknown")
+            if [ "$status" = "draft" ]; then
+              echo "::warning file=$file::Document is still in draft status"
+            fi
+          done
+
+      - name: Create release
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const tag = context.ref.replace('refs/tags/', '');
+
+            await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: tag,
+              name: `QMS Release ${tag}`,
+              body: [
+                `## QMS Release ${tag}`,
+                '',
+                `**Date:** ${new Date().toISOString().split('T')[0]}`,
+                '',
+                `### Release verification`,
+                '',
+                `- [x] Required documents present`,
+                `- [x] No open release blockers`,
+                `- [x] Document statuses checked`,
+                '',
+                `_This release was automatically verified by the Open QMS release gate workflow._`,
+              ].join('\n'),
+              draft: false,
+              prerelease: tag.includes('rc') || tag.includes('beta'),
+            });

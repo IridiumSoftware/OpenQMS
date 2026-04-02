@@ -1,0 +1,59 @@
+name: CAPA
+description: Corrective and Preventive Action
+labels: ["capa", "capa-open"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: CAPA Type
+      options:
+        - Corrective Action
+        - Preventive Action
+        - Corrective and Preventive
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description of nonconformance or potential nonconformance
+      description: What happened or what could happen?
+    validations:
+      required: true
+  - type: textarea
+    id: root-cause
+    attributes:
+      label: Root cause investigation
+      description: Use 5-Why, fishbone, or other appropriate method. Complete after initial investigation.
+  - type: textarea
+    id: action
+    attributes:
+      label: Corrective / Preventive action plan
+      description: What will be done to address the root cause?
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification of implementation
+      description: How will you verify the action was implemented correctly?
+  - type: textarea
+    id: effectiveness
+    attributes:
+      label: Effectiveness check plan
+      description: How and when will you verify the action was effective?
+  - type: input
+    id: target-date
+    attributes:
+      label: Target completion date
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Risk level
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical
+    validations:
+      required: true

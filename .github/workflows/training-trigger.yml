@@ -1,0 +1,106 @@
+name: Training Trigger
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'qms-sops/**'
+      - 'qms-policy/**'
+
+jobs:
+  create-training-issues:
+    name: Create training assignments
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Identify changed controlled documents
+        id: changed
+        run: |
+          changed_files=$(git diff --name-only HEAD~1 HEAD -- 'qms-sops/' 'qms-policy/' | grep '\.md$' || true)
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          echo "$changed_files" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          if [ -z "$changed_files" ]; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create training issues
+        if: steps.changed.outputs.has_changes == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const changedFiles = `${{ steps.changed.outputs.files }}`.trim().split('\n').filter(f => f);
+
+            if (changedFiles.length === 0) return;
+
+            // Read training config if it exists
+            let trainees = [];
+            try {
+              const { data: configFile } = await github.rest.repos.getContent({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                path: 'docs/qms-config.yml',
+              });
+              const config = Buffer.from(configFile.content, 'base64').toString();
+              // Simple YAML parsing for trainees list
+              const traineeMatch = config.match(/trainees:\s*\n((?:\s+-\s+.+\n?)*)/);
+              if (traineeMatch) {
+                trainees = traineeMatch[1].match(/- (.+)/g)?.map(t => t.replace('- ', '').trim()) || [];
+              }
+            } catch (e) {
+              core.warning('No qms-config.yml found. Skipping trainee-specific issues. Configure docs/qms-config.yml to enable.');
+              return;
+            }
+
+            for (const file of changedFiles) {
+              // Extract document title from frontmatter
+              let docTitle = file.split('/').pop().replace('.md', '');
+              try {
+                const { data: content } = await github.rest.repos.getContent({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  path: file,
+                });
+                const text = Buffer.from(content.content, 'base64').toString();
+                const titleMatch = text.match(/^title:\s*(.+)$/m);
+                if (titleMatch) docTitle = titleMatch[1];
+              } catch (e) { /* use filename */ }
+
+              const commit = context.sha.substring(0, 7);
+
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `Training Required: ${docTitle} (rev ${commit})`,
+                body: [
+                  `## Training Assignment`,
+                  '',
+                  `**Document:** \`${file}\``,
+                  `**Revision:** ${commit}`,
+                  `**Trigger:** Document updated on main branch`,
+                  '',
+                  `### Required action`,
+                  '',
+                  `Review the updated document and confirm training completion by checking the box below and closing this issue.`,
+                  '',
+                  `- [ ] I have read and understood the updated document`,
+                  '',
+                  `### Trainees`,
+                  '',
+                  trainees.length > 0
+                    ? trainees.map(t => `- @${t}`).join('\n')
+                    : '_Configure trainees in docs/qms-config.yml_',
+                ].join('\n'),
+                labels: ['training', 'auto-generated'],
+              });
+
+              core.info(`Created training issue for: ${file}`);
+            }

@@ -1,0 +1,26 @@
+# Open QMS Configuration
+# Edit this file to configure your organization's QMS settings.
+
+organization:
+  name: "Your Organization Name"
+  quality_policy_owner: "Quality Manager Name"
+
+# GitHub usernames of personnel who should receive training assignments
+# when controlled documents are updated.
+trainees:
+  - github-username-1
+  - github-username-2
+  - github-username-3
+
+# Document numbering prefix
+document_prefix: "QMS"
+
+# Retention period for quality records (years)
+retention_years: 15
+
+# Regulatory scope (determines which modules are active)
+regulatory_modules:
+  - medical-devices    # ISO 13485, 21 CFR 820, EU MDR, IEC 62304
+  # - pharma           # 21 CFR 210/211 (future)
+  # - aerospace        # AS9100 (future)
+  # - automotive       # IATF 16949 (future)

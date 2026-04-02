@@ -1,0 +1,57 @@
+name: Design Input
+description: Capture a design input (requirement) for a product
+labels: ["design-input"]
+body:
+  - type: input
+    id: product
+    attributes:
+      label: Product
+      placeholder: e.g., Product-X
+    validations:
+      required: true
+  - type: dropdown
+    id: input-type
+    attributes:
+      label: Input type
+      options:
+        - User need
+        - Performance requirement
+        - Safety requirement
+        - Regulatory requirement
+        - Interface requirement
+        - Environmental requirement
+        - Standards compliance
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: requirement
+    attributes:
+      label: Requirement statement
+      description: Clear, testable, unambiguous statement of the requirement.
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale / Source
+      description: Where does this requirement come from? (User research, standard, regulation, etc.)
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: How will you verify this requirement is met?
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - Must have
+        - Should have
+        - Nice to have
+    validations:
+      required: true

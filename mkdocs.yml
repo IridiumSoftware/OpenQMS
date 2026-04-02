@@ -1,0 +1,44 @@
+site_name: Open QMS
+site_description: GitHub-native Quality Management System
+repo_url: https://github.com/IridiumSoftware/open-qms
+
+theme:
+  name: material
+  palette:
+    primary: indigo
+    accent: blue
+  features:
+    - navigation.sections
+    - navigation.expand
+    - search.highlight
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Quick Start: guide/quickstart.md
+    - Configuration: guide/configuration.md
+    - For Auditors: guide/auditor-walkthrough.md
+  - Regulatory Reference:
+    - Overview: regulatory/overview.md
+    - Medical Devices: regulatory/medical-devices.md
+  - Workflows:
+    - Document Control: guide/doc-control.md
+    - Traceability: guide/traceability.md
+    - Training: guide/training.md
+    - Release Management: guide/release.md
+
+markdown_extensions:
+  - tables
+  - admonitions
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - def_list
+  - toc:
+      permalink: true
+
+plugins:
+  - search

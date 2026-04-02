@@ -1,0 +1,99 @@
+name: Document Control
+
+on:
+  pull_request:
+    paths:
+      - 'qms-policy/**'
+      - 'qms-sops/**'
+      - 'qms-forms/**'
+      - 'qms-training/**'
+      - 'product-*/design-*/**'
+      - 'product-*/risk-management/**'
+      - 'product-*/technical-file/**'
+
+jobs:
+  check-metadata:
+    name: Verify document metadata
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get changed files
+        id: changed
+        uses: tj-actions/changed-files@v44
+        with:
+          files: |
+            **/*.md
+
+      - name: Check document metadata
+        if: steps.changed.outputs.any_changed == 'true'
+        run: |
+          exit_code=0
+          for file in ${{ steps.changed.outputs.all_changed_files }}; do
+            echo "Checking: $file"
+
+            # Skip non-controlled directories
+            case "$file" in
+              .github/*|docs/*|scripts/*|modules/*|templates/*) continue ;;
+            esac
+
+            # Check required frontmatter fields
+            if ! head -20 "$file" | grep -q "^document_id:"; then
+              echo "::error file=$file::Missing required field: document_id"
+              exit_code=1
+            fi
+
+            if ! head -20 "$file" | grep -q "^version:"; then
+              echo "::error file=$file::Missing required field: version"
+              exit_code=1
+            fi
+
+            if ! head -20 "$file" | grep -q "^effective_date:"; then
+              echo "::error file=$file::Missing required field: effective_date"
+              exit_code=1
+            fi
+
+            if ! head -20 "$file" | grep -q "^owner:"; then
+              echo "::error file=$file::Missing required field: owner"
+              exit_code=1
+            fi
+
+            if ! head -20 "$file" | grep -q "^status:"; then
+              echo "::error file=$file::Missing required field: status"
+              exit_code=1
+            fi
+
+            # Check version was incremented (compare to base branch)
+            if git show "origin/${{ github.base_ref }}:$file" 2>/dev/null | head -20 | grep -q "^version:"; then
+              base_version=$(git show "origin/${{ github.base_ref }}:$file" | head -20 | grep "^version:" | sed 's/version: *//')
+              pr_version=$(head -20 "$file" | grep "^version:" | sed 's/version: *//')
+              if [ "$base_version" = "$pr_version" ]; then
+                echo "::warning file=$file::Version not incremented (still $base_version). Update version for controlled document changes."
+              fi
+            fi
+          done
+          exit $exit_code
+
+  check-approvers:
+    name: Verify required approvers
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check CODEOWNERS coverage
+        run: |
+          # Verify that all controlled document paths have CODEOWNERS entries
+          if [ ! -f CODEOWNERS ] && [ ! -f .github/CODEOWNERS ]; then
+            echo "::error::No CODEOWNERS file found. Required for document approval routing."
+            exit 1
+          fi
+
+          codeowners_file="CODEOWNERS"
+          [ -f ".github/CODEOWNERS" ] && codeowners_file=".github/CODEOWNERS"
+
+          required_paths=("qms-policy/" "qms-sops/" "qms-forms/" "qms-training/")
+          for path in "${required_paths[@]}"; do
+            if ! grep -q "$path" "$codeowners_file"; then
+              echo "::warning::Path '$path' has no CODEOWNERS entry. Documents here won't require specific approvers."
+            fi
+          done

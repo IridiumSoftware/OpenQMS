@@ -1,0 +1,83 @@
+name: Traceability Check
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  check-issue-link:
+    name: Verify issue linkage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR is linked to an issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const body = pr.body || '';
+            const title = pr.title || '';
+
+            // Check for issue references in body or title
+            const issuePattern = /(close[sd]?|fix(e[sd])?|resolve[sd]?)\s+#(\d+)/gi;
+            const hashPattern = /#(\d+)/g;
+
+            const closingRefs = body.match(issuePattern) || [];
+            const allRefs = body.match(hashPattern) || [];
+            const titleRefs = title.match(hashPattern) || [];
+
+            const totalRefs = [...new Set([...allRefs, ...titleRefs])];
+
+            if (totalRefs.length === 0) {
+              core.warning(
+                'This PR is not linked to any issue. ' +
+                'For traceability, link PRs to design inputs, change requests, or CAPAs using #issue_number.'
+              );
+            } else {
+              core.info(`Found ${totalRefs.length} issue reference(s): ${totalRefs.join(', ')}`);
+            }
+
+            if (closingRefs.length > 0) {
+              core.info(`Closing references: ${closingRefs.join(', ')}`);
+            }
+
+  generate-trace-matrix:
+    name: Generate traceability snippet
+    runs-on: ubuntu-latest
+    if: github.event.action == 'opened' || github.event.action == 'synchronize'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: List changed files with linked issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const body = pr.body || '';
+
+            // Extract issue numbers
+            const refs = (body.match(/#(\d+)/g) || []).map(r => r.replace('#', ''));
+
+            // Get changed files
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+            });
+
+            const changedFiles = files.map(f => f.filename);
+
+            let matrix = '## Traceability Snippet\n\n';
+            matrix += '| Issue | Changed Files | PR |\n';
+            matrix += '|---|---|---|\n';
+
+            if (refs.length > 0) {
+              for (const ref of refs) {
+                matrix += `| #${ref} | ${changedFiles.slice(0, 3).join(', ')}${changedFiles.length > 3 ? ` (+${changedFiles.length - 3} more)` : ''} | #${pr.number} |\n`;
+              }
+            } else {
+              matrix += `| (none linked) | ${changedFiles.slice(0, 3).join(', ')}${changedFiles.length > 3 ? ` (+${changedFiles.length - 3} more)` : ''} | #${pr.number} |\n`;
+            }
+
+            core.info(matrix);

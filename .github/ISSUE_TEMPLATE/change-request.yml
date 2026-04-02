@@ -1,0 +1,55 @@
+name: Change Request
+description: Request a change to a controlled document, process, or product
+labels: ["change-request"]
+body:
+  - type: dropdown
+    id: change-type
+    attributes:
+      label: Change type
+      options:
+        - Document revision
+        - Process change
+        - Design change
+        - Supplier change
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description of proposed change
+      description: What do you want to change and why?
+    validations:
+      required: true
+  - type: textarea
+    id: justification
+    attributes:
+      label: Justification
+      description: Business, regulatory, or safety rationale for the change.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact assessment
+      description: What documents, processes, products, or systems are affected?
+    validations:
+      required: true
+  - type: textarea
+    id: risk-assessment
+    attributes:
+      label: Risk assessment
+      description: Does this change introduce new risks or affect existing risk mitigations?
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification plan
+      description: How will you verify the change was implemented correctly?
+  - type: checkboxes
+    id: regulatory
+    attributes:
+      label: Regulatory impact
+      options:
+        - label: This change affects a regulatory submission (510(k), CE marking, etc.)
+        - label: This change requires notified body notification
+        - label: No regulatory impact

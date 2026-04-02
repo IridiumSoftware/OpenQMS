@@ -1,0 +1,55 @@
+name: Nonconformance Report
+description: Report a nonconforming product, process, or document
+labels: ["ncr", "ncr-open"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description of nonconformance
+      description: What was found to be nonconforming?
+    validations:
+      required: true
+  - type: input
+    id: discovered-by
+    attributes:
+      label: Discovered by
+      placeholder: Name and role
+    validations:
+      required: true
+  - type: input
+    id: date-discovered
+    attributes:
+      label: Date discovered
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
+  - type: dropdown
+    id: disposition
+    attributes:
+      label: Disposition
+      description: Select after investigation
+      options:
+        - Use as-is (with justification)
+        - Rework
+        - Return to supplier
+        - Scrap
+        - Pending investigation
+    validations:
+      required: true
+  - type: textarea
+    id: containment
+    attributes:
+      label: Immediate containment action
+      description: What was done immediately to prevent further impact?
+  - type: textarea
+    id: investigation
+    attributes:
+      label: Investigation findings
+      description: Root cause or contributing factors.
+  - type: checkboxes
+    id: capa-needed
+    attributes:
+      label: CAPA determination
+      options:
+        - label: CAPA required (create linked CAPA issue)
+        - label: No CAPA required (justification in investigation)

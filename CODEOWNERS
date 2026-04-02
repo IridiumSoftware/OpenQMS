@@ -1,0 +1,30 @@
+# Open QMS — CODEOWNERS
+# Maps document paths to required reviewers.
+# Customize with your organization's GitHub teams or usernames.
+
+# Quality policy and manual — requires QA leadership approval
+qms-policy/                 @your-org/quality-leadership
+
+# Standard operating procedures — requires QA approval
+qms-sops/                   @your-org/quality-team
+
+# Forms and templates — requires QA approval
+qms-forms/                  @your-org/quality-team
+
+# Training records — requires QA + HR
+qms-training/               @your-org/quality-team
+
+# CAPA records — requires QA approval
+qms-capa/                   @your-org/quality-team
+
+# Supplier documentation — requires QA + procurement
+qms-suppliers/              @your-org/quality-team @your-org/procurement
+
+# Management review — requires management + QA
+qms-management-review/      @your-org/quality-leadership
+
+# Product design history files — requires engineering lead + QA
+product-*/                  @your-org/engineering-lead @your-org/quality-team
+
+# CI workflows — requires QA + DevOps approval (changes affect QMS enforcement)
+.github/workflows/          @your-org/quality-team @your-org/devops
