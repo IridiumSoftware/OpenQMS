@@ -81,6 +81,28 @@ Open QMS is designed to be extended with regulatory modules. The first module co
 
 Modules for other regulated industries (pharma, aerospace, automotive, food safety) can be contributed by the community.
 
+## Standards licensing — important
+
+Open QMS's regulatory modules reference standards by clause number and normative summary, but **do not redistribute the standard text itself**. Many of the standards referenced are commercially published copyrighted works sold by their publishers under per-user or per-organization license terms.
+
+**Adopters must obtain their own licensed copies of any standard they intend to implement against.** The crosswalks in this repository are useful as a map and as a coverage check; they are not a substitute for the standards themselves.
+
+Public-domain or freely accessible (representative):
+
+- US federal regulations (21 CFR Part 820, 21 CFR Part 11) — public, via FDA / GovInfo
+- EU regulations (MDR 2017/745, AI Act 2024/1689) — public, via EUR-Lex
+- NIST publications (AI RMF, SP 800-53) — public, via NIST
+
+Commercially licensed (representative, not exhaustive):
+
+- ISO standards (13485, 27001, 42001, 22000, 9001) — purchased per copy from ISO or national member bodies (ANSI, BSI, etc.) under ISO's terms
+- IEC standards (62304, 62366-1, 60601-1) — purchased per copy from IEC or national member bodies under IEC's terms
+- ASTM standards — purchased from ASTM International
+- ISTA standards (2A, 3A, etc.) — accessed via ISTA membership or per-document purchase
+- Industry-specific standards (AS9100 from SAE; DO-178C from RTCA; IATF 16949 from IATF; ISO 26262; etc.) — each under its own publisher's terms
+
+Open QMS contributors and adopters are responsible for complying with the license terms of any standard they reference, implement against, or distribute alongside their own QMS. **The Apache-2.0 license on Open QMS itself does not extend to the standards it references.** If you are evaluating Open QMS for a regulated program, budget for the licensed standards your applicable jurisdictions and product class require — this is part of the cost of operating in a regulated industry regardless of QMS platform.
+
 ## Important disclaimers
 
 - **This is infrastructure, not a validated QMS.** You must validate the system for your intended use per your applicable regulations.
