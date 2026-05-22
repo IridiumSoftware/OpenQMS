@@ -19,6 +19,14 @@ jobs:
         with:
           fetch-depth: 2
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install PyYAML
+        run: pip install --no-cache-dir 'pyyaml>=6.0'
+
       - name: Identify changed controlled documents
         id: changed
         run: |
@@ -32,58 +40,103 @@ jobs:
             echo "has_changes=true" >> $GITHUB_OUTPUT
           fi
 
+      - name: Parse training config and document frontmatter
+        id: parse
+        if: steps.changed.outputs.has_changes == 'true'
+        env:
+          CHANGED_FILES: ${{ steps.changed.outputs.files }}
+        run: |
+          python3 <<'PYEOF'
+          import json, os, sys, yaml, pathlib
+
+          # Parse trainees from docs/qms-config.yml using a real YAML parser
+          # (replaces the regex-based parsing this workflow used pre-v0.1.2).
+          config_path = pathlib.Path("docs/qms-config.yml")
+          config_present = config_path.exists()
+          trainees = []
+          if config_present:
+              try:
+                  config = yaml.safe_load(config_path.read_text()) or {}
+                  raw = config.get("trainees", [])
+                  if isinstance(raw, list):
+                      trainees = [str(t).strip() for t in raw if str(t).strip()]
+                  else:
+                      print(
+                          "::warning::docs/qms-config.yml 'trainees' key is not a list; ignoring.",
+                          file=sys.stderr,
+                      )
+              except yaml.YAMLError as e:
+                  print(
+                      f"::warning::Failed to parse docs/qms-config.yml: {e}",
+                      file=sys.stderr,
+                  )
+
+          # Parse frontmatter title for each changed file (handles quoted strings,
+          # block scalars, nested mappings — anything PyYAML can load).
+          changed_raw = os.environ.get("CHANGED_FILES", "")
+          changed_files = [line for line in changed_raw.splitlines() if line.strip()]
+          docs = []
+          for f in changed_files:
+              p = pathlib.Path(f)
+              title = p.stem
+              if p.exists():
+                  text = p.read_text()
+                  if text.startswith("---\n"):
+                      end = text.find("\n---", 4)
+                      if end != -1:
+                          try:
+                              meta = yaml.safe_load(text[4:end]) or {}
+                              if isinstance(meta, dict) and "title" in meta:
+                                  title = str(meta["title"])
+                          except yaml.YAMLError:
+                              pass
+              docs.append({"file": f, "title": title})
+
+          payload = {
+              "config_present": config_present,
+              "trainees": trainees,
+              "docs": docs,
+          }
+
+          gh_output = os.environ.get("GITHUB_OUTPUT")
+          if gh_output:
+              with open(gh_output, "a") as fh:
+                  fh.write("payload=" + json.dumps(payload) + "\n")
+          else:
+              print(json.dumps(payload))
+          PYEOF
+
       - name: Create training issues
         if: steps.changed.outputs.has_changes == 'true'
         uses: actions/github-script@v7
+        env:
+          PAYLOAD: ${{ steps.parse.outputs.payload }}
         with:
           script: |
-            const changedFiles = `${{ steps.changed.outputs.files }}`.trim().split('\n').filter(f => f);
+            const payload = JSON.parse(process.env.PAYLOAD || '{}');
+            const configPresent = !!payload.config_present;
+            const trainees = payload.trainees || [];
+            const docs = payload.docs || [];
 
-            if (changedFiles.length === 0) return;
-
-            // Read training config if it exists
-            let trainees = [];
-            try {
-              const { data: configFile } = await github.rest.repos.getContent({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                path: 'docs/qms-config.yml',
-              });
-              const config = Buffer.from(configFile.content, 'base64').toString();
-              // Simple YAML parsing for trainees list
-              const traineeMatch = config.match(/trainees:\s*\n((?:\s+-\s+.+\n?)*)/);
-              if (traineeMatch) {
-                trainees = traineeMatch[1].match(/- (.+)/g)?.map(t => t.replace('- ', '').trim()) || [];
-              }
-            } catch (e) {
-              core.warning('No qms-config.yml found. Skipping trainee-specific issues. Configure docs/qms-config.yml to enable.');
+            if (!configPresent) {
+              core.warning(
+                'No docs/qms-config.yml found. Skipping trainee-specific issues. ' +
+                'Configure docs/qms-config.yml to enable.'
+              );
               return;
             }
 
-            for (const file of changedFiles) {
-              // Extract document title from frontmatter
-              let docTitle = file.split('/').pop().replace('.md', '');
-              try {
-                const { data: content } = await github.rest.repos.getContent({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  path: file,
-                });
-                const text = Buffer.from(content.content, 'base64').toString();
-                const titleMatch = text.match(/^title:\s*(.+)$/m);
-                if (titleMatch) docTitle = titleMatch[1];
-              } catch (e) { /* use filename */ }
+            const commit = context.sha.substring(0, 7);
 
-              const commit = context.sha.substring(0, 7);
-
+            for (const d of docs) {
               await github.rest.issues.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                title: `Training Required: ${docTitle} (rev ${commit})`,
+                title: `Training Required: ${d.title} (rev ${commit})`,
                 body: [
                   `## Training Assignment`,
                   '',
-                  `**Document:** \`${file}\``,
+                  `**Document:** \`${d.file}\``,
                   `**Revision:** ${commit}`,
                   `**Trigger:** Document updated on main branch`,
                   '',
@@ -102,5 +155,5 @@ jobs:
                 labels: ['training', 'auto-generated'],
               });
 
-              core.info(`Created training issue for: ${file}`);
+              core.info(`Created training issue for: ${d.file}`);
             }
