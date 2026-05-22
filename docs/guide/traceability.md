@@ -22,10 +22,6 @@ The `traceability.yml` workflow generates a traceability snippet for each PR sho
 - Which files were changed
 - The PR number
 
-For a complete traceability matrix across the project, use the traceability report script:
+### Repository-wide traceability matrix (forward)
 
-```bash
-./scripts/generate-trace-matrix.sh
-```
-
-This queries the GitHub API for all issues and PRs with design control labels and generates a markdown matrix.
+A repository-wide traceability matrix walking the full issue/PR linkage graph (and, eventually, the clause-to-artifact bindings published by each regulatory module) is forward work and will ship with the Open QMS generator engine. Until then, the per-PR snippet above plus GitHub's native issue-PR linkage graph are the working traceability surface.
