@@ -6,13 +6,14 @@ Open QMS provides the infrastructure to run a compliant quality management syste
 
 ## What's included
 
+- **Generator engine** (`engine/`) — Python CLI that resolves a `(product, jurisdictions, standards)` bundle into a QMS scaffold with complete bidirectional clause-to-artifact traceability. Run `openqms resolve …` to emit a traceability matrix; run `openqms validate --module <name>` to assert the invariant that every clause is addressed by ≥1 template and no template addresses a non-existent clause.
 - **Repository structure template** for QMS documentation (SOPs, forms, DHFs, training, CAPA, suppliers)
-- **CI workflows** for document control enforcement, traceability checking, training triggers, and release gating
+- **CI workflows** for document control enforcement, traceability checking, training triggers, release gating, and engine tests
 - **Document templates** with required metadata fields for controlled documents
 - **Issue templates** for CAPAs, change requests, design inputs, nonconformances, and complaints
 - **MkDocs configuration** for rendering controlled documents as a browsable site (point-of-use access)
 - **Setup script** for configuring branch protection, CODEOWNERS, and required checks
-- **Regulatory reference modules** (starting with medical devices: ISO 13485, 21 CFR 820, EU MDR, IEC 62304)
+- **Regulatory modules** (starting with medical devices: ISO 13485, 21 CFR 820, IEC 62304; machine-readable manifest at `modules/medical-devices/module.yaml`)
 
 ## Quick start
 
@@ -32,16 +33,58 @@ cd qms
 #    Settings > Pages > Source: GitHub Actions
 ```
 
+## Generator engine
+
+The engine resolves a compliance bundle — `(product, jurisdictions, standards)` — into a QMS scaffold with a bidirectional traceability map. Every in-scope clause is addressed by at least one artifact; every emitted artifact declares the clause(s) it addresses. This invariant is mechanically checked by a per-module validation harness.
+
+### Install (from the repo root)
+
+```bash
+pip install -e './engine[dev]'
+```
+
+### Resolve a bundle
+
+```bash
+openqms resolve \
+  --product ExampleDevice \
+  --jurisdiction FDA \
+  --standard "ISO 13485:2016" \
+  --standard "21 CFR 820" \
+  --module medical-devices \
+  --output traceability_matrix.json
+```
+
+The matrix contains `bundle`, `module`, `in_scope_clauses`, `artifacts`, and `traceability` (with `forward` clause-to-artifact and `reverse` artifact-to-clause maps).
+
+### Validate a module
+
+```bash
+openqms validate --module medical-devices
+```
+
+Exit 0 on pass, 1 on invariant violation. The CI workflow `.github/workflows/engine-tests.yml` runs this on every push that touches `engine/`, `modules/`, or `templates/`.
+
+### Status (v0.2.0)
+
+- **Today.** Single-module resolution + per-module validation harness; medical-devices reference module ships with a four-clause minimal seed bound to the three artifact templates currently in `templates/`.
+- **Forward.** Multi-module composition, cross-cutting overlay modules, standards-and-jurisdictions registry, re-resolution-on-mutation, additional regulatory modules.
+
+See `engine/README.md` for the full architecture.
+
 ## Architecture
 
 ```
 open-qms/
 ├── .github/
-│   ├── workflows/          # CI: doc control, traceability, training, release
+│   ├── workflows/          # CI: doc control, traceability, training, release, engine-tests
 │   └── ISSUE_TEMPLATE/     # CAPA, change request, design input, NCR, complaint
+├── engine/                 # Generator engine (Python: bundle resolver + validation harness)
+│   ├── openqms/            # Source: types, module loader, resolver, validation, CLI
+│   └── tests/              # pytest suite
 ├── docs/                   # MkDocs source for rendered QMS site
-├── modules/                # Regulatory-specific extensions
-│   ├── medical-devices/    # ISO 13485, 21 CFR 820, IEC 62304
+├── modules/                # Regulatory modules (machine-readable manifests)
+│   ├── medical-devices/    # ISO 13485, 21 CFR 820, IEC 62304 (active)
 │   └── general/            # Industry-agnostic QMS processes
 ├── scripts/                # Setup, validation, audit helpers
 └── templates/              # QMS directory structure template
@@ -67,6 +110,7 @@ open-qms/
 | Release | Git tag → CI verifies completeness → GitHub Release | `release-gate.yml` blocks incomplete releases |
 | Audit trail | Git log + GitHub audit log (Enterprise) | Immutable by design (force-push disabled) |
 | Point-of-use access | MkDocs renders docs as static site | `deploy-docs.yml` publishes on merge |
+| Module clause coverage | `modules/*/module.yaml` clause-to-template bindings | `engine-tests.yml` runs `openqms validate` |
 
 ## Regulatory scope
 

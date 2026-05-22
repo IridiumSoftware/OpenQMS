@@ -1,0 +1,70 @@
+# Open QMS — medical-devices regulatory module
+# Version 0.1.0 — minimal seed covering the three artifact templates currently
+# shipped in the public repo (quality policy, SOP template, design input
+# template). The full regulatory crosswalk (ISO 13485 / 21 CFR 820 / Part 11 /
+# EU MDR / IEC 62304 / IEC 62366-1 / IEC 60601-1 / ISTA / MDSAP / ISO 27001)
+# is maintained in the project's private spec discipline tree and progressively
+# folded into this manifest as additional templates land.
+#
+# Standards licensing: clauses are referenced by number and normative summary
+# only. The summaries below are paraphrases; the standard texts themselves are
+# not redistributed here. Adopters implementing against these standards must
+# obtain their own licensed copies. See the repo-root README "Standards
+# licensing — important" section.
+
+name: medical-devices
+version: 0.1.0
+
+standards:
+  - ISO 13485:2016
+  - 21 CFR 820
+
+clauses:
+  - id: ISO13485-4.2.4
+    standard: ISO 13485:2016
+    section: "4.2.4"
+    summary: |
+      Document control — approval prior to issue, review/update with
+      re-approval, identification of changes and current revision status,
+      availability at points of use, legibility, prevention of unintended
+      use of obsolete documents.
+
+  - id: ISO13485-7.3
+    standard: ISO 13485:2016
+    section: "7.3"
+    summary: |
+      Design and development — planning, inputs, outputs, review,
+      verification, validation, transfer, changes. Traceability between
+      inputs, outputs, verification, and validation at every stage.
+
+  - id: CFR820-820.30
+    standard: 21 CFR 820
+    section: "820.30"
+    summary: |
+      Design controls — plans, inputs, outputs, reviews, verification,
+      validation, transfer, changes.
+
+  - id: CFR820-820.40
+    standard: 21 CFR 820
+    section: "820.40"
+    summary: |
+      Document controls — approval and distribution, changes.
+
+templates:
+  - path: templates/qms-policy/quality-policy.md
+    name: Quality policy
+    addresses:
+      - ISO13485-4.2.4
+      - CFR820-820.40
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Standard operating procedure template
+    addresses:
+      - ISO13485-4.2.4
+      - CFR820-820.40
+
+  - path: templates/product-dhf/design-inputs/DESIGN-INPUT-TEMPLATE.md
+    name: Design input template
+    addresses:
+      - ISO13485-7.3
+      - CFR820-820.30

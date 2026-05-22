@@ -1,0 +1,34 @@
+name: smoke
+version: 0.0.1
+
+standards:
+  - StdA
+  - StdB
+
+clauses:
+  - id: A-1
+    standard: StdA
+    section: "1"
+    summary: A-1 summary text.
+
+  - id: A-2
+    standard: StdA
+    section: "2"
+    summary: A-2 summary text.
+
+  - id: B-1
+    standard: StdB
+    section: "1"
+    summary: B-1 summary text.
+
+templates:
+  - path: templates/t1.md
+    name: T1
+    addresses:
+      - A-1
+      - A-2
+
+  - path: templates/t2.md
+    name: T2
+    addresses:
+      - B-1
