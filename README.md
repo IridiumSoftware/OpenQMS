@@ -65,6 +65,10 @@ openqms validate --module medical-devices
 
 Exit 0 on pass, 1 on invariant violation. The CI workflow `.github/workflows/engine-tests.yml` runs this on every push that touches `engine/`, `modules/`, or `templates/`.
 
+### Registry
+
+`registry/standards.yaml` and `registry/jurisdictions.yaml` catalog every standard and jurisdiction the engine knows about. `--standard` and `--jurisdiction` CLI arguments are validated against the registry; unknown values raise rather than silently filtering to empty. Aliases (`"ISO 13485"`) normalize to canonical ids (`"ISO 13485:2016"`). Inspect with `openqms registry list` or `openqms registry show --id <id>`. Module manifests are cross-checked against the registry on every validation run.
+
 ### Compose modules
 
 `--module` is repeatable on both `resolve` and `validate`. When multiple modules are supplied, the engine composes them — unioning clauses by ID (conflicts raise) and template `addresses` by path — before doing its work. This is how cross-cutting overlays (e.g. ISO 27001 infosec) combine with vertical regulatory modules (e.g. medical-devices) without either having to embed the other:
@@ -85,10 +89,10 @@ openqms resolve \
   --output traceability_matrix.json
 ```
 
-### Status (v0.4.0)
+### Status (v0.5.0)
 
-- **Today.** Single- and multi-module resolution; `compose` primitive for unioning modules; per-module validation harness; medical-devices reference module (4 standards in scope, 20 clauses, 12 templates) plus iso-27001 cross-cutting overlay (3 clauses, 3 template bindings).
-- **Forward.** Standards-and-jurisdictions registry, re-resolution-on-mutation, additional regulatory modules (regulated AI, pharma, aerospace, automotive, food safety), 21 CFR Part 11 §11.50 signature-meaning prototype.
+- **Today.** Single- and multi-module resolution; `compose` primitive for unioning modules; per-module validation harness; standards-and-jurisdictions registry with alias normalization and module-vs-registry cross-check; medical-devices reference module (4 standards in scope, 20 clauses, 12 templates) plus iso-27001 cross-cutting overlay (3 clauses, 3 template bindings).
+- **Forward.** Re-resolution-on-mutation, additional regulatory modules (regulated AI, pharma, aerospace, automotive, food safety), 21 CFR Part 11 §11.50 signature-meaning prototype.
 
 See `engine/README.md` for the full architecture.
 
@@ -100,13 +104,16 @@ open-qms/
 │   ├── workflows/          # CI: doc control, traceability, training, release, engine-tests
 │   └── ISSUE_TEMPLATE/     # CAPA, change request, design input, NCR, complaint
 ├── engine/                 # Generator engine (Python: bundle resolver + validation harness)
-│   ├── openqms/            # Source: types, module loader, resolver, validation, CLI
+│   ├── openqms/            # Source: types, module loader, resolver, validation, registry, CLI
 │   └── tests/              # pytest suite
 ├── docs/                   # MkDocs source for rendered QMS site
 ├── modules/                # Regulatory modules (machine-readable manifests)
 │   ├── medical-devices/    # ISO 13485, 21 CFR 820, ISO 14971, IEC 62304 (vertical)
 │   ├── iso-27001/          # ISO/IEC 27001:2022 (cross-cutting overlay)
 │   └── general/            # Industry-agnostic QMS processes
+├── registry/               # Standards & jurisdictions registry
+│   ├── standards.yaml      # Canonical ids + aliases + edition + license kind
+│   └── jurisdictions.yaml  # Jurisdictions + applicable standards
 ├── scripts/                # Setup, validation, audit helpers
 └── templates/              # QMS directory structure template
     ├── qms-policy/

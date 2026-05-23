@@ -7,12 +7,14 @@ on:
       - 'engine/**'
       - 'modules/**'
       - 'templates/**'
+      - 'registry/**'
       - '.github/workflows/engine-tests.yml'
   pull_request:
     paths:
       - 'engine/**'
       - 'modules/**'
       - 'templates/**'
+      - 'registry/**'
       - '.github/workflows/engine-tests.yml'
 
 jobs:
@@ -36,4 +38,10 @@ jobs:
         run: pytest engine/tests -v
 
       - name: Validate shipped regulatory modules
-        run: openqms validate --module medical-devices
+        run: |
+          openqms validate --module medical-devices
+          openqms validate --module iso-27001
+          openqms validate --module medical-devices --module iso-27001
+
+      - name: Inspect registry (smoke check)
+        run: openqms registry list

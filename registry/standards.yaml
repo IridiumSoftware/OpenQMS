@@ -1,0 +1,166 @@
+# Open QMS standards registry
+# ----------------------------
+# Lists every standard / regulation / program the engine knows about, with
+# metadata (publisher, edition, license kind, accepted aliases). CLI
+# --standard arguments are normalized to canonical `id` values via this
+# registry; unregistered standards raise rather than silently filtering to
+# empty resolution. Module manifests' standards: lists and per-clause
+# standard: fields are likewise validated against this registry.
+#
+# Standards licensing: this file contains canonical identifiers and
+# normative metadata only. The standard texts themselves are not
+# redistributed here. Adopters must obtain licensed copies of any
+# commercially-published standard per the publishers' license terms.
+#
+# To add a standard: open a PR with a new entry below. Every entry must
+# carry id, name, publisher, edition, kind, license_kind.
+
+standards:
+
+  # === Medical devices: vertical ===
+
+  - id: "ISO 13485:2016"
+    name: "Medical devices — Quality management systems — Requirements for regulatory purposes"
+    publisher: ISO
+    edition: "2016"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 13485"
+      - "ISO13485"
+
+  - id: "21 CFR 820"
+    name: "FDA Quality System Regulation for medical devices"
+    publisher: US FDA
+    edition: "current revision"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 820"
+      - "QSR"
+
+  - id: "21 CFR Part 11"
+    name: "Electronic Records; Electronic Signatures"
+    publisher: US FDA
+    edition: "current revision"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "Part 11"
+      - "CFR Part 11"
+      - "21 CFR 11"
+
+  - id: "EU MDR 2017/745"
+    name: "Regulation on Medical Devices (EU MDR)"
+    publisher: European Union
+    edition: "2017/745"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "MDR"
+      - "EU MDR"
+
+  - id: "ISO 14971:2019"
+    name: "Application of risk management to medical devices"
+    publisher: ISO
+    edition: "2019"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 14971"
+
+  - id: "IEC 62304:2006+A1:2015"
+    name: "Medical device software — Software life cycle processes"
+    publisher: IEC
+    edition: "2006 + Amendment 1:2015"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "IEC 62304"
+
+  - id: "IEC 62366-1:2015+A1:2020"
+    name: "Medical devices — Application of usability engineering to medical devices"
+    publisher: IEC
+    edition: "2015 + Amendment 1:2020"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "IEC 62366-1"
+      - "IEC 62366"
+
+  - id: "IEC 60601-1:2005+A1+A2"
+    name: "Medical electrical equipment — General requirements for basic safety and essential performance"
+    publisher: IEC
+    edition: "2005 + Amendment 1 + Amendment 2"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "IEC 60601-1"
+      - "IEC 60601"
+
+  - id: "ISTA 2A"
+    name: "Packaged-Products Weighing 150 lb (68 kg) or Less (Partial Simulation)"
+    publisher: International Safe Transit Association
+    edition: "current revision"
+    kind: standard
+    license_kind: commercial
+    aliases: []
+
+  - id: "ISTA 3A"
+    name: "Packaged-Products for Parcel Delivery System Shipment"
+    publisher: International Safe Transit Association
+    edition: "current revision"
+    kind: standard
+    license_kind: commercial
+    aliases: []
+
+  - id: "MDSAP"
+    name: "Medical Device Single Audit Program"
+    publisher: IMDRF / participating regulators (FDA, Health Canada, TGA, ANVISA, PMDA)
+    edition: "current revision"
+    kind: program
+    license_kind: public
+    aliases: []
+
+  # === Cross-cutting overlay ===
+
+  - id: "ISO/IEC 27001:2022"
+    name: "Information security, cybersecurity and privacy protection — Information security management systems"
+    publisher: ISO/IEC
+    edition: "2022"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 27001"
+      - "ISO/IEC 27001"
+
+  # === Roadmap (registered for future modules, no machine-readable bindings yet) ===
+
+  - id: "NIST AI RMF 1.0"
+    name: "NIST Artificial Intelligence Risk Management Framework"
+    publisher: US NIST
+    edition: "1.0"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "NIST AI RMF"
+      - "AI RMF"
+
+  - id: "EU AI Act"
+    name: "Regulation on artificial intelligence (EU AI Act)"
+    publisher: European Union
+    edition: "2024/1689"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "AI Act"
+
+  - id: "ISO/IEC 42001:2023"
+    name: "Artificial intelligence — Management system"
+    publisher: ISO/IEC
+    edition: "2023"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 42001"
+      - "ISO/IEC 42001"

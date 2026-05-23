@@ -45,6 +45,27 @@ Equivalent via `python -m`:
 python -m openqms validate --module medical-devices
 ```
 
+### Standards-and-jurisdictions registry
+
+Both `--standard` and `--jurisdiction` arguments are validated against the registry at `<repo>/registry/` (`standards.yaml` + `jurisdictions.yaml`). Unknown standards and jurisdictions raise rather than silently filtering to empty resolution. Aliases like `"ISO 13485"` are normalized to canonical ids like `"ISO 13485:2016"` before being passed to the resolver.
+
+Inspect the registry:
+
+```bash
+openqms registry list
+openqms registry show --id "ISO 13485"
+openqms registry show --id FDA
+```
+
+`validate` also cross-checks the module's `standards:` list and per-clause `standard:` field against the registry. A module that references an unregistered standard fails validation with a specific error.
+
+Escape hatch (skip standards validation; jurisdictions remain strictly validated):
+
+```bash
+openqms resolve --allow-unregistered-standards ...
+openqms validate --allow-unregistered-standards ...
+```
+
 ### Composition
 
 `--module` is repeatable on both `resolve` and `validate`. The engine composes the modules via `openqms.module.compose` before doing its work. Composition rules:

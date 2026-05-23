@@ -1,0 +1,57 @@
+# Open QMS jurisdictions registry
+# --------------------------------
+# Lists supported jurisdictions and the standards typically in scope for
+# medical-device organizations operating there. CLI --jurisdiction arguments
+# are validated against this registry; unregistered jurisdictions raise.
+#
+# `applicable_standards` is informational: it lists the standards a
+# regulator typically expects to see covered. Each entry must reference a
+# standard id present in standards.yaml; the registry loader cross-checks
+# this on every load.
+#
+# To add a jurisdiction: open a PR with a new entry below.
+
+jurisdictions:
+
+  - id: FDA
+    name: U.S. Food and Drug Administration
+    region: United States
+    applicable_standards:
+      - "21 CFR 820"
+      - "21 CFR Part 11"
+      - "ISO 13485:2016"
+
+  - id: Health Canada
+    name: Health Canada — Medical Devices Directorate
+    region: Canada
+    applicable_standards:
+      - "ISO 13485:2016"
+      - "MDSAP"
+
+  - id: EU MDR
+    name: European Union Notified Body authorities under MDR 2017/745
+    region: European Union
+    applicable_standards:
+      - "EU MDR 2017/745"
+      - "ISO 13485:2016"
+
+  - id: PMDA
+    name: Pharmaceuticals and Medical Devices Agency
+    region: Japan
+    applicable_standards:
+      - "ISO 13485:2016"
+      - "MDSAP"
+
+  - id: TGA
+    name: Therapeutic Goods Administration
+    region: Australia
+    applicable_standards:
+      - "ISO 13485:2016"
+      - "MDSAP"
+
+  - id: ANVISA
+    name: Brazilian Health Regulatory Agency
+    region: Brazil
+    applicable_standards:
+      - "ISO 13485:2016"
+      - "MDSAP"
