@@ -1,0 +1,528 @@
+# Open QMS — automotive regulatory module
+# ----------------------------------------
+# Vertical module for road-vehicle automotive (passenger cars + light
+# commercial vehicles + heavy duty trucks; motorcycle adaptation via
+# ISO 26262 Part 12 is forward work). Covers:
+#
+#  - QMS substrate: ISO 9001:2015 + IATF 16949:2016 (automotive QMS).
+#  - Functional safety: ISO 26262:2018 (all 12 parts — concept,
+#    system, hardware, software, supporting processes, ASIL-oriented
+#    analyses, ASIL A through D).
+#  - Cybersecurity: ISO/SAE 21434:2021 (CSMS + product cybersecurity
+#    engineering; CAL assurance levels).
+#  - Type-approval regulations: UN R155 (cybersecurity CSMS mandate)
+#    + UN R156 (software update SUMS mandate). Required for type
+#    approval in UNECE jurisdictions (EU, Japan, Korea, etc.) since
+#    July 2022; not mandatory in the US but increasingly required by
+#    OEMs flowing down to suppliers.
+#  - Process maturity: Automotive SPICE 4.0 (VDA-required for German
+#    OEMs; widely adopted by Tier-1 suppliers globally).
+#  - Production approval: AIAG PPAP 4th Ed. (Production Part Approval
+#    Process — analogous to aerospace AS9102 FAI).
+#
+# ASIL class overlays (ASIL-A through ASIL-D per ISO 26262) and CAL
+# overlays (CAL 1-4 per ISO/SAE 21434) are intentionally deferred to
+# future class overlays, analogous to the medical-devices /
+# aerospace class overlay pattern. This module is the vertical seed.
+#
+# Defense vehicles (MIL-STD-882, GVSC armored ground vehicle standards),
+# off-highway (e.g. ISO 13849 for mobile machinery), and rail (EN
+# 50128 / 50129) are intentionally out of scope — each warrants its
+# own vertical given regulatory architecture differences.
+#
+# Standards licensing: clauses are referenced by number and normative
+# summary only. IATF 16949, ISO 26262, ISO/SAE 21434, Automotive
+# SPICE, and AIAG PPAP are all commercially-published copyrighted
+# works sold by IATF / ISO / SAE / VDA QMC / AIAG. UN R155 and UN
+# R156 are public regulations published by UNECE. Adopters obtain
+# their own licensed copies of the commercial standards; see repo-root
+# README "Standards licensing — important" section.
+
+name: automotive
+version: 0.1.0
+
+standards:
+  - ISO 9001:2015
+  - IATF 16949:2016
+  - ISO 26262:2018
+  - ISO/SAE 21434:2021
+  - UN R155
+  - UN R156
+  - Automotive SPICE 4.0
+  - AIAG PPAP 4th Ed.
+
+clauses:
+
+  # === QMS substrate (ISO 9001 + IATF 16949) ===
+
+  - id: IATF-4.4
+    standard: IATF 16949:2016
+    section: "4.4"
+    summary: |
+      Quality management system and its processes — IATF 16949 extends
+      ISO 9001 §4.4 with automotive-specific process effectiveness and
+      efficiency criteria, plus product-safety process discipline.
+
+  - id: IATF-7.1.5.2.1
+    standard: IATF 16949:2016
+    section: "7.1.5.2.1"
+    summary: |
+      Calibration / verification records — automotive-specific
+      retention discipline for measurement traceability across
+      production tooling and inspection equipment. Equivalent to
+      AS9100D §7.1.5 and ISO 13485 §7.6 in adjacent verticals.
+
+  - id: IATF-7.5
+    standard: IATF 16949:2016
+    section: "7.5"
+    summary: |
+      Documented information — creation, control, distribution,
+      access, retrieval, storage, preservation, retention, and
+      disposition of documented information required by the QMS,
+      including customer-specific requirements (CSRs).
+
+  - id: IATF-8.3.3.3
+    standard: IATF 16949:2016
+    section: "8.3.3.3"
+    summary: |
+      Special characteristics — identification, documentation, and
+      flow-down of customer-designated and supplier-identified
+      special characteristics (Key Characteristics, Critical
+      Characteristics, Safety Characteristics) through PFMEA, Control
+      Plan, and PPAP. Drives variation-control discipline at all
+      stages of production.
+
+  - id: IATF-8.4
+    standard: IATF 16949:2016
+    section: "8.4"
+    summary: |
+      Control of externally-provided processes, products and services
+      (supplier controls). Selection, evaluation, monitoring;
+      flow-down of customer-specific requirements; sub-supplier
+      monitoring (Tier-N visibility); supplier QMS development to
+      IATF 16949 or ISO 9001 with automotive-customer-specific
+      additions.
+
+  - id: IATF-8.5.1.1
+    standard: IATF 16949:2016
+    section: "8.5.1.1"
+    summary: |
+      Control plan — documented per-part / per-product-family plan
+      describing controls (process parameters, characteristics,
+      measurement methods, sampling frequencies, reaction plans) at
+      each step from receiving through shipping. Living document
+      updated whenever the process or product changes. Bridges
+      PFMEA + work instructions + inspection.
+
+  - id: IATF-8.7
+    standard: IATF 16949:2016
+    section: "8.7"
+    summary: |
+      Control of nonconforming outputs — segregation, identification,
+      disposition (rework / regrade / use-as-is via deviation
+      authorization / scrap), and concession-from-customer handling
+      where applicable. Includes customer-notification protocol for
+      shipped nonconforming product.
+
+  - id: IATF-9.2
+    standard: IATF 16949:2016
+    section: "9.2"
+    summary: |
+      Internal audit — including the IATF-mandated three audit types:
+      QMS audit (full-scope), manufacturing process audit (per process
+      at planned intervals), and product audit (per product family
+      including layout inspection). Auditor competence requirements
+      per §7.2.3.
+
+  - id: IATF-10.2.3
+    standard: IATF 16949:2016
+    section: "10.2.3"
+    summary: |
+      Problem solving — automotive 8D-style structured approach
+      (Define, Form Team, Describe, Containment, Root Cause,
+      Permanent Corrective Action, Verify Implementation, Prevent
+      Recurrence, Recognize Team). Mandatory for customer-issued
+      problem reports and recurring internal nonconformances.
+
+  # === ISO 26262 functional safety (concept + product dev across all four V-model phases + supporting processes) ===
+
+  - id: ISO26262-P2
+    standard: ISO 26262:2018
+    section: "Part 2"
+    summary: |
+      Management of functional safety — overall safety management
+      (safety culture, FuSa management at organizational and project
+      levels, safety lifecycle planning, safety case structure).
+      Includes the Safety Plan, the Safety Case, and FuSa management
+      role definitions.
+
+  - id: ISO26262-P2-6
+    standard: ISO 26262:2018
+    section: "Part 2 §6"
+    summary: |
+      Confirmation measures — confirmation review (concept + system
+      design phases), functional safety audit (process compliance),
+      and functional safety assessment (final independent assessment
+      before release). Independence requirements scale with ASIL
+      assignment (A → B → C → D require increasingly-independent
+      reviewers).
+
+  - id: ISO26262-P3-5
+    standard: ISO 26262:2018
+    section: "Part 3 §5"
+    summary: |
+      Item definition — first concept-phase deliverable defining the
+      boundary of the "item" subject to FuSa analysis: functional
+      and non-functional requirements, preliminary architecture,
+      external interfaces, environmental conditions, legal
+      requirements, and dependencies on other items.
+
+  - id: ISO26262-P3-6
+    standard: ISO 26262:2018
+    section: "Part 3 §6"
+    summary: |
+      Hazard Analysis and Risk Assessment (HARA) — systematic
+      identification of hazardous events from item malfunctions,
+      classification of risk per Severity (S0-S3) × Exposure (E0-E4)
+      × Controllability (C0-C3), and assignment of Automotive Safety
+      Integrity Level (ASIL A / B / C / D / QM) per the ASIL table.
+      Output: Safety Goals at the item level.
+
+  - id: ISO26262-P3-7
+    standard: ISO 26262:2018
+    section: "Part 3 §7"
+    summary: |
+      Functional Safety Concept (FSC) — derivation of Functional
+      Safety Requirements (FSRs) from Safety Goals, allocation to
+      preliminary architecture, and definition of safe states +
+      warning + degradation strategies + fault tolerance / fault
+      reaction times.
+
+  - id: ISO26262-P4
+    standard: ISO 26262:2018
+    section: "Part 4"
+    summary: |
+      Product development at the system level — Technical Safety
+      Concept (TSC) refining FSCs into Technical Safety Requirements;
+      system architectural design with safety analyses (FMEDA, FTA);
+      system V&V (integration testing, validation against Safety
+      Goals).
+
+  - id: ISO26262-P5
+    standard: ISO 26262:2018
+    section: "Part 5"
+    summary: |
+      Product development at the hardware level — Hardware Safety
+      Requirements; hardware architectural design; hardware safety
+      analyses; hardware metrics (Single-Point Fault Metric SPFM,
+      Latent Fault Metric LFM, Probabilistic Metric for Hardware
+      Failures PMHF) per ASIL target; hardware V&V.
+
+  - id: ISO26262-P6
+    standard: ISO 26262:2018
+    section: "Part 6"
+    summary: |
+      Product development at the software level — Software Safety
+      Requirements; software architectural design with method
+      requirements per ASIL (e.g., MISRA C, defensive programming,
+      strong typing); unit / integration / qualification testing
+      with structural coverage requirements per ASIL (statement,
+      branch, MC/DC).
+
+  - id: ISO26262-P8
+    standard: ISO 26262:2018
+    section: "Part 8"
+    summary: |
+      Supporting processes — interfaces with distributed development
+      (§5); requirements management (§6); configuration management
+      (§7); change management (§8); verification (§9); documentation
+      (§10); software tool qualification (§11 — tools used in safety
+      lifecycle must be confidence-classified TCL1 / TCL2 / TCL3 and
+      qualified accordingly).
+
+  - id: ISO26262-P9
+    standard: ISO 26262:2018
+    section: "Part 9"
+    summary: |
+      ASIL-oriented and safety-oriented analyses — ASIL decomposition
+      (rule-bound reduction of ASIL requirements onto multiple
+      sufficiently-independent elements); analysis of dependent
+      failures (DFA — common cause + cascading failure); safety
+      analyses methodology (FMEA, FTA, FMEDA, ETA).
+
+  # === ISO/SAE 21434 cybersecurity ===
+
+  - id: ISO21434-5
+    standard: ISO/SAE 21434:2021
+    section: "§5"
+    summary: |
+      Cybersecurity Management System (CSMS) — overall organizational
+      cyber capability covering cybersecurity governance, cyber
+      culture, risk management framework, tool management, supplier
+      cybersecurity management, audit + assessment. Required as
+      precondition for project-specific cybersecurity engineering;
+      type-approval gate under UN R155.
+
+  - id: ISO21434-10
+    standard: ISO/SAE 21434:2021
+    section: "§10"
+    summary: |
+      Project-dependent cybersecurity management — Cybersecurity
+      Plan, Cybersecurity Case (analogous to FuSa Safety Case),
+      project-level cybersecurity activities, tailoring per the
+      item / component scope.
+
+  - id: ISO21434-11
+    standard: ISO/SAE 21434:2021
+    section: "§11"
+    summary: |
+      Continuous cybersecurity activities — post-development phase
+      including vulnerability management (monitoring, triage,
+      response), incident response, sustained cybersecurity (over
+      the entire product lifecycle including end-of-support
+      transitions).
+
+  - id: ISO21434-15
+    standard: ISO/SAE 21434:2021
+    section: "§15"
+    summary: |
+      Threat Analysis and Risk Assessment (TARA) — systematic
+      identification of damage scenarios, threat scenarios, attack
+      paths (using STRIDE, attack trees, or similar); rating of
+      impact (Safety / Financial / Operational / Privacy) and
+      attack feasibility; risk determination; Cybersecurity Assurance
+      Level (CAL) assignment; risk treatment decision. Cyber analog
+      of HARA.
+
+  - id: ISO21434-9
+    standard: ISO/SAE 21434:2021
+    section: "§9 / §10-13"
+    summary: |
+      Concept phase + product development phases — cybersecurity
+      goals, cybersecurity controls, cybersecurity requirements
+      allocated across architecture, integration + verification +
+      validation activities.
+
+  # === UN type-approval cybersecurity + software-update regulations ===
+
+  - id: UN-R155-CSMS
+    standard: UN R155
+    section: "Annex 7 / Schedule 1"
+    summary: |
+      Manufacturer Cybersecurity Management System certification —
+      type-approval gate. Manufacturer must demonstrate a documented
+      CSMS covering organizational governance, risk management,
+      monitoring of cyber threats, supplier dependencies, incident
+      response, and processes for cybersecurity throughout the
+      development, production, and post-production phases.
+      Certificate issued by approval authority; required prior to
+      vehicle-type approval.
+
+  - id: UN-R155-vehicle
+    standard: UN R155
+    section: "Annex 5"
+    summary: |
+      Vehicle-type cybersecurity approval — per-vehicle-type
+      cybersecurity assessment demonstrating manufacturer has
+      addressed the threats enumerated in Annex 5 (covering external
+      interfaces, vehicle communication channels, update process,
+      back-end-server interactions, vehicle data, code, user
+      identity, etc.) through analysis + risk treatment per the
+      certified CSMS.
+
+  - id: UN-R156-SUMS
+    standard: UN R156
+    section: "Annex 1"
+    summary: |
+      Manufacturer Software Update Management System (SUMS)
+      certification — process discipline for over-the-air and
+      offline software updates: identification of vehicles affected
+      by each update, integrity of updates (signing + verification),
+      compatibility analysis (no breaking changes to type approval),
+      user information requirements, rollback capability, update
+      audit trail.
+
+  # === Automotive SPICE process maturity ===
+
+  - id: ASPICE-SWE
+    standard: Automotive SPICE 4.0
+    section: "SWE process group"
+    summary: |
+      Software Engineering process group (SWE.1 software requirements
+      analysis, SWE.2 software architectural design, SWE.3 software
+      detailed design + unit construction, SWE.4 software unit
+      verification, SWE.5 software integration + integration
+      verification, SWE.6 software qualification test). Bidirectional
+      traceability between SYS / SWE / qualification levels;
+      capability level rating per VDA QMC scope (typically Level 2
+      or 3 for production software).
+
+  - id: ASPICE-MAN-SUP
+    standard: Automotive SPICE 4.0
+    section: "MAN + SUP process groups"
+    summary: |
+      Management process group (MAN.3 project management, MAN.5 risk
+      management, MAN.6 measurement) and Support process group
+      (SUP.1 quality assurance, SUP.8 configuration management,
+      SUP.9 problem resolution management, SUP.10 change request
+      management). Crosscuts every SWE activity and ties to ISO 26262
+      Part 8 supporting processes.
+
+  # === AIAG Production Part Approval Process ===
+
+  - id: PPAP-18elements
+    standard: AIAG PPAP 4th Ed.
+    section: "all"
+    summary: |
+      Production Part Approval Process (PPAP) — the production-readiness
+      gate for the automotive industry, analogous to aerospace AS9102
+      FAI. 18-element submission package: design records, engineering
+      change documents, customer engineering approval, DFMEA, process
+      flow, PFMEA, control plan, MSA studies, dimensional results,
+      material/performance test results, initial process studies,
+      qualified laboratory documentation, appearance approval, sample
+      production parts, master sample, checking aids, customer-specific
+      requirements, Part Submission Warrant (PSW). Submission Level
+      1-5 determined by customer.
+
+templates:
+
+  # === QMS-substrate bindings (existing templates extended for IATF 16949) ===
+
+  - path: templates/qms-policy/quality-policy.md
+    name: Quality policy (IATF 16949 + ISO 9001:2015 binding)
+    addresses:
+      - IATF-4.4
+      - IATF-7.5
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Standard operating procedure (IATF 16949 calibration + special characteristics + nonconforming output)
+    addresses:
+      - IATF-7.1.5.2.1
+      - IATF-7.5
+      - IATF-8.3.3.3
+      - IATF-8.5.1.1
+      - IATF-8.7
+
+  - path: templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md
+    name: Internal audit procedure (IATF 16949 §9.2 three-audit-type discipline)
+    addresses:
+      - IATF-9.2
+
+  - path: templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md
+    name: Management review (IATF 16949 §9.3 / automotive inputs)
+    addresses:
+      - IATF-4.4
+
+  - path: templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md
+    name: Approved Supplier List (IATF 16949 §8.4 external provider control with Tier-N visibility)
+    addresses:
+      - IATF-8.4
+
+  - path: templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md
+    name: Supplier evaluation (IATF 16949 §8.4 with customer-specific flow-down)
+    addresses:
+      - IATF-8.4
+
+  - path: .github/ISSUE_TEMPLATE/capa.yml
+    name: CAPA issue template — 8D problem-solving entry (IATF 16949 §10.2.3)
+    addresses:
+      - IATF-10.2.3
+
+  - path: .github/ISSUE_TEMPLATE/nonconformance.yml
+    name: Nonconformance report (IATF 16949 §8.7)
+    addresses:
+      - IATF-8.7
+
+  # === FuSa management + concept-phase bindings ===
+
+  - path: templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md
+    name: Functional Safety management file (ISO 26262 Part 2 — Safety Plan, Safety Case, FuSa roles)
+    addresses:
+      - ISO26262-P2
+      - ISO26262-P2-6
+
+  - path: templates/product-dhf/item-definition/ITEM-DEFINITION-TEMPLATE.md
+    name: Item Definition (ISO 26262 Part 3 §5)
+    addresses:
+      - ISO26262-P3-5
+
+  - path: templates/product-dhf/hara/HARA-TEMPLATE.md
+    name: Hazard Analysis and Risk Assessment (ISO 26262 Part 3 §6; ASIL derivation)
+    addresses:
+      - ISO26262-P3-6
+
+  - path: templates/product-dhf/safety-concept/SAFETY-CONCEPT-TEMPLATE.md
+    name: Functional Safety Concept + Technical Safety Concept (ISO 26262 Part 3 §7 + Part 4)
+    addresses:
+      - ISO26262-P3-7
+      - ISO26262-P4
+
+  - path: templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md
+    name: Verification protocol (ISO 26262 Part 5 hardware V&V)
+    addresses:
+      - ISO26262-P5
+
+  - path: templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md
+    name: Software test protocol (ISO 26262 Part 6 software V&V per ASIL + ASPICE SWE.4-6)
+    addresses:
+      - ISO26262-P6
+      - ASPICE-SWE
+
+  # === ISO 26262 Part 8 supporting processes — reuse SOP for config/change mgmt + tool qualification ===
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: ISO 26262 Part 8 supporting-process SOPs (config mgmt, change mgmt, tool qualification)
+    addresses:
+      - ISO26262-P8
+
+  - path: templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md
+    name: ASIL decomposition + dependent-failure analysis (ISO 26262 Part 9)
+    addresses:
+      - ISO26262-P9
+
+  # === Cybersecurity bindings ===
+
+  - path: templates/product-dhf/tara/TARA-TEMPLATE.md
+    name: Threat Analysis and Risk Assessment (ISO/SAE 21434 §15; CAL derivation)
+    addresses:
+      - ISO21434-15
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: CSMS + project cybersecurity + continuous cybersecurity SOPs (ISO/SAE 21434 §5 + §10 + §11)
+    addresses:
+      - ISO21434-5
+      - ISO21434-10
+      - ISO21434-11
+
+  - path: templates/product-dhf/safety-concept/SAFETY-CONCEPT-TEMPLATE.md
+    name: Cybersecurity Concept (ISO/SAE 21434 §9 + §10-13; pairs with TSC)
+    addresses:
+      - ISO21434-9
+
+  # === UN R155 / R156 regulatory bindings — type-approval pack ===
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: CSMS + SUMS process discipline (UN R155 CSMS, UN R156 SUMS)
+    addresses:
+      - UN-R155-CSMS
+      - UN-R156-SUMS
+
+  - path: templates/product-dhf/tara/TARA-TEMPLATE.md
+    name: Vehicle-type cybersecurity assessment (UN R155 Annex 5 threat coverage)
+    addresses:
+      - UN-R155-vehicle
+
+  # === ASPICE management + support process binding ===
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: ASPICE MAN + SUP process SOPs (project / risk / measurement / QA / config / problem / change)
+    addresses:
+      - ASPICE-MAN-SUP
+
+  # === PPAP production-approval binding ===
+
+  - path: templates/product-dhf/ppap/PPAP-TEMPLATE.md
+    name: PPAP 18-element submission package (AIAG PPAP 4th Ed.)
+    addresses:
+      - PPAP-18elements

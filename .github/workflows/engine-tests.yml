@@ -44,9 +44,11 @@ jobs:
           openqms validate --module medical-devices
           openqms validate --module iso-27001
           openqms validate --module aerospace
+          openqms validate --module automotive
           openqms validate --module regulated-ai
           openqms validate --module medical-devices --module iso-27001
           openqms validate --module aerospace --module regulated-ai --module iso-27001
+          openqms validate --module automotive --module regulated-ai --module iso-27001
 
       - name: Inspect registry (smoke check)
         run: openqms registry list
@@ -59,6 +61,7 @@ jobs:
         run: |
           openqms regenerate --bundle example-samd
           openqms regenerate --bundle example-aircraft
+          openqms regenerate --bundle example-vehicle
 
       - name: Signatures export (smoke check)
         # Walks the repo's own git log and emits a signature audit trail.

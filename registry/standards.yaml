@@ -215,6 +215,82 @@ standards:
       - "AS9102"
       - "FAI"
 
+  # === Automotive standards ===
+
+  - id: "IATF 16949:2016"
+    name: "Quality management system requirements for automotive production and relevant service parts organizations"
+    publisher: International Automotive Task Force
+    edition: "2016 (1st Ed.) + Sanctioned Interpretations"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "IATF 16949"
+      - "TS 16949"
+
+  - id: "ISO 26262:2018"
+    name: "Road vehicles — Functional safety (all 12 parts)"
+    publisher: ISO
+    edition: "2018 (2nd Ed.)"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 26262"
+      - "FuSa"
+
+  - id: "ISO/SAE 21434:2021"
+    name: "Road vehicles — Cybersecurity engineering"
+    publisher: ISO / SAE International
+    edition: "2021"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 21434"
+      - "SAE 21434"
+      - "ISO/SAE 21434"
+
+  - id: "UN R155"
+    name: "Uniform provisions concerning the approval of vehicles with regards to cyber security and cyber security management system"
+    publisher: UNECE WP.29
+    edition: "2021 (Rev 1)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "UNECE R155"
+      - "R155"
+      - "CSMS regulation"
+
+  - id: "UN R156"
+    name: "Uniform provisions concerning the approval of vehicles with regards to software update and software update management system"
+    publisher: UNECE WP.29
+    edition: "2021 (Rev 1)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "UNECE R156"
+      - "R156"
+      - "SUMS regulation"
+
+  - id: "Automotive SPICE 4.0"
+    name: "Automotive SPICE — Process Assessment / Reference Model"
+    publisher: VDA QMC
+    edition: "v4.0 (2023)"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "A-SPICE"
+      - "Automotive SPICE"
+      - "ASPICE"
+
+  - id: "AIAG PPAP 4th Ed."
+    name: "Production Part Approval Process (PPAP) reference manual"
+    publisher: Automotive Industry Action Group (AIAG)
+    edition: "4th Edition (2006)"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "PPAP"
+      - "AIAG PPAP"
+
   # === Device-class / category overlay standards ===
 
   - id: "IEC 82304-1:2016"

@@ -1,0 +1,39 @@
+# Open QMS — example automotive bundle definition
+# ------------------------------------------------
+# Demonstrates the automotive vertical end-to-end against an example
+# road-vehicle product (an electric powertrain ECU shipped to a Tier-1
+# supplier under UN R155/R156 type-approval scope, ASIL D for the
+# torque-control function, EU + US markets).
+# Composes automotive + regulated-ai + iso-27001:
+#  - automotive: full FuSa + cybersecurity + IATF 16949 substrate
+#  - regulated-ai: predictive battery-state-of-health model is an
+#    ML-driven function triggering NIST AI RMF (US) + EU AI Act
+#    (high-risk AI scope under Article 6 Annex III)
+#  - iso-27001: enterprise IS (source code repositories, supplier
+#    portals, CSMS-relevant IT systems)
+
+name: example-vehicle
+product: ExamplePowertrainECU
+jurisdictions:
+  - NHTSA
+  - UNECE
+  - KBA
+
+standards:
+  - "ISO 9001:2015"
+  - "IATF 16949:2016"
+  - "ISO 26262:2018"
+  - "ISO/SAE 21434:2021"
+  - "UN R155"
+  - "UN R156"
+  - "Automotive SPICE 4.0"
+  - "AIAG PPAP 4th Ed."
+  - "NIST AI RMF 1.0"
+  - "EU AI Act"
+  - "ISO/IEC 42001:2023"
+  - "ISO/IEC 27001:2022"
+
+modules:
+  - automotive
+  - regulated-ai
+  - iso-27001

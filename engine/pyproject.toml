@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "openqms"
-version = "0.14.0"
+version = "0.15.0"
 description = "Open QMS — generator for regulated-industry Quality Management Systems"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -22,6 +22,10 @@ keywords = [
   "aerospace",
   "as9100",
   "do-178c",
+  "automotive",
+  "iatf-16949",
+  "iso-26262",
+  "iso-21434",
 ]
 classifiers = [
   "Development Status :: 3 - Alpha",

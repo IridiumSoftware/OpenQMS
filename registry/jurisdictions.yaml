@@ -94,3 +94,46 @@ jurisdictions:
       - "DO-254:2000"
       - "ARP4754A:2010"
       - "ARP4761:1996"
+
+  # === Automotive jurisdictions ===
+
+  - id: NHTSA
+    name: U.S. National Highway Traffic Safety Administration
+    region: United States
+    applicable_standards:
+      - "IATF 16949:2016"
+      - "ISO 9001:2015"
+      - "ISO 26262:2018"
+      - "ISO/SAE 21434:2021"
+      - "AIAG PPAP 4th Ed."
+
+  - id: UNECE
+    name: UNECE WP.29 — World Forum for Harmonization of Vehicle Regulations
+    region: International (EU + Japan + Korea + most non-US markets)
+    applicable_standards:
+      - "UN R155"
+      - "UN R156"
+      - "ISO/SAE 21434:2021"
+      - "ISO 26262:2018"
+      - "IATF 16949:2016"
+      - "ISO 9001:2015"
+
+  - id: KBA
+    name: Kraftfahrt-Bundesamt — German Federal Motor Transport Authority
+    region: Germany / EU type approval
+    applicable_standards:
+      - "UN R155"
+      - "UN R156"
+      - "ISO/SAE 21434:2021"
+      - "ISO 26262:2018"
+      - "IATF 16949:2016"
+      - "Automotive SPICE 4.0"
+
+  - id: TC-MVS
+    name: Transport Canada — Motor Vehicle Safety
+    region: Canada
+    applicable_standards:
+      - "IATF 16949:2016"
+      - "ISO 9001:2015"
+      - "ISO 26262:2018"
+      - "ISO/SAE 21434:2021"

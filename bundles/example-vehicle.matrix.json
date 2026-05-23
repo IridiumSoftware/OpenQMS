@@ -1,0 +1,762 @@
+{
+  "bundle": {
+    "product": "ExamplePowertrainECU",
+    "jurisdictions": [
+      "NHTSA",
+      "UNECE",
+      "KBA"
+    ],
+    "standards": [
+      "ISO 9001:2015",
+      "IATF 16949:2016",
+      "ISO 26262:2018",
+      "ISO/SAE 21434:2021",
+      "UN R155",
+      "UN R156",
+      "Automotive SPICE 4.0",
+      "AIAG PPAP 4th Ed.",
+      "NIST AI RMF 1.0",
+      "EU AI Act",
+      "ISO/IEC 42001:2023",
+      "ISO/IEC 27001:2022"
+    ]
+  },
+  "module": {
+    "name": "automotive+regulated-ai-overlay+iso-27001-overlay",
+    "version": "composed"
+  },
+  "in_scope_clauses": [
+    {
+      "id": "IATF-4.4",
+      "standard": "IATF 16949:2016",
+      "section": "4.4",
+      "summary": "Quality management system and its processes \u2014 IATF 16949 extends\nISO 9001 \u00a74.4 with automotive-specific process effectiveness and\nefficiency criteria, plus product-safety process discipline.",
+      "gap_note": null
+    },
+    {
+      "id": "IATF-7.1.5.2.1",
+      "standard": "IATF 16949:2016",
+      "section": "7.1.5.2.1",
+      "summary": "Calibration / verification records \u2014 automotive-specific\nretention discipline for measurement traceability across\nproduction tooling and inspection equipment. Equivalent to\nAS9100D \u00a77.1.5 and ISO 13485 \u00a77.6 in adjacent verticals.",
+      "gap_note": null
+    },
+    {
+      "id": "IATF-7.5",
+      "standard": "IATF 16949:2016",
+      "section": "7.5",
+      "summary": "Documented information \u2014 creation, control, distribution,\naccess, retrieval, storage, preservation, retention, and\ndisposition of documented information required by the QMS,\nincluding customer-specific requirements (CSRs).",
+      "gap_note": null
+    },
+    {
+      "id": "IATF-8.3.3.3",
+      "standard": "IATF 16949:2016",
+      "section": "8.3.3.3",
+      "summary": "Special characteristics \u2014 identification, documentation, and\nflow-down of customer-designated and supplier-identified\nspecial characteristics (Key Characteristics, Critical\nCharacteristics, Safety Characteristics) through PFMEA, Control\nPlan, and PPAP. Drives variation-control discipline at all\nstages of production.",
+      "gap_note": null
+    },
+    {
+      "id": "IATF-8.4",
+      "standard": "IATF 16949:2016",
+      "section": "8.4",
+      "summary": "Control of externally-provided processes, products and services\n(supplier controls). Selection, evaluation, monitoring;\nflow-down of customer-specific requirements; sub-supplier\nmonitoring (Tier-N visibility); supplier QMS development to\nIATF 16949 or ISO 9001 with automotive-customer-specific\nadditions.",
+      "gap_note": null
+    },
+    {
+      "id": "IATF-8.5.1.1",
+      "standard": "IATF 16949:2016",
+      "section": "8.5.1.1",
+      "summary": "Control plan \u2014 documented per-part / per-product-family plan\ndescribing controls (process parameters, characteristics,\nmeasurement methods, sampling frequencies, reaction plans) at\neach step from receiving through shipping. Living document\nupdated whenever the process or product changes. Bridges\nPFMEA + work instructions + inspection.",
+      "gap_note": null
+    },
+    {
+      "id": "IATF-8.7",
+      "standard": "IATF 16949:2016",
+      "section": "8.7",
+      "summary": "Control of nonconforming outputs \u2014 segregation, identification,\ndisposition (rework / regrade / use-as-is via deviation\nauthorization / scrap), and concession-from-customer handling\nwhere applicable. Includes customer-notification protocol for\nshipped nonconforming product.",
+      "gap_note": null
+    },
+    {
+      "id": "IATF-9.2",
+      "standard": "IATF 16949:2016",
+      "section": "9.2",
+      "summary": "Internal audit \u2014 including the IATF-mandated three audit types:\nQMS audit (full-scope), manufacturing process audit (per process\nat planned intervals), and product audit (per product family\nincluding layout inspection). Auditor competence requirements\nper \u00a77.2.3.",
+      "gap_note": null
+    },
+    {
+      "id": "IATF-10.2.3",
+      "standard": "IATF 16949:2016",
+      "section": "10.2.3",
+      "summary": "Problem solving \u2014 automotive 8D-style structured approach\n(Define, Form Team, Describe, Containment, Root Cause,\nPermanent Corrective Action, Verify Implementation, Prevent\nRecurrence, Recognize Team). Mandatory for customer-issued\nproblem reports and recurring internal nonconformances.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO26262-P2",
+      "standard": "ISO 26262:2018",
+      "section": "Part 2",
+      "summary": "Management of functional safety \u2014 overall safety management\n(safety culture, FuSa management at organizational and project\nlevels, safety lifecycle planning, safety case structure).\nIncludes the Safety Plan, the Safety Case, and FuSa management\nrole definitions.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO26262-P2-6",
+      "standard": "ISO 26262:2018",
+      "section": "Part 2 \u00a76",
+      "summary": "Confirmation measures \u2014 confirmation review (concept + system\ndesign phases), functional safety audit (process compliance),\nand functional safety assessment (final independent assessment\nbefore release). Independence requirements scale with ASIL\nassignment (A \u2192 B \u2192 C \u2192 D require increasingly-independent\nreviewers).",
+      "gap_note": null
+    },
+    {
+      "id": "ISO26262-P3-5",
+      "standard": "ISO 26262:2018",
+      "section": "Part 3 \u00a75",
+      "summary": "Item definition \u2014 first concept-phase deliverable defining the\nboundary of the \"item\" subject to FuSa analysis: functional\nand non-functional requirements, preliminary architecture,\nexternal interfaces, environmental conditions, legal\nrequirements, and dependencies on other items.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO26262-P3-6",
+      "standard": "ISO 26262:2018",
+      "section": "Part 3 \u00a76",
+      "summary": "Hazard Analysis and Risk Assessment (HARA) \u2014 systematic\nidentification of hazardous events from item malfunctions,\nclassification of risk per Severity (S0-S3) \u00d7 Exposure (E0-E4)\n\u00d7 Controllability (C0-C3), and assignment of Automotive Safety\nIntegrity Level (ASIL A / B / C / D / QM) per the ASIL table.\nOutput: Safety Goals at the item level.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO26262-P3-7",
+      "standard": "ISO 26262:2018",
+      "section": "Part 3 \u00a77",
+      "summary": "Functional Safety Concept (FSC) \u2014 derivation of Functional\nSafety Requirements (FSRs) from Safety Goals, allocation to\npreliminary architecture, and definition of safe states +\nwarning + degradation strategies + fault tolerance / fault\nreaction times.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO26262-P4",
+      "standard": "ISO 26262:2018",
+      "section": "Part 4",
+      "summary": "Product development at the system level \u2014 Technical Safety\nConcept (TSC) refining FSCs into Technical Safety Requirements;\nsystem architectural design with safety analyses (FMEDA, FTA);\nsystem V&V (integration testing, validation against Safety\nGoals).",
+      "gap_note": null
+    },
+    {
+      "id": "ISO26262-P5",
+      "standard": "ISO 26262:2018",
+      "section": "Part 5",
+      "summary": "Product development at the hardware level \u2014 Hardware Safety\nRequirements; hardware architectural design; hardware safety\nanalyses; hardware metrics (Single-Point Fault Metric SPFM,\nLatent Fault Metric LFM, Probabilistic Metric for Hardware\nFailures PMHF) per ASIL target; hardware V&V.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO26262-P6",
+      "standard": "ISO 26262:2018",
+      "section": "Part 6",
+      "summary": "Product development at the software level \u2014 Software Safety\nRequirements; software architectural design with method\nrequirements per ASIL (e.g., MISRA C, defensive programming,\nstrong typing); unit / integration / qualification testing\nwith structural coverage requirements per ASIL (statement,\nbranch, MC/DC).",
+      "gap_note": null
+    },
+    {
+      "id": "ISO26262-P8",
+      "standard": "ISO 26262:2018",
+      "section": "Part 8",
+      "summary": "Supporting processes \u2014 interfaces with distributed development\n(\u00a75); requirements management (\u00a76); configuration management\n(\u00a77); change management (\u00a78); verification (\u00a79); documentation\n(\u00a710); software tool qualification (\u00a711 \u2014 tools used in safety\nlifecycle must be confidence-classified TCL1 / TCL2 / TCL3 and\nqualified accordingly).",
+      "gap_note": null
+    },
+    {
+      "id": "ISO26262-P9",
+      "standard": "ISO 26262:2018",
+      "section": "Part 9",
+      "summary": "ASIL-oriented and safety-oriented analyses \u2014 ASIL decomposition\n(rule-bound reduction of ASIL requirements onto multiple\nsufficiently-independent elements); analysis of dependent\nfailures (DFA \u2014 common cause + cascading failure); safety\nanalyses methodology (FMEA, FTA, FMEDA, ETA).",
+      "gap_note": null
+    },
+    {
+      "id": "ISO21434-5",
+      "standard": "ISO/SAE 21434:2021",
+      "section": "\u00a75",
+      "summary": "Cybersecurity Management System (CSMS) \u2014 overall organizational\ncyber capability covering cybersecurity governance, cyber\nculture, risk management framework, tool management, supplier\ncybersecurity management, audit + assessment. Required as\nprecondition for project-specific cybersecurity engineering;\ntype-approval gate under UN R155.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO21434-10",
+      "standard": "ISO/SAE 21434:2021",
+      "section": "\u00a710",
+      "summary": "Project-dependent cybersecurity management \u2014 Cybersecurity\nPlan, Cybersecurity Case (analogous to FuSa Safety Case),\nproject-level cybersecurity activities, tailoring per the\nitem / component scope.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO21434-11",
+      "standard": "ISO/SAE 21434:2021",
+      "section": "\u00a711",
+      "summary": "Continuous cybersecurity activities \u2014 post-development phase\nincluding vulnerability management (monitoring, triage,\nresponse), incident response, sustained cybersecurity (over\nthe entire product lifecycle including end-of-support\ntransitions).",
+      "gap_note": null
+    },
+    {
+      "id": "ISO21434-15",
+      "standard": "ISO/SAE 21434:2021",
+      "section": "\u00a715",
+      "summary": "Threat Analysis and Risk Assessment (TARA) \u2014 systematic\nidentification of damage scenarios, threat scenarios, attack\npaths (using STRIDE, attack trees, or similar); rating of\nimpact (Safety / Financial / Operational / Privacy) and\nattack feasibility; risk determination; Cybersecurity Assurance\nLevel (CAL) assignment; risk treatment decision. Cyber analog\nof HARA.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO21434-9",
+      "standard": "ISO/SAE 21434:2021",
+      "section": "\u00a79 / \u00a710-13",
+      "summary": "Concept phase + product development phases \u2014 cybersecurity\ngoals, cybersecurity controls, cybersecurity requirements\nallocated across architecture, integration + verification +\nvalidation activities.",
+      "gap_note": null
+    },
+    {
+      "id": "UN-R155-CSMS",
+      "standard": "UN R155",
+      "section": "Annex 7 / Schedule 1",
+      "summary": "Manufacturer Cybersecurity Management System certification \u2014\ntype-approval gate. Manufacturer must demonstrate a documented\nCSMS covering organizational governance, risk management,\nmonitoring of cyber threats, supplier dependencies, incident\nresponse, and processes for cybersecurity throughout the\ndevelopment, production, and post-production phases.\nCertificate issued by approval authority; required prior to\nvehicle-type approval.",
+      "gap_note": null
+    },
+    {
+      "id": "UN-R155-vehicle",
+      "standard": "UN R155",
+      "section": "Annex 5",
+      "summary": "Vehicle-type cybersecurity approval \u2014 per-vehicle-type\ncybersecurity assessment demonstrating manufacturer has\naddressed the threats enumerated in Annex 5 (covering external\ninterfaces, vehicle communication channels, update process,\nback-end-server interactions, vehicle data, code, user\nidentity, etc.) through analysis + risk treatment per the\ncertified CSMS.",
+      "gap_note": null
+    },
+    {
+      "id": "UN-R156-SUMS",
+      "standard": "UN R156",
+      "section": "Annex 1",
+      "summary": "Manufacturer Software Update Management System (SUMS)\ncertification \u2014 process discipline for over-the-air and\noffline software updates: identification of vehicles affected\nby each update, integrity of updates (signing + verification),\ncompatibility analysis (no breaking changes to type approval),\nuser information requirements, rollback capability, update\naudit trail.",
+      "gap_note": null
+    },
+    {
+      "id": "ASPICE-SWE",
+      "standard": "Automotive SPICE 4.0",
+      "section": "SWE process group",
+      "summary": "Software Engineering process group (SWE.1 software requirements\nanalysis, SWE.2 software architectural design, SWE.3 software\ndetailed design + unit construction, SWE.4 software unit\nverification, SWE.5 software integration + integration\nverification, SWE.6 software qualification test). Bidirectional\ntraceability between SYS / SWE / qualification levels;\ncapability level rating per VDA QMC scope (typically Level 2\nor 3 for production software).",
+      "gap_note": null
+    },
+    {
+      "id": "ASPICE-MAN-SUP",
+      "standard": "Automotive SPICE 4.0",
+      "section": "MAN + SUP process groups",
+      "summary": "Management process group (MAN.3 project management, MAN.5 risk\nmanagement, MAN.6 measurement) and Support process group\n(SUP.1 quality assurance, SUP.8 configuration management,\nSUP.9 problem resolution management, SUP.10 change request\nmanagement). Crosscuts every SWE activity and ties to ISO 26262\nPart 8 supporting processes.",
+      "gap_note": null
+    },
+    {
+      "id": "PPAP-18elements",
+      "standard": "AIAG PPAP 4th Ed.",
+      "section": "all",
+      "summary": "Production Part Approval Process (PPAP) \u2014 the production-readiness\ngate for the automotive industry, analogous to aerospace AS9102\nFAI. 18-element submission package: design records, engineering\nchange documents, customer engineering approval, DFMEA, process\nflow, PFMEA, control plan, MSA studies, dimensional results,\nmaterial/performance test results, initial process studies,\nqualified laboratory documentation, appearance approval, sample\nproduction parts, master sample, checking aids, customer-specific\nrequirements, Part Submission Warrant (PSW). Submission Level\n1-5 determined by customer.",
+      "gap_note": null
+    },
+    {
+      "id": "NIST-AI-RMF-Govern",
+      "standard": "NIST AI RMF 1.0",
+      "section": "Govern",
+      "summary": "Govern function \u2014 cultivate and implement a culture of risk\nmanagement throughout the organization. Subcategories include\npolicies and procedures for AI risk management, roles and\nresponsibilities, accountability structures, diversity and\nequity considerations, third-party AI components governance.",
+      "gap_note": null
+    },
+    {
+      "id": "NIST-AI-RMF-Map",
+      "standard": "NIST AI RMF 1.0",
+      "section": "Map",
+      "summary": "Map function \u2014 establish the context within which AI risks are\nframed. Categorize the AI system, identify intended purposes\nand use cases, identify stakeholders, characterize positive\nand negative impacts to individuals and society.",
+      "gap_note": null
+    },
+    {
+      "id": "NIST-AI-RMF-Measure",
+      "standard": "NIST AI RMF 1.0",
+      "section": "Measure",
+      "summary": "Measure function \u2014 employ quantitative, qualitative, and mixed-\nmethod tools to assess identified AI risks. Includes test sets,\nbenchmarks, evaluation methodologies, ongoing monitoring,\ntracking of trustworthy characteristics (validity, reliability,\nsafety, security, accountability, transparency, explainability,\nprivacy, fairness).",
+      "gap_note": null
+    },
+    {
+      "id": "NIST-AI-RMF-Manage",
+      "standard": "NIST AI RMF 1.0",
+      "section": "Manage",
+      "summary": "Manage function \u2014 prioritize and respond to risks based on the\nMeasure outputs. Allocate resources to risks based on assessed\nimpact and likelihood, plan responses, monitor risks over time,\ncommunicate to stakeholders, sunset or decommission as needed.",
+      "gap_note": null
+    },
+    {
+      "id": "EUAI-Art9",
+      "standard": "EU AI Act",
+      "section": "Article 9",
+      "summary": "Risk management system for high-risk AI systems \u2014 established,\nimplemented, documented, and maintained throughout the AI\nsystem lifecycle. Iterative process: identification of known\nand reasonably foreseeable risks; estimation and evaluation;\nadoption of risk management measures; residual risk evaluation\nagainst acceptability criteria.",
+      "gap_note": null
+    },
+    {
+      "id": "EUAI-Art10",
+      "standard": "EU AI Act",
+      "section": "Article 10",
+      "summary": "Data and data governance for high-risk AI \u2014 training,\nvalidation, and testing datasets shall be subject to data\ngovernance and management practices appropriate to the intended\npurpose. Datasets shall be relevant, representative, free of\nerrors, complete; statistical properties documented; bias\nexamined and mitigated.",
+      "gap_note": null
+    },
+    {
+      "id": "EUAI-Art11",
+      "standard": "EU AI Act",
+      "section": "Article 11",
+      "summary": "Technical documentation for high-risk AI \u2014 drawn up before\nplacing on the market or putting into service, kept up to date.\nDemonstrates compliance with Section 2 requirements; provides\nauthorities with the necessary information to assess\ncompliance. Content per Annex IV.",
+      "gap_note": null
+    },
+    {
+      "id": "EUAI-Art12",
+      "standard": "EU AI Act",
+      "section": "Article 12",
+      "summary": "Record-keeping / automatic logging \u2014 high-risk AI systems shall\nautomatically record events (\"logs\") over their lifetime to\nensure traceability appropriate to the intended purpose. Logs\nenable identification of situations resulting in risk,\nfacilitate post-market monitoring, and support reproducibility.",
+      "gap_note": null
+    },
+    {
+      "id": "EUAI-Art13",
+      "standard": "EU AI Act",
+      "section": "Article 13",
+      "summary": "Transparency and provision of information to deployers \u2014\nhigh-risk AI systems shall be designed and developed so their\noperation is sufficiently transparent to enable deployers to\ninterpret outputs and use them appropriately. Accompanied by\ninstructions for use containing concise, complete, correct,\nclear, relevant, accessible information.",
+      "gap_note": null
+    },
+    {
+      "id": "EUAI-Art14",
+      "standard": "EU AI Act",
+      "section": "Article 14",
+      "summary": "Human oversight for high-risk AI \u2014 designed and developed so\nthey can be effectively overseen by natural persons during\nuse. Oversight measures must enable the natural person to fully\nunderstand system capacities and limitations, remain aware of\nautomation bias, correctly interpret output, decide not to\nuse the system, intervene or interrupt operation.",
+      "gap_note": null
+    },
+    {
+      "id": "EUAI-Art15",
+      "standard": "EU AI Act",
+      "section": "Article 15",
+      "summary": "Accuracy, robustness, and cybersecurity for high-risk AI \u2014\ndesigned to achieve appropriate level of accuracy, robustness,\nand cybersecurity, performing consistently throughout lifecycle.\nResilience against errors, faults, inconsistencies; resilience\nagainst unauthorized attempts to alter use, behavior, or\nperformance.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO42001-AIMS",
+      "standard": "ISO/IEC 42001:2023",
+      "section": "all",
+      "summary": "Artificial Intelligence Management System (AIMS) \u2014 establishment,\nimplementation, maintenance, and continual improvement of an\nAI management system. Parallel structure to ISO 9001 / 13485:\ncontext (\u00a74), leadership (\u00a75), planning (\u00a76), support (\u00a77),\noperation (\u00a78), performance evaluation (\u00a79), improvement (\u00a710).\nComposes with sector-specific QMS standards as the AI-management\noverlay.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.5.1",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.5.1",
+      "summary": "Policies for information security \u2014 defined, approved by management,\npublished, communicated to and acknowledged by relevant personnel\nand interested parties, and reviewed at planned intervals or when\nsignificant changes occur.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.5.31",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.5.31",
+      "summary": "Legal, statutory, regulatory, and contractual requirements relevant\nto information security shall be identified, documented, and kept\nup to date. The organization's approach to meeting each shall be\ndefined.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.8.31",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.8.31",
+      "summary": "Separation of development, test, and production environments \u2014\nincluding separation of duties where appropriate \u2014 to reduce the\nrisk of unauthorized access or unauthorized changes to the\noperational environment.",
+      "gap_note": null
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "templates/qms-policy/quality-policy.md",
+      "name": "Quality policy (IATF 16949 + ISO 9001:2015 binding)",
+      "addresses": [
+        "IATF-4.4",
+        "IATF-7.5",
+        "ISO42001-AIMS",
+        "ISO27001-A.5.1",
+        "ISO27001-A.5.31"
+      ]
+    },
+    {
+      "path": "templates/qms-sops/SOP-TEMPLATE.md",
+      "name": "Standard operating procedure (IATF 16949 calibration + special characteristics + nonconforming output)",
+      "addresses": [
+        "IATF-7.1.5.2.1",
+        "IATF-7.5",
+        "IATF-8.3.3.3",
+        "IATF-8.5.1.1",
+        "IATF-8.7",
+        "ISO26262-P8",
+        "ISO21434-5",
+        "ISO21434-10",
+        "ISO21434-11",
+        "UN-R155-CSMS",
+        "UN-R156-SUMS",
+        "ASPICE-MAN-SUP",
+        "ISO27001-A.5.31"
+      ]
+    },
+    {
+      "path": "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md",
+      "name": "Internal audit procedure (IATF 16949 \u00a79.2 three-audit-type discipline)",
+      "addresses": [
+        "IATF-9.2"
+      ]
+    },
+    {
+      "path": "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md",
+      "name": "Management review (IATF 16949 \u00a79.3 / automotive inputs)",
+      "addresses": [
+        "IATF-4.4"
+      ]
+    },
+    {
+      "path": "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md",
+      "name": "Approved Supplier List (IATF 16949 \u00a78.4 external provider control with Tier-N visibility)",
+      "addresses": [
+        "IATF-8.4"
+      ]
+    },
+    {
+      "path": "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md",
+      "name": "Supplier evaluation (IATF 16949 \u00a78.4 with customer-specific flow-down)",
+      "addresses": [
+        "IATF-8.4"
+      ]
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/capa.yml",
+      "name": "CAPA issue template \u2014 8D problem-solving entry (IATF 16949 \u00a710.2.3)",
+      "addresses": [
+        "IATF-10.2.3"
+      ]
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/nonconformance.yml",
+      "name": "Nonconformance report (IATF 16949 \u00a78.7)",
+      "addresses": [
+        "IATF-8.7"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md",
+      "name": "Functional Safety management file (ISO 26262 Part 2 \u2014 Safety Plan, Safety Case, FuSa roles)",
+      "addresses": [
+        "ISO26262-P2",
+        "ISO26262-P2-6",
+        "ISO26262-P9",
+        "ISO23894-AI-risk-mgmt"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/item-definition/ITEM-DEFINITION-TEMPLATE.md",
+      "name": "Item Definition (ISO 26262 Part 3 \u00a75)",
+      "addresses": [
+        "ISO26262-P3-5"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/hara/HARA-TEMPLATE.md",
+      "name": "Hazard Analysis and Risk Assessment (ISO 26262 Part 3 \u00a76; ASIL derivation)",
+      "addresses": [
+        "ISO26262-P3-6"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/safety-concept/SAFETY-CONCEPT-TEMPLATE.md",
+      "name": "Functional Safety Concept + Technical Safety Concept (ISO 26262 Part 3 \u00a77 + Part 4)",
+      "addresses": [
+        "ISO26262-P3-7",
+        "ISO26262-P4",
+        "ISO21434-9"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md",
+      "name": "Verification protocol (ISO 26262 Part 5 hardware V&V)",
+      "addresses": [
+        "ISO26262-P5"
+      ]
+    },
+    {
+      "path": "templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md",
+      "name": "Software test protocol (ISO 26262 Part 6 software V&V per ASIL + ASPICE SWE.4-6)",
+      "addresses": [
+        "ISO26262-P6",
+        "ASPICE-SWE",
+        "EUAI-Art10"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/tara/TARA-TEMPLATE.md",
+      "name": "Threat Analysis and Risk Assessment (ISO/SAE 21434 \u00a715; CAL derivation)",
+      "addresses": [
+        "ISO21434-15",
+        "UN-R155-vehicle"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/ppap/PPAP-TEMPLATE.md",
+      "name": "PPAP 18-element submission package (AIAG PPAP 4th Ed.)",
+      "addresses": [
+        "PPAP-18elements"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/ai-system-card/AI-SYSTEM-CARD-TEMPLATE.md",
+      "name": "AI System Card / Model Card template",
+      "addresses": [
+        "EUAI-Art11",
+        "EUAI-Art13",
+        "NIST-AI-RMF-Map"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/ai-impact-assessment/AI-IMPACT-ASSESSMENT-TEMPLATE.md",
+      "name": "AI Impact Assessment template (EU AI Act + NIST AI RMF aligned)",
+      "addresses": [
+        "EUAI-Art9",
+        "EUAI-Art14",
+        "NIST-AI-RMF-Govern",
+        "NIST-AI-RMF-Measure",
+        "NIST-AI-RMF-Manage"
+      ]
+    },
+    {
+      "path": "templates/product-sw/architecture/SOFTWARE-ARCHITECTURE-TEMPLATE.md",
+      "name": "Software architecture (AI accuracy / robustness / cybersecurity per EU AI Act Art 15)",
+      "addresses": [
+        "EUAI-Art15"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/technical-file/TECHNICAL-FILE-INDEX-TEMPLATE.md",
+      "name": "Technical file index (AI automatic logging per EU AI Act Art 12)",
+      "addresses": [
+        "EUAI-Art12"
+      ]
+    },
+    {
+      "path": "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md",
+      "name": "Software release record template (information-security overlay binding)",
+      "addresses": [
+        "ISO27001-A.8.31"
+      ]
+    }
+  ],
+  "traceability": {
+    "forward": {
+      "templates/qms-policy/quality-policy.md": [
+        "IATF-4.4",
+        "IATF-7.5",
+        "ISO42001-AIMS",
+        "ISO27001-A.5.1",
+        "ISO27001-A.5.31"
+      ],
+      "templates/qms-sops/SOP-TEMPLATE.md": [
+        "IATF-7.1.5.2.1",
+        "IATF-7.5",
+        "IATF-8.3.3.3",
+        "IATF-8.5.1.1",
+        "IATF-8.7",
+        "ISO26262-P8",
+        "ISO21434-5",
+        "ISO21434-10",
+        "ISO21434-11",
+        "UN-R155-CSMS",
+        "UN-R156-SUMS",
+        "ASPICE-MAN-SUP",
+        "ISO27001-A.5.31"
+      ],
+      "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md": [
+        "IATF-9.2"
+      ],
+      "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md": [
+        "IATF-4.4"
+      ],
+      "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md": [
+        "IATF-8.4"
+      ],
+      "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md": [
+        "IATF-8.4"
+      ],
+      ".github/ISSUE_TEMPLATE/capa.yml": [
+        "IATF-10.2.3"
+      ],
+      ".github/ISSUE_TEMPLATE/nonconformance.yml": [
+        "IATF-8.7"
+      ],
+      "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md": [
+        "ISO26262-P2",
+        "ISO26262-P2-6",
+        "ISO26262-P9"
+      ],
+      "templates/product-dhf/item-definition/ITEM-DEFINITION-TEMPLATE.md": [
+        "ISO26262-P3-5"
+      ],
+      "templates/product-dhf/hara/HARA-TEMPLATE.md": [
+        "ISO26262-P3-6"
+      ],
+      "templates/product-dhf/safety-concept/SAFETY-CONCEPT-TEMPLATE.md": [
+        "ISO26262-P3-7",
+        "ISO26262-P4",
+        "ISO21434-9"
+      ],
+      "templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md": [
+        "ISO26262-P5"
+      ],
+      "templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md": [
+        "ISO26262-P6",
+        "ASPICE-SWE",
+        "EUAI-Art10"
+      ],
+      "templates/product-dhf/tara/TARA-TEMPLATE.md": [
+        "ISO21434-15",
+        "UN-R155-vehicle"
+      ],
+      "templates/product-dhf/ppap/PPAP-TEMPLATE.md": [
+        "PPAP-18elements"
+      ],
+      "templates/product-dhf/ai-system-card/AI-SYSTEM-CARD-TEMPLATE.md": [
+        "EUAI-Art11",
+        "EUAI-Art13",
+        "NIST-AI-RMF-Map"
+      ],
+      "templates/product-dhf/ai-impact-assessment/AI-IMPACT-ASSESSMENT-TEMPLATE.md": [
+        "EUAI-Art9",
+        "EUAI-Art14",
+        "NIST-AI-RMF-Govern",
+        "NIST-AI-RMF-Measure",
+        "NIST-AI-RMF-Manage"
+      ],
+      "templates/product-sw/architecture/SOFTWARE-ARCHITECTURE-TEMPLATE.md": [
+        "EUAI-Art15"
+      ],
+      "templates/product-dhf/technical-file/TECHNICAL-FILE-INDEX-TEMPLATE.md": [
+        "EUAI-Art12"
+      ],
+      "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md": [
+        "ISO27001-A.8.31"
+      ]
+    },
+    "reverse": {
+      "IATF-4.4": [
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md"
+      ],
+      "IATF-7.1.5.2.1": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "IATF-7.5": [
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "IATF-8.3.3.3": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "IATF-8.4": [
+        "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md",
+        "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md"
+      ],
+      "IATF-8.5.1.1": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "IATF-8.7": [
+        "templates/qms-sops/SOP-TEMPLATE.md",
+        ".github/ISSUE_TEMPLATE/nonconformance.yml"
+      ],
+      "IATF-9.2": [
+        "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md"
+      ],
+      "IATF-10.2.3": [
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ],
+      "ISO26262-P2": [
+        "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"
+      ],
+      "ISO26262-P2-6": [
+        "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"
+      ],
+      "ISO26262-P3-5": [
+        "templates/product-dhf/item-definition/ITEM-DEFINITION-TEMPLATE.md"
+      ],
+      "ISO26262-P3-6": [
+        "templates/product-dhf/hara/HARA-TEMPLATE.md"
+      ],
+      "ISO26262-P3-7": [
+        "templates/product-dhf/safety-concept/SAFETY-CONCEPT-TEMPLATE.md"
+      ],
+      "ISO26262-P4": [
+        "templates/product-dhf/safety-concept/SAFETY-CONCEPT-TEMPLATE.md"
+      ],
+      "ISO26262-P5": [
+        "templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md"
+      ],
+      "ISO26262-P6": [
+        "templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md"
+      ],
+      "ISO26262-P8": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO26262-P9": [
+        "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"
+      ],
+      "ISO21434-5": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO21434-10": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO21434-11": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO21434-15": [
+        "templates/product-dhf/tara/TARA-TEMPLATE.md"
+      ],
+      "ISO21434-9": [
+        "templates/product-dhf/safety-concept/SAFETY-CONCEPT-TEMPLATE.md"
+      ],
+      "UN-R155-CSMS": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "UN-R155-vehicle": [
+        "templates/product-dhf/tara/TARA-TEMPLATE.md"
+      ],
+      "UN-R156-SUMS": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ASPICE-SWE": [
+        "templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md"
+      ],
+      "ASPICE-MAN-SUP": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "PPAP-18elements": [
+        "templates/product-dhf/ppap/PPAP-TEMPLATE.md"
+      ],
+      "NIST-AI-RMF-Govern": [
+        "templates/product-dhf/ai-impact-assessment/AI-IMPACT-ASSESSMENT-TEMPLATE.md"
+      ],
+      "NIST-AI-RMF-Map": [
+        "templates/product-dhf/ai-system-card/AI-SYSTEM-CARD-TEMPLATE.md"
+      ],
+      "NIST-AI-RMF-Measure": [
+        "templates/product-dhf/ai-impact-assessment/AI-IMPACT-ASSESSMENT-TEMPLATE.md"
+      ],
+      "NIST-AI-RMF-Manage": [
+        "templates/product-dhf/ai-impact-assessment/AI-IMPACT-ASSESSMENT-TEMPLATE.md"
+      ],
+      "EUAI-Art9": [
+        "templates/product-dhf/ai-impact-assessment/AI-IMPACT-ASSESSMENT-TEMPLATE.md"
+      ],
+      "EUAI-Art10": [
+        "templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md"
+      ],
+      "EUAI-Art11": [
+        "templates/product-dhf/ai-system-card/AI-SYSTEM-CARD-TEMPLATE.md"
+      ],
+      "EUAI-Art12": [
+        "templates/product-dhf/technical-file/TECHNICAL-FILE-INDEX-TEMPLATE.md"
+      ],
+      "EUAI-Art13": [
+        "templates/product-dhf/ai-system-card/AI-SYSTEM-CARD-TEMPLATE.md"
+      ],
+      "EUAI-Art14": [
+        "templates/product-dhf/ai-impact-assessment/AI-IMPACT-ASSESSMENT-TEMPLATE.md"
+      ],
+      "EUAI-Art15": [
+        "templates/product-sw/architecture/SOFTWARE-ARCHITECTURE-TEMPLATE.md"
+      ],
+      "ISO42001-AIMS": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO27001-A.5.1": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO27001-A.5.31": [
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO27001-A.8.31": [
+        "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md"
+      ]
+    }
+  }
+}
