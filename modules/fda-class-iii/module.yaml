@@ -1,0 +1,81 @@
+# Open QMS — FDA Class III risk class overlay (PMA path)
+# ------------------------------------------------------
+# Composes with the medical-devices vertical to add FDA Class III-
+# specific requirements: Premarket Approval (PMA, 21 CFR 814), annual
+# reporting, manufacturing site supplements, Medical Device Reporting
+# (MDR, 21 CFR 803) for adverse events.
+#
+# Use via:
+#   openqms resolve --module medical-devices --module fda-class-iii ...
+
+name: fda-class-iii-overlay
+version: 0.1.0
+
+standards:
+  - 21 CFR 814
+  - 21 CFR 803
+
+clauses:
+
+  - id: CFR814-PMA-application
+    standard: 21 CFR 814
+    section: "Subpart B"
+    summary: |
+      Premarket Approval Application (PMA) — the most stringent
+      regulatory submission for FDA Class III devices. Contains
+      technical sections (device description, indications, technical
+      data, preclinical/clinical investigations, manufacturing) and is
+      reviewed by FDA for safety and effectiveness.
+
+  - id: CFR814-PMA-supplement
+    standard: 21 CFR 814
+    section: "§814.39"
+    summary: |
+      PMA supplements — changes affecting safety or effectiveness of
+      an approved PMA device require either a PMA supplement or a
+      30-day notice depending on the change type. Manufacturing site
+      changes require a Manufacturing Site Change Supplement.
+
+  - id: CFR814-annual-report
+    standard: 21 CFR 814
+    section: "§814.84"
+    summary: |
+      PMA annual report — for each PMA-approved device, the holder
+      shall submit an annual report covering: unpublished/published
+      reports of information concerning the device, summary of
+      complaints, summary of significant changes, status of
+      post-approval studies.
+
+  - id: CFR803-MDR-reporting
+    standard: 21 CFR 803
+    section: "all"
+    summary: |
+      Medical Device Reporting (MDR) — manufacturers shall report to
+      FDA any event involving a device that may have caused or
+      contributed to a death or serious injury (within 30 days; 5 days
+      for events requiring remedial action). Reportable malfunctions
+      that would likely cause death or serious injury if recurred also
+      require reporting. Implemented via the complaint workflow with
+      reportability assessment.
+
+templates:
+
+  - path: templates/product-dhf/pma/PMA-SUBMISSION-TEMPLATE.md
+    name: PMA submission package template (21 CFR 814 Subpart B)
+    addresses:
+      - CFR814-PMA-application
+
+  - path: .github/ISSUE_TEMPLATE/change-request.yml
+    name: Change request issue template (PMA supplement workflow)
+    addresses:
+      - CFR814-PMA-supplement
+
+  - path: templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md
+    name: Management review (PMA annual-report aggregation)
+    addresses:
+      - CFR814-annual-report
+
+  - path: .github/ISSUE_TEMPLATE/complaint.yml
+    name: Complaint intake (FDA MDR reportability assessment)
+    addresses:
+      - CFR803-MDR-reporting

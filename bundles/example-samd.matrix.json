@@ -16,11 +16,13 @@
       "ISTA 2A",
       "ISTA 3A",
       "MDSAP",
+      "IEC 82304-1:2016",
+      "IMDRF SaMD N12",
       "ISO/IEC 27001:2022"
     ]
   },
   "module": {
-    "name": "medical-devices+iso-27001-overlay",
+    "name": "medical-devices+samd-overlay+iso-27001-overlay",
     "version": "composed"
   },
   "in_scope_clauses": [
@@ -459,6 +461,27 @@
       "gap_note": null
     },
     {
+      "id": "IMDRF-SaMD-risk-cat",
+      "standard": "IMDRF SaMD N12",
+      "section": "all",
+      "summary": "Risk categorization framework \u2014 categorizes SaMD on two axes:\nState of Healthcare Situation or Condition (critical / serious /\nnon-serious) \u00d7 Significance of Information Provided to Healthcare\nDecision (treat or diagnose / drive clinical management / inform\nclinical management). Output: SaMD Class I-IV (I lowest, IV\nhighest). Drives the rigor of clinical evaluation, post-market\nsurveillance, and risk controls.",
+      "gap_note": null
+    },
+    {
+      "id": "IEC82304-1-software-product",
+      "standard": "IEC 82304-1:2016",
+      "section": "all",
+      "summary": "Health software product safety \u2014 additional requirements beyond\nIEC 62304's software lifecycle. Covers post-market plan,\ndecommissioning, accompanying documents for use environment,\ninstallation/qualification, validation in the use environment.\nComposes with IEC 62304 (lifecycle); IEC 62304 alone is\ninsufficient for standalone software products.",
+      "gap_note": null
+    },
+    {
+      "id": "SAMD-cybersecurity",
+      "standard": "IMDRF SaMD N12",
+      "section": "cybersecurity",
+      "summary": "Cybersecurity considerations for SaMD \u2014 threat modeling, secure\ndevelopment lifecycle, vulnerability disclosure process,\ncoordinated vulnerability handling, post-market security updates.\nAligns with FDA Premarket Cybersecurity Guidance and EU MDR\nAnnex I \u00a717.2.",
+      "gap_note": null
+    },
+    {
       "id": "ISO27001-A.5.1",
       "standard": "ISO/IEC 27001:2022",
       "section": "A.5.1",
@@ -538,7 +561,8 @@
         "ISO14971-8",
         "ISO14971-9",
         "ISO14971-10",
-        "IEC62304-7"
+        "IEC62304-7",
+        "SAMD-cybersecurity"
       ]
     },
     {
@@ -608,7 +632,8 @@
       "name": "Software requirements specification template",
       "addresses": [
         "IEC62304-5.1",
-        "IEC62304-5.2"
+        "IEC62304-5.2",
+        "IEC82304-1-software-product"
       ]
     },
     {
@@ -733,6 +758,13 @@
       "addresses": [
         "CFR11-11.10(e)"
       ]
+    },
+    {
+      "path": "templates/product-dhf/samd-intended-use/SAMD-INTENDED-USE-TEMPLATE.md",
+      "name": "SaMD intended use statement template (IMDRF SaMD framework)",
+      "addresses": [
+        "IMDRF-SaMD-risk-cat"
+      ]
     }
   ],
   "traceability": {
@@ -775,7 +807,8 @@
         "ISO14971-8",
         "ISO14971-9",
         "ISO14971-10",
-        "IEC62304-7"
+        "IEC62304-7",
+        "SAMD-cybersecurity"
       ],
       "templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md": [
         "ISO13485-7.3",
@@ -809,7 +842,8 @@
       ],
       "templates/product-sw/requirements/SOFTWARE-REQUIREMENTS-TEMPLATE.md": [
         "IEC62304-5.1",
-        "IEC62304-5.2"
+        "IEC62304-5.2",
+        "IEC82304-1-software-product"
       ],
       "templates/product-sw/architecture/SOFTWARE-ARCHITECTURE-TEMPLATE.md": [
         "IEC62304-5.3",
@@ -873,6 +907,9 @@
       ],
       ".github/workflows/release-gate.yml": [
         "CFR11-11.10(e)"
+      ],
+      "templates/product-dhf/samd-intended-use/SAMD-INTENDED-USE-TEMPLATE.md": [
+        "IMDRF-SaMD-risk-cat"
       ]
     },
     "reverse": {
@@ -1074,6 +1111,15 @@
       ],
       "MDSAP-composite": [
         "templates/qms-policy/quality-policy.md"
+      ],
+      "IMDRF-SaMD-risk-cat": [
+        "templates/product-dhf/samd-intended-use/SAMD-INTENDED-USE-TEMPLATE.md"
+      ],
+      "IEC82304-1-software-product": [
+        "templates/product-sw/requirements/SOFTWARE-REQUIREMENTS-TEMPLATE.md"
+      ],
+      "SAMD-cybersecurity": [
+        "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"
       ],
       "ISO27001-A.5.1": [
         "templates/qms-policy/quality-policy.md"

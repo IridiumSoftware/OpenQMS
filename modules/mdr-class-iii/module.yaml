@@ -1,0 +1,81 @@
+# Open QMS — EU MDR Class III risk class overlay
+# ----------------------------------------------
+# Composes with the medical-devices vertical to add EU MDR Class III-
+# specific requirements: expert panel consultation (Article 54), SSCP
+# (Article 32), Type-examination (Annex X). Class III is the most
+# stringent risk class under MDR.
+#
+# Use via:
+#   openqms resolve --module medical-devices --module mdr-class-iii ...
+
+name: mdr-class-iii-overlay
+version: 0.1.0
+
+standards:
+  - EU MDR 2017/745
+
+clauses:
+
+  - id: MDR-Art32
+    standard: EU MDR 2017/745
+    section: "Article 32"
+    summary: |
+      Summary of Safety and Clinical Performance (SSCP) — for Class III
+      devices and implantable devices (other than custom-made or
+      investigational), the manufacturer shall draw up an SSCP. Written
+      for the patient and the healthcare professional separately,
+      published on EUDAMED, kept up to date throughout the device
+      lifecycle.
+
+  - id: MDR-Art54
+    standard: EU MDR 2017/745
+    section: "Article 54"
+    summary: |
+      Clinical evaluation consultation procedure for certain Class III
+      and Class IIb devices — expert panel scientific opinion on the
+      clinical evaluation assessment report for: implantable Class III
+      devices and Class IIb active devices intended to administer or
+      remove a medicinal product. Triggered before the notified body
+      issues its certificate.
+
+  - id: MDR-AnnexX-type-examination
+    standard: EU MDR 2017/745
+    section: "Annex X"
+    summary: |
+      EU type-examination — conformity assessment route in which the
+      notified body examines a representative sample of the device and
+      issues a type-examination certificate. Used for Class III and
+      some Class IIb devices in combination with QMS audit
+      (Annex IX).
+
+  - id: MDR-Art84-PMSplan
+    standard: EU MDR 2017/745
+    section: "Article 84 + Annex III"
+    summary: |
+      Post-market surveillance plan and report — for Class III and
+      implantables, a Periodic Safety Update Report (PSUR) shall be
+      prepared at least annually and submitted via EUDAMED. For other
+      classes, a PMS report is internally maintained and updated as
+      necessary.
+
+templates:
+
+  - path: templates/product-dhf/implant/SSCP-TEMPLATE.md
+    name: Summary of Safety and Clinical Performance template (EU MDR Article 32)
+    addresses:
+      - MDR-Art32
+
+  - path: templates/product-dhf/clinical/EXPERT-PANEL-CONSULTATION-TEMPLATE.md
+    name: Expert panel consultation record template (EU MDR Article 54)
+    addresses:
+      - MDR-Art54
+
+  - path: templates/product-dhf/technical-file/TECHNICAL-FILE-INDEX-TEMPLATE.md
+    name: Technical file index (type-examination dossier)
+    addresses:
+      - MDR-AnnexX-type-examination
+
+  - path: templates/product-dhf/clinical/PMCF-PLAN-TEMPLATE.md
+    name: PMCF plan (Class III PSUR-cadence integration)
+    addresses:
+      - MDR-Art84-PMSplan

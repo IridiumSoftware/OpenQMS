@@ -33,8 +33,11 @@ standards:
   - "ISTA 2A"
   - "ISTA 3A"
   - "MDSAP"
+  - "IEC 82304-1:2016"
+  - "IMDRF SaMD N12"
   - "ISO/IEC 27001:2022"
 
 modules:
   - medical-devices
+  - samd
   - iso-27001

@@ -1,0 +1,73 @@
+# Open QMS — SaMD (Software as a Medical Device) category overlay
+# ----------------------------------------------------------------
+# Composes with the medical-devices vertical to add SaMD-specific
+# requirements: IEC 82304-1 (health software product safety), IMDRF
+# SaMD risk categorization framework, SaMD-specific intended-use
+# statement.
+#
+# Use via:
+#   openqms resolve --module medical-devices --module samd ...
+#
+# Per-class compatibility: SaMD applies to software-only devices.
+# When composed with medical-devices, the GSPR checklist's
+# physical/mechanical applicability column should be declared NA for
+# most GSPR Chapter II entries (§10-14, §16, §18-20).
+
+name: samd-overlay
+version: 0.1.0
+
+standards:
+  - IEC 82304-1:2016
+  - IMDRF SaMD N12
+
+clauses:
+
+  - id: IMDRF-SaMD-risk-cat
+    standard: IMDRF SaMD N12
+    section: "all"
+    summary: |
+      Risk categorization framework — categorizes SaMD on two axes:
+      State of Healthcare Situation or Condition (critical / serious /
+      non-serious) × Significance of Information Provided to Healthcare
+      Decision (treat or diagnose / drive clinical management / inform
+      clinical management). Output: SaMD Class I-IV (I lowest, IV
+      highest). Drives the rigor of clinical evaluation, post-market
+      surveillance, and risk controls.
+
+  - id: IEC82304-1-software-product
+    standard: IEC 82304-1:2016
+    section: "all"
+    summary: |
+      Health software product safety — additional requirements beyond
+      IEC 62304's software lifecycle. Covers post-market plan,
+      decommissioning, accompanying documents for use environment,
+      installation/qualification, validation in the use environment.
+      Composes with IEC 62304 (lifecycle); IEC 62304 alone is
+      insufficient for standalone software products.
+
+  - id: SAMD-cybersecurity
+    standard: IMDRF SaMD N12
+    section: "cybersecurity"
+    summary: |
+      Cybersecurity considerations for SaMD — threat modeling, secure
+      development lifecycle, vulnerability disclosure process,
+      coordinated vulnerability handling, post-market security updates.
+      Aligns with FDA Premarket Cybersecurity Guidance and EU MDR
+      Annex I §17.2.
+
+templates:
+
+  - path: templates/product-dhf/samd-intended-use/SAMD-INTENDED-USE-TEMPLATE.md
+    name: SaMD intended use statement template (IMDRF SaMD framework)
+    addresses:
+      - IMDRF-SaMD-risk-cat
+
+  - path: templates/product-sw/requirements/SOFTWARE-REQUIREMENTS-TEMPLATE.md
+    name: Software requirements specification (SaMD-product requirements)
+    addresses:
+      - IEC82304-1-software-product
+
+  - path: templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md
+    name: Risk management file (SaMD cybersecurity threats)
+    addresses:
+      - SAMD-cybersecurity

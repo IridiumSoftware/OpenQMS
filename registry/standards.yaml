@@ -125,6 +125,60 @@ standards:
     license_kind: public
     aliases: []
 
+  # === Device-class / category overlay standards ===
+
+  - id: "IEC 82304-1:2016"
+    name: "Health software — Part 1: General requirements for product safety"
+    publisher: IEC
+    edition: "2016"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "IEC 82304-1"
+      - "IEC 82304"
+
+  - id: "ISO 14708-1:2014"
+    name: "Implants for surgery — Active implantable medical devices — General requirements"
+    publisher: ISO
+    edition: "2014"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 14708-1"
+      - "ISO 14708"
+
+  - id: "21 CFR 814"
+    name: "FDA Premarket Approval of Medical Devices (PMA)"
+    publisher: US FDA
+    edition: "current revision"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "PMA"
+      - "CFR 814"
+      - "21 CFR Part 814"
+
+  - id: "21 CFR 803"
+    name: "FDA Medical Device Reporting (MDR — Adverse Event Reporting)"
+    publisher: US FDA
+    edition: "current revision"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "FDA MDR"
+      - "CFR 803"
+      - "21 CFR Part 803"
+
+  - id: "IMDRF SaMD N12"
+    name: "Software as a Medical Device: Possible Framework for Risk Categorization and Corresponding Considerations"
+    publisher: IMDRF (International Medical Device Regulators Forum)
+    edition: "2014 (IMDRF/SaMD WG/N12FINAL:2014)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "IMDRF SaMD"
+      - "SaMD Framework"
+
   # === Cross-cutting overlay ===
 
   - id: "ISO/IEC 27001:2022"
