@@ -1,0 +1,63 @@
+# Open QMS — FDA Class II risk class overlay (510(k) path)
+# --------------------------------------------------------
+# Composes with the medical-devices vertical to add FDA Class II-
+# specific requirements: 510(k) Premarket Notification, Special
+# Controls per product code, De Novo classification for novel
+# low-to-moderate risk devices without a predicate.
+#
+# Use via:
+#   openqms resolve --module medical-devices --module fda-class-ii ...
+
+name: fda-class-ii-overlay
+version: 0.1.0
+
+standards:
+  - 21 CFR 807
+  - 21 CFR 860
+
+clauses:
+
+  - id: CFR807-510k-submission
+    standard: 21 CFR 807
+    section: "Subpart E"
+    summary: |
+      Premarket Notification 510(k) — submission demonstrating that
+      a device is substantially equivalent to a legally marketed
+      predicate device (i.e. a device that was legally on the US
+      market before May 28, 1976 OR has been found substantially
+      equivalent to such a device through a prior 510(k)). Required
+      for most Class II devices and some Class I devices not
+      exempted. Establishment registration + device listing required
+      under §807 Subparts B + D.
+
+  - id: CFR807-special-controls
+    standard: 21 CFR 807
+    section: "Special Controls"
+    summary: |
+      Special Controls — performance standards, postmarket
+      surveillance, patient registries, special labeling, and other
+      controls established by FDA for specific Class II device
+      categories. Defined per product code in the FDA classification
+      regulations; demonstrated compliance is part of the 510(k)
+      submission.
+
+  - id: CFR860-de-novo
+    standard: 21 CFR 860
+    section: "Subpart D"
+    summary: |
+      De Novo classification — pathway for novel low-to-moderate
+      risk devices when 510(k) is not appropriate due to lack of a
+      legally marketed predicate. Manufacturer requests a risk-based
+      classification (typically Class I or II) instead of automatic
+      Class III status. Granted De Novo classifications then serve
+      as predicates for subsequent 510(k) submissions of similar
+      devices.
+
+templates:
+
+  - path: templates/product-dhf/510k/510K-SUBMISSION-TEMPLATE.md
+    name: 510(k) Premarket Notification submission template
+    addresses:
+      - CFR807-510k-submission
+      - CFR807-special-controls
+      - CFR860-de-novo

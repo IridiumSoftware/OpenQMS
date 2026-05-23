@@ -1,0 +1,68 @@
+# Open QMS — EU MDR Class IIb risk class overlay
+# ----------------------------------------------
+# Composes with the medical-devices vertical to add EU MDR Class IIb-
+# specific requirements. Class IIb is the second-highest risk class
+# under MDR — medium-high risk; NB involvement required via Annex IX.
+# Article 54 expert panel consultation triggers ONLY for the subset of
+# Class IIb devices that are active and intended to administer or
+# remove a medicinal product.
+#
+# Use via:
+#   openqms resolve --module medical-devices --module mdr-class-iib ...
+
+name: mdr-class-iib-overlay
+version: 0.1.0
+
+standards:
+  - EU MDR 2017/745
+
+clauses:
+
+  - id: MDR-Art54
+    standard: EU MDR 2017/745
+    section: "Article 54"
+    summary: |
+      Clinical evaluation consultation procedure for certain Class III
+      and Class IIb devices — expert panel scientific opinion on the
+      clinical evaluation assessment report for: implantable Class III
+      devices and Class IIb active devices intended to administer or
+      remove a medicinal product. Triggered before the notified body
+      issues its certificate.
+
+  - id: MDR-AnnexIX-IIb
+    standard: EU MDR 2017/745
+    section: "Annex IX (Class IIb)"
+    summary: |
+      Conformity assessment for Class IIb devices — based on QMS audit
+      (Chapter I) plus assessment of technical documentation
+      (Chapter II) by the notified body. Less stringent than the
+      Class III procedure (which adds Annex X type-examination or
+      Annex XI design-examination) but more rigorous than the
+      Class IIa route.
+
+  - id: MDR-Art84-IIb-PSUR
+    standard: EU MDR 2017/745
+    section: "Article 84 (Class IIb cadence)"
+    summary: |
+      Post-market surveillance plan and Periodic Safety Update Report
+      (PSUR) — for Class IIb devices, PSUR shall be prepared at least
+      every 2 years. PSUR submitted to the notified body and made
+      available via EUDAMED. (Compare: Class III + implantable PSUR
+      annually; Class I + IIa PMS report as-needed.)
+
+templates:
+
+  - path: templates/product-dhf/clinical/EXPERT-PANEL-CONSULTATION-TEMPLATE.md
+    name: Expert panel consultation (Class IIb active drug-delivery trigger)
+    addresses:
+      - MDR-Art54
+
+  - path: templates/product-dhf/technical-file/TECHNICAL-FILE-INDEX-TEMPLATE.md
+    name: Technical file index (Annex IX Class IIb)
+    addresses:
+      - MDR-AnnexIX-IIb
+
+  - path: templates/product-dhf/clinical/PMCF-PLAN-TEMPLATE.md
+    name: PMCF plan (Class IIb biennial PSUR cadence)
+    addresses:
+      - MDR-Art84-IIb-PSUR

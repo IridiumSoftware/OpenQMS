@@ -1,0 +1,47 @@
+# Open QMS — EU MDR Class IIa risk class overlay
+# ----------------------------------------------
+# Composes with the medical-devices vertical to add EU MDR Class IIa-
+# specific requirements. Class IIa is medium-risk; NB involvement
+# required but procedures are streamlined relative to Class IIb / III.
+#
+# Use via:
+#   openqms resolve --module medical-devices --module mdr-class-iia ...
+
+name: mdr-class-iia-overlay
+version: 0.1.0
+
+standards:
+  - EU MDR 2017/745
+
+clauses:
+
+  - id: MDR-AnnexXI-PQA
+    standard: EU MDR 2017/745
+    section: "Annex XI"
+    summary: |
+      Production quality assurance — conformity assessment route
+      available for Class IIa (and certain sterile aspects of Class I).
+      Notified body audits the QMS for production and product-control
+      aspects only, not the full QMS. Alternative to Annex IX for
+      Class IIa devices.
+
+  - id: MDR-Art83-IIa-PMS
+    standard: EU MDR 2017/745
+    section: "Article 83 (Class IIa PMS)"
+    summary: |
+      Post-market surveillance plan — Class IIa devices maintain a PMS
+      report updated as necessary based on PMS plan triggers (not a
+      mandatory PSUR cadence). Full PSUR is required only for Class IIb
+      (biennial) and Class III (annual).
+
+templates:
+
+  - path: templates/product-dhf/technical-file/TECHNICAL-FILE-INDEX-TEMPLATE.md
+    name: Technical file index (Annex XI PQA route)
+    addresses:
+      - MDR-AnnexXI-PQA
+
+  - path: templates/product-dhf/clinical/PMCF-PLAN-TEMPLATE.md
+    name: PMCF plan (Class IIa as-needed PMS cadence)
+    addresses:
+      - MDR-Art83-IIa-PMS

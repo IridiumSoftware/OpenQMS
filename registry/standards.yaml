@@ -179,6 +179,28 @@ standards:
       - "IMDRF SaMD"
       - "SaMD Framework"
 
+  - id: "21 CFR 807"
+    name: "FDA Establishment Registration, Device Listing, and Premarket Notification (510(k))"
+    publisher: US FDA
+    edition: "current revision"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "510(k)"
+      - "CFR 807"
+      - "21 CFR Part 807"
+
+  - id: "21 CFR 860"
+    name: "FDA Medical Device Classification Procedures (incl. De Novo classification)"
+    publisher: US FDA
+    edition: "current revision"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "De Novo"
+      - "CFR 860"
+      - "21 CFR Part 860"
+
   # === Cross-cutting overlay ===
 
   - id: "ISO/IEC 27001:2022"
