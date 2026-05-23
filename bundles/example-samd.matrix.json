@@ -263,10 +263,31 @@
       "gap_note": null
     },
     {
+      "id": "MDR-AnnexI",
+      "standard": "EU MDR 2017/745",
+      "section": "Annex I",
+      "summary": "General Safety and Performance Requirements (GSPRs) \u2014 23 numbered\nrequirements across three chapters (general requirements, design\nand manufacture, information supplied with the device). Each\napplicable GSPR must be evaluated for conformity with documented\nevidence; non-applicable GSPRs require justification. The GSPR\nconformity checklist is a required component of the technical file\nper Annex II \u00a74.",
+      "gap_note": null
+    },
+    {
       "id": "MDR-AnnexIX",
       "standard": "EU MDR 2017/745",
       "section": "Annex IX",
       "summary": "Conformity assessment based on QMS and technical documentation\nassessment. QMS procedures plus audit evidence of QMS operation\nvia Git history and issue/PR records form the auditable substrate.",
+      "gap_note": null
+    },
+    {
+      "id": "MDR-AnnexXIV-A",
+      "standard": "EU MDR 2017/745",
+      "section": "Annex XIV Part A",
+      "summary": "Clinical evaluation \u2014 assessment of clinical safety, performance,\nand benefit-risk of the device throughout its lifecycle. Clinical\nevaluation plan, data identification (literature / clinical\nexperience / clinical investigations / equivalence), data\nappraisal, analysis against acceptability criteria, conclusions,\nupdate cadence per risk class. Output: Clinical Evaluation Report.",
+      "gap_note": null
+    },
+    {
+      "id": "MDR-AnnexXIV-B",
+      "standard": "EU MDR 2017/745",
+      "section": "Annex XIV Part B",
+      "summary": "Post-Market Clinical Follow-up (PMCF) \u2014 proactive collection and\nevaluation of clinical data from devices on the market. PMCF plan\nwith specific objectives and methods (registries, surveys, PMS\ndata, literature surveillance, PMCF studies), schedule per risk\nclass, PMCF evaluation report integration with CER updates and\nrisk-management re-evaluation.",
       "gap_note": null
     },
     {
@@ -547,6 +568,27 @@
       ]
     },
     {
+      "path": "templates/product-dhf/gspr/GSPR-CONFORMITY-CHECKLIST-TEMPLATE.md",
+      "name": "GSPR conformity checklist template (EU MDR Annex I)",
+      "addresses": [
+        "MDR-AnnexI"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/clinical/CLINICAL-EVALUATION-TEMPLATE.md",
+      "name": "Clinical Evaluation Report template (EU MDR Annex XIV Part A)",
+      "addresses": [
+        "MDR-AnnexXIV-A"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/clinical/PMCF-PLAN-TEMPLATE.md",
+      "name": "Post-Market Clinical Follow-up plan template (EU MDR Annex XIV Part B)",
+      "addresses": [
+        "MDR-AnnexXIV-B"
+      ]
+    },
+    {
       "path": "templates/product-dhf/usability/USABILITY-ENGINEERING-FILE-TEMPLATE.md",
       "name": "Usability engineering file template (IEC 62366-1)",
       "addresses": [
@@ -749,6 +791,15 @@
         "ISO13485-4.2.3",
         "MDR-AnnexII"
       ],
+      "templates/product-dhf/gspr/GSPR-CONFORMITY-CHECKLIST-TEMPLATE.md": [
+        "MDR-AnnexI"
+      ],
+      "templates/product-dhf/clinical/CLINICAL-EVALUATION-TEMPLATE.md": [
+        "MDR-AnnexXIV-A"
+      ],
+      "templates/product-dhf/clinical/PMCF-PLAN-TEMPLATE.md": [
+        "MDR-AnnexXIV-B"
+      ],
       "templates/product-dhf/usability/USABILITY-ENGINEERING-FILE-TEMPLATE.md": [
         "IEC62366-1-5"
       ],
@@ -939,8 +990,17 @@
       "MDR-AnnexII": [
         "templates/product-dhf/technical-file/TECHNICAL-FILE-INDEX-TEMPLATE.md"
       ],
+      "MDR-AnnexI": [
+        "templates/product-dhf/gspr/GSPR-CONFORMITY-CHECKLIST-TEMPLATE.md"
+      ],
       "MDR-AnnexIX": [
         "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md"
+      ],
+      "MDR-AnnexXIV-A": [
+        "templates/product-dhf/clinical/CLINICAL-EVALUATION-TEMPLATE.md"
+      ],
+      "MDR-AnnexXIV-B": [
+        "templates/product-dhf/clinical/PMCF-PLAN-TEMPLATE.md"
       ],
       "ISO14971-4": [
         "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"

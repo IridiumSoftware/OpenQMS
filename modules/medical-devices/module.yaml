@@ -13,7 +13,7 @@
 # licensing — important" section.
 
 name: medical-devices
-version: 0.2.0
+version: 0.3.0
 
 standards:
   - ISO 13485:2016
@@ -341,6 +341,18 @@ clauses:
       product verification/validation. Per-product, structured for
       notified-body review.
 
+  - id: MDR-AnnexI
+    standard: EU MDR 2017/745
+    section: "Annex I"
+    summary: |
+      General Safety and Performance Requirements (GSPRs) — 23 numbered
+      requirements across three chapters (general requirements, design
+      and manufacture, information supplied with the device). Each
+      applicable GSPR must be evaluated for conformity with documented
+      evidence; non-applicable GSPRs require justification. The GSPR
+      conformity checklist is a required component of the technical file
+      per Annex II §4.
+
   - id: MDR-AnnexIX
     standard: EU MDR 2017/745
     section: "Annex IX"
@@ -348,6 +360,28 @@ clauses:
       Conformity assessment based on QMS and technical documentation
       assessment. QMS procedures plus audit evidence of QMS operation
       via Git history and issue/PR records form the auditable substrate.
+
+  - id: MDR-AnnexXIV-A
+    standard: EU MDR 2017/745
+    section: "Annex XIV Part A"
+    summary: |
+      Clinical evaluation — assessment of clinical safety, performance,
+      and benefit-risk of the device throughout its lifecycle. Clinical
+      evaluation plan, data identification (literature / clinical
+      experience / clinical investigations / equivalence), data
+      appraisal, analysis against acceptability criteria, conclusions,
+      update cadence per risk class. Output: Clinical Evaluation Report.
+
+  - id: MDR-AnnexXIV-B
+    standard: EU MDR 2017/745
+    section: "Annex XIV Part B"
+    summary: |
+      Post-Market Clinical Follow-up (PMCF) — proactive collection and
+      evaluation of clinical data from devices on the market. PMCF plan
+      with specific objectives and methods (registries, surveys, PMS
+      data, literature surveillance, PMCF studies), schedule per risk
+      class, PMCF evaluation report integration with CER updates and
+      risk-management re-evaluation.
 
   # === ISO 14971:2019 ===
 
@@ -634,6 +668,21 @@ templates:
     addresses:
       - ISO13485-4.2.3
       - MDR-AnnexII
+
+  - path: templates/product-dhf/gspr/GSPR-CONFORMITY-CHECKLIST-TEMPLATE.md
+    name: GSPR conformity checklist template (EU MDR Annex I)
+    addresses:
+      - MDR-AnnexI
+
+  - path: templates/product-dhf/clinical/CLINICAL-EVALUATION-TEMPLATE.md
+    name: Clinical Evaluation Report template (EU MDR Annex XIV Part A)
+    addresses:
+      - MDR-AnnexXIV-A
+
+  - path: templates/product-dhf/clinical/PMCF-PLAN-TEMPLATE.md
+    name: Post-Market Clinical Follow-up plan template (EU MDR Annex XIV Part B)
+    addresses:
+      - MDR-AnnexXIV-B
 
   - path: templates/product-dhf/usability/USABILITY-ENGINEERING-FILE-TEMPLATE.md
     name: Usability engineering file template (IEC 62366-1)
