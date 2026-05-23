@@ -1,0 +1,143 @@
+# Open QMS — IVD (In Vitro Diagnostic) overlay module
+# ----------------------------------------------------
+# IVDs in EU are governed by IVDR (Regulation 2017/746), NOT MDR. This
+# module is shipped as a cross-cutting overlay rather than a complete
+# vertical — adopters compose with medical-devices for the shared QMS
+# baseline (ISO 13485, 21 CFR 820, Part 11, ISO 14971, IEC 62304) and
+# declare the MDR-specific clauses (MDR-Art10(9), MDR-AnnexI/II/IX/XIV-*)
+# as NA per their IVD scope.
+#
+# Use via:
+#   openqms resolve --module medical-devices --module ivd ...
+#
+# Per-jurisdiction note: in the EU, IVDR governs (the MDR clauses in
+# medical-devices are NA for IVD adopters). In the US, 21 CFR 820 QSR
+# applies plus the IVD-specific 21 CFR 809 labeling regulation;
+# CLIA (42 CFR 493) governs laboratory-developed tests (LDTs) and is
+# not covered by this module.
+
+name: ivd-overlay
+version: 0.1.0
+
+standards:
+  - EU IVDR 2017/746
+  - 21 CFR 809
+  - ISO 15189:2022
+
+clauses:
+
+  - id: IVDR-Art5
+    standard: EU IVDR 2017/746
+    section: "Article 5"
+    summary: |
+      Placing on the market and putting into service — IVD device
+      shall meet IVDR requirements when properly supplied, installed,
+      maintained, and used in accordance with its intended purpose.
+      Demonstrated via conformity assessment, technical documentation,
+      and CE marking.
+
+  - id: IVDR-AnnexI
+    standard: EU IVDR 2017/746
+    section: "Annex I"
+    summary: |
+      General Safety and Performance Requirements (GSPRs) for IVDs —
+      analogous structure to MDR Annex I but with IVD-specific
+      content. Covers performance characteristics (analytical
+      performance, clinical performance, scientific validity),
+      chemical/physical/biological properties of IVD devices,
+      requirements for devices with measuring function, software,
+      labeling. 20 numbered GSPRs across three chapters.
+
+  - id: IVDR-AnnexII
+    standard: EU IVDR 2017/746
+    section: "Annex II"
+    summary: |
+      Technical documentation for IVDs — device description,
+      manufacturer information, intended purpose statement,
+      classification rule applied, technical specifications,
+      verification + validation, GSPR conformity, benefit-risk,
+      performance evaluation.
+
+  - id: IVDR-AnnexIX
+    standard: EU IVDR 2017/746
+    section: "Annex IX"
+    summary: |
+      Conformity assessment based on QMS + assessment of technical
+      documentation for IVDs (Class B, C, D). Notified body audits
+      the QMS and assesses technical documentation samples. Class D
+      additionally requires batch verification + reference laboratory
+      consultation.
+
+  - id: IVDR-AnnexXIII
+    standard: EU IVDR 2017/746
+    section: "Annex XIII"
+    summary: |
+      Performance evaluation — the IVD equivalent of MDR's clinical
+      evaluation. Three pillars: (1) scientific validity (association
+      of an analyte with a clinical condition / physiological state);
+      (2) analytical performance (the ability to correctly detect or
+      measure the analyte); (3) clinical performance (the ability to
+      yield results that are correlated with a clinical condition).
+      Output: Performance Evaluation Report (PER), with cadence
+      proportional to risk class.
+
+  - id: IVDR-Art56
+    standard: EU IVDR 2017/746
+    section: "Article 56"
+    summary: |
+      Performance Evaluation Report (PER) update + PMS plan + PSUR
+      for IVDs — for Class C and D IVDs, PSUR shall be prepared at
+      least annually (Class D) or at least every 2 years (Class C).
+      For Class A and B, PMS report updated as necessary based on
+      PMS plan triggers.
+
+  - id: CFR809-IVD-labeling
+    standard: 21 CFR 809
+    section: "Subpart B"
+    summary: |
+      FDA IVD labeling requirements — IVD products in the US
+      regulated under 21 CFR 820 (QSR) plus IVD-specific labeling
+      requirements under 21 CFR 809. Includes intended use,
+      indications, specimen type, equipment required, performance
+      characteristics, references, expiration date.
+
+  - id: ISO15189-medical-labs
+    standard: ISO 15189:2022
+    section: "all"
+    summary: |
+      Medical laboratories — quality and competence requirements.
+      For laboratories performing IVD testing (especially relevant
+      for lab-developed tests / LDTs). Covers organization,
+      personnel, accommodation, equipment, pre-examination,
+      examination, post-examination processes. Composes with ISO
+      13485 for IVD manufacturers who also operate testing labs.
+
+templates:
+
+  - path: templates/product-dhf/ivdr-gspr/IVDR-GSPR-CHECKLIST-TEMPLATE.md
+    name: IVDR GSPR conformity checklist template (EU IVDR Annex I)
+    addresses:
+      - IVDR-AnnexI
+
+  - path: templates/product-dhf/performance-evaluation/PERFORMANCE-EVALUATION-REPORT-TEMPLATE.md
+    name: Performance Evaluation Report template (EU IVDR Annex XIII)
+    addresses:
+      - IVDR-AnnexXIII
+
+  - path: templates/qms-policy/quality-policy.md
+    name: Quality policy (IVDR Article 5 + ISO 15189 + CFR 809 cross-cutting)
+    addresses:
+      - IVDR-Art5
+      - ISO15189-medical-labs
+      - CFR809-IVD-labeling
+
+  - path: templates/product-dhf/technical-file/TECHNICAL-FILE-INDEX-TEMPLATE.md
+    name: Technical file index (IVDR Annex II + Annex IX)
+    addresses:
+      - IVDR-AnnexII
+      - IVDR-AnnexIX
+
+  - path: templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md
+    name: Management review (IVDR Article 56 PSUR + PER cadence)
+    addresses:
+      - IVDR-Art56

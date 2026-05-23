@@ -201,6 +201,38 @@ standards:
       - "CFR 860"
       - "21 CFR Part 860"
 
+  # === IVD vertical standards ===
+
+  - id: "EU IVDR 2017/746"
+    name: "Regulation on In Vitro Diagnostic Medical Devices (EU IVDR)"
+    publisher: European Union
+    edition: "2017/746"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "IVDR"
+      - "EU IVDR"
+
+  - id: "21 CFR 809"
+    name: "FDA In Vitro Diagnostic Products for Human Use — Labeling"
+    publisher: US FDA
+    edition: "current revision"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 809"
+      - "21 CFR Part 809"
+      - "IVD labeling"
+
+  - id: "ISO 15189:2022"
+    name: "Medical laboratories — Requirements for quality and competence"
+    publisher: ISO
+    edition: "2022"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 15189"
+
   # === Cross-cutting overlay ===
 
   - id: "ISO/IEC 27001:2022"
