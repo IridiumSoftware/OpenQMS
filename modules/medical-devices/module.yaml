@@ -18,6 +18,8 @@ version: 0.1.0
 standards:
   - ISO 13485:2016
   - 21 CFR 820
+  - ISO 14971:2019
+  - IEC 62304:2006+A1:2015
 
 clauses:
   - id: ISO13485-4.2.4
@@ -67,6 +69,123 @@ clauses:
       assessment, and disposition. PHI/PII handling architecturally
       compartmentalized; see docs/guide/complaints.md.
 
+  - id: ISO14971-4
+    standard: ISO 14971:2019
+    section: "4"
+    summary: |
+      General requirements for risk management — risk management process,
+      management responsibility, qualification of personnel, risk
+      management plan, risk management file.
+
+  - id: ISO14971-5
+    standard: ISO 14971:2019
+    section: "5"
+    summary: |
+      Risk analysis — intended use and reasonably foreseeable misuse,
+      identification of characteristics related to safety, identification
+      of hazards and hazardous situations, estimation of risks.
+
+  - id: ISO14971-6
+    standard: ISO 14971:2019
+    section: "6"
+    summary: |
+      Risk evaluation — for each identified hazardous situation, decide
+      whether risk reduction is required against the risk acceptability
+      criteria in the risk management plan.
+
+  - id: ISO14971-7
+    standard: ISO 14971:2019
+    section: "7"
+    summary: |
+      Risk control — analysis of options (inherent safety / protective
+      measures / information for safety), implementation, verification of
+      implementation and effectiveness, evaluation of any new risks the
+      controls themselves introduce, and overall residual risk evaluation.
+
+  - id: ISO14971-8
+    standard: ISO 14971:2019
+    section: "8"
+    summary: |
+      Evaluation of overall residual risk — explicit determination by top
+      management that the overall residual risk of the device, weighed
+      against expected benefits of the intended use, is acceptable.
+
+  - id: ISO14971-9
+    standard: ISO 14971:2019
+    section: "9"
+    summary: |
+      Risk management review and report — review of execution of the risk
+      management plan and production of the risk management report.
+
+  - id: ISO14971-10
+    standard: ISO 14971:2019
+    section: "10"
+    summary: |
+      Production and post-production activities — collection and review of
+      information from production and post-production phases; loop back
+      into the risk management process when new information affects the
+      risk evaluation.
+
+  - id: IEC62304-5.2
+    standard: IEC 62304:2006+A1:2015
+    section: "5.2"
+    summary: |
+      Software requirements analysis — define and document software
+      requirements from the system requirements; include functional,
+      performance, interface, regulatory, and risk-control requirements.
+      Verify and approve the requirements.
+
+  - id: IEC62304-5.3
+    standard: IEC 62304:2006+A1:2015
+    section: "5.3"
+    summary: |
+      Software architectural design — transform requirements into a
+      documented architecture; identify software items and segregation
+      between items of different software safety classes; specify
+      interfaces; identify SOUP items and their integration constraints.
+
+  - id: IEC62304-5.5
+    standard: IEC 62304:2006+A1:2015
+    section: "5.5"
+    summary: |
+      Software unit implementation and verification — implement units,
+      establish and apply unit acceptance criteria, verify each unit
+      against the criteria, document the verification.
+
+  - id: IEC62304-5.6
+    standard: IEC 62304:2006+A1:2015
+    section: "5.6"
+    summary: |
+      Software integration testing — integrate software units per the
+      integration plan, develop and execute integration tests, document
+      results, evaluate problems found.
+
+  - id: IEC62304-5.7
+    standard: IEC 62304:2006+A1:2015
+    section: "5.7"
+    summary: |
+      Software system testing — develop and execute system tests covering
+      all software requirements, including risk-control requirements;
+      document results; retest after defect fixes.
+
+  - id: IEC62304-5.8
+    standard: IEC 62304:2006+A1:2015
+    section: "5.8"
+    summary: |
+      Software release — verify all activities are complete, document
+      known residual anomalies and their evaluation, archive sufficient
+      configuration items to reproduce the release, document version
+      identification.
+
+  - id: IEC62304-8.1.2
+    standard: IEC 62304:2006+A1:2015
+    section: "8.1.2"
+    summary: |
+      SOUP configuration management — document title, manufacturer,
+      version designation, and unique identifier for each SOUP item;
+      maintain the SOUP configuration record across the software life
+      cycle.
+
 templates:
   - path: templates/qms-policy/quality-policy.md
     name: Quality policy
@@ -91,3 +210,53 @@ templates:
     addresses:
       - ISO13485-8.2.2
       - CFR820-820.198
+
+  - path: templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md
+    name: Risk management file template (ISO 14971)
+    addresses:
+      - ISO14971-4
+      - ISO14971-5
+      - ISO14971-6
+      - ISO14971-7
+      - ISO14971-8
+      - ISO14971-9
+      - ISO14971-10
+
+  - path: templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md
+    name: Verification protocol template
+    addresses:
+      - ISO13485-7.3
+      - CFR820-820.30
+
+  - path: templates/product-dhf/validation/VALIDATION-PROTOCOL-TEMPLATE.md
+    name: Validation protocol template
+    addresses:
+      - ISO13485-7.3
+      - CFR820-820.30
+
+  - path: templates/product-sw/requirements/SOFTWARE-REQUIREMENTS-TEMPLATE.md
+    name: Software requirements specification template
+    addresses:
+      - IEC62304-5.2
+
+  - path: templates/product-sw/architecture/SOFTWARE-ARCHITECTURE-TEMPLATE.md
+    name: Software architecture description template
+    addresses:
+      - IEC62304-5.3
+
+  - path: templates/product-sw/soup-register/SOUP-REGISTER-TEMPLATE.md
+    name: Software-of-Unknown-Provenance register template
+    addresses:
+      - IEC62304-8.1.2
+
+  - path: templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md
+    name: Software test protocol template
+    addresses:
+      - IEC62304-5.5
+      - IEC62304-5.6
+      - IEC62304-5.7
+
+  - path: templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md
+    name: Software release record template
+    addresses:
+      - IEC62304-5.8
