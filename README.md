@@ -65,10 +65,30 @@ openqms validate --module medical-devices
 
 Exit 0 on pass, 1 on invariant violation. The CI workflow `.github/workflows/engine-tests.yml` runs this on every push that touches `engine/`, `modules/`, or `templates/`.
 
-### Status (v0.2.0)
+### Compose modules
 
-- **Today.** Single-module resolution + per-module validation harness; medical-devices reference module ships with a four-clause minimal seed bound to the three artifact templates currently in `templates/`.
-- **Forward.** Multi-module composition, cross-cutting overlay modules, standards-and-jurisdictions registry, re-resolution-on-mutation, additional regulatory modules.
+`--module` is repeatable on both `resolve` and `validate`. When multiple modules are supplied, the engine composes them — unioning clauses by ID (conflicts raise) and template `addresses` by path — before doing its work. This is how cross-cutting overlays (e.g. ISO 27001 infosec) combine with vertical regulatory modules (e.g. medical-devices) without either having to embed the other:
+
+```bash
+openqms validate --module medical-devices --module iso-27001
+
+openqms resolve \
+  --product ExampleSaMD \
+  --jurisdiction FDA \
+  --standard "ISO 13485:2016" \
+  --standard "21 CFR 820" \
+  --standard "ISO 14971:2019" \
+  --standard "IEC 62304:2006+A1:2015" \
+  --standard "ISO/IEC 27001:2022" \
+  --module medical-devices \
+  --module iso-27001 \
+  --output traceability_matrix.json
+```
+
+### Status (v0.4.0)
+
+- **Today.** Single- and multi-module resolution; `compose` primitive for unioning modules; per-module validation harness; medical-devices reference module (4 standards in scope, 20 clauses, 12 templates) plus iso-27001 cross-cutting overlay (3 clauses, 3 template bindings).
+- **Forward.** Standards-and-jurisdictions registry, re-resolution-on-mutation, additional regulatory modules (regulated AI, pharma, aerospace, automotive, food safety), 21 CFR Part 11 §11.50 signature-meaning prototype.
 
 See `engine/README.md` for the full architecture.
 
@@ -84,7 +104,8 @@ open-qms/
 │   └── tests/              # pytest suite
 ├── docs/                   # MkDocs source for rendered QMS site
 ├── modules/                # Regulatory modules (machine-readable manifests)
-│   ├── medical-devices/    # ISO 13485, 21 CFR 820, IEC 62304 (active)
+│   ├── medical-devices/    # ISO 13485, 21 CFR 820, ISO 14971, IEC 62304 (vertical)
+│   ├── iso-27001/          # ISO/IEC 27001:2022 (cross-cutting overlay)
 │   └── general/            # Industry-agnostic QMS processes
 ├── scripts/                # Setup, validation, audit helpers
 └── templates/              # QMS directory structure template

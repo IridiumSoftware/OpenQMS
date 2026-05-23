@@ -7,7 +7,7 @@ import json
 import sys
 from pathlib import Path
 
-from .module import load_module
+from .module import compose, load_module
 from .resolver import resolve
 from .types import Bundle
 from .validation import validate
@@ -48,10 +48,13 @@ def main(argv: list[str] | None = None) -> int:
     )
     p_resolve.add_argument(
         "--module",
+        action="append",
+        default=[],
         required=True,
         help=(
             "Module name (looked up under ./modules/<name>/module.yaml) or "
-            "path to a module.yaml file."
+            "path to a module.yaml file. Repeatable: multiple --module "
+            "arguments are composed into a single module before resolution."
         ),
     )
     p_resolve.add_argument(
@@ -67,7 +70,17 @@ def main(argv: list[str] | None = None) -> int:
             "no orphaned templates."
         ),
     )
-    p_validate.add_argument("--module", required=True)
+    p_validate.add_argument(
+        "--module",
+        action="append",
+        default=[],
+        required=True,
+        help=(
+            "Module name or path. Repeatable: multiple --module arguments "
+            "are composed before validation, exercising the OQ-001 invariant "
+            "on the composite."
+        ),
+    )
 
     args = parser.parse_args(argv)
 
@@ -80,7 +93,16 @@ def main(argv: list[str] | None = None) -> int:
 
 
 def _cmd_resolve(args) -> int:
-    module = load_module(args.module)
+    modules = [load_module(m) for m in args.module]
+    module = (
+        modules[0]
+        if len(modules) == 1
+        else compose(
+            modules,
+            name="+".join(m.name for m in modules),
+            version="composed",
+        )
+    )
     bundle = Bundle(
         product=args.product,
         jurisdictions=tuple(args.jurisdiction),
@@ -125,7 +147,16 @@ def _cmd_resolve(args) -> int:
 
 
 def _cmd_validate(args) -> int:
-    module = load_module(args.module)
+    modules = [load_module(m) for m in args.module]
+    module = (
+        modules[0]
+        if len(modules) == 1
+        else compose(
+            modules,
+            name="+".join(m.name for m in modules),
+            version="composed",
+        )
+    )
     report = validate(module)
 
     print(f"module:           {report.module}")

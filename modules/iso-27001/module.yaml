@@ -1,0 +1,66 @@
+# Open QMS — ISO/IEC 27001 cross-cutting overlay module
+# Version 0.1.0 — minimal seed demonstrating composition with the
+# medical-devices vertical module. Three Annex A controls bound to
+# existing OpenQMS templates and workflow artifacts.
+#
+# This is an overlay module: it adds infosec clauses that compose with any
+# vertical module (medical-devices today; pharma, aerospace, etc. in the
+# future). Run together via:
+#   openqms resolve --module medical-devices --module iso-27001 ...
+#
+# Standards licensing: ISO/IEC 27001:2022 is a commercially published
+# copyrighted work. The summaries below are paraphrases written for the
+# manifest; the standard text itself is not redistributed. Adopters
+# implementing against ISO 27001 must obtain their own licensed copy from
+# ISO or a national member body.
+
+name: iso-27001-overlay
+version: 0.1.0
+
+standards:
+  - ISO/IEC 27001:2022
+
+clauses:
+  - id: ISO27001-A.5.1
+    standard: ISO/IEC 27001:2022
+    section: "A.5.1"
+    summary: |
+      Policies for information security — defined, approved by management,
+      published, communicated to and acknowledged by relevant personnel
+      and interested parties, and reviewed at planned intervals or when
+      significant changes occur.
+
+  - id: ISO27001-A.5.31
+    standard: ISO/IEC 27001:2022
+    section: "A.5.31"
+    summary: |
+      Legal, statutory, regulatory, and contractual requirements relevant
+      to information security shall be identified, documented, and kept
+      up to date. The organization's approach to meeting each shall be
+      defined.
+
+  - id: ISO27001-A.8.31
+    standard: ISO/IEC 27001:2022
+    section: "A.8.31"
+    summary: |
+      Separation of development, test, and production environments —
+      including separation of duties where appropriate — to reduce the
+      risk of unauthorized access or unauthorized changes to the
+      operational environment.
+
+templates:
+  - path: templates/qms-policy/quality-policy.md
+    name: Quality policy (information-security overlay binding)
+    addresses:
+      - ISO27001-A.5.1
+      - ISO27001-A.5.31
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Standard operating procedure template (information-security overlay binding)
+    addresses:
+      - ISO27001-A.5.31
+
+  - path: templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md
+    name: Software release record template (information-security overlay binding)
+    addresses:
+      - ISO27001-A.8.31

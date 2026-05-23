@@ -1,4 +1,10 @@
-"""Module loading — parse a ``module.yaml`` manifest into the Module type."""
+"""Module loading and composition.
+
+``load_module`` parses a ``module.yaml`` manifest into the Module type.
+``compose`` unions multiple modules into one — implementing OQ-011 (modules
+compose under union; deduplication preserves the invariant) and OQ-012
+(cross-cutting overlays compose with vertical modules).
+"""
 
 from __future__ import annotations
 
@@ -99,4 +105,94 @@ def _parse_template(t: dict) -> ArtifactTemplate:
         path=str(t["path"]),
         name=str(t["name"]),
         addresses=tuple(str(a) for a in addresses),
+    )
+
+
+def compose(
+    modules: list[Module],
+    name: str = "composed",
+    version: str = "0.0.0",
+) -> Module:
+    """Compose multiple modules into one.
+
+    Implements OQ-011 (modules compose under union; deduplication preserves
+    the invariant) and OQ-012 (cross-cutting overlays compose with vertical
+    modules — mechanically the same union operation).
+
+    Composition rules:
+
+    - **Clauses** union by ``id``. If two modules declare the same clause ID
+      with the same content, the duplicate is silently absorbed (harmless
+      dedup). If two modules declare the same clause ID with *different*
+      content, ``ValueError`` is raised — clauses are facts about a
+      standard and modules cannot disagree about them.
+    - **Templates** union by ``path``. If two modules declare the same
+      template path, their ``addresses`` are unioned (deduped, first-seen
+      order preserved). The template ``name`` from the first module that
+      declared the path wins.
+    - **Standards** are concatenated and deduped (first-seen order).
+    - **Empty input** raises ``ValueError``. **Single-element input** is
+      returned unchanged so callers can compose unconditionally.
+
+    The composite's own clauses-to-templates invariant (OQ-001 / OQ-013)
+    is NOT enforced by ``compose`` itself — call ``validate(composite)`` to
+    check it. An overlay module that has clauses but no own-templates can
+    legitimately rely on a vertical module's templates to address its
+    clauses once composed.
+    """
+    if not modules:
+        raise ValueError("compose() requires at least one module")
+
+    if len(modules) == 1:
+        return modules[0]
+
+    clause_by_id: dict[str, Clause] = {}
+    for module in modules:
+        for clause in module.clauses:
+            existing = clause_by_id.get(clause.id)
+            if existing is None:
+                clause_by_id[clause.id] = clause
+            elif existing != clause:
+                raise ValueError(
+                    f"Clause '{clause.id}' conflicts across modules: "
+                    f"differs in content between modules '{module.name}' "
+                    f"and an earlier module. Cannot compose."
+                )
+
+    template_addresses: dict[str, list[str]] = {}
+    template_names: dict[str, str] = {}
+    template_order: list[str] = []
+    for module in modules:
+        for template in module.templates:
+            if template.path not in template_addresses:
+                template_addresses[template.path] = []
+                template_names[template.path] = template.name
+                template_order.append(template.path)
+            for addr in template.addresses:
+                if addr not in template_addresses[template.path]:
+                    template_addresses[template.path].append(addr)
+
+    composed_templates = tuple(
+        ArtifactTemplate(
+            path=path,
+            name=template_names[path],
+            addresses=tuple(template_addresses[path]),
+        )
+        for path in template_order
+    )
+
+    seen_std: set[str] = set()
+    composed_standards: list[str] = []
+    for module in modules:
+        for std in module.standards:
+            if std not in seen_std:
+                seen_std.add(std)
+                composed_standards.append(std)
+
+    return Module(
+        name=name,
+        version=version,
+        standards=tuple(composed_standards),
+        clauses=tuple(clause_by_id.values()),
+        templates=composed_templates,
     )
