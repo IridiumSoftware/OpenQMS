@@ -65,6 +65,10 @@ openqms validate --module medical-devices
 
 Exit 0 on pass, 1 on invariant violation. The CI workflow `.github/workflows/engine-tests.yml` runs this on every push that touches `engine/`, `modules/`, or `templates/`.
 
+### Signatures — 21 CFR Part 11 §11.50 prototype
+
+GPG-signed commits satisfy §11.70 (cryptographic identity binding) but §11.50 separately requires the signature to display its **meaning** (approved / reviewed / authorized / etc.). The engine bridges the gap with a commit-trailer convention (`Signature-Meaning:`, optional `Signature-Role:` / `Signature-Justification:`) plus parser, audit-trail exporter, and CI gate. `openqms signatures verify --commit <sha>` checks a single commit; `openqms signatures export --since <ref>` emits Part 11-format JSON records. Full guide: `docs/guide/signature-meaning.md`.
+
 ### Regenerate
 
 A stored bundle definition at `bundles/<name>.yaml` pins the input tuple (product, jurisdictions, standards, modules). `openqms regenerate --bundle <name>` re-resolves and prints a structured diff against the prior matrix at `bundles/<name>.matrix.json`; pass `--write-matrix` to accept the change. The matrix file is committed and its Git diff is the regulatory audit trail. CI runs the dry-run on every push, turning the matrix into a regression-detection mechanism. `--strict-editions` upgrades registry-supersession warnings to errors.
@@ -93,10 +97,10 @@ openqms resolve \
   --output traceability_matrix.json
 ```
 
-### Status (v0.6.0)
+### Status (v0.7.0)
 
-- **Today.** Single- and multi-module resolution; `compose` primitive; per-module validation harness; standards-and-jurisdictions registry with alias normalization, module-vs-registry cross-check, and edition supersession (`superseded_by` + `--strict-editions`); `regenerate` subcommand with stored bundle definitions, committed matrix files, and structured diff against the prior; medical-devices reference module (4 standards, 20 clauses, 12 templates) plus iso-27001 cross-cutting overlay (3 clauses, 3 template bindings); shipped example bundle at `bundles/example-samd.yaml` exercising both modules + 5 standards.
-- **Forward.** Additional regulatory modules (regulated AI, pharma, aerospace, automotive, food safety), 21 CFR Part 11 §11.50 signature-meaning prototype, continued medical-devices clause population.
+- **Today.** Single- and multi-module resolution; `compose` primitive; per-module validation harness; standards-and-jurisdictions registry with alias normalization, module-vs-registry cross-check, and edition supersession; `regenerate` subcommand with stored bundle definitions and committed matrix files; 21 CFR Part 11 §11.50 signature-meaning prototype with commit-trailer convention, parser, audit-trail exporter, and CI gate; medical-devices reference module (4 standards, 20 clauses, 12 templates) plus iso-27001 cross-cutting overlay (3 clauses, 3 template bindings); shipped example bundle at `bundles/example-samd.yaml`.
+- **Forward.** Additional regulatory modules (regulated AI, pharma, aerospace, automotive, food safety), continued medical-devices clause population, role-to-meaning vocabulary enforcement.
 
 See `engine/README.md` for the full architecture.
 

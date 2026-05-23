@@ -55,3 +55,10 @@ jobs:
         # `openqms regenerate --bundle example-samd --write-matrix` and
         # commit the resulting matrix file.
         run: openqms regenerate --bundle example-samd
+
+      - name: Signatures export (smoke check)
+        # Walks the repo's own git log and emits a signature audit trail.
+        # OpenQMS doesn't enforce Signature-Meaning trailers on its own
+        # commits today, so the trail may be empty — this step exercises
+        # the engine code path and surfaces parse errors.
+        run: openqms signatures export --output /tmp/openqms-signatures.json

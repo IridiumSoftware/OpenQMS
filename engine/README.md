@@ -45,6 +45,35 @@ Equivalent via `python -m`:
 python -m openqms validate --module medical-devices
 ```
 
+### Signatures (21 CFR Part 11 §11.50 prototype)
+
+GPG-signed commits handle §11.70 (cryptographic identity binding) but not §11.50 (signature meaning). The engine bridges the gap with a commit-trailer convention:
+
+```
+Approve quality policy v2.1
+
+Signature-Meaning: approved
+Signature-Role: QA-Lead
+Signature-Justification: Reviewed against ISO 13485 §4.2.4.
+```
+
+Verify a single commit (defaults to HEAD), optionally requiring GPG verification:
+
+```bash
+openqms signatures verify --commit <sha>
+openqms signatures verify --require-gpg
+```
+
+Export a Part 11 §11.50-format JSON audit trail:
+
+```bash
+openqms signatures export --since main~50 --output audit.json
+openqms signatures export --path qms-policy --path qms-sops --output audit.json
+openqms signatures export --require-gpg --output audit.json   # exits 1 on any un-GPG-signed
+```
+
+CI workflow `.github/workflows/signature-check.yml` gates PRs on controlled-document paths and ships dormant in OpenQMS (no controlled documents at those paths); activates in adopter forks. Full guide: `docs/guide/signature-meaning.md`.
+
 ### Regenerate (re-resolve a stored bundle, diff against the prior matrix)
 
 ```bash

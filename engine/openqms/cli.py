@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -16,6 +17,11 @@ from .registry import (
     validate_module_against_registry,
 )
 from .resolver import resolve
+from .signatures import (
+    export_audit_trail,
+    extract_signatures_from_repo,
+    signature_from_commit_data,
+)
 from .types import Bundle
 from .validation import validate
 
@@ -114,6 +120,50 @@ def main(argv: list[str] | None = None) -> int:
         ),
     )
 
+    p_sigs = sub.add_parser(
+        "signatures",
+        help=(
+            "21 CFR Part 11 §11.50 signature-meaning prototype (OQ-060). "
+            "Extracts commit-message trailers (`Signature-Meaning:` etc.) "
+            "into a Part-11-format audit trail, optionally requiring GPG "
+            "verification."
+        ),
+    )
+    p_sigs.add_argument(
+        "action",
+        choices=("verify", "export"),
+        help=(
+            "`verify` checks a single commit (via --commit) has the required "
+            "trailers and optionally a verified GPG signature. "
+            "`export` walks `git log` and emits JSON audit records for every "
+            "commit that declares a Signature-Meaning trailer."
+        ),
+    )
+    p_sigs.add_argument(
+        "--commit",
+        help="Commit SHA (for `verify`). Default HEAD if omitted.",
+    )
+    p_sigs.add_argument(
+        "--since",
+        help="Walk commits in <since>..HEAD (for `export`). Default: full history.",
+    )
+    p_sigs.add_argument(
+        "--path",
+        action="append",
+        default=[],
+        help="Restrict to commits touching this path (repeatable, for `export`).",
+    )
+    p_sigs.add_argument(
+        "--require-gpg",
+        action="store_true",
+        help="Treat un-GPG-verified signatures as an error (default: warn).",
+    )
+    p_sigs.add_argument(
+        "--output",
+        default="-",
+        help="Output path for the JSON audit trail (for `export`). Default: stdout.",
+    )
+
     p_registry = sub.add_parser(
         "registry",
         help="Inspect the standards-and-jurisdictions registry (OQ-014).",
@@ -162,6 +212,8 @@ def main(argv: list[str] | None = None) -> int:
         return _cmd_regenerate(args)
     if args.cmd == "registry":
         return _cmd_registry(args)
+    if args.cmd == "signatures":
+        return _cmd_signatures(args)
     parser.print_help()
     return 2
 
@@ -451,6 +503,114 @@ def _validate_jurisdictions(raw: list[str], registry) -> list[str]:
             )
             raise SystemExit(2)
     return out
+
+
+def _cmd_signatures(args) -> int:
+    if args.action == "verify":
+        return _signatures_verify(args)
+    if args.action == "export":
+        return _signatures_export(args)
+    return 2
+
+
+def _signatures_verify(args) -> int:
+    sha = args.commit or "HEAD"
+    try:
+        out = subprocess.run(
+            [
+                "git",
+                "log",
+                "-n",
+                "1",
+                "--format=format:%H%x00%an%x00%ae%x00%aI%x00%G?%x00%GK%x00%B",
+                sha,
+            ],
+            capture_output=True,
+            text=True,
+            check=True,
+        ).stdout
+    except subprocess.CalledProcessError as e:
+        print(f"error: git log failed: {e.stderr}", file=sys.stderr)
+        return 2
+
+    fields = out.split("\x00", 6)
+    if len(fields) < 7:
+        print(
+            f"error: could not parse git log output for {sha}",
+            file=sys.stderr,
+        )
+        return 2
+
+    sha_full, name, email, date, gpg_status, gpg_key, message = fields
+    sig = signature_from_commit_data(
+        sha=sha_full,
+        message=message,
+        author_name=name,
+        author_email=email,
+        authored_at=date,
+        gpg_status=gpg_status or "N",
+        gpg_key_id=gpg_key or None,
+    )
+    if sig is None:
+        print(
+            f"error: commit {sha_full} does not declare a "
+            "Signature-Meaning trailer.",
+            file=sys.stderr,
+        )
+        return 1
+    if args.require_gpg and not sig.gpg_verified:
+        print(
+            f"error: commit {sha_full} signature meaning "
+            f"{sig.meaning!r} is not GPG-verified (--require-gpg).",
+            file=sys.stderr,
+        )
+        return 1
+
+    print(f"commit:           {sig.commit_sha}")
+    print(f"signer:           {sig.signer_name} <{sig.signer_email}>")
+    print(f"signed_at:        {sig.signed_at}")
+    print(f"meaning:          {sig.meaning}")
+    print(f"role:             {sig.role or '-'}")
+    print(f"justification:    {sig.justification or '-'}")
+    print(f"gpg_verified:     {sig.gpg_verified}")
+    print(f"gpg_key_id:       {sig.gpg_signer_key_id or '-'}")
+    return 0
+
+
+def _signatures_export(args) -> int:
+    try:
+        sigs = extract_signatures_from_repo(
+            repo_root=Path.cwd(),
+            since_ref=args.since,
+            paths=args.path or None,
+        )
+    except subprocess.CalledProcessError as e:
+        print(f"error: git log failed: {e.stderr}", file=sys.stderr)
+        return 2
+
+    records = export_audit_trail(sigs)
+
+    if args.require_gpg:
+        unverified = [r for r in records if not r["verification"]["gpg_signed"]]
+        if unverified:
+            for r in unverified:
+                print(
+                    f"error: commit {r['record']['sha']} not GPG-verified "
+                    f"(meaning={r['meaning']!r})",
+                    file=sys.stderr,
+                )
+            return 1
+
+    body = json.dumps(records, indent=2)
+    if args.output == "-":
+        print(body)
+    else:
+        Path(args.output).write_text(body + "\n")
+        print(
+            f"wrote {len(records)} signature records to {args.output}",
+            file=sys.stderr,
+        )
+    return 0
 
 
 def _cmd_registry(args) -> int:
