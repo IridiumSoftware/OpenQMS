@@ -1,0 +1,112 @@
+name: Complaint intake
+description: Initial intake of a customer complaint or adverse event report. PHI/PII is NOT captured in this issue — see docs/guide/complaints.md.
+title: "[Complaint] <product> — <one-line summary>"
+labels: ["complaint", "complaint-open"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## PHI / PII handling
+
+        This issue is a triage-and-tracking record. **Do not** paste patient identifiers, complainant names, contact information, or other PHI/PII content into this template. PHI-bearing detail belongs in your organization's access-restricted record (private sibling repository, encrypted storage, or commercial eQMS). Reference that record from the "PHI-bearing artifact" field below by ID or path, **not** by content.
+
+        See `docs/guide/complaints.md` for the recommended compartmentalization patterns.
+
+  - type: input
+    id: product
+    attributes:
+      label: Product
+      placeholder: "e.g. Device A, model XYZ"
+    validations:
+      required: true
+
+  - type: input
+    id: date_received
+    attributes:
+      label: Date received
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: complaint_source
+    attributes:
+      label: Complaint source
+      options:
+        - User / clinician
+        - Patient
+        - Distributor
+        - Internal observation
+        - Regulatory authority
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Initial severity assessment
+      description: Per your organization's risk-classification SOP.
+      options:
+        - Critical (potential serious harm / death)
+        - Major (potential significant impact)
+        - Minor (no patient impact)
+        - Pending assessment
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Complaint description (PHI-redacted)
+      description: |
+        Describe the issue WITHOUT including patient identifiers, complainant names, or contact information. Use placeholders like "the user", "the patient", "the device" instead of names. Detailed PHI-bearing description belongs in the access-restricted record referenced below.
+      placeholder: |
+        Example: The user reported that during operation, the device displayed error E-42 and would not resume normal operation after restart.
+    validations:
+      required: true
+
+  - type: input
+    id: phi_artifact
+    attributes:
+      label: PHI-bearing artifact reference (URL, file path, or external ID)
+      description: |
+        Reference to the access-restricted record holding complainant name, contact information, patient identifiers, or other PHI. Do NOT paste PHI here — only the reference.
+      placeholder: "e.g. complaints-private/2026/COMP-2026-001.md  or  ext-eqms://COMP-2026-001"
+
+  - type: dropdown
+    id: reportability
+    attributes:
+      label: Regulatory reportability assessment
+      options:
+        - Reportable — FDA MDR
+        - Reportable — EU Vigilance
+        - Reportable — Health Canada MDPR
+        - Reportable — multiple jurisdictions (specify in findings)
+        - Not reportable
+        - Pending assessment
+    validations:
+      required: true
+
+  - type: input
+    id: capa_link
+    attributes:
+      label: CAPA issue (if opened)
+      placeholder: "#"
+
+  - type: textarea
+    id: investigation
+    attributes:
+      label: Initial triage notes
+      description: |
+        Initial triage observations. Detailed investigation findings live in the linked CAPA issue and/or the PHI-bearing record.
+
+  - type: checkboxes
+    id: phi_confirmation
+    attributes:
+      label: PHI / PII handling confirmation
+      options:
+        - label: I have not pasted patient identifiers, complainant names, or contact information into this issue.
+          required: true
+        - label: PHI-bearing detail (if any) is routed to an access-restricted record per my organization's complaint-handling SOP.
+          required: true

@@ -37,6 +37,14 @@ clauses:
       verification, validation, transfer, changes. Traceability between
       inputs, outputs, verification, and validation at every stage.
 
+  - id: ISO13485-8.2.2
+    standard: ISO 13485:2016
+    section: "8.2.2"
+    summary: |
+      Complaint handling — documented procedures for timely complaint
+      handling, including receipt, evaluation, investigation, reporting to
+      regulatory authorities where required, and record retention.
+
   - id: CFR820-820.30
     standard: 21 CFR 820
     section: "820.30"
@@ -49,6 +57,15 @@ clauses:
     section: "820.40"
     summary: |
       Document controls — approval and distribution, changes.
+
+  - id: CFR820-820.198
+    standard: 21 CFR 820
+    section: "820.198"
+    summary: |
+      Complaint files — formally designated unit for complaint receipt,
+      review, and evaluation. Records of investigation, reportability
+      assessment, and disposition. PHI/PII handling architecturally
+      compartmentalized; see docs/guide/complaints.md.
 
 templates:
   - path: templates/qms-policy/quality-policy.md
@@ -68,3 +85,9 @@ templates:
     addresses:
       - ISO13485-7.3
       - CFR820-820.30
+
+  - path: .github/ISSUE_TEMPLATE/complaint.yml
+    name: Complaint intake issue template
+    addresses:
+      - ISO13485-8.2.2
+      - CFR820-820.198
