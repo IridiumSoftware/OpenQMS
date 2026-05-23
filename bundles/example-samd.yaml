@@ -24,8 +24,15 @@ jurisdictions:
 standards:
   - "ISO 13485:2016"
   - "21 CFR 820"
+  - "21 CFR Part 11"
+  - "EU MDR 2017/745"
   - "ISO 14971:2019"
   - "IEC 62304:2006+A1:2015"
+  - "IEC 62366-1:2015+A1:2020"
+  - "IEC 60601-1:2005+A1+A2"
+  - "ISTA 2A"
+  - "ISTA 3A"
+  - "MDSAP"
   - "ISO/IEC 27001:2022"
 
 modules:

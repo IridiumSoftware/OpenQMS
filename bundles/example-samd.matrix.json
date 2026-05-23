@@ -7,8 +7,15 @@
     "standards": [
       "ISO 13485:2016",
       "21 CFR 820",
+      "21 CFR Part 11",
+      "EU MDR 2017/745",
       "ISO 14971:2019",
       "IEC 62304:2006+A1:2015",
+      "IEC 62366-1:2015+A1:2020",
+      "IEC 60601-1:2005+A1+A2",
+      "ISTA 2A",
+      "ISTA 3A",
+      "MDSAP",
       "ISO/IEC 27001:2022"
     ]
   },
@@ -18,6 +25,20 @@
   },
   "in_scope_clauses": [
     {
+      "id": "ISO13485-4.1.6",
+      "standard": "ISO 13485:2016",
+      "section": "4.1.6",
+      "summary": "Validation of QMS software \u2014 software used in the QMS shall be\nvalidated prior to initial use and after changes. For Open QMS-on-\nGitHub deployments, the adopter validates GitHub configuration\nplus the Open QMS engine + module manifests for intended use.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO13485-4.2.3",
+      "standard": "ISO 13485:2016",
+      "section": "4.2.3",
+      "summary": "Medical device file \u2014 a compilation of documents for each medical\ndevice type or family, including device description, intended use,\nlabeling, specifications, manufacturing/packaging/storage/handling/\ndistribution specs, measurement procedures, installation and\nservicing procedures where applicable.",
+      "gap_note": null
+    },
+    {
       "id": "ISO13485-4.2.4",
       "standard": "ISO 13485:2016",
       "section": "4.2.4",
@@ -25,10 +46,10 @@
       "gap_note": null
     },
     {
-      "id": "ISO13485-7.3",
+      "id": "ISO13485-4.2.5",
       "standard": "ISO 13485:2016",
-      "section": "7.3",
-      "summary": "Design and development \u2014 planning, inputs, outputs, review,\nverification, validation, transfer, changes. Traceability between\ninputs, outputs, verification, and validation at every stage.",
+      "section": "4.2.5",
+      "summary": "Control of records \u2014 records shall remain legible, readily\nidentifiable, and retrievable. Storage, protection, retrieval,\nretention period, and disposition defined.",
       "gap_note": null
     },
     {
@@ -36,6 +57,20 @@
       "standard": "ISO 13485:2016",
       "section": "5.6",
       "summary": "Management review \u2014 top management shall review the QMS at planned\nintervals to ensure continuing suitability, adequacy, and\neffectiveness. Inputs: feedback, complaint handling, internal audit\nresults, CAPA status, process performance and product conformity,\nregulatory and standards changes, supplier performance, risk\nmanagement updates, resource adequacy, recommendations. Outputs:\ndecisions and actions improving QMS effectiveness, improving\nproduct, resource needs.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO13485-6.3",
+      "standard": "ISO 13485:2016",
+      "section": "6.3",
+      "summary": "Infrastructure \u2014 including information systems. Documented\ninfrastructure qualification covering GitHub platform configuration,\ncloud dependency, on-prem option, and backup strategy.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO13485-7.3",
+      "standard": "ISO 13485:2016",
+      "section": "7.3",
+      "summary": "Design and development \u2014 planning, inputs, outputs, review,\nverification, validation, transfer, changes. Traceability between\ninputs, outputs, verification, and validation at every stage.",
       "gap_note": null
     },
     {
@@ -53,6 +88,41 @@
       "gap_note": null
     },
     {
+      "id": "ISO13485-8.2.3",
+      "standard": "ISO 13485:2016",
+      "section": "8.2.3",
+      "summary": "Monitoring and measurement of processes \u2014 apply suitable methods\nfor monitoring and (where applicable) measurement of QMS processes;\nthese methods shall demonstrate the ability of processes to achieve\nplanned results.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO13485-8.2.4",
+      "standard": "ISO 13485:2016",
+      "section": "8.2.4",
+      "summary": "Internal audit \u2014 conduct audits at planned intervals to determine\nwhether the QMS conforms to planned arrangements and to applicable\nregulatory requirements. Auditor independence required.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR820-820.20",
+      "standard": "21 CFR 820",
+      "section": "820.20",
+      "summary": "Management responsibility \u2014 quality policy, organization (including\nmanagement with executive responsibility and management\nrepresentative), quality planning. \u00a7820.20(c) management review is\nisolated as a separate clause for sharper traceability.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR820-820.20(c)",
+      "standard": "21 CFR 820",
+      "section": "820.20(c)",
+      "summary": "Management review \u2014 management with executive responsibility shall\nreview the suitability and effectiveness of the quality system at\ndefined intervals and with sufficient frequency. Reviews must be\ndocumented. Subset of the broader \u00a7820.20 Management\nresponsibility section; this entry isolates the periodic-review\nrequirement specifically.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR820-820.22",
+      "standard": "21 CFR 820",
+      "section": "820.22",
+      "summary": "Quality audit \u2014 established procedures for planned and documented\nquality audits to assure the quality system is in compliance with\nQMS requirements. Auditors shall not have responsibility for the\nmatters audited.",
+      "gap_note": null
+    },
+    {
       "id": "CFR820-820.30",
       "standard": "21 CFR 820",
       "section": "820.30",
@@ -67,13 +137,6 @@
       "gap_note": null
     },
     {
-      "id": "CFR820-820.20(c)",
-      "standard": "21 CFR 820",
-      "section": "820.20(c)",
-      "summary": "Management review \u2014 management with executive responsibility shall\nreview the suitability and effectiveness of the quality system at\ndefined intervals and with sufficient frequency. Reviews must be\ndocumented. Subset of the broader \u00a7820.20 Management\nresponsibility section; this entry isolates the periodic-review\nrequirement specifically.",
-      "gap_note": null
-    },
-    {
       "id": "CFR820-820.50",
       "standard": "21 CFR 820",
       "section": "820.50",
@@ -81,10 +144,129 @@
       "gap_note": null
     },
     {
+      "id": "CFR820-820.70",
+      "standard": "21 CFR 820",
+      "section": "820.70",
+      "summary": "Production and process controls \u2014 including environmental controls,\npersonnel cleanliness, contamination control, equipment, and\nproduction process changes. Documented production SOPs required.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR820-820.90",
+      "standard": "21 CFR 820",
+      "section": "820.90",
+      "summary": "Nonconforming product \u2014 procedures for control of product that\ndoes not conform to specified requirements. Identification,\ndocumentation, evaluation, segregation, disposition.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR820-820.100",
+      "standard": "21 CFR 820",
+      "section": "820.100",
+      "summary": "Corrective and preventive action (CAPA) \u2014 procedures for analyzing\nprocesses, work operations, concessions, quality audit reports,\nquality records, complaints, returned product, etc., to identify\nexisting and potential causes of nonconforming product. Verifying\nor validating CAPA effectiveness.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR820-820.180",
+      "standard": "21 CFR 820",
+      "section": "820.180",
+      "summary": "General records requirements \u2014 all records required by Part 820\nshall be maintained and readily available for FDA inspection.\nRetention period: lifetime of device but no less than 2 years.\nRecords protected against loss, deterioration, unauthorized\nalteration.",
+      "gap_note": null
+    },
+    {
       "id": "CFR820-820.198",
       "standard": "21 CFR 820",
       "section": "820.198",
       "summary": "Complaint files \u2014 formally designated unit for complaint receipt,\nreview, and evaluation. Records of investigation, reportability\nassessment, and disposition. PHI/PII handling architecturally\ncompartmentalized; see docs/guide/complaints.md.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR11-11.10(a)",
+      "standard": "21 CFR Part 11",
+      "section": "11.10(a)",
+      "summary": "Validation of systems \u2014 procedures and controls for closed\nsystems shall include validation of systems to ensure accuracy,\nreliability, consistent intended performance, and the ability to\ndiscern invalid or altered records.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR11-11.10(b)",
+      "standard": "21 CFR Part 11",
+      "section": "11.10(b)",
+      "summary": "Generate accurate and complete copies of records \u2014 both in human-\nreadable and electronic form suitable for FDA inspection, review,\nand copying.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR11-11.10(c)",
+      "standard": "21 CFR Part 11",
+      "section": "11.10(c)",
+      "summary": "Protection of records \u2014 access limited to authorized individuals.\nImplemented via GitHub Teams, branch protection, repository\npermissions (with the documented caveat that GitHub permissions\nare repo-level, not document-level \u2014 see PHI/PII compartmentalization\ndecision in docs/guide/complaints.md).",
+      "gap_note": null
+    },
+    {
+      "id": "CFR11-11.10(d)",
+      "standard": "21 CFR Part 11",
+      "section": "11.10(d)",
+      "summary": "Audit trail \u2014 computer-generated, time-stamped, independent of\noperators, available for FDA review. Git history + GitHub\nEnterprise audit log; force-push disabled; GPG-signed commits.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR11-11.10(e)",
+      "standard": "21 CFR Part 11",
+      "section": "11.10(e)",
+      "summary": "Operational system checks \u2014 enforce sequencing of steps and\nevents. GitHub Actions workflows + required status checks +\nbranch-protection rules. The release-gate.yml workflow gates\nrelease on completeness of required activities.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR11-11.50",
+      "standard": "21 CFR Part 11",
+      "section": "11.50",
+      "summary": "Signature manifestations \u2014 signed records shall display the\nprinted name, date/time, and meaning of the signature. Bridged\nin Open QMS by the commit-trailer convention\n(Signature-Meaning / Signature-Role / Signature-Justification)\nplus the engine's parser and Part 11 audit-trail exporter.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR11-11.70",
+      "standard": "21 CFR Part 11",
+      "section": "11.70",
+      "summary": "Signature/record linking \u2014 signatures shall be cryptographically\nbound to their respective records. Implemented via GPG-signed\ncommits enforced by org-level \"Require signed commits.\"",
+      "gap_note": null
+    },
+    {
+      "id": "CFR11-11.100",
+      "standard": "21 CFR Part 11",
+      "section": "11.100",
+      "summary": "General requirements for e-signatures \u2014 each signature unique to\none individual, identity verified before establishing.\nImplemented via HR-attested GitHub identity mapping documented\nin docs/guide/gpg-signing.md \u00a72.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR11-11.200",
+      "standard": "21 CFR Part 11",
+      "section": "11.200",
+      "summary": "E-signature components \u2014 at minimum two distinct identification\ncomponents (e.g. user ID + password). GitHub SSO + MFA enforced\nat org level satisfies the two-factor requirement.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR11-11.300",
+      "standard": "21 CFR Part 11",
+      "section": "11.300",
+      "summary": "Controls for identification codes / passwords \u2014 including\nuniqueness, periodicity of revisions, loss management,\ntransaction safeguards. Implemented via GitHub / IdP password\npolicy referenced in docs/guide/gpg-signing.md.",
+      "gap_note": null
+    },
+    {
+      "id": "MDR-Art10(9)",
+      "standard": "EU MDR 2017/745",
+      "section": "Article 10(9)",
+      "summary": "QMS shall address all parts of Annex IX and cover risk management,\nclinical evaluation, post-market surveillance, vigilance, supplier\ncontrols, and product-realization processes.",
+      "gap_note": null
+    },
+    {
+      "id": "MDR-AnnexII",
+      "standard": "EU MDR 2017/745",
+      "section": "Annex II",
+      "summary": "Technical documentation \u2014 device description, design and\nmanufacturing information, GSPR compliance, benefit-risk analysis,\nproduct verification/validation. Per-product, structured for\nnotified-body review.",
+      "gap_note": null
+    },
+    {
+      "id": "MDR-AnnexIX",
+      "standard": "EU MDR 2017/745",
+      "section": "Annex IX",
+      "summary": "Conformity assessment based on QMS and technical documentation\nassessment. QMS procedures plus audit evidence of QMS operation\nvia Git history and issue/PR records form the auditable substrate.",
       "gap_note": null
     },
     {
@@ -137,6 +319,13 @@
       "gap_note": null
     },
     {
+      "id": "IEC62304-5.1",
+      "standard": "IEC 62304:2006+A1:2015",
+      "section": "5.1",
+      "summary": "Software development planning \u2014 establish and document a software\ndevelopment plan covering processes, activities, deliverables,\nconfiguration management, problem-resolution approach, and\nreference to risk-management and SOUP procedures.",
+      "gap_note": null
+    },
+    {
       "id": "IEC62304-5.2",
       "standard": "IEC 62304:2006+A1:2015",
       "section": "5.2",
@@ -148,6 +337,13 @@
       "standard": "IEC 62304:2006+A1:2015",
       "section": "5.3",
       "summary": "Software architectural design \u2014 transform requirements into a\ndocumented architecture; identify software items and segregation\nbetween items of different software safety classes; specify\ninterfaces; identify SOUP items and their integration constraints.",
+      "gap_note": null
+    },
+    {
+      "id": "IEC62304-5.4",
+      "standard": "IEC 62304:2006+A1:2015",
+      "section": "5.4",
+      "summary": "Software detailed design \u2014 refine the software items into software\nunits; document detailed design of each unit sufficient to\nimplement and test. For Class C software, document detailed design\nto the depth required by the architectural decomposition.",
       "gap_note": null
     },
     {
@@ -179,10 +375,66 @@
       "gap_note": null
     },
     {
+      "id": "IEC62304-6",
+      "standard": "IEC 62304:2006+A1:2015",
+      "section": "6",
+      "summary": "Software maintenance \u2014 establish and execute a software\nmaintenance plan; problem reports become maintenance inputs;\nmodifications follow the same lifecycle processes as new\ndevelopment.",
+      "gap_note": null
+    },
+    {
+      "id": "IEC62304-7",
+      "standard": "IEC 62304:2006+A1:2015",
+      "section": "7",
+      "summary": "Software risk management \u2014 for each software contributing to a\nhazardous situation, identify potential causes, perform risk\ncontrol, verify risk control effectiveness. Integrates with the\ndevice-level RMF.",
+      "gap_note": null
+    },
+    {
       "id": "IEC62304-8.1.2",
       "standard": "IEC 62304:2006+A1:2015",
       "section": "8.1.2",
       "summary": "SOUP configuration management \u2014 document title, manufacturer,\nversion designation, and unique identifier for each SOUP item;\nmaintain the SOUP configuration record across the software life\ncycle.",
+      "gap_note": null
+    },
+    {
+      "id": "IEC62304-9",
+      "standard": "IEC 62304:2006+A1:2015",
+      "section": "9",
+      "summary": "Software problem resolution \u2014 establish a problem resolution\nprocess; document, investigate, and evaluate problems; implement\nchanges; verify changes do not introduce new problems; update\naffected items (RMF, SRS, SAD, test plan).",
+      "gap_note": null
+    },
+    {
+      "id": "IEC62366-1-5",
+      "standard": "IEC 62366-1:2015+A1:2020",
+      "section": "5",
+      "summary": "Usability engineering process (consolidated \u00a75.1-\u00a75.9): prepare\nuse specification, user interface specification, identify primary\noperating functions, hazard-related use scenarios, UI of primary\noperating functions, formative evaluation, summative evaluation.\nUsability Engineering File compiles the evidence.",
+      "gap_note": null
+    },
+    {
+      "id": "IEC60601-1-general",
+      "standard": "IEC 60601-1:2005+A1+A2",
+      "section": "general",
+      "summary": "General requirements for basic safety and essential performance \u2014\ntest reports and risk-management file. Test reports typically from\nexternal accredited labs (EMC, electrical safety). Indexed in the\ntechnical-file index and linked from the verification protocol.",
+      "gap_note": null
+    },
+    {
+      "id": "ISTA-2A",
+      "standard": "ISTA 2A",
+      "section": "all",
+      "summary": "Packaged-Products Weighing 150 lb (68 kg) or Less (Partial\nSimulation) \u2014 test protocols (atmospheric conditioning, vibration,\ndrop, compression), test sample sizes, acceptance criteria.",
+      "gap_note": null
+    },
+    {
+      "id": "ISTA-3A",
+      "standard": "ISTA 3A",
+      "section": "all",
+      "summary": "Packaged-Products for Parcel Delivery System Shipment \u2014 extended\ntest sequences for the parcel-delivery distribution environment.",
+      "gap_note": null
+    },
+    {
+      "id": "MDSAP-composite",
+      "standard": "MDSAP",
+      "section": "audit model",
+      "summary": "Medical Device Single Audit Program \u2014 composite audit model\nsatisfying FDA + Health Canada + ANVISA + PMDA + TGA requirements\nagainst a unified ISO 13485-based program. Audit evidence\nassembled from the same artifact set rather than duplicated.",
       "gap_note": null
     },
     {
@@ -212,8 +464,18 @@
       "path": "templates/qms-policy/quality-policy.md",
       "name": "Quality policy",
       "addresses": [
+        "ISO13485-4.1.6",
         "ISO13485-4.2.4",
+        "ISO13485-4.2.5",
+        "ISO13485-6.3",
+        "CFR820-820.20",
         "CFR820-820.40",
+        "CFR820-820.180",
+        "CFR11-11.10(b)",
+        "CFR11-11.10(c)",
+        "CFR11-11.10(d)",
+        "MDR-Art10(9)",
+        "MDSAP-composite",
         "ISO27001-A.5.1",
         "ISO27001-A.5.31"
       ]
@@ -224,7 +486,16 @@
       "addresses": [
         "ISO13485-4.2.4",
         "CFR820-820.40",
+        "CFR820-820.70",
         "ISO27001-A.5.31"
+      ]
+    },
+    {
+      "path": "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md",
+      "name": "Internal audit procedure SOP",
+      "addresses": [
+        "ISO13485-8.2.4",
+        "CFR820-820.22"
       ]
     },
     {
@@ -233,14 +504,6 @@
       "addresses": [
         "ISO13485-7.3",
         "CFR820-820.30"
-      ]
-    },
-    {
-      "path": ".github/ISSUE_TEMPLATE/complaint.yml",
-      "name": "Complaint intake issue template",
-      "addresses": [
-        "ISO13485-8.2.2",
-        "CFR820-820.198"
       ]
     },
     {
@@ -253,7 +516,8 @@
         "ISO14971-7",
         "ISO14971-8",
         "ISO14971-9",
-        "ISO14971-10"
+        "ISO14971-10",
+        "IEC62304-7"
       ]
     },
     {
@@ -261,7 +525,9 @@
       "name": "Verification protocol template",
       "addresses": [
         "ISO13485-7.3",
-        "CFR820-820.30"
+        "CFR820-820.30",
+        "CFR11-11.10(a)",
+        "IEC60601-1-general"
       ]
     },
     {
@@ -273,9 +539,33 @@
       ]
     },
     {
+      "path": "templates/product-dhf/technical-file/TECHNICAL-FILE-INDEX-TEMPLATE.md",
+      "name": "Technical file index template",
+      "addresses": [
+        "ISO13485-4.2.3",
+        "MDR-AnnexII"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/usability/USABILITY-ENGINEERING-FILE-TEMPLATE.md",
+      "name": "Usability engineering file template (IEC 62366-1)",
+      "addresses": [
+        "IEC62366-1-5"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/packaging/PACKAGING-VALIDATION-TEMPLATE.md",
+      "name": "Packaging validation report template (ISTA)",
+      "addresses": [
+        "ISTA-2A",
+        "ISTA-3A"
+      ]
+    },
+    {
       "path": "templates/product-sw/requirements/SOFTWARE-REQUIREMENTS-TEMPLATE.md",
       "name": "Software requirements specification template",
       "addresses": [
+        "IEC62304-5.1",
         "IEC62304-5.2"
       ]
     },
@@ -283,7 +573,8 @@
       "path": "templates/product-sw/architecture/SOFTWARE-ARCHITECTURE-TEMPLATE.md",
       "name": "Software architecture description template",
       "addresses": [
-        "IEC62304-5.3"
+        "IEC62304-5.3",
+        "IEC62304-5.4"
       ]
     },
     {
@@ -308,6 +599,31 @@
       "addresses": [
         "IEC62304-5.8",
         "ISO27001-A.8.31"
+      ]
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/complaint.yml",
+      "name": "Complaint intake issue template",
+      "addresses": [
+        "ISO13485-8.2.2",
+        "CFR820-820.198"
+      ]
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/nonconformance.yml",
+      "name": "Nonconformance report issue template",
+      "addresses": [
+        "CFR820-820.90",
+        "IEC62304-9"
+      ]
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/capa.yml",
+      "name": "CAPA issue template",
+      "addresses": [
+        "CFR820-820.100",
+        "IEC62304-6",
+        "IEC62304-9"
       ]
     },
     {
@@ -339,7 +655,9 @@
       "name": "Management review record template",
       "addresses": [
         "ISO13485-5.6",
-        "CFR820-820.20(c)"
+        "ISO13485-8.2.3",
+        "CFR820-820.20(c)",
+        "MDR-AnnexIX"
       ]
     },
     {
@@ -349,28 +667,63 @@
         "ISO13485-5.6",
         "CFR820-820.20(c)"
       ]
+    },
+    {
+      "path": "docs/guide/signature-meaning.md",
+      "name": "Signature-meaning guide (21 CFR Part 11 \u00a711.50)",
+      "addresses": [
+        "CFR11-11.50"
+      ]
+    },
+    {
+      "path": "docs/guide/gpg-signing.md",
+      "name": "GPG signing enforcement guide",
+      "addresses": [
+        "CFR11-11.70",
+        "CFR11-11.100",
+        "CFR11-11.200",
+        "CFR11-11.300"
+      ]
+    },
+    {
+      "path": ".github/workflows/release-gate.yml",
+      "name": "Release-gate CI workflow",
+      "addresses": [
+        "CFR11-11.10(e)"
+      ]
     }
   ],
   "traceability": {
     "forward": {
       "templates/qms-policy/quality-policy.md": [
+        "ISO13485-4.1.6",
         "ISO13485-4.2.4",
+        "ISO13485-4.2.5",
+        "ISO13485-6.3",
+        "CFR820-820.20",
         "CFR820-820.40",
+        "CFR820-820.180",
+        "CFR11-11.10(b)",
+        "CFR11-11.10(c)",
+        "CFR11-11.10(d)",
+        "MDR-Art10(9)",
+        "MDSAP-composite",
         "ISO27001-A.5.1",
         "ISO27001-A.5.31"
       ],
       "templates/qms-sops/SOP-TEMPLATE.md": [
         "ISO13485-4.2.4",
         "CFR820-820.40",
+        "CFR820-820.70",
         "ISO27001-A.5.31"
+      ],
+      "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md": [
+        "ISO13485-8.2.4",
+        "CFR820-820.22"
       ],
       "templates/product-dhf/design-inputs/DESIGN-INPUT-TEMPLATE.md": [
         "ISO13485-7.3",
         "CFR820-820.30"
-      ],
-      ".github/ISSUE_TEMPLATE/complaint.yml": [
-        "ISO13485-8.2.2",
-        "CFR820-820.198"
       ],
       "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md": [
         "ISO14971-4",
@@ -379,21 +732,37 @@
         "ISO14971-7",
         "ISO14971-8",
         "ISO14971-9",
-        "ISO14971-10"
+        "ISO14971-10",
+        "IEC62304-7"
       ],
       "templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md": [
         "ISO13485-7.3",
-        "CFR820-820.30"
+        "CFR820-820.30",
+        "CFR11-11.10(a)",
+        "IEC60601-1-general"
       ],
       "templates/product-dhf/validation/VALIDATION-PROTOCOL-TEMPLATE.md": [
         "ISO13485-7.3",
         "CFR820-820.30"
       ],
+      "templates/product-dhf/technical-file/TECHNICAL-FILE-INDEX-TEMPLATE.md": [
+        "ISO13485-4.2.3",
+        "MDR-AnnexII"
+      ],
+      "templates/product-dhf/usability/USABILITY-ENGINEERING-FILE-TEMPLATE.md": [
+        "IEC62366-1-5"
+      ],
+      "templates/product-dhf/packaging/PACKAGING-VALIDATION-TEMPLATE.md": [
+        "ISTA-2A",
+        "ISTA-3A"
+      ],
       "templates/product-sw/requirements/SOFTWARE-REQUIREMENTS-TEMPLATE.md": [
+        "IEC62304-5.1",
         "IEC62304-5.2"
       ],
       "templates/product-sw/architecture/SOFTWARE-ARCHITECTURE-TEMPLATE.md": [
-        "IEC62304-5.3"
+        "IEC62304-5.3",
+        "IEC62304-5.4"
       ],
       "templates/product-sw/soup-register/SOUP-REGISTER-TEMPLATE.md": [
         "IEC62304-8.1.2"
@@ -406,6 +775,19 @@
       "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md": [
         "IEC62304-5.8",
         "ISO27001-A.8.31"
+      ],
+      ".github/ISSUE_TEMPLATE/complaint.yml": [
+        "ISO13485-8.2.2",
+        "CFR820-820.198"
+      ],
+      ".github/ISSUE_TEMPLATE/nonconformance.yml": [
+        "CFR820-820.90",
+        "IEC62304-9"
+      ],
+      ".github/ISSUE_TEMPLATE/capa.yml": [
+        "CFR820-820.100",
+        "IEC62304-6",
+        "IEC62304-9"
       ],
       "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md": [
         "ISO13485-7.4",
@@ -421,26 +803,52 @@
       ],
       "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md": [
         "ISO13485-5.6",
-        "CFR820-820.20(c)"
+        "ISO13485-8.2.3",
+        "CFR820-820.20(c)",
+        "MDR-AnnexIX"
       ],
       ".github/ISSUE_TEMPLATE/management-review.yml": [
         "ISO13485-5.6",
         "CFR820-820.20(c)"
+      ],
+      "docs/guide/signature-meaning.md": [
+        "CFR11-11.50"
+      ],
+      "docs/guide/gpg-signing.md": [
+        "CFR11-11.70",
+        "CFR11-11.100",
+        "CFR11-11.200",
+        "CFR11-11.300"
+      ],
+      ".github/workflows/release-gate.yml": [
+        "CFR11-11.10(e)"
       ]
     },
     "reverse": {
+      "ISO13485-4.1.6": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO13485-4.2.3": [
+        "templates/product-dhf/technical-file/TECHNICAL-FILE-INDEX-TEMPLATE.md"
+      ],
       "ISO13485-4.2.4": [
         "templates/qms-policy/quality-policy.md",
         "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO13485-4.2.5": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO13485-5.6": [
+        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md",
+        ".github/ISSUE_TEMPLATE/management-review.yml"
+      ],
+      "ISO13485-6.3": [
+        "templates/qms-policy/quality-policy.md"
       ],
       "ISO13485-7.3": [
         "templates/product-dhf/design-inputs/DESIGN-INPUT-TEMPLATE.md",
         "templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md",
         "templates/product-dhf/validation/VALIDATION-PROTOCOL-TEMPLATE.md"
-      ],
-      "ISO13485-5.6": [
-        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md",
-        ".github/ISSUE_TEMPLATE/management-review.yml"
       ],
       "ISO13485-7.4": [
         "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md",
@@ -449,6 +857,22 @@
       ],
       "ISO13485-8.2.2": [
         ".github/ISSUE_TEMPLATE/complaint.yml"
+      ],
+      "ISO13485-8.2.3": [
+        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md"
+      ],
+      "ISO13485-8.2.4": [
+        "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md"
+      ],
+      "CFR820-820.20": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "CFR820-820.20(c)": [
+        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md",
+        ".github/ISSUE_TEMPLATE/management-review.yml"
+      ],
+      "CFR820-820.22": [
+        "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md"
       ],
       "CFR820-820.30": [
         "templates/product-dhf/design-inputs/DESIGN-INPUT-TEMPLATE.md",
@@ -459,17 +883,64 @@
         "templates/qms-policy/quality-policy.md",
         "templates/qms-sops/SOP-TEMPLATE.md"
       ],
-      "CFR820-820.20(c)": [
-        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md",
-        ".github/ISSUE_TEMPLATE/management-review.yml"
-      ],
       "CFR820-820.50": [
         "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md",
         "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md",
         ".github/ISSUE_TEMPLATE/supplier-evaluation.yml"
       ],
+      "CFR820-820.70": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "CFR820-820.90": [
+        ".github/ISSUE_TEMPLATE/nonconformance.yml"
+      ],
+      "CFR820-820.100": [
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ],
+      "CFR820-820.180": [
+        "templates/qms-policy/quality-policy.md"
+      ],
       "CFR820-820.198": [
         ".github/ISSUE_TEMPLATE/complaint.yml"
+      ],
+      "CFR11-11.10(a)": [
+        "templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md"
+      ],
+      "CFR11-11.10(b)": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "CFR11-11.10(c)": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "CFR11-11.10(d)": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "CFR11-11.10(e)": [
+        ".github/workflows/release-gate.yml"
+      ],
+      "CFR11-11.50": [
+        "docs/guide/signature-meaning.md"
+      ],
+      "CFR11-11.70": [
+        "docs/guide/gpg-signing.md"
+      ],
+      "CFR11-11.100": [
+        "docs/guide/gpg-signing.md"
+      ],
+      "CFR11-11.200": [
+        "docs/guide/gpg-signing.md"
+      ],
+      "CFR11-11.300": [
+        "docs/guide/gpg-signing.md"
+      ],
+      "MDR-Art10(9)": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "MDR-AnnexII": [
+        "templates/product-dhf/technical-file/TECHNICAL-FILE-INDEX-TEMPLATE.md"
+      ],
+      "MDR-AnnexIX": [
+        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md"
       ],
       "ISO14971-4": [
         "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"
@@ -492,10 +963,16 @@
       "ISO14971-10": [
         "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"
       ],
+      "IEC62304-5.1": [
+        "templates/product-sw/requirements/SOFTWARE-REQUIREMENTS-TEMPLATE.md"
+      ],
       "IEC62304-5.2": [
         "templates/product-sw/requirements/SOFTWARE-REQUIREMENTS-TEMPLATE.md"
       ],
       "IEC62304-5.3": [
+        "templates/product-sw/architecture/SOFTWARE-ARCHITECTURE-TEMPLATE.md"
+      ],
+      "IEC62304-5.4": [
         "templates/product-sw/architecture/SOFTWARE-ARCHITECTURE-TEMPLATE.md"
       ],
       "IEC62304-5.5": [
@@ -510,8 +987,33 @@
       "IEC62304-5.8": [
         "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md"
       ],
+      "IEC62304-6": [
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ],
+      "IEC62304-7": [
+        "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"
+      ],
       "IEC62304-8.1.2": [
         "templates/product-sw/soup-register/SOUP-REGISTER-TEMPLATE.md"
+      ],
+      "IEC62304-9": [
+        ".github/ISSUE_TEMPLATE/nonconformance.yml",
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ],
+      "IEC62366-1-5": [
+        "templates/product-dhf/usability/USABILITY-ENGINEERING-FILE-TEMPLATE.md"
+      ],
+      "IEC60601-1-general": [
+        "templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md"
+      ],
+      "ISTA-2A": [
+        "templates/product-dhf/packaging/PACKAGING-VALIDATION-TEMPLATE.md"
+      ],
+      "ISTA-3A": [
+        "templates/product-dhf/packaging/PACKAGING-VALIDATION-TEMPLATE.md"
+      ],
+      "MDSAP-composite": [
+        "templates/qms-policy/quality-policy.md"
       ],
       "ISO27001-A.5.1": [
         "templates/qms-policy/quality-policy.md"
