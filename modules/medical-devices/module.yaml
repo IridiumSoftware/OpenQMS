@@ -39,6 +39,29 @@ clauses:
       verification, validation, transfer, changes. Traceability between
       inputs, outputs, verification, and validation at every stage.
 
+  - id: ISO13485-5.6
+    standard: ISO 13485:2016
+    section: "5.6"
+    summary: |
+      Management review — top management shall review the QMS at planned
+      intervals to ensure continuing suitability, adequacy, and
+      effectiveness. Inputs: feedback, complaint handling, internal audit
+      results, CAPA status, process performance and product conformity,
+      regulatory and standards changes, supplier performance, risk
+      management updates, resource adequacy, recommendations. Outputs:
+      decisions and actions improving QMS effectiveness, improving
+      product, resource needs.
+
+  - id: ISO13485-7.4
+    standard: ISO 13485:2016
+    section: "7.4"
+    summary: |
+      Purchasing — documented process for evaluation and selection of
+      suppliers based on their ability to supply product meeting the
+      organization's requirements; periodic re-evaluation; criteria
+      for selection / evaluation / monitoring / re-evaluation
+      proportionate to the risk of the supplied product.
+
   - id: ISO13485-8.2.2
     standard: ISO 13485:2016
     section: "8.2.2"
@@ -59,6 +82,28 @@ clauses:
     section: "820.40"
     summary: |
       Document controls — approval and distribution, changes.
+
+  - id: CFR820-820.20(c)
+    standard: 21 CFR 820
+    section: "820.20(c)"
+    summary: |
+      Management review — management with executive responsibility shall
+      review the suitability and effectiveness of the quality system at
+      defined intervals and with sufficient frequency. Reviews must be
+      documented. Subset of the broader §820.20 Management
+      responsibility section; this entry isolates the periodic-review
+      requirement specifically.
+
+  - id: CFR820-820.50
+    standard: 21 CFR 820
+    section: "820.50"
+    summary: |
+      Purchasing controls — each manufacturer shall establish and
+      maintain procedures to ensure that all purchased or otherwise
+      received product and services conform to specified requirements.
+      Includes evaluation of suppliers, contractors, and consultants;
+      type and extent of control proportionate to product / supplier
+      criticality; records of acceptable suppliers.
 
   - id: CFR820-820.198
     standard: 21 CFR 820
@@ -260,3 +305,33 @@ templates:
     name: Software release record template
     addresses:
       - IEC62304-5.8
+
+  - path: templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md
+    name: Approved Supplier List template
+    addresses:
+      - ISO13485-7.4
+      - CFR820-820.50
+
+  - path: templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md
+    name: Supplier evaluation record template
+    addresses:
+      - ISO13485-7.4
+      - CFR820-820.50
+
+  - path: .github/ISSUE_TEMPLATE/supplier-evaluation.yml
+    name: Supplier evaluation workflow issue template
+    addresses:
+      - ISO13485-7.4
+      - CFR820-820.50
+
+  - path: templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md
+    name: Management review record template
+    addresses:
+      - ISO13485-5.6
+      - CFR820-820.20(c)
+
+  - path: .github/ISSUE_TEMPLATE/management-review.yml
+    name: Management review workflow issue template
+    addresses:
+      - ISO13485-5.6
+      - CFR820-820.20(c)

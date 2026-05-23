@@ -1,0 +1,90 @@
+name: Supplier evaluation
+description: Open a supplier evaluation cycle — initial qualification, periodic re-evaluation, or triggered re-evaluation per ISO 13485 §7.4 / 21 CFR 820.50.
+title: "[Supplier eval] <supplier> — <reason>"
+labels: ["supplier-evaluation", "supplier-evaluation-open"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Supplier evaluation cycle
+
+        Use this template to initiate a supplier qualification or re-evaluation. The evaluation record itself (SE-XXX) is created from `templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md` and lives as a controlled document; this issue is the workflow tracker.
+
+        See `docs/guide/supplier-controls.md` for the full process.
+
+  - type: input
+    id: supplier_name
+    attributes:
+      label: Supplier name
+      placeholder: "e.g. Acme Components"
+    validations:
+      required: true
+
+  - type: input
+    id: asl_id
+    attributes:
+      label: ASL ID
+      description: "SUP-xxx if existing supplier; leave blank if new (will be assigned on approval)."
+      placeholder: "SUP-xxx or new"
+
+  - type: dropdown
+    id: evaluation_type
+    attributes:
+      label: Evaluation type
+      options:
+        - Initial qualification (new supplier)
+        - Periodic re-evaluation (scheduled)
+        - Triggered re-evaluation (NCR, complaint, supplier change, performance threshold)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: criticality
+    attributes:
+      label: Supplier criticality
+      description: Per organization's supplier-risk SOP. Drives re-evaluation cadence and assessment depth.
+      options:
+        - Critical (directly affects device safety / essential performance OR sole-source)
+        - Major (moderate impact on quality or design)
+        - Minor (commodity / low risk / qualified alternatives available)
+    validations:
+      required: true
+
+  - type: input
+    id: trigger_record
+    attributes:
+      label: Trigger record (for triggered re-evaluation)
+      description: Link to the NCR, complaint, supplier change notification, or performance metric that triggered this re-evaluation.
+      placeholder: "#NCR-xxx, #COMPLAINT-xxx, or 'N/A'"
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope of supply
+      description: Specific products, services, or categories under evaluation.
+      placeholder: |
+        e.g. Resistor models RES-100 through RES-499 for use in Product A v2.0.
+    validations:
+      required: true
+
+  - type: input
+    id: assigned_reviewer
+    attributes:
+      label: Assigned QA reviewer
+      placeholder: "@github-handle"
+    validations:
+      required: true
+
+  - type: input
+    id: due_date
+    attributes:
+      label: Evaluation due date
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Initial notes
+      description: Optional. Any context, risk concerns, or prior history relevant to the evaluation.

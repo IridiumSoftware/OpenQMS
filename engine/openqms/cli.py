@@ -442,13 +442,13 @@ def _cmd_regenerate(args) -> int:
             json.dumps(new_matrix, indent=2) + "\n"
         )
         print(f"wrote {matrix_out_path}", file=sys.stderr)
-    elif diff is None or diff.has_changes:
+        return 0
+
+    if diff is not None and diff.has_changes:
         print(
             "(dry-run: pass --write-matrix to update the file)",
             file=sys.stderr,
         )
-
-    if diff is not None and diff.has_changes:
         return 1
     return 0
 

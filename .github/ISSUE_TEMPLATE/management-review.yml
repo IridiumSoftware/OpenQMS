@@ -1,0 +1,90 @@
+name: Management review
+description: Schedule or trigger a management review of the QMS per ISO 13485 §5.6 / 21 CFR 820.20(c).
+title: "[Mgmt review] <period or trigger>"
+labels: ["management-review", "management-review-open"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Management review
+
+        Use this template to schedule a periodic management review or trigger one in response to a significant event. The review record itself (MR-XXX) is created from `templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md` and lives as a controlled document; this issue is the workflow tracker.
+
+        See `docs/guide/management-review.md` for input-aggregation patterns and the full process.
+
+  - type: dropdown
+    id: review_type
+    attributes:
+      label: Review type
+      options:
+        - Periodic (scheduled)
+        - Triggered (significant event, regulatory change, performance threshold)
+    validations:
+      required: true
+
+  - type: input
+    id: period_covered
+    attributes:
+      label: Period covered
+      placeholder: "YYYY-MM-DD through YYYY-MM-DD"
+    validations:
+      required: true
+
+  - type: input
+    id: scheduled_date
+    attributes:
+      label: Date scheduled
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: true
+
+  - type: input
+    id: chairperson
+    attributes:
+      label: Chairperson (top management representative)
+      placeholder: "@github-handle, role"
+    validations:
+      required: true
+
+  - type: textarea
+    id: attendees
+    attributes:
+      label: Required attendees
+      description: Names / roles expected at the review.
+      placeholder: |
+        - @qa-lead, QA Lead
+        - @eng-vp, Engineering VP
+        - @reg-affairs, Regulatory Affairs Manager
+    validations:
+      required: true
+
+  - type: input
+    id: prior_review
+    attributes:
+      label: Prior review record
+      description: Reference to the prior management review record (MR-xxx) for action-item carry-forward.
+      placeholder: "MR-xxx or 'N/A (first review)'"
+
+  - type: textarea
+    id: trigger_context
+    attributes:
+      label: Trigger context (for triggered reviews)
+      description: For triggered reviews, describe what is being reviewed and why an off-cycle review is needed.
+
+  - type: textarea
+    id: input_checklist
+    attributes:
+      label: Input aggregation checklist
+      description: Confirm the standard ISO 13485 §5.6.2 inputs have been gathered.
+      value: |
+        - [ ] Complaint and feedback trends (per `docs/guide/complaints.md`)
+        - [ ] Internal audit results
+        - [ ] CAPA status (open, closed, overdue, effectiveness checks)
+        - [ ] Process performance metrics
+        - [ ] Product conformity / NCR summary
+        - [ ] Regulatory and standards changes
+        - [ ] Supplier performance summary (per `docs/guide/supplier-controls.md`)
+        - [ ] Risk management updates (RMF status)
+        - [ ] Resource adequacy assessment
+        - [ ] Training compliance rate
+        - [ ] Recommendations for improvement

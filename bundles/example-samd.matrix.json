@@ -32,6 +32,20 @@
       "gap_note": null
     },
     {
+      "id": "ISO13485-5.6",
+      "standard": "ISO 13485:2016",
+      "section": "5.6",
+      "summary": "Management review \u2014 top management shall review the QMS at planned\nintervals to ensure continuing suitability, adequacy, and\neffectiveness. Inputs: feedback, complaint handling, internal audit\nresults, CAPA status, process performance and product conformity,\nregulatory and standards changes, supplier performance, risk\nmanagement updates, resource adequacy, recommendations. Outputs:\ndecisions and actions improving QMS effectiveness, improving\nproduct, resource needs.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO13485-7.4",
+      "standard": "ISO 13485:2016",
+      "section": "7.4",
+      "summary": "Purchasing \u2014 documented process for evaluation and selection of\nsuppliers based on their ability to supply product meeting the\norganization's requirements; periodic re-evaluation; criteria\nfor selection / evaluation / monitoring / re-evaluation\nproportionate to the risk of the supplied product.",
+      "gap_note": null
+    },
+    {
       "id": "ISO13485-8.2.2",
       "standard": "ISO 13485:2016",
       "section": "8.2.2",
@@ -50,6 +64,20 @@
       "standard": "21 CFR 820",
       "section": "820.40",
       "summary": "Document controls \u2014 approval and distribution, changes.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR820-820.20(c)",
+      "standard": "21 CFR 820",
+      "section": "820.20(c)",
+      "summary": "Management review \u2014 management with executive responsibility shall\nreview the suitability and effectiveness of the quality system at\ndefined intervals and with sufficient frequency. Reviews must be\ndocumented. Subset of the broader \u00a7820.20 Management\nresponsibility section; this entry isolates the periodic-review\nrequirement specifically.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR820-820.50",
+      "standard": "21 CFR 820",
+      "section": "820.50",
+      "summary": "Purchasing controls \u2014 each manufacturer shall establish and\nmaintain procedures to ensure that all purchased or otherwise\nreceived product and services conform to specified requirements.\nIncludes evaluation of suppliers, contractors, and consultants;\ntype and extent of control proportionate to product / supplier\ncriticality; records of acceptable suppliers.",
       "gap_note": null
     },
     {
@@ -281,6 +309,46 @@
         "IEC62304-5.8",
         "ISO27001-A.8.31"
       ]
+    },
+    {
+      "path": "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md",
+      "name": "Approved Supplier List template",
+      "addresses": [
+        "ISO13485-7.4",
+        "CFR820-820.50"
+      ]
+    },
+    {
+      "path": "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md",
+      "name": "Supplier evaluation record template",
+      "addresses": [
+        "ISO13485-7.4",
+        "CFR820-820.50"
+      ]
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/supplier-evaluation.yml",
+      "name": "Supplier evaluation workflow issue template",
+      "addresses": [
+        "ISO13485-7.4",
+        "CFR820-820.50"
+      ]
+    },
+    {
+      "path": "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md",
+      "name": "Management review record template",
+      "addresses": [
+        "ISO13485-5.6",
+        "CFR820-820.20(c)"
+      ]
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/management-review.yml",
+      "name": "Management review workflow issue template",
+      "addresses": [
+        "ISO13485-5.6",
+        "CFR820-820.20(c)"
+      ]
     }
   ],
   "traceability": {
@@ -338,6 +406,26 @@
       "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md": [
         "IEC62304-5.8",
         "ISO27001-A.8.31"
+      ],
+      "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md": [
+        "ISO13485-7.4",
+        "CFR820-820.50"
+      ],
+      "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md": [
+        "ISO13485-7.4",
+        "CFR820-820.50"
+      ],
+      ".github/ISSUE_TEMPLATE/supplier-evaluation.yml": [
+        "ISO13485-7.4",
+        "CFR820-820.50"
+      ],
+      "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md": [
+        "ISO13485-5.6",
+        "CFR820-820.20(c)"
+      ],
+      ".github/ISSUE_TEMPLATE/management-review.yml": [
+        "ISO13485-5.6",
+        "CFR820-820.20(c)"
       ]
     },
     "reverse": {
@@ -350,6 +438,15 @@
         "templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md",
         "templates/product-dhf/validation/VALIDATION-PROTOCOL-TEMPLATE.md"
       ],
+      "ISO13485-5.6": [
+        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md",
+        ".github/ISSUE_TEMPLATE/management-review.yml"
+      ],
+      "ISO13485-7.4": [
+        "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md",
+        "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md",
+        ".github/ISSUE_TEMPLATE/supplier-evaluation.yml"
+      ],
       "ISO13485-8.2.2": [
         ".github/ISSUE_TEMPLATE/complaint.yml"
       ],
@@ -361,6 +458,15 @@
       "CFR820-820.40": [
         "templates/qms-policy/quality-policy.md",
         "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "CFR820-820.20(c)": [
+        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md",
+        ".github/ISSUE_TEMPLATE/management-review.yml"
+      ],
+      "CFR820-820.50": [
+        "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md",
+        "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md",
+        ".github/ISSUE_TEMPLATE/supplier-evaluation.yml"
       ],
       "CFR820-820.198": [
         ".github/ISSUE_TEMPLATE/complaint.yml"
