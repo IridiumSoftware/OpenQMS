@@ -1,0 +1,33 @@
+# Open QMS — example bundle definition
+# ------------------------------------
+# A stored bundle definition pins the input tuple to the resolver: product
+# identity, the jurisdictions and standards in scope, and the modules to
+# compose. Running `openqms regenerate --bundle example-samd` re-resolves
+# this definition and prints a diff against the matrix at
+# bundles/example-samd.matrix.json. The matrix file is committed; its Git
+# diff is the regulatory audit trail of how the scope and artifacts
+# co-evolved.
+#
+# This file is shipped as the canonical example exercising the
+# regenerate / diff workflow end-to-end. The CI workflow runs
+# `openqms regenerate --bundle example-samd` in dry-run mode on every
+# push touching engine/, modules/, registry/, or bundles/; any unintended
+# change to the resolution surfaces as a CI failure that must be
+# resolved with an explicit `--write-matrix` commit.
+
+name: example-samd
+product: ExampleSaMD
+
+jurisdictions:
+  - FDA
+
+standards:
+  - "ISO 13485:2016"
+  - "21 CFR 820"
+  - "ISO 14971:2019"
+  - "IEC 62304:2006+A1:2015"
+  - "ISO/IEC 27001:2022"
+
+modules:
+  - medical-devices
+  - iso-27001

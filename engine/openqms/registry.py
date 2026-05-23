@@ -32,6 +32,7 @@ class StandardEntry:
     kind: str
     license_kind: str
     aliases: tuple[str, ...]
+    superseded_by: str | None = None
 
 
 @dataclass(frozen=True)
@@ -137,6 +138,7 @@ def _parse_standard(data: dict) -> StandardEntry:
         raise ValueError(
             f"Standard 'aliases' must be a list: {data['id']}"
         )
+    superseded_by = data.get("superseded_by")
     return StandardEntry(
         id=str(data["id"]),
         name=str(data["name"]),
@@ -145,6 +147,7 @@ def _parse_standard(data: dict) -> StandardEntry:
         kind=str(data["kind"]),
         license_kind=str(data["license_kind"]),
         aliases=tuple(str(a) for a in aliases),
+        superseded_by=str(superseded_by) if superseded_by else None,
     )
 
 
@@ -187,17 +190,27 @@ class RegistryValidationReport:
     invariant_holds: bool
     unregistered_module_standards: tuple[str, ...]
     unregistered_clause_standards: tuple[str, ...]
+    # (old_id, new_id) pairs for any module standard that the registry
+    # marks as superseded. Implements OQ-065 — module-version drift
+    # detection. By itself, a supersession is a *warning*, not an
+    # invariant violation (the module still works); the CLI raises it to
+    # an error with --strict-editions.
+    superseded_standards: tuple[tuple[str, str], ...] = ()
 
 
 def validate_module_against_registry(module, registry: Registry) -> RegistryValidationReport:
     """Check that every standard the module references is in the registry.
 
-    Two surfaces are checked:
+    Three surfaces are checked:
 
     - the module's ``standards:`` list — each entry must resolve;
-    - every clause's ``standard:`` field — each must resolve.
+    - every clause's ``standard:`` field — each must resolve;
+    - any resolved standard whose registry entry carries ``superseded_by``
+      is flagged in ``superseded_standards`` for the caller to decide
+      how to act on (warn by default; error under ``--strict-editions``).
 
-    A module passes iff both surfaces are clean.
+    A module's ``invariant_holds`` is True iff the first two surfaces are
+    clean — supersession does not flip the invariant on its own.
     """
     unregistered_module = sorted(
         s for s in module.standards if not registry.has_standard(s)
@@ -209,6 +222,17 @@ def validate_module_against_registry(module, registry: Registry) -> RegistryVali
             if not registry.has_standard(c.standard)
         }
     )
+
+    superseded: list[tuple[str, str]] = []
+    seen_superseded: set[str] = set()
+    for s in module.standards:
+        if not registry.has_standard(s):
+            continue
+        entry = registry.resolve_standard(s)
+        if entry.superseded_by and entry.id not in seen_superseded:
+            superseded.append((entry.id, entry.superseded_by))
+            seen_superseded.add(entry.id)
+
     return RegistryValidationReport(
         module=module.name,
         invariant_holds=(
@@ -216,4 +240,5 @@ def validate_module_against_registry(module, registry: Registry) -> RegistryVali
         ),
         unregistered_module_standards=tuple(unregistered_module),
         unregistered_clause_standards=tuple(unregistered_clauses),
+        superseded_standards=tuple(superseded),
     )

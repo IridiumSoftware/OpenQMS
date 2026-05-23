@@ -1,0 +1,422 @@
+{
+  "bundle": {
+    "product": "ExampleSaMD",
+    "jurisdictions": [
+      "FDA"
+    ],
+    "standards": [
+      "ISO 13485:2016",
+      "21 CFR 820",
+      "ISO 14971:2019",
+      "IEC 62304:2006+A1:2015",
+      "ISO/IEC 27001:2022"
+    ]
+  },
+  "module": {
+    "name": "medical-devices+iso-27001-overlay",
+    "version": "composed"
+  },
+  "in_scope_clauses": [
+    {
+      "id": "ISO13485-4.2.4",
+      "standard": "ISO 13485:2016",
+      "section": "4.2.4",
+      "summary": "Document control \u2014 approval prior to issue, review/update with\nre-approval, identification of changes and current revision status,\navailability at points of use, legibility, prevention of unintended\nuse of obsolete documents.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO13485-7.3",
+      "standard": "ISO 13485:2016",
+      "section": "7.3",
+      "summary": "Design and development \u2014 planning, inputs, outputs, review,\nverification, validation, transfer, changes. Traceability between\ninputs, outputs, verification, and validation at every stage.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO13485-8.2.2",
+      "standard": "ISO 13485:2016",
+      "section": "8.2.2",
+      "summary": "Complaint handling \u2014 documented procedures for timely complaint\nhandling, including receipt, evaluation, investigation, reporting to\nregulatory authorities where required, and record retention.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR820-820.30",
+      "standard": "21 CFR 820",
+      "section": "820.30",
+      "summary": "Design controls \u2014 plans, inputs, outputs, reviews, verification,\nvalidation, transfer, changes.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR820-820.40",
+      "standard": "21 CFR 820",
+      "section": "820.40",
+      "summary": "Document controls \u2014 approval and distribution, changes.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR820-820.198",
+      "standard": "21 CFR 820",
+      "section": "820.198",
+      "summary": "Complaint files \u2014 formally designated unit for complaint receipt,\nreview, and evaluation. Records of investigation, reportability\nassessment, and disposition. PHI/PII handling architecturally\ncompartmentalized; see docs/guide/complaints.md.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14971-4",
+      "standard": "ISO 14971:2019",
+      "section": "4",
+      "summary": "General requirements for risk management \u2014 risk management process,\nmanagement responsibility, qualification of personnel, risk\nmanagement plan, risk management file.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14971-5",
+      "standard": "ISO 14971:2019",
+      "section": "5",
+      "summary": "Risk analysis \u2014 intended use and reasonably foreseeable misuse,\nidentification of characteristics related to safety, identification\nof hazards and hazardous situations, estimation of risks.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14971-6",
+      "standard": "ISO 14971:2019",
+      "section": "6",
+      "summary": "Risk evaluation \u2014 for each identified hazardous situation, decide\nwhether risk reduction is required against the risk acceptability\ncriteria in the risk management plan.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14971-7",
+      "standard": "ISO 14971:2019",
+      "section": "7",
+      "summary": "Risk control \u2014 analysis of options (inherent safety / protective\nmeasures / information for safety), implementation, verification of\nimplementation and effectiveness, evaluation of any new risks the\ncontrols themselves introduce, and overall residual risk evaluation.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14971-8",
+      "standard": "ISO 14971:2019",
+      "section": "8",
+      "summary": "Evaluation of overall residual risk \u2014 explicit determination by top\nmanagement that the overall residual risk of the device, weighed\nagainst expected benefits of the intended use, is acceptable.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14971-9",
+      "standard": "ISO 14971:2019",
+      "section": "9",
+      "summary": "Risk management review and report \u2014 review of execution of the risk\nmanagement plan and production of the risk management report.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14971-10",
+      "standard": "ISO 14971:2019",
+      "section": "10",
+      "summary": "Production and post-production activities \u2014 collection and review of\ninformation from production and post-production phases; loop back\ninto the risk management process when new information affects the\nrisk evaluation.",
+      "gap_note": null
+    },
+    {
+      "id": "IEC62304-5.2",
+      "standard": "IEC 62304:2006+A1:2015",
+      "section": "5.2",
+      "summary": "Software requirements analysis \u2014 define and document software\nrequirements from the system requirements; include functional,\nperformance, interface, regulatory, and risk-control requirements.\nVerify and approve the requirements.",
+      "gap_note": null
+    },
+    {
+      "id": "IEC62304-5.3",
+      "standard": "IEC 62304:2006+A1:2015",
+      "section": "5.3",
+      "summary": "Software architectural design \u2014 transform requirements into a\ndocumented architecture; identify software items and segregation\nbetween items of different software safety classes; specify\ninterfaces; identify SOUP items and their integration constraints.",
+      "gap_note": null
+    },
+    {
+      "id": "IEC62304-5.5",
+      "standard": "IEC 62304:2006+A1:2015",
+      "section": "5.5",
+      "summary": "Software unit implementation and verification \u2014 implement units,\nestablish and apply unit acceptance criteria, verify each unit\nagainst the criteria, document the verification.",
+      "gap_note": null
+    },
+    {
+      "id": "IEC62304-5.6",
+      "standard": "IEC 62304:2006+A1:2015",
+      "section": "5.6",
+      "summary": "Software integration testing \u2014 integrate software units per the\nintegration plan, develop and execute integration tests, document\nresults, evaluate problems found.",
+      "gap_note": null
+    },
+    {
+      "id": "IEC62304-5.7",
+      "standard": "IEC 62304:2006+A1:2015",
+      "section": "5.7",
+      "summary": "Software system testing \u2014 develop and execute system tests covering\nall software requirements, including risk-control requirements;\ndocument results; retest after defect fixes.",
+      "gap_note": null
+    },
+    {
+      "id": "IEC62304-5.8",
+      "standard": "IEC 62304:2006+A1:2015",
+      "section": "5.8",
+      "summary": "Software release \u2014 verify all activities are complete, document\nknown residual anomalies and their evaluation, archive sufficient\nconfiguration items to reproduce the release, document version\nidentification.",
+      "gap_note": null
+    },
+    {
+      "id": "IEC62304-8.1.2",
+      "standard": "IEC 62304:2006+A1:2015",
+      "section": "8.1.2",
+      "summary": "SOUP configuration management \u2014 document title, manufacturer,\nversion designation, and unique identifier for each SOUP item;\nmaintain the SOUP configuration record across the software life\ncycle.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.5.1",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.5.1",
+      "summary": "Policies for information security \u2014 defined, approved by management,\npublished, communicated to and acknowledged by relevant personnel\nand interested parties, and reviewed at planned intervals or when\nsignificant changes occur.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.5.31",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.5.31",
+      "summary": "Legal, statutory, regulatory, and contractual requirements relevant\nto information security shall be identified, documented, and kept\nup to date. The organization's approach to meeting each shall be\ndefined.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.8.31",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.8.31",
+      "summary": "Separation of development, test, and production environments \u2014\nincluding separation of duties where appropriate \u2014 to reduce the\nrisk of unauthorized access or unauthorized changes to the\noperational environment.",
+      "gap_note": null
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "templates/qms-policy/quality-policy.md",
+      "name": "Quality policy",
+      "addresses": [
+        "ISO13485-4.2.4",
+        "CFR820-820.40",
+        "ISO27001-A.5.1",
+        "ISO27001-A.5.31"
+      ]
+    },
+    {
+      "path": "templates/qms-sops/SOP-TEMPLATE.md",
+      "name": "Standard operating procedure template",
+      "addresses": [
+        "ISO13485-4.2.4",
+        "CFR820-820.40",
+        "ISO27001-A.5.31"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/design-inputs/DESIGN-INPUT-TEMPLATE.md",
+      "name": "Design input template",
+      "addresses": [
+        "ISO13485-7.3",
+        "CFR820-820.30"
+      ]
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/complaint.yml",
+      "name": "Complaint intake issue template",
+      "addresses": [
+        "ISO13485-8.2.2",
+        "CFR820-820.198"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md",
+      "name": "Risk management file template (ISO 14971)",
+      "addresses": [
+        "ISO14971-4",
+        "ISO14971-5",
+        "ISO14971-6",
+        "ISO14971-7",
+        "ISO14971-8",
+        "ISO14971-9",
+        "ISO14971-10"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md",
+      "name": "Verification protocol template",
+      "addresses": [
+        "ISO13485-7.3",
+        "CFR820-820.30"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/validation/VALIDATION-PROTOCOL-TEMPLATE.md",
+      "name": "Validation protocol template",
+      "addresses": [
+        "ISO13485-7.3",
+        "CFR820-820.30"
+      ]
+    },
+    {
+      "path": "templates/product-sw/requirements/SOFTWARE-REQUIREMENTS-TEMPLATE.md",
+      "name": "Software requirements specification template",
+      "addresses": [
+        "IEC62304-5.2"
+      ]
+    },
+    {
+      "path": "templates/product-sw/architecture/SOFTWARE-ARCHITECTURE-TEMPLATE.md",
+      "name": "Software architecture description template",
+      "addresses": [
+        "IEC62304-5.3"
+      ]
+    },
+    {
+      "path": "templates/product-sw/soup-register/SOUP-REGISTER-TEMPLATE.md",
+      "name": "Software-of-Unknown-Provenance register template",
+      "addresses": [
+        "IEC62304-8.1.2"
+      ]
+    },
+    {
+      "path": "templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md",
+      "name": "Software test protocol template",
+      "addresses": [
+        "IEC62304-5.5",
+        "IEC62304-5.6",
+        "IEC62304-5.7"
+      ]
+    },
+    {
+      "path": "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md",
+      "name": "Software release record template",
+      "addresses": [
+        "IEC62304-5.8",
+        "ISO27001-A.8.31"
+      ]
+    }
+  ],
+  "traceability": {
+    "forward": {
+      "templates/qms-policy/quality-policy.md": [
+        "ISO13485-4.2.4",
+        "CFR820-820.40",
+        "ISO27001-A.5.1",
+        "ISO27001-A.5.31"
+      ],
+      "templates/qms-sops/SOP-TEMPLATE.md": [
+        "ISO13485-4.2.4",
+        "CFR820-820.40",
+        "ISO27001-A.5.31"
+      ],
+      "templates/product-dhf/design-inputs/DESIGN-INPUT-TEMPLATE.md": [
+        "ISO13485-7.3",
+        "CFR820-820.30"
+      ],
+      ".github/ISSUE_TEMPLATE/complaint.yml": [
+        "ISO13485-8.2.2",
+        "CFR820-820.198"
+      ],
+      "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md": [
+        "ISO14971-4",
+        "ISO14971-5",
+        "ISO14971-6",
+        "ISO14971-7",
+        "ISO14971-8",
+        "ISO14971-9",
+        "ISO14971-10"
+      ],
+      "templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md": [
+        "ISO13485-7.3",
+        "CFR820-820.30"
+      ],
+      "templates/product-dhf/validation/VALIDATION-PROTOCOL-TEMPLATE.md": [
+        "ISO13485-7.3",
+        "CFR820-820.30"
+      ],
+      "templates/product-sw/requirements/SOFTWARE-REQUIREMENTS-TEMPLATE.md": [
+        "IEC62304-5.2"
+      ],
+      "templates/product-sw/architecture/SOFTWARE-ARCHITECTURE-TEMPLATE.md": [
+        "IEC62304-5.3"
+      ],
+      "templates/product-sw/soup-register/SOUP-REGISTER-TEMPLATE.md": [
+        "IEC62304-8.1.2"
+      ],
+      "templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md": [
+        "IEC62304-5.5",
+        "IEC62304-5.6",
+        "IEC62304-5.7"
+      ],
+      "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md": [
+        "IEC62304-5.8",
+        "ISO27001-A.8.31"
+      ]
+    },
+    "reverse": {
+      "ISO13485-4.2.4": [
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO13485-7.3": [
+        "templates/product-dhf/design-inputs/DESIGN-INPUT-TEMPLATE.md",
+        "templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md",
+        "templates/product-dhf/validation/VALIDATION-PROTOCOL-TEMPLATE.md"
+      ],
+      "ISO13485-8.2.2": [
+        ".github/ISSUE_TEMPLATE/complaint.yml"
+      ],
+      "CFR820-820.30": [
+        "templates/product-dhf/design-inputs/DESIGN-INPUT-TEMPLATE.md",
+        "templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md",
+        "templates/product-dhf/validation/VALIDATION-PROTOCOL-TEMPLATE.md"
+      ],
+      "CFR820-820.40": [
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "CFR820-820.198": [
+        ".github/ISSUE_TEMPLATE/complaint.yml"
+      ],
+      "ISO14971-4": [
+        "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"
+      ],
+      "ISO14971-5": [
+        "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"
+      ],
+      "ISO14971-6": [
+        "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"
+      ],
+      "ISO14971-7": [
+        "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"
+      ],
+      "ISO14971-8": [
+        "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"
+      ],
+      "ISO14971-9": [
+        "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"
+      ],
+      "ISO14971-10": [
+        "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"
+      ],
+      "IEC62304-5.2": [
+        "templates/product-sw/requirements/SOFTWARE-REQUIREMENTS-TEMPLATE.md"
+      ],
+      "IEC62304-5.3": [
+        "templates/product-sw/architecture/SOFTWARE-ARCHITECTURE-TEMPLATE.md"
+      ],
+      "IEC62304-5.5": [
+        "templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md"
+      ],
+      "IEC62304-5.6": [
+        "templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md"
+      ],
+      "IEC62304-5.7": [
+        "templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md"
+      ],
+      "IEC62304-5.8": [
+        "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md"
+      ],
+      "IEC62304-8.1.2": [
+        "templates/product-sw/soup-register/SOUP-REGISTER-TEMPLATE.md"
+      ],
+      "ISO27001-A.5.1": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO27001-A.5.31": [
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO27001-A.8.31": [
+        "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md"
+      ]
+    }
+  }
+}

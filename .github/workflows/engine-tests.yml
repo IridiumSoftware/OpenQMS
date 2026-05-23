@@ -8,6 +8,7 @@ on:
       - 'modules/**'
       - 'templates/**'
       - 'registry/**'
+      - 'bundles/**'
       - '.github/workflows/engine-tests.yml'
   pull_request:
     paths:
@@ -15,6 +16,7 @@ on:
       - 'modules/**'
       - 'templates/**'
       - 'registry/**'
+      - 'bundles/**'
       - '.github/workflows/engine-tests.yml'
 
 jobs:
@@ -45,3 +47,11 @@ jobs:
 
       - name: Inspect registry (smoke check)
         run: openqms registry list
+
+      - name: Regenerate example bundle (dry-run regression check)
+        # Exits 1 if the matrix has drifted from the committed baseline at
+        # bundles/example-samd.matrix.json. If this fails, either revert
+        # the offending module/registry/template change or run
+        # `openqms regenerate --bundle example-samd --write-matrix` and
+        # commit the resulting matrix file.
+        run: openqms regenerate --bundle example-samd

@@ -7,6 +7,8 @@ import json
 import sys
 from pathlib import Path
 
+from .bundle import load_bundle_def
+from .diff import diff_matrices, format_diff
 from .module import compose, load_module
 from .registry import (
     DEFAULT_REGISTRY_ROOT,
@@ -87,6 +89,31 @@ def main(argv: list[str] | None = None) -> int:
         ),
     )
 
+    p_regen = sub.add_parser(
+        "regenerate",
+        help=(
+            "Re-resolve a stored bundle definition (bundles/<name>.yaml) "
+            "and print a structured diff against the prior matrix at "
+            "bundles/<name>.matrix.json (OQ-015)."
+        ),
+    )
+    p_regen.add_argument(
+        "--bundle",
+        required=True,
+        help=(
+            "Bundle definition name (looked up at bundles/<name>.yaml) "
+            "or path to a bundle YAML file."
+        ),
+    )
+    p_regen.add_argument(
+        "--write-matrix",
+        action="store_true",
+        help=(
+            "Write the new matrix to bundles/<name>.matrix.json. "
+            "Default: dry-run, only print the diff."
+        ),
+    )
+
     p_registry = sub.add_parser(
         "registry",
         help="Inspect the standards-and-jurisdictions registry (OQ-014).",
@@ -104,7 +131,7 @@ def main(argv: list[str] | None = None) -> int:
         help="Standard id (or alias) or jurisdiction id, required for `show`.",
     )
 
-    for sub_parser in (p_resolve, p_validate):
+    for sub_parser in (p_resolve, p_validate, p_regen):
         sub_parser.add_argument(
             "--allow-unregistered-standards",
             action="store_true",
@@ -114,12 +141,25 @@ def main(argv: list[str] | None = None) -> int:
             ),
         )
 
+    for sub_parser in (p_validate, p_regen):
+        sub_parser.add_argument(
+            "--strict-editions",
+            action="store_true",
+            help=(
+                "Treat any module standard that the registry marks as "
+                "superseded_by a newer edition as an error (OQ-065). "
+                "Default: warn but pass."
+            ),
+        )
+
     args = parser.parse_args(argv)
 
     if args.cmd == "resolve":
         return _cmd_resolve(args)
     if args.cmd == "validate":
         return _cmd_validate(args)
+    if args.cmd == "regenerate":
+        return _cmd_regenerate(args)
     if args.cmd == "registry":
         return _cmd_registry(args)
     parser.print_help()
@@ -168,23 +208,26 @@ def _cmd_resolve(args) -> int:
                 )
                 return 2
 
-    module = (
-        modules[0]
-        if len(modules) == 1
-        else compose(
-            modules,
-            name="+".join(m.name for m in modules),
-            version="composed",
-        )
-    )
+    module = _compose_modules(modules)
     bundle = Bundle(
         product=args.product,
         jurisdictions=tuple(canonical_jurisdictions),
         standards=tuple(canonical_standards),
     )
     qms = resolve(bundle, module)
+    body = json.dumps(_matrix_dict(bundle, qms, module), indent=2)
 
-    matrix = {
+    if args.output == "-":
+        print(body)
+    else:
+        Path(args.output).write_text(body + "\n")
+        print(f"wrote {args.output}", file=sys.stderr)
+    return 0
+
+
+def _matrix_dict(bundle: Bundle, qms, module) -> dict:
+    """Build the JSON-friendly matrix dict shared between resolve and regenerate."""
+    return {
         "bundle": {
             "product": qms.bundle.product,
             "jurisdictions": list(qms.bundle.jurisdictions),
@@ -210,14 +253,18 @@ def _cmd_resolve(args) -> int:
             "reverse": {k: list(v) for k, v in qms.reverse.items()},
         },
     }
-    body = json.dumps(matrix, indent=2)
 
-    if args.output == "-":
-        print(body)
-    else:
-        Path(args.output).write_text(body + "\n")
-        print(f"wrote {args.output}", file=sys.stderr)
-    return 0
+
+def _compose_modules(modules):
+    return (
+        modules[0]
+        if len(modules) == 1
+        else compose(
+            modules,
+            name="+".join(m.name for m in modules),
+            version="composed",
+        )
+    )
 
 
 def _cmd_validate(args) -> int:
@@ -237,16 +284,17 @@ def _cmd_validate(args) -> int:
                     file=sys.stderr,
                 )
                 return 2
+            if r.superseded_standards:
+                for old, new in r.superseded_standards:
+                    print(
+                        f"warning: module {r.module!r} references "
+                        f"{old!r}, superseded by {new!r}",
+                        file=sys.stderr,
+                    )
+                if args.strict_editions:
+                    return 2
 
-    module = (
-        modules[0]
-        if len(modules) == 1
-        else compose(
-            modules,
-            name="+".join(m.name for m in modules),
-            version="composed",
-        )
-    )
+    module = _compose_modules(modules)
     report = validate(module)
 
     print(f"module:           {report.module}")
@@ -261,6 +309,96 @@ def _cmd_validate(args) -> int:
             print(f"  - {path}")
 
     return 0 if report.invariant_holds else 1
+
+
+def _cmd_regenerate(args) -> int:
+    registry = _try_load_registry()
+
+    bundle_path = Path(args.bundle)
+    if not bundle_path.is_file():
+        candidate = Path("bundles") / f"{args.bundle}.yaml"
+        if candidate.exists():
+            bundle_path = candidate
+        else:
+            print(
+                f"error: bundle definition not found: tried "
+                f"{Path(args.bundle)}, {candidate}",
+                file=sys.stderr,
+            )
+            return 2
+
+    bundle_def = load_bundle_def(bundle_path)
+
+    canonical_stds = _canonicalize_standards(
+        list(bundle_def.bundle.standards),
+        registry,
+        strict=not args.allow_unregistered_standards,
+    )
+    canonical_jurisdictions = _validate_jurisdictions(
+        list(bundle_def.bundle.jurisdictions), registry
+    )
+    bundle = Bundle(
+        product=bundle_def.bundle.product,
+        jurisdictions=tuple(canonical_jurisdictions),
+        standards=tuple(canonical_stds),
+    )
+
+    modules = [load_module(m) for m in bundle_def.modules]
+    if registry is not None and not args.allow_unregistered_standards:
+        for m in modules:
+            r = validate_module_against_registry(m, registry)
+            if not r.invariant_holds:
+                print(
+                    f"error: module {r.module!r} references unregistered "
+                    f"standards. module.standards: "
+                    f"{list(r.unregistered_module_standards)}; "
+                    f"clause.standard: "
+                    f"{list(r.unregistered_clause_standards)}",
+                    file=sys.stderr,
+                )
+                return 2
+            if r.superseded_standards:
+                for old, new in r.superseded_standards:
+                    print(
+                        f"warning: module {r.module!r} references "
+                        f"{old!r}, superseded by {new!r}",
+                        file=sys.stderr,
+                    )
+                if args.strict_editions:
+                    return 2
+
+    module = _compose_modules(modules)
+    qms = resolve(bundle, module)
+    new_matrix = _matrix_dict(bundle, qms, module)
+
+    matrix_out_path = bundle_path.parent / f"{bundle_def.name}.matrix.json"
+
+    diff = None
+    if matrix_out_path.exists():
+        old_matrix = json.loads(matrix_out_path.read_text())
+        diff = diff_matrices(
+            old_matrix, new_matrix, bundle_def_name=bundle_def.name
+        )
+        print(format_diff(diff))
+    else:
+        print(
+            f"(no prior matrix at {matrix_out_path}; this is the baseline)"
+        )
+
+    if args.write_matrix:
+        matrix_out_path.write_text(
+            json.dumps(new_matrix, indent=2) + "\n"
+        )
+        print(f"wrote {matrix_out_path}", file=sys.stderr)
+    elif diff is None or diff.has_changes:
+        print(
+            "(dry-run: pass --write-matrix to update the file)",
+            file=sys.stderr,
+        )
+
+    if diff is not None and diff.has_changes:
+        return 1
+    return 0
 
 
 def _canonicalize_standards(

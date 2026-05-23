@@ -45,6 +45,19 @@ Equivalent via `python -m`:
 python -m openqms validate --module medical-devices
 ```
 
+### Regenerate (re-resolve a stored bundle, diff against the prior matrix)
+
+```bash
+openqms regenerate --bundle example-samd                 # dry-run; print diff
+openqms regenerate --bundle example-samd --write-matrix  # accept changes
+```
+
+A stored bundle definition at `bundles/<name>.yaml` pins the input tuple (product, jurisdictions, standards, modules). `regenerate` re-resolves the bundle and diffs against the prior matrix at `bundles/<name>.matrix.json`. Exit code: `0` (no changes), `1` (changes printed), `2` (error).
+
+The matrix file itself is committed; its Git diff is the regulatory audit trail. The CI workflow runs the dry-run regenerate on every push, turning the matrix into a regression-detection mechanism — if any module / registry / template change unexpectedly affects the example bundle, CI fails until the change is reverted or the matrix is explicitly re-committed.
+
+`--strict-editions` upgrades supersession warnings to errors (OQ-065). A standard entry in the registry can carry `superseded_by: <newer-id>`, and any module that references the older edition is flagged.
+
 ### Standards-and-jurisdictions registry
 
 Both `--standard` and `--jurisdiction` arguments are validated against the registry at `<repo>/registry/` (`standards.yaml` + `jurisdictions.yaml`). Unknown standards and jurisdictions raise rather than silently filtering to empty resolution. Aliases like `"ISO 13485"` are normalized to canonical ids like `"ISO 13485:2016"` before being passed to the resolver.

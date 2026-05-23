@@ -65,6 +65,10 @@ openqms validate --module medical-devices
 
 Exit 0 on pass, 1 on invariant violation. The CI workflow `.github/workflows/engine-tests.yml` runs this on every push that touches `engine/`, `modules/`, or `templates/`.
 
+### Regenerate
+
+A stored bundle definition at `bundles/<name>.yaml` pins the input tuple (product, jurisdictions, standards, modules). `openqms regenerate --bundle <name>` re-resolves and prints a structured diff against the prior matrix at `bundles/<name>.matrix.json`; pass `--write-matrix` to accept the change. The matrix file is committed and its Git diff is the regulatory audit trail. CI runs the dry-run on every push, turning the matrix into a regression-detection mechanism. `--strict-editions` upgrades registry-supersession warnings to errors.
+
 ### Registry
 
 `registry/standards.yaml` and `registry/jurisdictions.yaml` catalog every standard and jurisdiction the engine knows about. `--standard` and `--jurisdiction` CLI arguments are validated against the registry; unknown values raise rather than silently filtering to empty. Aliases (`"ISO 13485"`) normalize to canonical ids (`"ISO 13485:2016"`). Inspect with `openqms registry list` or `openqms registry show --id <id>`. Module manifests are cross-checked against the registry on every validation run.
@@ -89,10 +93,10 @@ openqms resolve \
   --output traceability_matrix.json
 ```
 
-### Status (v0.5.0)
+### Status (v0.6.0)
 
-- **Today.** Single- and multi-module resolution; `compose` primitive for unioning modules; per-module validation harness; standards-and-jurisdictions registry with alias normalization and module-vs-registry cross-check; medical-devices reference module (4 standards in scope, 20 clauses, 12 templates) plus iso-27001 cross-cutting overlay (3 clauses, 3 template bindings).
-- **Forward.** Re-resolution-on-mutation, additional regulatory modules (regulated AI, pharma, aerospace, automotive, food safety), 21 CFR Part 11 §11.50 signature-meaning prototype.
+- **Today.** Single- and multi-module resolution; `compose` primitive; per-module validation harness; standards-and-jurisdictions registry with alias normalization, module-vs-registry cross-check, and edition supersession (`superseded_by` + `--strict-editions`); `regenerate` subcommand with stored bundle definitions, committed matrix files, and structured diff against the prior; medical-devices reference module (4 standards, 20 clauses, 12 templates) plus iso-27001 cross-cutting overlay (3 clauses, 3 template bindings); shipped example bundle at `bundles/example-samd.yaml` exercising both modules + 5 standards.
+- **Forward.** Additional regulatory modules (regulated AI, pharma, aerospace, automotive, food safety), 21 CFR Part 11 §11.50 signature-meaning prototype, continued medical-devices clause population.
 
 See `engine/README.md` for the full architecture.
 
@@ -112,8 +116,11 @@ open-qms/
 │   ├── iso-27001/          # ISO/IEC 27001:2022 (cross-cutting overlay)
 │   └── general/            # Industry-agnostic QMS processes
 ├── registry/               # Standards & jurisdictions registry
-│   ├── standards.yaml      # Canonical ids + aliases + edition + license kind
+│   ├── standards.yaml      # Canonical ids + aliases + edition + license kind + superseded_by
 │   └── jurisdictions.yaml  # Jurisdictions + applicable standards
+├── bundles/                # Stored bundle definitions + committed matrices
+│   ├── <name>.yaml         # Input tuple (product, jurisdictions, standards, modules)
+│   └── <name>.matrix.json  # Resolved matrix; Git diff is the audit trail
 ├── scripts/                # Setup, validation, audit helpers
 └── templates/              # QMS directory structure template
     ├── qms-policy/

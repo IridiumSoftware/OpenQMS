@@ -13,7 +13,10 @@
 # commercially-published standard per the publishers' license terms.
 #
 # To add a standard: open a PR with a new entry below. Every entry must
-# carry id, name, publisher, edition, kind, license_kind.
+# carry id, name, publisher, edition, kind, license_kind. Optional fields:
+# aliases (list of strings); superseded_by (canonical id of the newer
+# edition that supersedes this entry — used by --strict-editions and the
+# regenerate workflow to detect module-version drift, OQ-065).
 
 standards:
 
