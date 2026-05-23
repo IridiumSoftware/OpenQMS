@@ -1,0 +1,120 @@
+# Open QMS — aerospace DAL-B class overlay (DO-178C / DO-254 Level B)
+# --------------------------------------------------------------------
+# Composes with the aerospace vertical to add Design Assurance Level B
+# requirements. DAL-B applies when the failure condition is Hazardous
+# per the FHA (large reduction in functional capabilities or safety
+# margins; severe injuries to occupants; excessive workload such that
+# the flight crew cannot be relied upon to perform their tasks
+# accurately or completely).
+#
+# Use via:
+#   openqms resolve --module aerospace --module aerospace-dal-b ...
+#
+# DAL-B specific rigor (delta from DAL-A above and DAL-C below):
+#  - DO-178C Table A-7: structural coverage at Decision Coverage (DC)
+#    level — MC/DC NOT required (the major delta from DAL-A) but every
+#    Boolean decision must be exercised through both True and False
+#    branches. Statement coverage subsumed.
+#  - DO-178C Tables A-1..A-10: 69 objectives applied; 14 require
+#    independence (delta from DAL-A's 25; DAL-C's 2).
+#  - DO-178C §12.2 + DO-330: tool qualification at TQL-1 or TQL-2
+#    typically, depending on tool use-case.
+#  - DO-254 §6: hardware verification including elemental analysis
+#    (shared with DAL-A) but safety-specific analyses are not
+#    mandatory by the standard (recommended by FAA for some
+#    architectures).
+#
+# Standards licensing: see repo-root README.
+
+name: aerospace-dal-b-overlay
+version: 0.1.0
+
+standards:
+  - DO-178C:2011
+  - DO-254:2000
+  - ARP4754A:2010
+
+clauses:
+
+  - id: DAL-B-applicability
+    standard: ARP4754A:2010
+    section: "§5"
+    summary: |
+      DAL-B applicability gate — invoked when the FHA assigns a
+      Hazardous failure-condition classification to a function and
+      ARP4754A §5 allocation results in DAL-B. Documented in the
+      FHA and PSAC.
+
+  - id: DO178C-DC
+    standard: DO-178C:2011
+    section: "§6.4.4.2 + Table A-7 obj 6"
+    summary: |
+      Decision Coverage (DC) — DAL-A and DAL-B. Every Boolean
+      decision in the source code shall be exercised such that
+      each decision has been evaluated to both True and False
+      outcomes. Subsumes statement coverage but does NOT require
+      MC/DC (which is DAL-A only). Reported per software unit
+      in SVCP + SVR.
+
+  - id: DO178C-independence-14
+    standard: DO-178C:2011
+    section: "Annex A — Independence column for DAL B"
+    summary: |
+      Independence requirements — 14 of the 69 DAL-B objectives
+      require independence between developer and verifier. Includes
+      independent review of high-level + low-level requirements,
+      independent code review, independent test-procedure review,
+      and independent verification-results review. Policy in PSAC.
+
+  - id: DO178C-tool-qual-DAL-B
+    standard: DO-178C:2011
+    section: "§12.2 + DO-330"
+    summary: |
+      Tool qualification — verification tool whose output is used
+      in lieu of a DAL-B verification objective is typically
+      qualified at TQL-2 (depending on use case) or TQL-1 if the
+      tool's malfunction could cause an undetected error. Tool
+      Qualification Plan + DO-330 deliverables per scope.
+
+  - id: DO254-elemental-analysis-DAL-B
+    standard: DO-254:2000
+    section: "§6.2"
+    summary: |
+      Elemental Analysis — required at DAL-A and DAL-B. Each
+      simple-and-complex hardware element exercised by a
+      verification input is recorded and reported.
+
+  - id: ARP4754A-DAL-B-allocation
+    standard: ARP4754A:2010
+    section: "§5"
+    summary: |
+      DAL-B allocation rationale — recorded in the System Safety
+      Plan with reference to the Hazardous failure-condition
+      classification from the FHA and the propagation analysis
+      that supports allocating no higher / no lower than DAL-B
+      to this item.
+
+templates:
+
+  - path: templates/product-dhf/psac/PSAC-TEMPLATE.md
+    name: PSAC — DAL-B specifics (DC structural coverage, independence-14, TQL-1/2 tool qualification)
+    addresses:
+      - DAL-B-applicability
+      - DO178C-DC
+      - DO178C-independence-14
+      - DO178C-tool-qual-DAL-B
+
+  - path: templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md
+    name: Software test protocol — DAL-B decision-coverage reporting
+    addresses:
+      - DO178C-DC
+
+  - path: templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md
+    name: Verification protocol — DO-254 DAL-B elemental analysis
+    addresses:
+      - DO254-elemental-analysis-DAL-B
+
+  - path: templates/product-dhf/safety-assessment/SSP-TEMPLATE.md
+    name: System Safety Plan — DAL-B allocation rationale
+    addresses:
+      - ARP4754A-DAL-B-allocation

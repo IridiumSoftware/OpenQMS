@@ -1,0 +1,142 @@
+# Open QMS — aerospace DAL-A class overlay (DO-178C / DO-254 Level A)
+# --------------------------------------------------------------------
+# Composes with the aerospace vertical to add Design Assurance Level A
+# requirements for software (DO-178C) and airborne electronic hardware
+# (DO-254). DAL-A is the highest level: assigned when the failure
+# condition is Catastrophic per the FHA — i.e., results in loss of
+# the aircraft and/or fatalities.
+#
+# Use via:
+#   openqms resolve --module aerospace --module aerospace-dal-a ...
+#
+# DAL-A specific rigor (delta from DAL-B/C/D):
+#  - DO-178C Table A-7: structural coverage at the Modified Condition /
+#    Decision Coverage (MC/DC) level — every condition in every Boolean
+#    decision shown to independently affect the decision outcome.
+#  - DO-178C Tables A-1..A-10: 71 objectives applied; 25 require
+#    independence between developer and verifier (vs. 14 at DAL-B,
+#    2 at DAL-C, 2 at DAL-D, 0 at DAL-E).
+#  - DO-178C Section 12.2 + DO-330: tool qualification — verification
+#    tools whose output is used in lieu of an objective being satisfied
+#    must be qualified at TQL-1 through TQL-5 per their use.
+#  - DO-254 §6: hardware verification with elemental analysis,
+#    safety-specific analyses, and independence of hardware verifier
+#    from designer.
+#  - ARP4754A §5: development assurance level allocation flows from
+#    aircraft-level safety analysis — DAL-A drives the most stringent
+#    development assurance activities.
+#
+# Standards licensing: see repo-root README. DO-178C, DO-254, DO-330,
+# and ARP4754A are commercially-published copyrighted works (RTCA / SAE).
+
+name: aerospace-dal-a-overlay
+version: 0.1.0
+
+standards:
+  - DO-178C:2011
+  - DO-254:2000
+  - ARP4754A:2010
+
+clauses:
+
+  - id: DAL-A-applicability
+    standard: ARP4754A:2010
+    section: "§5"
+    summary: |
+      DAL-A applicability gate — invoked when the FHA assigns a
+      Catastrophic failure-condition classification to a function
+      and the item-level Development Assurance Level allocation
+      per ARP4754A §5 results in DAL-A. Documented in the FHA and
+      traced into the PSAC and PHAC.
+
+  - id: DO178C-MCDC
+    standard: DO-178C:2011
+    section: "§6.4.4.2 + Table A-7 obj 5"
+    summary: |
+      Modified Condition / Decision Coverage (MC/DC) — DAL-A only.
+      Requires that each condition in a decision has been shown to
+      independently affect that decision's outcome. Augments
+      statement coverage (DAL-D/C/B/A) and decision coverage
+      (DAL-C/B/A) with the strongest practical structural coverage
+      criterion short of multiple-condition coverage. Reported per
+      software unit, integrated into Software Verification Cases +
+      Procedures (SVCP) and Results (SVR).
+
+  - id: DO178C-independence-25
+    standard: DO-178C:2011
+    section: "Annex A — Independence column for DAL A"
+    summary: |
+      Independence requirements — 25 of the 71 DAL-A objectives
+      require independence between the person who performed the
+      activity and the person who verifies it (e.g., review of code
+      independent from code author; verification of test cases
+      independent from test-case author). Independence policy
+      documented in the PSAC + tool-qualification approach.
+
+  - id: DO178C-tool-qual-TQL
+    standard: DO-178C:2011
+    section: "§12.2 + DO-330"
+    summary: |
+      Tool qualification — a verification tool whose output is used
+      in lieu of one or more verification objectives at DAL-A must
+      be qualified at TQL-1 (highest assurance) if the tool's
+      malfunction could cause an error in the software to go
+      undetected. Tool Qualification Plan + Tool Operational
+      Requirements + Tool Verification per DO-330. Lower TQLs
+      (TQL-2 through TQL-5) apply per the use-case.
+
+  - id: DO254-elemental-analysis
+    standard: DO-254:2000
+    section: "§6.2"
+    summary: |
+      Elemental Analysis — DAL-A and DAL-B hardware. Each
+      simple-and-complex hardware element exercised by a verification
+      input is recorded; the resulting coverage is reported and
+      reviewed independently of the verifier where independence
+      applies.
+
+  - id: DO254-safety-specific-analyses
+    standard: DO-254:2000
+    section: "§6.3"
+    summary: |
+      Safety-specific analyses — DAL-A. Single Event Upset (SEU)
+      analysis, common-mode analysis, and supplementary analyses
+      identified by the safety assessment (ARP4761 SSA + CCA).
+
+  - id: ARP4754A-DAL-allocation
+    standard: ARP4754A:2010
+    section: "§5"
+    summary: |
+      Development Assurance Level allocation rationale — for DAL-A
+      items, the rationale recorded in the System Safety Plan must
+      cite the Catastrophic failure-condition classification from
+      the FHA, the propagation path through aircraft-level + system-
+      level safety assessment, and the integrity allocation logic
+      (no decomposition below DAL-A on this item, or explicit
+      decomposition argumentation per ARP4754A §3.5).
+
+templates:
+
+  - path: templates/product-dhf/psac/PSAC-TEMPLATE.md
+    name: PSAC — DAL-A specifics (MC/DC, independence-25, TQL-1 tool qualification)
+    addresses:
+      - DAL-A-applicability
+      - DO178C-MCDC
+      - DO178C-independence-25
+      - DO178C-tool-qual-TQL
+
+  - path: templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md
+    name: Software test protocol — DAL-A MC/DC reporting
+    addresses:
+      - DO178C-MCDC
+
+  - path: templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md
+    name: Verification protocol — DO-254 DAL-A elemental analysis + safety-specific
+    addresses:
+      - DO254-elemental-analysis
+      - DO254-safety-specific-analyses
+
+  - path: templates/product-dhf/safety-assessment/SSP-TEMPLATE.md
+    name: System Safety Plan — DAL-A allocation rationale (ARP4754A §5)
+    addresses:
+      - ARP4754A-DAL-allocation

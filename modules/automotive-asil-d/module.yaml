@@ -1,0 +1,125 @@
+# Open QMS — automotive ASIL-D class overlay (ISO 26262)
+# -------------------------------------------------------
+# Composes with the automotive vertical to add ISO 26262 ASIL-D
+# requirements. ASIL-D is assigned when HARA classifies a hazardous
+# event with the highest severity / exposure / controllability
+# combination (S3 × E4 × C3) per ISO 26262 Part 3 §6 Table 4.
+# Examples: brake-by-wire torque control, steering-by-wire angle
+# control, airbag deployment, BMS battery-fault response.
+#
+# Use via:
+#   openqms resolve --module automotive --module automotive-asil-d ...
+#
+# ASIL-D specific rigor (delta from ASIL-B/A/QM):
+#  - ISO 26262 Part 5 hardware metrics (Table 4 + 5 + 6):
+#      SPFM ≥ 99%   (Single-Point Fault Metric)
+#      LFM  ≥ 90%   (Latent Fault Metric)
+#      PMHF < 10⁻⁸ failures/hour  (Probabilistic Metric for HW Failures)
+#  - ISO 26262 Part 6 software structural coverage (Tables 12-15):
+#      Unit testing: 100% statement + 100% branch + 100% MC/DC
+#      Integration:  100% function + 100% function-call coverage
+#  - ISO 26262 Part 2 §6 confirmation measures: I3 independence
+#    (different organization within the company; or external) for
+#    confirmation review + FuSa audit + FuSa assessment.
+#  - ISO 26262 Part 6 method recommendations (Tables 1-3): formal
+#    notations + strongly-typed languages strongly recommended;
+#    design + coding language subset (e.g., MISRA C 2012 mandatory
+#    rules) required.
+#  - ISO 26262 Part 9 §5 ASIL decomposition: ASIL-D = ASIL-C(D) +
+#    ASIL-A(D), or ASIL-B(D) + ASIL-B(D), or ASIL-D + QM(D), with
+#    independence argument supporting decomposition.
+
+name: automotive-asil-d-overlay
+version: 0.1.0
+
+standards:
+  - ISO 26262:2018
+
+clauses:
+
+  - id: ASIL-D-applicability
+    standard: ISO 26262:2018
+    section: "Part 3 §6 Table 4"
+    summary: |
+      ASIL-D applicability gate — invoked when HARA classifies a
+      hazardous event at (S3, E4, C3) per the ASIL determination
+      table. Documented in HARA-XXX and traced into the Safety
+      Plan + FSC.
+
+  - id: ASIL-D-HW-metrics
+    standard: ISO 26262:2018
+    section: "Part 5 §8-9 + Annex F"
+    summary: |
+      Hardware architectural metrics — ASIL-D requires SPFM ≥ 99%
+      (Single-Point Fault Metric), LFM ≥ 90% (Latent Fault Metric),
+      PMHF < 10⁻⁸ failures/hour (Probabilistic Metric for Hardware
+      Failures), evaluated per Item / per Safety Goal via FMEDA +
+      reliability data. Compliance demonstrated in the SSA report.
+
+  - id: ASIL-D-SW-coverage
+    standard: ISO 26262:2018
+    section: "Part 6 §9 + Tables 12, 13, 14, 15"
+    summary: |
+      Software structural coverage — ASIL-D requires 100% statement
+      + 100% branch + 100% MC/DC at the unit-test level (Table 12);
+      100% function + 100% function-call coverage at the integration
+      level (Table 13). MC/DC is the same criterion as DO-178C
+      DAL-A. Coverage justification + waiver process documented.
+
+  - id: ASIL-D-confirmation-I3
+    standard: ISO 26262:2018
+    section: "Part 2 §6 + Table 1"
+    summary: |
+      Confirmation measures with I3 independence — ASIL-D requires
+      that confirmation review, functional safety audit, and
+      functional safety assessment be performed by reviewers from
+      a different organizational unit (I3) at minimum (or external,
+      I4-equivalent). Documented reviewer-selection rationale +
+      independence statement.
+
+  - id: ASIL-D-SW-methods
+    standard: ISO 26262:2018
+    section: "Part 6 §5 + Tables 1-3"
+    summary: |
+      Software design + coding method requirements — ASIL-D strongly
+      recommends formal notations and unambiguous graphical
+      notations; strongly recommends strongly typed languages;
+      requires use of a language subset (e.g., MISRA C 2012
+      mandatory rules) plus defensive programming + restricted
+      pointer use + restricted recursion + restricted dynamic
+      memory.
+
+  - id: ASIL-D-decomposition
+    standard: ISO 26262:2018
+    section: "Part 9 §5"
+    summary: |
+      ASIL decomposition (optional) — when invoked at ASIL-D, the
+      decomposed-into branches sum to ASIL-D with independence
+      argumentation per Part 9 §5: ASIL-D = ASIL-C(D) + ASIL-A(D),
+      or ASIL-B(D) + ASIL-B(D), or ASIL-D + QM(D). Dependent-failure
+      analysis (DFA) per Part 9 §7 must support the independence
+      claim.
+
+templates:
+
+  - path: templates/product-dhf/safety-concept/SAFETY-CONCEPT-TEMPLATE.md
+    name: Safety Concept — ASIL-D allocations + decomposition rationale
+    addresses:
+      - ASIL-D-applicability
+      - ASIL-D-decomposition
+
+  - path: templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md
+    name: Verification protocol — ASIL-D HW metrics (SPFM/LFM/PMHF) + safety analyses
+    addresses:
+      - ASIL-D-HW-metrics
+
+  - path: templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md
+    name: Software test protocol — ASIL-D 100%/100%/MC-DC coverage reporting + integration coverage
+    addresses:
+      - ASIL-D-SW-coverage
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Confirmation-measures SOP + SW design/coding standards (ASIL-D I3 independence + MISRA C 2012 mandatory)
+    addresses:
+      - ASIL-D-confirmation-I3
+      - ASIL-D-SW-methods

@@ -1,0 +1,102 @@
+# Open QMS — aerospace DAL-C class overlay (DO-178C / DO-254 Level C)
+# --------------------------------------------------------------------
+# Composes with the aerospace vertical to add Design Assurance Level C
+# requirements. DAL-C applies when the failure condition is Major per
+# the FHA (significant reduction in functional capabilities or safety
+# margins; significant increase in flight-crew workload; some
+# discomfort to occupants).
+#
+# Use via:
+#   openqms resolve --module aerospace --module aerospace-dal-c ...
+#
+# DAL-C is the most common DAL for production avionics functions that
+# are supervised by another DAL-A/B function or are non-critical
+# automation. Below DAL-C, structural coverage isn't required by
+# DO-178C; above DAL-C, the rigor escalates significantly.
+#
+# DAL-C specific rigor (delta from DAL-B above and DAL-D below):
+#  - DO-178C Table A-7: structural coverage at Statement Coverage (SC)
+#    level — every statement in the source code is exercised at least
+#    once. Decision coverage NOT required (vs. DAL-B); MC/DC NOT
+#    required (vs. DAL-A).
+#  - DO-178C Tables A-1..A-10: 62 objectives applied; only 2 require
+#    independence (vs. 14 at DAL-B; 25 at DAL-A; same as DAL-D).
+#  - DO-178C §12.2 + DO-330: tool qualification typically at TQL-3 or
+#    TQL-4 depending on use-case.
+#  - DO-254 §6: hardware verification — elemental analysis NOT required
+#    at DAL-C; standard verification activities (review + analysis +
+#    test) sufficient.
+
+name: aerospace-dal-c-overlay
+version: 0.1.0
+
+standards:
+  - DO-178C:2011
+  - DO-254:2000
+  - ARP4754A:2010
+
+clauses:
+
+  - id: DAL-C-applicability
+    standard: ARP4754A:2010
+    section: "§5"
+    summary: |
+      DAL-C applicability gate — invoked when the FHA assigns a
+      Major failure-condition classification and ARP4754A §5
+      allocation results in DAL-C. Most common DAL for production
+      avionics functions that are supervised or non-critical.
+
+  - id: DO178C-SC
+    standard: DO-178C:2011
+    section: "§6.4.4.2 + Table A-7 obj 7"
+    summary: |
+      Statement Coverage (SC) — DAL-A, DAL-B, DAL-C. Every statement
+      in the source code shall be exercised at least once by a test
+      case. Reported per software unit in SVCP + SVR.
+
+  - id: DO178C-independence-2
+    standard: DO-178C:2011
+    section: "Annex A — Independence column for DAL C"
+    summary: |
+      Independence requirements — only 2 of the 62 DAL-C objectives
+      require independence. The lower bar makes DAL-C process
+      substantially less costly than DAL-A/B, which is why so much
+      production avionics targets DAL-C explicitly.
+
+  - id: DO178C-tool-qual-DAL-C
+    standard: DO-178C:2011
+    section: "§12.2 + DO-330"
+    summary: |
+      Tool qualification at DAL-C — typically TQL-3 or TQL-4
+      depending on the tool's use case. Tool Qualification Plan +
+      DO-330 deliverables scoped to the use.
+
+  - id: ARP4754A-DAL-C-allocation
+    standard: ARP4754A:2010
+    section: "§5"
+    summary: |
+      DAL-C allocation rationale — recorded in the System Safety
+      Plan with reference to the Major failure-condition
+      classification from the FHA. ARP4754A §3.5 decomposition is
+      sometimes used to allocate a higher DAL into multiple DAL-C
+      elements with independence argumentation.
+
+templates:
+
+  - path: templates/product-dhf/psac/PSAC-TEMPLATE.md
+    name: PSAC — DAL-C specifics (SC structural coverage, independence-2, TQL-3/4 tool qualification)
+    addresses:
+      - DAL-C-applicability
+      - DO178C-SC
+      - DO178C-independence-2
+      - DO178C-tool-qual-DAL-C
+
+  - path: templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md
+    name: Software test protocol — DAL-C statement-coverage reporting
+    addresses:
+      - DO178C-SC
+
+  - path: templates/product-dhf/safety-assessment/SSP-TEMPLATE.md
+    name: System Safety Plan — DAL-C allocation rationale (with decomposition where applicable)
+    addresses:
+      - ARP4754A-DAL-C-allocation

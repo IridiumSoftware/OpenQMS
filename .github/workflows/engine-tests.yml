@@ -49,6 +49,16 @@ jobs:
           openqms validate --module medical-devices --module iso-27001
           openqms validate --module aerospace --module regulated-ai --module iso-27001
           openqms validate --module automotive --module regulated-ai --module iso-27001
+          # Aerospace DAL class overlays
+          openqms validate --module aerospace --module aerospace-dal-a
+          openqms validate --module aerospace --module aerospace-dal-b
+          openqms validate --module aerospace --module aerospace-dal-c
+          # Automotive ASIL + CAL class overlays
+          openqms validate --module automotive --module automotive-asil-d
+          openqms validate --module automotive --module automotive-asil-b
+          openqms validate --module automotive --module automotive-cal-4
+          # Top-rigor mega-composite — safety-critical + cyber-critical ML-enabled ECU
+          openqms validate --module automotive --module automotive-asil-d --module automotive-cal-4 --module regulated-ai --module iso-27001
 
       - name: Inspect registry (smoke check)
         run: openqms registry list

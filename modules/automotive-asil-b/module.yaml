@@ -1,0 +1,103 @@
+# Open QMS — automotive ASIL-B class overlay (ISO 26262)
+# -------------------------------------------------------
+# Composes with the automotive vertical to add ISO 26262 ASIL-B
+# requirements. ASIL-B is assigned when HARA classifies hazardous
+# events at moderate-severity combinations (e.g., S2 × E4 × C2 or
+# S3 × E3 × C1 per Table 4). Common for many production ECUs that
+# implement non-life-critical but safety-relevant functions.
+#
+# Use via:
+#   openqms resolve --module automotive --module automotive-asil-b ...
+#
+# ASIL-B specific rigor (delta from ASIL-D above and ASIL-A below):
+#  - ISO 26262 Part 5 hardware metrics (Table 4 + 5 + 6):
+#      SPFM ≥ 90%   (Single-Point Fault Metric)
+#      LFM  ≥ 60%   (Latent Fault Metric)
+#      PMHF < 10⁻⁷ failures/hour
+#  - ISO 26262 Part 6 software structural coverage (Tables 12-15):
+#      Unit testing: 100% statement + 100% branch (NOT MC/DC)
+#      Integration:  100% function + recommended function-call coverage
+#  - ISO 26262 Part 2 §6 confirmation measures: I2 independence
+#    (different team within the same organizational unit).
+#  - ISO 26262 Part 6 method recommendations: language subset (e.g.,
+#    MISRA C 2012 mandatory + required) recommended; defensive
+#    programming + restricted pointers recommended.
+
+name: automotive-asil-b-overlay
+version: 0.1.0
+
+standards:
+  - ISO 26262:2018
+
+clauses:
+
+  - id: ASIL-B-applicability
+    standard: ISO 26262:2018
+    section: "Part 3 §6 Table 4"
+    summary: |
+      ASIL-B applicability gate — invoked when HARA classifies a
+      hazardous event at one of the (S, E, C) combinations
+      yielding ASIL-B per Table 4 (e.g., S2 × E4 × C2; S3 × E3 ×
+      C1; S2 × E3 × C3). Documented in HARA and FSC.
+
+  - id: ASIL-B-HW-metrics
+    standard: ISO 26262:2018
+    section: "Part 5 §8-9 + Annex F"
+    summary: |
+      Hardware architectural metrics — ASIL-B requires SPFM ≥ 90%,
+      LFM ≥ 60%, PMHF < 10⁻⁷ failures/hour. Less stringent than
+      ASIL-D (SPFM ≥ 99%, LFM ≥ 90%, PMHF < 10⁻⁸/h) but still
+      requires FMEDA + reliability data for substantiation.
+
+  - id: ASIL-B-SW-coverage
+    standard: ISO 26262:2018
+    section: "Part 6 §9 + Tables 12, 13"
+    summary: |
+      Software structural coverage — ASIL-B requires 100% statement
+      + 100% branch at the unit-test level (Table 12). MC/DC is
+      recommended but NOT required (the major delta from ASIL-D).
+      100% function coverage required at integration level (Table
+      13); function-call coverage recommended.
+
+  - id: ASIL-B-confirmation-I2
+    standard: ISO 26262:2018
+    section: "Part 2 §6 + Table 1"
+    summary: |
+      Confirmation measures with I2 independence — ASIL-B requires
+      confirmation review, FuSa audit, FuSa assessment by a
+      different team within the same organizational unit. Less
+      stringent than ASIL-C's I3 / ASIL-D's I3 minimum.
+
+  - id: ASIL-B-SW-methods
+    standard: ISO 26262:2018
+    section: "Part 6 §5 + Tables 1-3"
+    summary: |
+      Software design + coding method requirements — ASIL-B
+      recommends use of a language subset (e.g., MISRA C 2012
+      mandatory + required rules), defensive programming,
+      restricted pointer use, and restricted dynamic memory.
+      Recommended (not required) — adopters' SOP defines the
+      subset and tooling.
+
+templates:
+
+  - path: templates/product-dhf/safety-concept/SAFETY-CONCEPT-TEMPLATE.md
+    name: Safety Concept — ASIL-B allocations
+    addresses:
+      - ASIL-B-applicability
+
+  - path: templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md
+    name: Verification protocol — ASIL-B HW metrics (SPFM ≥ 90% / LFM ≥ 60% / PMHF < 10⁻⁷/h)
+    addresses:
+      - ASIL-B-HW-metrics
+
+  - path: templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md
+    name: Software test protocol — ASIL-B 100% statement + 100% branch coverage reporting
+    addresses:
+      - ASIL-B-SW-coverage
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Confirmation-measures SOP + SW design/coding standards (ASIL-B I2 independence + MISRA C 2012 recommended)
+    addresses:
+      - ASIL-B-confirmation-I2
+      - ASIL-B-SW-methods

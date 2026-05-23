@@ -1,0 +1,115 @@
+# Open QMS — automotive CAL-4 class overlay (ISO/SAE 21434)
+# ----------------------------------------------------------
+# Composes with the automotive vertical to add ISO/SAE 21434
+# Cybersecurity Assurance Level 4 (CAL-4) requirements. CAL-4 is the
+# highest cybersecurity assurance level, assigned to items where the
+# TARA identifies high-impact / high-feasibility damage scenarios
+# whose realization could affect occupant or other-road-user safety
+# (e.g., compromise of brake / steering / acceleration ECU; back-end
+# server controlling fleet OTA updates).
+#
+# Use via:
+#   openqms resolve --module automotive --module automotive-cal-4 ...
+#
+# CAL-4 specific rigor (delta from CAL-1/2/3):
+#  - ISO/SAE 21434 Annex E (informative): CAL determination per
+#    impact-and-feasibility matrix; CAL-4 maps to highest combinations.
+#  - ISO/SAE 21434 §6.4.7 + Annex C: independence for cybersecurity
+#    assessment — CAL-4 requires INDEPENDENT cybersecurity assessment
+#    (different organizational unit, or external) for the cybersecurity
+#    case + the final cybersecurity assessment.
+#  - ISO/SAE 21434 §10 + §13: rigorous V&V — security testing
+#    encompasses functional tests, vulnerability scanning, fuzz
+#    testing, penetration testing, side-channel analysis where
+#    applicable. Coverage of all cybersecurity requirements.
+#  - ISO/SAE 21434 §11: continuous activities — vulnerability
+#    monitoring with response-time commitments documented in CSMS;
+#    enhanced incident-response readiness; sustained cybersecurity
+#    through end-of-support transitions.
+#  - Cross-reference with ISO 26262 ASIL-D / ASIL-C: if the item
+#    is also safety-critical, the Cybersecurity Concept Part C
+#    must document safety-security interaction analysis.
+
+name: automotive-cal-4-overlay
+version: 0.1.0
+
+standards:
+  - ISO/SAE 21434:2021
+
+clauses:
+
+  - id: CAL-4-applicability
+    standard: ISO/SAE 21434:2021
+    section: "Annex E (informative)"
+    summary: |
+      CAL-4 applicability gate — invoked when TARA identifies a
+      damage scenario whose impact-and-feasibility combination
+      yields the highest CAL per the chosen CAL determination
+      method (per ISO/SAE 21434 Annex E or the adopter's CSMS-
+      defined method). Documented in TARA-XXX.
+
+  - id: CAL-4-independent-assessment
+    standard: ISO/SAE 21434:2021
+    section: "§6.4.7 + Annex C"
+    summary: |
+      Independent cybersecurity assessment — CAL-4 requires that the
+      cybersecurity case + final cybersecurity assessment be
+      performed by reviewers independent of the development team
+      (different organizational unit, or external). Reviewer
+      selection + independence rationale documented in the CSMS.
+
+  - id: CAL-4-V-and-V-rigor
+    standard: ISO/SAE 21434:2021
+    section: "§10 + §13"
+    summary: |
+      Verification + validation rigor — CAL-4 expects security
+      functional testing, vulnerability scanning, fuzz testing,
+      penetration testing, side-channel analysis (where the
+      attack-feasibility analysis in TARA identifies side-channel
+      threats), and coverage of every cybersecurity requirement.
+      Test results documented in the cybersecurity case.
+
+  - id: CAL-4-vulnerability-monitoring
+    standard: ISO/SAE 21434:2021
+    section: "§11"
+    summary: |
+      Continuous cybersecurity activities — CAL-4 expects formal
+      vulnerability monitoring (CVE feeds, threat-intel sources,
+      researcher disclosure channel) with response-time
+      commitments documented in the CSMS; defined incident-response
+      playbooks with rehearsed activation; sustained cybersecurity
+      through product end-of-support with explicit transition plan.
+
+  - id: CAL-4-safety-security-interaction
+    standard: ISO/SAE 21434:2021
+    section: "§10 + cross-reference ISO 26262 Part 2 §6"
+    summary: |
+      Safety-security interaction analysis — when a CAL-4 item is
+      also ASIL-rated (typically ASIL-D or ASIL-C), the Cybersecurity
+      Concept must document the interaction: shared assets, common
+      verification activities, divergent mitigations, FTTI vs.
+      crypto-verification latency, fail-safe vs. fail-secure
+      conflict resolution. Joint review by FuSa + cyber engineering.
+
+templates:
+
+  - path: templates/product-dhf/tara/TARA-TEMPLATE.md
+    name: TARA — CAL-4 determination + UN R155 Annex 5 coverage
+    addresses:
+      - CAL-4-applicability
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Independent-cybersecurity-assessment SOP + continuous-cybersecurity SOP (CSMS extensions for CAL-4)
+    addresses:
+      - CAL-4-independent-assessment
+      - CAL-4-vulnerability-monitoring
+
+  - path: templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md
+    name: Software test protocol — CAL-4 V&V (security functional + vulnerability scanning + fuzz + pentest + side-channel)
+    addresses:
+      - CAL-4-V-and-V-rigor
+
+  - path: templates/product-dhf/safety-concept/SAFETY-CONCEPT-TEMPLATE.md
+    name: Safety Concept (Part C) — CAL-4 safety-security interaction analysis (cross-reference with ASIL allocations)
+    addresses:
+      - CAL-4-safety-security-interaction
