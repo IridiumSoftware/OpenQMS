@@ -1,0 +1,746 @@
+{
+  "bundle": {
+    "product": "ExampleAvionicsComputer",
+    "jurisdictions": [
+      "FAA"
+    ],
+    "standards": [
+      "ISO 9001:2015",
+      "AS9100D",
+      "14 CFR Part 21",
+      "EASA Part 21",
+      "DO-178C:2011",
+      "DO-254:2000",
+      "ARP4754A:2010",
+      "ARP4761:1996",
+      "AS9102 Rev C",
+      "NIST AI RMF 1.0",
+      "EU AI Act",
+      "ISO/IEC 42001:2023",
+      "ISO/IEC 27001:2022"
+    ]
+  },
+  "module": {
+    "name": "aerospace+regulated-ai-overlay+iso-27001-overlay",
+    "version": "composed"
+  },
+  "in_scope_clauses": [
+    {
+      "id": "AS9100D-4.4",
+      "standard": "AS9100D",
+      "section": "4.4",
+      "summary": "Quality management system and its processes \u2014 including the\nAS9100D-specific risk-based thinking layered on ISO 9001\n\u00a74.4. The QMS shall identify processes, determine their\nsequence + interaction, criteria + methods, resources,\nresponsibilities, and risks + opportunities.",
+      "gap_note": null
+    },
+    {
+      "id": "AS9100D-5.6",
+      "standard": "AS9100D",
+      "section": "9.3",
+      "summary": "Management review \u2014 top management shall review the QMS at\nplanned intervals to ensure continuing suitability, adequacy,\neffectiveness, and alignment with strategic direction. Inputs:\naudit results, customer satisfaction, process performance,\nproduct conformity, nonconformities + corrective actions,\nmonitoring + measurement, supplier performance, risks +\nopportunities. (AS9100D uses ISO 9001:2015 numbering \u00a79.3\nrather than the older AS9100 Rev C \u00a75.6 numbering.)",
+      "gap_note": null
+    },
+    {
+      "id": "AS9100D-7.4",
+      "standard": "AS9100D",
+      "section": "7.4",
+      "summary": "Communication \u2014 internal and external communications relevant\nto the QMS, including communications with customers (especially\nregarding product nonconformities and corrective actions) and\nregulatory authorities.",
+      "gap_note": null
+    },
+    {
+      "id": "AS9100D-7.5",
+      "standard": "AS9100D",
+      "section": "7.5",
+      "summary": "Documented information \u2014 creation, control, distribution,\naccess, retrieval, storage, preservation, retention, and\ndisposition of documented information required by the QMS.\nEquivalent to ISO 13485 \u00a74.2.4 / 21 CFR 820.40 in\nmedical-devices.",
+      "gap_note": null
+    },
+    {
+      "id": "AS9100D-7.1",
+      "standard": "ISO 9001:2015",
+      "section": "7.1",
+      "summary": "Resources \u2014 people, infrastructure, work environment,\nmonitoring + measuring resources, organizational knowledge.\nDocumented infrastructure qualification covering production\nfacilities, equipment, software, and tooling.",
+      "gap_note": null
+    },
+    {
+      "id": "AS9100D-8.1.4",
+      "standard": "AS9100D",
+      "section": "8.1.4",
+      "summary": "Operational risk management \u2014 aerospace-specific addition to\nISO 9001. Identification, assessment, communication, and\nmitigation of risks throughout product realization. Distinct\nfrom product safety risk (which is covered by ARP4761) \u2014 this\ncovers business / operational / supplier / production risk.",
+      "gap_note": null
+    },
+    {
+      "id": "AS9100D-8.4",
+      "standard": "AS9100D",
+      "section": "8.4",
+      "summary": "Control of externally-provided processes, products and services\n(supplier controls) \u2014 analogous to ISO 13485 \u00a77.4. Supplier\nselection, evaluation, monitoring; flow-down of requirements\nincluding customer + regulatory requirements; counterfeit parts\nprevention (per AS5553 when applicable); verification of\nreceived product.",
+      "gap_note": null
+    },
+    {
+      "id": "AS9100D-8.5.1",
+      "standard": "AS9100D",
+      "section": "8.5.1",
+      "summary": "Production and service provision \u2014 controlled conditions for\nproduction, including aerospace-specific provisions for FOD\n(Foreign Object Debris) prevention, control of equipment +\ntooling + software programs, control of work transfers,\nvalidation + control of production processes.",
+      "gap_note": null
+    },
+    {
+      "id": "AS9100D-8.7",
+      "standard": "AS9100D",
+      "section": "8.7",
+      "summary": "Control of nonconforming output \u2014 identification, segregation,\ndisposition (use-as-is / rework / regrade / scrap / return to\nsupplier) of nonconforming product. Disposition decisions\nrequire documented authority. Use-as-is + repair dispositions\nshall be approved per organizational authority + customer\nrequirements.",
+      "gap_note": null
+    },
+    {
+      "id": "AS9100D-9.2",
+      "standard": "AS9100D",
+      "section": "9.2",
+      "summary": "Internal audit \u2014 at planned intervals, to determine whether\nthe QMS conforms to organizational + AS9100D requirements and\nis effectively implemented. Auditor independence required;\naudit programme based on importance + previous findings;\naudit results inputted to management review.",
+      "gap_note": null
+    },
+    {
+      "id": "AS9100D-10.2",
+      "standard": "AS9100D",
+      "section": "10.2",
+      "summary": "Nonconformity and corrective action \u2014 when a nonconformity\noccurs, react; evaluate need for action to eliminate cause(s);\nimplement action; review effectiveness; update risks +\nopportunities; make changes to QMS if necessary. Records of\nnature of nonconformities, actions taken, and effectiveness.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR21-21.31",
+      "standard": "14 CFR Part 21",
+      "section": "21.31",
+      "summary": "Type design \u2014 drawings, specifications, dimensions, materials,\nprocesses, performance, and any other data necessary to define\nthe configuration and design features required to show\ncompliance with the airworthiness requirements. Submitted as\npart of the Type Certificate application.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR21-21.35",
+      "standard": "14 CFR Part 21",
+      "section": "21.35",
+      "summary": "Flight tests \u2014 applicant shall conduct all tests necessary to\nshow compliance with applicable airworthiness requirements,\nincluding flight tests as required. Demonstrate that the\naircraft, aircraft engine, or propeller meets the applicable\nairworthiness requirements.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR21-21.50",
+      "standard": "14 CFR Part 21",
+      "section": "21.50",
+      "summary": "Instructions for Continued Airworthiness (ICA) \u2014 holder of\nType Certificate shall furnish at least one set of complete\nICA to each owner of each aircraft incorporating the product\nat the time of delivery. ICA include scheduled maintenance,\ninspection, troubleshooting, and overhaul instructions.",
+      "gap_note": null
+    },
+    {
+      "id": "EASA-Part21A-Subpart-B",
+      "standard": "EASA Part 21",
+      "section": "Part 21A Subpart B",
+      "summary": "EASA Type Certificates \u2014 type-certification process for civil\naircraft, engines, and propellers per EU Part-21. Includes\ndesign organisation approval (DOA), production organisation\napproval (POA), and certification specifications (CS-23,\nCS-25, CS-27, CS-29, CS-E, CS-P depending on product type).",
+      "gap_note": null
+    },
+    {
+      "id": "DO178C-PSAC",
+      "standard": "DO-178C:2011",
+      "section": "\u00a74 + \u00a711",
+      "summary": "Plan for Software Aspects of Certification (PSAC) \u2014 the\nsoftware certification plan submitted to and agreed with the\ncertification authority. Defines the software development\nlifecycle, processes, tools, standards, and DAL (Design\nAssurance Level A through E). Established at SOI (Stage of\nInvolvement) #1 with the certification authority.",
+      "gap_note": null
+    },
+    {
+      "id": "DO178C-Section6",
+      "standard": "DO-178C:2011",
+      "section": "Section 6",
+      "summary": "Software Verification Process \u2014 the objectives + activities\ndepend on the software's DAL (A most stringent, E lowest).\nVerification covers requirements, design, code, integration,\nand tool qualification. DAL-A and DAL-B require independent\nverification of specific objectives per Annex A Tables A-3\nthrough A-7.",
+      "gap_note": null
+    },
+    {
+      "id": "DO178C-Section7",
+      "standard": "DO-178C:2011",
+      "section": "Section 7",
+      "summary": "Software Configuration Management \u2014 baseline establishment,\nproblem reporting, change control, archival + retrieval,\nrelease records, and data control. Configuration items\nenumerated and tracked across the software lifecycle.",
+      "gap_note": null
+    },
+    {
+      "id": "DO178C-Section9",
+      "standard": "DO-178C:2011",
+      "section": "Section 9 + Section 11",
+      "summary": "Software Life Cycle Data \u2014 the artifacts produced by the\nsoftware lifecycle processes (PSAC, SDP, SVP, SCMP, SQAP,\nSRD, SDD, source code, executable object code, SVCP, SCI,\nSAS, etc.). All data submitted or available for inspection\nby the certification authority.",
+      "gap_note": null
+    },
+    {
+      "id": "DO178C-SOI",
+      "standard": "DO-178C:2011",
+      "section": "Section 11",
+      "summary": "Stages of Involvement (SOI) with the certification authority \u2014\nSOI #1 (Planning Review), SOI #2 (Development Review), SOI #3\n(Verification Review), SOI #4 (Final Certification). Each SOI\nreviews specific deliverables; SOI #4 issues the Software\nAccomplishment Summary (SAS).",
+      "gap_note": null
+    },
+    {
+      "id": "DO254-PHAC",
+      "standard": "DO-254:2000",
+      "section": "\u00a710",
+      "summary": "Plan for Hardware Aspects of Certification (PHAC) \u2014 the\nhardware certification plan, analogous to DO-178C's PSAC.\nDefines the hardware development lifecycle, processes, tools,\nDAL, and the hardware verification + validation approach.",
+      "gap_note": null
+    },
+    {
+      "id": "DO254-Section6",
+      "standard": "DO-254:2000",
+      "section": "Section 6",
+      "summary": "Hardware Validation and Verification Process \u2014 covers\nrequirements validation, implementation verification, design\nassurance, and the methods used to demonstrate the hardware\nmeets its requirements and is suitable for its intended\nfunction at the assigned DAL.",
+      "gap_note": null
+    },
+    {
+      "id": "ARP4754A-Section5",
+      "standard": "ARP4754A:2010",
+      "section": "Section 5",
+      "summary": "Aircraft system development process \u2014 captures functional\nrequirements, allocates functions to systems, items, and\nhardware/software, integrates and verifies. The framework\nunder which DO-178C software and DO-254 hardware development\nlive; ARP4754A is the systems context for the lower-level\nstandards.",
+      "gap_note": null
+    },
+    {
+      "id": "ARP4754A-Section6",
+      "standard": "ARP4754A:2010",
+      "section": "Section 6",
+      "summary": "Aircraft and system functions allocation \u2014 derived\nrequirements + integration of aircraft-level functions across\nsystems, items, and external interfaces. Includes derived\nsafety requirements arising from the ARP4761 safety\nassessment process.",
+      "gap_note": null
+    },
+    {
+      "id": "ARP4761-FHA",
+      "standard": "ARP4761:1996",
+      "section": "Section 3",
+      "summary": "Functional Hazard Assessment (FHA) \u2014 identifies and classifies\nfailure conditions of aircraft + system functions according to\nseverity (Catastrophic / Hazardous / Major / Minor / No Safety\nEffect). The FHA's severity classifications drive the DAL\nassignments per ARP4754A.",
+      "gap_note": null
+    },
+    {
+      "id": "ARP4761-PASA-PSSA",
+      "standard": "ARP4761:1996",
+      "section": "Section 4 + Section 5",
+      "summary": "Preliminary Aircraft Safety Assessment (PASA) + Preliminary\nSystem Safety Assessment (PSSA) \u2014 top-down analyses identifying\nsafety requirements for aircraft / system architectures.\nOutput: derived safety requirements feeding the ARP4754A \u00a76\nrequirements allocation.",
+      "gap_note": null
+    },
+    {
+      "id": "ARP4761-SSA",
+      "standard": "ARP4761:1996",
+      "section": "Section 6",
+      "summary": "System Safety Assessment (SSA) \u2014 verification that the\nimplemented design meets the safety requirements. Uses Fault\nTree Analysis (FTA), Failure Modes and Effects Analysis\n(FMEA), Markov analysis as appropriate. Final SSA report\nsubmitted as part of the certification package.",
+      "gap_note": null
+    },
+    {
+      "id": "ARP4761-CCA",
+      "standard": "ARP4761:1996",
+      "section": "Section 9",
+      "summary": "Common Cause Analysis (CCA) \u2014 addresses Zonal Safety Analysis\n(ZSA), Particular Risks Analysis (PRA), and Common Mode\nAnalysis (CMA) to verify that independence claims used in\nsafety assessment are valid against shared physical zones,\nshared resources, and common-mode failures.",
+      "gap_note": null
+    },
+    {
+      "id": "AS9102-FAI",
+      "standard": "AS9102 Rev C",
+      "section": "all",
+      "summary": "First Article Inspection (FAI) \u2014 documented complete,\nindependent, and documented physical and functional\ninspection process to verify that prescribed production\nmethods have produced an acceptable item as specified by\nengineering drawings, planning, purchase order, engineering\nspecifications, and/or other applicable design documents.\nRequired for new + significantly-changed parts; uses\nAS9102 Forms 1/2/3.",
+      "gap_note": null
+    },
+    {
+      "id": "NIST-AI-RMF-Govern",
+      "standard": "NIST AI RMF 1.0",
+      "section": "Govern",
+      "summary": "Govern function \u2014 cultivate and implement a culture of risk\nmanagement throughout the organization. Subcategories include\npolicies and procedures for AI risk management, roles and\nresponsibilities, accountability structures, diversity and\nequity considerations, third-party AI components governance.",
+      "gap_note": null
+    },
+    {
+      "id": "NIST-AI-RMF-Map",
+      "standard": "NIST AI RMF 1.0",
+      "section": "Map",
+      "summary": "Map function \u2014 establish the context within which AI risks are\nframed. Categorize the AI system, identify intended purposes\nand use cases, identify stakeholders, characterize positive\nand negative impacts to individuals and society.",
+      "gap_note": null
+    },
+    {
+      "id": "NIST-AI-RMF-Measure",
+      "standard": "NIST AI RMF 1.0",
+      "section": "Measure",
+      "summary": "Measure function \u2014 employ quantitative, qualitative, and mixed-\nmethod tools to assess identified AI risks. Includes test sets,\nbenchmarks, evaluation methodologies, ongoing monitoring,\ntracking of trustworthy characteristics (validity, reliability,\nsafety, security, accountability, transparency, explainability,\nprivacy, fairness).",
+      "gap_note": null
+    },
+    {
+      "id": "NIST-AI-RMF-Manage",
+      "standard": "NIST AI RMF 1.0",
+      "section": "Manage",
+      "summary": "Manage function \u2014 prioritize and respond to risks based on the\nMeasure outputs. Allocate resources to risks based on assessed\nimpact and likelihood, plan responses, monitor risks over time,\ncommunicate to stakeholders, sunset or decommission as needed.",
+      "gap_note": null
+    },
+    {
+      "id": "EUAI-Art9",
+      "standard": "EU AI Act",
+      "section": "Article 9",
+      "summary": "Risk management system for high-risk AI systems \u2014 established,\nimplemented, documented, and maintained throughout the AI\nsystem lifecycle. Iterative process: identification of known\nand reasonably foreseeable risks; estimation and evaluation;\nadoption of risk management measures; residual risk evaluation\nagainst acceptability criteria.",
+      "gap_note": null
+    },
+    {
+      "id": "EUAI-Art10",
+      "standard": "EU AI Act",
+      "section": "Article 10",
+      "summary": "Data and data governance for high-risk AI \u2014 training,\nvalidation, and testing datasets shall be subject to data\ngovernance and management practices appropriate to the intended\npurpose. Datasets shall be relevant, representative, free of\nerrors, complete; statistical properties documented; bias\nexamined and mitigated.",
+      "gap_note": null
+    },
+    {
+      "id": "EUAI-Art11",
+      "standard": "EU AI Act",
+      "section": "Article 11",
+      "summary": "Technical documentation for high-risk AI \u2014 drawn up before\nplacing on the market or putting into service, kept up to date.\nDemonstrates compliance with Section 2 requirements; provides\nauthorities with the necessary information to assess\ncompliance. Content per Annex IV.",
+      "gap_note": null
+    },
+    {
+      "id": "EUAI-Art12",
+      "standard": "EU AI Act",
+      "section": "Article 12",
+      "summary": "Record-keeping / automatic logging \u2014 high-risk AI systems shall\nautomatically record events (\"logs\") over their lifetime to\nensure traceability appropriate to the intended purpose. Logs\nenable identification of situations resulting in risk,\nfacilitate post-market monitoring, and support reproducibility.",
+      "gap_note": null
+    },
+    {
+      "id": "EUAI-Art13",
+      "standard": "EU AI Act",
+      "section": "Article 13",
+      "summary": "Transparency and provision of information to deployers \u2014\nhigh-risk AI systems shall be designed and developed so their\noperation is sufficiently transparent to enable deployers to\ninterpret outputs and use them appropriately. Accompanied by\ninstructions for use containing concise, complete, correct,\nclear, relevant, accessible information.",
+      "gap_note": null
+    },
+    {
+      "id": "EUAI-Art14",
+      "standard": "EU AI Act",
+      "section": "Article 14",
+      "summary": "Human oversight for high-risk AI \u2014 designed and developed so\nthey can be effectively overseen by natural persons during\nuse. Oversight measures must enable the natural person to fully\nunderstand system capacities and limitations, remain aware of\nautomation bias, correctly interpret output, decide not to\nuse the system, intervene or interrupt operation.",
+      "gap_note": null
+    },
+    {
+      "id": "EUAI-Art15",
+      "standard": "EU AI Act",
+      "section": "Article 15",
+      "summary": "Accuracy, robustness, and cybersecurity for high-risk AI \u2014\ndesigned to achieve appropriate level of accuracy, robustness,\nand cybersecurity, performing consistently throughout lifecycle.\nResilience against errors, faults, inconsistencies; resilience\nagainst unauthorized attempts to alter use, behavior, or\nperformance.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO42001-AIMS",
+      "standard": "ISO/IEC 42001:2023",
+      "section": "all",
+      "summary": "Artificial Intelligence Management System (AIMS) \u2014 establishment,\nimplementation, maintenance, and continual improvement of an\nAI management system. Parallel structure to ISO 9001 / 13485:\ncontext (\u00a74), leadership (\u00a75), planning (\u00a76), support (\u00a77),\noperation (\u00a78), performance evaluation (\u00a79), improvement (\u00a710).\nComposes with sector-specific QMS standards as the AI-management\noverlay.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.5.1",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.5.1",
+      "summary": "Policies for information security \u2014 defined, approved by management,\npublished, communicated to and acknowledged by relevant personnel\nand interested parties, and reviewed at planned intervals or when\nsignificant changes occur.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.5.31",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.5.31",
+      "summary": "Legal, statutory, regulatory, and contractual requirements relevant\nto information security shall be identified, documented, and kept\nup to date. The organization's approach to meeting each shall be\ndefined.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.8.31",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.8.31",
+      "summary": "Separation of development, test, and production environments \u2014\nincluding separation of duties where appropriate \u2014 to reduce the\nrisk of unauthorized access or unauthorized changes to the\noperational environment.",
+      "gap_note": null
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "templates/qms-policy/quality-policy.md",
+      "name": "Quality policy (AS9100D + ISO 9001:2015 binding)",
+      "addresses": [
+        "AS9100D-4.4",
+        "AS9100D-5.6",
+        "AS9100D-7.4",
+        "AS9100D-7.5",
+        "AS9100D-7.1",
+        "ISO42001-AIMS",
+        "ISO27001-A.5.1",
+        "ISO27001-A.5.31"
+      ]
+    },
+    {
+      "path": "templates/qms-sops/SOP-TEMPLATE.md",
+      "name": "Standard operating procedure (AS9100D production + documented information)",
+      "addresses": [
+        "AS9100D-7.5",
+        "AS9100D-8.5.1",
+        "ISO27001-A.5.31"
+      ]
+    },
+    {
+      "path": "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md",
+      "name": "Internal audit procedure (AS9100D \u00a79.2)",
+      "addresses": [
+        "AS9100D-9.2"
+      ]
+    },
+    {
+      "path": "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md",
+      "name": "Management review (AS9100D \u00a79.3 / aerospace inputs)",
+      "addresses": [
+        "AS9100D-5.6"
+      ]
+    },
+    {
+      "path": "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md",
+      "name": "Approved Supplier List (AS9100D \u00a78.4 external provider control)",
+      "addresses": [
+        "AS9100D-8.4"
+      ]
+    },
+    {
+      "path": "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md",
+      "name": "Supplier evaluation (AS9100D \u00a78.4)",
+      "addresses": [
+        "AS9100D-8.4"
+      ]
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/capa.yml",
+      "name": "CAPA issue template (AS9100D \u00a710.2)",
+      "addresses": [
+        "AS9100D-10.2"
+      ]
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/nonconformance.yml",
+      "name": "Nonconformance report (AS9100D \u00a78.7)",
+      "addresses": [
+        "AS9100D-8.7"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md",
+      "name": "Operational risk management file (AS9100D \u00a78.1.4)",
+      "addresses": [
+        "AS9100D-8.1.4",
+        "ISO23894-AI-risk-mgmt"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/type-cert/TYPE-CERT-PACK-INDEX-TEMPLATE.md",
+      "name": "Type Certificate Pack Index (14 CFR Part 21 + EASA Part 21)",
+      "addresses": [
+        "CFR21-21.31",
+        "CFR21-21.35",
+        "CFR21-21.50",
+        "EASA-Part21A-Subpart-B"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/psac/PSAC-TEMPLATE.md",
+      "name": "Plan for Software Aspects of Certification (DO-178C; also covers DO-254 PHAC pending dedicated template)",
+      "addresses": [
+        "DO178C-PSAC",
+        "DO178C-Section7",
+        "DO178C-Section9",
+        "DO178C-SOI",
+        "DO254-PHAC"
+      ]
+    },
+    {
+      "path": "templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md",
+      "name": "Software test protocol (DO-178C verification per DAL)",
+      "addresses": [
+        "DO178C-Section6",
+        "EUAI-Art10"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md",
+      "name": "Verification protocol (DO-254 hardware V&V)",
+      "addresses": [
+        "DO254-Section6"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/safety-assessment/SSP-TEMPLATE.md",
+      "name": "System Safety Plan (ARP4754A + ARP4761 framework \u2014 covers system development, PASA/PSSA, SSA, CCA)",
+      "addresses": [
+        "ARP4754A-Section5",
+        "ARP4754A-Section6",
+        "ARP4761-PASA-PSSA",
+        "ARP4761-SSA",
+        "ARP4761-CCA"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/fha/FHA-TEMPLATE.md",
+      "name": "Functional Hazard Assessment (ARP4761 \u00a73)",
+      "addresses": [
+        "ARP4761-FHA"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/fai/FAI-REPORT-TEMPLATE.md",
+      "name": "First Article Inspection Report (AS9102)",
+      "addresses": [
+        "AS9102-FAI"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/ai-system-card/AI-SYSTEM-CARD-TEMPLATE.md",
+      "name": "AI System Card / Model Card template",
+      "addresses": [
+        "EUAI-Art11",
+        "EUAI-Art13",
+        "NIST-AI-RMF-Map"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/ai-impact-assessment/AI-IMPACT-ASSESSMENT-TEMPLATE.md",
+      "name": "AI Impact Assessment template (EU AI Act + NIST AI RMF aligned)",
+      "addresses": [
+        "EUAI-Art9",
+        "EUAI-Art14",
+        "NIST-AI-RMF-Govern",
+        "NIST-AI-RMF-Measure",
+        "NIST-AI-RMF-Manage"
+      ]
+    },
+    {
+      "path": "templates/product-sw/architecture/SOFTWARE-ARCHITECTURE-TEMPLATE.md",
+      "name": "Software architecture (AI accuracy / robustness / cybersecurity per EU AI Act Art 15)",
+      "addresses": [
+        "EUAI-Art15"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/technical-file/TECHNICAL-FILE-INDEX-TEMPLATE.md",
+      "name": "Technical file index (AI automatic logging per EU AI Act Art 12)",
+      "addresses": [
+        "EUAI-Art12"
+      ]
+    },
+    {
+      "path": "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md",
+      "name": "Software release record template (information-security overlay binding)",
+      "addresses": [
+        "ISO27001-A.8.31"
+      ]
+    }
+  ],
+  "traceability": {
+    "forward": {
+      "templates/qms-policy/quality-policy.md": [
+        "AS9100D-4.4",
+        "AS9100D-5.6",
+        "AS9100D-7.4",
+        "AS9100D-7.5",
+        "AS9100D-7.1",
+        "ISO42001-AIMS",
+        "ISO27001-A.5.1",
+        "ISO27001-A.5.31"
+      ],
+      "templates/qms-sops/SOP-TEMPLATE.md": [
+        "AS9100D-7.5",
+        "AS9100D-8.5.1",
+        "ISO27001-A.5.31"
+      ],
+      "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md": [
+        "AS9100D-9.2"
+      ],
+      "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md": [
+        "AS9100D-5.6"
+      ],
+      "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md": [
+        "AS9100D-8.4"
+      ],
+      "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md": [
+        "AS9100D-8.4"
+      ],
+      ".github/ISSUE_TEMPLATE/capa.yml": [
+        "AS9100D-10.2"
+      ],
+      ".github/ISSUE_TEMPLATE/nonconformance.yml": [
+        "AS9100D-8.7"
+      ],
+      "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md": [
+        "AS9100D-8.1.4"
+      ],
+      "templates/product-dhf/type-cert/TYPE-CERT-PACK-INDEX-TEMPLATE.md": [
+        "CFR21-21.31",
+        "CFR21-21.35",
+        "CFR21-21.50",
+        "EASA-Part21A-Subpart-B"
+      ],
+      "templates/product-dhf/psac/PSAC-TEMPLATE.md": [
+        "DO178C-PSAC",
+        "DO178C-Section7",
+        "DO178C-Section9",
+        "DO178C-SOI",
+        "DO254-PHAC"
+      ],
+      "templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md": [
+        "DO178C-Section6",
+        "EUAI-Art10"
+      ],
+      "templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md": [
+        "DO254-Section6"
+      ],
+      "templates/product-dhf/safety-assessment/SSP-TEMPLATE.md": [
+        "ARP4754A-Section5",
+        "ARP4754A-Section6",
+        "ARP4761-PASA-PSSA",
+        "ARP4761-SSA",
+        "ARP4761-CCA"
+      ],
+      "templates/product-dhf/fha/FHA-TEMPLATE.md": [
+        "ARP4761-FHA"
+      ],
+      "templates/product-dhf/fai/FAI-REPORT-TEMPLATE.md": [
+        "AS9102-FAI"
+      ],
+      "templates/product-dhf/ai-system-card/AI-SYSTEM-CARD-TEMPLATE.md": [
+        "EUAI-Art11",
+        "EUAI-Art13",
+        "NIST-AI-RMF-Map"
+      ],
+      "templates/product-dhf/ai-impact-assessment/AI-IMPACT-ASSESSMENT-TEMPLATE.md": [
+        "EUAI-Art9",
+        "EUAI-Art14",
+        "NIST-AI-RMF-Govern",
+        "NIST-AI-RMF-Measure",
+        "NIST-AI-RMF-Manage"
+      ],
+      "templates/product-sw/architecture/SOFTWARE-ARCHITECTURE-TEMPLATE.md": [
+        "EUAI-Art15"
+      ],
+      "templates/product-dhf/technical-file/TECHNICAL-FILE-INDEX-TEMPLATE.md": [
+        "EUAI-Art12"
+      ],
+      "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md": [
+        "ISO27001-A.8.31"
+      ]
+    },
+    "reverse": {
+      "AS9100D-4.4": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "AS9100D-5.6": [
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md"
+      ],
+      "AS9100D-7.4": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "AS9100D-7.5": [
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "AS9100D-7.1": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "AS9100D-8.1.4": [
+        "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"
+      ],
+      "AS9100D-8.4": [
+        "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md",
+        "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md"
+      ],
+      "AS9100D-8.5.1": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "AS9100D-8.7": [
+        ".github/ISSUE_TEMPLATE/nonconformance.yml"
+      ],
+      "AS9100D-9.2": [
+        "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md"
+      ],
+      "AS9100D-10.2": [
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ],
+      "CFR21-21.31": [
+        "templates/product-dhf/type-cert/TYPE-CERT-PACK-INDEX-TEMPLATE.md"
+      ],
+      "CFR21-21.35": [
+        "templates/product-dhf/type-cert/TYPE-CERT-PACK-INDEX-TEMPLATE.md"
+      ],
+      "CFR21-21.50": [
+        "templates/product-dhf/type-cert/TYPE-CERT-PACK-INDEX-TEMPLATE.md"
+      ],
+      "EASA-Part21A-Subpart-B": [
+        "templates/product-dhf/type-cert/TYPE-CERT-PACK-INDEX-TEMPLATE.md"
+      ],
+      "DO178C-PSAC": [
+        "templates/product-dhf/psac/PSAC-TEMPLATE.md"
+      ],
+      "DO178C-Section6": [
+        "templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md"
+      ],
+      "DO178C-Section7": [
+        "templates/product-dhf/psac/PSAC-TEMPLATE.md"
+      ],
+      "DO178C-Section9": [
+        "templates/product-dhf/psac/PSAC-TEMPLATE.md"
+      ],
+      "DO178C-SOI": [
+        "templates/product-dhf/psac/PSAC-TEMPLATE.md"
+      ],
+      "DO254-PHAC": [
+        "templates/product-dhf/psac/PSAC-TEMPLATE.md"
+      ],
+      "DO254-Section6": [
+        "templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md"
+      ],
+      "ARP4754A-Section5": [
+        "templates/product-dhf/safety-assessment/SSP-TEMPLATE.md"
+      ],
+      "ARP4754A-Section6": [
+        "templates/product-dhf/safety-assessment/SSP-TEMPLATE.md"
+      ],
+      "ARP4761-FHA": [
+        "templates/product-dhf/fha/FHA-TEMPLATE.md"
+      ],
+      "ARP4761-PASA-PSSA": [
+        "templates/product-dhf/safety-assessment/SSP-TEMPLATE.md"
+      ],
+      "ARP4761-SSA": [
+        "templates/product-dhf/safety-assessment/SSP-TEMPLATE.md"
+      ],
+      "ARP4761-CCA": [
+        "templates/product-dhf/safety-assessment/SSP-TEMPLATE.md"
+      ],
+      "AS9102-FAI": [
+        "templates/product-dhf/fai/FAI-REPORT-TEMPLATE.md"
+      ],
+      "NIST-AI-RMF-Govern": [
+        "templates/product-dhf/ai-impact-assessment/AI-IMPACT-ASSESSMENT-TEMPLATE.md"
+      ],
+      "NIST-AI-RMF-Map": [
+        "templates/product-dhf/ai-system-card/AI-SYSTEM-CARD-TEMPLATE.md"
+      ],
+      "NIST-AI-RMF-Measure": [
+        "templates/product-dhf/ai-impact-assessment/AI-IMPACT-ASSESSMENT-TEMPLATE.md"
+      ],
+      "NIST-AI-RMF-Manage": [
+        "templates/product-dhf/ai-impact-assessment/AI-IMPACT-ASSESSMENT-TEMPLATE.md"
+      ],
+      "EUAI-Art9": [
+        "templates/product-dhf/ai-impact-assessment/AI-IMPACT-ASSESSMENT-TEMPLATE.md"
+      ],
+      "EUAI-Art10": [
+        "templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md"
+      ],
+      "EUAI-Art11": [
+        "templates/product-dhf/ai-system-card/AI-SYSTEM-CARD-TEMPLATE.md"
+      ],
+      "EUAI-Art12": [
+        "templates/product-dhf/technical-file/TECHNICAL-FILE-INDEX-TEMPLATE.md"
+      ],
+      "EUAI-Art13": [
+        "templates/product-dhf/ai-system-card/AI-SYSTEM-CARD-TEMPLATE.md"
+      ],
+      "EUAI-Art14": [
+        "templates/product-dhf/ai-impact-assessment/AI-IMPACT-ASSESSMENT-TEMPLATE.md"
+      ],
+      "EUAI-Art15": [
+        "templates/product-sw/architecture/SOFTWARE-ARCHITECTURE-TEMPLATE.md"
+      ],
+      "ISO42001-AIMS": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO27001-A.5.1": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO27001-A.5.31": [
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO27001-A.8.31": [
+        "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md"
+      ]
+    }
+  }
+}

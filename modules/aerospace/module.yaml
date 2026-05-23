@@ -1,0 +1,453 @@
+# Open QMS — aerospace regulatory module
+# ---------------------------------------
+# Vertical module for civil aviation (commercial aerospace). Covers:
+#
+#  - QMS substrate: ISO 9001:2015 + AS9100D (aerospace-specific QMS).
+#  - Certification: 14 CFR Part 21 (FAA) + EASA Part 21 (EU).
+#  - Software: DO-178C (avionics software DAL A-E).
+#  - Hardware: DO-254 (airborne electronic hardware).
+#  - System development: ARP4754A (aircraft + systems development process).
+#  - Safety assessment: ARP4761 (FHA / PASA / PSSA / SSA / CCA).
+#  - First Article Inspection: AS9102 (production-readiness gate).
+#
+# Defense scope (MIL-STD-882, MIL-STD-498, ITAR, EAR) is intentionally
+# deferred to a future aerospace-defense overlay. Class overlays for
+# DO-178C Design Assurance Levels (DAL A through E) also deferred —
+# this is the vertical seed analogous to the medical-devices module's
+# initial population.
+#
+# Standards licensing: clauses are referenced by number and normative
+# summary only. AS9100D, DO-178C, DO-254, ARP4754A, ARP4761, AS9102 are
+# all commercially-published copyrighted works sold by SAE / RTCA
+# International. ISO 9001:2015 is sold by ISO / national member bodies.
+# Adopters obtain their own licensed copies; see repo-root README
+# "Standards licensing — important" section.
+
+name: aerospace
+version: 0.1.0
+
+standards:
+  - ISO 9001:2015
+  - AS9100D
+  - 14 CFR Part 21
+  - EASA Part 21
+  - DO-178C:2011
+  - DO-254:2000
+  - ARP4754A:2010
+  - ARP4761:1996
+  - AS9102 Rev C
+
+clauses:
+
+  # === QMS substrate (ISO 9001 + AS9100D) ===
+
+  - id: AS9100D-4.4
+    standard: AS9100D
+    section: "4.4"
+    summary: |
+      Quality management system and its processes — including the
+      AS9100D-specific risk-based thinking layered on ISO 9001
+      §4.4. The QMS shall identify processes, determine their
+      sequence + interaction, criteria + methods, resources,
+      responsibilities, and risks + opportunities.
+
+  - id: AS9100D-5.6
+    standard: AS9100D
+    section: "9.3"
+    summary: |
+      Management review — top management shall review the QMS at
+      planned intervals to ensure continuing suitability, adequacy,
+      effectiveness, and alignment with strategic direction. Inputs:
+      audit results, customer satisfaction, process performance,
+      product conformity, nonconformities + corrective actions,
+      monitoring + measurement, supplier performance, risks +
+      opportunities. (AS9100D uses ISO 9001:2015 numbering §9.3
+      rather than the older AS9100 Rev C §5.6 numbering.)
+
+  - id: AS9100D-7.4
+    standard: AS9100D
+    section: "7.4"
+    summary: |
+      Communication — internal and external communications relevant
+      to the QMS, including communications with customers (especially
+      regarding product nonconformities and corrective actions) and
+      regulatory authorities.
+
+  - id: AS9100D-7.5
+    standard: AS9100D
+    section: "7.5"
+    summary: |
+      Documented information — creation, control, distribution,
+      access, retrieval, storage, preservation, retention, and
+      disposition of documented information required by the QMS.
+      Equivalent to ISO 13485 §4.2.4 / 21 CFR 820.40 in
+      medical-devices.
+
+  - id: AS9100D-7.1
+    standard: ISO 9001:2015
+    section: "7.1"
+    summary: |
+      Resources — people, infrastructure, work environment,
+      monitoring + measuring resources, organizational knowledge.
+      Documented infrastructure qualification covering production
+      facilities, equipment, software, and tooling.
+
+  - id: AS9100D-8.1.4
+    standard: AS9100D
+    section: "8.1.4"
+    summary: |
+      Operational risk management — aerospace-specific addition to
+      ISO 9001. Identification, assessment, communication, and
+      mitigation of risks throughout product realization. Distinct
+      from product safety risk (which is covered by ARP4761) — this
+      covers business / operational / supplier / production risk.
+
+  - id: AS9100D-8.4
+    standard: AS9100D
+    section: "8.4"
+    summary: |
+      Control of externally-provided processes, products and services
+      (supplier controls) — analogous to ISO 13485 §7.4. Supplier
+      selection, evaluation, monitoring; flow-down of requirements
+      including customer + regulatory requirements; counterfeit parts
+      prevention (per AS5553 when applicable); verification of
+      received product.
+
+  - id: AS9100D-8.5.1
+    standard: AS9100D
+    section: "8.5.1"
+    summary: |
+      Production and service provision — controlled conditions for
+      production, including aerospace-specific provisions for FOD
+      (Foreign Object Debris) prevention, control of equipment +
+      tooling + software programs, control of work transfers,
+      validation + control of production processes.
+
+  - id: AS9100D-8.7
+    standard: AS9100D
+    section: "8.7"
+    summary: |
+      Control of nonconforming output — identification, segregation,
+      disposition (use-as-is / rework / regrade / scrap / return to
+      supplier) of nonconforming product. Disposition decisions
+      require documented authority. Use-as-is + repair dispositions
+      shall be approved per organizational authority + customer
+      requirements.
+
+  - id: AS9100D-9.2
+    standard: AS9100D
+    section: "9.2"
+    summary: |
+      Internal audit — at planned intervals, to determine whether
+      the QMS conforms to organizational + AS9100D requirements and
+      is effectively implemented. Auditor independence required;
+      audit programme based on importance + previous findings;
+      audit results inputted to management review.
+
+  - id: AS9100D-10.2
+    standard: AS9100D
+    section: "10.2"
+    summary: |
+      Nonconformity and corrective action — when a nonconformity
+      occurs, react; evaluate need for action to eliminate cause(s);
+      implement action; review effectiveness; update risks +
+      opportunities; make changes to QMS if necessary. Records of
+      nature of nonconformities, actions taken, and effectiveness.
+
+  # === Certification (14 CFR Part 21 + EASA Part 21) ===
+
+  - id: CFR21-21.31
+    standard: 14 CFR Part 21
+    section: "21.31"
+    summary: |
+      Type design — drawings, specifications, dimensions, materials,
+      processes, performance, and any other data necessary to define
+      the configuration and design features required to show
+      compliance with the airworthiness requirements. Submitted as
+      part of the Type Certificate application.
+
+  - id: CFR21-21.35
+    standard: 14 CFR Part 21
+    section: "21.35"
+    summary: |
+      Flight tests — applicant shall conduct all tests necessary to
+      show compliance with applicable airworthiness requirements,
+      including flight tests as required. Demonstrate that the
+      aircraft, aircraft engine, or propeller meets the applicable
+      airworthiness requirements.
+
+  - id: CFR21-21.50
+    standard: 14 CFR Part 21
+    section: "21.50"
+    summary: |
+      Instructions for Continued Airworthiness (ICA) — holder of
+      Type Certificate shall furnish at least one set of complete
+      ICA to each owner of each aircraft incorporating the product
+      at the time of delivery. ICA include scheduled maintenance,
+      inspection, troubleshooting, and overhaul instructions.
+
+  - id: EASA-Part21A-Subpart-B
+    standard: EASA Part 21
+    section: "Part 21A Subpart B"
+    summary: |
+      EASA Type Certificates — type-certification process for civil
+      aircraft, engines, and propellers per EU Part-21. Includes
+      design organisation approval (DOA), production organisation
+      approval (POA), and certification specifications (CS-23,
+      CS-25, CS-27, CS-29, CS-E, CS-P depending on product type).
+
+  # === Software (DO-178C) ===
+
+  - id: DO178C-PSAC
+    standard: DO-178C:2011
+    section: "§4 + §11"
+    summary: |
+      Plan for Software Aspects of Certification (PSAC) — the
+      software certification plan submitted to and agreed with the
+      certification authority. Defines the software development
+      lifecycle, processes, tools, standards, and DAL (Design
+      Assurance Level A through E). Established at SOI (Stage of
+      Involvement) #1 with the certification authority.
+
+  - id: DO178C-Section6
+    standard: DO-178C:2011
+    section: "Section 6"
+    summary: |
+      Software Verification Process — the objectives + activities
+      depend on the software's DAL (A most stringent, E lowest).
+      Verification covers requirements, design, code, integration,
+      and tool qualification. DAL-A and DAL-B require independent
+      verification of specific objectives per Annex A Tables A-3
+      through A-7.
+
+  - id: DO178C-Section7
+    standard: DO-178C:2011
+    section: "Section 7"
+    summary: |
+      Software Configuration Management — baseline establishment,
+      problem reporting, change control, archival + retrieval,
+      release records, and data control. Configuration items
+      enumerated and tracked across the software lifecycle.
+
+  - id: DO178C-Section9
+    standard: DO-178C:2011
+    section: "Section 9 + Section 11"
+    summary: |
+      Software Life Cycle Data — the artifacts produced by the
+      software lifecycle processes (PSAC, SDP, SVP, SCMP, SQAP,
+      SRD, SDD, source code, executable object code, SVCP, SCI,
+      SAS, etc.). All data submitted or available for inspection
+      by the certification authority.
+
+  - id: DO178C-SOI
+    standard: DO-178C:2011
+    section: "Section 11"
+    summary: |
+      Stages of Involvement (SOI) with the certification authority —
+      SOI #1 (Planning Review), SOI #2 (Development Review), SOI #3
+      (Verification Review), SOI #4 (Final Certification). Each SOI
+      reviews specific deliverables; SOI #4 issues the Software
+      Accomplishment Summary (SAS).
+
+  # === Hardware (DO-254) ===
+
+  - id: DO254-PHAC
+    standard: DO-254:2000
+    section: "§10"
+    summary: |
+      Plan for Hardware Aspects of Certification (PHAC) — the
+      hardware certification plan, analogous to DO-178C's PSAC.
+      Defines the hardware development lifecycle, processes, tools,
+      DAL, and the hardware verification + validation approach.
+
+  - id: DO254-Section6
+    standard: DO-254:2000
+    section: "Section 6"
+    summary: |
+      Hardware Validation and Verification Process — covers
+      requirements validation, implementation verification, design
+      assurance, and the methods used to demonstrate the hardware
+      meets its requirements and is suitable for its intended
+      function at the assigned DAL.
+
+  # === System development (ARP4754A) ===
+
+  - id: ARP4754A-Section5
+    standard: ARP4754A:2010
+    section: "Section 5"
+    summary: |
+      Aircraft system development process — captures functional
+      requirements, allocates functions to systems, items, and
+      hardware/software, integrates and verifies. The framework
+      under which DO-178C software and DO-254 hardware development
+      live; ARP4754A is the systems context for the lower-level
+      standards.
+
+  - id: ARP4754A-Section6
+    standard: ARP4754A:2010
+    section: "Section 6"
+    summary: |
+      Aircraft and system functions allocation — derived
+      requirements + integration of aircraft-level functions across
+      systems, items, and external interfaces. Includes derived
+      safety requirements arising from the ARP4761 safety
+      assessment process.
+
+  # === Safety assessment (ARP4761) ===
+
+  - id: ARP4761-FHA
+    standard: ARP4761:1996
+    section: "Section 3"
+    summary: |
+      Functional Hazard Assessment (FHA) — identifies and classifies
+      failure conditions of aircraft + system functions according to
+      severity (Catastrophic / Hazardous / Major / Minor / No Safety
+      Effect). The FHA's severity classifications drive the DAL
+      assignments per ARP4754A.
+
+  - id: ARP4761-PASA-PSSA
+    standard: ARP4761:1996
+    section: "Section 4 + Section 5"
+    summary: |
+      Preliminary Aircraft Safety Assessment (PASA) + Preliminary
+      System Safety Assessment (PSSA) — top-down analyses identifying
+      safety requirements for aircraft / system architectures.
+      Output: derived safety requirements feeding the ARP4754A §6
+      requirements allocation.
+
+  - id: ARP4761-SSA
+    standard: ARP4761:1996
+    section: "Section 6"
+    summary: |
+      System Safety Assessment (SSA) — verification that the
+      implemented design meets the safety requirements. Uses Fault
+      Tree Analysis (FTA), Failure Modes and Effects Analysis
+      (FMEA), Markov analysis as appropriate. Final SSA report
+      submitted as part of the certification package.
+
+  - id: ARP4761-CCA
+    standard: ARP4761:1996
+    section: "Section 9"
+    summary: |
+      Common Cause Analysis (CCA) — addresses Zonal Safety Analysis
+      (ZSA), Particular Risks Analysis (PRA), and Common Mode
+      Analysis (CMA) to verify that independence claims used in
+      safety assessment are valid against shared physical zones,
+      shared resources, and common-mode failures.
+
+  # === First Article Inspection (AS9102) ===
+
+  - id: AS9102-FAI
+    standard: AS9102 Rev C
+    section: "all"
+    summary: |
+      First Article Inspection (FAI) — documented complete,
+      independent, and documented physical and functional
+      inspection process to verify that prescribed production
+      methods have produced an acceptable item as specified by
+      engineering drawings, planning, purchase order, engineering
+      specifications, and/or other applicable design documents.
+      Required for new + significantly-changed parts; uses
+      AS9102 Forms 1/2/3.
+
+templates:
+
+  # === QMS-substrate bindings (existing templates extended for AS9100D) ===
+
+  - path: templates/qms-policy/quality-policy.md
+    name: Quality policy (AS9100D + ISO 9001:2015 binding)
+    addresses:
+      - AS9100D-4.4
+      - AS9100D-5.6
+      - AS9100D-7.4
+      - AS9100D-7.5
+      - AS9100D-7.1
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Standard operating procedure (AS9100D production + documented information)
+    addresses:
+      - AS9100D-7.5
+      - AS9100D-8.5.1
+
+  - path: templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md
+    name: Internal audit procedure (AS9100D §9.2)
+    addresses:
+      - AS9100D-9.2
+
+  - path: templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md
+    name: Management review (AS9100D §9.3 / aerospace inputs)
+    addresses:
+      - AS9100D-5.6
+
+  - path: templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md
+    name: Approved Supplier List (AS9100D §8.4 external provider control)
+    addresses:
+      - AS9100D-8.4
+
+  - path: templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md
+    name: Supplier evaluation (AS9100D §8.4)
+    addresses:
+      - AS9100D-8.4
+
+  - path: .github/ISSUE_TEMPLATE/capa.yml
+    name: CAPA issue template (AS9100D §10.2)
+    addresses:
+      - AS9100D-10.2
+
+  - path: .github/ISSUE_TEMPLATE/nonconformance.yml
+    name: Nonconformance report (AS9100D §8.7)
+    addresses:
+      - AS9100D-8.7
+
+  - path: templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md
+    name: Operational risk management file (AS9100D §8.1.4)
+    addresses:
+      - AS9100D-8.1.4
+
+  # === Aerospace-specific templates (new) ===
+
+  - path: templates/product-dhf/type-cert/TYPE-CERT-PACK-INDEX-TEMPLATE.md
+    name: Type Certificate Pack Index (14 CFR Part 21 + EASA Part 21)
+    addresses:
+      - CFR21-21.31
+      - CFR21-21.35
+      - CFR21-21.50
+      - EASA-Part21A-Subpart-B
+
+  - path: templates/product-dhf/psac/PSAC-TEMPLATE.md
+    name: Plan for Software Aspects of Certification (DO-178C; also covers DO-254 PHAC pending dedicated template)
+    addresses:
+      - DO178C-PSAC
+      - DO178C-Section7
+      - DO178C-Section9
+      - DO178C-SOI
+      - DO254-PHAC
+
+  - path: templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md
+    name: Software test protocol (DO-178C verification per DAL)
+    addresses:
+      - DO178C-Section6
+
+  - path: templates/product-dhf/verification/VERIFICATION-PROTOCOL-TEMPLATE.md
+    name: Verification protocol (DO-254 hardware V&V)
+    addresses:
+      - DO254-Section6
+
+  - path: templates/product-dhf/safety-assessment/SSP-TEMPLATE.md
+    name: System Safety Plan (ARP4754A + ARP4761 framework — covers system development, PASA/PSSA, SSA, CCA)
+    addresses:
+      - ARP4754A-Section5
+      - ARP4754A-Section6
+      - ARP4761-PASA-PSSA
+      - ARP4761-SSA
+      - ARP4761-CCA
+
+  - path: templates/product-dhf/fha/FHA-TEMPLATE.md
+    name: Functional Hazard Assessment (ARP4761 §3)
+    addresses:
+      - ARP4761-FHA
+
+  - path: templates/product-dhf/fai/FAI-REPORT-TEMPLATE.md
+    name: First Article Inspection Report (AS9102)
+    addresses:
+      - AS9102-FAI

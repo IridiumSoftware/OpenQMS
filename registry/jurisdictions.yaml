@@ -55,3 +55,42 @@ jurisdictions:
     applicable_standards:
       - "ISO 13485:2016"
       - "MDSAP"
+
+  # === Aerospace jurisdictions ===
+
+  - id: FAA
+    name: U.S. Federal Aviation Administration
+    region: United States
+    applicable_standards:
+      - "14 CFR Part 21"
+      - "AS9100D"
+      - "ISO 9001:2015"
+      - "DO-178C:2011"
+      - "DO-254:2000"
+      - "ARP4754A:2010"
+      - "ARP4761:1996"
+      - "AS9102 Rev C"
+
+  - id: EASA
+    name: European Union Aviation Safety Agency
+    region: European Union
+    applicable_standards:
+      - "EASA Part 21"
+      - "AS9100D"
+      - "ISO 9001:2015"
+      - "DO-178C:2011"
+      - "DO-254:2000"
+      - "ARP4754A:2010"
+      - "ARP4761:1996"
+      - "AS9102 Rev C"
+
+  - id: TCCA
+    name: Transport Canada Civil Aviation
+    region: Canada
+    applicable_standards:
+      - "AS9100D"
+      - "ISO 9001:2015"
+      - "DO-178C:2011"
+      - "DO-254:2000"
+      - "ARP4754A:2010"
+      - "ARP4761:1996"

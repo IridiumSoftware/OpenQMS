@@ -1,0 +1,35 @@
+# Open QMS — example aerospace bundle definition
+# -----------------------------------------------
+# Demonstrates the aerospace vertical end-to-end against an example
+# civil-aviation product (an avionics computer providing a Class C-
+# typical certification-data load for a hypothetical Part 25 aircraft).
+# Composes aerospace + regulated-ai + iso-27001 — the AI overlay
+# because modern avionics increasingly integrate ML-driven functions
+# (autopilot enhancements, predictive maintenance, vision-based
+# landing aids) which trigger NIST AI RMF + EU AI Act high-risk-AI
+# requirements alongside DO-178C.
+
+name: example-aircraft
+product: ExampleAvionicsComputer
+jurisdictions:
+  - FAA
+
+standards:
+  - "ISO 9001:2015"
+  - "AS9100D"
+  - "14 CFR Part 21"
+  - "EASA Part 21"
+  - "DO-178C:2011"
+  - "DO-254:2000"
+  - "ARP4754A:2010"
+  - "ARP4761:1996"
+  - "AS9102 Rev C"
+  - "NIST AI RMF 1.0"
+  - "EU AI Act"
+  - "ISO/IEC 42001:2023"
+  - "ISO/IEC 27001:2022"
+
+modules:
+  - aerospace
+  - regulated-ai
+  - iso-27001

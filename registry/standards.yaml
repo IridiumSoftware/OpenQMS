@@ -125,6 +125,96 @@ standards:
     license_kind: public
     aliases: []
 
+  # === Aerospace: vertical ===
+
+  - id: "ISO 9001:2015"
+    name: "Quality management systems — Requirements"
+    publisher: ISO
+    edition: "2015"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 9001"
+
+  - id: "AS9100D"
+    name: "Quality Management Systems — Requirements for Aviation, Space, and Defense Organizations"
+    publisher: SAE International
+    edition: "Rev D (2016)"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "AS9100"
+      - "AS9100 Rev D"
+
+  - id: "14 CFR Part 21"
+    name: "FAA Certification Procedures for Products and Articles"
+    publisher: US FAA
+    edition: "current revision"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "FAA Part 21"
+      - "CFR Part 21"
+
+  - id: "EASA Part 21"
+    name: "EU Part-21 — Certification of aircraft and related products, parts and appliances, and of design and production organisations"
+    publisher: European Union Aviation Safety Agency
+    edition: "current revision"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "Part 21"
+      - "EU Part-21"
+
+  - id: "DO-178C:2011"
+    name: "Software Considerations in Airborne Systems and Equipment Certification"
+    publisher: RTCA / EUROCAE (ED-12C)
+    edition: "2011"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "DO-178C"
+      - "ED-12C"
+
+  - id: "DO-254:2000"
+    name: "Design Assurance Guidance for Airborne Electronic Hardware"
+    publisher: RTCA / EUROCAE (ED-80)
+    edition: "2000"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "DO-254"
+      - "ED-80"
+
+  - id: "ARP4754A:2010"
+    name: "Guidelines for Development of Civil Aircraft and Systems"
+    publisher: SAE International
+    edition: "2010 (Rev A)"
+    kind: guidance
+    license_kind: commercial
+    aliases:
+      - "ARP4754A"
+      - "ARP4754"
+
+  - id: "ARP4761:1996"
+    name: "Guidelines and Methods for Conducting the Safety Assessment Process on Civil Airborne Systems and Equipment"
+    publisher: SAE International
+    edition: "1996"
+    kind: guidance
+    license_kind: commercial
+    aliases:
+      - "ARP4761"
+
+  - id: "AS9102 Rev C"
+    name: "Aerospace First Article Inspection Requirement"
+    publisher: SAE International
+    edition: "Rev C"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "AS9102"
+      - "FAI"
+
   # === Device-class / category overlay standards ===
 
   - id: "IEC 82304-1:2016"
