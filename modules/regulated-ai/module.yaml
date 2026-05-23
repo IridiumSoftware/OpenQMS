@@ -1,0 +1,212 @@
+# Open QMS — Regulated-AI cross-cutting overlay
+# ---------------------------------------------
+# Composes with ANY vertical regulatory module to add AI/ML-system
+# requirements: NIST AI RMF (US guidance), EU AI Act 2024/1689 (EU
+# regulation), ISO/IEC 42001 AI management system, ISO/IEC 23894 AI
+# risk management guidance. Cross-cutting because AI requirements
+# compose with vertical regulations (medical-devices, future fintech /
+# automotive / employment-decision systems / etc.).
+#
+# Use via:
+#   openqms resolve --module medical-devices --module samd --module regulated-ai ...
+#   openqms resolve --module medical-devices --module ivd --module regulated-ai ...
+
+name: regulated-ai-overlay
+version: 0.1.0
+
+standards:
+  - NIST AI RMF 1.0
+  - EU AI Act
+  - ISO/IEC 42001:2023
+  - ISO/IEC 23894:2023
+
+clauses:
+
+  # === NIST AI RMF 1.0 four functions ===
+
+  - id: NIST-AI-RMF-Govern
+    standard: NIST AI RMF 1.0
+    section: "Govern"
+    summary: |
+      Govern function — cultivate and implement a culture of risk
+      management throughout the organization. Subcategories include
+      policies and procedures for AI risk management, roles and
+      responsibilities, accountability structures, diversity and
+      equity considerations, third-party AI components governance.
+
+  - id: NIST-AI-RMF-Map
+    standard: NIST AI RMF 1.0
+    section: "Map"
+    summary: |
+      Map function — establish the context within which AI risks are
+      framed. Categorize the AI system, identify intended purposes
+      and use cases, identify stakeholders, characterize positive
+      and negative impacts to individuals and society.
+
+  - id: NIST-AI-RMF-Measure
+    standard: NIST AI RMF 1.0
+    section: "Measure"
+    summary: |
+      Measure function — employ quantitative, qualitative, and mixed-
+      method tools to assess identified AI risks. Includes test sets,
+      benchmarks, evaluation methodologies, ongoing monitoring,
+      tracking of trustworthy characteristics (validity, reliability,
+      safety, security, accountability, transparency, explainability,
+      privacy, fairness).
+
+  - id: NIST-AI-RMF-Manage
+    standard: NIST AI RMF 1.0
+    section: "Manage"
+    summary: |
+      Manage function — prioritize and respond to risks based on the
+      Measure outputs. Allocate resources to risks based on assessed
+      impact and likelihood, plan responses, monitor risks over time,
+      communicate to stakeholders, sunset or decommission as needed.
+
+  # === EU AI Act 2024/1689 high-risk AI requirements (Chapter III §2, Articles 9-15) ===
+
+  - id: EUAI-Art9
+    standard: EU AI Act
+    section: "Article 9"
+    summary: |
+      Risk management system for high-risk AI systems — established,
+      implemented, documented, and maintained throughout the AI
+      system lifecycle. Iterative process: identification of known
+      and reasonably foreseeable risks; estimation and evaluation;
+      adoption of risk management measures; residual risk evaluation
+      against acceptability criteria.
+
+  - id: EUAI-Art10
+    standard: EU AI Act
+    section: "Article 10"
+    summary: |
+      Data and data governance for high-risk AI — training,
+      validation, and testing datasets shall be subject to data
+      governance and management practices appropriate to the intended
+      purpose. Datasets shall be relevant, representative, free of
+      errors, complete; statistical properties documented; bias
+      examined and mitigated.
+
+  - id: EUAI-Art11
+    standard: EU AI Act
+    section: "Article 11"
+    summary: |
+      Technical documentation for high-risk AI — drawn up before
+      placing on the market or putting into service, kept up to date.
+      Demonstrates compliance with Section 2 requirements; provides
+      authorities with the necessary information to assess
+      compliance. Content per Annex IV.
+
+  - id: EUAI-Art12
+    standard: EU AI Act
+    section: "Article 12"
+    summary: |
+      Record-keeping / automatic logging — high-risk AI systems shall
+      automatically record events ("logs") over their lifetime to
+      ensure traceability appropriate to the intended purpose. Logs
+      enable identification of situations resulting in risk,
+      facilitate post-market monitoring, and support reproducibility.
+
+  - id: EUAI-Art13
+    standard: EU AI Act
+    section: "Article 13"
+    summary: |
+      Transparency and provision of information to deployers —
+      high-risk AI systems shall be designed and developed so their
+      operation is sufficiently transparent to enable deployers to
+      interpret outputs and use them appropriately. Accompanied by
+      instructions for use containing concise, complete, correct,
+      clear, relevant, accessible information.
+
+  - id: EUAI-Art14
+    standard: EU AI Act
+    section: "Article 14"
+    summary: |
+      Human oversight for high-risk AI — designed and developed so
+      they can be effectively overseen by natural persons during
+      use. Oversight measures must enable the natural person to fully
+      understand system capacities and limitations, remain aware of
+      automation bias, correctly interpret output, decide not to
+      use the system, intervene or interrupt operation.
+
+  - id: EUAI-Art15
+    standard: EU AI Act
+    section: "Article 15"
+    summary: |
+      Accuracy, robustness, and cybersecurity for high-risk AI —
+      designed to achieve appropriate level of accuracy, robustness,
+      and cybersecurity, performing consistently throughout lifecycle.
+      Resilience against errors, faults, inconsistencies; resilience
+      against unauthorized attempts to alter use, behavior, or
+      performance.
+
+  # === ISO/IEC 42001:2023 AI management system ===
+
+  - id: ISO42001-AIMS
+    standard: ISO/IEC 42001:2023
+    section: "all"
+    summary: |
+      Artificial Intelligence Management System (AIMS) — establishment,
+      implementation, maintenance, and continual improvement of an
+      AI management system. Parallel structure to ISO 9001 / 13485:
+      context (§4), leadership (§5), planning (§6), support (§7),
+      operation (§8), performance evaluation (§9), improvement (§10).
+      Composes with sector-specific QMS standards as the AI-management
+      overlay.
+
+  # === ISO/IEC 23894:2023 AI risk management ===
+
+  - id: ISO23894-AI-risk-mgmt
+    standard: ISO/IEC 23894:2023
+    section: "all"
+    summary: |
+      Guidance on AI risk management — extends ISO 31000 risk
+      management framework with AI-specific considerations: AI
+      system lifecycle stages, AI-specific risk sources (data
+      quality, model robustness, fairness, transparency,
+      explainability), risk treatment options specific to AI. For
+      medical-AI, composes with ISO 14971; for cross-domain AI
+      risk, the primary reference.
+
+templates:
+
+  - path: templates/product-dhf/ai-system-card/AI-SYSTEM-CARD-TEMPLATE.md
+    name: AI System Card / Model Card template
+    addresses:
+      - EUAI-Art11
+      - EUAI-Art13
+      - NIST-AI-RMF-Map
+
+  - path: templates/product-dhf/ai-impact-assessment/AI-IMPACT-ASSESSMENT-TEMPLATE.md
+    name: AI Impact Assessment template (EU AI Act + NIST AI RMF aligned)
+    addresses:
+      - EUAI-Art9
+      - EUAI-Art14
+      - NIST-AI-RMF-Govern
+      - NIST-AI-RMF-Measure
+      - NIST-AI-RMF-Manage
+
+  - path: templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md
+    name: Risk management file (AI risk integration per ISO 23894 + EU AI Act Art 9)
+    addresses:
+      - ISO23894-AI-risk-mgmt
+
+  - path: templates/qms-policy/quality-policy.md
+    name: Quality policy (AI management system per ISO/IEC 42001)
+    addresses:
+      - ISO42001-AIMS
+
+  - path: templates/product-sw/architecture/SOFTWARE-ARCHITECTURE-TEMPLATE.md
+    name: Software architecture (AI accuracy / robustness / cybersecurity per EU AI Act Art 15)
+    addresses:
+      - EUAI-Art15
+
+  - path: templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md
+    name: Software test protocol (AI training/validation/test datasets per EU AI Act Art 10)
+    addresses:
+      - EUAI-Art10
+
+  - path: templates/product-dhf/technical-file/TECHNICAL-FILE-INDEX-TEMPLATE.md
+    name: Technical file index (AI automatic logging per EU AI Act Art 12)
+    addresses:
+      - EUAI-Art12
