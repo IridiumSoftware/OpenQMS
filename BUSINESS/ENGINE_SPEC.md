@@ -412,6 +412,15 @@ A spec entry may have status `:proved` only if evidence type is `lean-proved`, `
 - **Claim:** Open QMS ships a regulated-AI cross-cutting overlay at `modules/regulated-ai/module.yaml` (version 0.1.0). Composes with ANY vertical regulatory module (medical-devices today; future fintech / automotive / employment / education AI verticals later). 13 clauses: NIST AI RMF 1.0 four functions (Govern, Map, Measure, Manage); EU AI Act Chapter III §2 high-risk AI requirements (Articles 9-15); ISO/IEC 42001:2023 AIMS (consolidated); ISO/IEC 23894:2023 AI risk management guidance. Ships 2 new templates: AI System Card / Model Card (Mitchell et al. 2019 extended with EU AI Act + IMDRF SaMD) and AI Impact Assessment (Article 9 + Article 14 + Article 27 + NIST AI RMF Govern/Measure/Manage). Existing templates gain AI bindings: RMF (ISO 23894), quality-policy (ISO 42001), SAD (Article 15), STP (Article 10), TFI (Article 12).
 - **Notes:** Shipped at v0.12.0 (commit `3e231d5`). Registry addition: ISO/IEC 23894:2023 (other AI standards already registered as roadmap entries at v0.5.0). Overlay's clauses primarily target EU AI Act *high-risk* AI scope (Annex III); limited-risk and minimal-risk scope a subset.
 
+### OQ-100 — Per-module READMEs backfilled (class overlays + cross-cutting overlays)
+
+- **Tier:** Gap
+- **Evidence type:** example-tested
+- **Status:** :tested
+- **Depends_on:** OQ-097
+- **Claim:** All shipped Open QMS modules now have standalone READMEs. v0.26.0 ships 14 class overlay READMEs (5 aerospace DAL + 5 automotive ASIL/QM + 4 automotive CAL); v0.27.0 ships 6 cross-cutting overlay READMEs (iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow). Combined with vertical READMEs + medical-devices class overlay READMEs already in place, **every module in `modules/*/module.yaml` (37 modules total) now has `modules/*/README.md` (37 READMEs)** — verified by `find` count match.
+- **Notes:** Each README ~50-100 lines following uniform structure (scope / standards / clause table per delta / composition example / when-to-use + when-NOT-to-use / standards licensing / forward work). Tight by design — comprehensive catalog at `docs/modules-catalog.md` remains the cross-reference; per-module READMEs are point-of-use documentation. Closes the v0.23.0 OQ-097 forward-work item.
+
 ### OQ-099 — Standalone template library expansion (15 new templates across 3 groups)
 
 - **Tier:** Gap
@@ -798,11 +807,11 @@ A spec entry may have status `:proved` only if evidence type is `lean-proved`, `
 |---|---|
 | `:proved` | 0 |
 | `:verified` | 6 |
-| `:tested` | 70 |
+| `:tested` | 71 |
 | `:benchmarked` | 0 |
 | `:argued` | 7 |
 | `:open` | 0 |
-| **Total entries** | **83** |
+| **Total entries** | **84** |
 
 **Zero `:open` entries as of v0.8.0.** Every spec claim now carries at least manual evidence (`:argued`) or mechanical evidence (`:tested`). The remaining `:argued` entries are honest-effort items (module-coverage population, manual-only-by-nature licensing claims, partially-mechanized substrate claims) — none of them are "we haven't started yet."
 
