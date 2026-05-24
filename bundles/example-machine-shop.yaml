@@ -1,0 +1,19 @@
+# Open QMS — example general-manufacturing bundle definition
+# -----------------------------------------------------------
+# Demonstrates the manufacturing vertical end-to-end against an
+# example small-to-mid machine shop pursuing baseline ISO 9001
+# certification. No domain-specific regulatory framework applies;
+# the organization adds iso-27001 because they handle customer
+# proprietary CAD/CAM files.
+
+name: example-machine-shop
+product: ExamplePrecisionMachineShop
+jurisdictions: []
+
+standards:
+  - "ISO 9001:2015"
+  - "ISO/IEC 27001:2022"
+
+modules:
+  - manufacturing
+  - iso-27001

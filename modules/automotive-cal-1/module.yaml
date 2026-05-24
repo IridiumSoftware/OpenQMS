@@ -1,0 +1,89 @@
+# Open QMS — automotive CAL-1 class overlay (ISO/SAE 21434)
+# ----------------------------------------------------------
+# Composes with the automotive vertical to add ISO/SAE 21434
+# Cybersecurity Assurance Level 1 (CAL-1) — the lowest CAL tier.
+# CAL-1 applies when the TARA identifies damage scenarios with
+# low impact AND low feasibility (per ISO/SAE 21434 Annex E
+# CAL determination matrix).
+#
+# Use via:
+#   openqms resolve --module automotive --module automotive-cal-1 ...
+#
+# CAL-1 specific rigor (delta from CAL-2/3/4):
+#  - ISO/SAE 21434 §6.4.7 + Annex C: NO independent cybersecurity
+#    assessment required (vs. independent assessment at CAL-3
+#    recommended, CAL-4 required).
+#  - ISO/SAE 21434 §10 + §13: baseline V&V — security functional
+#    testing covering specified cybersecurity requirements. NO
+#    fuzz testing or pentest or side-channel analysis required.
+#  - ISO/SAE 21434 §11: continuous activities follow the CSMS
+#    baseline — vulnerability monitoring at the CSMS-defined
+#    cadence (no response-time commitments specific to CAL-1).
+#  - Safety-security interaction: not formally required at CAL-1
+#    (the item is unlikely to be ASIL-rated if cyber-rated CAL-1).
+
+name: automotive-cal-1-overlay
+version: 0.1.0
+
+standards:
+  - ISO/SAE 21434:2021
+
+clauses:
+
+  - id: CAL-1-applicability
+    standard: ISO/SAE 21434:2021
+    section: "Annex E (informative)"
+    summary: |
+      CAL-1 applicability gate — invoked when TARA identifies a
+      damage scenario whose impact-and-feasibility combination
+      yields the lowest CAL per Annex E (typically low impact AND
+      low feasibility). Documented in TARA-XXX.
+
+  - id: CAL-1-no-independent-assessment
+    standard: ISO/SAE 21434:2021
+    section: "§6.4.7 + Annex C"
+    summary: |
+      No independent cybersecurity assessment required at CAL-1.
+      Cybersecurity case + final cybersecurity assessment may be
+      performed by the development team. The decision is
+      documented in the project Cybersecurity Plan with rationale
+      that CAL-1 risk level does not warrant the cost of
+      independent assessment.
+
+  - id: CAL-1-baseline-V-and-V
+    standard: ISO/SAE 21434:2021
+    section: "§10 + §13"
+    summary: |
+      Baseline V&V — CAL-1 expects security functional testing
+      covering specified cybersecurity requirements. Vulnerability
+      scanning, fuzz testing, penetration testing, and side-channel
+      analysis are NOT required at CAL-1 (recommended at CAL-2,
+      required at CAL-3/4). Test results documented in the
+      cybersecurity case.
+
+  - id: CAL-1-CSMS-baseline-monitoring
+    standard: ISO/SAE 21434:2021
+    section: "§11"
+    summary: |
+      Continuous cybersecurity activities — CAL-1 follows the CSMS
+      baseline: vulnerability monitoring at the CSMS-defined
+      cadence; no response-time commitments specific to CAL-1
+      items; standard incident-response processes apply.
+
+templates:
+
+  - path: templates/product-dhf/tara/TARA-TEMPLATE.md
+    name: TARA — CAL-1 determination + UN R155 Annex 5 coverage
+    addresses:
+      - CAL-1-applicability
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Cybersecurity-plan SOP (CAL-1 scope — no independent assessment + baseline V&V + CSMS-baseline monitoring)
+    addresses:
+      - CAL-1-no-independent-assessment
+      - CAL-1-CSMS-baseline-monitoring
+
+  - path: templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md
+    name: Software test protocol — CAL-1 security functional testing only
+    addresses:
+      - CAL-1-baseline-V-and-V

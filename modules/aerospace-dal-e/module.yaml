@@ -1,0 +1,90 @@
+# Open QMS — aerospace DAL-E class overlay (DO-178C / DO-254 Level E)
+# --------------------------------------------------------------------
+# Composes with the aerospace vertical to add Design Assurance Level E
+# requirements. DAL-E applies when the failure condition is No Safety
+# Effect per the FHA — i.e., a failure that does NOT affect the
+# operational capability of the aircraft or increase crew workload.
+#
+# Use via:
+#   openqms resolve --module aerospace --module aerospace-dal-e ...
+#
+# DAL-E specific rigor:
+#  - DO-178C: NO objectives apply at DAL-E. The software is not
+#    subject to DO-178C process discipline at all.
+#  - DO-254: NO hardware design assurance objectives at DAL-E.
+#  - ARP4754A §5: DAL-E allocation must be substantiated in the
+#    System Safety Plan — the rationale that the function genuinely
+#    has No Safety Effect is the load-bearing claim, not the
+#    process discipline.
+#  - What's still required: configuration management of the DAL-E
+#    software (so the cert authority can verify it's actually the
+#    No-Safety-Effect software being deployed); the adopter's own
+#    quality SOPs continue to apply for general engineering
+#    discipline.
+#
+# DAL-E is rare in practice because most software touched by the
+# aircraft's certified configuration tends to be at least DAL-D.
+# Typical DAL-E examples: cabin-management entertainment systems
+# isolated from flight-critical busses; ground-only software.
+
+name: aerospace-dal-e-overlay
+version: 0.1.0
+
+standards:
+  - DO-178C:2011
+  - ARP4754A:2010
+
+clauses:
+
+  - id: DAL-E-applicability
+    standard: ARP4754A:2010
+    section: "§5"
+    summary: |
+      DAL-E applicability gate — invoked when the FHA assigns a
+      No Safety Effect failure-condition classification and
+      ARP4754A §5 allocation results in DAL-E. The substantiation
+      that the function genuinely has No Safety Effect is the
+      load-bearing claim, not subsequent process discipline.
+
+  - id: DO178C-no-objectives
+    standard: DO-178C:2011
+    section: "§2.2.4 + Table A-1..A-10"
+    summary: |
+      No DO-178C objectives apply at DAL-E. The software is not
+      subject to DO-178C process discipline. The PSAC (if produced)
+      documents the DAL-E classification and the No-Safety-Effect
+      rationale; no further DO-178C deliverables required.
+
+  - id: DAL-E-configuration-management
+    standard: ARP4754A:2010
+    section: "§7"
+    summary: |
+      Configuration management still required — the cert authority
+      must be able to verify that the deployed software is the
+      software whose DAL-E classification was substantiated.
+      Adopter's general configuration-management SOP applies (no
+      DO-178C §7 process requirements at DAL-E specifically).
+
+  - id: ARP4754A-DAL-E-allocation
+    standard: ARP4754A:2010
+    section: "§5"
+    summary: |
+      DAL-E allocation rationale — System Safety Plan documents the
+      rationale that the function has No Safety Effect: isolation
+      from safety-critical busses + functions, failure-impact
+      analysis showing no contribution to any safety goal, and
+      either physical or logical separation argumentation.
+
+templates:
+
+  - path: templates/product-dhf/psac/PSAC-TEMPLATE.md
+    name: PSAC — DAL-E (minimal; documents No-Safety-Effect rationale and configuration management)
+    addresses:
+      - DAL-E-applicability
+      - DO178C-no-objectives
+      - DAL-E-configuration-management
+
+  - path: templates/product-dhf/safety-assessment/SSP-TEMPLATE.md
+    name: System Safety Plan — DAL-E allocation rationale (No Safety Effect substantiation)
+    addresses:
+      - ARP4754A-DAL-E-allocation

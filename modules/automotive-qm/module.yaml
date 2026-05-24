@@ -1,0 +1,101 @@
+# Open QMS — automotive QM (Quality Management) class overlay
+# ------------------------------------------------------------
+# Composes with the automotive vertical to add ISO 26262 QM
+# (Quality Management) classification. QM applies when HARA
+# classifies a hazardous event such that no Automotive Safety
+# Integrity Level applies — i.e., the function has insufficient
+# safety relevance to warrant ISO 26262 process discipline beyond
+# baseline IATF 16949 / ISO 9001 quality management.
+#
+# Use via:
+#   openqms resolve --module automotive --module automotive-qm ...
+#
+# QM specific:
+#  - ISO 26262 Part 5 / Part 6: NO ISO 26262-specific HW metrics or
+#    SW structural coverage requirements. Baseline IATF 16949 +
+#    ISO 9001 process discipline applies (already covered by the
+#    automotive vertical).
+#  - ISO 26262 Part 2 §6 confirmation measures: NOT required at QM.
+#    Baseline IATF 16949 §9.2 internal audit + §9.3 management
+#    review cover the quality oversight.
+#  - HARA documentation: the QM classification still must be
+#    documented in the HARA with rationale (the (S, E, C)
+#    combination yielding QM per Part 3 §6 Table 4 — e.g., S1 × E4
+#    × C1, S0 × any × any). The QM classification is the safety
+#    claim, and confidence in the claim depends on HARA quality.
+#  - Safety Plan: QM-classified items are typically listed in the
+#    Safety Plan as out-of-FuSa-scope with explicit reference to
+#    the HARA evidence supporting the QM allocation.
+#
+# Why ship a QM overlay rather than treat QM as "no overlay"?
+# Auditability. The QM allocation is a positive claim ("this item
+# is QM"), not an absence ("we didn't analyze this item"). Adopters
+# need a place to document the QM rationale that traces from HARA
+# through to the absence-of-FuSa-rigor decision. The overlay
+# provides that documentation hook.
+
+name: automotive-qm-overlay
+version: 0.1.0
+
+standards:
+  - ISO 26262:2018
+
+clauses:
+
+  - id: QM-applicability
+    standard: ISO 26262:2018
+    section: "Part 3 §6 Table 4"
+    summary: |
+      QM applicability gate — invoked when HARA classifies a
+      hazardous event such that the (S, E, C) combination yields
+      QM per Table 4 (e.g., S1 × E4 × C1; S0 × any × any; S2 × E1
+      × any). The QM allocation is a positive safety claim that
+      the function does NOT require ISO 26262 process discipline
+      beyond baseline IATF 16949 quality management.
+
+  - id: QM-no-ISO26262-rigor
+    standard: ISO 26262:2018
+    section: "Part 2 §5.4.1"
+    summary: |
+      No ISO 26262-specific process requirements at QM. Hardware
+      metrics (SPFM / LFM / PMHF), software structural coverage,
+      method recommendations (MISRA C subsets, formal notations),
+      and confirmation measures do not apply at QM. Baseline
+      IATF 16949 + ISO 9001 process discipline (already covered
+      by the automotive vertical) is the applicable QMS.
+
+  - id: QM-HARA-rationale
+    standard: ISO 26262:2018
+    section: "Part 3 §6.5"
+    summary: |
+      HARA rationale for QM allocation — documented in HARA-XXX
+      with explicit reference to the Table 4 (S, E, C) combination
+      yielding QM. The HARA's confidence is the load-bearing
+      claim: if a hazardous event is misclassified as QM when its
+      true classification is ASIL-A or higher, the resulting QM
+      development omits required FuSa rigor.
+
+  - id: QM-safety-plan-listing
+    standard: ISO 26262:2018
+    section: "Part 2 §6"
+    summary: |
+      Safety Plan listing — QM-classified items are listed in the
+      Safety Plan as out-of-FuSa-scope with explicit reference to
+      the HARA evidence supporting the QM allocation. The listing
+      enables the confirmation reviewer / FuSa auditor to verify
+      that QM items are appropriately scoped out (not silently
+      omitted).
+
+templates:
+
+  - path: templates/product-dhf/hara/HARA-TEMPLATE.md
+    name: HARA — QM allocation rationale (Table 4 reference + S/E/C)
+    addresses:
+      - QM-applicability
+      - QM-HARA-rationale
+
+  - path: templates/product-dhf/safety-concept/SAFETY-CONCEPT-TEMPLATE.md
+    name: Safety Concept — explicit QM out-of-FuSa-scope listing with HARA cross-reference
+    addresses:
+      - QM-no-ISO26262-rigor
+      - QM-safety-plan-listing

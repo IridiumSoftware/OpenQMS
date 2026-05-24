@@ -1,0 +1,100 @@
+# Open QMS — aerospace DAL-D class overlay (DO-178C / DO-254 Level D)
+# --------------------------------------------------------------------
+# Composes with the aerospace vertical to add Design Assurance Level D
+# requirements. DAL-D applies when the failure condition is Minor per
+# the FHA (slight reduction in functional capabilities or safety
+# margins; slight increase in flight-crew workload; physical
+# discomfort to occupants).
+#
+# Use via:
+#   openqms resolve --module aerospace --module aerospace-dal-d ...
+#
+# DAL-D specific rigor (delta from DAL-C above and DAL-E below):
+#  - DO-178C Table A-7: structural coverage NOT required at any level
+#    (no statement, no decision, no MC/DC). Software testing focuses
+#    on requirements-based test cases only.
+#  - DO-178C Tables A-1..A-10: 26 objectives applied (vs. 62 at DAL-C,
+#    69 at DAL-B, 71 at DAL-A); only 2 require independence (same
+#    count as DAL-C, but applied to different objectives — typically
+#    QA + configuration-management independence).
+#  - DO-178C §12.2 + DO-330: tool qualification typically at TQL-4 or
+#    TQL-5 (lowest assurance tiers) where applicable.
+#  - DO-254 §6: hardware verification — standard test + review
+#    activities; no elemental analysis, no safety-specific analyses.
+#  - ARP4754A §5: DAL-D allocation typically for non-critical
+#    automation, advisory functions, or supervised systems where the
+#    failure-condition classification is Minor.
+
+name: aerospace-dal-d-overlay
+version: 0.1.0
+
+standards:
+  - DO-178C:2011
+  - DO-254:2000
+  - ARP4754A:2010
+
+clauses:
+
+  - id: DAL-D-applicability
+    standard: ARP4754A:2010
+    section: "§5"
+    summary: |
+      DAL-D applicability gate — invoked when the FHA assigns a
+      Minor failure-condition classification and ARP4754A §5
+      allocation results in DAL-D. Typical for advisory / supervised
+      / non-critical functions.
+
+  - id: DO178C-no-structural-coverage
+    standard: DO-178C:2011
+    section: "§6.4.4 + Table A-7"
+    summary: |
+      No structural coverage required at DAL-D. Software testing
+      focuses on requirements-based test cases per DO-178C §6.4.3
+      (Normal-Range + Robustness). Coverage of high-level
+      requirements remains required; structural-coverage objectives
+      (statement / decision / MC/DC) do not apply. PSAC notes the
+      absence of structural coverage with rationale.
+
+  - id: DO178C-independence-DAL-D
+    standard: DO-178C:2011
+    section: "Annex A — Independence column for DAL D"
+    summary: |
+      Independence requirements — 2 of the 26 DAL-D objectives
+      require independence, typically Quality Assurance + Software
+      Configuration Management independence from the development
+      activity. Substantially lighter independence regime than
+      DAL-C/B/A.
+
+  - id: DO178C-tool-qual-DAL-D
+    standard: DO-178C:2011
+    section: "§12.2 + DO-330"
+    summary: |
+      Tool qualification at DAL-D — typically TQL-4 or TQL-5 where
+      applicable (lowest assurance tiers; many DAL-D projects use
+      no qualified tools at all because the loosened verification
+      objectives can be satisfied without tool substitution).
+
+  - id: ARP4754A-DAL-D-allocation
+    standard: ARP4754A:2010
+    section: "§5"
+    summary: |
+      DAL-D allocation rationale — recorded in the System Safety
+      Plan with reference to the Minor failure-condition
+      classification from the FHA. The lower DAL allocation
+      enables a substantially lighter development assurance
+      regime appropriate to the limited safety consequence.
+
+templates:
+
+  - path: templates/product-dhf/psac/PSAC-TEMPLATE.md
+    name: PSAC — DAL-D specifics (no structural coverage; QA + SCM independence only)
+    addresses:
+      - DAL-D-applicability
+      - DO178C-no-structural-coverage
+      - DO178C-independence-DAL-D
+      - DO178C-tool-qual-DAL-D
+
+  - path: templates/product-dhf/safety-assessment/SSP-TEMPLATE.md
+    name: System Safety Plan — DAL-D allocation rationale (Minor failure condition)
+    addresses:
+      - ARP4754A-DAL-D-allocation

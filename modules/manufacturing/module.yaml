@@ -1,0 +1,322 @@
+# Open QMS — general manufacturing regulatory module
+# ---------------------------------------------------
+# Vertical module for general (non-regulated) manufacturing —
+# machine shops, tooling, contract manufacturing, custom fab, job
+# shops, fabrication houses, prototyping shops, light industrial
+# manufacturing. The baseline QMS for organizations whose products
+# do NOT fall under a domain-specific regulatory framework (medical
+# devices, aerospace, automotive, food, pharma, defense) but who
+# still need a credible ISO 9001 QMS for customer credibility,
+# competitive positioning, or contractual flow-down.
+#
+# Scope: ISO 9001:2015 — the only standard required for this
+# vertical. Covers the seven clause groups:
+#   - §4   Context of the organization
+#   - §5   Leadership
+#   - §6   Planning (incl. §6.1 risk-and-opportunity)
+#   - §7   Support (people, infrastructure, environment,
+#          monitoring + measuring, organizational knowledge,
+#          competence, awareness, communication, documented info)
+#   - §8   Operation (incl. supplier control §8.4, production
+#          §8.5, post-delivery §8.5.5, control of nonconforming
+#          outputs §8.7)
+#   - §9   Performance evaluation (monitoring + measurement,
+#          internal audit, management review)
+#   - §10  Improvement (nonconformity + corrective action)
+#
+# Composes cleanly with cross-cutting overlays where adopters need
+# additional discipline:
+#   - iso-27001  — for organizations also pursuing IS certification
+#   - regulated-ai — if any production process uses ML
+#
+# Out-of-scope (deferred to other verticals):
+#   - Aerospace-specific QMS (AS9100D) → use modules/aerospace/
+#   - Automotive-specific QMS (IATF 16949) → use modules/automotive/
+#   - Medical-device QMS (ISO 13485) → use modules/medical-devices/
+#   - Food safety (ISO 22000, FSSC 22000) — forward vertical
+#   - Pharma GMP (ICH Q7, 21 CFR 210/211) — forward vertical
+#   - Environmental (ISO 14001) — forward overlay
+#   - Occupational H&S (ISO 45001) — forward overlay
+#
+# Standards licensing: ISO 9001:2015 is a commercially-published
+# copyrighted work sold by ISO / national member bodies. Open QMS
+# references clauses by number and normative summary only.
+
+name: manufacturing
+version: 0.1.0
+
+standards:
+  - ISO 9001:2015
+
+clauses:
+
+  # === Context + leadership (§4 + §5) ===
+
+  - id: ISO9001-4.1
+    standard: ISO 9001:2015
+    section: "4.1"
+    summary: |
+      Understanding the organization and its context — internal +
+      external issues relevant to the QMS purpose + strategic
+      direction. Documented in a context-of-the-organization
+      analysis (often the opening section of the quality manual).
+
+  - id: ISO9001-4.4
+    standard: ISO 9001:2015
+    section: "4.4"
+    summary: |
+      Quality management system + its processes — process approach,
+      including determining processes needed, their sequence +
+      interaction, criteria + methods for operation + control,
+      resources, responsibilities, risks + opportunities.
+
+  - id: ISO9001-5.1
+    standard: ISO 9001:2015
+    section: "5.1"
+    summary: |
+      Leadership and commitment — top management demonstrates
+      leadership via accountability, customer focus, integration
+      of QMS into business processes, promoting process + risk-
+      based thinking, ensuring resources, communicating QMS
+      importance, engaging + supporting people, promoting
+      improvement.
+
+  - id: ISO9001-5.2
+    standard: ISO 9001:2015
+    section: "5.2"
+    summary: |
+      Quality policy — established by top management, appropriate
+      to the organization's purpose + context, includes commitment
+      to satisfy applicable requirements + continual improvement,
+      provides a framework for setting quality objectives,
+      documented, communicated, applied, available.
+
+  # === Planning (§6) ===
+
+  - id: ISO9001-6.1
+    standard: ISO 9001:2015
+    section: "6.1"
+    summary: |
+      Actions to address risks + opportunities — determined for the
+      QMS based on §4.1 context + §4.2 interested-party requirements.
+      Planned actions integrated into QMS processes. Effectiveness
+      evaluated. The "risk-based thinking" core of ISO 9001:2015.
+
+  # === Support (§7) ===
+
+  - id: ISO9001-7.1
+    standard: ISO 9001:2015
+    section: "7.1"
+    summary: |
+      Resources — people, infrastructure (buildings, equipment,
+      transport, ICT), environment for process operation
+      (physical, social, psychological), monitoring + measuring
+      resources (with traceability per §7.1.5.2 where applicable),
+      organizational knowledge.
+
+  - id: ISO9001-7.1.5.2
+    standard: ISO 9001:2015
+    section: "7.1.5.2"
+    summary: |
+      Measurement traceability — when measurement traceability is a
+      requirement or considered essential, measuring equipment shall
+      be calibrated + verified against measurement standards
+      traceable to international or national measurement standards;
+      identified to determine status; safeguarded against
+      adjustments + damage + deterioration.
+
+  - id: ISO9001-7.4
+    standard: ISO 9001:2015
+    section: "7.4"
+    summary: |
+      Communication — relevant internal + external communications
+      including on what, when, with whom, how, and who
+      communicates. Customer communication per §8.2.1.
+
+  - id: ISO9001-7.5
+    standard: ISO 9001:2015
+    section: "7.5"
+    summary: |
+      Documented information — creation + updating + control of
+      documented information required by the QMS + by the standard.
+      Identification + description, format, review + approval,
+      distribution + access + retrieval + use, storage +
+      preservation, control of changes, retention + disposition.
+
+  # === Operation (§8) ===
+
+  - id: ISO9001-8.1
+    standard: ISO 9001:2015
+    section: "8.1"
+    summary: |
+      Operational planning + control — plan + implement + control
+      processes needed to meet requirements for products + services,
+      including determining requirements, establishing criteria,
+      determining resources, implementing control of processes per
+      criteria, determining + keeping documented information
+      needed to confirm processes have been carried out as planned.
+
+  - id: ISO9001-8.4
+    standard: ISO 9001:2015
+    section: "8.4"
+    summary: |
+      Control of externally-provided processes, products + services
+      — supplier controls. Type + extent of control determined by
+      potential impact on product conformity, effectiveness of
+      supplier's controls, ability to provide processes meeting
+      requirements. Supplier evaluation + selection + monitoring +
+      re-evaluation; flow-down of requirements; verification of
+      received product.
+
+  - id: ISO9001-8.5
+    standard: ISO 9001:2015
+    section: "8.5"
+    summary: |
+      Production + service provision — implemented under controlled
+      conditions: documented information defining characteristics of
+      products + activities + results; suitable monitoring +
+      measuring resources; monitoring + measurement at appropriate
+      stages; suitable infrastructure + environment; competence +
+      qualification of persons; validation + periodic revalidation
+      of processes where resulting output cannot be verified by
+      subsequent monitoring + measurement; preventing human error;
+      release + delivery + post-delivery activities.
+
+  - id: ISO9001-8.5.5
+    standard: ISO 9001:2015
+    section: "8.5.5"
+    summary: |
+      Post-delivery activities — determined by statutory + regulatory
+      requirements, potential undesired consequences of products,
+      nature + use + intended lifetime of products, customer
+      requirements, customer feedback. Includes warranty provisions,
+      contractual obligations such as maintenance services, final
+      disposal + recycling.
+
+  - id: ISO9001-8.7
+    standard: ISO 9001:2015
+    section: "8.7"
+    summary: |
+      Control of nonconforming outputs — identified + controlled to
+      prevent unintended use + delivery. Actions: correction,
+      segregation, containment, return + suspension of provision,
+      informing customer, obtaining authorization for acceptance
+      under concession. Documented information retained on
+      nonconformity + actions taken + concessions + authorities
+      that decided actions.
+
+  # === Performance evaluation (§9) ===
+
+  - id: ISO9001-9.1
+    standard: ISO 9001:2015
+    section: "9.1"
+    summary: |
+      Monitoring + measurement + analysis + evaluation — determine
+      what needs monitoring + measuring, methods, when, results-
+      analysis cadence. Evaluation of QMS performance + effectiveness.
+      Customer satisfaction (§9.1.2) monitored. Analysis +
+      evaluation results used as input to management review.
+
+  - id: ISO9001-9.2
+    standard: ISO 9001:2015
+    section: "9.2"
+    summary: |
+      Internal audit — conducted at planned intervals to provide
+      information on QMS conformance + effective implementation +
+      maintenance. Audit program planned, established, implemented,
+      maintained, considering importance of processes, changes,
+      previous results. Auditors objective + impartial; corrective
+      actions taken without undue delay; documented information
+      retained.
+
+  - id: ISO9001-9.3
+    standard: ISO 9001:2015
+    section: "9.3"
+    summary: |
+      Management review — top management reviews QMS at planned
+      intervals for continuing suitability, adequacy, effectiveness,
+      alignment with strategic direction. Inputs: status of actions
+      from prior reviews, changes in external + internal issues,
+      info on QMS performance + effectiveness (customer satisfaction,
+      objective achievement, process performance, conformity of
+      products, nonconformities + corrective actions, monitoring +
+      measurement results, audit results, supplier performance),
+      resource adequacy, effectiveness of actions on risks +
+      opportunities, opportunities for improvement.
+
+  # === Improvement (§10) ===
+
+  - id: ISO9001-10.2
+    standard: ISO 9001:2015
+    section: "10.2"
+    summary: |
+      Nonconformity + corrective action — when nonconformity occurs
+      (including from complaints): react, evaluate need for action
+      to eliminate causes, implement, review effectiveness, update
+      risks + opportunities, make changes to QMS if necessary.
+      Documented information retained on nature of NC + actions
+      taken + results.
+
+templates:
+
+  # === Context + leadership + policy ===
+
+  - path: templates/qms-policy/quality-policy.md
+    name: Quality policy (ISO 9001 §5.2)
+    addresses:
+      - ISO9001-4.1
+      - ISO9001-4.4
+      - ISO9001-5.1
+      - ISO9001-5.2
+
+  # === Planning + support + production via SOP family ===
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Standard operating procedure (ISO 9001 §6.1 risk-and-opportunity + §7.x support + §8.x operation)
+    addresses:
+      - ISO9001-6.1
+      - ISO9001-7.1
+      - ISO9001-7.1.5.2
+      - ISO9001-7.4
+      - ISO9001-7.5
+      - ISO9001-8.1
+      - ISO9001-8.5
+      - ISO9001-8.5.5
+      - ISO9001-8.7
+
+  # === Audit + management review ===
+
+  - path: templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md
+    name: Internal audit procedure (ISO 9001 §9.2)
+    addresses:
+      - ISO9001-9.2
+
+  - path: templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md
+    name: Management review (ISO 9001 §9.1 monitoring + measurement evaluation + §9.3 management review)
+    addresses:
+      - ISO9001-9.1
+      - ISO9001-9.3
+
+  # === Supplier controls ===
+
+  - path: templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md
+    name: Approved Supplier List (ISO 9001 §8.4)
+    addresses:
+      - ISO9001-8.4
+
+  - path: templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md
+    name: Supplier evaluation (ISO 9001 §8.4)
+    addresses:
+      - ISO9001-8.4
+
+  # === Corrective action + nonconformance ===
+
+  - path: .github/ISSUE_TEMPLATE/capa.yml
+    name: CAPA issue template (ISO 9001 §10.2 corrective action)
+    addresses:
+      - ISO9001-10.2
+
+  - path: .github/ISSUE_TEMPLATE/nonconformance.yml
+    name: Nonconformance report (ISO 9001 §8.7)
+    addresses:
+      - ISO9001-8.7

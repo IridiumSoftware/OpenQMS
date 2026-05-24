@@ -1,0 +1,86 @@
+# Open QMS — automotive CAL-2 class overlay (ISO/SAE 21434)
+# ----------------------------------------------------------
+# Composes with the automotive vertical to add ISO/SAE 21434
+# Cybersecurity Assurance Level 2 (CAL-2). CAL-2 applies when the
+# TARA identifies damage scenarios with mid-low impact or mid-low
+# feasibility combinations (per Annex E CAL determination matrix).
+#
+# Use via:
+#   openqms resolve --module automotive --module automotive-cal-2 ...
+#
+# CAL-2 specific rigor (delta from CAL-1 below and CAL-3 above):
+#  - ISO/SAE 21434 §6.4.7 + Annex C: independent cybersecurity
+#    assessment optional (not required); typically performed by a
+#    different team within the same organizational unit when
+#    invoked.
+#  - ISO/SAE 21434 §10 + §13: V&V includes baseline security
+#    functional testing + vulnerability scanning. Fuzz testing
+#    and penetration testing recommended but not required.
+#  - ISO/SAE 21434 §11: vulnerability monitoring with documented
+#    triage cadence (no formal response-time commitments).
+#  - Safety-security interaction: documented in the Cybersecurity
+#    Concept when the item is also ASIL-rated (typically ASIL-A or
+#    ASIL-B at CAL-2 level).
+
+name: automotive-cal-2-overlay
+version: 0.1.0
+
+standards:
+  - ISO/SAE 21434:2021
+
+clauses:
+
+  - id: CAL-2-applicability
+    standard: ISO/SAE 21434:2021
+    section: "Annex E (informative)"
+    summary: |
+      CAL-2 applicability gate — invoked when TARA's
+      impact-and-feasibility matrix yields CAL-2 (typically
+      moderate-impact / low-feasibility or low-impact /
+      moderate-feasibility damage scenarios). Documented in TARA.
+
+  - id: CAL-2-optional-independent-assessment
+    standard: ISO/SAE 21434:2021
+    section: "§6.4.7 + Annex C"
+    summary: |
+      Independent cybersecurity assessment OPTIONAL at CAL-2.
+      Adopter's CSMS specifies when to invoke; if invoked,
+      typically a different team within the same organizational
+      unit. Decision documented in the project Cybersecurity Plan.
+
+  - id: CAL-2-V-and-V-scanning
+    standard: ISO/SAE 21434:2021
+    section: "§10 + §13"
+    summary: |
+      V&V — CAL-2 includes baseline security functional testing
+      (CAL-1 baseline) plus vulnerability scanning of dependencies
+      and exposed interfaces. Fuzz testing and penetration testing
+      recommended but not required.
+
+  - id: CAL-2-monitoring-triage
+    standard: ISO/SAE 21434:2021
+    section: "§11"
+    summary: |
+      Continuous cybersecurity activities — CAL-2 requires
+      vulnerability monitoring with documented triage cadence
+      (e.g., "all new CVEs affecting the bill-of-materials
+      triaged within N business days"). No formal response-time
+      commitments for fix deployment.
+
+templates:
+
+  - path: templates/product-dhf/tara/TARA-TEMPLATE.md
+    name: TARA — CAL-2 determination
+    addresses:
+      - CAL-2-applicability
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Cybersecurity-plan SOP + vulnerability-monitoring triage SOP (CAL-2 scope)
+    addresses:
+      - CAL-2-optional-independent-assessment
+      - CAL-2-monitoring-triage
+
+  - path: templates/product-sw/test/SOFTWARE-TEST-PROTOCOL-TEMPLATE.md
+    name: Software test protocol — CAL-2 security functional + vulnerability scanning
+    addresses:
+      - CAL-2-V-and-V-scanning
