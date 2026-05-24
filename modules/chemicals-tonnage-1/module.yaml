@@ -1,0 +1,68 @@
+# Open QMS — REACH Tonnage Band ≥1 t/y class overlay
+# ----------------------------------------------------
+# Chemicals class overlay encoding REACH Annex VII baseline data
+# requirements for substances at ≥1 t/y per manufacturer/importer.
+# This is the entry tier — required for ALL non-exempt substances at
+# or above the 1 t/y threshold.
+#
+# Standards licensing: PUBLIC.
+
+name: chemicals-tonnage-1
+version: 0.1.0
+
+standards:
+  - EU REACH
+
+clauses:
+
+  - id: REACH-Annex-VII-baseline-information
+    standard: EU REACH
+    section: "Annex VII"
+    summary: |
+      Annex VII baseline information for substances manufactured/
+      imported ≥1 t/y. Per Section 7: physical-chemical properties
+      (melting point; boiling point; relative density; vapour
+      pressure; surface tension; water solubility; partition
+      coefficient n-octanol/water; flash point; flammability;
+      explosive properties; self-ignition temperature; oxidising
+      properties; particle size distribution). Per Section 8:
+      toxicological information (skin irritation/corrosion in vitro;
+      eye irritation in vitro; skin sensitisation; in vitro mutagenicity
+      — bacterial reverse mutation Ames + in vitro cytogenicity OR
+      micronucleus + in vitro gene-mutation mammalian cells; acute
+      toxicity — oral; reproductive/developmental toxicity screening
+      if any concerns from above). Per Section 9: ecotoxicological
+      information (short-term Daphnia toxicity; growth-inhibition
+      aquatic plants; biodegradation ready test).
+
+  - id: REACH-Art-12-registration-content-1-10t
+    standard: EU REACH
+    section: "Article 12(1)(b)"
+    summary: |
+      Registration content for 1-10 t/y range — technical dossier per
+      Article 10(a) including all Annex VI standard information
+      (identity + supply chain + classification + summary of
+      manufacture/use + brief exposure narrative + risk-management
+      guidance). Annex VII baseline mandatory; Annex VIII / IX / X
+      NOT triggered at this tonnage. Chemical Safety Report (CSR)
+      NOT required at 1-10 t/y (mandatory from ≥10 t/y).
+
+  - id: REACH-Annex-VII-data-waiving
+    standard: EU REACH
+    section: "Annex XI"
+    summary: |
+      Annex XI data-waiving — Annex VII (and higher) data may be waived
+      based on: scientifically unjustified; technically not possible;
+      study not necessary based on exposure; weight-of-evidence;
+      grouping + read-across (cross-reading from analogous substance);
+      QSAR + in silico methods. Waiving justification documented +
+      submitted; ECHA reviews validity.
+
+templates:
+
+  - path: templates/product-chemicals/reach/REACH-REGISTRATION-DOSSIER-TEMPLATE.md
+    name: REACH Registration Dossier — Tonnage Band ≥1 t/y subset (Annex VII baseline + waiving justifications + IUCLID Section 1-9 structure)
+    addresses:
+      - REACH-Annex-VII-baseline-information
+      - REACH-Art-12-registration-content-1-10t
+      - REACH-Annex-VII-data-waiving

@@ -1,0 +1,58 @@
+# Open QMS — REACH Tonnage Band ≥100 t/y class overlay
+# ------------------------------------------------------
+# Chemicals class overlay encoding REACH Annex IX data requirements
+# for substances at ≥100 t/y per manufacturer/importer. Adds to
+# Annex VIII (which implicitly includes Annex VII).
+#
+# Major cost step — sub-chronic 90-day repeat-dose + reproductive
+# screening + chronic ecotox come in here.
+#
+# Standards licensing: PUBLIC.
+
+name: chemicals-tonnage-100
+version: 0.1.0
+
+standards:
+  - EU REACH
+
+clauses:
+
+  - id: REACH-Annex-IX-incremental-data
+    standard: EU REACH
+    section: "Annex IX"
+    summary: |
+      Annex IX incremental data for substances manufactured/imported
+      ≥100 t/y (in addition to Annex VII + VIII). Per Section 8:
+      sub-chronic toxicity 90-day repeated dose; toxicokinetics
+      (extended); reproductive toxicity screening if not yet
+      addressed (OECD TG 421 or 422; OR EOGRTS OECD TG 443 may be
+      proposed). Per Section 9: long-term toxicity Daphnia 21-day;
+      long-term toxicity to fish (TG 210 ELS / TG 215 juvenile
+      growth OR TG 234 sexual development); toxicity to soil
+      organisms (acute earthworms + plants short-term + soil
+      micro-organisms); toxicity to sediment organisms if
+      bioavailable to sediment; toxicity to birds long-term where
+      relevant. Per Section 7: simulation testing on ultimate
+      degradation in surface water; biodegradation in soil; biotic
+      degradation in sediment; identification of degradation products.
+
+  - id: REACH-Annex-IX-test-proposal-mandatory
+    standard: EU REACH
+    section: "Article 10(a) + Annex IX column 1"
+    summary: |
+      Test proposal mechanism — Annex IX (and Annex X) data
+      requirements where vertebrate testing involved MUST be submitted
+      as TEST PROPOSALS, not as completed studies, with the
+      registration. ECHA evaluates proposals (Article 40) before
+      vertebrate test conducted. Substance Evaluation per Article 44
+      may also override default test set based on identified concern.
+      45-day public consultation on vertebrate test proposals per
+      Article 40(2).
+
+templates:
+
+  - path: templates/product-chemicals/reach/REACH-REGISTRATION-DOSSIER-TEMPLATE.md
+    name: REACH Registration Dossier — Tonnage Band ≥100 t/y (Annex VII + VIII + IX + test proposals for vertebrate studies per Article 40 mechanism)
+    addresses:
+      - REACH-Annex-IX-incremental-data
+      - REACH-Annex-IX-test-proposal-mandatory

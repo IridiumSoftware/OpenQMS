@@ -1,0 +1,67 @@
+# Open QMS — REACH Tonnage Band ≥10 t/y class overlay
+# -----------------------------------------------------
+# Chemicals class overlay encoding REACH Annex VIII data requirements
+# for substances at ≥10 t/y per manufacturer/importer. Adds to Annex VII
+# baseline AND triggers mandatory Chemical Safety Report (CSR).
+#
+# Standards licensing: PUBLIC.
+
+name: chemicals-tonnage-10
+version: 0.1.0
+
+standards:
+  - EU REACH
+
+clauses:
+
+  - id: REACH-Annex-VIII-incremental-data
+    standard: EU REACH
+    section: "Annex VIII"
+    summary: |
+      Annex VIII incremental data for substances manufactured/
+      imported ≥10 t/y (in addition to Annex VII). Per Section 8:
+      sub-acute (28-day) repeated dose toxicity — oral OR dermal OR
+      inhalation route depending on exposure scenario; reproductive/
+      developmental screening if not already covered by Annex VII;
+      toxicokinetics (basic). Per Section 9: short-term toxicity to
+      fish (Daphnia 21-day chronic NOT yet required); activated
+      sludge respiration inhibition. Per Section 7: hydrolysis as
+      function of pH; adsorption/desorption screening; degradation
+      via ready biodegradation extension.
+
+  - id: REACH-Art-14-CSR-mandatory-from-10t
+    standard: EU REACH
+    section: "Article 14"
+    summary: |
+      Chemical Safety Report (CSR) becomes MANDATORY at ≥10 t/y.
+      Per Annex I: human health hazard assessment (DNEL per relevant
+      population); environmental hazard assessment (PNEC per
+      compartment); PBT + vPvB assessment per Annex XIII; exposure
+      assessment if substance classified hazardous OR PBT/vPvB
+      (covering manufacture + each identified use + exposure
+      scenarios); risk characterisation (RCR < 1 = controlled).
+      CSR an annex to technical dossier + extended SDS exposure
+      scenarios derived from CSR.
+
+  - id: REACH-Art-31-extended-SDS-from-CSR
+    standard: EU REACH
+    section: "Article 31(7)"
+    summary: |
+      Extended Safety Data Sheet (eSDS) — when CSR required (≥10 t/y),
+      exposure scenarios from CSR annexed to SDS. eSDS distributed to
+      downstream users to support their own DU compliance per Title V.
+      Operational conditions + risk management measures from CSR
+      become contractual + traceable.
+
+templates:
+
+  - path: templates/product-chemicals/reach/REACH-REGISTRATION-DOSSIER-TEMPLATE.md
+    name: REACH Registration Dossier — Tonnage Band ≥10 t/y (Annex VII + VIII + Annex I CSR + extended SDS exposure-scenario annexes)
+    addresses:
+      - REACH-Annex-VIII-incremental-data
+      - REACH-Art-14-CSR-mandatory-from-10t
+
+  - path: templates/product-chemicals/sds/SAFETY-DATA-SHEET-TEMPLATE.md
+    name: Extended SDS (eSDS) — ≥10 t/y registrant + CSR-derived exposure-scenario annexes
+    addresses:
+      - REACH-Art-31-extended-SDS-from-CSR

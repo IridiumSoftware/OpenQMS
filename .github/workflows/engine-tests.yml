@@ -147,6 +147,20 @@ jobs:
           openqms validate --module pharma --module osha-hcs --module transport-hazmat
           # Chemicals + all chemicals-adjacent + full IMS — 13-module deepest-composite
           openqms validate --module chemicals --module osha-hcs --module transport-hazmat --module eu-biocides --module tsca-pfas --module iso-27001 --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000
+          # v0.38.0 — chemicals class overlays (6: SVHC + Authorisation + 4 tonnage bands)
+          openqms validate --module chemicals-svhc
+          openqms validate --module chemicals-authorisation
+          openqms validate --module chemicals-tonnage-1
+          openqms validate --module chemicals-tonnage-10
+          openqms validate --module chemicals-tonnage-100
+          openqms validate --module chemicals-tonnage-1000
+          openqms validate --module chemicals --module chemicals-svhc
+          openqms validate --module chemicals --module chemicals-authorisation
+          openqms validate --module chemicals --module chemicals-tonnage-10
+          openqms validate --module chemicals --module chemicals-tonnage-1000
+          openqms validate --module chemicals --module chemicals-svhc --module chemicals-authorisation --module chemicals-tonnage-1000
+          # Chemicals top-rigor mega-composite — vertical + SVHC + Authorisation + top tonnage + adjacent + full IMS (16-module new depth)
+          openqms validate --module chemicals --module chemicals-svhc --module chemicals-authorisation --module chemicals-tonnage-1000 --module osha-hcs --module transport-hazmat --module eu-biocides --module tsca-pfas --module iso-27001 --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000
 
       - name: Inspect registry (smoke check)
         run: openqms registry list

@@ -4,6 +4,54 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.38.0 DRAFT — 2026-05-24 — Chemicals class overlays (SVHC + Authorisation + 4 tonnage bands)
+
+**1 NEW entry** OQ-107. Spec total 90 → 91. Engine 0.37.0 → 0.38.0.
+
+6 chemicals class overlays shipped — the first chemicals class-overlay set, completing the chemicals-domain build-out alongside v0.36.0 vertical + v0.37.0 adjacent standalones.
+
+**chemicals-svhc** — REACH SVHC supply-chain + ECHA notification obligations
+- 5 clauses: Article 7(2) SVHC-in-articles ECHA notification (>1 t/y AND >0.1% w/w); Article 33(1) recipient communication; Article 33(2) consumer response 45 days; Waste Framework Directive (EU) 2018/851 Article 9(1)(i) SCIP database notification; Annex XV identification dossier
+- New template: `templates/product-chemicals/svhc/SVHC-COMMUNICATION-LETTER-TEMPLATE.md` (covers Article 33(1) + 33(2) + SCIP cross-reference + consumer-response 45-day handling)
+- SVHC Candidate List currently ~240 substances; refreshed ~2x/year — re-screen supply chain each refresh
+- *FCD* CJEU C-106/14 judgment — >0.1% threshold applies per-component, not per total mass of complex article
+
+**chemicals-authorisation** — REACH Title VII Articles 55-66 + Annex XIV
+- 6 clauses: Article 56 prohibition without authorisation; Article 60 grant (Adequate Control route vs. Socio-Economic route — Adequate Control NOT available for non-threshold-CMR/PBT/vPvB); Article 62 application content (CSR + AoA + Substitution Plan + SEA); Articles 65-66 holder labelling + downstream-user notification within 3 months; Article 61 review (report 18 months before period end); Annex XIV ~60 listed substances incl. phthalates DEHP/DBP/BBP/DIBP + chromates + lead chromate
+- New templates: `templates/product-chemicals/authorisation/REACH-AUTHORISATION-APPLICATION-TEMPLATE.md` (Article 62 full application with route selection per substance properties + fee structure + joint-application provisions) + `templates/product-chemicals/authorisation/SUBSTITUTION-PLAN-TEMPLATE.md` (Article 60(4)(c) with 10-action timetable + risk-management transition + contingencies)
+
+**chemicals-tonnage-1** — Annex VII baseline ≥1 t/y entry tier
+- 3 clauses: Annex VII baseline (Physico-Chemical + Toxicological screening + Ecotoxicological screening); Article 12(1)(b) registration content 1-10 t/y range (CSR NOT required); Annex XI data waiving
+- Reuses chemicals REACH dossier template with band-specific binding
+
+**chemicals-tonnage-10** — Annex VIII + CSR mandatory (major cost cliff)
+- 3 clauses: Annex VIII incremental (sub-acute 28-day RDT + reproductive screening + toxicokinetics basic + short-term fish + activated sludge resp + hydrolysis-vs-pH + adsorption + biodegradation extension); Article 14 CSR mandatory; Article 31(7) Extended SDS (eSDS) with CSR-derived exposure scenarios
+- Typical incremental cost: €30-100k CSR + €40-80k 28-day RDT + eSDS distribution coordination
+
+**chemicals-tonnage-100** — Annex IX + sub-chronic + reproductive + long-term ecotox
+- 2 clauses: Annex IX incremental (sub-chronic 90-day RDT + reproductive screening OECD TG 421/422 or EOGRTS + long-term Daphnia + fish + soil + sediment + bird ecotox + simulation degradation); Article 40 vertebrate test-proposal mechanism with 45-day public consultation
+- Typical incremental cost: €200-500k 90-day RDT + multi-year regulatory timeline
+
+**chemicals-tonnage-1000** — Annex X + chronic + carcinogenicity + EOGRTS (top tier)
+- 3 clauses: Annex X incremental (chronic 12-month RDT + 2-year carcinogenicity bioassay TG 451 + EOGRTS TG 443 full Cohort 1A/1B/2A/2B/3 + developmental second species + chronic multi-species ecotox + degradation-product fate); Article 40 vertebrate test proposals; Article 66 reminder that high tonnage increases Annex XIV migration vulnerability per Article 58 prioritisation
+- Typical incremental cost: €1.5-3M carcinogenicity + €1-2M EOGRTS + €300-700k chronic RDT + €200-500k chronic ecotox + 3-5 year vertebrate test-proposal timeline. SIEF joint submission essentially mandatory.
+
+No registry additions — all 6 overlays operate against EU REACH already registered at v0.36.0.
+
+Class-overlay count: 38 → 44 (chemicals first class-overlay set).
+
+CI extended (+12 validate steps including 16-module deepest-composite — chemicals + SVHC + Authorisation + tonnage-1000 + 4 adjacent + 8 cross-cutting overlays — beats prior 13-module record).
+
+108/108 pytest pass.
+
+Status counts: 6 `:verified` / 78 `:tested` / 7 `:argued` / 0 `:open` (total 91).
+
+**Tonnage-band semantics.** In practice tonnage bands are mutually exclusive per substance — a registrant uses ONE band at a time, with each higher band supersedes-and-includes lower bands. Open QMS module-union semantics correctly allow either compose-and-validate (16-module composite for documentation purposes) OR adopt-only-current-band (3-module composite chemicals + chemicals-svhc + chemicals-tonnage-10 typical for SMEs at the CSR-mandatory threshold).
+
+**Cumulative chemicals build-out v0.36-v0.38.** 11 chemicals-domain modules shipped across 3 releases: chemicals vertical (v0.36) + 4 adjacent standalones (v0.37) + 6 class overlays (v0.38) — discharges all chemicals-companion forward-work commitments through SVHC + Authorisation + tonnage-banded dossier structure. Per user direction: "do 1 and 2" — both groups now shipped.
+
+---
+
 ## v0.37.0 DRAFT — 2026-05-24 — Chemicals-adjacent standalones (OSHA HCS + transport HazMat + EU Biocides + TSCA PFAS)
 
 **1 NEW entry** OQ-106. Spec total 89 → 90. Engine 0.36.0 → 0.37.0.

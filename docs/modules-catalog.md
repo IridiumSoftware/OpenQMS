@@ -1,21 +1,21 @@
 # Modules catalog
 
-Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.37.0. Use this page to choose the modules for your scope.
+Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.38.0. Use this page to choose the modules for your scope.
 
 **Current scope:**
 
 | Dimension | Count |
 |---|---|
 | Verticals | **7** (medical-devices, aerospace, automotive, manufacturing, pharma, food-safety, chemicals) |
-| Class overlays | **38** across 5 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5) |
-| Cross-cutting overlays | **23** (iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, **osha-hcs, transport-hazmat, eu-biocides, tsca-pfas**) |
-| **Total modules** | **69** + general |
-| Registry standards | **~114** (mix of PUBLIC + commercial license; v0.37.0 +9 chemicals-adjacent) |
+| Class overlays | **44** across 6 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5 / **chemicals 6**: chemicals-svhc, chemicals-authorisation, chemicals-tonnage-1/10/100/1000) |
+| Cross-cutting overlays | **23** (iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas) |
+| **Total modules** | **75** + general |
+| Registry standards | **~114** (no new at v0.38.0; chemicals class overlays reuse existing EU REACH) |
 | Registry jurisdictions | **20** |
-| Document templates | **78+** (v0.37.0 +5 chemicals-adjacent: HazCom Written Program / multi-modal Shipping Paper / HMT Training Record / BPR Authorisation Application / TSCA PFAS Reporting Form) |
+| Document templates | **81+** (v0.38.0 +3 chemicals class-overlay: SVHC Communication Letter / REACH Authorisation Application / Substitution Plan) |
 | Example bundles | **12** (validated end-to-end with committed baseline matrices) |
-| Spec entries | **90** (0 `:open`) |
-| Deepest composition tested in CI | **13-module mega-composite** (chemicals + 4 adjacent + 8 cross-cutting) |
+| Spec entries | **91** (0 `:open`) |
+| Deepest composition tested in CI | **16-module mega-composite** (chemicals + SVHC + Authorisation + top tonnage + 4 adjacent + 8 cross-cutting) |
 
 **Three module types:**
 

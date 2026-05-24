@@ -6,20 +6,20 @@ Open QMS resolves a `(product, jurisdictions, standards, modules)` bundle into a
 
 The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD for enforcement, Git for the audit trail.
 
-## Current scope (v0.37.0)
+## Current scope (v0.38.0)
 
 | Dimension | Count |
 |---|---|
 | Verticals (regulated industries) | **7** — medical-devices, aerospace, automotive, manufacturing, pharma, food-safety, chemicals |
-| Class overlays (rigor-level + product-class) | **38** across 5 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5) |
-| Cross-cutting overlays | **23** — iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, **osha-hcs, transport-hazmat, eu-biocides, tsca-pfas** |
-| Registry — standards | **~114** (mix of public + commercial license; v0.37.0 +9: OSHA HCS + DOT HMR + IMDG + IATA DGR + ADR + RID + BPR + TSCA PFAS) |
+| Class overlays (rigor-level + product-class) | **44** across 6 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5 / **chemicals 6**) |
+| Cross-cutting overlays | **23** — iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas |
+| Registry — standards | **~114** (no new at v0.38.0; chemicals class overlays reuse existing EU REACH) |
 | Registry — jurisdictions | **20** (FDA / EMA / MHRA / WHO-PQ / Health Canada / EU MDR / PMDA / TGA / ANVISA / FAA / EASA / TCCA / NHTSA / UNECE / KBA / TC-MVS / FDA-Food / USDA-FSIS / EFSA / CFIA) |
-| Document templates | **78+** (v0.37.0 +5 chemicals-adjacent: HazCom Written Program + multi-modal Shipping Paper + HMT Training Record + BPR Authorisation Application + TSCA PFAS Reporting Form) |
+| Document templates | **81+** (v0.38.0 +3 chemicals class-overlay: SVHC Communication Letter + REACH Authorisation Application + Substitution Plan) |
 | Example bundles (validated end-to-end) | **12** |
-| Total modules | **69** + general |
-| Spec entries (status: 6 :verified / 77 :tested / 7 :argued / 0 :open) | **90** |
-| Deepest composition tested in CI | **13-module mega-composite** (chemicals + 4 adjacent + 8 cross-cutting) |
+| Total modules | **75** + general |
+| Spec entries (status: 6 :verified / 78 :tested / 7 :argued / 0 :open) | **91** |
+| Deepest composition tested in CI | **16-module mega-composite** (chemicals + SVHC + Authorisation + top tonnage + 4 adjacent + 8 cross-cutting) |
 
 The compose primitive validates 11-module composites: e.g., `pharma + pharma-sterile + pharma-biologics + atmp + iso-27001 + soc-2 + iso-31000 + iso-22301 + iso-14001 + iso-45001 + iso-50001` — the realistic shape for a clinical-stage biotech doing sterile ATMP manufacturing with full integrated management system + SOC 2 attestation + ISO 31000 risk framework.
 

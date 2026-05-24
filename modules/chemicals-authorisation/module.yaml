@@ -1,0 +1,119 @@
+# Open QMS — REACH Authorisation (Annex XIV) class overlay
+# ----------------------------------------------------------
+# Chemicals class overlay encoding REACH Title VII Authorisation
+# obligations (Articles 55-66) for substances listed on Annex XIV.
+#
+# Annex XIV listing means substance cannot be PLACED ON MARKET or
+# USED after the substance's sunset date without a specific
+# authorisation granted by the Commission (or a use covered by an
+# exemption per Article 56).
+#
+# Currently ~60 substances on Annex XIV; new SVHC candidates migrate
+# from Candidate List to Annex XIV via prioritisation per Article 58.
+#
+# Standards licensing: PUBLIC.
+
+name: chemicals-authorisation
+version: 0.1.0
+
+standards:
+  - EU REACH
+
+clauses:
+
+  - id: REACH-Art-56-prohibition-without-authorisation
+    standard: EU REACH
+    section: "Article 56"
+    summary: |
+      Prohibition — manufacturer/importer/downstream user shall not
+      place on the market or use a substance listed in Annex XIV
+      after the sunset date for a use unless: (a) Commission has
+      granted an authorisation for that use, OR (b) use is exempt
+      (Annex IV/V substances; use of substance in mixtures < 0.1%
+      w/w / lower threshold per Annex XIV entry; scientific R&D as
+      defined in Article 3(23); use in plant protection products /
+      biocidal products / human or veterinary medicinal products /
+      food contact materials / cosmetics where covered by other
+      regulation per Article 56(4)(5)).
+
+  - id: REACH-Art-60-grant-of-authorisation
+    standard: EU REACH
+    section: "Article 60"
+    summary: |
+      Grant of authorisation — Commission decides per opinion of RAC
+      (Risk Assessment Committee) + SEAC (Socio-Economic Analysis
+      Committee). Granted if (i) adequate-control route — risk to
+      human health/environment is adequately controlled per Annex I
+      §6.4 (only for non-threshold-CMR/PBT/vPvB applicants do NOT
+      use this route), OR (ii) socio-economic route — socio-economic
+      benefits outweigh risk AND no suitable alternative substances or
+      technologies. Time-limited review period + monitoring conditions
+      typically attached.
+
+  - id: REACH-Art-62-application-content
+    standard: EU REACH
+    section: "Article 62"
+    summary: |
+      Application content per Article 62(4): chemical safety report
+      (CSR per Annex I covering use(s) applied for); analysis of
+      alternatives (AoA) considering risks + technical + economic
+      feasibility, including R&D activities; if applicable,
+      substitution plan including a timetable for actions per Article
+      60(4)(c); socio-economic analysis (SEA) per Annex XVI if used
+      as basis for granting. ECHA fee payable per Article 73(2).
+
+  - id: REACH-Art-65-66-authorisation-holder-obligations
+    standard: EU REACH
+    section: "Articles 65 + 66"
+    summary: |
+      Authorisation holder obligations — Article 65: authorisation
+      number on label (along with concentration). Article 66:
+      downstream users using authorised substance shall notify ECHA
+      within 3 months of first supply of the substance to them.
+      Information collected by ECHA in dedicated database (publicly
+      searchable).
+
+  - id: REACH-Art-61-review-of-authorisation
+    standard: EU REACH
+    section: "Article 61"
+    summary: |
+      Review of authorisation — time-limited; review report submitted
+      18 months before review period expires. Review may result in:
+      continued authorisation, modified conditions, or withdrawal.
+      Commission may review at any time if (i) circumstances change
+      materially affecting risk/socio-economic balance, (ii) new info
+      on alternatives becomes available.
+
+  - id: REACH-Annex-XIV-listed-substances
+    standard: EU REACH
+    section: "Annex XIV"
+    summary: |
+      Annex XIV currently lists ~60 substances. Each entry specifies:
+      sunset date; latest application date (18 months before sunset);
+      review periods. Migration from Candidate List driven by
+      Article 58 prioritisation (volume + dispersive use + alternatives
+      availability). High-profile entries include phthalates (DEHP/
+      DBP/BBP/DIBP); short-chain chlorinated paraffins; chromium VI
+      compounds (chromates, chromium trioxide); lead chromate.
+
+templates:
+
+  - path: templates/product-chemicals/authorisation/REACH-AUTHORISATION-APPLICATION-TEMPLATE.md
+    name: REACH Authorisation Application (Article 62 — CSR + AoA + Substitution Plan + SEA + applicant info; submission via REACH-IT)
+    addresses:
+      - REACH-Art-60-grant-of-authorisation
+      - REACH-Art-62-application-content
+      - REACH-Annex-XIV-listed-substances
+
+  - path: templates/product-chemicals/authorisation/SUBSTITUTION-PLAN-TEMPLATE.md
+    name: Substitution Plan (Article 60(4)(c) — alternatives R&D programme + risk-management transition + timetable for substitution)
+    addresses:
+      - REACH-Art-60-grant-of-authorisation
+      - REACH-Art-62-application-content
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Annex XIV monitoring + downstream-user Article 66 notification + Article 65 labelling + Article 61 review-report preparation SOPs
+    addresses:
+      - REACH-Art-56-prohibition-without-authorisation
+      - REACH-Art-65-66-authorisation-holder-obligations
+      - REACH-Art-61-review-of-authorisation

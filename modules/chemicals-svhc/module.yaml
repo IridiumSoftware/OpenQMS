@@ -1,0 +1,98 @@
+# Open QMS — REACH SVHC class overlay
+# -------------------------------------
+# Chemicals class overlay encoding Substance of Very High Concern (SVHC)
+# candidate-list communication + notification obligations under REACH.
+# Applies to any chemicals adopter whose substances or articles contain
+# substances on the SVHC Candidate List per REACH Article 59.
+#
+# SVHC scope (REACH Article 57):
+#   (a) CMR Category 1A or 1B
+#   (b) PBT (Persistent + Bioaccumulative + Toxic per Annex XIII)
+#   (c) vPvB (very Persistent + very Bioaccumulative per Annex XIII)
+#   (d) Equivalent level of concern — endocrine disruptors etc.
+#
+# Candidate List currently ~240 substances; updated 2x/year by ECHA.
+# Inclusion triggers communication obligations + future Authorisation
+# candidacy (Annex XIV migration).
+#
+# Standards licensing: PUBLIC (REACH + ECHA Candidate List public).
+
+name: chemicals-svhc
+version: 0.1.0
+
+standards:
+  - EU REACH
+
+clauses:
+
+  - id: REACH-Art-7-2-SVHC-in-articles-notification
+    standard: EU REACH
+    section: "Article 7(2)"
+    summary: |
+      Notification of SVHC in articles to ECHA — required when (i)
+      substance present in articles in quantities >1 t/y per producer/
+      importer AND (ii) substance present in those articles above 0.1%
+      w/w threshold. Notification within 6 months of inclusion on
+      Candidate List. Exemption per Article 7(3) if exposure to humans
+      or environment during normal/reasonably foreseeable use can be
+      excluded (rare; documented justification required).
+
+  - id: REACH-Art-33-1-SVHC-communication-to-recipients
+    standard: EU REACH
+    section: "Article 33(1)"
+    summary: |
+      Supply-chain communication to recipients of articles — supplier
+      of article containing SVHC at >0.1% w/w shall provide recipient
+      with information available to the supplier sufficient for safe
+      use, AT MINIMUM the name of the substance. Recipient = industrial
+      or professional user OR distributor (NOT consumer). Triggered
+      automatically on Candidate List inclusion — no exemption.
+
+  - id: REACH-Art-33-2-SVHC-communication-to-consumers
+    standard: EU REACH
+    section: "Article 33(2)"
+    summary: |
+      Consumer request for SVHC information — on request from a
+      consumer, supplier of article containing SVHC at >0.1% w/w shall
+      provide information available + sufficient for safe use, AT
+      MINIMUM the substance name, within 45 calendar days of request,
+      free of charge.
+
+  - id: REACH-Art-7-6-SCIP-notification
+    standard: EU REACH
+    section: "Waste Framework Directive (EU) 2018/851 Article 9(1)(i)"
+    summary: |
+      SCIP database notification — under Waste Framework Directive
+      (EU) 2018/851 (transposed into national law by Member States),
+      suppliers of articles containing SVHC at >0.1% w/w must notify
+      ECHA's SCIP (Substances of Concern In articles, as such or in
+      complex objects (Products)) database. Effective since 2021-01-05.
+      Article identity + SVHC location + concentration range + safe-use
+      info. Public-searchable (with CBI claims processed).
+
+  - id: REACH-Annex-XV-SVHC-identification-dossier
+    standard: EU REACH
+    section: "Annex XV (when proposing SVHC identification)"
+    summary: |
+      Annex XV dossier — required when proposing a substance for SVHC
+      identification (Article 59(3)). Dossier proposes the substance,
+      hazard assessment, exposure assessment for human + environment,
+      socioeconomic analysis of alternatives. Submitted by Member State
+      Competent Authority or ECHA at Commission request. Public
+      consultation 45 days. Member State Committee opinion + ECHA
+      Executive Director decision on Candidate List inclusion.
+
+templates:
+
+  - path: templates/product-chemicals/svhc/SVHC-COMMUNICATION-LETTER-TEMPLATE.md
+    name: SVHC Article 33 Communication Letter (Article 33(1) recipient + 33(2) consumer response + SCIP database notification record)
+    addresses:
+      - REACH-Art-33-1-SVHC-communication-to-recipients
+      - REACH-Art-33-2-SVHC-communication-to-consumers
+      - REACH-Art-7-6-SCIP-notification
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: SVHC monitoring + Article 7(2) notification SOP (Candidate List 2x/year refresh + supply-chain re-screening + 6-month notification window per inclusion + SCIP database submission workflow)
+    addresses:
+      - REACH-Art-7-2-SVHC-in-articles-notification
+      - REACH-Annex-XV-SVHC-identification-dossier

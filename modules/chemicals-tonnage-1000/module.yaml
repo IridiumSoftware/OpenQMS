@@ -1,0 +1,70 @@
+# Open QMS — REACH Tonnage Band ≥1000 t/y class overlay
+# -------------------------------------------------------
+# Chemicals class overlay encoding REACH Annex X data requirements
+# for substances at ≥1000 t/y per manufacturer/importer. Top tonnage
+# tier — full vertebrate test set including carcinogenicity +
+# multi-generation reproductive + chronic.
+#
+# Massive cost step. Joint submission via SIEF essentially mandatory
+# at this tonnage to share vertebrate-data costs.
+#
+# Standards licensing: PUBLIC.
+
+name: chemicals-tonnage-1000
+version: 0.1.0
+
+standards:
+  - EU REACH
+
+clauses:
+
+  - id: REACH-Annex-X-incremental-data
+    standard: EU REACH
+    section: "Annex X"
+    summary: |
+      Annex X incremental data for substances manufactured/imported
+      ≥1000 t/y (in addition to Annex VII + VIII + IX). Per Section 8:
+      chronic toxicity (12-month repeated dose); carcinogenicity (2-
+      year rodent bioassay per OECD TG 451 unless waived by
+      mechanistic data); extended one-generation reproductive
+      toxicity (OECD TG 443 with full Cohort 1A + 1B + 2A + 2B + 3
+      depending on triggers); developmental toxicity in a second
+      species; toxicokinetics (full). Per Section 9: long-term
+      toxicity to sediment organisms; long-term toxicity to soil
+      organisms; chronic toxicity to fish in additional species or
+      life stages if triggered; sediment-water + soil-organism
+      bioaccumulation if highly bioaccumulative. Per Section 7:
+      additional fate studies on degradation products.
+
+  - id: REACH-Art-40-vertebrate-test-proposals
+    standard: EU REACH
+    section: "Article 40"
+    summary: |
+      Vertebrate test proposals — at this tonnage, all Annex X
+      vertebrate testing MUST be proposed, not conducted before
+      registration. ECHA reviews; 45-day public consultation; may
+      modify proposed test design; may require additional studies
+      under Article 44 substance evaluation. Joint submission via SIEF
+      essentially mandatory to share costs (single study set covers
+      all joint registrants per Article 11).
+
+  - id: REACH-Art-66-downstream-user-Authorisation-notification
+    standard: EU REACH
+    section: "Article 66"
+    summary: |
+      Note: even at ≥1000 t/y, downstream-user Authorisation
+      notification under Article 66 stays the same as lower tonnages
+      — within 3 months of first supply of an authorised Annex XIV
+      substance. Included here as reminder that high tonnage does
+      NOT escape Authorisation regime; rather it INCREASES
+      vulnerability to Article 58 prioritisation for Annex XIV
+      migration.
+
+templates:
+
+  - path: templates/product-chemicals/reach/REACH-REGISTRATION-DOSSIER-TEMPLATE.md
+    name: REACH Registration Dossier — Tonnage Band ≥1000 t/y (full Annex VII + VIII + IX + X; vertebrate test proposals for chronic + carcinogenicity + EOGRTS; SIEF joint submission essentially mandatory)
+    addresses:
+      - REACH-Annex-X-incremental-data
+      - REACH-Art-40-vertebrate-test-proposals
+      - REACH-Art-66-downstream-user-Authorisation-notification
