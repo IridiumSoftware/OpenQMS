@@ -15,13 +15,13 @@ Current state + priority stack. Read this first every session. For claim status,
 | `:proved` | 0 | — |
 | `:verified` | 0 | — |
 | `:verified` | 6 | Invariant (2, OQ-001 + OQ-002) · Architecture (4, OQ-010 + OQ-011 + OQ-013 + OQ-015) |
-| `:tested` | 62 | Architecture (2, OQ-012 + OQ-014) · Substrate (3) · Workflow (9) · Module (39, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-091) · Gap (9, OQ-060 + OQ-061 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-068 + OQ-069 + OQ-080) |
+| `:tested` | 70 | Architecture (2, OQ-012 + OQ-014) · Substrate (3) · Workflow (9) · Module (45, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-096 + OQ-098) · Gap (11, OQ-060 + OQ-061 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-068 + OQ-069 + OQ-080 + OQ-097 + OQ-099) |
 | `:benchmarked` | 0 | — |
 | `:argued` | 7 | Invariant (1, OQ-003) · Substrate (2) · Licensing (2) · Gap (2, OQ-062 + OQ-067) |
 | `:open` | 0 | — |
-| **Total** | **75** | — |
+| **Total** | **83** | — |
 
-Counts: 6 + 62 + 7 + 0 = 75 ✓. **HSE + energy cross-cutting overlays at v0.18.0.** 3 NEW Module-tier entries: OQ-089 ISO 14001 (environmental — aspects register + significance criteria); OQ-090 ISO 45001 (OH&S — HIRA with worker consultation per §5.4 + hierarchy of controls); OQ-091 ISO 50001 (energy — uniquely mandates calculated EnB baseline). Cross-cutting overlay set: 2 → 5 (now iso-27001 + regulated-ai + iso-14001 + iso-45001 + iso-50001). 6-module everything-shop composite (manufacturing + all 5 cross-cutting overlays) validates. Total module-tier entries 36 → 39.
+Counts: 6 + 70 + 7 + 0 = 83 ✓. **Latest at v0.25.0**: 15 standalone templates shipped across 3 groups; OQ-099 NEW `:tested` (Gap-tier; templates ship standalone — bindings forward work). Template count 54 → 69. 3 NEW Module-tier entries: OQ-089 ISO 14001 (environmental — aspects register + significance criteria); OQ-090 ISO 45001 (OH&S — HIRA with worker consultation per §5.4 + hierarchy of controls); OQ-091 ISO 50001 (energy — uniquely mandates calculated EnB baseline). Cross-cutting overlay set: 2 → 5 (now iso-27001 + regulated-ai + iso-14001 + iso-45001 + iso-50001). 6-module everything-shop composite (manufacturing + all 5 cross-cutting overlays) validates. Total module-tier entries 36 → 39.
 
 **Phase 0 round-out complete (v0.2.1 → v0.3.0).** P5, P6, P7 all closed. **Phase 1 mostly closed.** P1.1 at v0.4.0; P1.2 at v0.5.0. Remaining Phase 1: P1.3 (re-resolution on mutation, OQ-015 + OQ-065). P8 (Part 11 §11.50 prototype, OQ-060) and continued module-coverage population remain.
 
