@@ -1,0 +1,87 @@
+# Open QMS — CMMC 2.0 cross-cutting overlay
+# ------------------------------------------
+# Cybersecurity Maturity Model Certification 2.0. Per 32 CFR Part
+# 170 final rule (Dec 2024) with phased rollout through 2025-2028.
+# Required for DoD contractors handling FCI (Federal Contract
+# Information) and/or CUI. Composes naturally with defense-cui
+# overlay (NIST SP 800-171 baseline) — CMMC provides the
+# certification verification layer.
+
+name: cmmc-overlay
+version: 0.1.0
+
+standards:
+  - CMMC 2.0
+
+clauses:
+
+  - id: CMMC-Level-1-FCI
+    standard: CMMC 2.0
+    section: "Level 1"
+    summary: |
+      Level 1 (Foundational) — 17 basic safeguarding practices from
+      FAR 52.204-21. Required for contractors handling FCI (Federal
+      Contract Information). Annual self-assessment + senior
+      affirmation. No CUI handling at Level 1.
+
+  - id: CMMC-Level-2-CUI
+    standard: CMMC 2.0
+    section: "Level 2"
+    summary: |
+      Level 2 (Advanced) — 110 practices aligned with NIST SP
+      800-171 Rev 3. Required for most contractors handling CUI.
+      Triennial third-party certification by C3PAO (Certified
+      Third Party Assessor Organization) for contracts involving
+      CUI critical to national security; self-assessment with
+      senior affirmation for select contracts where DoD permits.
+
+  - id: CMMC-Level-3-Advanced
+    standard: CMMC 2.0
+    section: "Level 3"
+    summary: |
+      Level 3 (Expert) — Level 2 controls plus 24 additional
+      practices from NIST SP 800-172. Required for contractors
+      handling the most sensitive CUI for highest-priority DoD
+      programs. Triennial government assessment (not C3PAO).
+
+  - id: CMMC-C3PAO-assessment
+    standard: CMMC 2.0
+    section: "Assessment Process"
+    summary: |
+      C3PAO assessment process for Level 2 — engagement +
+      readiness review + assessment + QA + Cyber-AB authorization
+      + DoD upload. Lead assessors must be CCP / CCA / CCAI
+      certified. Assessment results posted to SPRS + eMASS.
+
+  - id: CMMC-POAM-allowance
+    standard: CMMC 2.0
+    section: "POAM allowance"
+    summary: |
+      POAM (Plan of Action + Milestones) allowance — limited POAM
+      acceptable for some Level 2 controls; specific high-value
+      controls (e.g., MFA + FIPS-validated crypto) cannot be
+      POAMed (must be fully implemented). 180-day remediation
+      maximum for POAMed items.
+
+  - id: CMMC-phased-rollout
+    standard: CMMC 2.0
+    section: "(implementation timeline)"
+    summary: |
+      Phased rollout — CMMC requirements appear in DoD solicitations
+      progressively per DFARS 252.204-7021 implementation schedule:
+      Phase 1 (year 1) limited; Phase 2 (year 2) Level 2 self-
+      assessment broader; Phase 3 (year 3) Level 2 C3PAO + Level 3;
+      Phase 4 (year 4+) full rollout. Track DFARS clause inclusion
+      per contract.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: CMMC SOPs (Level 1/2/3 scope + C3PAO assessment + POAM allowance + phased rollout tracking + SPRS/eMASS reporting)
+    addresses:
+      - CMMC-Level-1-FCI
+      - CMMC-Level-2-CUI
+      - CMMC-Level-3-Advanced
+      - CMMC-C3PAO-assessment
+      - CMMC-POAM-allowance
+      - CMMC-phased-rollout

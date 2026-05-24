@@ -1,0 +1,74 @@
+# Open QMS — TISAX cross-cutting overlay
+# ---------------------------------------
+# Trusted Information Security Assessment Exchange — automotive
+# industry-specific information security framework based on VDA-ISA
+# (Verband der Automobilindustrie Information Security Assessment).
+# Required by most German + European OEMs for Tier-1+ suppliers
+# handling customer-proprietary information (design data, prototype
+# data, vehicle test data).
+
+name: tisax-overlay
+version: 0.1.0
+
+standards:
+  - TISAX
+
+clauses:
+
+  - id: TISAX-IS-management
+    standard: TISAX
+    section: "VDA-ISA — Information Security Management section"
+    summary: |
+      Information security management — ISMS aligned with ISO 27001
+      principles but with automotive-supply-chain-specific control
+      catalog. Includes governance + risk management + policy +
+      organizational + operational controls.
+
+  - id: TISAX-prototype-protection
+    standard: TISAX
+    section: "VDA-ISA — Prototype Protection section"
+    summary: |
+      Prototype protection — automotive-supply-chain-specific
+      controls for protecting pre-series prototypes + concept
+      vehicles + camouflaged test vehicles from unauthorized
+      disclosure (photography + leakage). Physical + procedural
+      + personnel controls.
+
+  - id: TISAX-data-protection
+    standard: TISAX
+    section: "VDA-ISA — Data Protection section"
+    summary: |
+      Data protection — GDPR-aligned data-protection controls for
+      personal data processed in automotive supply-chain context
+      (customer/dealer/owner data; test-vehicle owner data).
+
+  - id: TISAX-assessment-objectives
+    standard: TISAX
+    section: "TISAX Assessment Objectives + Levels"
+    summary: |
+      Assessment objectives + levels — TISAX label scopes assessed:
+      Info High / Info Very High (information security); Prototype
+      Protection; Data Protection (GDPR). Assessment Level (AL) 1
+      = self-assessment, AL 2 = remote-document review, AL 3 = full
+      onsite assessment. Most OEM contracts require AL 2 or AL 3.
+
+  - id: TISAX-assessor-exchange
+    standard: TISAX
+    section: "ENX Portal"
+    summary: |
+      Assessor + exchange — assessments performed by ENX-approved
+      audit providers. Results published on the ENX Portal +
+      shareable with multiple customers + recipients via the
+      exchange mechanism (single assessment serves multiple OEMs).
+      Certificate / label valid 3 years.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: TISAX SOPs (ISMS + Prototype Protection + Data Protection per VDA-ISA + assessment-objective scoping + ENX assessor coordination)
+    addresses:
+      - TISAX-IS-management
+      - TISAX-prototype-protection
+      - TISAX-data-protection
+      - TISAX-assessment-objectives
+      - TISAX-assessor-exchange

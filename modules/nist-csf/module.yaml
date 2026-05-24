@@ -1,0 +1,90 @@
+# Open QMS — NIST CSF v2.0 cross-cutting overlay
+# -----------------------------------------------
+# NIST Cybersecurity Framework v2.0 (February 2024). General-purpose
+# cybersecurity framework widely adopted across US public + private
+# sector. v2.0 added the GOVERN function (6 functions total) and
+# expanded scope beyond critical infrastructure.
+
+name: nist-csf-overlay
+version: 0.1.0
+
+standards:
+  - NIST CSF 2.0
+
+clauses:
+
+  - id: NIST-CSF-Govern
+    standard: NIST CSF 2.0
+    section: "GOVERN (GV)"
+    summary: |
+      Govern (new in v2.0) — organizational context + risk management
+      strategy + roles/responsibilities + policies + cybersecurity
+      supply-chain risk management (C-SCRM) + oversight. Establishes
+      + monitors + improves the org's cybersecurity risk management
+      strategy + expectations + policy.
+
+  - id: NIST-CSF-Identify
+    standard: NIST CSF 2.0
+    section: "IDENTIFY (ID)"
+    summary: |
+      Identify — asset management + business environment + risk
+      assessment + improvement. Understand cybersecurity risks
+      to systems + people + assets + data + capabilities.
+
+  - id: NIST-CSF-Protect
+    standard: NIST CSF 2.0
+    section: "PROTECT (PR)"
+    summary: |
+      Protect — identity management + authentication + access
+      control + awareness + training + data security + platform
+      security + technology infrastructure resilience. Safeguards
+      to ensure delivery of critical services.
+
+  - id: NIST-CSF-Detect
+    standard: NIST CSF 2.0
+    section: "DETECT (DE)"
+    summary: |
+      Detect — continuous monitoring + adverse event analysis.
+      Discover + analyze cybersecurity events to find anomalies +
+      indicators of compromise + adverse events that may
+      compromise systems.
+
+  - id: NIST-CSF-Respond
+    standard: NIST CSF 2.0
+    section: "RESPOND (RS)"
+    summary: |
+      Respond — incident management + analysis + response
+      reporting + communication + mitigation. Take action regarding
+      a detected cybersecurity incident.
+
+  - id: NIST-CSF-Recover
+    standard: NIST CSF 2.0
+    section: "RECOVER (RC)"
+    summary: |
+      Recover — incident recovery plan execution + communication.
+      Restore assets + operations affected by a cybersecurity
+      incident; lessons learned.
+
+  - id: NIST-CSF-Profiles-Tiers
+    standard: NIST CSF 2.0
+    section: "Profiles + Tiers"
+    summary: |
+      Profiles + Tiers — Organizational Profile describes current
+      + target cybersecurity posture; gap analysis between Current
+      Profile + Target Profile drives improvement priorities.
+      Tiers (Partial / Risk Informed / Repeatable / Adaptive)
+      describe the degree to which cybersecurity risk management
+      practices exhibit characteristics defined in the Framework.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: NIST CSF SOPs (6 functions — Govern + Identify + Protect + Detect + Respond + Recover — + Profile/Tier assessment)
+    addresses:
+      - NIST-CSF-Govern
+      - NIST-CSF-Identify
+      - NIST-CSF-Protect
+      - NIST-CSF-Detect
+      - NIST-CSF-Respond
+      - NIST-CSF-Recover
+      - NIST-CSF-Profiles-Tiers

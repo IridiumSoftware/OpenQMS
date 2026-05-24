@@ -412,6 +412,15 @@ A spec entry may have status `:proved` only if evidence type is `lean-proved`, `
 - **Claim:** Open QMS ships a regulated-AI cross-cutting overlay at `modules/regulated-ai/module.yaml` (version 0.1.0). Composes with ANY vertical regulatory module (medical-devices today; future fintech / automotive / employment / education AI verticals later). 13 clauses: NIST AI RMF 1.0 four functions (Govern, Map, Measure, Manage); EU AI Act Chapter III §2 high-risk AI requirements (Articles 9-15); ISO/IEC 42001:2023 AIMS (consolidated); ISO/IEC 23894:2023 AI risk management guidance. Ships 2 new templates: AI System Card / Model Card (Mitchell et al. 2019 extended with EU AI Act + IMDRF SaMD) and AI Impact Assessment (Article 9 + Article 14 + Article 27 + NIST AI RMF Govern/Measure/Manage). Existing templates gain AI bindings: RMF (ISO 23894), quality-policy (ISO 42001), SAD (Article 15), STP (Article 10), TFI (Article 12).
 - **Notes:** Shipped at v0.12.0 (commit `3e231d5`). Registry addition: ISO/IEC 23894:2023 (other AI standards already registered as roadmap entries at v0.5.0). Overlay's clauses primarily target EU AI Act *high-risk* AI scope (Annex III); limited-risk and minimal-risk scope a subset.
 
+### OQ-104 — Cross-cutting overlay batch — IS / governance / compliance / resilience / DoD-CUI (11)
+
+- **Tier:** Module
+- **Evidence type:** example-tested
+- **Status:** :tested
+- **Depends_on:** OQ-011, OQ-012, OQ-014
+- **Claim:** 11 new cross-cutting overlays shipped across 3 release groups: **v0.31.0 IS+governance (5)** — `soc-2` (AICPA Trust Services Criteria 2017; Common + Security mandatory + Availability/Processing-Integrity/Confidentiality/Privacy optional; Type I vs. Type II); `pci-dss` (PCI DSS v4.0 across 12 requirements + 6 goals; CDE scoping + v4.0 Customized Approach innovation); `hitrust-csf` (HITRUST CSF v11.x; 19 domains + multi-framework mapping across HIPAA + HITECH + ISO 27001 + NIST SP 800-53 + PCI DSS + GDPR); `nist-csf` (NIST CSF v2.0; 6 functions incl. new Govern; Profiles + Tiers); `iso-31000` (the meta-framework — Principles + Framework + Process; unifies domain-specific risk standards already in Open QMS like ICH Q9 + HARA + TARA + FHA + HACCP). **v0.32.0 compliance + resilience (4)** — `iso-37301` (Compliance Management — replaces ISO 19600; broader than ISO 37001 anti-bribery; covers ALL obligations); `dora` (EU Regulation 2022/2554 effective January 17, 2025; 6 chapters incl. 4h/72h/1mo incident-reporting windows + TLPT TIBER-EU + Article 30 mandatory contractual + CTPP designation); `eu-gpsr` (EU GPSR 2023/988 effective December 13, 2024 — replaces GPSD; consumer products; Safety Gate (formerly RAPEX) notification; online marketplace 3-working-day takedown); `tisax` (automotive supply-chain IS based on VDA-ISA v6.0; Information Security + Prototype Protection + Data Protection labels; AL 1/2/3 assessment levels; ENX Portal). **v0.33.0 US DoD CUI (2)** — `defense-cui` (DFARS 252.204-7012 + NIST SP 800-171 Rev 3 May 2024; 14 control families + SSP + POAM + SPRS scoring + 72h cyber incident reporting to DIBNet); `cmmc` (CMMC 2.0 per 32 CFR Part 170 final rule Dec 2024; Levels 1/2/3 with C3PAO certification for Level 2 CUI national-security-critical; phased rollout through 2028). **11-module mega composite validates** (new depth record): pharma + pharma-sterile + pharma-biologics + atmp + iso-27001 + soc-2 + iso-31000 + iso-22301 + iso-14001 + iso-45001 + iso-50001.
+- **Notes:** Shipped at v0.31.0 + v0.32.0 + v0.33.0 (engine 0.30.0 → 0.33.0). Registry +12 standards (mix of PUBLIC + commercial license). **Cross-cutting overlay count: 8 → 19** (added soc-2, pci-dss, hitrust-csf, nist-csf, iso-31000, iso-37301, dora, eu-gpsr, tisax, defense-cui, cmmc). Annex-SL-aligned standards (iso-37301) compose cleanly with the 7 prior Annex-SL overlays. ISO 31000 is the META-framework unifying all domain-specific risk standards already in the project.
+
 ### OQ-101 — Pharma class overlay batch (5)
 
 - **Tier:** Module
@@ -834,11 +843,11 @@ A spec entry may have status `:proved` only if evidence type is `lean-proved`, `
 |---|---|
 | `:proved` | 0 |
 | `:verified` | 6 |
-| `:tested` | 74 |
+| `:tested` | 75 |
 | `:benchmarked` | 0 |
 | `:argued` | 7 |
 | `:open` | 0 |
-| **Total entries** | **87** |
+| **Total entries** | **88** |
 
 **Zero `:open` entries as of v0.8.0.** Every spec claim now carries at least manual evidence (`:argued`) or mechanical evidence (`:tested`). The remaining `:argued` entries are honest-effort items (module-coverage population, manual-only-by-nature licensing claims, partially-mechanized substrate claims) — none of them are "we haven't started yet."
 

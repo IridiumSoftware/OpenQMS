@@ -1,0 +1,94 @@
+# Open QMS — DORA cross-cutting overlay
+# --------------------------------------
+# Digital Operational Resilience Act (Regulation (EU) 2022/2554).
+# Effective January 17, 2025. Applies to EU financial entities +
+# their ICT third-party service providers. Covers ICT risk
+# management + ICT-related incident reporting + digital operational
+# resilience testing + ICT third-party risk management + information
+# + intelligence sharing.
+
+name: dora-overlay
+version: 0.1.0
+
+standards:
+  - EU DORA
+
+clauses:
+
+  - id: DORA-Chapter-II-ICT-risk
+    standard: EU DORA
+    section: "Chapter II (Articles 5-16)"
+    summary: |
+      ICT risk management framework — establish + maintain a sound
+      ICT risk management framework with sound + comprehensive +
+      well-documented strategies + policies + procedures + ICT
+      protocols + tools to address ICT risk. Governance arrangements
+      including management body responsibility. Identification of
+      ICT-supported business functions + their dependencies on ICT
+      assets + criticality.
+
+  - id: DORA-Chapter-III-incident-reporting
+    standard: EU DORA
+    section: "Chapter III (Articles 17-23)"
+    summary: |
+      ICT-related incident management + classification + reporting —
+      classify ICT-related incidents using common criteria (impact +
+      scope + duration + criticality + economic impact + reputational
+      impact); report MAJOR ICT-related incidents to competent
+      authorities (initial notification within 4 hours of
+      classification; intermediate reports within 72 hours; final
+      report within 1 month).
+
+  - id: DORA-Chapter-IV-resilience-testing
+    standard: EU DORA
+    section: "Chapter IV (Articles 24-27)"
+    summary: |
+      Digital operational resilience testing — programme of regular
+      ICT-related testing per risk profile; advanced threat-led
+      penetration testing (TLPT) for significant ICT third-party
+      service providers every 3 years (TIBER-EU framework). Tests
+      conducted by independent + competent testers.
+
+  - id: DORA-Chapter-V-third-party-risk
+    standard: EU DORA
+    section: "Chapter V (Articles 28-44)"
+    summary: |
+      ICT third-party risk management — register of information +
+      contractual arrangements with ICT third-party service
+      providers; risk assessment + due diligence; contractual
+      provisions per Article 30; concentration risk monitoring;
+      designated critical third-party providers (CTPPs) subject
+      to direct EU supervisory oversight.
+
+  - id: DORA-Chapter-VI-info-sharing
+    standard: EU DORA
+    section: "Chapter VI (Article 45)"
+    summary: |
+      Information + intelligence sharing — financial entities may
+      share cyber-threat information + intelligence within trusted
+      communities including indicators of compromise + tactics +
+      techniques + procedures (TTPs) + cybersecurity alerts +
+      configuration tools.
+
+  - id: DORA-Article-30-contractual
+    standard: EU DORA
+    section: "Article 30"
+    summary: |
+      Key contractual provisions — DORA mandates specific clauses
+      in contracts with ICT third-party providers covering:
+      description of services + locations + data processing +
+      service availability + security objectives + access rights
+      + termination + exit strategies + audit rights + sub-
+      outsourcing limitations.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: DORA SOPs (ICT risk management framework + incident classification/reporting + resilience testing programme + third-party register + info sharing + Article 30 contractual)
+    addresses:
+      - DORA-Chapter-II-ICT-risk
+      - DORA-Chapter-III-incident-reporting
+      - DORA-Chapter-IV-resilience-testing
+      - DORA-Chapter-V-third-party-risk
+      - DORA-Chapter-VI-info-sharing
+      - DORA-Article-30-contractual

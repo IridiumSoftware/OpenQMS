@@ -1,0 +1,95 @@
+# Open QMS — defense-cui cross-cutting overlay
+# ---------------------------------------------
+# US DoD Controlled Unclassified Information (CUI) handling per
+# DFARS 252.204-7012 + NIST SP 800-171 Rev 3 (May 2024). Required
+# for DoD contractors + subcontractors handling Covered Defense
+# Information (CDI). Composes with aerospace-defense + automotive-
+# defense + any vertical with DoD customer scope.
+
+name: defense-cui-overlay
+version: 0.1.0
+
+standards:
+  - DFARS 252.204-7012
+  - NIST SP 800-171
+
+clauses:
+
+  - id: DFARS-7012-applicability
+    standard: DFARS 252.204-7012
+    section: "(applicability)"
+    summary: |
+      Applicability — DFARS clause 252.204-7012 included in all DoD
+      contracts (except COTS items). Covered Defense Information (CDI)
+      = unclassified controlled technical information OR other
+      information requiring safeguarding/dissemination controls per
+      law/regulation/government-wide policy AND collected/developed/
+      received/transmitted/used/stored by the contractor in support
+      of contract performance.
+
+  - id: DFARS-7012-NIST-SP-800-171-implementation
+    standard: DFARS 252.204-7012
+    section: "(c)(1)"
+    summary: |
+      NIST SP 800-171 implementation — contractor shall implement the
+      security requirements in NIST SP 800-171 Rev 3 (May 2024;
+      transitioning from Rev 2). Self-assessment + scoring (110-point
+      SPRS score). Plan of Action + Milestones (POAM) acceptable for
+      deficiencies with remediation timeline.
+
+  - id: DFARS-7012-incident-reporting
+    standard: DFARS 252.204-7012
+    section: "(c)(2)-(c)(8)"
+    summary: |
+      Cyber incident reporting — report cyber incidents affecting
+      CDI to DoD CIO within 72 hours via DIBNet Portal. Incident
+      investigation + media preservation for 90 days + cyber
+      forensics. Provide DoD with access to additional information
+      + equipment necessary to conduct forensic analysis.
+
+  - id: NIST-SP-800-171-14-families
+    standard: NIST SP 800-171
+    section: "(14 control families)"
+    summary: |
+      14 control families — Access Control (AC); Awareness +
+      Training (AT); Audit + Accountability (AU); Configuration
+      Management (CM); Identification + Authentication (IA);
+      Incident Response (IR); Maintenance (MA); Media Protection
+      (MP); Personnel Security (PS); Physical Protection (PE);
+      Risk Assessment (RA); Security Assessment (CA); System +
+      Communications Protection (SC); System + Information
+      Integrity (SI). Rev 3 (2024) restructured with revised
+      family scope + organization-defined parameters.
+
+  - id: NIST-SP-800-171-SSP-POAM
+    standard: NIST SP 800-171
+    section: "(SSP + POAM artifacts)"
+    summary: |
+      System Security Plan (SSP) + Plan of Action + Milestones
+      (POAM) — primary artifacts. SSP describes system + boundary
+      + implemented controls. POAM lists planned remediation for
+      not-yet-implemented controls with target dates. SPRS
+      (Supplier Performance Risk System) summary score (110-point
+      maximum) reflects assessment outcome.
+
+  - id: CUI-marking-handling
+    standard: NIST SP 800-171
+    section: "(CUI marking per 32 CFR 2002)"
+    summary: |
+      CUI marking + handling — CUI must be properly marked per
+      32 CFR 2002 + applicable category markings (e.g., CUI//SP-EXPT
+      Export Controlled; CUI//SP-LEI Law Enforcement). Personnel
+      handling CUI must receive training. CUI destruction per
+      NIST SP 800-88 sanitization standards.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Defense CUI SOPs (DFARS 252.204-7012 + NIST SP 800-171 14 control families + SSP + POAM + SPRS + 72h incident reporting + CUI marking/handling)
+    addresses:
+      - DFARS-7012-applicability
+      - DFARS-7012-NIST-SP-800-171-implementation
+      - DFARS-7012-incident-reporting
+      - NIST-SP-800-171-14-families
+      - NIST-SP-800-171-SSP-POAM
+      - CUI-marking-handling

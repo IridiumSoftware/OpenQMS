@@ -977,3 +977,124 @@ standards:
     aliases:
       - "ISO 22301"
       - "BCMS"
+
+  # === Cross-cutting IS / governance / compliance / resilience overlay standards ===
+
+  - id: "AICPA TSC 2017"
+    name: "AICPA Trust Services Criteria (Security, Availability, Processing Integrity, Confidentiality, Privacy)"
+    publisher: American Institute of Certified Public Accountants (AICPA)
+    edition: "2017 (revised 2022)"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "TSC"
+      - "Trust Services Criteria"
+      - "SOC 2"
+
+  - id: "PCI DSS v4.0"
+    name: "Payment Card Industry Data Security Standard"
+    publisher: PCI Security Standards Council
+    edition: "v4.0 (March 2022); v4.0.1 minor update (June 2024)"
+    kind: standard
+    license_kind: public
+    aliases:
+      - "PCI DSS"
+      - "PCIDSS"
+
+  - id: "HITRUST CSF"
+    name: "HITRUST Common Security Framework"
+    publisher: HITRUST Alliance
+    edition: "v11.x (current)"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "HITRUST"
+      - "CSF"
+
+  - id: "NIST CSF 2.0"
+    name: "NIST Cybersecurity Framework"
+    publisher: National Institute of Standards and Technology
+    edition: "v2.0 (February 2024)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "NIST CSF"
+      - "Cybersecurity Framework"
+
+  - id: "ISO 31000:2018"
+    name: "Risk management — Guidelines"
+    publisher: ISO
+    edition: "2018"
+    kind: guidance
+    license_kind: commercial
+    aliases:
+      - "ISO 31000"
+
+  - id: "ISO 37301:2021"
+    name: "Compliance management systems — Requirements with guidance for use"
+    publisher: ISO
+    edition: "2021 (replaces ISO 19600:2014)"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 37301"
+      - "CMS"
+
+  - id: "EU DORA"
+    name: "Digital Operational Resilience Act — Regulation (EU) 2022/2554"
+    publisher: European Union
+    edition: "Regulation (EU) 2022/2554 (effective January 17, 2025)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "DORA"
+      - "EU 2022/2554"
+
+  - id: "EU GPSR 2023/988"
+    name: "General Product Safety Regulation — Regulation (EU) 2023/988"
+    publisher: European Union
+    edition: "Regulation (EU) 2023/988 (effective December 13, 2024; replaces GPSD 2001/95/EC)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "GPSR"
+      - "EU 2023/988"
+
+  - id: "TISAX"
+    name: "Trusted Information Security Assessment Exchange (VDA-ISA based)"
+    publisher: ENX Association (on behalf of VDA)
+    edition: "VDA-ISA v6.0 (current; updated regularly)"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "VDA-ISA"
+
+  - id: "NIST SP 800-171"
+    name: "Protecting Controlled Unclassified Information in Nonfederal Systems and Organizations"
+    publisher: NIST
+    edition: "Rev 3 (May 2024)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "SP 800-171"
+      - "CUI"
+
+  - id: "DFARS 252.204-7012"
+    name: "Safeguarding Covered Defense Information and Cyber Incident Reporting"
+    publisher: U.S. Department of Defense
+    edition: "DFARS clause 252.204-7012"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "DFARS 7012"
+      - "Covered Defense Information"
+
+  - id: "CMMC 2.0"
+    name: "Cybersecurity Maturity Model Certification"
+    publisher: U.S. Department of Defense
+    edition: "CMMC 2.0 (32 CFR Part 170 final rule Dec 2024; phased rollout)"
+    kind: standard
+    license_kind: public
+    aliases:
+      - "CMMC"
+      - "32 CFR 170"

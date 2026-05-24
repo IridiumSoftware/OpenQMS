@@ -1,0 +1,75 @@
+# Open QMS — ISO 31000:2018 risk management cross-cutting overlay
+# ----------------------------------------------------------------
+# Broader risk management framework. Composes with any vertical.
+# Distinct from but complementary to: ISO 9001 §6.1 (QMS risks);
+# ISO 14001 §6.1 (environmental risks); ISO 27001 §6.1 (IS risks);
+# ICH Q9 (pharma risk); HARA (auto FuSa); FHA (aero); TARA (auto
+# cyber); HACCP (food). ISO 31000 is the META-framework.
+
+name: iso-31000-overlay
+version: 0.1.0
+
+standards:
+  - ISO 31000:2018
+
+clauses:
+
+  - id: ISO31000-principles
+    standard: ISO 31000:2018
+    section: "§4"
+    summary: |
+      8 risk management principles — integrated (part of all
+      activities), structured + comprehensive, customized (tailored
+      to org context), inclusive (stakeholder engagement), dynamic
+      (responsive to change), best available information, human +
+      cultural factors, continual improvement.
+
+  - id: ISO31000-framework
+    standard: ISO 31000:2018
+    section: "§5"
+    summary: |
+      Risk management framework — leadership + commitment +
+      integration into governance + design + implementation +
+      evaluation + improvement of the framework itself. Distinct
+      from the risk management PROCESS (§6) which is the operational
+      execution.
+
+  - id: ISO31000-process
+    standard: ISO 31000:2018
+    section: "§6"
+    summary: |
+      Risk management process — communication + consultation; scope
+      + context + criteria; risk assessment (identification +
+      analysis + evaluation); risk treatment; monitoring + review;
+      recording + reporting. Iterative across the lifecycle.
+
+  - id: ISO31000-integration
+    standard: ISO 31000:2018
+    section: "§5.2"
+    summary: |
+      Integration — risk management is integrated into ALL
+      organizational activities + functions. Not a separate
+      function; embedded in strategy + governance + decision-
+      making + operations. ISO 31000 + ISO 31010 (risk assessment
+      techniques) together provide the meta-framework supporting
+      domain-specific risk standards (ICH Q9 / HARA / TARA /
+      HACCP / etc.).
+
+templates:
+
+  - path: templates/qms-policy/RISK-ASSESSMENT-TEMPLATE.md
+    name: Risk Assessment (per ISO 31000 framework + ISO 31010 techniques — already shipped at v0.25.0)
+    addresses:
+      - ISO31000-process
+
+  - path: templates/qms-policy/RISK-AND-OPPORTUNITY-REGISTER-TEMPLATE.md
+    name: Risk + Opportunity Register (per ISO 31000 §6 process — already shipped at v0.25.0)
+    addresses:
+      - ISO31000-process
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Risk Management Framework SOP (ISO 31000 §5 — leadership + integration + design + implementation + evaluation + improvement)
+    addresses:
+      - ISO31000-principles
+      - ISO31000-framework
+      - ISO31000-integration

@@ -1,0 +1,85 @@
+# Open QMS — EU GPSR cross-cutting overlay
+# -----------------------------------------
+# General Product Safety Regulation (Regulation (EU) 2023/988).
+# Effective December 13, 2024. Replaces the 2001 General Product
+# Safety Directive (GPSD). Applies to consumer products placed on
+# the EU market (with exceptions for products covered by sector-
+# specific safety legislation — those legacy regulations continue
+# to apply, GPSR fills the gaps).
+
+name: eu-gpsr-overlay
+version: 0.1.0
+
+standards:
+  - EU GPSR 2023/988
+
+clauses:
+
+  - id: GPSR-Art-5-safety-obligation
+    standard: EU GPSR 2023/988
+    section: "Article 5"
+    summary: |
+      General safety obligation — economic operators (manufacturers
+      + importers + distributors + fulfilment service providers +
+      online marketplaces) shall only place safe products on the
+      market. "Safe" = under normal/reasonably-foreseeable conditions
+      of use, presents only minimum risks compatible with product
+      use, considered acceptable + consistent with a high level of
+      protection of the health + safety of persons.
+
+  - id: GPSR-Art-9-manufacturer-obligations
+    standard: EU GPSR 2023/988
+    section: "Article 9"
+    summary: |
+      Manufacturer obligations — internal risk analysis; technical
+      documentation; identification marking on product (model + batch
+      / lot); manufacturer name + address on product; CE marking
+      where required by sector legislation; instructions + safety
+      information in EU language(s); accident-recordkeeping; recall
+      readiness.
+
+  - id: GPSR-Art-19-Safety-Gate
+    standard: EU GPSR 2023/988
+    section: "Article 19"
+    summary: |
+      Safety Gate notification (formerly RAPEX) — economic operators
+      shall IMMEDIATELY notify the Safety Gate when knowing or
+      having reason to believe that a product they placed on the
+      EU market is dangerous + presents a serious risk. Specific
+      notification template + national-competent-authority
+      coordination.
+
+  - id: GPSR-Art-20-online-marketplaces
+    standard: EU GPSR 2023/988
+    section: "Article 20"
+    summary: |
+      Online marketplace obligations — designate single contact
+      point for market-surveillance authorities; cooperate with
+      authorities; require third-party sellers to provide
+      manufacturer information; address dangerous product listings
+      within 3 working days of notification.
+
+  - id: GPSR-Art-37-recall-corrective
+    standard: EU GPSR 2023/988
+    section: "Articles 36-38"
+    summary: |
+      Corrective measures + recall — economic operators take
+      necessary corrective measures when products are unsafe;
+      voluntary recall procedures + recall notice content +
+      consumer communication channels; right of consumers to
+      repair / replacement / refund.
+
+templates:
+
+  - path: templates/qms-recall/GENERALIZED-RECALL-PROCEDURE-TEMPLATE.md
+    name: GPSR recall procedure (Articles 36-38 — adopters use generalized recall template with GPSR-specific notification windows + Safety Gate)
+    addresses:
+      - GPSR-Art-37-recall-corrective
+      - GPSR-Art-19-Safety-Gate
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: GPSR SOPs (general safety obligation + manufacturer obligations + online marketplace requirements)
+    addresses:
+      - GPSR-Art-5-safety-obligation
+      - GPSR-Art-9-manufacturer-obligations
+      - GPSR-Art-20-online-marketplaces

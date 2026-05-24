@@ -1,0 +1,67 @@
+# Open QMS — HITRUST CSF cross-cutting overlay
+# ---------------------------------------------
+# HITRUST Common Security Framework — healthcare-originated but
+# now broadly applicable IS framework that maps to many other
+# frameworks (HIPAA + HITECH + ISO 27001 + NIST SP 800-53 + PCI DSS
+# + GDPR + state privacy laws). Provides a single integrated audit
+# pathway covering multiple regulatory + industry requirements.
+
+name: hitrust-csf-overlay
+version: 0.1.0
+
+standards:
+  - HITRUST CSF
+
+clauses:
+
+  - id: HITRUST-CSF-architecture
+    standard: HITRUST CSF
+    section: "CSF Framework"
+    summary: |
+      Integrated framework with 19 domains + 50 control objectives
+      + 156 controls (v11.x). Controls are organized into
+      implementation levels (Level 1-3+) based on organizational
+      risk factors + regulatory factors (HIPAA + HITECH + state
+      breach laws + sector-specific regs). HITRUST authoritative
+      sources cover 40+ frameworks including HIPAA, ISO 27001, NIST
+      SP 800-53, PCI DSS, GDPR.
+
+  - id: HITRUST-MyCSF-assessment
+    standard: HITRUST CSF
+    section: "Assessment scoping"
+    summary: |
+      MyCSF assessment scoping — organization-specific risk +
+      regulatory factors drive which controls + implementation
+      levels apply. Scope determines whether r2 (Risk-based
+      2-year), e1 (Essentials 1-year), or i1 (Implemented 1-year)
+      assessment is appropriate.
+
+  - id: HITRUST-assessor-tier-3
+    standard: HITRUST CSF
+    section: "External assessor"
+    summary: |
+      External assessor — for HITRUST certification (vs. self-
+      assessment), an authorized External Assessor Firm performs
+      validated assessment. QA review by HITRUST before
+      certification issued. Re-assessment cadence per assessment
+      type.
+
+  - id: HITRUST-multi-framework-mapping
+    standard: HITRUST CSF
+    section: "Authoritative sources"
+    summary: |
+      Multi-framework mapping — HITRUST controls cross-reference
+      to authoritative sources (HIPAA Security Rule + HITECH +
+      ISO 27001 Annex A + NIST SP 800-53 + PCI DSS + state privacy
+      laws + sector regs). One assessment can satisfy multiple
+      framework requirements through cross-reference reporting.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: HITRUST CSF SOPs (control implementation per 19 domains + MyCSF assessment scoping + external assessor coordination + multi-framework mapping)
+    addresses:
+      - HITRUST-CSF-architecture
+      - HITRUST-MyCSF-assessment
+      - HITRUST-assessor-tier-3
+      - HITRUST-multi-framework-mapping

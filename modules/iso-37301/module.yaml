@@ -1,0 +1,90 @@
+# Open QMS — ISO 37301:2021 compliance management cross-cutting overlay
+# ----------------------------------------------------------------------
+# Compliance Management System (CMS). Replaces ISO 19600:2014.
+# Broader than ISO 37001 anti-bribery — covers compliance with ALL
+# obligations (legal + regulatory + voluntary + organizational).
+# Follows Annex SL → composes with every other Annex-SL MS overlay.
+
+name: iso-37301-overlay
+version: 0.1.0
+
+standards:
+  - ISO 37301:2021
+
+clauses:
+
+  - id: ISO37301-5.2
+    standard: ISO 37301:2021
+    section: "5.2"
+    summary: |
+      Compliance policy — top management establishes a documented
+      compliance policy that includes commitment to comply with
+      applicable obligations + continual improvement of CMS +
+      protection of whistleblowers from reprisal + sanctions for
+      non-compliance.
+
+  - id: ISO37301-5.3
+    standard: ISO 37301:2021
+    section: "5.3"
+    summary: |
+      Compliance function — established with independence + authority
+      + competence + resources + direct reporting to governing body.
+      Distinguishable from ISO 37001 anti-bribery compliance function
+      (which is anti-bribery-specific); ISO 37301 compliance function
+      is BROADER.
+
+  - id: ISO37301-6.1.2-6.1.3
+    standard: ISO 37301:2021
+    section: "6.1.2 + 6.1.3"
+    summary: |
+      Identification of compliance obligations + risk assessment —
+      determine + access + maintain + integrate compliance
+      obligations (laws + regulations + contracts + voluntary
+      commitments + standards + organizational policies). Compliance
+      risk assessment per ISO 31000 framework.
+
+  - id: ISO37301-8.1-8.2
+    standard: ISO 37301:2021
+    section: "8.1 + 8.2"
+    summary: |
+      Operational planning + control + establishment of controls —
+      financial + non-financial controls; procurement + contracting
+      controls; outsourcing arrangements; controls on training +
+      awareness + communication.
+
+  - id: ISO37301-8.3
+    standard: ISO 37301:2021
+    section: "8.3"
+    summary: |
+      Raising concerns + investigation — encourage + enable raising
+      of concerns; confidential + anonymous reporting channel;
+      protection from reprisal; investigation procedures + escalation;
+      disciplinary + corrective action.
+
+  - id: ISO37301-9.1
+    standard: ISO 37301:2021
+    section: "9.1"
+    summary: |
+      Monitoring + measurement + analysis + evaluation — what +
+      how + when monitored; compliance performance indicators;
+      reporting to governing body + senior management.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: Compliance policy (ISO 37301 §5.2 — adopters extend the QMS policy with compliance commitments)
+    addresses:
+      - ISO37301-5.2
+
+  - path: templates/qms-environmental/COMPLIANCE-OBLIGATIONS-REGISTER-TEMPLATE.md
+    name: Compliance Obligations Register (ISO 37301 §6.1.2 — applies broadly, not just environmental; original v0.25.0 template named for ISO 14001 also serves ISO 37301)
+    addresses:
+      - ISO37301-6.1.2-6.1.3
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: ISO 37301 SOPs (compliance function + operational controls + raising-concerns + monitoring)
+    addresses:
+      - ISO37301-5.3
+      - ISO37301-8.1-8.2
+      - ISO37301-8.3
+      - ISO37301-9.1

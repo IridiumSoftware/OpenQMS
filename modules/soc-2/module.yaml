@@ -1,0 +1,92 @@
+# Open QMS — SOC 2 cross-cutting overlay
+# ---------------------------------------
+# Composes with any vertical. Adds AICPA SOC 2 Trust Services
+# Criteria — the dominant US service-organization examination
+# framework. Distinct from ISO 27001 (substantive overlap in
+# controls but different assurance + attestation model).
+
+name: soc-2-overlay
+version: 0.1.0
+
+standards:
+  - AICPA TSC 2017
+
+clauses:
+
+  - id: SOC2-CC-common-criteria
+    standard: AICPA TSC 2017
+    section: "Common Criteria (CC1-CC9)"
+    summary: |
+      Common Criteria — control environment + communication +
+      information + risk assessment + monitoring + control activities
+      + logical + physical access controls + system operations +
+      change management + risk mitigation. Required for any SOC 2
+      examination regardless of category. Maps closely to ISO 27001
+      Annex A controls but with attestation-focused framing.
+
+  - id: SOC2-Security-TSC
+    standard: AICPA TSC 2017
+    section: "Security (Common Criteria; mandatory)"
+    summary: |
+      Security Trust Services Category — the foundational + mandatory
+      TSC for any SOC 2. Information + systems protected against
+      unauthorized access (logical + physical) + unauthorized
+      disclosure of information + damage to systems that could
+      compromise availability + integrity + confidentiality + privacy
+      of information.
+
+  - id: SOC2-Availability-TSC
+    standard: AICPA TSC 2017
+    section: "Availability"
+    summary: |
+      Availability TSC (optional) — information + systems available
+      for operation + use as committed or agreed. Includes capacity
+      monitoring + disaster recovery + business continuity. Composes
+      with iso-22301 BCMS overlay.
+
+  - id: SOC2-Processing-Integrity-TSC
+    standard: AICPA TSC 2017
+    section: "Processing Integrity"
+    summary: |
+      Processing Integrity TSC (optional) — system processing is
+      complete + valid + accurate + timely + authorized to meet the
+      entity's objectives. Particularly relevant for financial
+      transaction processing + data-pipeline integrity.
+
+  - id: SOC2-Confidentiality-TSC
+    standard: AICPA TSC 2017
+    section: "Confidentiality"
+    summary: |
+      Confidentiality TSC (optional) — information designated as
+      confidential is protected. Distinct from Privacy (which covers
+      personal information specifically). Composes with iso-27001.
+
+  - id: SOC2-Privacy-TSC
+    standard: AICPA TSC 2017
+    section: "Privacy"
+    summary: |
+      Privacy TSC (optional) — personal information is collected +
+      used + retained + disclosed + disposed of to meet the entity's
+      objectives. Maps to GDPR + CCPA + sectoral privacy regs.
+
+  - id: SOC2-Type-I-vs-II
+    standard: AICPA TSC 2017
+    section: "(examination type)"
+    summary: |
+      Type I vs. Type II — Type I is point-in-time control design
+      examination; Type II is operating-effectiveness examination
+      over a period (typically 6-12 months). Customers + adopters
+      expect Type II for ongoing service relationships.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: SOC 2 SOPs (Common Criteria CC1-CC9 + selected TSC categories + Type II evidence collection)
+    addresses:
+      - SOC2-CC-common-criteria
+      - SOC2-Security-TSC
+      - SOC2-Availability-TSC
+      - SOC2-Processing-Integrity-TSC
+      - SOC2-Confidentiality-TSC
+      - SOC2-Privacy-TSC
+      - SOC2-Type-I-vs-II

@@ -1,0 +1,104 @@
+# Open QMS — PCI DSS cross-cutting overlay
+# -----------------------------------------
+# Payment Card Industry Data Security Standard. Applies to any
+# entity that stores, processes, or transmits cardholder data OR
+# sensitive authentication data — merchants, processors, acquirers,
+# issuers, service providers. v4.0 published March 2022; v4.0.1
+# minor update June 2024.
+
+name: pci-dss-overlay
+version: 0.1.0
+
+standards:
+  - PCI DSS v4.0
+
+clauses:
+
+  - id: PCI-DSS-CDE-scope
+    standard: PCI DSS v4.0
+    section: "Scope"
+    summary: |
+      Cardholder Data Environment (CDE) scope — people + processes +
+      technology that store/process/transmit CHD (cardholder data
+      = PAN + cardholder name + expiration date + service code) OR
+      Sensitive Authentication Data (SAD = full track + CAV2/CVC2/
+      CVV2/CID + PINs). Network segmentation can reduce CDE scope.
+
+  - id: PCI-DSS-Goal1-2-network-systems
+    standard: PCI DSS v4.0
+    section: "Goals 1-2 (Requirements 1-2)"
+    summary: |
+      Build + maintain secure network + systems — install + maintain
+      network security controls (firewalls / equivalents); apply
+      secure configurations to all system components (vendor default
+      passwords removed; hardening per industry standards).
+
+  - id: PCI-DSS-Goal3-4-protect-data
+    standard: PCI DSS v4.0
+    section: "Goals 3-4 (Requirements 3-4)"
+    summary: |
+      Protect account data — protect stored account data (encryption
+      / hashing / truncation / masking); protect cardholder data
+      with strong cryptography during transmission over open + public
+      networks.
+
+  - id: PCI-DSS-Goal5-6-vulnerability
+    standard: PCI DSS v4.0
+    section: "Goals 5-6 (Requirements 5-6)"
+    summary: |
+      Maintain a vulnerability management program — protect all
+      systems + networks from malicious software (anti-malware on
+      systems commonly affected); develop + maintain secure systems
+      + software (secure SDLC + patch management + vulnerability
+      identification).
+
+  - id: PCI-DSS-Goal7-8-9-access
+    standard: PCI DSS v4.0
+    section: "Goals 7-9 (Requirements 7-9)"
+    summary: |
+      Implement strong access control — restrict access to system
+      components + cardholder data by business need to know; identify
+      users + authenticate access (MFA mandatory v4.0 broader scope);
+      restrict physical access to cardholder data.
+
+  - id: PCI-DSS-Goal10-11-monitoring-testing
+    standard: PCI DSS v4.0
+    section: "Goals 10-11 (Requirements 10-11)"
+    summary: |
+      Regularly monitor + test networks — log + monitor all access
+      to system components + cardholder data; test security of
+      systems + networks regularly (vulnerability scans + penetration
+      tests; ASV scans externally quarterly).
+
+  - id: PCI-DSS-Goal12-policy
+    standard: PCI DSS v4.0
+    section: "Goal 12 (Requirement 12)"
+    summary: |
+      Maintain an information security policy — support information
+      security with organizational policies + programs; risk
+      assessment + targeted risk analyses; security awareness
+      training; incident response planning + testing.
+
+  - id: PCI-DSS-v4-customized-approach
+    standard: PCI DSS v4.0
+    section: "(v4.0 innovation)"
+    summary: |
+      Customized Approach (v4.0 innovation) — alternative to Defined
+      Approach for entities with mature security programs. Entity
+      designs custom controls meeting the requirement's objective;
+      QSA validates via targeted risk analysis + controls matrix +
+      testing procedures.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: PCI DSS SOPs (12 requirements + CDE scoping + segmentation + customized approach when applicable)
+    addresses:
+      - PCI-DSS-CDE-scope
+      - PCI-DSS-Goal1-2-network-systems
+      - PCI-DSS-Goal3-4-protect-data
+      - PCI-DSS-Goal5-6-vulnerability
+      - PCI-DSS-Goal7-8-9-access
+      - PCI-DSS-Goal10-11-monitoring-testing
+      - PCI-DSS-Goal12-policy
+      - PCI-DSS-v4-customized-approach
