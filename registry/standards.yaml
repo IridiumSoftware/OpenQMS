@@ -1342,3 +1342,26 @@ standards:
       - "USP <87>"
       - "USP <88>"
       - "USP packaging"
+
+  - id: "HIPAA"
+    name: "Health Insurance Portability and Accountability Act — Administrative Simplification Privacy + Security + Breach Notification + Enforcement Rules"
+    publisher: U.S. Department of Health and Human Services
+    edition: "45 CFR Parts 160 + 164 (Privacy Rule §164.500-534; Security Rule §164.302-318; Breach Notification Rule §164.400-414; Enforcement Rule §160 Subpart D + E)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "HIPAA Privacy Rule"
+      - "HIPAA Security Rule"
+      - "HIPAA Breach Notification Rule"
+      - "45 CFR 160"
+      - "45 CFR 164"
+
+  - id: "HITECH"
+    name: "Health Information Technology for Economic and Clinical Health Act"
+    publisher: U.S. Department of Health and Human Services
+    edition: "Pub. L. 111-5 Title XIII (2009); HITECH Final Rule 78 FR 5566 (2013); Promoting Interoperability program (was Meaningful Use)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "HITECH Act"
+      - "Promoting Interoperability"

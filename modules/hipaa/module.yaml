@@ -1,0 +1,278 @@
+# Open QMS — HIPAA cross-cutting overlay
+# ----------------------------------------
+# 25th cross-cutting overlay. US healthcare-specific privacy +
+# security regime per 45 CFR Parts 160 + 164 (HIPAA
+# Administrative Simplification rules) + HITECH amendments.
+#
+# Distinct from the `privacy` overlay (GDPR + CCPA) — HIPAA's
+# covered-entity / business-associate / 4-rule structure + OCR
+# enforcement + Business Associate Agreements (BAAs) don't map
+# cleanly to the GDPR/CCPA framing; warrants dedicated overlay.
+#
+# Composes naturally with `privacy` for adopters processing both
+# PHI and non-PHI personal information (typical — even covered
+# entities have employees + applicants + vendors whose data isn't
+# PHI but is personal info subject to state laws).
+#
+# Standards licensing: PUBLIC (45 CFR via ecfr.gov; OCR guidance
+# via HHS).
+
+name: hipaa
+version: 0.1.0
+
+standards:
+  - "HIPAA"
+  - "HITECH"
+
+clauses:
+
+  - id: HIPAA-160-103-CE-BA-scope
+    standard: HIPAA
+    section: "45 CFR §160.103 + §164.500"
+    summary: |
+      Covered Entity + Business Associate scope — Covered Entities
+      (CEs) per §160.103: (i) health plans (insurance, HMO, employer
+      sponsored, government health programs); (ii) healthcare
+      clearinghouses (claims processing, repricing, COB intermediaries);
+      (iii) healthcare providers that transmit health info in electronic
+      form in connection with a HIPAA Transaction Rule (45 CFR Part 162)
+      transaction. Business Associates (BAs) per §160.103: person/entity
+      that creates / receives / maintains / transmits PHI on behalf of
+      a CE OR provides services to a CE involving disclosure of PHI.
+      Subcontractors of BAs are themselves BAs.
+
+  - id: HIPAA-164-502-uses-disclosures-general
+    standard: HIPAA
+    section: "45 CFR §164.502"
+    summary: |
+      Uses + disclosures of PHI — general rules. PHI may be used /
+      disclosed only as permitted or required by Privacy Rule.
+      MINIMUM NECESSARY standard §164.502(b): use/disclose only the
+      minimum necessary to accomplish purpose; does not apply to
+      treatment disclosures or patient access to own PHI. De-
+      identification per §164.514 (Safe Harbor 18 identifiers OR
+      Expert Determination); limited data sets per §164.514(e) with
+      data-use agreement.
+
+  - id: HIPAA-164-508-510-512-permitted-without-authorization
+    standard: HIPAA
+    section: "45 CFR §164.508-512"
+    summary: |
+      Permitted uses + disclosures without individual authorization
+      — Treatment + Payment + Healthcare Operations (TPO) per
+      §164.506; required disclosures to individual + to HHS per
+      §164.502(a)(2); 12 enumerated "public interest" disclosures
+      per §164.512 (required by law, public health, victims of
+      abuse/neglect, health oversight, judicial+administrative
+      proceedings, law enforcement, decedents, organ donation,
+      research, serious threat, specialized govt functions, workers
+      comp). All OTHER uses/disclosures require Authorization per
+      §164.508 with specific content requirements.
+
+  - id: HIPAA-164-514-de-identification
+    standard: HIPAA
+    section: "45 CFR §164.514(a)-(c)"
+    summary: |
+      De-identification + limited datasets — Safe Harbor §164.514(b)(2):
+      removal of 18 specific identifiers (names, dates < year, ZIP
+      < 3-digit, phone, fax, email, SSN, MRN, health plan beneficiary
+      #, account #, license #, vehicle ID, device ID, URL, IP,
+      biometric, photo, any other unique identifier) + no actual
+      knowledge re-identification is possible. Expert Determination
+      §164.514(b)(1): qualified statistician's determination of very
+      small risk; documented method. Limited Data Set §164.514(e):
+      removal of 16 identifiers + Data Use Agreement; permitted for
+      research / public health / healthcare operations.
+
+  - id: HIPAA-164-520-528-individual-rights
+    standard: HIPAA
+    section: "45 CFR §164.520-528"
+    summary: |
+      Individual rights — Notice of Privacy Practices (NPP) per
+      §164.520 (content + delivery + posting + acknowledgment of
+      receipt); right of access per §164.524 (CE provides copy /
+      summary within 30 days; one 30-day extension allowed; per-
+      copy fees limited to labor + supplies + postage); right of
+      amendment per §164.526 (60 days to respond; if denied,
+      individual may submit statement of disagreement); accounting
+      of disclosures per §164.528 (covers disclosures other than
+      TPO + authorized; 6-year lookback); right to request
+      restrictions per §164.522(a); right to request confidential
+      communications per §164.522(b); right to file complaint per
+      §164.530(d).
+
+  - id: HIPAA-164-530-administrative-requirements
+    standard: HIPAA
+    section: "45 CFR §164.530"
+    summary: |
+      Administrative requirements (Privacy Rule) — Privacy Officer +
+      contact person designated per §164.530(a); workforce training
+      per §164.530(b) at hire + within reasonable time of material
+      change; safeguards per §164.530(c) (administrative + technical
+      + physical to protect PHI); complaint procedures per §164.530(d);
+      sanctions per §164.530(e) against workforce members who fail to
+      comply; mitigation of known harmful effects per §164.530(f);
+      refraining from intimidating / retaliatory acts per §164.530(g);
+      no waiver of rights per §164.530(h); documentation per §164.530(j)
+      with **6-year retention** from date created OR last in effect.
+
+  - id: HIPAA-164-306-308-security-administrative-safeguards
+    standard: HIPAA
+    section: "45 CFR §164.306 + §164.308"
+    summary: |
+      Security Rule administrative safeguards — applies to ePHI only
+      (electronic Protected Health Information). General requirements
+      per §164.306: ensure CIA of ePHI; protect against reasonably
+      anticipated threats + impermissible uses. Administrative
+      safeguards per §164.308: Security Management Process (risk
+      analysis + risk management + sanction policy + information
+      system activity review); Assigned Security Responsibility (CISO
+      / Security Officer); Workforce Security (authorization +
+      clearance + termination); Information Access Management
+      (isolation + access authorization + access establishment +
+      modification); Security Awareness + Training; Security Incident
+      Procedures; Contingency Plan (data backup + DR + emergency
+      mode + testing + applications + data criticality); Evaluation;
+      Business Associate Contracts. Implementation specifications
+      marked Required (R) or Addressable (A) per §164.306(d).
+
+  - id: HIPAA-164-310-physical-safeguards
+    standard: HIPAA
+    section: "45 CFR §164.310"
+    summary: |
+      Security Rule physical safeguards — Facility Access Controls
+      (contingency operations + facility security plan + access
+      control + validation procedures + maintenance records);
+      Workstation Use (proper functions + manner of performance +
+      physical environment of workstations accessing ePHI); Workstation
+      Security (physical safeguards); Device + Media Controls (disposal
+      + media re-use + accountability + data backup + storage).
+
+  - id: HIPAA-164-312-technical-safeguards
+    standard: HIPAA
+    section: "45 CFR §164.312"
+    summary: |
+      Security Rule technical safeguards — Access Control (unique
+      user ID + emergency access + automatic logoff + encryption/
+      decryption); Audit Controls (hardware + software + procedural
+      mechanisms to record + examine activity); Integrity (mechanism
+      to authenticate ePHI not altered/destroyed in unauthorized
+      manner); Person or Entity Authentication; Transmission Security
+      (integrity controls + encryption when CEs determine reasonable
+      + appropriate).
+
+  - id: HIPAA-164-314-organizational-requirements-BAA
+    standard: HIPAA
+    section: "45 CFR §164.314 + §164.504(e)"
+    summary: |
+      Organizational requirements — Business Associate Contract
+      (BAA) per §164.504(e) + §164.314(a) required content:
+      permitted + required uses/disclosures by BA; BA not to use/
+      disclose PHI other than permitted by contract or required by
+      law; appropriate safeguards; reporting of impermissible uses/
+      disclosures + security incidents + breaches; ensure
+      subcontractors agree to same restrictions; make PHI available
+      for individual access/amendment/accounting; make books +
+      records available to HHS; return/destroy PHI at termination
+      (or extend protections if return/destroy infeasible);
+      termination for material breach. HITECH §13404 extended
+      Security Rule + portions of Privacy Rule directly to BAs.
+
+  - id: HIPAA-164-316-documentation-retention
+    standard: HIPAA
+    section: "45 CFR §164.316 + §164.530(j)"
+    summary: |
+      Documentation requirements — written policies + procedures
+      addressing all Privacy Rule + Security Rule requirements;
+      changes to P&Ps as needed to reflect environmental + operational
+      changes; documentation of P&Ps + any action / activity /
+      assessment / decision required to be documented. **6-year
+      retention** from date created or date last in effect (whichever
+      is later) per §164.316(b)(2)(i) Security Rule + §164.530(j)
+      Privacy Rule.
+
+  - id: HIPAA-164-400-414-breach-notification
+    standard: HIPAA
+    section: "45 CFR §164.400-414"
+    summary: |
+      Breach Notification Rule — breach defined per §164.402:
+      acquisition / access / use / disclosure of unsecured PHI not
+      permitted by Privacy Rule that compromises security or
+      privacy. **Presumption** that breach occurred unless 4-factor
+      risk assessment per §164.402(2): (i) nature + extent of PHI
+      involved (identifiers + likelihood of re-identification); (ii)
+      unauthorized person who used PHI / received disclosure; (iii)
+      whether PHI actually acquired or viewed; (iv) extent to which
+      risk has been mitigated. **"Unsecured"** = not encrypted or
+      destroyed per HHS Guidance. Notification: individuals within
+      60 days per §164.404; HHS notification per §164.408 (annual
+      if <500 individuals; within 60 days if ≥500); prominent media
+      notice if breach affects ≥500 residents of a state per
+      §164.406. BA notifies CE without unreasonable delay + within
+      60 days per §164.410.
+
+  - id: HIPAA-160-Subpart-D-enforcement
+    standard: HIPAA
+    section: "45 CFR §160 Subpart D + E"
+    summary: |
+      Enforcement Rule — Office for Civil Rights (OCR) investigates
+      complaints + compliance reviews + breach reports. Civil
+      Monetary Penalties per §160.404 (HITECH 4-tier structure):
+      Tier 1 unknowing ($100-$50k/violation; $25k/year cap on
+      identical violations); Tier 2 reasonable cause ($1k-$50k);
+      Tier 3 willful neglect corrected within 30 days ($10k-$50k);
+      Tier 4 willful neglect not corrected ($50k minimum). 2024
+      annual inflation adjustments per HHS — current cap ~$2M/year
+      for identical violations. Criminal penalties per 42 USC §1320d-6
+      (knowingly: $50k+1yr; false pretenses: $100k+5yr; intent to
+      sell/transfer for personal gain: $250k+10yr).
+
+  - id: HITECH-promoting-interoperability
+    standard: HITECH
+    section: "HITECH §13001-13424 + CMS Promoting Interoperability"
+    summary: |
+      HITECH Act extensions — extended Security Rule + portions of
+      Privacy Rule directly to BAs (was contract-only pre-HITECH);
+      4-tier CMP structure (Enforcement Rule); breach notification
+      rule (Subpart D); Promoting Interoperability program (was
+      Meaningful Use) — CMS incentive program for certified EHR
+      technology (CEHRT) adoption + interoperability + patient
+      engagement metrics. ONC certification per 45 CFR Part 170.
+
+templates:
+
+  - path: templates/qms-hipaa/NPP-TEMPLATE.md
+    name: "Notice of Privacy Practices (NPP — §164.520 patient-facing notice covering uses + disclosures + individual rights + complaint channel + acknowledgment of receipt + revision tracking + posting requirements)"
+    addresses:
+      - HIPAA-164-520-528-individual-rights
+      - HIPAA-164-502-uses-disclosures-general
+      - HIPAA-164-508-510-512-permitted-without-authorization
+
+  - path: templates/qms-hipaa/BAA-TEMPLATE.md
+    name: "Business Associate Agreement (BAA — §164.504(e) + §164.314(a) full required content + subcontractor flow-down + breach 60-day notification + termination for material breach + return/destroy at termination)"
+    addresses:
+      - HIPAA-164-314-organizational-requirements-BAA
+      - HIPAA-160-103-CE-BA-scope
+      - HIPAA-164-400-414-breach-notification
+
+  - path: templates/qms-hipaa/HIPAA-RISK-ANALYSIS-TEMPLATE.md
+    name: "HIPAA Security Rule Risk Analysis (§164.308(a)(1)(ii)(A) — system inventory + threat catalog + vulnerability assessment + likelihood × impact rating + control gap analysis + risk treatment plan + 6-year documentation retention)"
+    addresses:
+      - HIPAA-164-306-308-security-administrative-safeguards
+      - HIPAA-164-310-physical-safeguards
+      - HIPAA-164-312-technical-safeguards
+      - HIPAA-164-316-documentation-retention
+
+  - path: templates/qms-hipaa/HIPAA-BREACH-RISK-ASSESSMENT-TEMPLATE.md
+    name: "HIPAA Breach 4-Factor Risk Assessment (§164.402(2) — presumption-rebuttal worksheet covering (i) nature+extent of PHI + (ii) unauthorized recipient + (iii) actual acquisition/viewing + (iv) mitigation; outcome drives §164.404/406/408 notification decisions)"
+    addresses:
+      - HIPAA-164-400-414-breach-notification
+      - HIPAA-164-530-administrative-requirements
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "HIPAA operational SOPs (Privacy Officer + Security Officer designation + workforce training cadence + sanctions + minimum necessary + access management + audit log review + incident response + BAA management + Authorization handling + de-identification methodology)"
+    addresses:
+      - HIPAA-164-530-administrative-requirements
+      - HIPAA-164-514-de-identification
+      - HIPAA-160-Subpart-D-enforcement
+      - HITECH-promoting-interoperability

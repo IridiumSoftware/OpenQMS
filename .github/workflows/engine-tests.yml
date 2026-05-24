@@ -240,6 +240,16 @@ jobs:
           openqms validate --module chemicals --module food-pharma-grade
           # 20-module ultimate composite — pharma + combination-product + IMS + chemicals + food-pharma-grade + privacy + everything
           openqms validate --module medical-devices --module pharma --module combination-product --module pharma-sterile --module privacy --module iso-27001 --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000 --module integrated-management-system --module soc-2 --module soc-2-type-ii --module hitrust-csf --module hitrust-r2 --module iso-27001-cloud --module iso-27001-privacy
+          # v0.45.0 — HIPAA dedicated cross-cutting overlay
+          openqms validate --module hipaa
+          openqms validate --module hipaa --module privacy
+          openqms validate --module medical-devices --module hipaa --module privacy --module iso-27001
+          openqms validate --module pharma --module hipaa --module privacy
+          openqms validate --module hipaa --module hitrust-csf --module hitrust-r2 --module soc-2 --module soc-2-type-ii
+          openqms validate --module hipaa --module iso-27001 --module iso-27001-privacy --module privacy
+          openqms validate --module hipaa --module iso-37301 --module iso-37301-healthcare --module privacy
+          # 22-module healthcare ultimate composite — medical-devices + pharma + combination-product + HIPAA + privacy + IMS + HITRUST + everything
+          openqms validate --module medical-devices --module pharma --module combination-product --module pharma-sterile --module hipaa --module privacy --module iso-27001 --module iso-27001-cloud --module iso-27001-privacy --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000 --module integrated-management-system --module soc-2 --module soc-2-type-ii --module hitrust-csf --module hitrust-r2 --module iso-37301
 
       - name: Inspect registry (smoke check)
         run: openqms registry list

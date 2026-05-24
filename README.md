@@ -6,21 +6,21 @@ Open QMS resolves a `(product, jurisdictions, standards, modules)` bundle into a
 
 The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD for enforcement, Git for the audit trail.
 
-## Current scope (v0.44.0)
+## Current scope (v0.45.0)
 
 | Dimension | Count |
 |---|---|
 | Verticals (regulated industries) | **7** — medical-devices, aerospace, automotive, manufacturing, pharma, food-safety, chemicals |
 | Class overlays (rigor-level + product-class) | **44** across 6 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5 / chemicals 6) |
-| Cross-cutting overlays | **24** — iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas, privacy |
+| Cross-cutting overlays | **25** — iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas, privacy, **hipaa** |
 | **Sub-overlays** (class-overlay-shape deltas on cross-cutting overlays) | **26** — cmmc-level-1/2/3, soc-2-type-i/ii, iso-27001-cloud/privacy, nist-csf-tier-1/2/3/4, pci-dss-saq-a/a-ep/d-merchant/d-sp/p2pe, dora-ctpp/non-ctpp/tlpt, hitrust-e1/i1/r2, iso-37301-public-sector/financial-services/healthcare/general-business |
-| **Cross-overlays** (bind ACROSS specific vertical combinations) | **3** — **combination-product** (medical-devices + pharma), **integrated-management-system** (multi-MS Annex SL), **food-pharma-grade** (chemicals + food-safety + pharma) |
-| Registry — standards | **~124** (v0.44.0 +5: 21 CFR Part 4 + 21 CFR 174-178 + EU 1935/2004 + EU 10/2011 + USP Packaging Chapters) |
+| **Cross-overlays** (bind ACROSS specific vertical combinations) | **3** — combination-product (medical-devices + pharma), integrated-management-system (multi-MS Annex SL), food-pharma-grade (chemicals + food-safety + pharma) |
+| Registry — standards | **~126** (v0.45.0 +2 PUBLIC: HIPAA + HITECH) |
 | Registry — jurisdictions | **20** (FDA / EMA / MHRA / WHO-PQ / Health Canada / EU MDR / PMDA / TGA / ANVISA / FAA / EASA / TCCA / NHTSA / UNECE / KBA / TC-MVS / FDA-Food / USDA-FSIS / EFSA / CFIA) |
-| Document templates | **92** (cross-overlays reuse parent-overlay templates; no new at v0.44.0) |
+| Document templates | **96** (v0.45.0 +4 HIPAA: NPP + BAA + Risk Analysis + Breach Risk Assessment) |
 | Example bundles (validated end-to-end) | **8** |
-| Total modules | **105** + general |
-| Spec entries (status: 6 :verified / 84 :tested / 5 :argued / 0 :open) | **95** |
+| Total modules | **106** + general |
+| Spec entries (status: 6 :verified / 85 :tested / 5 :argued / 0 :open) | **96** |
 | Deepest composition tested in CI | **20-module ultimate composite** (medical-devices + pharma + combination-product + sterile + privacy + 8 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy) |
 
 The compose primitive validates 11-module composites: e.g., `pharma + pharma-sterile + pharma-biologics + atmp + iso-27001 + soc-2 + iso-31000 + iso-22301 + iso-14001 + iso-45001 + iso-50001` — the realistic shape for a clinical-stage biotech doing sterile ATMP manufacturing with full integrated management system + SOC 2 attestation + ISO 31000 risk framework.

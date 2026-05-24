@@ -4,6 +4,47 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.45.0 DRAFT — 2026-05-24 — HIPAA dedicated cross-cutting overlay
+
+**1 NEW entry** OQ-112. Spec total 95 → 96. Engine 0.44.0 → 0.45.0.
+
+25th cross-cutting overlay — US healthcare-specific privacy + security per 45 CFR Parts 160 + 164 + HITECH. Distinct from the `privacy` overlay (GDPR + CCPA) — HIPAA's CE/BA framework + 4-rule architecture + OCR enforcement + BAA contractual framework + healthcare-specific provisions (TPO + de-identification Safe Harbor + NPP + accounting of disclosures + Authorization) warrant dedicated overlay.
+
+**Standards: both PUBLIC**
+- HIPAA — 45 CFR Parts 160 + 164 (Privacy + Security + Breach Notification + Enforcement Rules)
+- HITECH — Pub. L. 111-5 Title XIII + Final Rule 78 FR 5566 + Promoting Interoperability
+
+**14 clauses** across CE/BA scope + uses + disclosures + de-identification + individual rights + administrative requirements + Security Rule (administrative + physical + technical safeguards) + BAA + 6-year documentation + Breach Notification 4-factor + Enforcement Rule 4-tier CMP + HITECH extensions.
+
+**4 new HIPAA-specific templates:**
+- NPP — Notice of Privacy Practices per §164.520 with 2024 Reproductive Health Care Privacy Rule additions per §164.509
+- BAA — Business Associate Agreement per §164.504(e) + §164.314 with subcontractor flow-down + 60-day breach notification + return/destroy at termination
+- HIPAA Security Rule Risk Analysis — §164.308(a)(1)(ii)(A) foundational artifact with threat catalog + vulnerability assessment + implementation-specification status per §§308/310/312 (Required vs Addressable)
+- HIPAA Breach 4-Factor Risk Assessment — §164.402(2) presumption-rebuttal worksheet with encryption/destruction safe harbor + 4-factor analysis + notification matrix
+
+**Cross-cutting overlay count: 24 → 25.** Total module count: 105 → 106. Registry +2 PUBLIC standards.
+
+**22-module healthcare ultimate composite validates (new depth record beats prior 20-module):** medical-devices + pharma + combination-product + pharma-sterile + hipaa + privacy + iso-27001 + iso-27001-cloud + iso-27001-privacy + regulated-ai + iso-14001 + iso-45001 + iso-50001 + iso-37001 + iso-22301 + iso-31000 + integrated-management-system + soc-2 + soc-2-type-ii + hitrust-csf + hitrust-r2 + iso-37301.
+
+Repo-wide zero-orphan invariant holds: **106 modules / 792 clauses / 350 templates / 0 orphans**.
+
+**Particularly natural compositions:**
+- `hipaa + privacy` (PHI under HIPAA + non-PHI under GDPR/CCPA/state)
+- `medical-devices + hipaa + privacy + iso-27001` (connected medical devices)
+- `pharma + hipaa + privacy` (clinical-trial PHI)
+- `hipaa + hitrust-csf + hitrust-r2` (validated multi-framework attestation including HIPAA)
+- `hipaa + soc-2 + soc-2-type-ii` (healthcare-tech SaaS standard pairing)
+- `hipaa + iso-27001 + iso-27001-privacy` (ISMS + PIMS + HIPAA triad)
+- `hipaa + iso-37301 + iso-37301-healthcare` (compliance-management + sectoral + HIPAA)
+
+CI extended (+8 validate steps). 116/116 pytest pass. All 8 bundle baselines clean. YAML linter clean on all 106 modules.
+
+Status counts: 6 `:verified` / 85 `:tested` / 5 `:argued` / 0 `:open` (total 96).
+
+Per user direction: "do 2 then 1" — 2 (HIPAA dedicated) shipped here; 1 (cross-audit + v0.40-v0.45 omnibus companion) follows.
+
+---
+
 ## v0.44.0 DRAFT — 2026-05-24 — Cross-overlay batch (combination-product + integrated-management-system + food-pharma-grade)
 
 **1 NEW entry** OQ-111. Spec total 94 → 95. Engine 0.43.0 → 0.44.0.
