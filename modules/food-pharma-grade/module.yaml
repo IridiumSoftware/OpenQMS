@@ -1,0 +1,121 @@
+# Open QMS — Food-contact + Pharma-grade Materials cross-overlay
+# ----------------------------------------------------------------
+# Cross-overlay binding food-safety + chemicals + pharma verticals
+# to encode the regulatory framework for materials that come into
+# contact with food OR pharmaceutical products.
+#
+# Covers food-contact materials (US FCS/FCN + EU FCM framework +
+# EU plastic FCM specifically) + pharma primary packaging (USP
+# packaging chapters + ICH Q3D elemental impurities). The
+# intersection of three regulatory regimes adopters often
+# encounter together: chemical-manufacturer producing polymers for
+# food-pack converters AND for pharma container manufacturers.
+
+name: food-pharma-grade
+version: 0.1.0
+
+standards:
+  - "21 CFR 174-178"
+  - "EU 1935/2004"
+  - "EU 10/2011"
+  - "USP Packaging Chapters"
+
+clauses:
+
+  - id: FPG-US-FCS-FCN-pathway
+    standard: 21 CFR 174-178
+    section: "21 CFR §170.39 (TOR) + §170.100 (FCN) + Part 174-178"
+    summary: |
+      US Food-Contact Substance regulatory pathways — (1) Generally
+      Recognised as Safe (GRAS) per 21 CFR §170.30; (2) Prior-
+      sanctioned uses pre-1958; (3) Food Additive Regulation per
+      Part 174-178 published in CFR; (4) Threshold of Regulation
+      (TOR) exemption per §170.39 (substances at dietary exposure
+      ≤0.5 ppb); (5) Food Contact Notification (FCN) per §170.100
+      — premarket notification with 120-day effective period unless
+      FDA objects. FCN is the dominant modern pathway; ~150-250
+      FCNs effective per year.
+
+  - id: FPG-EU-FCM-framework
+    standard: EU 1935/2004
+    section: "Article 3 + Article 15-17"
+    summary: |
+      EU Food-Contact Materials framework — Article 3 general
+      safety: FCM under normal/foreseeable use must not transfer
+      constituents in quantities endangering human health, bringing
+      unacceptable change in food composition, or deteriorating
+      organoleptic properties. Article 15-17 traceability + labelling
+      requirements. Article 16 Declaration of Compliance (DoC)
+      mandatory at each B2B trading stage; supporting documentation
+      available to competent authority on request.
+
+  - id: FPG-EU-plastic-FCM-positive-list
+    standard: EU 10/2011
+    section: "Annex I positive list + Annex II Specific Migration Limits"
+    summary: |
+      EU plastic FCM positive list + SMLs — Annex I authorises
+      specific monomers + additives + processing aids for use in
+      plastic FCM with per-substance Specific Migration Limit
+      (SML); Annex II Overall Migration Limit (OML) 10 mg/dm² OR
+      60 mg/kg food simulant. Annex III food simulants A-E for
+      migration testing. Annex IV DoC content. Per-amendment
+      addition of substances; latest amendment 2023/1442 (consolidated
+      Annex I + various clarifications).
+
+  - id: FPG-USP-packaging-chapters
+    standard: USP Packaging Chapters
+    section: "USP <660> + <661> + <87> + <88>"
+    summary: |
+      USP packaging chapters for pharma primary packaging — <660>
+      Glass containers (Type I-IV classification + hydrolytic
+      resistance + light transmission); <661> Plastic materials +
+      systems (<661.1> materials of construction; <661.2> systems
+      finished + suitable-for-pharma-use); <87> In vitro biological
+      reactivity tests (MEM elution + direct contact + agar
+      diffusion); <88> In vivo biological reactivity tests (Class
+      I-VI plastics classification — Class VI most stringent for
+      implantable / drug-contact). ICH Q3D elemental impurities
+      cross-applied for extractables/leachables (E&L) workflows
+      under USP <1663>/<1664>.
+
+  - id: FPG-extractables-leachables-workflow
+    standard: USP Packaging Chapters
+    section: "USP <1663> + <1664> + per-route guidance"
+    summary: |
+      E&L workflow — extractables: chemicals extractable from
+      packaging under exaggerated conditions (solvents + temperature)
+      per controlled extraction studies. Leachables: subset that
+      actually migrates into product under normal storage + use.
+      Per-dosage-form risk-based workflow per USP <1663>/<1664> +
+      PQRI recommendations. Inhalation routes (OINDP) + parenteral
+      (LVP/SVP) highest scrutiny.
+
+  - id: FPG-supply-chain-DoC
+    standard: EU 1935/2004
+    section: "Article 16 — supply-chain DoC discipline"
+    summary: |
+      Supply-chain Declaration of Compliance — each B2B trading
+      stage along the food-pack supply chain issues DoC: raw-material
+      manufacturer → polymer producer → film-extruder → laminator →
+      converter → brand-owner. Information cascades downstream:
+      substance identification + permitted-use limits + restrictions
+      + functional barrier presence + dual-use status (additive +
+      food additive) + temperature/contact-time/food-type
+      restrictions. Failure at any stage breaks chain-of-compliance.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (Food-Pharma-Grade — extends QMS policy with food-contact-substance regulatory-pathway commitment + EU DoC discipline + USP-classified pharma-grade material commitment + E&L workflow ownership)"
+    addresses:
+      - FPG-US-FCS-FCN-pathway
+      - FPG-EU-FCM-framework
+      - FPG-EU-plastic-FCM-positive-list
+      - FPG-USP-packaging-chapters
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "Food-pharma-grade operational SOPs (FCN preparation + DoC issuance per EU Article 16 + Annex I positive-list verification + E&L study protocol per dosage form + supply-chain DoC management + USP Class VI biological reactivity testing coordination)"
+    addresses:
+      - FPG-EU-plastic-FCM-positive-list
+      - FPG-extractables-leachables-workflow
+      - FPG-supply-chain-DoC

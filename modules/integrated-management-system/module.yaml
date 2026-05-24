@@ -1,0 +1,138 @@
+# Open QMS — Integrated Management System cross-overlay
+# -------------------------------------------------------
+# Cross-overlay binding multiple Annex SL management systems
+# (quality + environmental + OH&S + energy + IS + others) into
+# a single coordinated IMS with shared management review +
+# combined audit programme + integrated risk + integrated policy.
+#
+# ISO/IEC Directives Part 1 Annex SL provides the shared high-
+# level structure. ISO Handbook "The Integrated Use of Management
+# System Standards" (IUMSS, 2018) provides community-of-practice
+# guidance.
+
+name: integrated-management-system
+version: 0.1.0
+
+standards:
+  - "ISO 9001:2015"
+  - "ISO 14001:2015"
+  - "ISO 45001:2018"
+  - "ISO 50001:2018"
+
+clauses:
+
+  - id: IMS-Annex-SL-shared-structure
+    standard: ISO 9001:2015
+    section: "Annex SL high-level structure (HLS) — common to all Annex SL standards"
+    summary: |
+      Shared high-level structure — Annex SL HLS provides common
+      clause numbering across all ISO management-system standards:
+      §4 Context of organisation; §5 Leadership; §6 Planning;
+      §7 Support; §8 Operation; §9 Performance evaluation;
+      §10 Improvement. Common-clause identical text + discipline-
+      specific sub-clauses. IMS implementation leverages HLS for
+      single integrated documentation + single integrated
+      management review.
+
+  - id: IMS-shared-policy-objectives
+    standard: ISO 9001:2015
+    section: "§5.2 + §6.2 cross-MS integration"
+    summary: |
+      Shared policy + objectives — integrated quality + environment
+      + OH&S + energy policy statement reflecting commitment to
+      all in-scope management systems. Per-MS objectives consolidated
+      into single objectives register; common cascade to operational
+      KPIs. Top management single signoff covering all included MSes.
+
+  - id: IMS-shared-context-stakeholders
+    standard: ISO 9001:2015
+    section: "§4.1 + §4.2 cross-MS integration"
+    summary: |
+      Shared context + interested-party analysis — single context
+      analysis covering organisational external + internal issues
+      relevant to all included management systems; single
+      interested-parties register noting per-party expectations
+      across quality + environmental + OH&S + energy + IS scopes.
+
+  - id: IMS-shared-risk-opportunity
+    standard: ISO 9001:2015
+    section: "§6.1 cross-MS integration"
+    summary: |
+      Integrated risk + opportunity register — single risk register
+      capturing quality risks (ISO 9001 §6.1) + environmental
+      aspects + impacts (ISO 14001 §6.1.2) + OH&S hazards + risks
+      (ISO 45001 §6.1.2) + IS risks (ISO 27001 §6.1.2) + energy
+      review-derived risks (ISO 50001 §6.3) + others. Common risk
+      assessment methodology (often ISO 31000-aligned). Composes
+      cleanly with iso-31000 meta-framework overlay.
+
+  - id: IMS-shared-management-review
+    standard: ISO 9001:2015
+    section: "§9.3 cross-MS integration"
+    summary: |
+      Combined management review — single meeting + record covering
+      all in-scope MS-specific inputs per each standard's §9.3
+      (audit results, customer feedback, process performance,
+      nonconformities + corrective actions, monitoring + measurement
+      results, risk + opportunity status, supplier performance,
+      etc., plus MS-specific inputs like environmental performance,
+      OH&S performance, energy performance, IS performance). Outputs
+      consolidated into integrated improvement actions.
+
+  - id: IMS-combined-audit-programme
+    standard: ISO 9001:2015
+    section: "§9.2 + ISO 19011:2018 combined audits"
+    summary: |
+      Combined audit programme — internal audits planned per ISO
+      19011:2018 covering multiple management systems in single
+      audit visits where practical. Auditor competency requirements
+      cover all in-scope MS standards. External certification body
+      may offer combined IMS certification audit (multi-MS audit
+      day-rate reduction; common observations resolution; single
+      integrated audit report).
+
+  - id: IMS-documentation-control
+    standard: ISO 9001:2015
+    section: "§7.5 cross-MS integration"
+    summary: |
+      Integrated documented-information control — single document-
+      control SOP covering all MS scopes; integrated document index
+      mapping documents to applicable MS clauses; common version
+      control + approval + distribution + retention rules. Single
+      records-retention SOP covering MS-specific retention
+      requirements (e.g., training records, calibration records,
+      incident records).
+
+  - id: IMS-Annex-SL-version-control
+    standard: ISO 9001:2015
+    section: "Annex SL HLS revision tracking"
+    summary: |
+      Annex SL HLS version tracking — ISO/IEC Directives Part 1
+      Annex SL revised periodically (Edition 2 in 2018; further
+      revisions ongoing); MS standards adopt revised HLS at next
+      standard revision. IMS implementation tracks per-MS standard
+      revision adoption + plans coordinated transitions
+      (e.g., ISO 9001 next revision; ISO 27001:2022 already
+      adopted Annex SL Edition 2 HLS).
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (Integrated Management System — extends QMS policy with integrated quality + environment + OH&S + energy + IS commitment + Annex SL HLS leverage + combined management review + combined audit programme + integrated risk register)"
+    addresses:
+      - IMS-Annex-SL-shared-structure
+      - IMS-shared-policy-objectives
+      - IMS-shared-context-stakeholders
+      - IMS-shared-risk-opportunity
+
+  - path: templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md
+    name: "Management review (IMS — combined inputs + outputs covering all in-scope management systems' §9.3 requirements per ISO 9001 + ISO 14001 + ISO 45001 + ISO 50001 + ISO 27001)"
+    addresses:
+      - IMS-shared-management-review
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "IMS operational SOPs (combined audit programme per ISO 19011:2018 + integrated document control + Annex SL revision tracking + integrated CAPA + integrated records retention)"
+    addresses:
+      - IMS-combined-audit-programme
+      - IMS-documentation-control
+      - IMS-Annex-SL-version-control

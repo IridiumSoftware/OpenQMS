@@ -1,0 +1,121 @@
+# Open QMS — Combination Product cross-overlay
+# ----------------------------------------------
+# Cross-overlay (new module shape) binding ACROSS medical-devices
+# AND pharma verticals to encode combination-product regulatory
+# obligations: products that consist of two or more regulated
+# components (drug + device + biologic) physically/chemically
+# combined OR cross-labeled OR co-packaged.
+#
+# Examples: drug-eluting stents (drug + device); pre-filled
+# auto-injectors (drug + delivery device); insulin pumps with
+# dose calc software (drug + device + software); transdermal
+# patches with reservoir (drug + device); CAR-T cells with
+# delivery system (biologic + device).
+#
+# Standards licensing: PUBLIC (21 CFR Part 4 + EU MDR + EMA
+# guidance public; FDA Combination Products Guidance public).
+
+name: combination-product
+version: 0.1.0
+
+standards:
+  - "21 CFR Part 4"
+  - "EU MDR 2017/745"
+
+clauses:
+
+  - id: CP-PMOA-determination
+    standard: 21 CFR Part 4
+    section: "21 CFR §3.4 + §3.5 — PMOA + RFD"
+    summary: |
+      Primary Mode of Action (PMOA) determination — combination
+      product assigned to lead FDA Center (CDER drugs / CDRH
+      devices / CBER biologics) based on PMOA per 21 CFR §3.4.
+      Sponsor may file Request for Designation (RFD) per §3.7 when
+      PMOA assignment uncertain. Assignment determines lead Center
+      + primary submission pathway (NDA + 510(k)/PMA OR BLA +
+      device) but BOTH Centers retain consultative authority.
+
+  - id: CP-CGMP-single-system
+    standard: 21 CFR Part 4
+    section: "21 CFR §4.3 + §4.4"
+    summary: |
+      Single-system CGMP — manufacturer of combination product may
+      either: (1) comply with BOTH 21 CFR Part 211 (drug CGMP) AND
+      21 CFR Part 820 (device QSR) in full; OR (2) implement
+      "streamlined approach" per §4.4 — comply with one full set
+      (drug or device) + specific provisions from the other set
+      (drug-led: §820.20/30/50/100/170/200; device-led: §211.84/
+      103/132/137/165/166/167/170). Decision documented in QMS.
+
+  - id: CP-EU-MDR-Article-117
+    standard: EU MDR 2017/745
+    section: "Article 117 + amended Annex I MPD"
+    summary: |
+      EU MDR Article 117 — drug-device combination products (drug
+      product with integral device, single integral product) require
+      Notified Body opinion on the device part conforming to relevant
+      MDR Annex I GSPRs. Opinion forms part of the EMA / national-
+      competent-authority marketing authorisation submission.
+      Established device-component standards (USP <660>/<661> for
+      packaging; ISO 11608 for needle-based injectors; ISO 11040 for
+      glass syringes; ISO 8536 for IV equipment) typically cited.
+
+  - id: CP-cross-application-registration
+    standard: 21 CFR Part 4
+    section: "FDA Combination Products Submission Pathway Guidance"
+    summary: |
+      Submission pathway — combination product typically requires
+      coordinated submissions: (i) drug-led — NDA/BLA covers drug
+      including device-component data; OR (ii) device-led — 510(k)/
+      PMA covers device including drug-component data; OR (iii)
+      separate submissions when components separately marketable
+      with cross-labeling. Single PMOA-determined sponsor manages
+      cross-Center review per 21 CFR §3.4(b) intercenter consult.
+
+  - id: CP-postmarket-surveillance
+    standard: 21 CFR Part 4
+    section: "21 CFR §4 Subpart B + MDR 23 + ADE 314.80"
+    summary: |
+      Postmarket surveillance coordination — combination products
+      subject to BOTH drug + device adverse-event reporting (drug
+      ADE per 21 CFR §314.80 / §600.80 + MDR per 21 CFR §803);
+      §4 Subpart B (effective 2017) requires sponsor designate
+      "lead reporter" + cross-system MDR/ADE coordination + 5-day +
+      30-day reporting deadlines per stream. PSUR (drug) +
+      MDR-PSUR (device under MDR) cycles separately.
+
+  - id: CP-design-controls-cross-application
+    standard: 21 CFR Part 4
+    section: "§4.4(a)(1)-(8) Specific QSR provisions"
+    summary: |
+      Design controls under streamlined drug-led approach — even
+      drug-led manufacturer must apply specific QSR provisions:
+      §820.20 management responsibility; §820.30 design controls;
+      §820.50 purchasing controls; §820.100 corrective + preventive
+      action; §820.170 installation; §820.200 servicing. Device-led
+      streamlined approach analog: specific Part 211 provisions
+      (§211.84 testing of components + drug product containers /
+      §211.103 yield calculations / §211.132 tamper-evident
+      packaging / §211.137 expiration dating / §211.165 testing +
+      release / §211.166 stability / §211.167 special testing /
+      §211.170 reserve samples).
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (Combination Product — extends QMS policy with PMOA determination + lead-Center designation + streamlined-CGMP-approach commitment + MDR Article 117 NB opinion coordination + cross-stream adverse-event reporting discipline)"
+    addresses:
+      - CP-PMOA-determination
+      - CP-CGMP-single-system
+      - CP-EU-MDR-Article-117
+      - CP-cross-application-registration
+      - CP-postmarket-surveillance
+      - CP-design-controls-cross-application
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "Combination Product operational SOPs (PMOA decision record + RFD preparation + streamlined CGMP gap analysis + Article 117 NB submission coordination + cross-stream ADE/MDR triage + intercenter consult management)"
+    addresses:
+      - CP-PMOA-determination
+      - CP-CGMP-single-system
+      - CP-postmarket-surveillance

@@ -4,6 +4,74 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.44.0 DRAFT — 2026-05-24 — Cross-overlay batch (combination-product + integrated-management-system + food-pharma-grade)
+
+**1 NEW entry** OQ-111. Spec total 94 → 95. Engine 0.43.0 → 0.44.0.
+
+3 new cross-overlays introducing a new module shape — **cross-overlay**: overlays that bind ACROSS specific vertical combinations to encode intersection-specific regulatory requirements. Distinct from cross-cutting overlays (apply to any single vertical), class overlays (within-vertical rigor delta), and sub-overlays (within-cross-cutting tier delta).
+
+**combination-product (medical-devices + pharma):**
+- 6 clauses across FDA 21 CFR Part 4 + EU MDR Article 117
+- PMOA determination + RFD per 21 CFR §3.7
+- Streamlined single-system CGMP approach per §4.4 (drug-led or device-led)
+- EU MDR Article 117 device-component NB opinion (with USP <660>/<661>, ISO 11608, ISO 11040, ISO 8536 typical citations)
+- Cross-application registration coordination (NDA/BLA + 510(k)/PMA)
+- Postmarket surveillance coordination (lead-reporter MDR + ADE per §4 Subpart B; 5-day + 30-day deadlines)
+- Design controls cross-application (specific QSR §820.20/30/50/100/170/200 + specific Part 211 §211.84/103/132/137/165/166/167/170)
+
+**integrated-management-system (multi-MS coordination):**
+- 8 clauses across Annex SL HLS leverage
+- Shared policy + objectives across all in-scope MS
+- Shared context + interested-parties analysis
+- Integrated risk + opportunity register (composes with iso-31000 meta-framework)
+- Combined management review per §9.3 of each MS standard
+- Combined audit programme per ISO 19011:2018
+- Integrated documented-information control
+- Annex SL HLS version tracking + coordinated revision transitions
+
+**food-pharma-grade (chemicals + food-safety + pharma):**
+- 6 clauses at the intersection of three regulatory regimes
+- US FCS/FCN pathway (21 CFR 174-178 + FCN per 21 USC §348(h) + TOR per §170.39 + GRAS per §170.30 + prior-sanctioned)
+- EU FCM framework (Regulation 1935/2004 Article 3 safety + Article 16 supply-chain DoC)
+- EU plastic FCM positive list + SMLs (Regulation 10/2011 Annex I + II OML 10mg/dm² or 60mg/kg + III food simulants A-E + Amendment 2023/1442)
+- USP packaging chapters (<660> glass Type I-IV + <661> plastics including <661.1>/<661.2> + <87>/<88> biological reactivity Class I-VI)
+- E&L workflow per USP <1663>/<1664> + per-dosage-form risk-based scoping (OINDP + parenteral highest)
+- Supply-chain DoC cascade per EU Article 16
+
+All 3 reuse parent-overlay templates with binding deltas — no new templates required.
+
+**Registry +5 standards:**
+- 21 CFR Part 4 (PUBLIC) — FDA combination products CGMP
+- 21 CFR 174-178 (PUBLIC) — food-contact substances
+- EU 1935/2004 (PUBLIC) — FCM framework
+- EU 10/2011 (PUBLIC) — plastic FCM
+- USP Packaging Chapters (commercial) — pharma packaging
+
+**Module count: 102 → 105. Cross-cutting overlay count UNCHANGED at 24.** Cross-overlays are a distinct module shape from cross-cutting overlays.
+
+**20-module ultimate composite validates (new depth record beats prior 19-module):**
+```
+openqms validate \
+  --module medical-devices --module pharma --module combination-product \
+  --module pharma-sterile --module privacy \
+  --module iso-27001 --module regulated-ai --module iso-14001 \
+  --module iso-45001 --module iso-50001 --module iso-37001 \
+  --module iso-22301 --module iso-31000 \
+  --module integrated-management-system \
+  --module soc-2 --module soc-2-type-ii \
+  --module hitrust-csf --module hitrust-r2 \
+  --module iso-27001-cloud --module iso-27001-privacy
+# → invariant_holds: True
+```
+
+Repo-wide zero-orphan invariant holds: **105 modules / 778 clauses / 345 templates / 0 orphans** per `openqms trace --all`. CI extended (+10 validate steps). 116/116 pytest pass. All 8 bundle baselines clean. YAML linter clean on all 105 modules.
+
+Status counts: 6 `:verified` / 84 `:tested` / 5 `:argued` / 0 `:open` (total 95).
+
+Per user direction: "now let's do the cross-overlays" — all three shipped together.
+
+---
+
 ## v0.43.0 DRAFT — 2026-05-24 — Sub-overlay batch (DORA tiers + HITRUST scoping levels + ISO 37301 sectoral profiles)
 
 **1 NEW entry** OQ-110. Spec total 93 → 94. Engine 0.42.0 → 0.43.0.

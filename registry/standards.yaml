@@ -1282,3 +1282,63 @@ standards:
       - "27701"
       - "PIMS"
       - "ISO/IEC 27701"
+
+  - id: "21 CFR Part 4"
+    name: "FDA Current Good Manufacturing Practice Requirements for Combination Products"
+    publisher: U.S. Food and Drug Administration
+    edition: "21 CFR Part 4 (final rule 2013-01-22; effective 2013-07-22)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "21 CFR 4"
+      - "Combination Products CGMP"
+
+  - id: "21 CFR 174-178"
+    name: "FDA Indirect Food Additives — Food-Contact Substances"
+    publisher: U.S. Food and Drug Administration
+    edition: "21 CFR Parts 174-178 (Indirect Food Additives — Adhesives + Components of Coatings + Paper + Polymers + Adjuvants/Production Aids/Sanitizers; FCN Food Contact Notification program per 21 USC §348(h))"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "FCS"
+      - "FCN"
+      - "21 CFR 174"
+      - "21 CFR 175"
+      - "21 CFR 176"
+      - "21 CFR 177"
+      - "21 CFR 178"
+      - "Food-Contact Substances"
+
+  - id: "EU 1935/2004"
+    name: "EU Regulation 1935/2004 — Materials and Articles Intended to Come Into Contact with Food"
+    publisher: European Union
+    edition: "Regulation (EC) No 1935/2004 (effective 2004-12-03; framework regulation)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "FCM Framework"
+      - "EU FCM"
+      - "EC 1935/2004"
+
+  - id: "EU 10/2011"
+    name: "EU Regulation 10/2011 — Plastic Materials and Articles Intended to Come Into Contact with Food"
+    publisher: European Union
+    edition: "Regulation (EU) No 10/2011 (consolidated through Amendment 2023/1442; positive list + SMLs + OMLs + Declaration of Compliance + Food Simulants A-E)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "Plastic FCM"
+      - "EU 10/2011"
+
+  - id: "USP Packaging Chapters"
+    name: "USP General Chapters for Packaging Materials (<660> Glass + <661> Plastics + <87> In Vitro Biological Reactivity + <88> In Vivo Biological Reactivity)"
+    publisher: U.S. Pharmacopeial Convention
+    edition: "USP-NF current edition (annual revisions; <661.1> plastics-materials + <661.2> plastics-systems active)"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "USP <660>"
+      - "USP <661>"
+      - "USP <87>"
+      - "USP <88>"
+      - "USP packaging"

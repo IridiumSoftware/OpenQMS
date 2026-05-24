@@ -15,13 +15,13 @@ Current state + priority stack. Read this first every session. For claim status,
 | `:proved` | 0 | — |
 | `:verified` | 0 | — |
 | `:verified` | 6 | Invariant (2, OQ-001 + OQ-002) · Architecture (4, OQ-010 + OQ-011 + OQ-013 + OQ-015) |
-| `:tested` | 83 | Architecture (2, OQ-012 + OQ-014) · Substrate (3) · Workflow (9) · Module (56, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-096 + OQ-098 + OQ-101..OQ-110) · Gap (13, OQ-060 + OQ-061 + OQ-062 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-067 + OQ-068 + OQ-069 + OQ-080 + OQ-097 + OQ-099 + OQ-100) |
+| `:tested` | 84 | Architecture (2, OQ-012 + OQ-014) · Substrate (3) · Workflow (9) · Module (57, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-096 + OQ-098 + OQ-101..OQ-111) · Gap (13, OQ-060 + OQ-061 + OQ-062 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-067 + OQ-068 + OQ-069 + OQ-080 + OQ-097 + OQ-099 + OQ-100) |
 | `:benchmarked` | 0 | — |
 | `:argued` | 5 | Invariant (1, OQ-003) · Substrate (2, OQ-022 + OQ-023) · Licensing (2, OQ-070 + OQ-071) |
 | `:open` | 0 | — |
-| **Total** | **94** | — |
+| **Total** | **95** | — |
 
-Counts: 6 + 83 + 5 + 0 = 94 ✓. **Latest at v0.43.0**: Sub-overlay batch (10) — DORA tiers (CTPP + non-CTPP + TLPT) + HITRUST scoping levels (e1 + i1 + r2) + ISO 37301 sectoral profiles (public-sector + financial-services + healthcare + general-business). Extends sub-overlay-shape pattern to 3 additional cross-cutting overlays. No new registry standards. Total modules 92 → 102. Total sub-overlays 16 → 26. Zero-orphan invariant holds (102 modules / 758 clauses / 338 templates / 0 orphans). Spec total 93 → 94.
+Counts: 6 + 84 + 5 + 0 = 95 ✓. **Latest at v0.44.0**: Cross-overlay batch (3) — combination-product (medical-devices + pharma) + integrated-management-system (multi-MS) + food-pharma-grade (chemicals + food-safety + pharma). New module shape (cross-overlay binding across specific vertical combinations). Registry +5 standards (21 CFR Part 4 + 21 CFR 174-178 + EU 1935/2004 + EU 10/2011 + USP Packaging Chapters). Total modules 102 → 105. **20-module ultimate composite validates** (new depth record). Zero-orphan invariant holds (105 modules / 778 clauses / 345 templates / 0 orphans). Spec total 94 → 95.
 
 **Phase 0 round-out complete (v0.2.1 → v0.3.0).** P5, P6, P7 all closed. **Phase 1 mostly closed.** P1.1 at v0.4.0; P1.2 at v0.5.0. Remaining Phase 1: P1.3 (re-resolution on mutation, OQ-015 + OQ-065). P8 (Part 11 §11.50 prototype, OQ-060) and continued module-coverage population remain.
 

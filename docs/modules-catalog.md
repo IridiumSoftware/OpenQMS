@@ -1,6 +1,6 @@
 # Modules catalog
 
-Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.43.0. Use this page to choose the modules for your scope.
+Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.44.0. Use this page to choose the modules for your scope.
 
 **Current scope:**
 
@@ -10,13 +10,14 @@ Comprehensive inventory of every regulatory module shipped with Open QMS as of v
 | Class overlays | **44** across 6 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5 / chemicals 6) |
 | Cross-cutting overlays | **24** (iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas, privacy) |
 | **Sub-overlays** | **26** — class-overlay-shape deltas on cross-cutting overlays. v0.42.0 (16): cmmc-level-1/2/3, soc-2-type-i/ii, iso-27001-cloud/privacy, nist-csf-tier-1/2/3/4, pci-dss-saq-a/a-ep/d-merchant/d-sp/p2pe. v0.43.0 (10): dora-ctpp/non-ctpp/tlpt, hitrust-e1/i1/r2, iso-37301-public-sector/financial-services/healthcare/general-business |
-| **Total modules** | **102** + general |
-| Registry standards | **~119** (no new at v0.43.0; sub-overlays reuse existing registered standards) |
+| **Cross-overlays** | **3** — bind ACROSS specific vertical combinations: combination-product (medical-devices + pharma); integrated-management-system (multi-MS Annex SL); food-pharma-grade (chemicals + food-safety + pharma) |
+| **Total modules** | **105** + general |
+| Registry standards | **~124** (v0.44.0 +5: 21 CFR Part 4 + 21 CFR 174-178 + EU 1935/2004 + EU 10/2011 + USP Packaging Chapters) |
 | Registry jurisdictions | **20** |
-| Document templates | **92** (sub-overlays reuse parent-overlay templates; no new at v0.43.0) |
+| Document templates | **92** (cross-overlays reuse parent-overlay templates; no new at v0.44.0) |
 | Example bundles | **8** (validated end-to-end with committed baseline matrices) |
-| Spec entries | **94** (0 `:open`) |
-| Deepest composition tested in CI | **19-module ultimate composite** (chemicals top-rigor + adjacent + IMS + ISO 27001 cloud + PIMS + privacy) |
+| Spec entries | **95** (0 `:open`) |
+| Deepest composition tested in CI | **20-module ultimate composite** (medical-devices + pharma + combination-product + sterile + privacy + 8 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy) |
 
 **Three module types:**
 

@@ -228,6 +228,18 @@ jobs:
           openqms validate --module iso-37301 --module iso-37301-healthcare --module privacy --module hitrust-csf --module hitrust-r2
           # 19-module deepest composite — chemicals top-rigor + adjacent + IMS + privacy + ISO 27001 cloud + PIMS
           openqms validate --module chemicals --module chemicals-svhc --module chemicals-authorisation --module chemicals-tonnage-1000 --module osha-hcs --module transport-hazmat --module eu-biocides --module tsca-pfas --module iso-27001 --module iso-27001-cloud --module iso-27001-privacy --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000 --module privacy
+          # v0.44.0 — cross-overlay batch (3): combination-product (medical-devices + pharma) + integrated-management-system (multi-MS) + food-pharma-grade (chemicals + food-safety + pharma)
+          openqms validate --module combination-product
+          openqms validate --module integrated-management-system
+          openqms validate --module food-pharma-grade
+          openqms validate --module medical-devices --module pharma --module combination-product
+          openqms validate --module medical-devices --module pharma --module pharma-sterile --module combination-product
+          openqms validate --module pharma --module iso-27001 --module iso-14001 --module iso-45001 --module iso-50001 --module integrated-management-system
+          openqms validate --module chemicals --module iso-27001 --module iso-14001 --module iso-45001 --module iso-50001 --module iso-31000 --module integrated-management-system
+          openqms validate --module chemicals --module food-safety --module pharma --module food-pharma-grade
+          openqms validate --module chemicals --module food-pharma-grade
+          # 20-module ultimate composite — pharma + combination-product + IMS + chemicals + food-pharma-grade + privacy + everything
+          openqms validate --module medical-devices --module pharma --module combination-product --module pharma-sterile --module privacy --module iso-27001 --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000 --module integrated-management-system --module soc-2 --module soc-2-type-ii --module hitrust-csf --module hitrust-r2 --module iso-27001-cloud --module iso-27001-privacy
 
       - name: Inspect registry (smoke check)
         run: openqms registry list
