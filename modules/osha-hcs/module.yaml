@@ -1,0 +1,165 @@
+# Open QMS — OSHA HazCom (HCS) cross-cutting overlay
+# ----------------------------------------------------
+# 20th cross-cutting overlay (after the v0.31-v0.33 batch + recall-workflow).
+# US workplace hazard-communication discipline per 29 CFR 1910.1200.
+#
+# Composes with ANY vertical where US workers handle hazardous chemicals
+# (chemicals primary; pharma, food-safety, manufacturing, automotive,
+# aerospace all also typical adopters since each operates US workplaces
+# storing/using cleaning agents, lubricants, solvents, adhesives,
+# coatings, hazardous waste streams).
+#
+# OSHA HCS 2024 final rule (29 CFR 1910.1200 as amended May 2024) aligns
+# US HazCom with UN GHS Rev. 7. Open QMS encodes the post-2024-final-rule
+# requirements; the original 2012 alignment with GHS Rev. 3 is superseded
+# (mandatory compliance dates: substance manufacturer/importer 2026-01-19;
+# mixture manufacturer/importer 2027-07-19).
+#
+# Standards licensing: PUBLIC (US federal regulation via ecfr.gov).
+#
+# Relationship to chemicals vertical: chemicals encodes SDS *authoring*
+# obligations (REACH Article 31 + UN GHS Annex 4 + CLP); osha-hcs encodes
+# the US workplace *receiver* side — written program, SDS access,
+# container labels, employee training. Symmetric to receiver vs. sender
+# obligation distinction in REACH supply-chain communication.
+
+name: osha-hcs
+version: 0.1.0
+
+standards:
+  - 29 CFR 1910.1200
+
+clauses:
+
+  - id: HCS-(e)-written-program
+    standard: 29 CFR 1910.1200
+    section: "(e)"
+    summary: |
+      Written Hazard Communication Program — covers (i) list of all
+      hazardous chemicals known to be present in the workplace, (ii)
+      methods used to inform workers of hazards in non-routine tasks +
+      hazards of unlabeled pipes, (iii) methods to inform contractors
+      of hazards their employees may be exposed to. Written program
+      available to employees + designated employee representatives +
+      OSHA Assistant Secretary upon request. Multi-employer workplace
+      provisions per (e)(2).
+
+  - id: HCS-(f)-labels-and-warnings
+    standard: 29 CFR 1910.1200
+    section: "(f)"
+    summary: |
+      Labels + other forms of warning — manufacturer / importer /
+      distributor labels per HCS 2024 final rule (alignment with UN GHS
+      Rev. 7): product identifier, signal word (Danger or Warning),
+      hazard statement(s), pictogram(s), precautionary statement(s),
+      supplier name + address + phone. Workplace labels alternative
+      format allowed per (f)(6) if conveying same information.
+      Bulk-shipment labelling provisions per (f)(5).
+
+  - id: HCS-(g)-SDS-access
+    standard: 29 CFR 1910.1200
+    section: "(g)"
+    summary: |
+      Safety Data Sheets — SDS for each hazardous chemical received
+      from manufacturer / importer / distributor. Maintained in
+      workplace + readily accessible to employees during each work
+      shift when they are in their work area. 16-section GHS format
+      per (g)(2). If SDS not received with first shipment, employer
+      obtains via written request before next shipment. Trade-secret
+      handling per (i).
+
+  - id: HCS-(h)-employee-training
+    standard: 29 CFR 1910.1200
+    section: "(h)"
+    summary: |
+      Employee information + training — provided at time of initial
+      assignment AND whenever a NEW chemical hazard is introduced into
+      the work area. Information: requirements of HCS; operations
+      where hazardous chemicals present; location + availability of
+      written program + SDS list + SDSs. Training: methods to detect
+      release; physical + health + simple-asphyxiation + combustible-
+      dust + pyrophoric-gas + hazards-not-otherwise-classified;
+      protective measures (work practices + PPE + emergency
+      procedures); details of HCS program incl. how to read labels +
+      SDSs.
+
+  - id: HCS-(i)-trade-secrets
+    standard: 29 CFR 1910.1200
+    section: "(i)"
+    summary: |
+      Trade secrets — chemical manufacturer may withhold specific
+      chemical identity if (i) claim is supportable, (ii) information
+      otherwise required is disclosed, (iii) SDS indicates info is
+      withheld. Health professional / employee / employee
+      representative access for medical emergency or non-emergency
+      need with written confidentiality agreement per (i)(3)-(11).
+      OSHA enforcement of trade-secret challenges per Appendix E.
+
+  - id: HCS-Appendix-A-health-hazards
+    standard: 29 CFR 1910.1200
+    section: "Appendix A"
+    summary: |
+      Health Hazard Criteria — classification criteria for 10 health
+      hazard classes per HCS 2024 (aligns with UN GHS Rev. 7):
+      acute toxicity (oral/dermal/inhalation; 5 categories); skin
+      corrosion/irritation; serious eye damage/eye irritation; resp/
+      skin sensitization; germ-cell mutagenicity; carcinogenicity;
+      reproductive toxicity; STOT-SE; STOT-RE; aspiration hazard.
+
+  - id: HCS-Appendix-B-physical-hazards
+    standard: 29 CFR 1910.1200
+    section: "Appendix B"
+    summary: |
+      Physical Hazard Criteria — 17 physical hazard classes per HCS
+      2024 (aligns with UN GHS Rev. 7 + adds desensitized explosives
+      + non-flammable aerosols): explosives; flammable gases incl.
+      chemically unstable; aerosols; oxidizing gases; gases under
+      pressure; flammable liquids; flammable solids; self-reactive;
+      pyrophoric liquids/solids/gases; self-heating; substances
+      emit flammable gas in contact with water; oxidizing
+      liquids/solids; organic peroxides; corrosive to metals;
+      desensitized explosives.
+
+  - id: HCS-Appendix-C-label-elements
+    standard: 29 CFR 1910.1200
+    section: "Appendix C"
+    summary: |
+      Allocation of Label Elements — H + P codes assigned per hazard
+      class + category. Pictograms: 8 GHS pictograms (red diamond
+      border per US convention — same as EU CLP). HCS 2024 adds
+      precautionary statements for new desensitized-explosive +
+      non-flammable-aerosol classes. Combined-mixture labelling
+      precedence rules per Appendix C.5.
+
+  - id: HCS-Appendix-D-SDS-content
+    standard: 29 CFR 1910.1200
+    section: "Appendix D"
+    summary: |
+      Safety Data Sheet — 16 sections matching UN GHS Annex 4: 1
+      Identification; 2 Hazard(s); 3 Composition; 4 First-aid;
+      5 Fire-fighting; 6 Accidental release; 7 Handling+Storage;
+      8 Exposure controls+PPE; 9 Physical-chemical properties;
+      10 Stability+Reactivity; 11 Toxicological; 12 Ecological;
+      13 Disposal; 14 Transport; 15 Regulatory; 16 Other
+      information. HCS 2024 adds new fields under §3 (concentration
+      ranges) + §11 (interactive effects + immediately dangerous
+      to life or health IDLH values).
+
+templates:
+
+  - path: templates/qms-ohs/HAZCOM-WRITTEN-PROGRAM-TEMPLATE.md
+    name: HazCom Written Program (29 CFR 1910.1200(e) — workplace chemical inventory + non-routine task hazard communication + multi-employer + contractor info)
+    addresses:
+      - HCS-(e)-written-program
+      - HCS-(g)-SDS-access
+      - HCS-(h)-employee-training
+      - HCS-(i)-trade-secrets
+
+  - path: templates/product-chemicals/sds/SAFETY-DATA-SHEET-TEMPLATE.md
+    name: Safety Data Sheet (16-section — also satisfies OSHA HCS App D content for US workplace receivers)
+    addresses:
+      - HCS-Appendix-D-SDS-content
+      - HCS-Appendix-A-health-hazards
+      - HCS-Appendix-B-physical-hazards
+      - HCS-Appendix-C-label-elements
+      - HCS-(f)-labels-and-warnings

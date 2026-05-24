@@ -1,0 +1,142 @@
+# Open QMS — TSCA PFAS Reporting Rule cross-cutting overlay
+# -----------------------------------------------------------
+# 23rd cross-cutting overlay. Covers the US EPA TSCA Section 8(a)(7)
+# PFAS Reporting and Recordkeeping Requirements (40 CFR Part 705,
+# final rule October 2023).
+#
+# Composes naturally with chemicals vertical (TSCA already in scope)
+# but applies BROADLY — any US importer/manufacturer of any of the
+# >1,400 listed PFAS substances OR ARTICLES CONTAINING PFAS over the
+# 2011-2022 lookback period.
+#
+# **Critical scope-creep risk**: imported ARTICLES containing PFAS
+# trigger reporting even when the importer is not a chemical company
+# — fluoropolymer-coated textiles, semiconductor packaging, electronic
+# components (PFOS in chrome plating bath), firefighting foam reserves,
+# fluoropolymer-lined valves/gaskets, water-resistant coatings,
+# greaseproof food packaging, etc.
+#
+# Submission window:
+#  - Standard reporters: 2025-07-11 to 2026-01-11
+#  - Small manufacturers + reporters for article-only PFAS:
+#    2025-07-11 to 2026-07-11
+#  - (Note: EPA extended these once; verify current deadline at
+#    submission time)
+#
+# Standards licensing: PUBLIC (US federal regulation via ecfr.gov +
+# EPA CDX portal for submission).
+
+name: tsca-pfas
+version: 0.1.0
+
+standards:
+  - "40 CFR 705"
+
+clauses:
+
+  - id: TSCA-PFAS-705-3-applicability
+    standard: 40 CFR 705
+    section: "§705.3"
+    summary: |
+      Applicability — applies to every person who has manufactured
+      (including imported) a PFAS-listed substance in any year from
+      January 1, 2011 through December 31, 2022 for a commercial
+      purpose. PFAS scope is broad structural definition per
+      §705.5(b): substances containing at least one of three
+      structural moieties (R-CF2-CF2-R; R-CF2-O-CF2-R; CF3-).
+      **No de minimis exemption.** No exemption for substances
+      already in commerce. No exemption for impurities or byproducts.
+      Articles containing PFAS subject to reporting if PFAS was
+      knowingly imported as part of the article.
+
+  - id: TSCA-PFAS-705-15-due-dates
+    standard: 40 CFR 705
+    section: "§705.15"
+    summary: |
+      Submission window — original final rule reporting period was
+      November 12, 2024 to May 8, 2025; EPA extended to July 11,
+      2025 - January 11, 2026 for standard reporters per direct
+      final rule 89 FR 78095 (September 25, 2024). Small
+      manufacturers reporting solely for PFAS imported in articles
+      have until July 11, 2026. **Verify current deadline at
+      submission time — EPA may extend further.**
+
+  - id: TSCA-PFAS-705-20-information-to-report
+    standard: 40 CFR 705
+    section: "§705.20-§705.30"
+    summary: |
+      Information to be reported per substance per year for the
+      11-year lookback: identity (chemical name + CAS RN or
+      Accession Number); company + plant site identification;
+      categories of use (industrial/commercial/consumer); quantity
+      manufactured/imported (annual production volume by year +
+      site); byproduct reporting; environmental + health effects
+      data in possession or control (cite Section 8(d) ten-year
+      lookback); occupational exposure data (workers + categories +
+      duration); environmental release data; disposal data.
+
+  - id: TSCA-PFAS-705-25-records-retention
+    standard: 40 CFR 705
+    section: "§705.25"
+    summary: |
+      Recordkeeping — retain records substantiating reported
+      information for 5 years from the last day of the submission
+      period. Records must be sufficient to verify the reported
+      information if EPA requests. Includes purchase records,
+      invoices, SDS, customer specifications, internal R&D records,
+      product test data, supplier certifications.
+
+  - id: TSCA-PFAS-705-35-CBI
+    standard: 40 CFR 705
+    section: "§705.35"
+    summary: |
+      Confidential Business Information (CBI) claims — claimant must
+      assert claim concurrent with submission per TSCA §14 + 40 CFR
+      §703.5. Substantiation required for most categories of
+      information. EPA reviews CBI claims; non-substantiated or
+      improperly asserted claims rejected. Public-version (sanitized)
+      submission required alongside CBI-version. Generic substance
+      names allowed under §720.85 for substances reported under
+      Accession Number.
+
+  - id: TSCA-PFAS-705-40-submission-mechanism
+    standard: 40 CFR 705
+    section: "§705.40"
+    summary: |
+      Submission via EPA Central Data Exchange (CDX) using the
+      Chemical Information Submission System (CISS). Reporter
+      registration required. Electronic submission only — no paper.
+      Per-substance per-year per-site granularity. EPA-published
+      Reporting Forms + Instructions supplement the regulatory text.
+
+  - id: TSCA-PFAS-article-importer-due-diligence
+    standard: 40 CFR 705
+    section: "Preamble — knowability standard"
+    summary: |
+      Article importer "knowability" standard — importer must report
+      if they knew or reasonably should have known the article
+      contained a PFAS substance. EPA preamble guidance: due
+      diligence includes review of available SDS, product
+      specifications, supplier certifications, regulatory filings
+      in other jurisdictions (EU REACH SVHC notifications;
+      California Prop 65 warnings; Stockholm Convention POPs
+      reporting). Documented good-faith due diligence supports
+      defensible reporting OR non-reporting determination.
+
+templates:
+
+  - path: templates/product-chemicals/pfas/PFAS-REPORTING-FORM-TEMPLATE.md
+    name: TSCA PFAS Reporting Form (40 CFR Part 705 — per-substance per-year per-site data template + CBI/non-CBI dual-version structure + article-importer due-diligence record)
+    addresses:
+      - TSCA-PFAS-705-3-applicability
+      - TSCA-PFAS-705-15-due-dates
+      - TSCA-PFAS-705-20-information-to-report
+      - TSCA-PFAS-705-35-CBI
+      - TSCA-PFAS-705-40-submission-mechanism
+      - TSCA-PFAS-article-importer-due-diligence
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: PFAS recordkeeping SOP (40 CFR 705.25 — 5-year retention; substantiation files; article-importer due-diligence files)
+    addresses:
+      - TSCA-PFAS-705-25-records-retention
+      - TSCA-PFAS-article-importer-due-diligence

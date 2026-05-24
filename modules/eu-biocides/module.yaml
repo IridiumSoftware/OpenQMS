@@ -1,0 +1,181 @@
+# Open QMS — EU Biocides (BPR) cross-cutting overlay
+# ----------------------------------------------------
+# 22nd cross-cutting overlay. EU Biocidal Products Regulation (BPR)
+# 528/2012 — placing biocidal products on the EU market.
+#
+# Composes naturally with chemicals vertical (biocides are chemical
+# substances/mixtures subject to BPR rather than REACH for the
+# product-on-market authorisation), and with manufacturing /
+# food-safety / medical-devices for downstream users.
+#
+# Standards licensing: PUBLIC (EUR-Lex).
+#
+# Scope: biocidal products + treated articles. 22 product types
+# across 4 main groups: PT 1-5 disinfectants; PT 6-13 preservatives;
+# PT 14-20 pest control; PT 21-22 other (antifouling + embalming).
+
+name: eu-biocides
+version: 0.1.0
+
+standards:
+  - EU BPR
+
+clauses:
+
+  - id: BPR-Art-3-definitions
+    standard: EU BPR
+    section: "Article 3"
+    summary: |
+      Definitions — biocidal product (substance/mixture intended to
+      destroy/render harmless/prevent action of any harmful organism
+      by any means other than mere physical/mechanical action);
+      active substance (substance/microorganism that has an action
+      on/against harmful organisms); product type (PT 1-22 per
+      Annex V); treated article (treated with/incorporates one or
+      more biocidal products). Distinction biocidal-product vs.
+      treated-article triggers different obligation sets.
+
+  - id: BPR-Art-4-active-substance-approval
+    standard: EU BPR
+    section: "Articles 4-9"
+    summary: |
+      Active substance approval — at EU level by Commission
+      Implementing Regulation following Member State assessment
+      (Rapporteur Member State / evaluating CA) + BPC (Biocidal
+      Products Committee) opinion. Approval includes per-PT scope,
+      minimum purity, conditions, expiration (typically 10 years
+      with renewal). Exclusion criteria per Article 5 (CMR Cat 1A/1B
+      + ED + PBT + vPvB). Candidates for substitution per Article 10.
+
+  - id: BPR-Art-17-product-authorisation
+    standard: EU BPR
+    section: "Articles 17-23"
+    summary: |
+      Biocidal product authorisation — required before placing on EU
+      market or use. Pathways: national authorisation (Article 17;
+      individual MS); mutual recognition (Article 33-40); Union
+      authorisation (Article 41-46; for product families with similar
+      use conditions across EU); simplified authorisation (Article
+      25-28; for low-risk products meeting Annex I substances + use
+      conditions).
+
+  - id: BPR-Art-19-conditions-of-authorisation
+    standard: EU BPR
+    section: "Article 19"
+    summary: |
+      Conditions of authorisation — Article 19(1) requirements:
+      (a) active substance(s) approved for the PT; (b) product
+      efficacious; (c) no unacceptable effects on target organisms;
+      (d) no unacceptable effects on human/animal health, ground/
+      surface water, environment; (e) substances of concern
+      identified + risk-managed. Annex VI Common Principles for
+      evaluation of dossiers.
+
+  - id: BPR-Art-49-50-data-protection
+    standard: EU BPR
+    section: "Articles 49-50 + Article 95"
+    summary: |
+      Data protection + data sharing — joint submission for vertebrate
+      animal data (mandatory; Article 62). Letter of Access (LoA)
+      arrangements for non-vertebrate data. Article 95 active
+      substance + supplier list — only suppliers on Article 95 List
+      may place biocidal products containing the active substance on
+      market (post-1 September 2015 enforcement). Critical adopter-
+      cost item: small suppliers without LoA must obtain one or
+      withdraw product.
+
+  - id: BPR-Art-58-treated-articles
+    standard: EU BPR
+    section: "Article 58"
+    summary: |
+      Treated articles — article treated with or incorporating one or
+      more biocidal products may be placed on market only if all
+      active substances contained are: (a) approved for the relevant
+      PT + use, OR (b) included in Annex I, OR (c) being reviewed
+      under the review programme (Article 89). Labelling obligation
+      per Article 58(3): if biocidal property is claimed for the
+      treated article OR conditions of substance approval require it
+      — supplier name + each active substance name + nanomaterial
+      indication + claim + instructions for safe use + relevant
+      precautionary statements.
+
+  - id: BPR-Art-56-research-and-development
+    standard: EU BPR
+    section: "Article 56"
+    summary: |
+      Research + development exemption — scientific R&D + product +
+      process-oriented R&D not subject to authorisation requirement
+      provided (a) experimentation conducted under controlled
+      conditions + restricted area; (b) competent authority notified
+      30 days before experiments involving release into environment
+      OR uncontrolled human/animal exposure; (c) records kept on
+      identity + label + supplied quantity + recipient.
+
+  - id: BPR-Art-69-classification-labelling-packaging
+    standard: EU BPR
+    section: "Articles 69-72 + Annex III"
+    summary: |
+      Classification + labelling + packaging — biocidal products
+      classified + labelled + packaged per CLP. Article 69 adds
+      biocide-specific labelling: name of every active substance +
+      its concentration; PT + use covered by authorisation;
+      authorisation number; first-aid instructions; emergency
+      contact; specific instructions for safe disposal of product +
+      packaging; specific precautionary statements per use class.
+      Advertising restrictions per Article 72: no misleading
+      statements (e.g., "low-risk biocidal product"); always include
+      "Use biocides safely. Always read the label + product
+      information before use."
+
+  - id: BPR-Annex-V-product-types
+    standard: EU BPR
+    section: "Annex V"
+    summary: |
+      22 Product Types across 4 main groups: **PT 1-5 disinfectants**
+      (PT 1 human hygiene; PT 2 disinfectants not intended for direct
+      application to humans/animals; PT 3 veterinary hygiene; PT 4
+      food + feed area; PT 5 drinking water); **PT 6-13 preservatives**
+      (PT 6 in-can; PT 7 film; PT 8 wood; PT 9 fibre/leather/rubber;
+      PT 10 construction material; PT 11 liquid-cooling; PT 12
+      slimicides; PT 13 working/cutting fluids); **PT 14-20 pest
+      control** (PT 14 rodenticides; PT 15 avicides; PT 16
+      molluscicides; PT 17 piscicides; PT 18 insecticides; PT 19
+      repellents+attractants; PT 20 control of other vertebrates);
+      **PT 21-22 other** (PT 21 antifouling; PT 22 embalming).
+
+  - id: BPR-Annex-VI-evaluation-principles
+    standard: EU BPR
+    section: "Annex VI"
+    summary: |
+      Common Principles for evaluation of biocidal product dossiers
+      — efficacy evaluation; human health risk characterisation
+      (AEL — Acceptable Exposure Level); environmental risk
+      characterisation (PEC/PNEC); residue assessment; risk
+      management; conclusions + decision. ECHA Guidance Volumes on
+      Biocides supplement (especially Volume III Human Health +
+      Volume IV Environment).
+
+templates:
+
+  - path: templates/product-chemicals/biocides/BPR-AUTHORISATION-APPLICATION-TEMPLATE.md
+    name: BPR Biocidal Product Authorisation Application (Articles 17-19 + Annex VI Common Principles + per-PT data requirements)
+    addresses:
+      - BPR-Art-17-product-authorisation
+      - BPR-Art-19-conditions-of-authorisation
+      - BPR-Annex-V-product-types
+      - BPR-Annex-VI-evaluation-principles
+      - BPR-Art-4-active-substance-approval
+      - BPR-Art-49-50-data-protection
+
+  - path: templates/product-chemicals/sds/SAFETY-DATA-SHEET-TEMPLATE.md
+    name: Safety Data Sheet (biocides — extends with PT identification + authorisation number + biocide-specific Article 69 labelling cross-reference)
+    addresses:
+      - BPR-Art-69-classification-labelling-packaging
+      - BPR-Art-58-treated-articles
+      - BPR-Art-3-definitions
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Biocides R&D notification + Article 95 supplier-list compliance + post-authorisation change-notification SOPs
+    addresses:
+      - BPR-Art-56-research-and-development
+      - BPR-Art-49-50-data-protection

@@ -1152,3 +1152,85 @@ standards:
       - "Toxic Substances Control Act"
       - "15 USC 2601"
       - "40 CFR 700"
+
+  - id: "29 CFR 1910.1200"
+    name: "Occupational Safety and Health Administration Hazard Communication Standard (HazCom)"
+    publisher: U.S. Occupational Safety and Health Administration
+    edition: "29 CFR 1910.1200 (HazCom 2012 + 2024 final rule aligning with UN GHS Rev. 7)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "OSHA HCS"
+      - "HazCom"
+      - "HazCom 2012"
+
+  - id: "49 CFR 100-185"
+    name: "US DOT Hazardous Materials Regulations (HMR)"
+    publisher: U.S. Department of Transportation, Pipeline and Hazardous Materials Safety Administration (PHMSA)
+    edition: "49 CFR Parts 100-185 (Subchapter C of Chapter I; HMT 49 CFR 172.101)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "DOT HMR"
+      - "PHMSA HMR"
+      - "HMR"
+
+  - id: "IMDG Code"
+    name: "International Maritime Dangerous Goods Code"
+    publisher: International Maritime Organization (IMO)
+    edition: "Amendment 42-24 (mandatory 1 January 2026)"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "IMDG"
+
+  - id: "IATA DGR"
+    name: "IATA Dangerous Goods Regulations"
+    publisher: International Air Transport Association
+    edition: "66th Edition (effective 1 January 2026; reflects ICAO Technical Instructions Doc 9284 2025-2026)"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "IATA DGR"
+      - "DGR"
+
+  - id: "ADR 2025"
+    name: "European Agreement concerning the International Carriage of Dangerous Goods by Road"
+    publisher: United Nations Economic Commission for Europe (UNECE)
+    edition: "ADR 2025 (applicable from 1 January 2025; transitional period to 30 June 2025)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "ADR"
+      - "UN ADR"
+
+  - id: "RID 2025"
+    name: "Regulations concerning the International Carriage of Dangerous Goods by Rail"
+    publisher: Intergovernmental Organisation for International Carriage by Rail (OTIF)
+    edition: "RID 2025 (applicable from 1 January 2025)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "RID"
+
+  - id: "EU BPR"
+    name: "Biocidal Products Regulation"
+    publisher: European Union
+    edition: "Regulation (EU) No 528/2012 (effective 1 September 2013; amendments through 2024)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "BPR"
+      - "EU Biocides Regulation"
+      - "Regulation 528/2012"
+
+  - id: "40 CFR 705"
+    name: "TSCA Section 8(a)(7) PFAS Reporting and Recordkeeping Requirements"
+    publisher: U.S. Environmental Protection Agency
+    edition: "40 CFR Part 705 (final rule October 2023; submission period July 2025 - May 2026; small-mfr extension to October 2026)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "TSCA PFAS"
+      - "PFAS Reporting Rule"
+      - "40 CFR Part 705"

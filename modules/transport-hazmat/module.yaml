@@ -1,0 +1,297 @@
+# Open QMS — Transport HazMat cross-cutting overlay
+# ---------------------------------------------------
+# 21st cross-cutting overlay. Covers the four major dangerous-goods
+# transport regulatory regimes:
+#
+#   - US DOT HMR (49 CFR Parts 100-185; PHMSA) — domestic US road/rail
+#   - IMDG Code (IMO; commercial license) — international sea
+#   - IATA DGR (IATA; commercial license) — international air
+#     (operationalises ICAO Technical Instructions Doc 9284)
+#   - ADR 2025 / RID 2025 (UNECE/OTIF; PUBLIC license) — EU road/rail
+#
+# Composes with ANY vertical shipping hazardous materials: chemicals
+# (primary); pharma (solvents/active ingredients); manufacturing
+# (intermediates + waste streams); automotive (UN3480 Li-ion batteries
+# UN3481/3091; airbag pyrotechnic UN0503); aerospace (UN3480 batteries;
+# pyrotechnic UN0354 ejection seats; cryogenic UN1977 LN2/UN1073 LO2);
+# food-safety (CO2 UN1013 for refrigeration; methylbromide UN1062
+# fumigation phase-out).
+#
+# Standards licensing notes:
+#  - US DOT HMR PUBLIC (ecfr.gov)
+#  - ADR + RID PUBLIC (UNECE + OTIF — official electronic editions)
+#  - IMDG + IATA DGR COMMERCIAL — adopters must purchase current
+#    edition (~$200-400/edition; biennial updates) before placing
+#    international shipments
+#
+# Adopter cost note: even though IMDG + IATA are commercial, the
+# module is still useful — it encodes the discipline; adopters reference
+# current commercial editions for the actual UN-numbered classification
+# + packing-instruction lookup.
+
+name: transport-hazmat
+version: 0.1.0
+
+standards:
+  - "49 CFR 100-185"
+  - "IMDG Code"
+  - "IATA DGR"
+  - "ADR 2025"
+  - "RID 2025"
+
+clauses:
+
+  # === US DOT HMR (49 CFR 100-185) ===
+
+  - id: DOT-172-101-HMT
+    standard: 49 CFR 100-185
+    section: "49 CFR 172.101"
+    summary: |
+      Hazardous Materials Table (HMT) — master list. For each entry:
+      proper shipping name + hazard class/division + UN identification
+      number + packing group (I/II/III) + label codes + special
+      provisions + packaging exceptions/non-bulk/bulk authorisations
+      + quantity limits (passenger air vs. cargo air) + vessel
+      stowage codes. Classification + entry-selection per §173.
+
+  - id: DOT-172-202-shipping-papers
+    standard: 49 CFR 100-185
+    section: "49 CFR 172.202-205"
+    summary: |
+      Shipping papers — required content: UN identification number,
+      proper shipping name, hazard class/division, packing group,
+      total quantity by weight/volume, number + type of packages,
+      shipper's certification per §172.204 ("I hereby declare ..."),
+      emergency response telephone (24h monitored) per §172.604.
+      Format requirements per §172.203 (color contrast / sequence /
+      placement). Carried with shipment + accessible during transit.
+
+  - id: DOT-172-300-marking
+    standard: 49 CFR 100-185
+    section: "49 CFR 172 Subpart D"
+    summary: |
+      Marking — package markings: UN identification number with "UN"
+      prefix + proper shipping name + technical name in parens for
+      n.o.s. entries + consignor/consignee name+address + orientation
+      arrows for liquids in combination packagings + limited-quantity
+      mark + IBC marks + portable-tank marks + non-bulk vs bulk
+      marking. Aircraft package markings additional per §172.312.
+
+  - id: DOT-172-400-labels
+    standard: 49 CFR 100-185
+    section: "49 CFR 172 Subpart E"
+    summary: |
+      Labels — square-on-point labels in colors + symbols per
+      §172.411-450 affixed to non-bulk packages. Primary + subsidiary
+      hazard labels per HMT. Limited-quantity hollow-diamond mark in
+      lieu of label per §172.315.
+
+  - id: DOT-172-500-placards
+    standard: 49 CFR 100-185
+    section: "49 CFR 172 Subpart F"
+    summary: |
+      Placards — bulk packages + freight containers + transport
+      vehicles per §172.504. Two placard tables; threshold-quantity
+      vs. any-quantity (Class 1.1-1.3, 2.3 Zone A, 4.3, 6.1 Hazard
+      Zone A, 7 RAM RYL, 1.5, others = any quantity). Two placards
+      on each side + one each end. Subsidiary-risk placard per
+      §172.505.
+
+  - id: DOT-172-600-emergency-response
+    standard: 49 CFR 100-185
+    section: "49 CFR 172 Subpart G"
+    summary: |
+      Emergency response information — for each hazardous material:
+      ERG guide number or equivalent immediately-available emergency-
+      response info accompanying shipment + 24h-monitored emergency-
+      response telephone number on shipping paper + on contract with
+      Chemtrec or equivalent agency. Telephone-number registrant
+      identified + tested annually.
+
+  - id: DOT-172-700-HMT-training
+    standard: 49 CFR 100-185
+    section: "49 CFR 172 Subpart H"
+    summary: |
+      Hazmat Employee Training — hazmat employees per §171.8
+      definition. Four components per §172.704: general awareness/
+      familiarization; function-specific (specific functions
+      performed; classification/marking/labeling/packaging/etc.);
+      safety (emergency response info, accident-prevention measures,
+      methods + procedures for avoiding accidents); security
+      awareness (incl. in-depth Security Plan training if applicable
+      per §172.802). Initial within 90 days of employment + recurrent
+      every 3 years. Records retained 3 years past employment end.
+
+  - id: DOT-173-non-bulk-packagings
+    standard: 49 CFR 100-185
+    section: "49 CFR 173 Subparts A-E"
+    summary: |
+      Packagings — UN performance-tested packagings required for
+      most hazardous materials. UN specification marking + performance
+      level (X = PG I/II/III; Y = PG II/III; Z = PG III). DOT
+      special-permit packagings for some commodities. Combination +
+      single + composite + IBC + large packaging + portable tank
+      classifications. Periodic retest + inspection per §178.
+
+  - id: DOT-180-tank-cars-cargo-tanks
+    standard: 49 CFR 100-185
+    section: "49 CFR Parts 178 + 180"
+    summary: |
+      Continuing qualification + maintenance for tank cars + cargo
+      tanks + portable tanks. Specification cargo tank periodic
+      inspection + retest cadence per commodity. Tank-car operator
+      qualification.
+
+  # === IMDG (sea) ===
+
+  - id: IMDG-classification-Part-2
+    standard: IMDG Code
+    section: "Part 2"
+    summary: |
+      Classification — same UN classification scheme as DOT HMR but
+      with sea-specific considerations: marine pollutants (P-mark
+      per §2.10); marine-environment severity (UN Model Regulations
+      Class 9 marine pollutants); segregation rules per §7.2.4.
+
+  - id: IMDG-segregation-7-2
+    standard: IMDG Code
+    section: "Part 7 Chapter 7.2 + 7.3"
+    summary: |
+      Stowage + segregation — segregation table (Class vs. Class)
+      per §7.2.4 with codes 1 (away from) / 2 (separated from) / 3
+      (separated by a complete compartment or hold from) / 4
+      (separated longitudinally by an intervening complete
+      compartment or hold from). Stowage categories A/B/C/D/E.
+      Hold + container + sundry stowage provisions.
+
+  - id: IMDG-DG-declaration-5-4
+    standard: IMDG Code
+    section: "Part 5 Chapter 5.4"
+    summary: |
+      Dangerous Goods Declaration + container/vehicle packing
+      certificate. Form per IMO/ILO/UNECE Guidelines. Combined
+      transport documents (Multimodal Dangerous Goods Form)
+      acceptable.
+
+  # === IATA DGR (air) ===
+
+  - id: IATA-state-operator-variations
+    standard: IATA DGR
+    section: "Section 2"
+    summary: |
+      State + Operator Variations — State variations (regulator-
+      imposed; e.g., USG-XX for US deviations) and Operator
+      variations (carrier-imposed; airline-specific tighter limits).
+      Shipper responsibility to comply with most restrictive
+      applicable. Acceptance check at carrier point-of-handover.
+
+  - id: IATA-passenger-vs-cargo-quantity-limits
+    standard: IATA DGR
+    section: "Section 4.2 + Subsections"
+    summary: |
+      Quantity limits per package — passenger aircraft vs. cargo
+      aircraft only — per UN number + packing instruction. Many
+      Class 1 (explosives) + Class 6.2 (Category A infectious
+      substances UN2814/UN2900) + radioactive Category III-YELLOW
+      prohibited from passenger aircraft. Lithium battery quantity
+      + State-of-Charge limits per Sections 4.2 + Subsections
+      II/IB/IA + Special Provisions A88/A99/A201 + Packing
+      Instructions 965-970.
+
+  - id: IATA-shippers-declaration-8
+    standard: IATA DGR
+    section: "Section 8"
+    summary: |
+      Shipper's Declaration for Dangerous Goods (Form 6300xx) —
+      required for most DG shipments by air. Specific content +
+      sequence + colour requirements (red diagonal hatching at
+      borders). Now permitted in electronic form per IATA
+      Resolution 672 / e-DGD initiative.
+
+  - id: IATA-training-1-5
+    standard: IATA DGR
+    section: "Section 1.5"
+    summary: |
+      Competency-based training + assessment (CBTA) — shifted from
+      legacy function-based Categories 1-12 to CBTA per ICAO TI
+      Doc 9284 effective 2023-01-01 (with 2-year transition).
+      Training organisation must define competencies + assess +
+      maintain records + revalidate at intervals not exceeding 24
+      months.
+
+  # === ADR + RID (EU road + rail) ===
+
+  - id: ADR-RID-classification-Part-2
+    standard: ADR 2025
+    section: "Part 2"
+    summary: |
+      Classification — same UN scheme as DOT HMR + IMDG + IATA;
+      ADR-specific tunnel restriction codes per §1.9.5 (tunnel
+      categories A-E based on substance hazards + driver instruction
+      modifications); ADR-specific environmental hazards.
+
+  - id: ADR-RID-tank-Chapter-6-8
+    standard: ADR 2025
+    section: "Part 6 Chapter 6.8 + 6.10"
+    summary: |
+      Tanks — construction + testing + approval of fixed tanks +
+      demountable tanks + battery vehicles + multiple-element gas
+      containers (MEGCs). Conformity assessment by inspection body.
+      Periodic inspection cadence per substance + tank type.
+
+  - id: ADR-RID-driver-training-8-2
+    standard: ADR 2025
+    section: "Part 8 Chapter 8.2"
+    summary: |
+      Driver training certificate (ADR Vocational Training) —
+      required for drivers of vehicles ≥ 3.5 t carrying dangerous
+      goods (with some exceptions per §1.1.3 small-quantity).
+      Basic + specialised modules (tanks; Class 1; Class 7).
+      Initial 18-hour theory + practical + exam; refresher every
+      5 years. RID-specific equivalent for rail.
+
+  - id: ADR-RID-DGSA-1-8-3
+    standard: ADR 2025
+    section: "§1.8.3"
+    summary: |
+      Dangerous Goods Safety Adviser (DGSA) — undertakings whose
+      activities include carriage of dangerous goods or related
+      packing/loading/filling/unloading must appoint one or more
+      DGSAs. DGSA holds vocational training certificate per
+      §1.8.3.10-14. Annual report to head of undertaking covering
+      observed practice + recommendations. Accident reports per
+      §1.8.5 within Statutory deadlines.
+
+templates:
+
+  - path: templates/qms-logistics/SHIPPING-PAPER-TEMPLATE.md
+    name: "Dangerous Goods Shipping Paper (multi-modal — DOT + IMDG + IATA + ADR + RID-compatible single-document form per IMO/ILO/UNECE Guidelines)"
+    addresses:
+      - DOT-172-202-shipping-papers
+      - IMDG-DG-declaration-5-4
+      - IATA-shippers-declaration-8
+      - ADR-RID-classification-Part-2
+
+  - path: templates/qms-logistics/HMT-TRAINING-RECORD-TEMPLATE.md
+    name: HazMat / Dangerous Goods Training Record (DOT §172.704 + IATA CBTA §1.5 + ADR §1.8.3 driver + DGSA)
+    addresses:
+      - DOT-172-700-HMT-training
+      - IATA-training-1-5
+      - ADR-RID-driver-training-8-2
+      - ADR-RID-DGSA-1-8-3
+
+  - path: templates/qms-policy/quality-policy.md
+    name: Quality policy (transport-hazmat — extends QMS policy with dangerous-goods carriage commitments + DGSA / emergency-response infrastructure)
+    addresses:
+      - DOT-172-600-emergency-response
+      - DOT-172-300-marking
+      - DOT-172-400-labels
+      - DOT-172-500-placards
+      - IATA-state-operator-variations
+      - IATA-passenger-vs-cargo-quantity-limits
+      - IMDG-classification-Part-2
+      - IMDG-segregation-7-2
+      - DOT-172-101-HMT
+      - DOT-173-non-bulk-packagings
+      - DOT-180-tank-cars-cargo-tanks
+      - ADR-RID-tank-Chapter-6-8

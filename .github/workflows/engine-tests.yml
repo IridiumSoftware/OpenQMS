@@ -133,6 +133,20 @@ jobs:
           openqms validate --module chemicals --module iso-14001 --module iso-45001 --module iso-50001 --module iso-27001 --module regulated-ai
           # Chemicals full-IMS deepest-composite — REACH/CLP/GHS/GLP/TSCA + 8 cross-cutting overlays
           openqms validate --module chemicals --module iso-27001 --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000
+          # v0.37.0 — chemicals-adjacent standalones (4 cross-cutting overlays)
+          openqms validate --module osha-hcs
+          openqms validate --module transport-hazmat
+          openqms validate --module eu-biocides
+          openqms validate --module tsca-pfas
+          openqms validate --module chemicals --module osha-hcs
+          openqms validate --module chemicals --module transport-hazmat
+          openqms validate --module chemicals --module eu-biocides
+          openqms validate --module chemicals --module tsca-pfas
+          openqms validate --module chemicals --module osha-hcs --module transport-hazmat --module eu-biocides --module tsca-pfas
+          openqms validate --module automotive --module transport-hazmat --module tsca-pfas
+          openqms validate --module pharma --module osha-hcs --module transport-hazmat
+          # Chemicals + all chemicals-adjacent + full IMS — 13-module deepest-composite
+          openqms validate --module chemicals --module osha-hcs --module transport-hazmat --module eu-biocides --module tsca-pfas --module iso-27001 --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000
 
       - name: Inspect registry (smoke check)
         run: openqms registry list

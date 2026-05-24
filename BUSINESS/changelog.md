@@ -4,6 +4,62 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.37.0 DRAFT — 2026-05-24 — Chemicals-adjacent standalones (OSHA HCS + transport HazMat + EU Biocides + TSCA PFAS)
+
+**1 NEW entry** OQ-106. Spec total 89 → 90. Engine 0.36.0 → 0.37.0.
+
+4 chemicals-adjacent regulatory regimes shipped as cross-cutting overlays, discharging all 4 chemicals-companion (OQ-105) forward-work items:
+
+**osha-hcs — US workplace HazCom (29 CFR 1910.1200; HCS 2024 final rule alignment with UN GHS Rev. 7)**
+- 9 clauses: §(e) Written Program; §(f) Labels including workplace + portable + pipe-marking; §(g) SDS access during each shift; §(h) Employee training before assignment + when new hazard introduced; §(i) Trade secrets; Appendix A 10 health hazard classes; Appendix B 17 physical hazard classes; Appendix C label elements + 8 pictograms; Appendix D 16-section SDS content
+- New template: `templates/qms-ohs/HAZCOM-WRITTEN-PROGRAM-TEMPLATE.md` (the required §(e)(1) artifact)
+- Reuses chemicals SDS template — receiver-side complement to chemicals' sender-side SDS authoring
+- Compliance dates: substance mfr/importer 2026-01-19; mixture mfr/importer 2027-07-19
+
+**transport-hazmat — Dangerous-goods transport (DOT HMR 49 CFR 100-185 + IMDG + IATA DGR + ADR 2025 + RID 2025)**
+- 17 clauses across 5 modes: DOT HMT classification + shipping papers + marking + labels + placards + emergency-response telephone + four-component HMT training + non-bulk packagings + tank cars; IMDG classification + segregation + DG declaration; IATA state+operator variations + passenger-vs-cargo limits + Shipper's Declaration + CBTA training; ADR/RID classification + tanks + driver vocational training + DGSA appointment
+- New templates: `templates/qms-logistics/SHIPPING-PAPER-TEMPLATE.md` (multi-modal Multimodal DG Form per IMO/ILO/UNECE Guidelines) + `templates/qms-logistics/HMT-TRAINING-RECORD-TEMPLATE.md` (multi-regime training record DOT + IATA CBTA + ADR driver + DGSA)
+- Standards licensing: DOT + ADR + RID PUBLIC; IMDG + IATA DGR commercial (~USD 200-400 per edition; biennial updates)
+- Composes broadly: chemicals primary; automotive (UN3480 Li-ion + UN0503 airbag); aerospace (cryogenics + pyrotechnics); medical-devices (UN3373 Cat B specimens); pharma; manufacturing
+
+**eu-biocides — EU Biocidal Products Regulation (BPR 528/2012; product-on-market authorisation route distinct from REACH)**
+- 10 clauses: Articles 4-9 active substance approval; Articles 17-23 product authorisation pathways (national/MR-parallel/MR-sequence/Union/simplified); Article 19(1) conditions; Articles 49-50 + Article 95 supplier list; Article 56 R&D exemption; Article 58 treated articles; Articles 69-72 biocide-specific C+L+P additions over CLP; Annex V 22 product types in 4 groups (disinfectants PT 1-5, preservatives PT 6-13, pest control PT 14-20, other PT 21-22); Annex VI Common Principles
+- New template: `templates/product-chemicals/biocides/BPR-AUTHORISATION-APPLICATION-TEMPLATE.md` (Article 17 full application with pathway selection + Article 95 verification + Article 19(1) conditions check + efficacy + HHRA + ERA dossier framework + Article 69 label additions + Annex dossier index)
+- Critical adopter-cost gotcha: Article 95 supplier list — biocidal products containing active substances whose supplier is not Article-95-listed cannot be placed on EU market post-2015-09-01
+
+**tsca-pfas — US EPA TSCA Section 8(a)(7) PFAS Reporting (40 CFR Part 705; final rule October 2023)**
+- 7 clauses: §705.3 applicability (no de minimis, no exemption for substances in commerce, no exemption for impurities + byproducts, articles in scope per "knowability" standard); §705.15 submission window 2025-07-11 to 2026-01-11 standard / 2026-07-11 small-mfr-article-only (EPA may extend further); §705.20-30 per-substance per-year per-site for 11-year 2011-2022 lookback; §705.25 5-year retention; §705.35 CBI claims per §703.5; §705.40 CDX/CISS submission; preamble "knowability" standard for article importers
+- New template: `templates/product-chemicals/pfas/PFAS-REPORTING-FORM-TEMPLATE.md` (full per-substance per-year per-site data structure + CBI/non-CBI dual-version + article-importer due-diligence record with common-categories checklist catching non-obvious PFAS imports across textile / semiconductor / cookware / cosmetics / automotive / medical-device / outdoor-gear / aerospace verticals)
+- Critical scope-creep: importer-of-record is reporter; affiliated-entity consolidation typically required at parent level; ~1,400+ substances meet broad PFAS structural definition per §705.5(b)
+
+Registry +9 standards:
+- 29 CFR 1910.1200 (OSHA HCS; PUBLIC)
+- 49 CFR 100-185 (US DOT HMR; PUBLIC)
+- IMDG Code (Amendment 42-24 mandatory 2026-01-01; commercial)
+- IATA DGR 66th Edition (effective 2026-01-01; commercial)
+- ADR 2025 (PUBLIC)
+- RID 2025 (PUBLIC)
+- EU BPR (Regulation 528/2012; PUBLIC)
+- 40 CFR 705 (TSCA PFAS Reporting; PUBLIC)
+
+Cross-cutting overlay count: 19 → 23.
+
+CI extended (+12 validate steps):
+- 4 standalone validates (osha-hcs, transport-hazmat, eu-biocides, tsca-pfas)
+- 4 chemicals + adjacent pairs
+- chemicals + all 4 adjacent composite
+- automotive + transport-hazmat + tsca-pfas (cross-vertical applicability)
+- pharma + osha-hcs + transport-hazmat
+- **13-module deepest-composite** (new depth record): chemicals + 4 adjacent + 8 cross-cutting overlays — realistic shape for a US-and-EU specialty-chemicals manufacturer with full IMS + DG transport + workplace HazCom + biocide product line + TSCA PFAS reporting obligation
+
+108/108 pytest pass.
+
+Status counts: 6 `:verified` / 77 `:tested` / 7 `:argued` / 0 `:open` (total 90).
+
+Per user direction: "do 1 and 2" (group 1 chemicals-adjacent standalones + group 2 chemicals class overlays). This release ships group 1; group 2 ships at v0.38.0.
+
+---
+
 ## v0.36.0 DRAFT — 2026-05-24 — Chemicals vertical (7th vertical)
 
 **1 NEW entry** OQ-105. Spec total 88 → 89. Engine 0.35.0 → 0.36.0.
