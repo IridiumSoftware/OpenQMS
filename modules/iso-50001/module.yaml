@@ -1,0 +1,189 @@
+# Open QMS — ISO 50001:2018 energy management cross-cutting overlay
+# ------------------------------------------------------------------
+# Composes with any vertical (medical-devices, aerospace, automotive,
+# manufacturing). Adds Energy Management System (EnMS) discipline.
+# ISO 50001:2018 follows the Annex SL high-level structure with
+# energy-specific additions: energy review (§6.3), energy
+# performance indicators / EnPIs (§6.4), energy baseline / EnB
+# (§6.5), planning for collection of energy data (§6.6),
+# operational control of significant energy uses / SEUs (§8.1),
+# design considering energy performance (§8.2), and procurement
+# of energy-using products / services / energy itself (§8.3).
+#
+# ISO 50001 is the only management-system standard that mandates
+# a quantitative, calculated, periodically-recalibrated
+# performance baseline — adopters seeking ISO 50001 registration
+# must produce real numbers, not just process discipline.
+#
+# Use via:
+#   openqms resolve --module <vertical> --module iso-50001 ...
+#
+# Standards licensing: see repo-root README. ISO 50001:2018 is a
+# commercially-published copyrighted work sold by ISO / national
+# member bodies.
+
+name: iso-50001-overlay
+version: 0.1.0
+
+standards:
+  - ISO 50001:2018
+
+clauses:
+
+  - id: ISO50001-5.2
+    standard: ISO 50001:2018
+    section: "5.2"
+    summary: |
+      Energy policy — top management establishes + implements +
+      maintains an energy policy that is appropriate to the
+      organization's purpose, provides framework for setting +
+      reviewing energy objectives + targets, includes commitment
+      to ensure information + necessary resources for achieving
+      the objectives + targets, commitment to satisfy applicable
+      legal + other requirements related to energy efficiency +
+      use + consumption, commitment to continual improvement of
+      energy performance + the EnMS, supports procurement of
+      energy-efficient products + services + design activities
+      to improve energy performance.
+
+  - id: ISO50001-6.3
+    standard: ISO 50001:2018
+    section: "6.3"
+    summary: |
+      Energy review — develop + record + maintain an energy review
+      based on measurement + other data: analyze energy use +
+      consumption based on measurement + other data, identify
+      Significant Energy Uses (SEUs) based on energy use +
+      consumption + criteria, determine current energy performance
+      of facilities + equipment + systems + processes + personnel
+      affecting SEUs, identify + prioritize + record opportunities
+      for improving energy performance + for changing in the future
+      energy use + consumption.
+
+  - id: ISO50001-6.4
+    standard: ISO 50001:2018
+    section: "6.4"
+    summary: |
+      Energy performance indicators (EnPIs) — determine EnPIs
+      appropriate for measuring + monitoring energy performance,
+      including methodology for determining + updating EnPIs.
+      EnPI values shall be reviewed + compared to corresponding
+      energy baselines. Documented information of EnPI methodology
+      + values + measures + their changes.
+
+  - id: ISO50001-6.5
+    standard: ISO 50001:2018
+    section: "6.5"
+    summary: |
+      Energy baseline (EnB) — establish EnB(s) using information
+      from energy review considering a suitable period of data.
+      Changes to EnPIs shall be measured against the corresponding
+      EnB. EnB(s) shall be revised in the case of: EnPI(s) no
+      longer reflecting organizational energy performance;
+      major changes to static factors; significant changes to
+      operations + processes + energy systems. Maintained as
+      documented information.
+
+  - id: ISO50001-6.6
+    standard: ISO 50001:2018
+    section: "6.6"
+    summary: |
+      Planning for collection of energy data — ensure that the key
+      characteristics of operations affecting energy performance
+      are identified + measured + monitored + analyzed at planned
+      intervals. Energy data collection plan addresses: relevant
+      variables related to SEUs, energy consumption related to
+      SEUs + the organization, operational criteria related to
+      SEUs, static factors (if applicable), data specified in
+      action plans. Data + methods recorded + reviewed + updated.
+
+  - id: ISO50001-8.1
+    standard: ISO 50001:2018
+    section: "8.1"
+    summary: |
+      Operational planning + control — plan + implement + control
+      processes related to SEUs by establishing criteria for
+      effective operation + maintenance of SEUs (the absence of
+      such criteria could lead to a significant deviation from
+      effective energy performance), operating + maintaining
+      facilities + equipment + systems + processes in accordance
+      with operational criteria, communicating operational
+      controls to relevant persons. Control of planned changes.
+      Review of consequences of unintended changes + mitigation
+      of adverse effects.
+
+  - id: ISO50001-8.2
+    standard: ISO 50001:2018
+    section: "8.2"
+    summary: |
+      Design — consider energy performance improvement opportunities
+      + operational control in design of new, modified, and
+      renovated facilities + equipment + systems + processes that
+      can have significant impact on energy performance over the
+      planned or expected operating lifetime. Results of energy
+      performance considerations shall be incorporated into
+      specification + design + procurement activities.
+
+  - id: ISO50001-8.3
+    standard: ISO 50001:2018
+    section: "8.3"
+    summary: |
+      Procurement — establish + implement criteria for assessing
+      energy performance over the planned or expected operating
+      lifetime when procuring energy-using products + equipment +
+      services that are expected to have significant impact on
+      organization's energy performance. Inform suppliers that
+      procurement is partly evaluated on basis of energy
+      performance. For procurement of energy: define + document
+      specifications, as applicable, for purchased energy.
+
+  - id: ISO50001-9.1.1
+    standard: ISO 50001:2018
+    section: "9.1.1"
+    summary: |
+      Monitoring + measurement + analysis + evaluation of energy
+      performance + the EnMS — key characteristics determined +
+      monitored at planned intervals, including effectiveness
+      of action plans in achieving objectives + targets, EnPIs,
+      operation of SEUs, actual vs. expected energy consumption.
+      EnPI values investigated + responded to where significant
+      deviations occur. Documented information retained.
+
+  - id: ISO50001-10.2
+    standard: ISO 50001:2018
+    section: "10.2"
+    summary: |
+      Nonconformity + corrective action — react to nonconformity
+      (incl. taking action to control + correct it, dealing with
+      consequences); evaluate need for action to eliminate root
+      cause(s); implement; review effectiveness; make changes to
+      EnMS if necessary. Documented information retained as
+      evidence of NC + actions + results.
+
+templates:
+
+  - path: templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md
+    name: Energy Review + EnPIs + EnB Baseline (ISO 50001 §6.3 + §6.4 + §6.5 + §6.6 + §8.1 + §8.2 + §8.3 cross-references)
+    addresses:
+      - ISO50001-6.3
+      - ISO50001-6.4
+      - ISO50001-6.5
+      - ISO50001-6.6
+      - ISO50001-8.1
+      - ISO50001-8.2
+      - ISO50001-8.3
+
+  - path: templates/qms-policy/quality-policy.md
+    name: Quality + Energy policy (ISO 50001 §5.2 — adopters extend the policy template with energy commitments)
+    addresses:
+      - ISO50001-5.2
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: SOP — monitoring + measurement + analysis + evaluation of energy performance (ISO 50001 §9.1.1)
+    addresses:
+      - ISO50001-9.1.1
+
+  - path: .github/ISSUE_TEMPLATE/capa.yml
+    name: CAPA — energy-performance NC + corrective action (ISO 50001 §10.2)
+    addresses:
+      - ISO50001-10.2

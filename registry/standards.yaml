@@ -451,3 +451,35 @@ standards:
     aliases:
       - "ISO 23894"
       - "ISO/IEC 23894"
+
+  # === HSE + energy cross-cutting management-system standards ===
+
+  - id: "ISO 14001:2015"
+    name: "Environmental management systems — Requirements with guidance for use"
+    publisher: ISO
+    edition: "2015"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 14001"
+      - "EMS"
+
+  - id: "ISO 45001:2018"
+    name: "Occupational health and safety management systems — Requirements with guidance for use"
+    publisher: ISO
+    edition: "2018"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 45001"
+      - "OHSMS"
+
+  - id: "ISO 50001:2018"
+    name: "Energy management systems — Requirements with guidance for use"
+    publisher: ISO
+    edition: "2018"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 50001"
+      - "EnMS"

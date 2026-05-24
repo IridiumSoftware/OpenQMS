@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "openqms"
-version = "0.17.0"
+version = "0.18.0"
 description = "Open QMS — generator for regulated-industry Quality Management Systems"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -29,6 +29,12 @@ keywords = [
   "manufacturing",
   "iso-9001",
   "machine-shop",
+  "iso-14001",
+  "iso-45001",
+  "iso-50001",
+  "environmental-management",
+  "occupational-health-safety",
+  "energy-management",
 ]
 classifiers = [
   "Development Status :: 3 - Alpha",

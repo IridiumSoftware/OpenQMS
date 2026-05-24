@@ -1,0 +1,199 @@
+# Open QMS — ISO 45001:2018 OH&S management cross-cutting overlay
+# ----------------------------------------------------------------
+# Composes with any vertical (medical-devices, aerospace, automotive,
+# manufacturing). Adds Occupational Health and Safety Management
+# System (OHSMS) discipline. ISO 45001:2018 follows the Annex SL
+# high-level structure with OH&S-specific additions: worker
+# consultation + participation as a foundational requirement
+# (§5.4), hazard identification + risk assessment (§6.1.2),
+# hierarchy of controls (§8.1.2), management of change (§8.1.3),
+# procurement (§8.1.4), and incident investigation (§10.2).
+#
+# Use via:
+#   openqms resolve --module <vertical> --module iso-45001 ...
+#
+# Standards licensing: see repo-root README. ISO 45001:2018 is a
+# commercially-published copyrighted work sold by ISO / national
+# member bodies.
+
+name: iso-45001-overlay
+version: 0.1.0
+
+standards:
+  - ISO 45001:2018
+
+clauses:
+
+  - id: ISO45001-4.2
+    standard: ISO 45001:2018
+    section: "4.2"
+    summary: |
+      Understanding the needs + expectations of workers + other
+      interested parties — determine + monitor interested parties
+      (workers, contractors, suppliers, customers, visitors,
+      regulators, communities, families of workers), their relevant
+      needs + expectations, which become compliance obligations.
+
+  - id: ISO45001-5.2
+    standard: ISO 45001:2018
+    section: "5.2"
+    summary: |
+      OH&S policy — top management establishes + implements +
+      maintains a policy that includes commitment to: provide safe
+      + healthy working conditions for prevention of work-related
+      injury + ill-health, appropriate to purpose + size + context
+      and the specific nature of OH&S risks + opportunities;
+      provide framework for setting OH&S objectives; fulfil legal
+      + other requirements; eliminate hazards + reduce OH&S risks;
+      continual improvement of OHSMS; consultation + participation
+      of workers + their representatives.
+
+  - id: ISO45001-5.4
+    standard: ISO 45001:2018
+    section: "5.4"
+    summary: |
+      Consultation + participation of workers — establish + implement
+      + maintain processes for consultation + participation of
+      non-managerial workers (and their representatives where they
+      exist) in development + planning + implementation + performance
+      evaluation + actions for improvement of the OHSMS. Provide
+      mechanisms + time + training + resources; remove + minimize
+      barriers; specific topics requiring consultation OR
+      participation are listed in §5.4 a) and b).
+
+  - id: ISO45001-6.1.2
+    standard: ISO 45001:2018
+    section: "6.1.2"
+    summary: |
+      Hazard identification + assessment of risks + opportunities —
+      establish + implement + maintain a hazard identification process
+      ongoing + proactive. Consider routine + non-routine activities,
+      workplace, work organization, factors affecting workers
+      (incl. psychosocial), past relevant incidents, emergency
+      situations. Assess OH&S risks + identify other risks to the
+      OHSMS. Identify OH&S opportunities + other opportunities.
+
+  - id: ISO45001-6.1.3
+    standard: ISO 45001:2018
+    section: "6.1.3"
+    summary: |
+      Determination of legal + other requirements — determine + have
+      access to up-to-date legal + other requirements applicable to
+      hazards + OH&S risks + OHSMS; determine how these requirements
+      apply + need to be communicated; take into account when
+      establishing + implementing + maintaining + improving OHSMS.
+
+  - id: ISO45001-6.1.4
+    standard: ISO 45001:2018
+    section: "6.1.4"
+    summary: |
+      Planning action — plan to take actions to address risks +
+      opportunities, address legal + other requirements, prepare
+      for + respond to emergency situations. Integrate into OHSMS
+      processes + other business processes. Evaluate effectiveness.
+
+  - id: ISO45001-7.3
+    standard: ISO 45001:2018
+    section: "7.3"
+    summary: |
+      Awareness — workers shall be made aware of the OH&S policy +
+      objectives, their contribution to OHSMS effectiveness,
+      implications + consequences of not conforming to OHSMS
+      requirements, incidents + outcomes of investigations
+      relevant to them, hazards + OH&S risks + actions
+      determined relevant to them, ability to remove themselves
+      from work situations they consider to present an imminent
+      + serious danger to their life or health, and arrangements
+      for protecting them from undue consequences for doing so.
+
+  - id: ISO45001-8.1.2
+    standard: ISO 45001:2018
+    section: "8.1.2"
+    summary: |
+      Eliminating hazards + reducing OH&S risks — establish +
+      implement + maintain a process(es) for the elimination of
+      hazards + reduction of OH&S risks using the hierarchy of
+      controls: eliminate the hazard; substitute with less
+      hazardous processes / operations / materials / equipment;
+      use engineering controls + reorganization of work;
+      administrative controls including training; PPE. PPE is
+      the last resort.
+
+  - id: ISO45001-8.1.3
+    standard: ISO 45001:2018
+    section: "8.1.3"
+    summary: |
+      Management of change — establish process(es) for implementation
+      + control of planned temporary + permanent changes that
+      affect OH&S performance (new / modified products / services /
+      processes; workplace / surroundings / work organization /
+      working conditions; equipment; workforce; legal + other
+      requirements; knowledge / information about hazards + OH&S
+      risks; technology development). Review consequences of
+      unintended changes + mitigate adverse effects.
+
+  - id: ISO45001-8.1.4
+    standard: ISO 45001:2018
+    section: "8.1.4"
+    summary: |
+      Procurement — establish process(es) to control procurement of
+      products + services so they conform to OHSMS. Includes
+      coordinating procurement processes with contractors to identify
+      hazards + assess + control OH&S risks arising from contractors'
+      activities + operations that impact organization OR workers OR
+      other interested parties.
+
+  - id: ISO45001-8.2
+    standard: ISO 45001:2018
+    section: "8.2"
+    summary: |
+      Emergency preparedness + response — establish + implement +
+      maintain process(es) needed to prepare for + respond to
+      potential emergency situations identified in §6.1.2.1.
+      Planned response, training, communication of relevant
+      information to workers + interested parties, periodic testing
+      + revision, evaluation + revision after testing + occurrence.
+
+  - id: ISO45001-10.2
+    standard: ISO 45001:2018
+    section: "10.2"
+    summary: |
+      Incident + nonconformity + corrective action — react in a
+      timely manner to incidents + nonconformities including
+      controlling + correcting them, dealing with consequences;
+      evaluate (with participation of workers + involvement of
+      other relevant interested parties) the need for corrective
+      action to eliminate root cause(s); review existing
+      OH&S risk assessments + other risks; determine + implement
+      action needed including corrective; review effectiveness;
+      make changes to OHSMS if necessary.
+
+templates:
+
+  - path: templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md
+    name: HIRA — Hazard Identification + Risk Assessment with Hierarchy of Controls (ISO 45001 §6.1.2 + §6.1.3 + §8.1.2 + §8.1.3 + §8.1.4 + §8.2)
+    addresses:
+      - ISO45001-6.1.2
+      - ISO45001-6.1.3
+      - ISO45001-8.1.2
+      - ISO45001-8.1.3
+      - ISO45001-8.1.4
+      - ISO45001-8.2
+
+  - path: templates/qms-policy/quality-policy.md
+    name: Quality + OH&S policy (ISO 45001 §5.2 — adopters extend the policy template with OH&S commitments incl. worker consultation per §5.4)
+    addresses:
+      - ISO45001-5.2
+      - ISO45001-4.2
+      - ISO45001-5.4
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: SOP — OH&S planning + awareness (ISO 45001 §6.1.4 planning + §7.3 worker awareness)
+    addresses:
+      - ISO45001-6.1.4
+      - ISO45001-7.3
+
+  - path: .github/ISSUE_TEMPLATE/capa.yml
+    name: CAPA — incident + nonconformity + corrective action with worker participation (ISO 45001 §10.2)
+    addresses:
+      - ISO45001-10.2

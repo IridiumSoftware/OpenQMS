@@ -1,0 +1,176 @@
+# Open QMS — ISO 14001:2015 environmental management cross-cutting overlay
+# ------------------------------------------------------------------------
+# Composes with any vertical (medical-devices, aerospace, automotive,
+# manufacturing). Adds Environmental Management System (EMS) discipline.
+# ISO 14001:2015 follows the Annex SL high-level structure so most
+# clauses overlap structurally with ISO 9001 / ISO 45001 / ISO 27001 /
+# ISO 50001 — the substantive additions are environmental aspects (§6.1.2),
+# compliance obligations (§6.1.3), operational control of significant
+# aspects (§8.1), emergency preparedness (§8.2), and evaluation of
+# compliance (§9.1.2).
+#
+# Use via:
+#   openqms resolve --module <vertical> --module iso-14001 ...
+#
+# Standards licensing: see repo-root README. ISO 14001:2015 is a
+# commercially-published copyrighted work sold by ISO / national member
+# bodies (US: ANSI; UK: BSI).
+
+name: iso-14001-overlay
+version: 0.1.0
+
+standards:
+  - ISO 14001:2015
+
+clauses:
+
+  - id: ISO14001-4.2
+    standard: ISO 14001:2015
+    section: "4.2"
+    summary: |
+      Understanding the needs + expectations of interested parties —
+      determine relevant interested parties (regulators, neighboring
+      communities, customers, suppliers, workers, NGOs), their relevant
+      needs + expectations, and which of those become compliance
+      obligations.
+
+  - id: ISO14001-5.2
+    standard: ISO 14001:2015
+    section: "5.2"
+    summary: |
+      Environmental policy — top management establishes + maintains
+      a policy appropriate to the purpose + context including the
+      nature + scale + environmental impacts of activities, products,
+      services. Includes commitments to protection of the environment
+      (incl. prevention of pollution + other commitments e.g.,
+      sustainable resource use, climate change mitigation +
+      adaptation, biodiversity), fulfillment of compliance
+      obligations, continual improvement of EMS to enhance
+      environmental performance.
+
+  - id: ISO14001-6.1.2
+    standard: ISO 14001:2015
+    section: "6.1.2"
+    summary: |
+      Environmental aspects — identify aspects of activities, products,
+      services that can be controlled or influenced; determine
+      associated environmental impacts considering a lifecycle
+      perspective. Determine significant environmental aspects
+      using established criteria. Maintain documented information
+      of aspects + impacts + criteria + SEAs.
+
+  - id: ISO14001-6.1.3
+    standard: ISO 14001:2015
+    section: "6.1.3"
+    summary: |
+      Compliance obligations — determine + have access to the
+      compliance obligations related to environmental aspects;
+      determine how these apply to the organization; take obligations
+      into account when establishing + implementing + maintaining +
+      continually improving the EMS.
+
+  - id: ISO14001-6.1.4
+    standard: ISO 14001:2015
+    section: "6.1.4"
+    summary: |
+      Planning action — plan to take actions to address significant
+      environmental aspects + compliance obligations + risks +
+      opportunities identified per §6.1.1, and to evaluate the
+      effectiveness of these actions. Integration into EMS
+      processes per §6.1.1.
+
+  - id: ISO14001-6.2
+    standard: ISO 14001:2015
+    section: "6.2"
+    summary: |
+      Environmental objectives + planning to achieve them — establish
+      at relevant functions + levels, consistent with environmental
+      policy, considering SEAs + compliance obligations + risks +
+      opportunities. Measurable, monitored, communicated, updated.
+
+  - id: ISO14001-7.4
+    standard: ISO 14001:2015
+    section: "7.4"
+    summary: |
+      Communication — internal + external communications relevant to
+      the EMS including: what, when, with whom, how. External
+      communication of significant environmental information as
+      established by compliance obligations + the communication
+      process. Responsiveness to relevant communications received.
+
+  - id: ISO14001-8.1
+    standard: ISO 14001:2015
+    section: "8.1"
+    summary: |
+      Operational planning + control — establish + implement +
+      control + maintain processes needed to meet EMS requirements
+      + implement actions identified in §6.1 + §6.2. Includes
+      operational criteria for SEAs, control of planned changes,
+      review of unintended changes + mitigation of adverse effects,
+      control / influence of outsourced processes, lifecycle
+      perspective in design + procurement.
+
+  - id: ISO14001-8.2
+    standard: ISO 14001:2015
+    section: "8.2"
+    summary: |
+      Emergency preparedness + response — establish + implement +
+      maintain processes needed to prepare for + respond to potential
+      emergency situations identified in §6.1.1. Periodic test of
+      planned response actions where practicable. Periodic review +
+      revision based on test results + actual occurrences.
+
+  - id: ISO14001-9.1.2
+    standard: ISO 14001:2015
+    section: "9.1.2"
+    summary: |
+      Evaluation of compliance — establish + implement + maintain
+      processes needed to evaluate fulfillment of compliance
+      obligations. Determine frequency, evaluate compliance + take
+      action if needed, maintain knowledge + understanding of
+      compliance status. Documented information retained as
+      evidence of evaluation results.
+
+  - id: ISO14001-10.2
+    standard: ISO 14001:2015
+    section: "10.2"
+    summary: |
+      Nonconformity + corrective action — react to nonconformity
+      including taking action to control + correct it + deal with
+      consequences (including mitigating adverse environmental
+      impacts); evaluate need for action to eliminate causes;
+      implement; review effectiveness; make changes to EMS if
+      necessary.
+
+templates:
+
+  - path: templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md
+    name: Environmental Aspects + Impacts Register (ISO 14001 §6.1.2 + §6.1.3 + §8.1 + §8.2 cross-references)
+    addresses:
+      - ISO14001-6.1.2
+      - ISO14001-6.1.3
+      - ISO14001-8.1
+      - ISO14001-8.2
+
+  - path: templates/qms-policy/quality-policy.md
+    name: Quality + Environmental policy (ISO 14001 §5.2 — adopters extend the QMS policy template with environmental commitments)
+    addresses:
+      - ISO14001-5.2
+      - ISO14001-4.2
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: SOP — environmental planning + operational control (ISO 14001 §6.1.4 + §6.2 + §7.4 + §8.1 communications + objectives + operational criteria)
+    addresses:
+      - ISO14001-6.1.4
+      - ISO14001-6.2
+      - ISO14001-7.4
+
+  - path: templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md
+    name: Internal audit + evaluation of compliance (ISO 14001 §9.1.2)
+    addresses:
+      - ISO14001-9.1.2
+
+  - path: .github/ISSUE_TEMPLATE/capa.yml
+    name: CAPA — environmental nonconformity + corrective action (ISO 14001 §10.2)
+    addresses:
+      - ISO14001-10.2

@@ -69,8 +69,18 @@ jobs:
           # Manufacturing vertical (ISO 9001 only — general non-regulated manufacturing)
           openqms validate --module manufacturing
           openqms validate --module manufacturing --module iso-27001
+          # HSE + energy cross-cutting overlays (each composes with any vertical)
+          openqms validate --module iso-14001
+          openqms validate --module iso-45001
+          openqms validate --module iso-50001
+          openqms validate --module medical-devices --module iso-14001 --module iso-45001
+          openqms validate --module aerospace --module iso-14001 --module iso-45001
+          openqms validate --module automotive --module iso-14001 --module iso-45001 --module iso-50001
+          openqms validate --module manufacturing --module iso-14001 --module iso-45001 --module iso-50001
           # Top-rigor mega-composite — safety-critical + cyber-critical ML-enabled ECU
           openqms validate --module automotive --module automotive-asil-d --module automotive-cal-4 --module regulated-ai --module iso-27001
+          # Full-stack mega-composite — manufacturing + all 5 cross-cutting management-system overlays
+          openqms validate --module manufacturing --module iso-14001 --module iso-45001 --module iso-50001 --module iso-27001 --module regulated-ai
 
       - name: Inspect registry (smoke check)
         run: openqms registry list
