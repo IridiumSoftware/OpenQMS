@@ -1,0 +1,45 @@
+# Companion docs index
+
+Permanent record of substantive build sessions, organized chronologically. Each companion follows the TCE discipline standard: §1 Computational basis (what was built — files, deps, build commands, test data), §2 Results (what was found, with measurements), §3 Verification (per-claim evidence type), §4 Spec impact (S-IDs, status transitions).
+
+Companion docs are NOT session notes (changelog records those), inline scripts (code lives in source files), or design docs (DESIGN.md + ENGINE_SPEC.md document the result). They are the *what-was-built* record that lets a future session reconstruct context without re-reading conversation history.
+
+| Companion | Covers | Spec entries closed / added |
+|---|---|---|
+| `companion_engine_mvp.md` | v0.2.0 — engine MVP (bundle resolver, validation harness, medical-devices seed) | OQ-001 `:argued → :tested`; OQ-010 + OQ-013 + OQ-040 + OQ-066 `:open → :tested` |
+| `companion_phase0_completion.md` | v0.2.1 (P5) + v0.2.2 (P7) + v0.3.0 (P6) — Phase 0 round-out | OQ-049 NEW `:tested`; OQ-062 `:open → :argued`; OQ-061 + OQ-068 + OQ-069 reframed |
+| `companion_phase1_engine.md` | v0.4.0 + v0.5.0 + v0.6.0 — composition + registry + regenerate/supersession | OQ-011 + OQ-012 + OQ-014 + OQ-015 + OQ-048 + OQ-065 `:open → :tested` |
+| `companion_signature_meaning.md` | v0.7.0 (P8) — 21 CFR Part 11 §11.50 signature-meaning prototype | OQ-060 `:open → :tested` |
+| `companion_org_workflows.md` | v0.8.0 (OQ-063 + OQ-064) — supplier-evaluation + management-review workflows. Zero `:open` milestone | OQ-063 + OQ-064 `:open → :tested` |
+| `companion_medical_devices_population.md` | v0.9.0 + v0.10.0 — medical-devices module full population (24 → 62 clauses; EU MDR completeness) | OQ-041 + OQ-042 + OQ-043 + OQ-044 + OQ-045 + OQ-046 + OQ-047 `:argued → :tested` |
+| `companion_overlay_modules.md` | v0.11.0 + v0.12.0 — 9 overlay modules across category + class dimensions + AI | OQ-050 through OQ-058 NEW `:tested` |
+| `companion_property_tests.md` | v0.13.0 — hypothesis property tests; first `:verified` entries | OQ-001 + OQ-002 + OQ-010 + OQ-011 + OQ-013 + OQ-015 → `:verified` |
+| `companion_aerospace.md` | v0.14.0 — aerospace vertical (first non-medical vertical); proves platform composition generalizes off the medical-devices substrate | OQ-059 NEW `:tested` |
+| `companion_automotive.md` | v0.15.0 — automotive vertical (second non-medical vertical); strengthens platform-generalization claim from one data point to two on a substantively different shape (bifurcated FuSa+cyber risk discipline, layered type-approval) | OQ-072 NEW `:tested` |
+| `companion_class_overlays.md` | v0.16.0 — 3 aerospace DAL overlays (DAL-A/B/C) + 3 automotive class overlays (ASIL-D, ASIL-B, CAL-4); encodes rigor delta per assurance level; mega-composite (5 modules) validates | OQ-073..OQ-078 NEW `:tested` |
+| `companion_completion_and_manufacturing.md` | v0.17.0 — completes aerospace DAL (D, E) + automotive ASIL (C, A, QM) + CAL (3, 2, 1) coverage; adds 4th vertical (general manufacturing — ISO 9001 only); 21 total class overlays across 3 regulated verticals; Open QMS now serves regulated AND non-regulated manufacturing | OQ-079 + OQ-081..OQ-088 NEW `:tested` |
+| `companion_hse_energy_overlays.md` | v0.18.0 — ISO 14001 (environmental) + ISO 45001 (OH&S with worker consultation §5.4 + hierarchy of controls §8.1.2) + ISO 50001 (energy with calculated EnB baseline) cross-cutting overlays; 12 cross-vertical composites validated; 6-module everything-shop composite (manufacturing + all 5 cross-cutting overlays) validates | OQ-089..OQ-091 NEW `:tested` |
+| `companion_pharma_food_governance.md` | v0.19.0 + v0.20.0 + v0.21.0 — three sequenced releases: pharma vertical (5th — ICH + cGMP + EU GMP + PIC/S Annex 1; largest remaining regulated-industry gap; first vertical where most standards are PUBLIC license); food safety vertical (6th — ISO 22000 + FSSC 22000 + Codex HACCP + FSMA); ISO 37001 anti-bribery + ISO 22301 BCMS cross-cutting overlays (completes common Annex-SL overlay set: 7 total). **8-module ultimate composite validates** (pharma + 7 cross-cutting overlays). Vertical count 4→6; cross-cutting overlays 5→7 | OQ-092..OQ-095 NEW `:tested` |
+| `companion_atmp.md` | v0.22.0 — First pharma class overlay; most-stringent biologics scope (cell + gene therapy — autologous + allogeneic CAR-T, iPSC-derived, AAV+lentiviral+retroviral gene therapy, ex vivo gene-modified HSCT, oncolytic viruses). EU GMP Annex 2A+2B + 21 CFR 1271 + ICH Q5A(R2) 2023. **9-module deepest composite validates** (pharma + atmp + 7 cross-cutting — realistic commercial-stage cell-therapy org shape). 3 new templates with PHI compartmentalization (donor eligibility) + 30-year EU retention format-stability planning (traceability) + Q5A(R2) three-pillar framework with vector-specific RCV testing (viral safety) | OQ-096 NEW `:tested` |
+| `companion_public_release.md` | v0.23.0 — Public adopter-surface release. Closes P10 from original priority stack. README rewrite from v0.7.0-era state to v0.22.0+ state; new docs/modules-catalog.md; food-safety + atmp READMEs backfilled; **BUSINESS/ un-gitignored** (this companion + all sibling BUSINESS docs publicly readable). Pure consolidation; no new module-tier entries | OQ-097 NEW `:tested` |
+
+## Coverage check
+
+- **Substantive sessions covered:** all 22 release versions from v0.2.0 onward.
+- **Spec entries documented:** every transition from v0.2.0 forward has a corresponding companion entry in the table above; per-entry detail in the relevant companion's §4.
+
+## What's NOT documented as a companion
+
+- **v0.1.0 baseline** — initial spec discipline tree setup. Captured in `changelog.md` only; no substantive build (just authoring).
+- **v0.1.1 (P3) + v0.1.2 (P4)** — minor patch commits (broken trace-matrix script removal + training-trigger PyYAML fix). Folded into `companion_phase0_completion.md`'s context section / referenced from `changelog.md`. No standalone companion.
+
+## How to update
+
+When a session lands substantive new work, the maintainer:
+
+1. Writes a new `companion_<topic>.md` in this directory following the §1-§4 standard.
+2. Adds a row to the table above.
+3. Cross-audits against `ENGINE_SPEC.md` to confirm spec entries reference the companion.
+4. Commits the companion alongside (or following) the public commit it documents.
+
+Companions can be updated retroactively (they are permanent records, but living documents — if a later session reveals something the original companion missed, edit it with a "Retroactive update YYYY-MM-DD:" annotation).

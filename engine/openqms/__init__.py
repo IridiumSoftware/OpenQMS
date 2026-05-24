@@ -1,3 +1,3 @@
 """Open QMS — generator for regulated-industry Quality Management Systems."""
 
-__version__ = "0.22.0"
+__version__ = "0.23.0"
