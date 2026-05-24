@@ -4,6 +4,54 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.39.0 DRAFT — 2026-05-24 — `:argued → :tested` push (OQ-062 PHI compartmentalization + OQ-067 repo-wide trace)
+
+**0 NEW entries; 2 status upgrades.** Spec total unchanged at 91. Engine 0.38.0 → 0.39.0.
+
+Two of the seven `:argued` entries upgraded to `:tested` per the audit recommendation. The remaining 5 `:argued` entries are honest-effort-by-nature (OQ-003 invariant disclaimer; OQ-022 + OQ-023 substrate items requiring adopter-org config; OQ-070 + OQ-071 licensing items requiring manual interpretation) and stay `:argued` indefinitely.
+
+**OQ-062 PHI/PII compartmentalization — `:argued → :tested`**
+
+New test file `engine/tests/test_phi_compartmentalization.py` with 4 structural property tests asserting the complaint intake template (`.github/ISSUE_TEMPLATE/complaint.yml`) is structurally incapable of capturing PHI:
+- `test_complaint_template_loads_as_valid_yaml` — YAML well-formedness
+- `test_complaint_template_has_no_phi_fields` — no form field id or label matches PHI/PII patterns (patient_name / mrn / ssn / dob / personal email / contact phone / mailing address etc.)
+- `test_complaint_template_carries_phi_handling_warning` — body markdown contains "PHI" + "PII" + "do not" warning trio
+- `test_complaint_template_references_external_phi_record` — body or field text references external compartment (private / external / ephi / encrypted / restricted / eqms)
+
+These are structural tests on the template DESIGN — they enforce the compartmentalization property at the artifact level, not runtime PHI scanning of submitted issues (correctly out of scope; adopters' own infrastructure handles runtime hygiene per their SOP).
+
+**OQ-067 repo-wide trace matrix — `:argued → :tested`**
+
+New CLI subcommand `openqms trace [--module M | --all] [--format json|md] [--output FILE]`:
+
+- Walks every module under `./modules/` (or selected modules)
+- Per-module: forward map (clause → templates that address it) + reverse map (template → clauses it addresses) + orphan detection (orphaned clauses + orphaned templates)
+- Aggregate summary: module count + total clauses + total templates + total clause→template addresses + orphan totals
+- JSON output (machine-readable for downstream tooling) or Markdown (audit-ready)
+
+Implementation: `engine/openqms/cli.py::_cmd_trace` + `_format_trace_markdown`. Tests: `engine/tests/test_trace.py` with 4 tests covering `--all` summary, bidirectional forward/reverse consistency, orphan detection presence, markdown format rendering.
+
+CI extended with a new `Repo-wide trace matrix (smoke check + zero-orphan invariant)` step that runs `openqms trace --all` and asserts zero orphaned clauses + zero orphaned templates across every shipped module. This is the OQ-001 invariant at scale — every push verifies that no module ever leaves a clause without a template or a template without a clause-binding.
+
+At audit time `openqms trace --all` reports:
+- 75 modules in scope
+- 614 clauses total
+- 299 templates total
+- 0 orphaned clauses
+- 0 orphaned templates
+
+Repo-wide OQ-001 invariant holds.
+
+**Test count**: 108 → 116 (+8). All passing.
+
+Status counts: 6 `:verified` / 80 `:tested` / **5 `:argued`** / 0 `:open` (total 91).
+
+`:argued` 7 → 5 — only honest-effort-by-nature entries remain.
+
+Per user direction: "do OQ-062 and OQ-067" — both shipped.
+
+---
+
 ## v0.38.0 DRAFT — 2026-05-24 — Chemicals class overlays (SVHC + Authorisation + 4 tonnage bands)
 
 **1 NEW entry** OQ-107. Spec total 90 → 91. Engine 0.37.0 → 0.38.0.

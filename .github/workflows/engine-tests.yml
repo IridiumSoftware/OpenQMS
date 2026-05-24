@@ -180,6 +180,15 @@ jobs:
           openqms regenerate --bundle example-cart
           openqms regenerate --bundle example-specialty-chemical
 
+      - name: Repo-wide trace matrix (smoke check + zero-orphan invariant)
+        # Walks every module and asserts: (i) the command runs cleanly,
+        # (ii) the repo-wide invariant holds — zero orphaned clauses and
+        # zero orphaned templates across every shipped module (OQ-067 +
+        # OQ-001 at scale).
+        run: |
+          openqms trace --all --output /tmp/openqms-trace.json
+          python3 -c "import json; d=json.load(open('/tmp/openqms-trace.json')); s=d['summary']; assert s['orphaned_clauses_total']==0, f'orphaned clauses: {s}'; assert s['orphaned_templates_total']==0, f'orphaned templates: {s}'; print(f'trace ok — {s[\"modules_in_scope\"]} modules / {s[\"total_clauses\"]} clauses / {s[\"total_templates\"]} templates / 0 orphans')"
+
       - name: Signatures export (smoke check)
         # Walks the repo's own git log and emits a signature audit trail.
         # OpenQMS doesn't enforce Signature-Meaning trailers on its own

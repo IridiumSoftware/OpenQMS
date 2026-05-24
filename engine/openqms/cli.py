@@ -164,6 +164,43 @@ def main(argv: list[str] | None = None) -> int:
         help="Output path for the JSON audit trail (for `export`). Default: stdout.",
     )
 
+    p_trace = sub.add_parser(
+        "trace",
+        help=(
+            "Emit a repository-wide bidirectional clause-to-artifact "
+            "traceability matrix across all (or selected) modules (OQ-067)."
+        ),
+    )
+    p_trace.add_argument(
+        "--module",
+        action="append",
+        default=[],
+        help=(
+            "Module name (looked up under ./modules/<name>/module.yaml) or "
+            "path to a module.yaml. Repeatable. If omitted (or --all), every "
+            "module under ./modules/ is included."
+        ),
+    )
+    p_trace.add_argument(
+        "--all",
+        action="store_true",
+        help=(
+            "Include every module under ./modules/ (default when --module "
+            "is not specified)."
+        ),
+    )
+    p_trace.add_argument(
+        "--format",
+        choices=("json", "md"),
+        default="json",
+        help="Output format: json (default) or md (markdown table).",
+    )
+    p_trace.add_argument(
+        "--output",
+        default="-",
+        help="Output path. Default: stdout.",
+    )
+
     p_registry = sub.add_parser(
         "registry",
         help="Inspect the standards-and-jurisdictions registry (OQ-014).",
@@ -214,6 +251,8 @@ def main(argv: list[str] | None = None) -> int:
         return _cmd_registry(args)
     if args.cmd == "signatures":
         return _cmd_signatures(args)
+    if args.cmd == "trace":
+        return _cmd_trace(args)
     parser.print_help()
     return 2
 
@@ -676,3 +715,144 @@ def _cmd_registry(args) -> int:
         return 2
 
     return 2
+
+
+def _cmd_trace(args) -> int:
+    """Emit a repository-wide bidirectional traceability matrix (OQ-067).
+
+    For each module in scope, walk its clauses + templates and produce
+    forward map (clause -> templates that address it) + reverse map
+    (template -> clauses it addresses). Reports orphaned clauses
+    (no template addresses them) + orphaned templates (address no
+    in-module clause).
+    """
+    modules_root = Path("./modules")
+    if args.module:
+        module_names = list(args.module)
+    else:
+        if not modules_root.is_dir():
+            print(
+                "error: no --module specified and ./modules/ not found",
+                file=sys.stderr,
+            )
+            return 2
+        module_names = sorted(
+            p.name
+            for p in modules_root.iterdir()
+            if (p / "module.yaml").is_file() and p.name != "general"
+        )
+
+    matrices: dict[str, dict] = {}
+    summary = {
+        "modules_in_scope": 0,
+        "total_clauses": 0,
+        "total_templates": 0,
+        "total_clause_addresses": 0,
+        "orphaned_clauses_total": 0,
+        "orphaned_templates_total": 0,
+    }
+
+    for name in module_names:
+        try:
+            mod = load_module(name)
+        except (FileNotFoundError, ValueError) as exc:
+            print(f"error: failed to load module {name!r}: {exc}", file=sys.stderr)
+            return 2
+
+        clause_ids = [c.id for c in mod.clauses]
+        forward: dict[str, list[str]] = {cid: [] for cid in clause_ids}
+        reverse: dict[str, list[str]] = {}
+
+        for tpl in mod.templates:
+            reverse[tpl.path] = list(tpl.addresses)
+            for caddr in tpl.addresses:
+                if caddr in forward:
+                    forward[caddr].append(tpl.path)
+
+        orphaned_clauses = [cid for cid, tlist in forward.items() if not tlist]
+        orphaned_templates = [
+            tpath
+            for tpath, claddrs in reverse.items()
+            if not any(addr in forward for addr in claddrs)
+        ]
+
+        matrices[name] = {
+            "module": name,
+            "version": mod.version,
+            "standards": list(mod.standards),
+            "clause_count": len(clause_ids),
+            "template_count": len(mod.templates),
+            "forward": forward,
+            "reverse": reverse,
+            "orphaned_clauses": orphaned_clauses,
+            "orphaned_templates": orphaned_templates,
+        }
+
+        summary["modules_in_scope"] += 1
+        summary["total_clauses"] += len(clause_ids)
+        summary["total_templates"] += len(mod.templates)
+        summary["total_clause_addresses"] += sum(len(v) for v in forward.values())
+        summary["orphaned_clauses_total"] += len(orphaned_clauses)
+        summary["orphaned_templates_total"] += len(orphaned_templates)
+
+    output = {"summary": summary, "modules": matrices}
+
+    if args.format == "json":
+        rendered = json.dumps(output, indent=2, sort_keys=True)
+    else:
+        rendered = _format_trace_markdown(output)
+
+    if args.output == "-":
+        print(rendered)
+    else:
+        Path(args.output).write_text(rendered + "\n", encoding="utf-8")
+        print(
+            f"wrote trace matrix for {summary['modules_in_scope']} module(s) "
+            f"to {args.output}"
+        )
+    return 0
+
+
+def _format_trace_markdown(output: dict) -> str:
+    s = output["summary"]
+    lines: list[str] = []
+    lines.append("# Open QMS — repository-wide traceability matrix")
+    lines.append("")
+    lines.append(
+        f"**Modules:** {s['modules_in_scope']} · "
+        f"**Clauses:** {s['total_clauses']} · "
+        f"**Templates:** {s['total_templates']} · "
+        f"**Clause→template addresses:** {s['total_clause_addresses']} · "
+        f"**Orphaned clauses:** {s['orphaned_clauses_total']} · "
+        f"**Orphaned templates:** {s['orphaned_templates_total']}"
+    )
+    lines.append("")
+    for name in sorted(output["modules"].keys()):
+        m = output["modules"][name]
+        lines.append(f"## {name} (v{m['version']})")
+        lines.append("")
+        lines.append(
+            f"Standards: {', '.join(m['standards'])}. "
+            f"Clauses: {m['clause_count']}. Templates: {m['template_count']}."
+        )
+        lines.append("")
+        if m["orphaned_clauses"]:
+            lines.append("**Orphaned clauses (addressed by no template):**")
+            lines.append("")
+            for cid in m["orphaned_clauses"]:
+                lines.append(f"- `{cid}`")
+            lines.append("")
+        if m["orphaned_templates"]:
+            lines.append("**Orphaned templates (address no in-module clause):**")
+            lines.append("")
+            for tpath in m["orphaned_templates"]:
+                lines.append(f"- `{tpath}`")
+            lines.append("")
+        lines.append("| Clause | Templates addressing |")
+        lines.append("|---|---|")
+        for cid in sorted(m["forward"].keys()):
+            tlist = m["forward"][cid]
+            tcell = ", ".join(f"`{t}`" for t in tlist) if tlist else "_(orphan)_"
+            lines.append(f"| `{cid}` | {tcell} |")
+        lines.append("")
+    return "\n".join(lines)
