@@ -4,6 +4,51 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.40.0 DRAFT — 2026-05-24 — Hygiene pass — audit F1-F6 + YAML linter + v0.39 companion
+
+**0 spec entries; 0 status changes.** Pure hygiene release discharging audit `audit_2026-05-24.md` findings + adding tooling discipline + closing v0.39.0 documentation. Engine 0.39.0 → 0.40.0.
+
+**F1 closeout — OQ-054..OQ-058 registry rows expanded.** Previously condensed per a v0.12.0 snapshot footnote. A1 coverage gap now zero — 91 spec entries / 91 registry rows.
+
+**F5 — exact template count.** README + catalog claim "81+ templates" → exact "87" (with breakdown: v0.38.0 +3 chemicals class-overlay; v0.37.0 +5 chemicals-adjacent).
+
+**F6 — `ivd` re-categorised as sub-vertical.** Catalog medical-devices class-overlay table reorganised: `ivd` (IVD sub-vertical scope — EU IVDR + 21 CFR 809 + ISO 15189) is a sub-vertical cross-cutting that takes its own class overlays `ivdr-class-c` + `ivdr-class-d`. Listed for discoverability but NOT counted in the 9 medical class overlays (which are all rigor/risk-class deltas). Resolves the "medical 9 vs 10" ambiguity flagged by the audit.
+
+**New tooling — `scripts/lint-module-yaml.py`.** Pre-pytest CI gate that catches the YAML failure modes observed during chemicals arc:
+- Unquoted colon-space pattern in template `name:` values (the foot-gun that broke `transport-hazmat/module.yaml` parse at v0.37.0)
+- Missing or empty required keys (`name`, `version`, `clauses`)
+- Missing or empty clause fields (`id`, `standard`, `section`, `summary`)
+- Duplicate clause ids within a module
+- Missing or empty template fields (`path`, `name`, `addresses`)
+- Template `addresses` entries referring to clauses not in the module's own clause set (cross-module address bug)
+- Top-level `module.yaml` malformed (not a mapping)
+
+Linter clean on all 75 modules at v0.40.0. Wired into CI as a pre-pytest gate so the YAML-parse failure mode is caught before the validate sweep runs.
+
+**OQ-067 deferred cleanup — workflow job ID renamed.** `.github/workflows/traceability.yml` job ID `generate-trace-matrix` → `generate-traceability-snippet`. Original job's display name was already accurate ("Generate traceability snippet"); the YAML id was misleading and the deferred-cleanup note in OQ-067 spec entry has been pending since v0.1.1. Renamed now that the actual `openqms trace` command shipped (no name collision risk). Branch-protection required-checks may need a one-time update if any were configured against the old name.
+
+**v0.39.0 companion shipped.** `BUSINESS/companion_v0_39_argued_push.md` documents the `:argued → :tested` upgrade arc (OQ-062 + OQ-067) per TCE companion-doc discipline. `companion_index.md` row added.
+
+**Audit findings status post-v0.40.0:**
+
+| Finding | Status |
+|---|---|
+| F1 — Registry missing 5 rows OQ-100..OQ-104 | Closed (v0.39 audit commit added 5 rows; v0.40 added 5 more for OQ-054..OQ-058) |
+| F2 — Example bundles count claimed 12; actual 8 | Closed (audit commit) |
+| F3 — Catalog section headings stale | Closed (audit commit) |
+| F4 — OQ-068 stale notes | Closed (audit commit) |
+| F5 — Templates count "81+" vs actual 87 | Closed (v0.40 — exact count) |
+| F6 — Medical-devices class overlay count ambiguity | Closed (v0.40 — ivd recategorised as sub-vertical) |
+| F7 — Omnibus companion span inconsistency | Closed (audit commit) |
+
+All 7 audit findings discharged. Project hygiene now at the floor.
+
+**Test count**: 116 unchanged. All passing. All 8 bundle baselines clean. New linter gate passes clean.
+
+Per user direction: "do 1 through 6" — items 1 (v0.39 companion) + 2 (F5 template count) + 3 (F6 ivd categorisation) + 4 (YAML linter) + 5 (workflow job-ID rename) + 6 (OQ-054..058 registry expansion) all shipped together as v0.40.0.
+
+---
+
 ## v0.39.0 DRAFT — 2026-05-24 — `:argued → :tested` push (OQ-062 PHI compartmentalization + OQ-067 repo-wide trace)
 
 **0 NEW entries; 2 status upgrades.** Spec total unchanged at 91. Engine 0.38.0 → 0.39.0.

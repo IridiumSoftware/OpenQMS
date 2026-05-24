@@ -12,7 +12,7 @@ Comprehensive inventory of every regulatory module shipped with Open QMS as of v
 | **Total modules** | **75** + general |
 | Registry standards | **~114** (no new at v0.38.0; chemicals class overlays reuse existing EU REACH) |
 | Registry jurisdictions | **20** |
-| Document templates | **81+** (v0.38.0 +3 chemicals class-overlay: SVHC Communication Letter / REACH Authorisation Application / Substitution Plan) |
+| Document templates | **87** (v0.38.0 +3 chemicals class-overlay; v0.37.0 +5 chemicals-adjacent) |
 | Example bundles | **8** (validated end-to-end with committed baseline matrices) |
 | Spec entries | **91** (0 `:open`) |
 | Deepest composition tested in CI | **16-module mega-composite** (chemicals + SVHC + Authorisation + top tonnage + 4 adjacent + 8 cross-cutting) |
@@ -49,20 +49,22 @@ The OQ-011 compose primitive (built v0.4.0, unchanged since) handles composition
 
 ## Class overlays (44 across 6 verticals)
 
-### Medical-devices (9)
+### Medical-devices (9 class overlays + 1 sub-vertical)
 
-| Overlay | Purpose |
-|---|---|
-| `samd` | Software as a Medical Device (IEC 82304-1 + IMDRF SaMD N12) |
-| `implantable` | Implantable devices (ISO 14708-1) |
-| `ivd` | In Vitro Diagnostics (cross-cutting within medical-devices; EU IVDR + 21 CFR 809 + ISO 15189) |
-| `ivdr-class-c` | EU IVDR Class C (Annex VIII Rule 3 — companion diagnostics + genetic + cancer); NB conformity + biennial PSUR |
-| `ivdr-class-d` | EU IVDR Class D (Annex VIII Rule 1 — highest risk: blood/tissue donor screening); EURL + annual PSUR + batch verification |
-| `mdr-class-iii` | EU MDR Class III (highest risk; Notified Body + SSCP + expert panel for high-risk-AI) |
-| `mdr-class-iib` | EU MDR Class IIb |
-| `mdr-class-iia` | EU MDR Class IIa |
-| `fda-class-iii` | FDA Class III (PMA pathway; MDR adverse-event reporting) |
-| `fda-class-ii` | FDA Class II (510(k) pathway; De Novo) |
+`ivd` is a **sub-vertical cross-cutting** within medical-devices (not a class-rigor delta — it adds an entire In Vitro Diagnostics regulatory scope including EU IVDR + 21 CFR 809 + ISO 15189). It in turn takes its own class overlays `ivdr-class-c` + `ivdr-class-d`. Listed here for discoverability but NOT counted in the 9 class overlays (which are all rigor / risk-class deltas).
+
+| Overlay | Purpose | Counted in 9? |
+|---|---|---|
+| `samd` | Software as a Medical Device (IEC 82304-1 + IMDRF SaMD N12) | ✓ |
+| `implantable` | Implantable devices (ISO 14708-1) | ✓ |
+| `ivd` | In Vitro Diagnostics SUB-VERTICAL (EU IVDR + 21 CFR 809 + ISO 15189) | — (sub-vertical) |
+| `ivdr-class-c` | EU IVDR Class C (Annex VIII Rule 3 — companion diagnostics + genetic + cancer); NB conformity + biennial PSUR | ✓ |
+| `ivdr-class-d` | EU IVDR Class D (Annex VIII Rule 1 — highest risk: blood/tissue donor screening); EURL + annual PSUR + batch verification | ✓ |
+| `mdr-class-iii` | EU MDR Class III (highest risk; Notified Body + SSCP + expert panel for high-risk-AI) | ✓ |
+| `mdr-class-iib` | EU MDR Class IIb | ✓ |
+| `mdr-class-iia` | EU MDR Class IIa | ✓ |
+| `fda-class-iii` | FDA Class III (PMA pathway; MDR adverse-event reporting) | ✓ |
+| `fda-class-ii` | FDA Class II (510(k) pathway; De Novo) | ✓ |
 
 ### Aerospace (7)
 

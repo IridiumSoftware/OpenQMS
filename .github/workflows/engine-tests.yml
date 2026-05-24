@@ -36,6 +36,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e './engine[dev]'
 
+      - name: Lint module.yaml files
+        # Catches the YAML failure modes observed in the v0.36-v0.38
+        # chemicals arc — most notably unquoted colon-space patterns in
+        # template `name:` values that broke parse in
+        # transport-hazmat/module.yaml. Also asserts every clause has
+        # the required fields + every template's addresses entries
+        # refer to in-module clause ids.
+        run: python3 scripts/lint-module-yaml.py
+
       - name: Run pytest
         run: pytest engine/tests -v
 
