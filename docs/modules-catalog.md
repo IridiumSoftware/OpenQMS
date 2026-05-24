@@ -119,7 +119,7 @@ The OQ-011 compose primitive (built v0.4.0, unchanged since) handles composition
 
 ---
 
-## Cross-cutting overlays (24)
+## Cross-cutting overlays (25)
 
 Each composes with ANY vertical. Annex-SL-aligned overlays compose cleanly with each other (verified by 11-module mega-composite in CI).
 
@@ -145,6 +145,7 @@ Each composes with ANY vertical. Annex-SL-aligned overlays compose cleanly with 
 | `defense-cui` | DFARS 252.204-7012 + NIST SP 800-171 Rev 3 | US DoD contractors handling CDI; 14 control families + SPRS scoring |
 | `cmmc` | CMMC 2.0 (32 CFR Part 170) | DoD CUI certification; Levels 1/2/3 with C3PAO; phased rollout 2025-2028 |
 | `privacy` | EU GDPR + US CCPA/CPRA | Personal data protection; universally applicable; closes last major management-system gap |
+| `hipaa` | 45 CFR Parts 160 + 164 (Privacy + Security + Breach Notification + Enforcement Rules) + HITECH | US healthcare-specific privacy + security; CE/BA framework; BAAs; OCR enforcement; 4-tier CMP. Compose with `privacy` for non-PHI data |
 
 ---
 
