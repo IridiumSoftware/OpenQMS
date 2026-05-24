@@ -1,0 +1,69 @@
+# Open QMS — ISO 37301 Public Sector profile sub-overlay
+# --------------------------------------------------------
+# Sub-overlay on the iso-37301 cross-cutting overlay encoding
+# the public-sector compliance management profile. ISO 37301
+# itself does not formally define sectoral tiers; this profile
+# applies community practice for government + public-
+# administration adoption.
+
+name: iso-37301-public-sector
+version: 0.1.0
+
+standards:
+  - "ISO 37301:2021"
+
+clauses:
+
+  - id: ISO37301-PS-public-trust-mandate
+    standard: ISO 37301:2021
+    section: "Profile interpretation of §4.1 + §5.1"
+    summary: |
+      Public trust mandate — public-sector compliance management
+      additionally serves citizen-trust + democratic accountability
+      objectives beyond commercial compliance interests. Compliance
+      function scope explicitly extends to public-procurement
+      integrity + anti-fraud + lobbying-transparency + freedom-of-
+      information compliance per jurisdiction.
+
+  - id: ISO37301-PS-procurement-integrity
+    standard: ISO 37301:2021
+    section: "Profile binding to §8.1-8.2"
+    summary: |
+      Procurement integrity — public-sector ISO 37301 implementation
+      typically integrates: WTO Government Procurement Agreement
+      (where applicable); UNCITRAL Model Law on Public Procurement;
+      EU Public Procurement Directives 2014/24-26/EU; FAR for US
+      federal scope. Compliance obligations specific to public-
+      procurement transparency + tender procedures + supplier-
+      qualification rules.
+
+  - id: ISO37301-PS-FOI-transparency
+    standard: ISO 37301:2021
+    section: "Profile binding to §7.5 + §10"
+    summary: |
+      Freedom of information + transparency — compliance management
+      system covers active publication obligations + request-response
+      procedures per jurisdiction's FOI law (US FOIA, UK FOIA, EU
+      Reg. 1049/2001, etc.). Documented exemption justifications +
+      appeal procedures + transparency-portal maintenance.
+
+  - id: ISO37301-PS-anti-corruption-extension
+    standard: ISO 37301:2021
+    section: "Compose with iso-37001 typical"
+    summary: |
+      Anti-corruption extension — public-sector adopters typically
+      compose iso-37001 (anti-bribery) alongside iso-37301 +
+      iso-37301-public-sector due to elevated public-sector
+      anti-corruption obligations under UN Convention against
+      Corruption + OECD Anti-Bribery Convention + national
+      anti-corruption regimes.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (ISO 37301 Public Sector profile — extends QMS policy with public-trust mandate + procurement-integrity + FOI + UN/OECD anti-corruption framework alignment)"
+    addresses:
+      - ISO37301-PS-public-trust-mandate
+      - ISO37301-PS-procurement-integrity
+      - ISO37301-PS-FOI-transparency
+      - ISO37301-PS-anti-corruption-extension

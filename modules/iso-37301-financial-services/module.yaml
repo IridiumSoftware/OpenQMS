@@ -1,0 +1,69 @@
+# Open QMS — ISO 37301 Financial Services profile sub-overlay
+# -------------------------------------------------------------
+# Sub-overlay on the iso-37301 cross-cutting overlay encoding the
+# financial-services compliance management profile.
+
+name: iso-37301-financial-services
+version: 0.1.0
+
+standards:
+  - "ISO 37301:2021"
+
+clauses:
+
+  - id: ISO37301-FS-prudential-regulatory-overlay
+    standard: ISO 37301:2021
+    section: "Profile interpretation of §4.1-4.2"
+    summary: |
+      Prudential + conduct regulatory overlay — financial-services
+      compliance management system covers prudential supervision
+      (Basel III/IV capital + liquidity + risk; Solvency II for
+      insurers) + conduct-of-business (MiFID II / MiFIR for
+      investment services; PSD2/PSD3 for payments; IDD for
+      insurance distribution) + market-integrity (MAR market abuse;
+      EMIR derivatives reporting). Per-regime requirements
+      catalogued in compliance obligations register.
+
+  - id: ISO37301-FS-AML-CFT-sanctions
+    standard: ISO 37301:2021
+    section: "Profile binding to §8.1-8.2"
+    summary: |
+      AML + CFT + sanctions — anti-money-laundering + counter-
+      terrorism-financing + sanctions screening compliance
+      programmes integrated under ISO 37301 framework. KYC + CDD +
+      EDD per FATF Recommendations + EU AMLD6 + USA PATRIOT Act
+      §314 + OFAC SDN List + UN/EU sanctions list screening.
+      Suspicious-activity reporting + transaction monitoring +
+      MLRO designation.
+
+  - id: ISO37301-FS-consumer-protection
+    standard: ISO 37301:2021
+    section: "Profile binding to §6.1.2 + §8.3"
+    summary: |
+      Consumer protection — financial-services-specific consumer-
+      protection compliance: CFPB / TILA / RESPA / Reg-E (US);
+      Consumer Credit Directive + Mortgage Credit Directive +
+      Distance Marketing Directive (EU); Senior Managers + Certification
+      Regime (UK FCA); fair-lending + non-discrimination + suitability
+      + best-execution obligations. UDAAP / UDAP analysis.
+
+  - id: ISO37301-FS-DORA-NYDFS-overlap
+    standard: ISO 37301:2021
+    section: "Compose with dora typical"
+    summary: |
+      Operational resilience overlap — financial-services adopters
+      in scope of DORA (EU) compose `dora` alongside; in scope of
+      NYDFS Part 500 compose `defense-cui` analog cybersecurity
+      framework alongside. ISO 37301 provides the compliance-
+      management substrate; DORA + NYDFS provide the operational-
+      resilience specifics.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (ISO 37301 Financial Services profile — extends QMS policy with prudential + conduct regulatory overlay + AML/CFT/sanctions integration + consumer-protection obligations + DORA/NYDFS operational-resilience coordination)"
+    addresses:
+      - ISO37301-FS-prudential-regulatory-overlay
+      - ISO37301-FS-AML-CFT-sanctions
+      - ISO37301-FS-consumer-protection
+      - ISO37301-FS-DORA-NYDFS-overlap

@@ -1,0 +1,66 @@
+# Open QMS — HITRUST e1 Essentials sub-overlay
+# ----------------------------------------------
+# Sub-overlay on the hitrust-csf cross-cutting overlay encoding the
+# HITRUST e1 (Essentials) 1-year assessment — 44 controls focused
+# on cyber hygiene baseline. Designed for organisations needing a
+# foundational HITRUST attestation with rapid time-to-validation.
+
+name: hitrust-e1
+version: 0.1.0
+
+standards:
+  - "HITRUST CSF"
+
+clauses:
+
+  - id: HITRUST-e1-scope
+    standard: HITRUST CSF
+    section: "e1 Assessment Specification"
+    summary: |
+      e1 Essentials scope — 44 controls covering foundational cyber
+      hygiene: access control + identification/authentication +
+      endpoint protection + vulnerability management + asset
+      management + incident response + risk management + training
+      + 3rd-party-risk basics. Annual assessment cadence; valid
+      1 year from issuance. Smallest HITRUST assessment scope.
+
+  - id: HITRUST-e1-cyber-hygiene-baseline
+    standard: HITRUST CSF
+    section: "e1 Specification §2"
+    summary: |
+      Cyber-hygiene baseline alignment — e1 controls map to NIST
+      Cybersecurity Framework Implementation Tier 2 + HIPAA
+      Security Rule baseline + PCI DSS SAQ-A. Designed as
+      foundational assurance for vendors + business associates
+      whose risk profile does not warrant i1 or r2 depth.
+
+  - id: HITRUST-e1-self-vs-validated
+    standard: HITRUST CSF
+    section: "e1 Validated vs Self"
+    summary: |
+      Assessment options — Validated (External Assessor Organisation
+      conducts assessment; HITRUST validates + issues Validated
+      Assessment Report) OR Self-assessment (no external
+      validation; lower assurance weight; rare in practice since
+      e1 was designed for low-cost-external-validation pathway).
+
+  - id: HITRUST-e1-rapid-time-to-attestation
+    standard: HITRUST CSF
+    section: "e1 Adoption Profile"
+    summary: |
+      Typical e1 adopters — startups + small healthcare-tech
+      companies needing demonstrable HIPAA-aligned posture
+      quickly + at lower cost than i1 or r2; sub-contractors to
+      i1/r2-assessed primes needing flow-down attestation; lower-
+      risk vendors whose customers accept e1 in vendor-management
+      programs.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (HITRUST e1 Essentials — extends QMS policy with 44-control cyber-hygiene baseline commitment + annual assessment cadence + Validated External Assessor engagement)"
+    addresses:
+      - HITRUST-e1-scope
+      - HITRUST-e1-cyber-hygiene-baseline
+      - HITRUST-e1-self-vs-validated
+      - HITRUST-e1-rapid-time-to-attestation

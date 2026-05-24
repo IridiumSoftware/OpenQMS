@@ -1,0 +1,76 @@
+# Open QMS — HITRUST r2 Risk-based 2-year sub-overlay
+# -----------------------------------------------------
+# Sub-overlay on the hitrust-csf cross-cutting overlay encoding the
+# HITRUST r2 (Risk-based 2-year) Validated Assessment — 200 to
+# 2000+ controls dynamically scoped by organisation factors. The
+# gold-standard HITRUST attestation.
+
+name: hitrust-r2
+version: 0.1.0
+
+standards:
+  - "HITRUST CSF"
+
+clauses:
+
+  - id: HITRUST-r2-scope-factor-tailored
+    standard: HITRUST CSF
+    section: "r2 Assessment Specification"
+    summary: |
+      r2 risk-based scope — control set scoped by HITRUST CSF
+      organisation factors (type of organisation; geographic scope;
+      systems; data; regulatory; risk factors). Range typically
+      200-2000+ controls based on factor combinations. Most
+      comprehensive HITRUST assessment.
+
+  - id: HITRUST-r2-2-year-validity-with-interim
+    standard: HITRUST CSF
+    section: "r2 2-year cycle"
+    summary: |
+      2-year validity with interim — Validated Assessment Report
+      issued for 2-year period; 1-year-mark interim assessment
+      verifies continued compliance + addresses any material changes.
+      Interim may trigger re-validation if material gaps found.
+      Customer expectations + procurement programs typically expect
+      both initial VAR + interim continuation.
+
+  - id: HITRUST-r2-multi-framework-cross-walk
+    standard: HITRUST CSF
+    section: "r2 Multi-framework mapping"
+    summary: |
+      Multi-framework mapping — r2 assessment provides crosswalk
+      output covering HIPAA Security Rule + HITECH + ISO/IEC 27001
+      Annex A + NIST SP 800-53 Rev 5 + NIST CSF + PCI DSS + GDPR
+      + state privacy laws (CCPA + others). Single-assessment-
+      multiple-frameworks the primary r2 value proposition.
+
+  - id: HITRUST-r2-typical-adopters
+    standard: HITRUST CSF
+    section: "r2 Adoption Profile"
+    summary: |
+      Typical r2 adopters — large healthcare payers + providers +
+      Health Information Exchanges; large healthcare-tech vendors
+      serving them; biopharma + life-sciences with significant PHI
+      processing; enterprise vendor-management programs requiring
+      r2 as the de-facto HITRUST gold standard.
+
+  - id: HITRUST-r2-PRISMA-scoring
+    standard: HITRUST CSF
+    section: "PRISMA Scoring"
+    summary: |
+      PRISMA maturity scoring — each control assessed across 5
+      maturity levels (Policy / Process / Implemented / Measured /
+      Managed). Scoring weights per control per assessment factor.
+      VAR includes per-control PRISMA scores enabling targeted
+      improvement planning for next assessment cycle.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (HITRUST r2 Risk-based 2-year — extends QMS policy with factor-tailored 200-2000+ control commitment + 2-year cycle with interim + multi-framework crosswalk leverage + PRISMA maturity scoring improvement discipline)"
+    addresses:
+      - HITRUST-r2-scope-factor-tailored
+      - HITRUST-r2-2-year-validity-with-interim
+      - HITRUST-r2-multi-framework-cross-walk
+      - HITRUST-r2-typical-adopters
+      - HITRUST-r2-PRISMA-scoring

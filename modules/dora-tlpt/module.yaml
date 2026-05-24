@@ -1,0 +1,97 @@
+# Open QMS — DORA TLPT (Threat-Led Penetration Testing) sub-overlay
+# -------------------------------------------------------------------
+# Sub-overlay on the dora cross-cutting overlay encoding the
+# Threat-Led Penetration Testing regime per DORA Chapter IV
+# Articles 26-27, operationalised via the TIBER-EU framework.
+# Required at minimum every 3 years for financial entities meeting
+# materiality + systemic-importance thresholds.
+
+name: dora-tlpt
+version: 0.1.0
+
+standards:
+  - "EU DORA"
+
+clauses:
+
+  - id: DORA-TLPT-scope-materiality
+    standard: EU DORA
+    section: "Article 26"
+    summary: |
+      TLPT scope — required for significant financial entities
+      meeting materiality thresholds set by competent authorities
+      (typically: G-SIIs, O-SIIs, central securities depositories,
+      central counterparties, large credit institutions, major
+      payment + electronic money institutions, key investment firms,
+      large insurance undertakings). Smaller financial entities
+      exempt; subject instead to standard digital operational
+      resilience testing under Article 25.
+
+  - id: DORA-TLPT-frequency
+    standard: EU DORA
+    section: "Article 26(1)"
+    summary: |
+      Frequency — at least once every 3 years. Competent authority
+      may require additional tests after major ICT incidents or
+      significant changes to ICT systems. Testing must cover
+      critical functions + supporting ICT systems + mission-critical
+      third-party services.
+
+  - id: DORA-TLPT-TIBER-EU-framework
+    standard: EU DORA
+    section: "Article 26(11) + TIBER-EU"
+    summary: |
+      TIBER-EU framework — ESAs RTS on TLPT incorporate TIBER-EU
+      methodology (Threat Intelligence-Based Ethical Red-Teaming
+      published by ECB). Phases: Preparation (Generic Threat
+      Landscape report); Testing (Targeted Threat Intelligence
+      report + Red Team Test); Closure (Replay + Purple Team
+      exercise + Test Summary Report); Remediation (Remediation
+      Plan + follow-up). Test Manager appointed within financial
+      entity; TI Provider + Red Team Provider procured externally;
+      both must hold appropriate accreditations per RTS.
+
+  - id: DORA-TLPT-third-party-inclusion
+    standard: EU DORA
+    section: "Article 26(2)"
+    summary: |
+      Third-party inclusion — TLPT must cover financial entity's
+      critical or important functions, even when underpinned by
+      ICT third-party providers (including CTPPs). Providers
+      contractually obligated per Article 30 to participate.
+      Pooled testing arrangements per Article 26(4) permitted
+      where same provider underpins multiple financial entities.
+
+  - id: DORA-TLPT-cross-border-recognition
+    standard: EU DORA
+    section: "Article 26(8)-(9)"
+    summary: |
+      Cross-border recognition — TLPT conducted in one Member
+      State recognised by competent authorities in other Member
+      States where the financial entity operates. Reduces
+      duplicate-testing burden for cross-border groups.
+      Coordination via the competent-authority forum;
+      results sharing per data-protection + commercial-
+      confidentiality safeguards.
+
+  - id: DORA-TLPT-incident-reporting-integration
+    standard: EU DORA
+    section: "Article 26(7) + Article 19"
+    summary: |
+      Incident reporting integration — TLPT findings may trigger
+      Article 19 major-ICT-incident reporting if exploited
+      vulnerabilities indicate prior actual compromise. Remediation
+      plans tracked through standard ICT-risk-management workflow
+      per Chapter II.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (DORA TLPT — extends QMS policy with TIBER-EU framework adoption + 3-year minimum TLPT cadence + third-party-inclusion procurement + cross-border recognition coordination)"
+    addresses:
+      - DORA-TLPT-scope-materiality
+      - DORA-TLPT-frequency
+      - DORA-TLPT-TIBER-EU-framework
+      - DORA-TLPT-third-party-inclusion
+      - DORA-TLPT-cross-border-recognition
+      - DORA-TLPT-incident-reporting-integration

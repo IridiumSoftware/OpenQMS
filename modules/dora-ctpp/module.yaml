@@ -1,0 +1,85 @@
+# Open QMS — DORA Critical Third-Party Provider sub-overlay
+# -----------------------------------------------------------
+# Sub-overlay on the dora cross-cutting overlay encoding the
+# CRITICAL THIRD-PARTY PROVIDER (CTPP) designation regime per
+# DORA Chapter V Article 31-44. CTPP-designated ICT third-party
+# providers fall under direct ESA oversight (joint EBA + ESMA +
+# EIOPA Lead Overseer) — most stringent DORA scope.
+
+name: dora-ctpp
+version: 0.1.0
+
+standards:
+  - "EU DORA"
+
+clauses:
+
+  - id: DORA-CTPP-designation
+    standard: EU DORA
+    section: "Articles 31-32"
+    summary: |
+      CTPP designation criteria — Commission adopts designation per
+      ESAs joint proposal based on: systemic importance to financial
+      sector; substitutability of services; degree of reliance by
+      multiple financial entities; risk concentration. Designated
+      providers published on ESAs joint register. ESAs Joint
+      Committee may add/remove via delegated acts.
+
+  - id: DORA-CTPP-Lead-Overseer
+    standard: EU DORA
+    section: "Articles 33-34"
+    summary: |
+      Lead Overseer designation — ESAs jointly designate Lead
+      Overseer (one of EBA / ESMA / EIOPA) per CTPP based on
+      services dominant financial-sector subsector. Joint
+      Examination Team (JET) may include national competent
+      authority representatives. Lead Overseer has direct
+      information-request + on-site-inspection + corrective-
+      recommendation + penalty-enforcement powers.
+
+  - id: DORA-CTPP-oversight-fees
+    standard: EU DORA
+    section: "Article 43"
+    summary: |
+      Oversight fees — CTPPs pay annual oversight fees to ESAs
+      covering Lead Overseer + JET costs. Fee structure per
+      delegated regulation; based on materiality of services +
+      cost of oversight activities. Material adopter-cost item
+      for CTPP-designated providers.
+
+  - id: DORA-CTPP-corrective-recommendations
+    standard: EU DORA
+    section: "Article 35"
+    summary: |
+      Corrective recommendations — Lead Overseer may issue
+      recommendations on (a) ICT security + risk management
+      practices; (b) sub-contracting + concentration risk
+      mitigation; (c) operational resilience improvements; (d)
+      reduction of services. CTPP must respond + explain
+      implementation OR justify deviation. Non-compliance may
+      trigger penalties + termination notice to dependent
+      financial entities.
+
+  - id: DORA-CTPP-financial-entity-contracts
+    standard: EU DORA
+    section: "Article 28 + 30 enhanced for CTPPs"
+    summary: |
+      Contract requirements enhanced for CTPP services — beyond
+      baseline Article 30 (all ICT third-party contracts),
+      CTPP-served financial entities have additional contractual
+      obligations: (i) reference to Lead Overseer + JET access
+      rights; (ii) mandatory exit + transition assistance
+      provisions; (iii) sub-contractor flow-down of oversight-
+      cooperation obligations; (iv) annual concentration risk
+      assessment + mitigation.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (DORA CTPP — extends QMS policy with ESA Lead Overseer cooperation commitment + JET on-site-inspection readiness + corrective-recommendation response discipline + oversight-fee budgeting)"
+    addresses:
+      - DORA-CTPP-designation
+      - DORA-CTPP-Lead-Overseer
+      - DORA-CTPP-oversight-fees
+      - DORA-CTPP-corrective-recommendations
+      - DORA-CTPP-financial-entity-contracts

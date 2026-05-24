@@ -1,0 +1,70 @@
+# Open QMS — DORA Non-CTPP sub-overlay
+# --------------------------------------
+# Sub-overlay on the dora cross-cutting overlay encoding the
+# baseline DORA regime for ICT third-party providers NOT
+# designated CTPP. Most ICT vendors to EU financial sector fall
+# in this scope.
+
+name: dora-non-ctpp
+version: 0.1.0
+
+standards:
+  - "EU DORA"
+
+clauses:
+
+  - id: DORA-non-CTPP-scope
+    standard: EU DORA
+    section: "Article 30"
+    summary: |
+      Scope — ICT third-party providers serving EU financial
+      entities under Article 30 contractual framework but NOT
+      designated CTPP per Article 31. Includes most SaaS vendors,
+      managed-service providers, payment-processors not on the
+      Commission CTPP list. Indirect DORA exposure via financial-
+      entity customer's compliance obligations rather than direct
+      ESA oversight.
+
+  - id: DORA-non-CTPP-contract-obligations
+    standard: EU DORA
+    section: "Article 30 + RTS on contractual arrangements"
+    summary: |
+      Contract obligations per Article 30 + RTS on contractual
+      arrangements (effective 2025): full + clear description of
+      services; data + system locations; service-level descriptions
+      + monitoring; performance reporting; sub-contracting authorisation
+      + notification; assistance with ICT-related incidents;
+      cooperation with competent authorities; termination + exit
+      strategy + transition assistance.
+
+  - id: DORA-non-CTPP-financial-entity-due-diligence
+    standard: EU DORA
+    section: "Article 28 + 29"
+    summary: |
+      Subject to financial-entity due diligence per Article 28
+      pre-contractual + Article 29 risk assessment + Article 30
+      contractual obligations. Financial entities must risk-assess
+      providers + monitor concentration risk + maintain register
+      of all ICT third-party arrangements. Providers respond to
+      financial entities' DORA-driven due-diligence requests +
+      contract updates.
+
+  - id: DORA-non-CTPP-elevation-risk
+    standard: EU DORA
+    section: "Article 31 transition"
+    summary: |
+      CTPP elevation risk — non-CTPP providers may be designated
+      CTPP if criticality criteria met (systemic importance,
+      reliance, concentration). Providers approaching critical-mass
+      financial-sector footprint should pre-emptively prepare for
+      CTPP regime via `dora-ctpp` compliance posture.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (DORA non-CTPP — extends QMS policy with Article 30 contractual-framework compliance + financial-entity due-diligence cooperation + CTPP-elevation monitoring)"
+    addresses:
+      - DORA-non-CTPP-scope
+      - DORA-non-CTPP-contract-obligations
+      - DORA-non-CTPP-financial-entity-due-diligence
+      - DORA-non-CTPP-elevation-risk

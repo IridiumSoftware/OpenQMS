@@ -1,0 +1,63 @@
+# Open QMS — HITRUST i1 Intermediate sub-overlay
+# -----------------------------------------------
+# Sub-overlay on the hitrust-csf cross-cutting overlay encoding the
+# HITRUST i1 (Intermediate) 1-year assessment — 182 controls
+# representing leading cybersecurity practices.
+
+name: hitrust-i1
+version: 0.1.0
+
+standards:
+  - "HITRUST CSF"
+
+clauses:
+
+  - id: HITRUST-i1-scope
+    standard: HITRUST CSF
+    section: "i1 Assessment Specification"
+    summary: |
+      i1 Intermediate scope — 182 controls representing leading
+      cybersecurity practices. Static control set (not tailored by
+      organisation factors as r2 is). 1-year assessment cadence.
+      Significantly more rigorous than e1 (44 controls) but lower
+      cost + time than r2 (200-2000+ controls based on factors).
+
+  - id: HITRUST-i1-leading-practices
+    standard: HITRUST CSF
+    section: "i1 Specification §2"
+    summary: |
+      Leading-practices alignment — i1 controls map to NIST
+      Cybersecurity Framework Implementation Tier 3 + NIST SP
+      800-171 + ISO/IEC 27001 Annex A baseline + HIPAA Security
+      Rule comprehensive. Designed as mid-tier assurance for
+      vendors whose risk profile exceeds e1 but does not warrant
+      r2 depth + cost.
+
+  - id: HITRUST-i1-Validated-Assessment-Report
+    standard: HITRUST CSF
+    section: "i1 Validated Assessment process"
+    summary: |
+      Validated Assessment Report (VAR) — External Assessor
+      Organisation conducts assessment per HITRUST MyCSF; HITRUST
+      validates + issues VAR + certificate. Customer can review VAR
+      via HITRUST Assessment Exchange (replacing manual VAR
+      requests). 1-year validity.
+
+  - id: HITRUST-i1-typical-adopters
+    standard: HITRUST CSF
+    section: "i1 Adoption Profile"
+    summary: |
+      Typical i1 adopters — mid-market healthcare-tech with growing
+      PHI footprint; SaaS providers serving healthcare payers +
+      providers where annual VAR refresh acceptable; vendors needing
+      stronger-than-e1 assurance + lower-than-r2 commitment.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (HITRUST i1 Intermediate — extends QMS policy with 182-control leading-practices commitment + annual Validated Assessment Report + HITRUST Assessment Exchange distribution)"
+    addresses:
+      - HITRUST-i1-scope
+      - HITRUST-i1-leading-practices
+      - HITRUST-i1-Validated-Assessment-Report
+      - HITRUST-i1-typical-adopters

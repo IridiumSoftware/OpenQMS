@@ -1,0 +1,82 @@
+# Open QMS — ISO 37301 Healthcare profile sub-overlay
+# -----------------------------------------------------
+# Sub-overlay on the iso-37301 cross-cutting overlay encoding the
+# healthcare-sector compliance management profile.
+
+name: iso-37301-healthcare
+version: 0.1.0
+
+standards:
+  - "ISO 37301:2021"
+
+clauses:
+
+  - id: ISO37301-HC-HIPAA-HITECH
+    standard: ISO 37301:2021
+    section: "Profile binding to §6.1.2 + §8.1"
+    summary: |
+      HIPAA + HITECH — US healthcare compliance management
+      integrates HIPAA Privacy Rule + Security Rule + Breach
+      Notification Rule + Enforcement Rule + HITECH meaningful-use
+      / Promoting Interoperability requirements. Privacy Officer +
+      Security Officer designations; covered-entity vs business-
+      associate distinction; Business Associate Agreements (BAAs);
+      OCR audit preparation.
+
+  - id: ISO37301-HC-fraud-waste-abuse
+    standard: ISO 37301:2021
+    section: "Profile binding to §6.1.2"
+    summary: |
+      Fraud + Waste + Abuse — OIG Compliance Program Guidance +
+      False Claims Act + Anti-Kickback Statute (42 USC §1320a-7b) +
+      Stark Law (physician self-referral); Federal Sentencing
+      Guidelines effective compliance program elements; OIG Work
+      Plan annual review. CMS Conditions of Participation + State
+      Operations Manual compliance for providers participating in
+      Medicare/Medicaid.
+
+  - id: ISO37301-HC-clinical-quality
+    standard: ISO 37301:2021
+    section: "Compose with medical-devices / pharma typical"
+    summary: |
+      Clinical quality overlap — healthcare provider compliance
+      management often integrates clinical-quality compliance
+      (Joint Commission accreditation + DNV GL Healthcare + CMS
+      Conditions of Participation quality reporting + value-based-
+      care programmes). May compose iso-9001 + iso-13485
+      adjacent for clinical-systems quality where applicable.
+
+  - id: ISO37301-HC-research-compliance
+    standard: ISO 37301:2021
+    section: "Profile binding to §6.1.2"
+    summary: |
+      Research compliance — academic medical centers + integrated
+      research organisations: human-subjects protection (45 CFR
+      46 / Common Rule); IRB oversight; FDA IND/IDE compliance;
+      research-misconduct response (42 CFR Part 93); conflict-of-
+      interest management (42 CFR Part 50); animal-subjects
+      compliance (PHS Policy + AWA). Composes with pharma overlay
+      where industry-sponsored clinical research in scope.
+
+  - id: ISO37301-HC-340B-and-pharmacy
+    standard: ISO 37301:2021
+    section: "Profile binding to §6.1.2 — covered-entity scope"
+    summary: |
+      340B + pharmacy compliance — covered-entity hospitals +
+      community health centers: 340B Drug Pricing Program
+      compliance (HRSA + apexus); diversion prevention; GPO
+      prohibition; child-site listing accuracy; contract-pharmacy
+      arrangements. Plus pharmacy practice compliance (state board
+      of pharmacy + DEA controlled-substances + USP <800> hazardous
+      drugs).
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (ISO 37301 Healthcare profile — extends QMS policy with HIPAA/HITECH integration + FWA + clinical-quality overlap + research-compliance scope + 340B/pharmacy where applicable)"
+    addresses:
+      - ISO37301-HC-HIPAA-HITECH
+      - ISO37301-HC-fraud-waste-abuse
+      - ISO37301-HC-clinical-quality
+      - ISO37301-HC-research-compliance
+      - ISO37301-HC-340B-and-pharmacy

@@ -4,6 +4,42 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.43.0 DRAFT — 2026-05-24 — Sub-overlay batch (DORA tiers + HITRUST scoping levels + ISO 37301 sectoral profiles)
+
+**1 NEW entry** OQ-110. Spec total 93 → 94. Engine 0.42.0 → 0.43.0.
+
+10 new sub-overlays extending the v0.42.0 sub-overlay shape to three additional cross-cutting overlays.
+
+**DORA tiers (3):**
+- `dora-ctpp` — Critical Third-Party Provider per Chapter V Articles 31-44 (Lead Overseer EBA/ESMA/EIOPA direct oversight; JET inspections; corrective recommendations; oversight fees; enhanced Article 28+30 contracts)
+- `dora-non-ctpp` — Baseline Article 30 contractual framework; indirect via financial-entity due diligence
+- `dora-tlpt` — Threat-Led Penetration Testing per Articles 26-27 + TIBER-EU framework (3-year minimum; TI Provider + Red Team Provider accreditation; third-party inclusion + cross-border recognition + Article 19 integration)
+
+**HITRUST scoping levels (3):**
+- `hitrust-e1` — Essentials 1-year (44 controls cyber-hygiene baseline)
+- `hitrust-i1` — Intermediate 1-year (182 leading-practices controls)
+- `hitrust-r2` — Risk-based 2-year (200-2000+ factor-tailored controls + PRISMA + multi-framework crosswalk HIPAA + HITECH + ISO 27001 + NIST + PCI DSS + GDPR)
+
+**ISO 37301 sectoral profiles (4):**
+- `iso-37301-public-sector` — public-trust + procurement integrity + FOI + UN anti-corruption
+- `iso-37301-financial-services` — prudential/conduct + AML/CFT/sanctions + consumer protection + DORA/NYDFS coordination
+- `iso-37301-healthcare` — HIPAA/HITECH + FWA + research compliance + 340B/pharmacy
+- `iso-37301-general-business` — Annex SL IMS baseline + employment + product safety + tax/trade + antitrust
+
+All 10 reuse parent-overlay templates with binding deltas. No new registry standards.
+
+Cross-cutting overlay count unchanged at 24. Sub-overlays not counted in 24.
+
+Total module count: 92 → 102. Total sub-overlay count: 16 → 26.
+
+Repo-wide zero-orphan invariant holds: **102 modules / 758 clauses / 338 templates / 0 orphans** per `openqms trace --all`. CI extended (+15 validate steps). 116/116 pytest pass. All 8 bundle baselines clean. YAML linter clean on all 102 modules.
+
+Status counts: 6 `:verified` / 83 `:tested` / 5 `:argued` / 0 `:open` (total 94).
+
+Per user direction: "do the sub-overlay" → all three (DORA + HITRUST + ISO 37301) — shipped together.
+
+---
+
 ## v0.42.0 DRAFT — 2026-05-24 — Sub-overlay Tier 1 batch (CMMC levels + SOC 2 types + ISO 27001 extensions)
 
 **1 NEW entry** OQ-109. Spec total 92 → 93. Engine 0.41.0 → 0.42.0.

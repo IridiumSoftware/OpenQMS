@@ -1,0 +1,81 @@
+# Open QMS — ISO 37301 General Business profile sub-overlay
+# -----------------------------------------------------------
+# Sub-overlay on the iso-37301 cross-cutting overlay encoding the
+# default general-business compliance management profile for
+# adopters not in public-sector, financial-services, or healthcare.
+
+name: iso-37301-general-business
+version: 0.1.0
+
+standards:
+  - "ISO 37301:2021"
+
+clauses:
+
+  - id: ISO37301-GB-Annex-SL-baseline
+    standard: ISO 37301:2021
+    section: "Annex SL high-level structure"
+    summary: |
+      Annex SL baseline — general-business profile leverages
+      ISO 37301's Annex SL structure for clean integration with
+      other Annex SL standards (ISO 9001 quality + ISO 14001
+      environmental + ISO 45001 OH&S + ISO 50001 energy + ISO
+      27001 information security + ISO 22301 BC + ISO 37001
+      anti-bribery + ISO 31000 risk meta-framework). Common
+      integration mode: combined IMS audit with shared management
+      review.
+
+  - id: ISO37301-GB-employment-labor
+    standard: ISO 37301:2021
+    section: "Profile binding to §6.1.2"
+    summary: |
+      Employment + labor compliance — wage + hour laws (FLSA;
+      Working Time Directive); discrimination + harassment (Title
+      VII; Equal Pay Act; ADA; Equal Treatment Directives);
+      whistleblower protection (SOX §806; Dodd-Frank §922; EU
+      Whistleblower Directive 2019/1937); collective bargaining
+      compliance per jurisdiction.
+
+  - id: ISO37301-GB-product-safety
+    standard: ISO 37301:2021
+    section: "Compose with eu-gpsr / recall-workflow typical"
+    summary: |
+      Product safety + consumer law — general-business compliance
+      programmes integrate product-safety + consumer-law obligations
+      (EU GPSR for consumer products; CPSC for US consumer products;
+      FTC Act §5 deceptive practices; EU UCPD unfair commercial
+      practices; state consumer-protection acts). Often composes
+      eu-gpsr + recall-workflow + privacy overlays.
+
+  - id: ISO37301-GB-tax-trade
+    standard: ISO 37301:2021
+    section: "Profile binding to §6.1.2"
+    summary: |
+      Tax + trade compliance — corporate tax + VAT/GST/sales-tax +
+      transfer pricing (OECD BEPS Pillar 1+2) + country-by-country
+      reporting; export controls (US EAR + ITAR; EU Dual-Use
+      Regulation 2021/821); sanctions (OFAC + EU + UN);
+      anti-boycott (US EAR Part 760); customs + trade-agreement
+      origin determination.
+
+  - id: ISO37301-GB-competition-antitrust
+    standard: ISO 37301:2021
+    section: "Profile binding to §6.1.2"
+    summary: |
+      Competition + antitrust — Sherman Act + Clayton Act + FTC
+      Act §5 (US); TFEU Articles 101-102 + Block Exemption
+      Regulations (EU); national competition acts; merger control
+      (HSR Act US + EU Merger Regulation + national merger control);
+      cartel-prevention compliance programmes; pricing + supply +
+      distribution restrictions.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (ISO 37301 General Business profile — extends QMS policy with Annex SL IMS integration + employment/labor + product-safety + tax/trade + competition/antitrust compliance commitment)"
+    addresses:
+      - ISO37301-GB-Annex-SL-baseline
+      - ISO37301-GB-employment-labor
+      - ISO37301-GB-product-safety
+      - ISO37301-GB-tax-trade
+      - ISO37301-GB-competition-antitrust
