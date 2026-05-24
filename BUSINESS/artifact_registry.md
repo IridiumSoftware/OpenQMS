@@ -83,6 +83,7 @@ Path notation: paths starting with `BUSINESS/` are in this gitignored working tr
 | OQ-095 | ISO 22301:2019 BCMS cross-cutting overlay | Module | example-tested | CI validate `iso-22301` standalone + composites + 8-module ultimate mega-composite | `modules/iso-22301/module.yaml`, `templates/qms-bcms/BCMS-PLAN-TEMPLATE.md` (13 clauses + 1 new template) | `:tested` |
 | OQ-096 | ATMP class overlay (cell + gene therapy) on pharma | Module | example-tested | CI validate `pharma + atmp` standalone + 9-module deepest composite + `bundles/example-cart.matrix.json` regression baseline | `modules/atmp/module.yaml`, `templates/product-atmp/{donor-eligibility,traceability,viral-safety}/*.md` (10 clauses + 3 new templates); registry +4 standards (Annex 2A/2B + 21 CFR 1271 + ICH Q5A(R2)) | `:tested` |
 | OQ-097 | Public adopter-surface release: README + modules-catalog + module READMEs + BUSINESS un-gitignored | Gap | example-tested | README.md current state matches v0.22.0+ surface; docs/modules-catalog.md present; food-safety + atmp READMEs present; .gitignore no longer excludes BUSINESS/; BUSINESS/ContentsAvailable on GitHub | `README.md`, `docs/modules-catalog.md`, `modules/food-safety/README.md`, `modules/atmp/README.md`, `.gitignore`, `BUSINESS/**` | `:tested` |
+| OQ-098 | Cross-vertical recall-workflow overlay | Module | example-tested | CI validate `recall-workflow` standalone + 4 cross-vertical composites + 10-module deepest composite | `modules/recall-workflow/module.yaml`, `templates/qms-recall/{GENERALIZED-RECALL-PROCEDURE,NHTSA-OWNER-NOTIFICATION}-TEMPLATE.md` (11 clauses + 2 new templates); registry +6 standards (49 CFR 573/577/579, 21 CFR 7/806, CPSIA §15) | `:tested` |
 | OQ-071 | Apache-2.0 on Open QMS does not extend to referenced standards | Licensing | manual | `README.md` "Standards licensing — important" section | `README.md`, `LICENSE` | `:argued` |
 | OQ-080 | README discloses "infrastructure, not validated QMS" | Gap | example-tested | `README.md` "Important disclaimers" four-bullet block | `README.md` | `:tested` |
 
@@ -90,9 +91,9 @@ Path notation: paths starting with `BUSINESS/` are in this gitignored working tr
 
 ## Coverage check
 
-Total spec entries: 81. Registry rows: 81 (1 new at v0.14.0: OQ-059; 1 new at v0.15.0: OQ-072; 6 new at v0.16.0: OQ-073..OQ-078; 9 new at v0.17.0: OQ-079, OQ-081..OQ-088; 3 new at v0.18.0: OQ-089..OQ-091; 1 new at v0.19.0: OQ-092 pharma; 1 new at v0.20.0: OQ-093 food-safety; 2 new at v0.21.0: OQ-094 iso-37001 + OQ-095 iso-22301; 1 new at v0.22.0: OQ-096 atmp; 1 new at v0.23.0: OQ-097 public adopter-surface release).
+Total spec entries: 82. Registry rows: 82 (1 new at v0.14.0: OQ-059; 1 new at v0.15.0: OQ-072; 6 new at v0.16.0: OQ-073..OQ-078; 9 new at v0.17.0: OQ-079, OQ-081..OQ-088; 3 new at v0.18.0: OQ-089..OQ-091; 1 new at v0.19.0: OQ-092 pharma; 1 new at v0.20.0: OQ-093 food-safety; 2 new at v0.21.0: OQ-094 iso-37001 + OQ-095 iso-22301; 1 new at v0.22.0: OQ-096 atmp; 1 new at v0.23.0: OQ-097 public adopter-surface release; 1 new at v0.24.0: OQ-098 recall-workflow).
 
-**Status counts (post-v0.23.0):** 6 `:verified` · 68 `:tested` · 7 `:argued` · 0 `:open` · 0 `:proved` · 0 `:benchmarked`. Total 81.
+**Status counts (post-v0.24.0):** 6 `:verified` · 69 `:tested` · 7 `:argued` · 0 `:open` · 0 `:proved` · 0 `:benchmarked`. Total 82.
 
 (Note: per-row table entries for OQ-054..OQ-058 condensed to keep the snapshot compact; see ENGINE_SPEC.md for the full per-entry detail and `git log -p modules/` for the shipped overlay manifests + their template bindings.)
 

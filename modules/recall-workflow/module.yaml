@@ -1,0 +1,228 @@
+# Open QMS — cross-vertical recall workflow overlay
+# ---------------------------------------------------
+# Composes with any vertical to add product-recall workflow
+# discipline. Covers four regulatory frameworks for recall +
+# post-market reporting:
+#
+#  - NHTSA (automotive) — 49 CFR Part 573 Defect + Noncompliance
+#    Reports; Part 577 Owner Notification; Part 579 TREAD Act
+#    Early Warning Reporting.
+#  - FDA medical devices — 21 CFR Part 7 (general recall) + Part
+#    806 (Reports of Corrections + Removals).
+#  - FDA food — 21 CFR Part 7 + 21 CFR 117 Subpart D + 21 USC
+#    §350f Reportable Food Registry. Already covered by the
+#    food-safety vertical's RECALL-WITHDRAWAL-PROCEDURE template;
+#    this overlay generalizes + adds the Reportable Food Registry
+#    specifics.
+#  - Consumer products (CPSC) — CPSIA §15 (15 USC §2064)
+#    Substantial Product Hazard reports + recalls.
+#
+# Use via:
+#   openqms resolve --module automotive --module recall-workflow
+#   openqms resolve --module medical-devices --module recall-workflow
+#   openqms resolve --module manufacturing --module recall-workflow
+#     (for consumer-product manufacturers under CPSIA scope)
+#
+# The food-safety vertical already includes recall procedures
+# inline; composing with recall-workflow adds the cross-vertical
+# generalized procedure + (where relevant) NHTSA / CPSIA / FDA
+# medical-device specific clauses beyond food.
+#
+# Architectural decision: shipped as a cross-cutting overlay
+# rather than as four separate per-vertical class overlays because
+# the procedure SHAPE (decision flow + classification + regulator
+# notification + customer notification + effectiveness check + root
+# cause + closure) is essentially the same across all four
+# frameworks. The framework-specific differences (classification
+# scheme, notification windows, notification content) are
+# parametrized in the generalized template.
+#
+# Standards licensing: all cited regulations are PUBLIC license
+# (US federal regulations via ecfr.gov; statutes via USC).
+
+name: recall-workflow-overlay
+version: 0.1.0
+
+standards:
+  - 49 CFR 573
+  - 49 CFR 577
+  - 49 CFR 579
+  - 21 CFR 7
+  - 21 CFR 806
+  - CPSIA Section 15
+
+clauses:
+
+  # === NHTSA automotive recall framework ===
+
+  - id: NHTSA-573-defect-noncompliance
+    standard: 49 CFR 573
+    section: "§573.6"
+    summary: |
+      Defect Information Report (DIR) — manufacturer determining
+      that a safety-related defect or noncompliance with an FMVSS
+      exists in its products shall furnish notification to NHTSA
+      within 5 working days. Report content per §573.6(c) includes
+      manufacturer + product identification, defect/noncompliance
+      description, hazard assessment, vehicle/equipment population
+      identification + numbers, remedy program, schedule, owner-
+      notification plan.
+
+  - id: NHTSA-577-owner-notification
+    standard: 49 CFR 577
+    section: "§577.5 + §577.7 + §577.8"
+    summary: |
+      Owner Notification — manufacturer shall send notification by
+      first-class mail to each owner (per §577.6) within 60 days
+      of submitting the 573 report (per §577.7). Letter content
+      per §577.5 includes 10 mandatory elements (manufacturer +
+      product identification, defect/noncompliance description,
+      risk to motor vehicle safety, warning against continued use,
+      remedy description + time for availability, no-charge
+      remedy statement, instructions + NHTSA complaint procedure,
+      campaign number). Second notification per §577.8 if remedy
+      completion < 70% at 6 months. Reimbursement per §577.9 for
+      pre-notification remedy charges.
+
+  - id: NHTSA-579-TREAD-EWR
+    standard: 49 CFR 579
+    section: "§579.21"
+    summary: |
+      TREAD Act Early Warning Reporting — automotive manufacturers
+      above thresholds (passenger cars > 5,000 units; multipurpose
+      passenger vehicles + trucks > 25,000 units; etc.) submit
+      quarterly EWR reports per §579.21 covering: production data;
+      death + injury + property damage claims; field reports;
+      consumer complaints; warranty claims; foreign defect
+      notifications + recalls. Pattern in EWR data may trigger
+      573 defect determination — the two frameworks are linked.
+
+  # === FDA general recall policy ===
+
+  - id: FDA-CFR7-recall-classification
+    standard: 21 CFR 7
+    section: "§7.3 + §7.41-§7.42"
+    summary: |
+      FDA recall classification — Class I (reasonable probability
+      that use will cause serious adverse health consequences or
+      death); Class II (use may cause temporary or medically
+      reversible adverse health consequences or remote serious
+      consequences); Class III (use is not likely to cause adverse
+      health consequences). Voluntary recalls initiated by firm;
+      FDA classifies after firm submission. Effectiveness checks
+      per §7.42(b)(4) at three levels (A = 100% / B = sample /
+      C = ~10%) per Class.
+
+  # === FDA medical-device corrections + removals ===
+
+  - id: FDA-CFR806-corrections-removals
+    standard: 21 CFR 806
+    section: "§806.10"
+    summary: |
+      Medical-device Reports of Corrections and Removals —
+      manufacturers report corrections (e.g., field-software patch)
+      and removals (e.g., device retrieval) initiated to reduce
+      risk to health or remedy violation. Within 10 working days
+      of initiating the action. Report content per §806.10(c)
+      includes date + description + reason + product identification
+      + quantity + consignee identification + risk + copies of
+      communications. Distinct from MDR adverse-event reports per
+      21 CFR Part 803.
+
+  # === CPSC consumer-product substantial hazard reports ===
+
+  - id: CPSIA-Section-15-substantial-product-hazard
+    standard: CPSIA Section 15
+    section: "§15(b) — 15 USC §2064(b)"
+    summary: |
+      Substantial Product Hazard reporting — every manufacturer +
+      importer + distributor + retailer who obtains information
+      which reasonably supports the conclusion that a product they
+      market presents a substantial product hazard shall report to
+      CPSC within 24 hours per §15(b). Substantial product hazard
+      defined per §15(a) as: (1) failure to comply with a CPSC
+      rule + the failure creates substantial risk of injury, OR
+      (2) defect which creates substantial risk of injury. CPSC
+      reviews + may negotiate corrective action plan + publish
+      recall notice. 16 CFR Part 1115 provides further detail.
+
+  # === Cross-framework workflow elements ===
+
+  - id: Recall-decision-flow
+    standard: 21 CFR 7
+    section: "(cross-vertical)"
+    summary: |
+      Recall decision flow — single Recall Coordinator decision-
+      maker convenes multi-functional Recall Team within 4 hours
+      (1 hour for known Class I / serious-risk / known substantial
+      product hazard). Team reviews evidence + applies framework-
+      specific classification + decision documented with rationale
+      + time-stamped.
+
+  - id: Recall-distribution-list-traceability
+    standard: 21 CFR 7
+    section: "(cross-vertical)"
+    summary: |
+      Distribution-list extraction + product traceability —
+      framework-specific traceability granularity (NHTSA: per-VIN;
+      FDA medical: per-UDI + per-lot/serial; FDA food: per-lot
+      + 1-up-1-down; CPSIA consumer products: per-batch +
+      per-distributor). Target extraction time ≤ 4 hours after
+      recall decision.
+
+  - id: Recall-effectiveness-checks
+    standard: 21 CFR 7
+    section: "§7.42(b)(4)"
+    summary: |
+      Effectiveness checks verifying that recall notifications
+      reached consignees + consignees acted on them. Three FDA
+      levels per Class (A / B / C); NHTSA quarterly status
+      reporting per §573.7 with completion rates; CPSC quarterly
+      progress reports per agreed schedule.
+
+  - id: Recall-recovery-disposition
+    standard: 21 CFR 7
+    section: "(cross-vertical)"
+    summary: |
+      Recovery + disposition — destroyed (with witness verification
+      + Certificate of Destruction) OR reworked / reconditioned
+      (only with regulator agreement) OR returned-to-customer
+      after retrofit. Tracking units recovered vs. units shipped
+      with ongoing recovery rate.
+
+  - id: Recall-mock-recall-exercise
+    standard: 21 CFR 7
+    section: "(cross-vertical)"
+    summary: |
+      Mock recall exercise minimum annually — tests distribution-
+      list extraction speed + accuracy, lot/VIN/UDI traceability,
+      team activation + communication, documentation completeness.
+      Acceptance target ≤ 4 hours for distribution-list completion
+      (FDA food guidance; NHTSA expects manufacturer-defined
+      target; medical-device UDI traceability expected near-
+      immediate).
+
+templates:
+
+  - path: templates/qms-recall/GENERALIZED-RECALL-PROCEDURE-TEMPLATE.md
+    name: Generalized Recall Procedure (cross-vertical with framework-specific notification windows + classification + content per NHTSA / FDA / CPSIA / EU)
+    addresses:
+      - FDA-CFR7-recall-classification
+      - FDA-CFR806-corrections-removals
+      - CPSIA-Section-15-substantial-product-hazard
+      - Recall-decision-flow
+      - Recall-distribution-list-traceability
+      - Recall-effectiveness-checks
+      - Recall-recovery-disposition
+      - Recall-mock-recall-exercise
+
+  - path: templates/qms-recall/NHTSA-OWNER-NOTIFICATION-TEMPLATE.md
+    name: NHTSA Part 577 Owner Notification Letter (49 CFR 577.5 + §577.7 + §577.8 + §577.9 — automotive-specific)
+    addresses:
+      - NHTSA-573-defect-noncompliance
+      - NHTSA-577-owner-notification
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: TREAD Early Warning Reporting SOP (49 CFR 579 §579.21 — automotive-specific quarterly EWR submission process)
+    addresses:
+      - NHTSA-579-TREAD-EWR

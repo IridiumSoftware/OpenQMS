@@ -609,6 +609,76 @@ standards:
       - "ICH-Q5A"
       - "Viral Safety"
 
+  # === Recall + post-market reporting regulations ===
+
+  - id: "49 CFR 573"
+    name: "Defect and Noncompliance Responsibility and Reports"
+    publisher: U.S. National Highway Traffic Safety Administration (NHTSA)
+    edition: "49 CFR Part 573"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 573"
+      - "Part 573"
+      - "NHTSA Recall Reporting"
+
+  - id: "49 CFR 577"
+    name: "Defect and Noncompliance Notification"
+    publisher: NHTSA
+    edition: "49 CFR Part 577"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 577"
+      - "Part 577"
+      - "Owner Notification"
+
+  - id: "49 CFR 579"
+    name: "Reporting of Information and Communications about Potential Defects (TREAD Act Early Warning Reporting)"
+    publisher: NHTSA
+    edition: "49 CFR Part 579"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 579"
+      - "Part 579"
+      - "TREAD"
+      - "Early Warning Reporting"
+      - "EWR"
+
+  - id: "21 CFR 7"
+    name: "Enforcement Policy (FDA general recall policy + classification + effectiveness checks)"
+    publisher: U.S. Food and Drug Administration
+    edition: "21 CFR Part 7"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 7"
+      - "FDA Recall Policy"
+
+  - id: "21 CFR 806"
+    name: "Medical Devices; Reports of Corrections and Removals"
+    publisher: U.S. Food and Drug Administration
+    edition: "21 CFR Part 806"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 806"
+      - "Medical Device Recall"
+      - "Corrections and Removals"
+
+  - id: "CPSIA Section 15"
+    name: "Consumer Product Safety Improvement Act §15 (15 U.S.C. §2064) — Substantial product hazard reports + recalls"
+    publisher: U.S. Consumer Product Safety Commission (CPSC)
+    edition: "15 U.S.C. §2064 (CPSIA 2008 + subsequent amendments)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CPSIA §15"
+      - "15 USC 2064"
+      - "Section 15"
+      - "Substantial Product Hazard"
+
   # === Food safety standards ===
 
   - id: "ISO 22000:2018"

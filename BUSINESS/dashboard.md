@@ -1,6 +1,6 @@
 # Dashboard — Open QMS
 
-**Version:** v0.1.0 DRAFT (cumulative through engine v0.23.0)
+**Version:** v0.1.0 DRAFT (cumulative through engine v0.24.0)
 **Date:** 2026-05-23
 **Maintainer:** Aaron Green
 

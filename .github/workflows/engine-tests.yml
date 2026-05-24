@@ -95,6 +95,14 @@ jobs:
           openqms validate --module pharma --module atmp
           # 9-module deepest-composite — ATMP cell+gene-therapy manufacturer with full IMS
           openqms validate --module pharma --module atmp --module iso-27001 --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301
+          # Recall workflow (cross-cutting) — composes with auto + med-dev + food + manufacturing
+          openqms validate --module recall-workflow
+          openqms validate --module automotive --module recall-workflow
+          openqms validate --module medical-devices --module recall-workflow
+          openqms validate --module manufacturing --module recall-workflow
+          openqms validate --module food-safety --module recall-workflow
+          # 10-module deepest-composite (automotive top-rigor + recall + 5 cross-cutting + BCMS)
+          openqms validate --module automotive --module automotive-asil-d --module automotive-cal-4 --module recall-workflow --module regulated-ai --module iso-27001 --module iso-14001 --module iso-45001 --module iso-50001 --module iso-22301
           # Top-rigor mega-composite — safety-critical + cyber-critical ML-enabled ECU
           openqms validate --module automotive --module automotive-asil-d --module automotive-cal-4 --module regulated-ai --module iso-27001
           # Full-stack mega-composite — manufacturing + all 5 cross-cutting management-system overlays

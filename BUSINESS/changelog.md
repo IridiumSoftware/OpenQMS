@@ -4,6 +4,49 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.24.0 DRAFT — 2026-05-24 — Cross-vertical recall-workflow overlay
+
+**1 NEW entry** OQ-098. Spec total 81 → 82. Engine 0.23.0 → 0.24.0.
+
+Cross-vertical recall-workflow overlay covering four regulatory frameworks: NHTSA Part 573/577/579 (automotive) + FDA 21 CFR 7/806 (medical-device corrections + removals + general FDA recall) + CPSIA §15 (consumer products). 11 clauses + 2 new templates.
+
+**Architectural decision:** shipped as a cross-cutting overlay rather than four separate per-vertical class overlays because the recall procedure SHAPE is essentially the same across all four frameworks (decision flow with single Recall Coordinator; multi-functional team activation; distribution-list extraction; classification; regulator notification within framework-specific window; customer/owner notification; effectiveness checks; recovery + disposition; root cause + CAPA; closure). Only the classification scheme + notification windows + notification content differ across frameworks — and these are parametrized in the Generalized Recall Procedure template.
+
+Registry +6 standards (all PUBLIC license — US federal regulations + statutes):
+- 49 CFR 573 (Defect and Noncompliance Reports — NHTSA)
+- 49 CFR 577 (Owner Notification)
+- 49 CFR 579 (TREAD Act Early Warning Reporting)
+- 21 CFR 7 (FDA general recall policy + classification + effectiveness checks)
+- 21 CFR 806 (Medical Device Reports of Corrections and Removals)
+- CPSIA §15 (15 USC §2064 — Substantial Product Hazard reports + recalls)
+
+2 new templates:
+
+- **GENERALIZED-RECALL-PROCEDURE-TEMPLATE** — cross-vertical recall procedure with framework-specific table covering classification scheme (NHTSA: safety-related defect or FMVSS noncompliance — no I/II/III subcategorization; FDA medical/pharma/food: Class I/II/III; CPSC: substantial product hazard — one tier) + regulator notification window (NHTSA 5 working days; FDA medical device 10 working days; FDA pharma 3 working days for Field Alert; FDA food 24 hours for Reportable Food Registry per 21 USC §350f; CPSC 24 hours per §15(b)) + notification content (NHTSA §577.5 10 elements; FDA medical §806.10 specifics; etc.). Includes 24/7 cross-vertical Recall Team with 11 roles; hour-0 + hour-1-24 + hour-24-168 + hour-168+ action sequences; mock-recall annual cadence.
+
+- **NHTSA-OWNER-NOTIFICATION-TEMPLATE** — automotive-specific 49 CFR Part 577 owner notification letter with all 10 §577.5 mandatory elements (manufacturer + product identification; defect/noncompliance description; risk to motor vehicle safety in vehicle-owner-comprehensible language; warning against continued use + interim safe-operation instructions; remedy description + availability; no-charge remedy statement; instructions + NHTSA complaint procedure; recall campaign number; provisions if not original purchaser; lessor notice to lessees per §577.5(h)). Also includes §577.7 timing (60 days from DIR submission); §577.8 second notification trigger at < 70% completion at 6 months; §577.9 reimbursement for pre-notification remedy charges.
+
+Validates as:
+- recall-workflow standalone
+- automotive + recall-workflow
+- medical-devices + recall-workflow
+- manufacturing + recall-workflow (consumer-products under CPSIA)
+- food-safety + recall-workflow (extends food-safety's existing internal recall template)
+
+**10-module composite validates** (new depth record): `automotive + automotive-asil-d + automotive-cal-4 + recall-workflow + regulated-ai + iso-27001 + iso-14001 + iso-45001 + iso-50001 + iso-22301`. Realistic shape for a top-rigor connected automotive ECU manufacturer with full recall discipline + integrated management system.
+
+CI workflow extended (+6 validate steps).
+
+Test count unchanged at 108. Overlay + templates are content.
+
+Forward work:
+- EU Article 19 General Product Safety Regulation 2023/988 standalone overlay
+- FDA pharma Field Alert Report 21 CFR 314.81 dedicated workflow
+- Product-liability insurance claim coordination workflow
+- Class-action litigation hold integration
+
+---
+
 ## v0.23.0 DRAFT — 2026-05-23 — Public adopter-surface release
 
 **Closes P10 from original priority stack.** 1 NEW entry OQ-097. Spec total 80 → 81. Engine 0.22.0 → 0.23.0.
