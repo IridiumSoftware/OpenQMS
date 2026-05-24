@@ -377,6 +377,13 @@
       "gap_note": null
     },
     {
+      "id": "ISO50001-6.2",
+      "standard": "ISO 50001:2018",
+      "section": "6.2",
+      "summary": "Energy objectives + planning to achieve them \u2014 establish energy\nobjectives at relevant functions + levels + processes +\nfacilities. Consistent with energy policy + measurable + take\ninto account applicable legal + other requirements + consider\nSEUs + consider opportunities to improve energy performance.\nMonitored + communicated + updated as appropriate.",
+      "gap_note": null
+    },
+    {
       "id": "ISO50001-6.3",
       "standard": "ISO 50001:2018",
       "section": "6.3",
@@ -584,6 +591,29 @@
       ]
     },
     {
+      "path": "templates/product-pharma/site-master-file/SITE-MASTER-FILE-TEMPLATE.md",
+      "name": "Site Master File (EU GMP Part III + PIC/S PE 008; v0.25.0 standalone bound here at v0.34.0)",
+      "addresses": [
+        "EUGMP-Ch1-PQS"
+      ]
+    },
+    {
+      "path": "templates/product-pharma/batch-record/BATCH-CERTIFICATE-OF-ANALYSIS-TEMPLATE.md",
+      "name": "Batch Certificate of Analysis (21 CFR 211.165 + Subpart I + EU GMP Ch. 6 + ICH Q6A/Q6B; v0.34.0)",
+      "addresses": [
+        "CFR211-Subpart-I-Laboratory",
+        "CFR211-Subpart-J-Records",
+        "EUGMP-Ch6-QC"
+      ]
+    },
+    {
+      "path": "templates/product-pharma/stability/STABILITY-PROTOCOL-TEMPLATE.md",
+      "name": "Stability Protocol (ICH Q1A(R2) + 21 CFR 211.166; v0.34.0)",
+      "addresses": [
+        "CFR211-Subpart-I-Laboratory"
+      ]
+    },
+    {
       "path": "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md",
       "name": "Software release record template (information-security overlay binding)",
       "addresses": [
@@ -601,6 +631,13 @@
       ]
     },
     {
+      "path": "templates/qms-environmental/COMPLIANCE-OBLIGATIONS-REGISTER-TEMPLATE.md",
+      "name": "Compliance Obligations Register (ISO 14001 \u00a76.1.3 dedicated; v0.25.0 standalone bound directly at v0.34.0)",
+      "addresses": [
+        "ISO14001-6.1.3"
+      ]
+    },
+    {
       "path": "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md",
       "name": "HIRA \u2014 Hazard Identification + Risk Assessment with Hierarchy of Controls (ISO 45001 \u00a76.1.2 + \u00a76.1.3 + \u00a78.1.2 + \u00a78.1.3 + \u00a78.1.4 + \u00a78.2)",
       "addresses": [
@@ -610,6 +647,13 @@
         "ISO45001-8.1.3",
         "ISO45001-8.1.4",
         "ISO45001-8.2"
+      ]
+    },
+    {
+      "path": "templates/qms-ohs/OHS-LEGAL-REQUIREMENTS-REGISTER-TEMPLATE.md",
+      "name": "OH&S Legal and Other Requirements Register (ISO 45001 \u00a76.1.3 dedicated; v0.25.0 standalone bound directly at v0.34.0)",
+      "addresses": [
+        "ISO45001-6.1.3"
       ]
     },
     {
@@ -623,6 +667,13 @@
         "ISO50001-8.1",
         "ISO50001-8.2",
         "ISO50001-8.3"
+      ]
+    },
+    {
+      "path": "templates/qms-energy/ENERGY-OBJECTIVES-TARGETS-REGISTER-TEMPLATE.md",
+      "name": "Energy Objectives and Targets Register (ISO 50001 \u00a76.2 dedicated; v0.25.0 standalone bound directly at v0.34.0; required \u00a76.2 clause added in same release)",
+      "addresses": [
+        "ISO50001-6.2"
       ]
     }
   ],
@@ -710,6 +761,17 @@
       "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md": [
         "ICHQ9-risk-framework"
       ],
+      "templates/product-pharma/site-master-file/SITE-MASTER-FILE-TEMPLATE.md": [
+        "EUGMP-Ch1-PQS"
+      ],
+      "templates/product-pharma/batch-record/BATCH-CERTIFICATE-OF-ANALYSIS-TEMPLATE.md": [
+        "CFR211-Subpart-I-Laboratory",
+        "CFR211-Subpart-J-Records",
+        "EUGMP-Ch6-QC"
+      ],
+      "templates/product-pharma/stability/STABILITY-PROTOCOL-TEMPLATE.md": [
+        "CFR211-Subpart-I-Laboratory"
+      ],
       "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md": [
         "ISO27001-A.8.31"
       ],
@@ -719,6 +781,9 @@
         "ISO14001-8.1",
         "ISO14001-8.2"
       ],
+      "templates/qms-environmental/COMPLIANCE-OBLIGATIONS-REGISTER-TEMPLATE.md": [
+        "ISO14001-6.1.3"
+      ],
       "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md": [
         "ISO45001-6.1.2",
         "ISO45001-6.1.3",
@@ -726,6 +791,9 @@
         "ISO45001-8.1.3",
         "ISO45001-8.1.4",
         "ISO45001-8.2"
+      ],
+      "templates/qms-ohs/OHS-LEGAL-REQUIREMENTS-REGISTER-TEMPLATE.md": [
+        "ISO45001-6.1.3"
       ],
       "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md": [
         "ISO50001-6.3",
@@ -735,6 +803,9 @@
         "ISO50001-8.1",
         "ISO50001-8.2",
         "ISO50001-8.3"
+      ],
+      "templates/qms-energy/ENERGY-OBJECTIVES-TARGETS-REGISTER-TEMPLATE.md": [
+        "ISO50001-6.2"
       ]
     },
     "reverse": {
@@ -784,20 +855,25 @@
         "templates/qms-sops/SOP-TEMPLATE.md"
       ],
       "CFR211-Subpart-I-Laboratory": [
-        "templates/product-pharma/oos/OOS-INVESTIGATION-TEMPLATE.md"
+        "templates/product-pharma/oos/OOS-INVESTIGATION-TEMPLATE.md",
+        "templates/product-pharma/batch-record/BATCH-CERTIFICATE-OF-ANALYSIS-TEMPLATE.md",
+        "templates/product-pharma/stability/STABILITY-PROTOCOL-TEMPLATE.md"
       ],
       "CFR211-Subpart-J-Records": [
-        "templates/product-pharma/batch-record/MASTER-BATCH-RECORD-TEMPLATE.md"
+        "templates/product-pharma/batch-record/MASTER-BATCH-RECORD-TEMPLATE.md",
+        "templates/product-pharma/batch-record/BATCH-CERTIFICATE-OF-ANALYSIS-TEMPLATE.md"
       ],
       "EUGMP-Ch1-PQS": [
         "templates/product-pharma/batch-record/MASTER-BATCH-RECORD-TEMPLATE.md",
-        "templates/product-pharma/apqr/APQR-TEMPLATE.md"
+        "templates/product-pharma/apqr/APQR-TEMPLATE.md",
+        "templates/product-pharma/site-master-file/SITE-MASTER-FILE-TEMPLATE.md"
       ],
       "EUGMP-Ch2-Personnel": [
         "templates/qms-sops/SOP-TEMPLATE.md"
       ],
       "EUGMP-Ch6-QC": [
-        "templates/product-pharma/oos/OOS-INVESTIGATION-TEMPLATE.md"
+        "templates/product-pharma/oos/OOS-INVESTIGATION-TEMPLATE.md",
+        "templates/product-pharma/batch-record/BATCH-CERTIFICATE-OF-ANALYSIS-TEMPLATE.md"
       ],
       "EUGMP-Annex15-Qualification": [
         "templates/product-pharma/validation/VALIDATION-MASTER-PLAN-TEMPLATE.md"
@@ -837,7 +913,8 @@
         "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md"
       ],
       "ISO14001-6.1.3": [
-        "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md"
+        "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md",
+        "templates/qms-environmental/COMPLIANCE-OBLIGATIONS-REGISTER-TEMPLATE.md"
       ],
       "ISO14001-6.1.4": [
         "templates/qms-sops/SOP-TEMPLATE.md"
@@ -873,7 +950,8 @@
         "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
       ],
       "ISO45001-6.1.3": [
-        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md",
+        "templates/qms-ohs/OHS-LEGAL-REQUIREMENTS-REGISTER-TEMPLATE.md"
       ],
       "ISO45001-6.1.4": [
         "templates/qms-sops/SOP-TEMPLATE.md"
@@ -898,6 +976,9 @@
       ],
       "ISO50001-5.2": [
         "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO50001-6.2": [
+        "templates/qms-energy/ENERGY-OBJECTIVES-TARGETS-REGISTER-TEMPLATE.md"
       ],
       "ISO50001-6.3": [
         "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md"

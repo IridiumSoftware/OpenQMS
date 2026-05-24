@@ -174,6 +174,31 @@
       ]
     },
     {
+      "path": "templates/qms-policy/QUALITY-MANUAL-TEMPLATE.md",
+      "name": "Quality Manual \u2014 top-level QMS organizing document (ISO 9001 \u00a74 + \u00a75; v0.25.0 standalone bound here at v0.34.0)",
+      "addresses": [
+        "ISO9001-4.1",
+        "ISO9001-4.4",
+        "ISO9001-5.1",
+        "ISO9001-5.2",
+        "ISO9001-6.1"
+      ]
+    },
+    {
+      "path": "templates/qms-policy/PROCESS-MAP-TEMPLATE.md",
+      "name": "QMS Process Map (ISO 9001 \u00a74.4 \u2014 process inventory + interaction; v0.25.0 standalone bound here at v0.34.0)",
+      "addresses": [
+        "ISO9001-4.4"
+      ]
+    },
+    {
+      "path": "templates/qms-policy/RISK-AND-OPPORTUNITY-REGISTER-TEMPLATE.md",
+      "name": "Risk + Opportunity Register (ISO 9001 \u00a76.1 + Annex SL \u00a76.1; v0.25.0 standalone bound here at v0.34.0)",
+      "addresses": [
+        "ISO9001-6.1"
+      ]
+    },
+    {
       "path": "templates/qms-sops/SOP-TEMPLATE.md",
       "name": "Standard operating procedure (ISO 9001 \u00a76.1 risk-and-opportunity + \u00a77.x support + \u00a78.x operation)",
       "addresses": [
@@ -250,6 +275,19 @@
         "ISO27001-A.5.1",
         "ISO27001-A.5.31"
       ],
+      "templates/qms-policy/QUALITY-MANUAL-TEMPLATE.md": [
+        "ISO9001-4.1",
+        "ISO9001-4.4",
+        "ISO9001-5.1",
+        "ISO9001-5.2",
+        "ISO9001-6.1"
+      ],
+      "templates/qms-policy/PROCESS-MAP-TEMPLATE.md": [
+        "ISO9001-4.4"
+      ],
+      "templates/qms-policy/RISK-AND-OPPORTUNITY-REGISTER-TEMPLATE.md": [
+        "ISO9001-6.1"
+      ],
       "templates/qms-sops/SOP-TEMPLATE.md": [
         "ISO9001-6.1",
         "ISO9001-7.1",
@@ -287,18 +325,25 @@
     },
     "reverse": {
       "ISO9001-4.1": [
-        "templates/qms-policy/quality-policy.md"
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-policy/QUALITY-MANUAL-TEMPLATE.md"
       ],
       "ISO9001-4.4": [
-        "templates/qms-policy/quality-policy.md"
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-policy/QUALITY-MANUAL-TEMPLATE.md",
+        "templates/qms-policy/PROCESS-MAP-TEMPLATE.md"
       ],
       "ISO9001-5.1": [
-        "templates/qms-policy/quality-policy.md"
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-policy/QUALITY-MANUAL-TEMPLATE.md"
       ],
       "ISO9001-5.2": [
-        "templates/qms-policy/quality-policy.md"
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-policy/QUALITY-MANUAL-TEMPLATE.md"
       ],
       "ISO9001-6.1": [
+        "templates/qms-policy/QUALITY-MANUAL-TEMPLATE.md",
+        "templates/qms-policy/RISK-AND-OPPORTUNITY-REGISTER-TEMPLATE.md",
         "templates/qms-sops/SOP-TEMPLATE.md"
       ],
       "ISO9001-7.1": [

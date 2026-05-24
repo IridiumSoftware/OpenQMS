@@ -1,20 +1,20 @@
 # Modules catalog
 
-Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.35.0. Use this page to choose the modules for your scope.
+Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.36.0. Use this page to choose the modules for your scope.
 
 **Current scope:**
 
 | Dimension | Count |
 |---|---|
-| Verticals | **6** (medical-devices, aerospace, automotive, manufacturing, pharma, food-safety) |
+| Verticals | **7** (medical-devices, aerospace, automotive, manufacturing, pharma, food-safety, chemicals) |
 | Class overlays | **38** across 5 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5) |
 | Cross-cutting overlays | **19** (iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc) |
-| **Total modules** | **64** + general |
-| Registry standards | **~100** (mix of PUBLIC + commercial license) |
+| **Total modules** | **65** + general |
+| Registry standards | **~105** (mix of PUBLIC + commercial license; v0.36.0 +5 PUBLIC chemicals standards) |
 | Registry jurisdictions | **20** |
-| Document templates | **69+** |
-| Example bundles | **11** (validated end-to-end with committed baseline matrices) |
-| Spec entries | **88** (0 `:open`) |
+| Document templates | **73+** (v0.36.0 +4 chemicals: SDS / REACH dossier / CLP notification / GLP study) |
+| Example bundles | **12** (validated end-to-end with committed baseline matrices) |
+| Spec entries | **89** (0 `:open`) |
 | Deepest composition tested in CI | 11-module mega-composite |
 
 **Three module types:**
@@ -33,7 +33,7 @@ The OQ-011 compose primitive (built v0.4.0, unchanged since) handles composition
 
 ---
 
-## Verticals (6)
+## Verticals (7)
 
 | Module ID | Standards | Compatible class overlays | Example bundle | License mix |
 |---|---|---|---|---|
@@ -43,6 +43,7 @@ The OQ-011 compose primitive (built v0.4.0, unchanged since) handles composition
 | `manufacturing` | ISO 9001:2015 only | (none — ISO 9001 has no rigor tiers) | `example-machine-shop` | Commercial |
 | `pharma` | ICH Q7/Q9/Q10 / 21 CFR 210/211 / EudraLex Vol. 4 / PIC/S Annex 1 / 21 CFR Part 11 | atmp, pharma-sterile, pharma-biologics, pharma-imp, pharma-generic-biosimilar, pharma-clinical-stage | `example-drug-product` | **All PUBLIC** |
 | `food-safety` | ISO 22000 / FSSC 22000 v6 / Codex HACCP / 21 CFR 117 / 21 CFR 123 | food-usda-fsis, food-animal, food-produce-safety, food-intentional-adulteration, food-fsvp | `example-food-processor` | Mixed (Codex + CFR public; ISO + FSSC commercial) |
+| `chemicals` | EU REACH / EU CLP / UN GHS Rev. 10 / OECD GLP / TSCA | (none yet — OSHA HCS + DOT HazMat + biocides + cosmetics + pesticides forward) | `example-specialty-chemical` | **All PUBLIC** |
 
 ---
 

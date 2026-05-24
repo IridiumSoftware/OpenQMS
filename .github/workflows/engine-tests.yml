@@ -126,6 +126,13 @@ jobs:
           openqms validate --module automotive --module automotive-asil-d --module automotive-cal-4 --module regulated-ai --module iso-27001
           # Full-stack mega-composite — manufacturing + all 5 cross-cutting management-system overlays
           openqms validate --module manufacturing --module iso-14001 --module iso-45001 --module iso-50001 --module iso-27001 --module regulated-ai
+          # v0.36.0 — chemicals vertical (7th vertical) + composites
+          openqms validate --module chemicals
+          openqms validate --module chemicals --module iso-27001
+          openqms validate --module chemicals --module iso-14001 --module iso-45001
+          openqms validate --module chemicals --module iso-14001 --module iso-45001 --module iso-50001 --module iso-27001 --module regulated-ai
+          # Chemicals full-IMS deepest-composite — REACH/CLP/GHS/GLP/TSCA + 8 cross-cutting overlays
+          openqms validate --module chemicals --module iso-27001 --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000
 
       - name: Inspect registry (smoke check)
         run: openqms registry list
@@ -143,6 +150,7 @@ jobs:
           openqms regenerate --bundle example-drug-product
           openqms regenerate --bundle example-food-processor
           openqms regenerate --bundle example-cart
+          openqms regenerate --bundle example-specialty-chemical
 
       - name: Signatures export (smoke check)
         # Walks the repo's own git log and emits a signature audit trail.

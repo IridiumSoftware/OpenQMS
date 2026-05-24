@@ -1,0 +1,377 @@
+# Open QMS — chemicals vertical module
+# -------------------------------------
+# 7th Open QMS vertical (after medical-devices / aerospace /
+# automotive / manufacturing / pharma / food-safety). Covers chemical
+# substance + mixture manufacturing + import under EU REACH + EU CLP
+# + UN GHS + OECD GLP + US TSCA regulatory frameworks.
+#
+# Scope: chemical industry — industrial chemicals, formulators,
+# distributors. Also applies to importers of chemicals into the EU
+# (REACH-Only Representative model for non-EU manufacturers).
+#
+# Out of scope (deferred):
+#  - OSHA HCS 29 CFR 1910.1200 — US workplace HazCom; cross-cutting
+#    workplace health-and-safety (covered partially by iso-45001
+#    overlay).
+#  - DOT HazMat 49 CFR 100-185 + IMDG + IATA + ADR/RID — transport
+#    classifications. Standalone overlay forward.
+#  - Pesticides (FIFRA, EU Plant Protection Products Regulation
+#    1107/2009) — separate regulatory framework.
+#  - Cosmetics (EU Cosmetic Regulation 1223/2009; US MoCRA) —
+#    separate vertical.
+#  - Biocides (EU Biocidal Products Regulation 528/2012).
+#  - Detergents (EU Detergent Regulation 648/2004).
+#
+# Standards licensing: ALL standards PUBLIC license:
+#  - EU REACH (EUR-Lex)
+#  - EU CLP (EUR-Lex)
+#  - UN GHS Rev. 10 (UNECE)
+#  - OECD GLP Principles (OECD)
+#  - US TSCA (ecfr.gov / EPA)
+#
+# Strong adopter cost profile — chemical-industry startups + SMEs +
+# academic spinouts can assemble full regulatory documentation at
+# zero standards-licensing cost.
+
+name: chemicals
+version: 0.1.0
+
+standards:
+  - EU REACH
+  - EU CLP
+  - UN GHS Rev. 10
+  - OECD GLP
+  - TSCA
+
+clauses:
+
+  # === EU REACH (Reg. EC 1907/2006) ===
+
+  - id: REACH-Art-5-6-no-data-no-market
+    standard: EU REACH
+    section: "Articles 5-6"
+    summary: |
+      No data, no market — substances ≥1 tonne/year per manufacturer
+      or importer require registration with ECHA before being placed
+      on the EU market. Joint submission via SIEF (Substance
+      Information Exchange Forum) required for same substance from
+      multiple registrants.
+
+  - id: REACH-Art-7-substances-in-articles
+    standard: EU REACH
+    section: "Article 7"
+    summary: |
+      Substances in articles — manufacturer / importer of articles
+      shall register substances intended to be released from articles
+      ≥1 t/y under normal/reasonably-foreseeable conditions. SVHC
+      candidate substances in articles >0.1% w/w + >1 t/y require
+      notification per Article 7(2). Communication obligation per
+      Article 33.
+
+  - id: REACH-Art-10-info-Annex-VI-X
+    standard: EU REACH
+    section: "Article 10 + Annexes VI-X"
+    summary: |
+      Registration dossier content — technical dossier per Annex VI
+      structure + tonnage-band-specific information per Annexes
+      VII-X. Annex VII (≥1 t/y baseline) → Annex VIII (≥10 t/y adds
+      sub-acute toxicity) → Annex IX (≥100 t/y adds 90-day
+      repeat-dose + reproductive screening + chronic ecotox) →
+      Annex X (≥1000 t/y adds carcinogenicity + multi-generation
+      reproductive + chronic toxicity).
+
+  - id: REACH-Art-14-CSR
+    standard: EU REACH
+    section: "Article 14 + Annex I"
+    summary: |
+      Chemical Safety Report (CSR) — required for substances ≥10
+      tonnes/year per registrant. CSR per Annex I includes: human
+      health hazard assessment (DNEL); environmental hazard
+      assessment (PNEC); PBT + vPvB assessment per Annex XIII;
+      exposure assessment (when classified hazardous OR PBT/vPvB);
+      risk characterisation (RCR = exposure / DNEL or PEC/PNEC; <1
+      = controlled risk).
+
+  - id: REACH-Art-31-SDS
+    standard: EU REACH
+    section: "Article 31 + Annex II"
+    summary: |
+      Safety Data Sheet — required for hazardous substances +
+      mixtures placed on EU market. 16-section format per Annex II
+      (GHS-harmonised). Languages: official language of each Member
+      State where placed on market. Updated promptly on new hazard
+      information + authorisation + restriction + change requiring
+      exposure scenario update. Recipients receive updated SDS free
+      of charge for substances supplied in preceding 12 months.
+
+  - id: REACH-Art-33-SVHC-communication
+    standard: EU REACH
+    section: "Articles 33-34"
+    summary: |
+      Supply-chain communication — supplier of article containing
+      SVHC (candidate list per Article 59) at >0.1% w/w shall
+      provide recipient with information sufficient for safe use
+      (at minimum the substance name). Consumer request gets
+      response within 45 days. ECHA SCIP database notification per
+      Waste Framework Directive (EU) 2018/851.
+
+  - id: REACH-Title-V-downstream-users
+    standard: EU REACH
+    section: "Title V (Articles 37-39)"
+    summary: |
+      Downstream user obligations — DU using substances/mixtures in
+      industrial / professional activities shall (i) apply
+      operational conditions + risk management measures per the
+      registrant's exposure scenarios, OR (ii) prepare own DU
+      Chemical Safety Report per Article 37(4) if outside the
+      registrant's exposure scenarios, OR (iii) report use to ECHA
+      per Article 38 if outside scenarios.
+
+  - id: REACH-Title-VII-Authorisation
+    standard: EU REACH
+    section: "Title VII (Articles 55-66 + Annex XIV)"
+    summary: |
+      Authorisation — SVHC listed on Annex XIV cannot be placed on
+      the market or used after the sunset date without an
+      authorisation from the European Commission. Application for
+      authorisation per Article 60 includes: chemical safety
+      report; analysis of alternatives; substitution plan; socio-
+      economic analysis. Each downstream user using authorised
+      substance must notify ECHA within 3 months.
+
+  - id: REACH-Title-VIII-Restrictions
+    standard: EU REACH
+    section: "Title VIII + Annex XVII"
+    summary: |
+      Restrictions — Annex XVII lists substances + mixtures + articles
+      subject to restriction on manufacture, placing on market, or
+      use (e.g., asbestos prohibition; PFOA + related; phthalates
+      DEHP/BBP/DBP/DIBP in articles; lead in jewellery). Restrictions
+      enforced at Member State level.
+
+  # === EU CLP (Reg. EC 1272/2008) ===
+
+  - id: CLP-Art-4-self-classification
+    standard: EU CLP
+    section: "Article 4"
+    summary: |
+      Self-classification + label + package obligation — manufacturer
+      / importer / downstream user / distributor placing a substance
+      or mixture on the EU market shall classify it per CLP +
+      apply CLP-compliant label + packaging before placing on market.
+
+  - id: CLP-Art-13-CL-Inventory
+    standard: EU CLP
+    section: "Article 13"
+    summary: |
+      C&L Inventory notification — substances subject to REACH
+      registration OR substances classified as hazardous + placed
+      on EU market shall be notified to ECHA C&L Inventory within
+      one month of being placed on market. Notifications
+      consolidated per substance; ECHA encourages harmonised
+      multi-notifier classification.
+
+  - id: CLP-Art-17-Annex-II-label
+    standard: EU CLP
+    section: "Article 17 + Annex II"
+    summary: |
+      Label content — supplier name + address + phone; nominal
+      quantity (general public); product identifier; UFI (mixtures
+      classified for health/physical hazards); hazard pictograms;
+      signal word (Danger or Warning); hazard statements (H + EUH);
+      precautionary statements (P, max ~6); supplementary
+      information.
+
+  - id: CLP-Annex-VI-CLH
+    standard: EU CLP
+    section: "Annex VI Table 3"
+    summary: |
+      Harmonised Classification + Labelling (CLH) — substances with
+      Annex VI entry have mandatory classification for the listed
+      hazard endpoints. Self-classification supersedes only for
+      endpoints not covered by CLH. RAC opinions drive CLH additions.
+
+  - id: CLP-Annex-VIII-UFI-PCN
+    standard: EU CLP
+    section: "Annex VIII"
+    summary: |
+      Unique Formula Identifier (UFI) + Poison Centre Notification
+      (PCN) — mixtures classified for health/physical hazards
+      require UFI on the label + PCN submission to the PCN portal.
+      Consumer + professional uses compliance effective 2021;
+      industrial use compliance effective 2024.
+
+  # === UN GHS Rev. 10 ===
+
+  - id: GHS-classification-system
+    standard: UN GHS Rev. 10
+    section: "Parts 2-4"
+    summary: |
+      Hazard classification system — physical (Part 2: 17 classes),
+      health (Part 3: 10 classes), environmental (Part 4: 2 classes).
+      Each class has categories with criteria for assignment. Building
+      blocks adopted variably by jurisdictions; CLP + OSHA HCS adopt
+      the core but with regional additions (CLP EUH + OSHA additions).
+
+  - id: GHS-SDS-16-section
+    standard: UN GHS Rev. 10
+    section: "Annex 4"
+    summary: |
+      16-section SDS format — globally harmonised. Sections 1-16
+      cover identification, hazards, composition, first aid, fire,
+      release, handling, exposure controls, physical-chemical,
+      stability, toxicology, ecology, disposal, transport,
+      regulatory, other information.
+
+  - id: GHS-label-elements
+    standard: UN GHS Rev. 10
+    section: "Annex 7"
+    summary: |
+      Label elements — pictograms (9 standard pictograms);
+      signal word (Danger or Warning); H-statements per hazard +
+      category; P-statements selected per hazard. Color-coded
+      pictogram borders vary by jurisdiction (EU red; UN black/white).
+
+  # === OECD GLP ===
+
+  - id: GLP-Principles-1-test-facility-organisation
+    standard: OECD GLP
+    section: "Principles 1.1-1.4"
+    summary: |
+      Test facility organisation + personnel — Test Facility
+      Management responsibility; Study Director primary
+      responsibility per study; Principal Investigator(s) for
+      multi-site studies; Quality Assurance independent of study
+      conduct; documented qualifications + training for all
+      personnel.
+
+  - id: GLP-Principle-2-QA-Programme
+    standard: OECD GLP
+    section: "Principle 2"
+    summary: |
+      Quality Assurance Programme — independent of study conduct;
+      study-based, facility-based, process-based inspections;
+      audit reports to Test Facility Management + Study Director;
+      verification of Final Report against raw data; QA Statement
+      in Final Report per Principle 9.1(j).
+
+  - id: GLP-Principle-7-SOPs
+    standard: OECD GLP
+    section: "Principle 7"
+    summary: |
+      Standard Operating Procedures — written approved SOPs for
+      all routine activities. SOPs available at workstation.
+      Deviations documented in raw data with reason + Study
+      Director acknowledgement. SOP revisions controlled per
+      organisation document-control SOP.
+
+  - id: GLP-Principle-8-9-study-conduct-reporting
+    standard: OECD GLP
+    section: "Principles 8 + 9"
+    summary: |
+      Study Plan (Principle 8.1) before study initiation; raw data
+      captured directly + promptly + legibly + signed + dated;
+      Final Report (Principle 9.1) reflects raw data + includes
+      QA Statement + archiving statement; archive (Principle 9.2)
+      retains Study Plan + raw data + specimens + Final Report +
+      QA records + SOPs at versions used; minimum 10-year retention
+      typical for chemical industry.
+
+  # === US TSCA ===
+
+  - id: TSCA-Section-5-PMN
+    standard: TSCA
+    section: "Section 5 (15 USC §2604; 40 CFR Part 720)"
+    summary: |
+      Pre-Manufacture Notice (PMN) — manufacturer / importer of a
+      NEW chemical substance (not on TSCA Inventory) shall submit
+      PMN to EPA at least 90 days before manufacturing or importing.
+      EPA reviews; may issue order requiring testing OR Significant
+      New Use Rule (SNUR) under Section 5(a)(2); may add substance
+      to Inventory with restrictions.
+
+  - id: TSCA-Section-6-existing-restrictions
+    standard: TSCA
+    section: "Section 6 (15 USC §2605)"
+    summary: |
+      Existing chemical risk evaluation + restriction — Lautenberg
+      Amendments (2016) require EPA to systematically evaluate
+      existing TSCA Inventory chemicals; high-priority substances
+      undergo risk evaluation; restrictions imposed when unreasonable
+      risk identified (e.g., asbestos, methylene chloride
+      restrictions). EPA Risk Management Rule final actions.
+
+  - id: TSCA-Section-8-CDR
+    standard: TSCA
+    section: "Section 8 (15 USC §2607; 40 CFR Part 711 CDR)"
+    summary: |
+      Chemical Data Reporting (CDR) — every 4 years (next 2024
+      submission period for 2020-2023 data; subsequent every 4
+      years thereafter), manufacturers + importers report
+      production/import volumes + sites + processing/use information
+      for substances exceeding reporting thresholds. PFAS-specific
+      reporting per 40 CFR 705 (one-time 2024 PFAS reporting rule).
+
+  - id: TSCA-Section-12-13-import-export
+    standard: TSCA
+    section: "Section 12-13 (15 USC §2611-2612; 40 CFR Parts 707, 770)"
+    summary: |
+      Import + export of TSCA chemicals — importers must comply
+      with TSCA at the point of import; export notifications
+      required for substances subject to certain regulatory
+      actions per Section 12(b). Certification at import +
+      compliance with Inventory + PMN obligations.
+
+templates:
+
+  - path: templates/product-chemicals/sds/SAFETY-DATA-SHEET-TEMPLATE.md
+    name: Safety Data Sheet (16-section GHS + REACH Annex II + CLP + OSHA HCS App D)
+    addresses:
+      - REACH-Art-31-SDS
+      - CLP-Art-4-self-classification
+      - GHS-SDS-16-section
+
+  - path: templates/product-chemicals/reach/REACH-REGISTRATION-DOSSIER-TEMPLATE.md
+    name: REACH Registration Dossier Outline (Articles 5-6 + 10 + 14 + Annexes VI-X + Annex I CSR)
+    addresses:
+      - REACH-Art-5-6-no-data-no-market
+      - REACH-Art-7-substances-in-articles
+      - REACH-Art-10-info-Annex-VI-X
+      - REACH-Art-14-CSR
+      - REACH-Art-33-SVHC-communication
+      - REACH-Title-V-downstream-users
+      - REACH-Title-VII-Authorisation
+      - REACH-Title-VIII-Restrictions
+
+  - path: templates/product-chemicals/clp/CLP-NOTIFICATION-LABEL-TEMPLATE.md
+    name: CLP Classification Notification + Label (Articles 4 + 13 + 17 + Annexes II + VI CLH + VIII UFI/PCN)
+    addresses:
+      - CLP-Art-13-CL-Inventory
+      - CLP-Art-17-Annex-II-label
+      - CLP-Annex-VI-CLH
+      - CLP-Annex-VIII-UFI-PCN
+      - GHS-classification-system
+      - GHS-label-elements
+
+  - path: templates/product-chemicals/glp/GLP-STUDY-PLAN-REPORT-TEMPLATE.md
+    name: GLP Study Plan + Final Report (OECD GLP Principles 1-2 + 7-9)
+    addresses:
+      - GLP-Principles-1-test-facility-organisation
+      - GLP-Principle-2-QA-Programme
+      - GLP-Principle-7-SOPs
+      - GLP-Principle-8-9-study-conduct-reporting
+
+  # === Cross-cutting template reuse ===
+
+  - path: templates/qms-policy/quality-policy.md
+    name: Quality policy (chemicals — extends QMS policy with chemical-safety + product-stewardship commitments)
+    addresses:
+      - REACH-Art-5-6-no-data-no-market
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: TSCA + REACH operational SOPs (PMN procedures + CDR reporting + downstream-user communication + import/export per Section 12-13)
+    addresses:
+      - TSCA-Section-5-PMN
+      - TSCA-Section-6-existing-restrictions
+      - TSCA-Section-8-CDR
+      - TSCA-Section-12-13-import-export

@@ -1,0 +1,30 @@
+# Open QMS — example specialty-chemical bundle definition
+# --------------------------------------------------------
+# Mid-size specialty-chemical manufacturer producing 50-100 t/y of
+# a SVHC-adjacent intermediate. Sells into EU + US markets.
+# Composes chemicals + iso-14001 (significant environmental aspects)
+# + iso-45001 (chemical worker safety) + iso-27001 (proprietary
+# formulations) + iso-31000 (meta-framework unifying REACH + TSCA
+# + GLP risk discipline).
+
+name: example-specialty-chemical
+product: ExampleSpecialtyIntermediate
+jurisdictions: []
+
+standards:
+  - "EU REACH"
+  - "EU CLP"
+  - "UN GHS Rev. 10"
+  - "OECD GLP"
+  - "TSCA"
+  - "ISO/IEC 27001:2022"
+  - "ISO 14001:2015"
+  - "ISO 45001:2018"
+  - "ISO 31000:2018"
+
+modules:
+  - chemicals
+  - iso-27001
+  - iso-14001
+  - iso-45001
+  - iso-31000

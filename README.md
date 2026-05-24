@@ -6,19 +6,19 @@ Open QMS resolves a `(product, jurisdictions, standards, modules)` bundle into a
 
 The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD for enforcement, Git for the audit trail.
 
-## Current scope (v0.35.0)
+## Current scope (v0.36.0)
 
 | Dimension | Count |
 |---|---|
-| Verticals (regulated industries) | **6** — medical-devices, aerospace, automotive, manufacturing, pharma, food-safety |
+| Verticals (regulated industries) | **7** — medical-devices, aerospace, automotive, manufacturing, pharma, food-safety, chemicals |
 | Class overlays (rigor-level + product-class) | **38** across 5 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5) |
 | Cross-cutting overlays | **19** — iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc |
-| Registry — standards | **~100** (mix of public + commercial license) |
+| Registry — standards | **~105** (mix of public + commercial license; v0.36.0 +5 PUBLIC chemicals standards: REACH + CLP + GHS + GLP + TSCA) |
 | Registry — jurisdictions | **20** (FDA / EMA / MHRA / WHO-PQ / Health Canada / EU MDR / PMDA / TGA / ANVISA / FAA / EASA / TCCA / NHTSA / UNECE / KBA / TC-MVS / FDA-Food / USDA-FSIS / EFSA / CFIA) |
-| Document templates | **69+** (15 standalone templates from v0.25.0 now bound to natural modules at v0.34.0) |
-| Example bundles (validated end-to-end) | **11** |
-| Total modules | **64** + general |
-| Spec entries (status: 6 :verified / 75 :tested / 7 :argued / 0 :open) | **88** |
+| Document templates | **73+** (v0.36.0 +4 chemicals: SDS + REACH dossier + CLP notification + GLP study) |
+| Example bundles (validated end-to-end) | **12** |
+| Total modules | **65** + general |
+| Spec entries (status: 6 :verified / 76 :tested / 7 :argued / 0 :open) | **89** |
 
 The compose primitive validates 11-module composites: e.g., `pharma + pharma-sterile + pharma-biologics + atmp + iso-27001 + soc-2 + iso-31000 + iso-22301 + iso-14001 + iso-45001 + iso-50001` — the realistic shape for a clinical-stage biotech doing sterile ATMP manufacturing with full integrated management system + SOC 2 attestation + ISO 31000 risk framework.
 
@@ -66,6 +66,7 @@ git commit -m "Refresh example-samd matrix"
 | **Manufacturing** (general) | `manufacturing` | ISO 9001 only | (none — ISO 9001 has no rigor tiers) |
 | **Pharma** | `pharma` | ICH Q7/Q9/Q10 + 21 CFR 210/211 + EudraLex Vol. 4 + PIC/S Annex 1 + 21 CFR Part 11 (all public license) | 1 (atmp — cell + gene therapy) |
 | **Food safety** | `food-safety` | ISO 22000 + FSSC 22000 v6 + Codex HACCP + 21 CFR 117 (FSMA) + 21 CFR 123 (Seafood HACCP) | (none yet — forward) |
+| **Chemicals** | `chemicals` | EU REACH + EU CLP + UN GHS Rev. 10 + OECD GLP + US TSCA (all public license) | (none yet — OSHA HCS + DOT HazMat + biocides + cosmetics + pesticides forward) |
 
 ### Cross-cutting overlays
 

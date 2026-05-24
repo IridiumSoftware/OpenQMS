@@ -4,6 +4,63 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.36.0 DRAFT — 2026-05-24 — Chemicals vertical (7th vertical)
+
+**1 NEW entry** OQ-105. Spec total 88 → 89. Engine 0.35.0 → 0.36.0.
+
+7th Open QMS vertical (after medical-devices / aerospace / automotive / manufacturing / pharma / food-safety) covering chemical substance + mixture manufacturing + import across EU and US regulatory regimes. 21 clauses across 5 standards spanning the four major chemical-industry regulatory regimes: EU REACH (no-data-no-market + tonnage-banded technical dossier + CSR for ≥10 t/y + SDS + supply-chain SVHC communication + downstream-user obligations + Authorisation + Restriction); EU CLP (self-classification + C&L Inventory notification + label content + Annex VI CLH + UFI + Poison Centre Notification); UN GHS Rev. 10 (hazard classification + 16-section SDS format + label elements); OECD GLP Principles (facility organisation + QA Programme + SOPs + study conduct + reporting + archive); US TSCA (PMN for new chemicals + risk evaluation + CDR every 4 years + import/export).
+
+4 new chemicals-specific templates:
+- **Safety Data Sheet** — 16-section per GHS Rev. 10 + REACH Annex II + CLP + OSHA HCS Appendix D. Foundational risk-communication artifact across all chemical-product distribution.
+- **REACH Registration Dossier Outline** — Articles 5-6 + 10 + 14 + Annexes VI-X tonnage-banded technical dossier + Annex I CSR for ≥10 t/y. Covers SIEF joint submission + IUCLID 6 dossier preparation + REACH-IT submission + post-submission update obligations + Authorisation / Restriction considerations.
+- **CLP Classification Notification + Label** — full classification tables across all GHS hazard classes (physical / health / environmental) + EUH supplementary statements + Annex VI CLH harmonised classification + UFI + Poison Centre Notification per Annex VIII.
+- **GLP Study Plan + Final Report** — combined per Principles 8.1 + 9.1. QA Programme Statement per Principle 9.1(j). Archive per Principle 9.2 (minimum 10-year retention typical for chemical industry).
+
+Plus 2 cross-cutting bindings (quality-policy + SOP-TEMPLATE) addressing REACH no-data-no-market and TSCA operational SOPs (PMN procedures + CDR reporting + downstream-user communication + import/export per Section 12-13).
+
+Registry +5 standards (all PUBLIC license — meaningful adopter cost reduction for chemical-industry startups + SMEs + academic spinouts):
+- EU REACH (Regulation (EC) 1907/2006)
+- EU CLP (Regulation (EC) 1272/2008)
+- UN GHS Rev. 10 (2023)
+- OECD GLP Principles (ENV/MC/CHEM(98)17)
+- US TSCA (15 USC §2601; 40 CFR Parts 700-799)
+
+New example bundle `example-specialty-chemical` (mid-size 50-100 t/y SVHC-adjacent intermediate manufacturer with REACH + TSCA scope composing chemicals + iso-27001 + iso-14001 + iso-45001 + iso-31000). Baseline matrix committed; idempotent regenerate verified.
+
+CI extended (+5 validate steps + 1 regenerate dry-run):
+- `openqms validate --module chemicals`
+- `openqms validate --module chemicals --module iso-27001`
+- `openqms validate --module chemicals --module iso-14001 --module iso-45001`
+- `openqms validate --module chemicals --module iso-14001 --module iso-45001 --module iso-50001 --module iso-27001 --module regulated-ai`
+- Chemicals full-IMS deepest-composite: `--module chemicals --module iso-27001 --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000`
+
+108/108 pytest pass.
+
+**Out of scope (deferred):** OSHA HCS 29 CFR 1910.1200 (US workplace HazCom — workplace H&S overlap partially covered by iso-45001 overlay); DOT HazMat 49 CFR Parts 100-185 + IMDG + IATA + ADR/RID (transport classifications — forward standalone overlay); pesticides (FIFRA + EU Plant Protection Products Regulation 1107/2009 — separate regulatory framework); cosmetics (EU 1223/2009 + US MoCRA — separate vertical); biocides (EU 528/2012); detergents (EU 648/2004).
+
+Annex SL composability: REACH/CLP/GHS aren't Annex-SL but compose seamlessly with all 9 Annex-SL cross-cutting overlays via the module-union primitive (OQ-011). OECD GLP cleanly layers on as a quality-system-for-non-clinical-safety-studies discipline.
+
+Status counts: 6 `:verified` / 76 `:tested` / 7 `:argued` / 0 `:open` (total 89). Vertical count: 6 → 7.
+
+Per user direction: "do chemicals, save rest of verticals for future work." Other candidate verticals (cosmetics / pesticides / nuclear / oil-and-gas / construction / textiles / mining / electrical-equipment) deferred to future work.
+
+---
+
+## v0.25.0 – v0.35.0 DRAFT — 2026-05-24 — Catch-up note (11 releases consolidated)
+
+Per-version changelog entries for v0.25.0 through v0.35.0 were not back-filled here in real time as the releases shipped; the omnibus companion `BUSINESS/companion_v0_24_to_34_omnibus.md` covers v0.24.0–v0.34.0 in narrative form, and `docs/modules-catalog.md` reflects the current module + template inventory. v0.35.0 added the omnibus companion + catalog refresh + README scope-summary update.
+
+Cumulative across these 11 releases:
+- 5 new spec entries (OQ-100 per-module READMEs Gap; OQ-101 pharma class overlay batch; OQ-102 food-safety class overlay batch; OQ-103 aerospace+automotive extension + IVDR class overlay batch; OQ-104 cross-cutting overlay batch IS+governance+compliance+resilience+DoD-CUI).
+- Vertical count unchanged: 6 (medical-devices / aerospace / automotive / manufacturing / pharma / food-safety).
+- Class-overlay count: 21 → 37 (added 5 pharma + 5 food-safety + 4 aerospace/automotive extension + 2 IVDR class overlays).
+- Cross-cutting overlay count: 7 → 19 (added soc-2 + pci-dss + hitrust-csf + nist-csf + iso-31000 + iso-37301 + dora + eu-gpsr + tisax + defense-cui + cmmc).
+- Spec total: 83 → 88. Status counts: 6 `:verified` / 75 `:tested` / 7 `:argued` / 0 `:open`.
+
+Per-version detail is reconstructable from `git log` of the v0.25.0..v0.35.0 commit range; see `companion_v0_24_to_34_omnibus.md` for narrative.
+
+---
+
 ## v0.24.0 DRAFT — 2026-05-24 — Cross-vertical recall-workflow overlay
 
 **1 NEW entry** OQ-098. Spec total 81 → 82. Engine 0.23.0 → 0.24.0.

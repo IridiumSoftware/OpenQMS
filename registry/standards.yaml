@@ -1098,3 +1098,57 @@ standards:
     aliases:
       - "CMMC"
       - "32 CFR 170"
+
+  # === Chemicals vertical standards ===
+
+  - id: "EU REACH"
+    name: "Registration, Evaluation, Authorisation and Restriction of Chemicals — Regulation (EC) No 1907/2006"
+    publisher: European Union
+    edition: "Regulation (EC) No 1907/2006 (effective 2007; updates ongoing)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "REACH"
+      - "EC 1907/2006"
+
+  - id: "EU CLP"
+    name: "Classification, Labelling and Packaging of substances and mixtures — Regulation (EC) No 1272/2008"
+    publisher: European Union
+    edition: "Regulation (EC) No 1272/2008 (EU implementation of UN GHS)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CLP"
+      - "EC 1272/2008"
+
+  - id: "UN GHS Rev. 10"
+    name: "Globally Harmonized System of Classification and Labelling of Chemicals"
+    publisher: United Nations Economic Commission for Europe (UNECE)
+    edition: "Rev. 10 (2023)"
+    kind: standard
+    license_kind: public
+    aliases:
+      - "GHS"
+      - "UN GHS"
+
+  - id: "OECD GLP"
+    name: "OECD Principles of Good Laboratory Practice"
+    publisher: Organisation for Economic Co-operation and Development (OECD)
+    edition: "ENV/MC/CHEM(98)17 (1997 as revised; OECD Series on Principles of GLP and Compliance Monitoring No. 1)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "GLP"
+      - "OECD GLP"
+      - "Good Laboratory Practice"
+
+  - id: "TSCA"
+    name: "Toxic Substances Control Act"
+    publisher: U.S. Environmental Protection Agency
+    edition: "15 USC §2601 et seq.; 40 CFR Parts 700-799 (Lautenberg amendments 2016)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "Toxic Substances Control Act"
+      - "15 USC 2601"
+      - "40 CFR 700"
