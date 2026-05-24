@@ -609,6 +609,100 @@ standards:
       - "ICH-Q5A"
       - "Viral Safety"
 
+  # === Pharma class-overlay standards (biologics / IMP / generic+biosimilar) ===
+
+  - id: "ICH Q5B"
+    name: "Quality of Biotechnological Products: Analysis of the Expression Construct in Cells Used for Production of r-DNA Derived Protein Products"
+    publisher: ICH
+    edition: "Step 4 (1995)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "Q5B"
+      - "ICH-Q5B"
+
+  - id: "ICH Q5D"
+    name: "Derivation and Characterisation of Cell Substrates Used for Production of Biotechnological/Biological Products"
+    publisher: ICH
+    edition: "Step 4 (1997)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "Q5D"
+      - "ICH-Q5D"
+
+  - id: "ICH Q5E"
+    name: "Comparability of Biotechnological/Biological Products Subject to Changes in Their Manufacturing Process"
+    publisher: ICH
+    edition: "Step 4 (2004)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "Q5E"
+      - "ICH-Q5E"
+
+  - id: "ICH Q6B"
+    name: "Specifications: Test Procedures and Acceptance Criteria for Biotechnological/Biological Products"
+    publisher: ICH
+    edition: "Step 4 (1999)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "Q6B"
+      - "ICH-Q6B"
+
+  - id: "ICH Q11"
+    name: "Development and Manufacture of Drug Substances (Chemical Entities and Biotechnological/Biological Entities)"
+    publisher: ICH
+    edition: "Step 4 (2012)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "Q11"
+      - "ICH-Q11"
+
+  - id: "EU GMP Annex 13"
+    name: "EudraLex Vol. 4 Annex 13 — Manufacture of Investigational Medicinal Products"
+    publisher: European Commission
+    edition: "2010 (revised)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "Annex 13"
+      - "IMP GMP"
+
+  - id: "21 CFR 312"
+    name: "Investigational New Drug Application"
+    publisher: U.S. Food and Drug Administration
+    edition: "21 CFR Part 312"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 312"
+      - "IND"
+
+  - id: "21 CFR 314"
+    name: "Applications for FDA Approval to Market a New Drug"
+    publisher: U.S. Food and Drug Administration
+    edition: "21 CFR Part 314 (includes ANDA per §314.94)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 314"
+      - "NDA"
+      - "ANDA"
+
+  - id: "42 USC 262(k)"
+    name: "Biosimilar Biological Products — 351(k) Pathway (PHSA §351(k))"
+    publisher: U.S. Food and Drug Administration / Public Health Service Act
+    edition: "Biologics Price Competition and Innovation Act of 2009 (BPCI Act)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "351(k)"
+      - "Biosimilar pathway"
+      - "BPCI"
+
   # === Recall + post-market reporting regulations ===
 
   - id: "49 CFR 573"

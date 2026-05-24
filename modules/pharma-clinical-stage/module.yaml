@@ -1,0 +1,95 @@
+# Open QMS — pharma-clinical-stage class overlay
+# -----------------------------------------------
+# Composes with the pharma vertical to add the clinical-stage
+# (pre-commercial) flexibility considerations distinct from full
+# commercial manufacturing. Clinical-stage organizations often
+# operate under FDA + EMA + MHRA staged-expectations frameworks
+# where full commercial cGMP is applied progressively as the
+# program advances through Phase 1 → Phase 2 → Phase 3 → BLA/NDA.
+#
+# This overlay documents the staged-expectations framework
+# explicitly so adopters' Quality System reflects the correct rigor
+# tier per product-development phase. Typically composed with
+# pharma-imp overlay for IMP scope; optionally with pharma-biologics
+# / atmp for biologics or ATMP clinical-stage programs.
+#
+# Use via:
+#   openqms resolve --module pharma --module pharma-clinical-stage --module pharma-imp
+
+name: pharma-clinical-stage-overlay
+version: 0.1.0
+
+standards:
+  - 21 CFR 312
+  - EU GMP Annex 13
+  - ICH Q10
+
+clauses:
+
+  - id: ClinicalStage-Phase1-flexibility
+    standard: 21 CFR 312
+    section: "FDA Guidance for Industry: CGMP for Phase 1 Investigational Drugs (July 2008)"
+    summary: |
+      Phase 1 cGMP — FDA exercises enforcement discretion per the
+      2008 Guidance: written procedures + adequate facilities +
+      qualified personnel + raw material controls + finished product
+      testing required, but full 21 CFR 210/211 prescriptive rigor
+      relaxed. Manufacturer demonstrates appropriate controls for
+      Phase 1 scope; documentation discipline scaled to product +
+      process maturity.
+
+  - id: ClinicalStage-Phase2-3-ramp
+    standard: 21 CFR 312
+    section: "FDA expectations + ICH Q10 PQS"
+    summary: |
+      Phase 2/3 cGMP ramp-up — phase-appropriate expansion toward
+      full 21 CFR 210/211 cGMP. Quality system maturity increases
+      with each phase. Process validation typically initiated in
+      Phase 2 (concept) + extended in Phase 3 (Stage 1 process
+      design per FDA Process Validation Guidance 2011). Stage 2
+      process qualification typically Phase 3 → BLA/NDA.
+
+  - id: ClinicalStage-changing-specs
+    standard: ICH Q10
+    section: "§3.2.3"
+    summary: |
+      Evolving specifications + change management — clinical-stage
+      products typically have evolving specifications across phases
+      (analytical methods improve; process knowledge accumulates;
+      specifications tighten). Change-control process must
+      accommodate frequent spec evolution while maintaining
+      patient-safety + regulatory-commitment integrity.
+
+  - id: ClinicalStage-supply-forecasting
+    standard: EU GMP Annex 13
+    section: "(operational best practice)"
+    summary: |
+      Clinical supply forecasting + small-batch manufacturing —
+      clinical-stage manufacturing operates in much smaller batches
+      than commercial (typically dozens to hundreds of subjects per
+      study); supply forecasting + just-in-time manufacturing +
+      cold-chain logistics + study-site distribution are operationally
+      critical. Stock-out of clinical supply mid-study is a serious
+      operational risk.
+
+  - id: ClinicalStage-pre-commercial-readiness
+    standard: ICH Q10
+    section: "§3.2 lifecycle"
+    summary: |
+      Pre-commercial readiness — quality system must be ready for
+      transition to commercial manufacturing at NDA/BLA filing
+      AND ready for inspector readiness during pre-approval
+      inspection (PAI). Site Master File + Validation Master Plan
+      + commercial-scale process validation reports + commercial
+      Quality Manual all need to be in place.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Clinical-stage cGMP SOPs (phase-appropriate cGMP + evolving specs + supply forecasting + pre-commercial readiness)
+    addresses:
+      - ClinicalStage-Phase1-flexibility
+      - ClinicalStage-Phase2-3-ramp
+      - ClinicalStage-changing-specs
+      - ClinicalStage-supply-forecasting
+      - ClinicalStage-pre-commercial-readiness

@@ -1,0 +1,132 @@
+# Open QMS — pharma-biologics class overlay
+# ------------------------------------------
+# Composes with the pharma vertical to add the biologics-specific
+# requirements that don't apply to small-molecule chemical drugs.
+# Biologics (recombinant proteins, monoclonal antibodies, vaccines,
+# blood + blood derivatives, hyperimmune sera, advanced therapies)
+# are defined by their manufacturing process — comparability cannot
+# be established by structural analysis alone, viral safety + cell-
+# bank characterization are mandatory, and the ICH Q5 series provides
+# the harmonized framework.
+#
+# Use via:
+#   openqms resolve --module pharma --module pharma-biologics
+#   openqms resolve --module pharma --module pharma-biologics --module atmp
+
+name: pharma-biologics-overlay
+version: 0.1.0
+
+standards:
+  - ICH Q5A(R2)
+  - ICH Q5B
+  - ICH Q5D
+  - ICH Q5E
+  - ICH Q6B
+  - ICH Q11
+  - EU GMP Annex 2B
+
+clauses:
+
+  - id: Biologics-Q5A-viral-safety
+    standard: ICH Q5A(R2)
+    section: "all"
+    summary: |
+      Viral safety evaluation — three-pillar framework (cell
+      substrate + raw materials testing; production process viral
+      clearance; final product testing). Q5A(R2) 2023 explicitly
+      extends to viral vector products with vector-specific RCV
+      testing strategy. Mandatory for any biotech product derived
+      from cell lines of human or animal origin.
+
+  - id: Biologics-Q5B-expression-construct
+    standard: ICH Q5B
+    section: "all"
+    summary: |
+      Analysis of the expression construct in cells used for
+      production of r-DNA derived protein products — characterization
+      of the expression vector, transformed cells, expression
+      cassette stability across the master + working cell banks +
+      end-of-production cells. Genetic stability verified over the
+      production lifecycle.
+
+  - id: Biologics-Q5D-cell-substrate
+    standard: ICH Q5D
+    section: "all"
+    summary: |
+      Derivation + characterisation of cell substrates — MCB + WCB
+      derivation history (cell source + cloning + selection +
+      preservation); characterization (identity + purity + cell
+      genealogy + genetic stability + tumorigenicity where
+      applicable). Foundational for any cell-line-derived biologic.
+
+  - id: Biologics-Q5E-comparability
+    standard: ICH Q5E
+    section: "all"
+    summary: |
+      Comparability of biotechnological/biological products subject
+      to changes in manufacturing process — biologics manufacturing
+      changes require pre-defined comparability acceptance criteria
+      across multi-attribute orthogonal analysis (identity + primary
+      + higher-order structure + purity + PTM + biological activity
+      + process-related impurities + container-closure). Pre-defined
+      criteria per §3.2.1.3; post-hoc adjustment invalidates the
+      comparability conclusion.
+
+  - id: Biologics-Q6B-specifications
+    standard: ICH Q6B
+    section: "all"
+    summary: |
+      Specifications for biotech products — release + stability test
+      panel mandatory for biologics including biological activity
+      (potency assay required) + glycosylation profile (for
+      glycoproteins) + post-translational modifications + isoform
+      profile + host-cell-derived impurities (HCP + DNA + leached
+      protein A for mAbs). Distinct from Q6A chemical specifications.
+
+  - id: Biologics-Q11-drug-substance-dev
+    standard: ICH Q11
+    section: "all"
+    summary: |
+      Development + manufacture of biotech drug substance — covers
+      both chemical entities and biotech/biological entities.
+      Biotech-specific: selection of starting materials (cell bank
+      tier vs. cell + culture medium); manufacturing process
+      development; process control strategy; comparability assessment
+      during development.
+
+  - id: Biologics-Annex2B-BAS-DP
+    standard: EU GMP Annex 2B
+    section: "all"
+    summary: |
+      Biological active substances + medicinal products — EU GMP
+      framework for biotech production complementing chemical-drug
+      Part I/II. Covers cell-bank management, characterization,
+      stability, comparability, post-marketing changes for
+      biologics (recombinant proteins, monoclonal antibodies,
+      vaccines, hyperimmune sera). Cross-references ATMP-specific
+      Annex 2A where the product is an ATMP.
+
+templates:
+
+  - path: templates/product-pharma/comparability/COMPARABILITY-PROTOCOL-TEMPLATE.md
+    name: Comparability Protocol (ICH Q5E — pre-defined criteria for biologics manufacturing change)
+    addresses:
+      - Biologics-Q5E-comparability
+
+  - path: templates/product-pharma/stability/STABILITY-PROTOCOL-TEMPLATE.md
+    name: Stability Protocol (ICH Q5C biologics adaptation — included via pharma vertical's Q1A(R2) baseline)
+    addresses:
+      - Biologics-Q6B-specifications
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Biologics SOPs — cell-bank management (Q5B + Q5D) + drug substance dev (Q11) + Annex 2B biological GMP
+    addresses:
+      - Biologics-Q5B-expression-construct
+      - Biologics-Q5D-cell-substrate
+      - Biologics-Q11-drug-substance-dev
+      - Biologics-Annex2B-BAS-DP
+
+  - path: templates/product-atmp/viral-safety/VIRAL-SAFETY-EVALUATION-REPORT-TEMPLATE.md
+    name: Viral Safety Evaluation Report (ICH Q5A(R2) — applies to all biologics, not just ATMPs; template originally introduced in atmp overlay reused here)
+    addresses:
+      - Biologics-Q5A-viral-safety

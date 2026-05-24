@@ -1,0 +1,94 @@
+# Open QMS — pharma-generic-biosimilar class overlay
+# ---------------------------------------------------
+# Composes with the pharma vertical to add the regulatory pathway
+# requirements for generics (small-molecule equivalents of approved
+# drugs) and biosimilars (highly-similar versions of approved
+# biologics). Both follow abbreviated approval pathways relative to
+# the originator NDA/BLA.
+#
+# Use via:
+#   openqms resolve --module pharma --module pharma-generic-biosimilar
+#   # For biosimilars, compose with pharma-biologics for biologics-specific scope:
+#   openqms resolve --module pharma --module pharma-biologics --module pharma-generic-biosimilar
+
+name: pharma-generic-biosimilar-overlay
+version: 0.1.0
+
+standards:
+  - 21 CFR 314
+  - 42 USC 262(k)
+
+clauses:
+
+  - id: Generic-ANDA-bioequivalence
+    standard: 21 CFR 314
+    section: "§314.94"
+    summary: |
+      Abbreviated New Drug Application (ANDA) — generic small-
+      molecule approval pathway. Must demonstrate bioequivalence
+      to reference listed drug (RLD) via in vivo or in vitro
+      studies per §320; pharmaceutical equivalence (same active +
+      strength + dosage form + route); identical labeling (with
+      permitted differences per §314.94(a)(8)(iv)); FDA Orange
+      Book reference identification.
+
+  - id: Generic-ANDA-patent-cert
+    standard: 21 CFR 314
+    section: "§314.94(a)(12)"
+    summary: |
+      Paragraph IV patent certification (where applicable) —
+      generic applicant certifies that listed patent is invalid +
+      will not be infringed; triggers 30-month stay + first-filer
+      180-day exclusivity per Hatch-Waxman Act.
+
+  - id: Biosimilar-351k-pathway
+    standard: 42 USC 262(k)
+    section: "§351(k)"
+    summary: |
+      Biosimilar 351(k) pathway (BPCI Act 2009) — abbreviated
+      pathway for biological products demonstrating biosimilarity
+      to FDA-licensed reference product. Submission includes:
+      analytical studies (extensive comparative characterization);
+      animal studies (where appropriate); clinical studies
+      including PK/PD + immunogenicity assessment + at least one
+      study assessing safety + purity + potency in one or more
+      indications. Reduced clinical data vs. originator BLA but
+      analytical similarity bar is high.
+
+  - id: Biosimilar-interchangeability
+    standard: 42 USC 262(k)
+    section: "§351(k)(4)"
+    summary: |
+      Interchangeability designation — distinct from biosimilarity
+      designation. Interchangeable biosimilars may be substituted
+      for the reference product without the prescriber's
+      intervention. Requires additional data including switching
+      studies (typically 3-arm randomized PK/PD comparing
+      original product + biosimilar + switching arm).
+
+  - id: Generic-Biosimilar-PAR
+    standard: 21 CFR 314
+    section: "§314.81 + §314.97"
+    summary: |
+      Post-approval reporting — ANDA holders + biosimilar 351(k)
+      licensees subject to same post-marketing reporting as
+      originator NDA/BLA holders (FAR per §314.81(b)(1)(ii);
+      annual report; PADR; safety reports). Manufacturing changes
+      per §314.70 supplement framework (PAS / CBE-30 / CBE-0 /
+      Annual Report).
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: ANDA + Biosimilar 351(k) regulatory pathway SOPs (bioequivalence + biosimilarity + interchangeability + post-approval reporting)
+    addresses:
+      - Generic-ANDA-bioequivalence
+      - Generic-ANDA-patent-cert
+      - Biosimilar-351k-pathway
+      - Biosimilar-interchangeability
+      - Generic-Biosimilar-PAR
+
+  - path: templates/product-pharma/comparability/COMPARABILITY-PROTOCOL-TEMPLATE.md
+    name: Comparability Protocol (biosimilar — analytical similarity comparison is the most rigorous analytical case)
+    addresses:
+      - Biosimilar-351k-pathway

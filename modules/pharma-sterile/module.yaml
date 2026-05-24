@@ -1,0 +1,101 @@
+# Open QMS — pharma-sterile class overlay
+# ----------------------------------------
+# Composes with the pharma vertical to add the enforced-rigor sterile
+# manufacturing requirements per PIC/S Annex 1 (2022 revision; effective
+# August 2023). Sterile manufacturing is the most demanding pharma
+# production scope — products that cannot be terminally sterilized
+# (aseptic fill, ATMPs, certain biologics) plus terminally-sterilized
+# products with sterility-critical processing.
+#
+# The pharma vertical already cites PIC/S Annex 1 at a baseline level
+# (CCS + APS + EM cleanroom classification). This overlay adds the
+# enforced-detail clauses that PIC/S inspectors specifically audit
+# during sterile-manufacturing inspections.
+#
+# Use via:
+#   openqms resolve --module pharma --module pharma-sterile
+
+name: pharma-sterile-overlay
+version: 0.1.0
+
+standards:
+  - PIC/S Annex 1
+
+clauses:
+
+  - id: PICS-A1-CCS-document
+    standard: PIC/S Annex 1
+    section: "§2 + §8"
+    summary: |
+      Contamination Control Strategy (CCS) — site-level documented
+      strategy describing ALL controls in place to prevent microbial
+      + particulate + pyrogen contamination. Spans facility design,
+      personnel, materials, equipment, processes, environmental
+      monitoring, product-protection technologies (RABS / isolators /
+      single-use systems). The CCS is the foundational sterile-
+      manufacturing artifact; absence of a CCS is a major inspection
+      observation.
+
+  - id: PICS-A1-isolator-RABS
+    standard: PIC/S Annex 1
+    section: "§4 + §8.91-§8.124"
+    summary: |
+      Isolator + RABS use — Annex 1 2022 explicitly prefers isolator
+      or RABS (Restricted Access Barrier System) technology for
+      aseptic operations over conventional Grade A in Grade B.
+      Closed-system processing preferred where feasible. Gloves +
+      glove integrity testing program with documented frequency.
+
+  - id: PICS-A1-APS-rigor
+    standard: PIC/S Annex 1
+    section: "§9.40-§9.50"
+    summary: |
+      Aseptic Process Simulation (APS / media fill) — initial 3
+      consecutive successful media fills per shift per line +
+      semi-annual re-qualification per shift per line. Worst-case
+      scenarios in design (operator interventions + maximum
+      duration + maximum number of units + container-closure
+      combinations). Zero contaminated units acceptance criterion;
+      any positive triggers investigation per defined criteria.
+
+  - id: PICS-A1-EM-Grade-A
+    standard: PIC/S Annex 1
+    section: "§9.27-§9.39"
+    summary: |
+      Environmental monitoring at Grade A — continuous viable +
+      non-viable particle monitoring (≥0.5 µm + ≥5.0 µm); particle
+      counter location at point of fill + open product exposure;
+      action + alert limits with trending. Grade B continuous viable
+      monitoring; Grade C + D defined-frequency monitoring with
+      trending. Excursions investigated per defined criteria.
+
+  - id: PICS-A1-personnel-aseptic-quals
+    standard: PIC/S Annex 1
+    section: "§7"
+    summary: |
+      Personnel qualification for aseptic operations — initial
+      qualification (gowning qualification + APS participation) +
+      periodic re-qualification + behavior monitoring. Number of
+      personnel in Grade A/B minimized. Maximum number of personnel
+      in aseptic core defined + enforced.
+
+  - id: PICS-A1-line-clearance
+    standard: PIC/S Annex 1
+    section: "§8.117"
+    summary: |
+      Line clearance + changeover — documented verification of
+      complete removal of prior-batch product + components + labels
+      before next-batch setup. Independent (two-person) verification
+      for product + label changeover required.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: CCS + isolator/RABS + APS + EM + personnel-aseptic + line-clearance SOPs (PIC/S Annex 1 sterile-specific)
+    addresses:
+      - PICS-A1-CCS-document
+      - PICS-A1-isolator-RABS
+      - PICS-A1-APS-rigor
+      - PICS-A1-EM-Grade-A
+      - PICS-A1-personnel-aseptic-quals
+      - PICS-A1-line-clearance

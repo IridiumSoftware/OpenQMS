@@ -1,0 +1,88 @@
+# Open QMS — pharma-imp class overlay
+# ------------------------------------
+# Composes with the pharma vertical to add Investigational Medicinal
+# Product (IMP) requirements — drugs in clinical trials (Phase 1-3,
+# pre-marketing-authorisation). IMP GMP is distinct from commercial
+# GMP: faster process development, less mature manufacturing process,
+# evolving specifications, smaller batches, blinding requirements for
+# placebo-controlled studies.
+#
+# Use via:
+#   openqms resolve --module pharma --module pharma-imp
+#   # Often composed with pharma-clinical-stage for full pre-commercial scope
+
+name: pharma-imp-overlay
+version: 0.1.0
+
+standards:
+  - EU GMP Annex 13
+  - 21 CFR 312
+
+clauses:
+
+  - id: IMP-Annex13-QA
+    standard: EU GMP Annex 13
+    section: "§7-§16"
+    summary: |
+      QA for IMPs — quality system covering IMP-specific scope:
+      sponsor responsibility, manufacturing authorisation IMPMA per
+      EU Directive 2001/20/EC, batch records, specifications evolving
+      with development, blinding/randomization handling, returns +
+      destruction of unused IMP.
+
+  - id: IMP-Annex13-blinding
+    standard: EU GMP Annex 13
+    section: "§28-§38"
+    summary: |
+      Blinding + randomization — IMP packaging + labelling must
+      support blinding requirements per protocol. Sponsor maintains
+      randomization codes + emergency unblinding procedures per
+      §38; QP certification per Annex 16 IMP-specific.
+
+  - id: IMP-Annex13-QP-certification
+    standard: EU GMP Annex 13
+    section: "§39-§41"
+    summary: |
+      QP certification of IMPs — different from commercial QP
+      certification. IMP QP certifies that each batch has been
+      manufactured + checked per IMPD (IMP Dossier), GMP, +
+      relevant trial-specific arrangements. For non-EU manufactured
+      IMPs imported into EU, additional QP responsibilities per
+      §41.
+
+  - id: IMP-CFR312-IND-cGMP
+    standard: 21 CFR 312
+    section: "§312.23 + §312.30 + §312.50-§312.58"
+    summary: |
+      US IND-stage cGMP — for Phase 1, FDA exercises enforcement
+      discretion per FDA Guidance "CGMP for Phase 1 Investigational
+      Drugs" (July 2008) — less prescriptive than 21 CFR 210/211 but
+      still requires written procedures + adequate facilities +
+      qualified personnel + raw material controls + finished product
+      testing. Phase 2/3 phase-appropriate ramp-up toward full
+      21 CFR 210/211 cGMP.
+
+  - id: IMP-CFR312-protocol-amendments
+    standard: 21 CFR 312
+    section: "§312.30"
+    summary: |
+      Protocol amendments + Sponsor reporting — IND holder must
+      submit protocol amendments + IND safety reports + annual
+      reports. Changes to IMP manufacturing or formulation that
+      may affect safety require IND amendment + may require IRB
+      re-approval.
+
+templates:
+
+  - path: templates/product-pharma/batch-record/MASTER-BATCH-RECORD-TEMPLATE.md
+    name: Master Batch Record (IMP-specific notes — evolving specs + smaller batches + blinding considerations per Annex 13)
+    addresses:
+      - IMP-Annex13-QA
+      - IMP-Annex13-blinding
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: IMP QP certification SOP (Annex 13 §39-§41 + Annex 16 IMP-specific) + IND amendment + annual reporting SOP (21 CFR 312.30+33)
+    addresses:
+      - IMP-Annex13-QP-certification
+      - IMP-CFR312-IND-cGMP
+      - IMP-CFR312-protocol-amendments
