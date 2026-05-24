@@ -13,7 +13,7 @@ Comprehensive inventory of every regulatory module shipped with Open QMS as of v
 | Registry standards | **~114** (no new at v0.38.0; chemicals class overlays reuse existing EU REACH) |
 | Registry jurisdictions | **20** |
 | Document templates | **81+** (v0.38.0 +3 chemicals class-overlay: SVHC Communication Letter / REACH Authorisation Application / Substitution Plan) |
-| Example bundles | **12** (validated end-to-end with committed baseline matrices) |
+| Example bundles | **8** (validated end-to-end with committed baseline matrices) |
 | Spec entries | **91** (0 `:open`) |
 | Deepest composition tested in CI | **16-module mega-composite** (chemicals + SVHC + Authorisation + top tonnage + 4 adjacent + 8 cross-cutting) |
 
@@ -47,7 +47,7 @@ The OQ-011 compose primitive (built v0.4.0, unchanged since) handles composition
 
 ---
 
-## Class overlays (38 across 5 verticals)
+## Class overlays (44 across 6 verticals)
 
 ### Medical-devices (9)
 
@@ -115,7 +115,7 @@ The OQ-011 compose primitive (built v0.4.0, unchanged since) handles composition
 
 ---
 
-## Cross-cutting overlays (19)
+## Cross-cutting overlays (23)
 
 Each composes with ANY vertical. Annex-SL-aligned overlays compose cleanly with each other (verified by 11-module mega-composite in CI).
 
@@ -143,7 +143,7 @@ Each composes with ANY vertical. Annex-SL-aligned overlays compose cleanly with 
 
 ---
 
-## Example bundles (11)
+## Example bundles (8)
 
 Each ships with a committed baseline matrix that acts as regression detection in CI.
 
@@ -156,6 +156,7 @@ Each ships with a committed baseline matrix that acts as regression detection in
 | `example-drug-product` | pharma | iso-27001 + regulated-ai + iso-14001 + iso-45001 + iso-50001 | FDA, EMA, MHRA |
 | `example-cart` | pharma + atmp | iso-27001 + iso-14001 + iso-45001 + iso-50001 | FDA, EMA, MHRA |
 | `example-food-processor` | food-safety | iso-14001 + iso-45001 + iso-50001 | FDA-Food, EFSA, CFIA |
+| `example-specialty-chemical` | chemicals | iso-27001 + iso-14001 + iso-45001 + iso-31000 | (empty — multi-region by composition) |
 
 ---
 

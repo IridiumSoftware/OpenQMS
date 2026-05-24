@@ -16,7 +16,7 @@ The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD f
 | Registry — standards | **~114** (no new at v0.38.0; chemicals class overlays reuse existing EU REACH) |
 | Registry — jurisdictions | **20** (FDA / EMA / MHRA / WHO-PQ / Health Canada / EU MDR / PMDA / TGA / ANVISA / FAA / EASA / TCCA / NHTSA / UNECE / KBA / TC-MVS / FDA-Food / USDA-FSIS / EFSA / CFIA) |
 | Document templates | **81+** (v0.38.0 +3 chemicals class-overlay: SVHC Communication Letter + REACH Authorisation Application + Substitution Plan) |
-| Example bundles (validated end-to-end) | **12** |
+| Example bundles (validated end-to-end) | **8** |
 | Total modules | **75** + general |
 | Spec entries (status: 6 :verified / 78 :tested / 7 :argued / 0 :open) | **91** |
 | Deepest composition tested in CI | **16-module mega-composite** (chemicals + SVHC + Authorisation + top tonnage + 4 adjacent + 8 cross-cutting) |
