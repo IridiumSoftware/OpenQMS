@@ -233,3 +233,23 @@ templates:
     name: OOS Investigation — autologous-product variant (Annex 2A §11 risk-benefit clinical decision in collaboration with treating physician)
     addresses:
       - Annex2A-OOS-autologous
+
+  # === v0.34.0 standalone template bindings ===
+
+  - path: templates/product-atmp/release-testing/CAR-T-RELEASE-TESTING-TEMPLATE.md
+    name: CAR-T Release Testing Record (EU GMP Annex 2A + FDA CAR-T Guidance 2024 + Q5A(R2) + 21 CFR 1271; v0.25.0 standalone bound here at v0.34.0)
+    addresses:
+      - Q5A-R2-viral-safety
+      - Annex2A-OOS-autologous
+      - CFR1271-Subpart-D-Current-Good-Tissue-Practice
+
+  - path: templates/product-atmp/release-testing/AAV-RELEASE-TESTING-TEMPLATE.md
+    name: AAV Release Testing Record (FDA CMC IND 2020 + Q5A(R2) vector-product extension + USP <1046>; v0.25.0 standalone bound here at v0.34.0)
+    addresses:
+      - Q5A-R2-viral-safety
+      - Annex2B-biological-active
+
+  - path: templates/product-pharma/comparability/COMPARABILITY-PROTOCOL-TEMPLATE.md
+    name: Comparability Protocol (ICH Q5E — particularly critical for autologous ATMPs without reference standard; v0.25.0 standalone bound here at v0.34.0)
+    addresses:
+      - Annex2A-OOS-autologous

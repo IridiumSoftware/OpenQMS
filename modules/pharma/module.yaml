@@ -424,3 +424,22 @@ templates:
     name: QP batch release SOP (EU GMP Annex 16 — applicable where EU market release in scope)
     addresses:
       - EUGMP-Annex16-QP-Release
+
+  # === v0.34.0 standalone template bindings ===
+
+  - path: templates/product-pharma/site-master-file/SITE-MASTER-FILE-TEMPLATE.md
+    name: Site Master File (EU GMP Part III + PIC/S PE 008; v0.25.0 standalone bound here at v0.34.0)
+    addresses:
+      - EUGMP-Ch1-PQS
+
+  - path: templates/product-pharma/batch-record/BATCH-CERTIFICATE-OF-ANALYSIS-TEMPLATE.md
+    name: Batch Certificate of Analysis (21 CFR 211.165 + Subpart I + EU GMP Ch. 6 + ICH Q6A/Q6B; v0.34.0)
+    addresses:
+      - CFR211-Subpart-I-Laboratory
+      - CFR211-Subpart-J-Records
+      - EUGMP-Ch6-QC
+
+  - path: templates/product-pharma/stability/STABILITY-PROTOCOL-TEMPLATE.md
+    name: Stability Protocol (ICH Q1A(R2) + 21 CFR 211.166; v0.34.0)
+    addresses:
+      - CFR211-Subpart-I-Laboratory

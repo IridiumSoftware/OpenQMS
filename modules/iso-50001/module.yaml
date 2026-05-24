@@ -46,6 +46,17 @@ clauses:
       energy-efficient products + services + design activities
       to improve energy performance.
 
+  - id: ISO50001-6.2
+    standard: ISO 50001:2018
+    section: "6.2"
+    summary: |
+      Energy objectives + planning to achieve them — establish energy
+      objectives at relevant functions + levels + processes +
+      facilities. Consistent with energy policy + measurable + take
+      into account applicable legal + other requirements + consider
+      SEUs + consider opportunities to improve energy performance.
+      Monitored + communicated + updated as appropriate.
+
   - id: ISO50001-6.3
     standard: ISO 50001:2018
     section: "6.3"
@@ -187,3 +198,10 @@ templates:
     name: CAPA — energy-performance NC + corrective action (ISO 50001 §10.2)
     addresses:
       - ISO50001-10.2
+
+  # === v0.34.0 standalone template binding ===
+
+  - path: templates/qms-energy/ENERGY-OBJECTIVES-TARGETS-REGISTER-TEMPLATE.md
+    name: Energy Objectives and Targets Register (ISO 50001 §6.2 dedicated; v0.25.0 standalone bound directly at v0.34.0; required §6.2 clause added in same release)
+    addresses:
+      - ISO50001-6.2

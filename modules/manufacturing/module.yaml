@@ -269,6 +269,25 @@ templates:
       - ISO9001-5.1
       - ISO9001-5.2
 
+  - path: templates/qms-policy/QUALITY-MANUAL-TEMPLATE.md
+    name: Quality Manual — top-level QMS organizing document (ISO 9001 §4 + §5; v0.25.0 standalone bound here at v0.34.0)
+    addresses:
+      - ISO9001-4.1
+      - ISO9001-4.4
+      - ISO9001-5.1
+      - ISO9001-5.2
+      - ISO9001-6.1
+
+  - path: templates/qms-policy/PROCESS-MAP-TEMPLATE.md
+    name: QMS Process Map (ISO 9001 §4.4 — process inventory + interaction; v0.25.0 standalone bound here at v0.34.0)
+    addresses:
+      - ISO9001-4.4
+
+  - path: templates/qms-policy/RISK-AND-OPPORTUNITY-REGISTER-TEMPLATE.md
+    name: Risk + Opportunity Register (ISO 9001 §6.1 + Annex SL §6.1; v0.25.0 standalone bound here at v0.34.0)
+    addresses:
+      - ISO9001-6.1
+
   # === Planning + support + production via SOP family ===
 
   - path: templates/qms-sops/SOP-TEMPLATE.md

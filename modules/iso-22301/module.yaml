@@ -184,3 +184,20 @@ templates:
     name: CAPA — BCMS nonconformity + corrective action (ISO 22301 §10.2)
     addresses:
       - ISO22301-10.2
+
+  # === v0.34.0 standalone template bindings ===
+
+  - path: templates/qms-bcms/BIA-TEMPLATE.md
+    name: Business Impact Analysis standalone (ISO 22301 §8.2.2; v0.25.0 standalone bound here at v0.34.0)
+    addresses:
+      - ISO22301-8.2.2
+
+  - path: templates/qms-policy/RISK-ASSESSMENT-TEMPLATE.md
+    name: Risk Assessment standalone (ISO 22301 §8.2.3 BCMS scenario per ISO 31000/31010; v0.34.0)
+    addresses:
+      - ISO22301-8.2.3
+
+  - path: templates/qms-bcms/IT-DR-PLAN-TEMPLATE.md
+    name: IT Disaster Recovery Plan (IT subset of BCMS-PLAN per ISO 22301 §8.5; v0.34.0)
+    addresses:
+      - ISO22301-8.5
