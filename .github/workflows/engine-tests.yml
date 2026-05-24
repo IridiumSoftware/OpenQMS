@@ -183,6 +183,35 @@ jobs:
           openqms validate --module privacy --module soc-2 --module hitrust-csf --module iso-27001
           # 17-module ultimate composite — chemicals top-rigor + adjacent + IMS + privacy
           openqms validate --module chemicals --module chemicals-svhc --module chemicals-authorisation --module chemicals-tonnage-1000 --module osha-hcs --module transport-hazmat --module eu-biocides --module tsca-pfas --module iso-27001 --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000 --module privacy
+          # v0.42.0 — sub-overlay batch (16): CMMC levels 1/2/3 + SOC 2 Type I/II + ISO 27001 extensions 27017 cloud + 27701 PIMS + NIST CSF tiers 1/2/3/4 + PCI DSS SAQ types A/A-EP/D-Merchant/D-SP/P2PE
+          openqms validate --module cmmc-level-1
+          openqms validate --module cmmc-level-2
+          openqms validate --module cmmc-level-3
+          openqms validate --module soc-2-type-i
+          openqms validate --module soc-2-type-ii
+          openqms validate --module iso-27001-cloud
+          openqms validate --module iso-27001-privacy
+          openqms validate --module nist-csf-tier-1
+          openqms validate --module nist-csf-tier-2
+          openqms validate --module nist-csf-tier-3
+          openqms validate --module nist-csf-tier-4
+          openqms validate --module pci-dss-saq-a
+          openqms validate --module pci-dss-saq-a-ep
+          openqms validate --module pci-dss-saq-d-merchant
+          openqms validate --module pci-dss-saq-d-sp
+          openqms validate --module pci-dss-saq-p2pe
+          openqms validate --module defense-cui --module cmmc --module cmmc-level-1
+          openqms validate --module defense-cui --module cmmc --module cmmc-level-2
+          openqms validate --module defense-cui --module cmmc --module cmmc-level-2 --module cmmc-level-3
+          openqms validate --module soc-2 --module soc-2-type-i
+          openqms validate --module soc-2 --module soc-2-type-ii
+          openqms validate --module iso-27001 --module iso-27001-cloud --module iso-27001-privacy --module privacy
+          openqms validate --module nist-csf --module nist-csf-tier-3
+          openqms validate --module pci-dss --module pci-dss-saq-d-merchant
+          openqms validate --module pci-dss --module pci-dss-saq-a-ep
+          openqms validate --module pci-dss --module pci-dss-saq-d-sp
+          # 19-module deepest composite — chemicals top-rigor + adjacent + IMS + privacy + ISO 27001 cloud + PIMS
+          openqms validate --module chemicals --module chemicals-svhc --module chemicals-authorisation --module chemicals-tonnage-1000 --module osha-hcs --module transport-hazmat --module eu-biocides --module tsca-pfas --module iso-27001 --module iso-27001-cloud --module iso-27001-privacy --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000 --module privacy
 
       - name: Inspect registry (smoke check)
         run: openqms registry list

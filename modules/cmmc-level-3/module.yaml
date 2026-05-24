@@ -1,0 +1,90 @@
+# Open QMS — CMMC Level 3 sub-overlay
+# -------------------------------------
+# Sub-overlay on the cmmc cross-cutting overlay encoding the
+# **additional 24 NIST SP 800-172 enhanced requirements** at CMMC
+# Level 3 per 32 CFR Part 170 §170.14(c)(3). Level 3 applies to
+# contractors handling CUI at HIGH risk OR national-security-critical
+# CUI.
+#
+# Assessment regime: NSA-led / DCMA DIBCAC assessment every 3 years
+# per §170.18. Most stringent of the three levels.
+#
+# Standards licensing: PUBLIC.
+
+name: cmmc-level-3
+version: 0.1.0
+
+standards:
+  - "CMMC 2.0"
+  - "NIST SP 800-171"
+
+clauses:
+
+  - id: CMMC-L3-800-172-enhanced
+    standard: NIST SP 800-171
+    section: "NIST SP 800-172 Enhanced Security Requirements"
+    summary: |
+      Enhanced Security Requirements — additional 24 requirements
+      from NIST SP 800-172 targeting Advanced Persistent Threat
+      (APT) protection. Categories include: penetration-resistant
+      architecture (e.g., dual-authorization for privileged
+      operations); damage-limiting operations (e.g., dynamic
+      reconfiguration); designed-for-cyber-resiliency (e.g., minimum
+      personnel privilege); supplier-chain risk management with
+      enhanced verification; threat hunting + autonomous incident
+      response. Implemented IN ADDITION TO all 110 Level 2 requirements.
+
+  - id: CMMC-L3-scope-NS-critical-CUI
+    standard: CMMC 2.0
+    section: "32 CFR §170.14(c)(3)"
+    summary: |
+      Scope — Level 3 applies to contractors handling CUI designated
+      as relevant to national security where the consequences of
+      unauthorized disclosure would be catastrophic. DoD CIO + AOAP
+      designates contracts requiring Level 3. Inherits Level 2
+      requirements + adds Level 3 enhanced controls.
+
+  - id: CMMC-L3-DIBCAC-assessment
+    standard: CMMC 2.0
+    section: "32 CFR §170.18"
+    summary: |
+      DIBCAC (Defense Industrial Base Cybersecurity Assessment
+      Center) led assessment — DCMA-organisation-conducted; NOT
+      C3PAO-delegable. Every 3 years + interim risk monitoring.
+      Most rigorous regime in CMMC. NSA + DC3 cyber threat
+      intelligence integrated into assessment scope.
+
+  - id: CMMC-L3-no-POAM
+    standard: CMMC 2.0
+    section: "32 CFR §170.21(b)(3)"
+    summary: |
+      No POAM allowance at Level 3 — all 110 Level 2 requirements
+      + 24 Level 3 enhanced requirements MUST be MET at assessment
+      time. Most stringent of the three levels.
+
+  - id: CMMC-L3-additional-protections
+    standard: CMMC 2.0
+    section: "32 CFR §170.14(c)(3)(iii)"
+    summary: |
+      Additional protections — DoD may impose contract-specific
+      enhanced requirements beyond NIST SP 800-172 baseline as
+      negotiated per acquisition. Examples: continuous-monitoring
+      tools (CDM-aligned); SIEM integration with DoD threat-intel
+      feeds; required cleared personnel; FedRAMP High cloud
+      hosting.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (CMMC Level 3 — extends QMS policy with NSA/DIBCAC-assessed APT-resistant security commitment + national-security-critical CUI handling + cleared-personnel access)"
+    addresses:
+      - CMMC-L3-800-172-enhanced
+      - CMMC-L3-scope-NS-critical-CUI
+      - CMMC-L3-DIBCAC-assessment
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "CMMC Level 3 operational SOPs (penetration-resistant architecture + damage-limiting operations + threat hunting + supply-chain enhanced verification + autonomous incident response + DIBCAC assessment readiness)"
+    addresses:
+      - CMMC-L3-800-172-enhanced
+      - CMMC-L3-no-POAM
+      - CMMC-L3-additional-protections

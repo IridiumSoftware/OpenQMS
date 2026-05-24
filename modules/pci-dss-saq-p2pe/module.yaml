@@ -1,0 +1,68 @@
+# Open QMS — PCI DSS SAQ-P2PE sub-overlay
+# -----------------------------------------
+# Merchants using a PCI-listed Point-to-Point Encryption (P2PE)
+# validated solution. Smallest in-scope requirement set for any
+# card-present merchant — ~33 requirements vs ~300 for SAQ-D
+# Merchant.
+
+name: pci-dss-saq-p2pe
+version: 0.1.0
+
+standards:
+  - "PCI DSS v4.0"
+
+clauses:
+
+  - id: PCI-SAQ-P2PE-eligibility
+    standard: PCI DSS v4.0
+    section: "SAQ-P2PE Eligibility (PCI SSC P2PE Program)"
+    summary: |
+      Eligibility — all of: (1) merchant uses ONLY validated P2PE
+      solution listed on PCI SSC website for ALL payment-acceptance
+      channels; (2) all CHD entered into approved P2PE-validated
+      device + immediately encrypted with merchant having NO access
+      to decryption keys; (3) merchant has NO ability to decrypt
+      account data; (4) merchant does not otherwise store CHD
+      electronically.
+
+  - id: PCI-SAQ-P2PE-P2PE-instruction-manual
+    standard: PCI DSS v4.0
+    section: "P2PE Instruction Manual (PIM)"
+    summary: |
+      P2PE Instruction Manual compliance — merchant follows the
+      P2PE Solution Provider's PIM covering device delivery +
+      installation + handling + change-detection + tamper-evident
+      packaging + secure return-for-repair workflows. PIM
+      compliance is the primary control basis for SAQ-P2PE scope
+      reduction.
+
+  - id: PCI-SAQ-P2PE-applicable-requirements
+    standard: PCI DSS v4.0
+    section: "SAQ-P2PE requirements"
+    summary: |
+      ~33 requirements applicable subset — primarily Req 9
+      (physical security of P2PE devices), Req 12 (security policy
+      + incident response + service-provider mgmt), partial Req 4
+      (limit physical access to devices). Most technical-control
+      requirements waived because CHD is encrypted at the point of
+      capture + only the P2PE Solution Provider can decrypt.
+
+  - id: PCI-SAQ-P2PE-device-inventory
+    standard: PCI DSS v4.0
+    section: "Requirement 9.5.1 + 9.5.1.2.1"
+    summary: |
+      P2PE device inventory + inspection — maintain detailed
+      inventory of all P2PE devices (make / model / serial / location);
+      periodic inspection per PIM for evidence of tampering or
+      substitution; document and respond to anomalies per PIM
+      incident-response procedure.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (PCI DSS SAQ-P2PE — extends QMS policy with P2PE-only commitment + PIM compliance discipline + device inventory + periodic tamper inspection)"
+    addresses:
+      - PCI-SAQ-P2PE-eligibility
+      - PCI-SAQ-P2PE-P2PE-instruction-manual
+      - PCI-SAQ-P2PE-applicable-requirements
+      - PCI-SAQ-P2PE-device-inventory

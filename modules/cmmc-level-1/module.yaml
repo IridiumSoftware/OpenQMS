@@ -1,0 +1,100 @@
+# Open QMS — CMMC Level 1 sub-overlay
+# -------------------------------------
+# Sub-overlay on the cmmc cross-cutting overlay encoding the
+# **17 basic safeguarding controls** required at CMMC Level 1 per
+# 32 CFR Part 170 + Appendix A. Level 1 applies to contractors
+# handling Federal Contract Information (FCI) but NOT Controlled
+# Unclassified Information (CUI).
+#
+# Assessment regime at Level 1: ANNUAL SELF-ASSESSMENT with senior
+# official affirmation per §170.16. No third-party assessor required.
+#
+# Standards licensing: PUBLIC (32 CFR Part 170 via ecfr.gov; FAR
+# 52.204-21 the underlying basic-safeguarding clause via acquisition.gov).
+
+name: cmmc-level-1
+version: 0.1.0
+
+standards:
+  - "CMMC 2.0"
+
+clauses:
+
+  - id: CMMC-L1-FAR-52-204-21-basic-safeguarding
+    standard: CMMC 2.0
+    section: "32 CFR §170.14(c)(1) + FAR 52.204-21"
+    summary: |
+      Basic safeguarding requirements — 17 security requirements
+      drawn from FAR 52.204-21(b)(1). Applies to "covered contractor
+      information systems" processing FCI. Covers basic access
+      control (identify users + processes + devices; limit info
+      to authorized users); identification + authentication
+      (authenticate users before access); media protection
+      (sanitize before disposal/release); physical protection
+      (limit physical access; escort visitors); system + comms
+      protection (monitor + control comms at boundaries; deny
+      network comms by default); system + info integrity (identify
+      + report + correct flaws timely; protect from malicious
+      code; perform periodic scans).
+
+  - id: CMMC-L1-scope-FCI-only
+    standard: CMMC 2.0
+    section: "32 CFR §170.4 + §170.14(c)(1)"
+    summary: |
+      Scope — Level 1 applies to contractors processing FCI defined
+      in FAR 52.204-21(a) as info NOT marked as public AND provided
+      by or generated for the Government under contract, EXCLUDING
+      info provided by Government to public OR simple transactional
+      info. CUI handlers must be at Level 2+. Level 1 organisations
+      handling CUI = compliance failure.
+
+  - id: CMMC-L1-annual-self-assessment
+    standard: CMMC 2.0
+    section: "32 CFR §170.15 + §170.16"
+    summary: |
+      Annual self-assessment + affirmation — contractor performs
+      self-assessment against the 17 FAR 52.204-21 requirements +
+      enters score in SPRS (Supplier Performance Risk System) +
+      provides senior official affirmation. No POAM allowance at
+      Level 1 (all 17 requirements must be met; no partial credit).
+      Annual re-affirmation required to maintain certification.
+
+  - id: CMMC-L1-no-POAM
+    standard: CMMC 2.0
+    section: "32 CFR §170.21"
+    summary: |
+      No POAM allowance — unlike Level 2 (where some requirements
+      may be conditionally certified with a Plan of Action +
+      Milestones), Level 1 requires ALL 17 requirements met at
+      assessment time. There is no "conditional" Level 1 status.
+      Score = MET / NOT MET for each requirement; failure of any
+      one requirement = failure to certify.
+
+  - id: CMMC-L1-DFARS-7012-not-applicable
+    standard: CMMC 2.0
+    section: "DFARS 252.204-7012 vs. -7019/-7020/-7021 distinction"
+    summary: |
+      DFARS clause applicability — DFARS 252.204-7012 (NIST SP
+      800-171 + cyber incident reporting) applies to CUI handlers,
+      NOT Level 1 FCI-only contractors. However DFARS 252.204-7021
+      (CMMC requirement) flows down at the level appropriate to the
+      contract data sensitivity — Level 1 for FCI-only flows. Watch
+      for DFARS 252.204-7019 + -7020 NIST SP 800-171 assessment
+      requirements that apply to CUI handlers but NOT pure-Level-1
+      contractors.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (CMMC Level 1 — extends QMS policy with FCI-only basic safeguarding commitment + annual self-assessment + SPRS affirmation discipline)"
+    addresses:
+      - CMMC-L1-FAR-52-204-21-basic-safeguarding
+      - CMMC-L1-scope-FCI-only
+      - CMMC-L1-annual-self-assessment
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "CMMC Level 1 operational SOPs (FCI inventory + basic-safeguarding control implementation + annual self-assessment workflow + SPRS submission + senior-official affirmation)"
+    addresses:
+      - CMMC-L1-FAR-52-204-21-basic-safeguarding
+      - CMMC-L1-no-POAM
+      - CMMC-L1-DFARS-7012-not-applicable

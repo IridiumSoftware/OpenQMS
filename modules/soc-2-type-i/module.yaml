@@ -1,0 +1,78 @@
+# Open QMS — SOC 2 Type I sub-overlay
+# -------------------------------------
+# Sub-overlay on the soc-2 cross-cutting overlay encoding the
+# **point-in-time design assessment** scope of a SOC 2 Type I
+# examination. Type I attests to the SUITABILITY OF DESIGN of
+# controls as of a specified date — does NOT cover operating
+# effectiveness over time.
+#
+# Typical use: first-year SOC 2 readiness; pre-customer-onboarding
+# light attestation; rapid time-to-attestation when customer requires
+# any SOC 2 report.
+#
+# Standards licensing: same as soc-2 (AICPA TSC PUBLIC).
+
+name: soc-2-type-i
+version: 0.1.0
+
+standards:
+  - "AICPA TSC 2017"
+
+clauses:
+
+  - id: SOC2-TI-design-only
+    standard: AICPA TSC 2017
+    section: "AT-C 105 + 205"
+    summary: |
+      Type I scope — attestation by independent CPA firm that
+      controls are SUITABLY DESIGNED to meet the relevant Trust
+      Services Criteria AS OF A SPECIFIED DATE. NO testing of
+      operating effectiveness. Single point-in-time snapshot.
+      Auditor's opinion limited to design.
+
+  - id: SOC2-TI-no-observation-period
+    standard: AICPA TSC 2017
+    section: "AT-C 205.A23-A28"
+    summary: |
+      No observation period — unlike Type II (which requires
+      minimum 3-month — typically 6-12 month — observation
+      window), Type I has no operating-effectiveness window.
+      Controls just need to be designed + in-place at the
+      specified date. Implementation evidence (policies, procedures,
+      diagrams, configurations) gathered point-in-time.
+
+  - id: SOC2-TI-readiness-pathway
+    standard: AICPA TSC 2017
+    section: "AICPA SOC 2 Reporting Framework"
+    summary: |
+      Readiness pathway — typical first-year SOC 2 path: (i)
+      readiness assessment / gap analysis; (ii) remediation of
+      design gaps; (iii) Type I attestation as of remediation-
+      complete date; (iv) Type II observation period begins;
+      (v) Type II attestation covering Type-I-date through
+      Type-II-end-date. Type I → Type II progression standard.
+
+  - id: SOC2-TI-fewer-customer-acceptance
+    standard: AICPA TSC 2017
+    section: "Practice note (not in AT-C)"
+    summary: |
+      Customer acceptance — many enterprise customers + procurement
+      teams REJECT Type I as insufficient evidence of security
+      maturity; require Type II minimum. Type I primarily useful
+      for: lighter-weight customer requirements; SaaS-startup
+      time-to-first-attestation; pre-Type-II evidence to defer
+      customer requirement temporarily.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (SOC 2 Type I — extends QMS policy with point-in-time control-design attestation discipline + Type-I-to-Type-II progression path commitment)"
+    addresses:
+      - SOC2-TI-design-only
+      - SOC2-TI-readiness-pathway
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "SOC 2 Type I operational SOPs (control-design documentation + point-in-time evidence collection + CPA-firm engagement + readiness-assessment workflow + customer-acceptance disclosure)"
+    addresses:
+      - SOC2-TI-no-observation-period
+      - SOC2-TI-fewer-customer-acceptance

@@ -4,6 +4,75 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.42.0 DRAFT — 2026-05-24 — Sub-overlay Tier 1 batch (CMMC levels + SOC 2 types + ISO 27001 extensions)
+
+**1 NEW entry** OQ-109. Spec total 92 → 93. Engine 0.41.0 → 0.42.0.
+
+7 new sub-overlays introducing a new module shape — **class-overlay-like rigor/scope deltas on cross-cutting overlays** (analog to how class overlays like aerospace-dal-a or pharma-sterile delta against vertical overlays). Splits previously-monolithic cross-cutting overlays into their natural tier structure per the underlying standards.
+
+**CMMC sub-overlays (3) — splits monolithic `cmmc` into CMMC 2.0's three levels:**
+- `cmmc-level-1` — FAR 52.204-21 17 basic safeguarding requirements; FCI-only scope; annual self-assessment + SPRS + senior official affirmation; no POAM allowance
+- `cmmc-level-2` — NIST SP 800-171 110 requirements across 14 control families; CUI scope; self-assessment OR C3PAO bifurcation per prioritized-acquisition designation; 5% POAM allowance with 180-day Conditional CMMC Status; DFARS 7012 72h DIBNet incident reporting
+- `cmmc-level-3` — additional 24 NIST SP 800-172 enhanced APT-protection requirements; national-security-critical CUI scope; DIBCAC-only assessment (NOT C3PAO-delegable); no POAM allowance
+
+**SOC 2 sub-overlays (2) — splits monolithic `soc-2` into reporting types:**
+- `soc-2-type-i` — point-in-time design suitability per AT-C 205; no observation period; readiness/first-year pathway; lower customer acceptance (many enterprise procurement teams reject Type I)
+- `soc-2-type-ii` — design + operating effectiveness over observation period (minimum 3 months / typical 6mo first / 12mo annual renewal); enterprise-customer default; bridge-letter handling for inter-report gaps; modified-opinion handling
+
+**ISO 27001 extension sub-overlays (2) — splits monolithic `iso-27001` extensions:**
+- `iso-27001-cloud` — ISO/IEC 27017:2015 Code of practice for cloud services. CSP + CSC shared responsibility model; 7 new cloud-specific controls (CLD.6.3.1 shared roles; CLD.8.1.5 termination data removal; CLD.9.5.1/2 virtual segregation + VM hardening; CLD.12.1.5 admin operations; CLD.12.4.5; CLD.13.1.4 virtual+physical network alignment)
+- `iso-27001-privacy` — ISO/IEC 27701:2019 PIMS (Privacy Information Management System). Extension to 27001 ISMS; Annex A 31 controller controls + Annex B 18 processor controls; Annex D GDPR mapping + Annex E ISO 29100 mapping. Strong complement to the `privacy` cross-cutting overlay (privacy encodes legal framework; 27701 encodes certifiable management system)
+
+All 7 reuse parent-overlay templates with binding deltas — no new templates required.
+
+**Registry +2 commercial standards:**
+- ISO/IEC 27017:2015 (cloud services)
+- ISO/IEC 27701:2019 (PIMS)
+
+Other 4 sub-overlays reuse existing registered standards (CMMC 2.0 + NIST SP 800-171 + AICPA TSC 2017).
+
+**Cross-cutting overlay count unchanged at 24** — sub-overlays are NOT counted in the 24; they are class-overlay-shaped deltas on cross-cutting overlays, analogous to how aerospace-dal-a is not counted in the verticals count.
+
+**Total module count: 76 → 83.**
+
+**19-module deepest composite validates (new depth record beats prior 17-module):**
+```
+openqms validate \
+  --module chemicals --module chemicals-svhc \
+  --module chemicals-authorisation --module chemicals-tonnage-1000 \
+  --module osha-hcs --module transport-hazmat --module eu-biocides \
+  --module tsca-pfas --module iso-27001 --module iso-27001-cloud \
+  --module iso-27001-privacy --module regulated-ai --module iso-14001 \
+  --module iso-45001 --module iso-50001 --module iso-37001 \
+  --module iso-22301 --module iso-31000 --module privacy
+# → invariant_holds: True
+```
+
+Repo-wide zero-orphan invariant holds: **83 modules / 675 clauses / 319 templates / 0 orphaned clauses / 0 orphaned templates** per `openqms trace --all`.
+
+**Particularly natural compositions:**
+- `defense-cui + cmmc + cmmc-level-2` (typical DoD CUI handler self-assessment scope)
+- `defense-cui + cmmc + cmmc-level-2 + cmmc-level-3` (NS-critical handlers; Level 3 is additive to Level 2)
+- `soc-2 + soc-2-type-ii` (enterprise-customer steady-state)
+- `soc-2 + soc-2-type-i` (first-year readiness; Type-I-to-Type-II progression)
+- `iso-27001 + iso-27001-cloud` (cloud-native SaaS)
+- `iso-27001 + iso-27001-privacy + privacy` (ISMS + PIMS + legal-framework triad — strongest privacy certification posture)
+- `iso-27001 + iso-27001-cloud + iso-27001-privacy + privacy` (cloud SaaS processing PII)
+
+CI extended (+14 validate steps including the 19-module deepest composite). 116/116 pytest pass. All 8 bundle baselines clean. YAML linter clean on all 83 modules.
+
+Status counts: 6 `:verified` / 82 `:tested` / 5 `:argued` / 0 `:open` (total 93).
+
+**Tier 2 sub-overlays ALSO shipped in same release** (9 additional): 4 NIST CSF Implementation Tiers (nist-csf-tier-1 Partial / tier-2 Risk Informed / tier-3 Repeatable / tier-4 Adaptive) + 5 PCI DSS SAQ types (pci-dss-saq-a / saq-a-ep / saq-d-merchant / saq-d-sp / saq-p2pe). Originally planned for v0.43.0, consolidated into v0.42.0 since both tiers share the same sub-overlay shape + spec entry.
+
+**Total sub-overlay batch: 16 sub-overlays** (7 Tier 1 + 9 Tier 2). All reuse parent-overlay templates. Registry +2 commercial standards (ISO 27017 + ISO 27701); other 14 reuse existing registered standards (CMMC 2.0 + NIST SP 800-171 + AICPA TSC 2017 + NIST CSF 2.0 + PCI DSS v4.0).
+
+Total module count: **76 → 92**. Cross-cutting overlay count UNCHANGED at 24 (sub-overlays are not counted in the 24 — they are class-overlay-shaped deltas on cross-cutting overlays).
+
+Per user direction: "do cluster A" (sub-overlays) — all 16 shipped together.
+
+---
+
 ## v0.41.0 DRAFT — 2026-05-24 — Privacy cross-cutting overlay (GDPR + CCPA/CPRA) — last major management-system gap
 
 **1 NEW entry** OQ-108. Spec total 91 → 92. Engine 0.40.0 → 0.41.0.

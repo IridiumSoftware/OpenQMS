@@ -1,0 +1,82 @@
+# Open QMS — PCI DSS SAQ-A sub-overlay
+# --------------------------------------
+# Card-not-present merchants that have fully outsourced ALL cardholder
+# data functions to PCI DSS validated third-party service providers.
+# No electronic storage, processing, or transmission of any
+# cardholder data on merchant's systems or premises.
+#
+# Typical use: e-commerce merchants using iframe / redirect / hosted
+# payment page to a PCI-validated payment provider; mail/telephone-
+# order merchants where the payment provider handles all CHD.
+#
+# Scope: smallest SAQ — ~22 requirements (vs ~300 for full SAQ-D).
+
+name: pci-dss-saq-a
+version: 0.1.0
+
+standards:
+  - "PCI DSS v4.0"
+
+clauses:
+
+  - id: PCI-SAQ-A-eligibility
+    standard: PCI DSS v4.0
+    section: "SAQ-A Eligibility (PCI SSC)"
+    summary: |
+      Eligibility criteria — all 8 conditions must be true: (1)
+      merchant accepts only card-not-present transactions; (2) all
+      processing of CHD outsourced to PCI DSS validated third-party
+      service provider(s); (3) merchant confirms PCI DSS compliance
+      of their service provider(s); (4) merchant does not
+      electronically store / process / transmit CHD on their systems
+      or premises; (5) merchant has confirmed no other systems in
+      merchant environment store / process / transmit CHD; (6)
+      account data is only on paper receipts / paper reports OR
+      delivered by mail; (7) merchant retains responsibility for
+      controlling how third-party service providers handle CHD; (8)
+      merchant has implemented all controls applicable in SAQ-A
+      requirements set.
+
+  - id: PCI-SAQ-A-scope-reduction
+    standard: PCI DSS v4.0
+    section: "PCI DSS Scoping Guidance"
+    summary: |
+      Scope reduction discipline — iframe-based + redirect-based
+      payment flows keep merchant out of CHD scope; merchant page
+      JavaScript MUST NOT touch cardholder data (no client-side
+      tokenisation, no field-capture). PCI SSC published guidance
+      on e-commerce script management (effective 2024-2025) clarifies
+      MERCHANT IS RESPONSIBLE for ensuring third-party scripts on
+      payment pages cannot compromise CHD (Requirement 6.4.3 + 11.6.1
+      in v4.0).
+
+  - id: PCI-SAQ-A-applicable-requirements
+    standard: PCI DSS v4.0
+    section: "SAQ-A requirements"
+    summary: |
+      SAQ-A applicable subset (~22 requirements) — primarily Reqs
+      2 (default credentials), 6 (script management at v4.0), 8
+      (authentication), 9 (physical for paper-CHD), 12 (security
+      policy + incident response + service-provider mgmt). Most
+      technical-control requirements waived since CHD never touches
+      merchant systems.
+
+  - id: PCI-SAQ-A-service-provider-management
+    standard: PCI DSS v4.0
+    section: "Requirement 12.8 + 12.9"
+    summary: |
+      Service provider management — maintain list of TPSPs handling
+      CHD; written agreement acknowledging TPSP responsibility for
+      CHD they possess; verify TPSP PCI DSS compliance status
+      (request Attestation of Compliance or audit report annually);
+      responsibility matrix per Req 12.9.1 (effective 2025-03-31).
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (PCI DSS SAQ-A — extends QMS policy with full-outsource-to-PCI-validated-TPSP commitment + script management discipline + TPSP responsibility matrix maintenance)"
+    addresses:
+      - PCI-SAQ-A-eligibility
+      - PCI-SAQ-A-scope-reduction
+      - PCI-SAQ-A-applicable-requirements
+      - PCI-SAQ-A-service-provider-management

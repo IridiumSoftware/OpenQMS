@@ -1,0 +1,61 @@
+# Open QMS — NIST CSF Implementation Tier 2 (Risk Informed) sub-overlay
+
+name: nist-csf-tier-2
+version: 0.1.0
+
+standards:
+  - "NIST CSF 2.0"
+
+clauses:
+
+  - id: NIST-CSF-T2-risk-management-process
+    standard: NIST CSF 2.0
+    section: "§3.4.1 Tier 2 — Risk Management Process"
+    summary: |
+      Risk management practices are approved by management but may
+      not be established as organisation-wide policy. Prioritization
+      of cybersecurity activities and protection needs is directly
+      informed by organisational risk objectives, threat environment,
+      OR business/mission requirements (typically one or two of these
+      drivers, not all three).
+
+  - id: NIST-CSF-T2-integrated-risk-program
+    standard: NIST CSF 2.0
+    section: "§3.4.2 Tier 2 — Integrated Risk Management Program"
+    summary: |
+      Awareness of cybersecurity risk at organisational level exists
+      but organisation-wide approach has not been established.
+      Cybersecurity information is shared within the organisation
+      on an informal basis. Consideration of cybersecurity in
+      organisational objectives + programs may occur but not in all
+      organisational levels.
+
+  - id: NIST-CSF-T2-external-participation
+    standard: NIST CSF 2.0
+    section: "§3.4.3 Tier 2 — External Participation"
+    summary: |
+      Organisation knows its role in larger ecosystem with respect
+      to either its own dependencies or dependents but not both.
+      Some collaboration with external parties; receives some
+      external information (alerts, threat indicators) but may not
+      act on it consistently or share information externally.
+
+  - id: NIST-CSF-T2-typical-adopters
+    standard: NIST CSF 2.0
+    section: "Profile usage"
+    summary: |
+      Typical Tier 2 adopters: small-to-medium businesses with
+      growing cyber awareness; organisations that have experienced
+      a security incident; first-year + second-year cybersecurity-
+      program adopters. Common transitional state between Tier 1
+      ad-hoc + Tier 3 organisation-wide policy.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (NIST CSF Tier 2 Risk Informed — extends QMS policy with management-approved risk-management commitment + selective external participation + Tier-3 progression target)"
+    addresses:
+      - NIST-CSF-T2-risk-management-process
+      - NIST-CSF-T2-integrated-risk-program
+      - NIST-CSF-T2-external-participation
+      - NIST-CSF-T2-typical-adopters

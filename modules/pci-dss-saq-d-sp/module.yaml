@@ -1,0 +1,73 @@
+# Open QMS — PCI DSS SAQ-D Service Provider sub-overlay
+# -------------------------------------------------------
+# Service Provider SAQ — distinct requirement set from SAQ-D Merchant
+# despite the shared name. Several requirements ONLY apply to service
+# providers (e.g., quarterly internal scans by qualified personnel;
+# IDS on critical systems v4.0).
+
+name: pci-dss-saq-d-sp
+version: 0.1.0
+
+standards:
+  - "PCI DSS v4.0"
+
+clauses:
+
+  - id: PCI-SAQ-D-SP-eligibility
+    standard: PCI DSS v4.0
+    section: "SAQ-D Service Provider Eligibility"
+    summary: |
+      Eligibility — entity stores / processes / transmits CHD on
+      behalf of other entities (merchants or other service providers)
+      OR is responsible for security of CHD on behalf of others.
+      Examples: payment gateways, payment processors, hosting
+      providers handling merchant CDE, managed security service
+      providers (MSSPs), tokenisation services, fraud-detection
+      service providers.
+
+  - id: PCI-SAQ-D-SP-provider-only-requirements
+    standard: PCI DSS v4.0
+    section: "Service-provider-specific requirements"
+    summary: |
+      Requirements applicable ONLY to service providers: Req
+      11.5.1.1 (intrusion detection on critical systems v4.0);
+      Req A1 (multi-tenant service providers — physical or logical
+      separation between customers); Req A2 (separate encryption
+      keys per customer where applicable); enhanced quarterly
+      internal vulnerability scans by qualified personnel
+      independent of administering the scanned systems; quarterly
+      attestation to customers of compliance.
+
+  - id: PCI-SAQ-D-SP-customer-AOC
+    standard: PCI DSS v4.0
+    section: "Requirement 12.9 + 12.8"
+    summary: |
+      Customer-facing compliance documentation — Service Provider
+      Attestation of Compliance (AOC) provided to customers
+      annually + on customer request. Service Provider
+      Responsibility Matrix per Req 12.9.1 (effective 2025-03-31)
+      documenting which PCI DSS requirements SP is responsible
+      for + which customer is responsible for + which shared.
+      Common adopter pain point: merchant SAQ-A relies on SP
+      Responsibility Matrix to confirm full-outsource scope.
+
+  - id: PCI-SAQ-D-SP-level-1-typical
+    standard: PCI DSS v4.0
+    section: "Service Provider Levels"
+    summary: |
+      Most service providers operate at Service Provider Level 1
+      (process ≥300k Visa/MC txn/year combined OR designated by
+      card brand). Level 1 SPs typically require external QSA
+      Report on Compliance + ASV scans + pen test rather than
+      SAQ-D-SP self-assessment. Level 2 SPs (<300k txn/year)
+      may use SAQ-D-SP.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (PCI DSS SAQ-D Service Provider — extends QMS policy with service-provider-only-requirements commitment + customer-facing AOC + Responsibility Matrix discipline + IDS on critical systems)"
+    addresses:
+      - PCI-SAQ-D-SP-eligibility
+      - PCI-SAQ-D-SP-provider-only-requirements
+      - PCI-SAQ-D-SP-customer-AOC
+      - PCI-SAQ-D-SP-level-1-typical

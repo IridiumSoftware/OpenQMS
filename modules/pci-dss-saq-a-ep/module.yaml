@@ -1,0 +1,79 @@
+# Open QMS — PCI DSS SAQ-A-EP sub-overlay
+# -----------------------------------------
+# E-commerce merchants where the merchant's website CONTROLS the
+# manner of redirection / iframe / payment-flow but the actual CHD
+# is still processed by a PCI-validated TPSP. Distinct from SAQ-A
+# because the merchant's website MAY impact the security of the
+# payment transaction (e.g., direct-post; client-side encryption
+# library managed by merchant; JS modifications affecting payment).
+#
+# Larger requirement set than SAQ-A: ~191 requirements covering
+# vulnerability management + secure SDLC + script integrity.
+
+name: pci-dss-saq-a-ep
+version: 0.1.0
+
+standards:
+  - "PCI DSS v4.0"
+
+clauses:
+
+  - id: PCI-SAQ-A-EP-eligibility
+    standard: PCI DSS v4.0
+    section: "SAQ-A-EP Eligibility (PCI SSC)"
+    summary: |
+      Eligibility criteria — partial e-commerce outsourcing where
+      merchant controls payment-page CONTEXT: (1) merchant accepts
+      only e-commerce card-not-present; (2) all CHD processing
+      outsourced to PCI-validated TPSP; (3) merchant website
+      CONTROLS HOW CHD is redirected / iframed / posted; (4) merchant
+      website MAY affect security of CHD even though merchant doesn't
+      store/process/transmit it directly; (5) merchant does not
+      electronically store CHD; (6) merchant retains responsibility
+      for controlling how TPSPs handle CHD.
+
+  - id: PCI-SAQ-A-EP-applicable-requirements
+    standard: PCI DSS v4.0
+    section: "SAQ-A-EP requirements"
+    summary: |
+      ~191 requirements covering: Req 1 (network security controls);
+      Req 2 (default credentials); Req 5 (anti-malware); Req 6
+      (secure SDLC + script management v4.0); Req 7 (access control);
+      Req 8 (authentication); Req 9 (physical for paper); Req 10
+      (logging); Req 11 (vulnerability scans + penetration testing
+      + script integrity); Req 12 (security policy + incident
+      response + TPSP management). Substantially larger than SAQ-A
+      due to merchant-website security obligations.
+
+  - id: PCI-SAQ-A-EP-script-integrity
+    standard: PCI DSS v4.0
+    section: "Requirements 6.4.3 + 11.6.1"
+    summary: |
+      Script management + integrity — Req 6.4.3 (effective
+      2025-03-31): merchant maintains inventory of all payment-page
+      scripts + justification + integrity assurance method (SRI hash
+      OR CSP whitelist OR equivalent). Req 11.6.1 (effective
+      2025-03-31): merchant deploys change + tamper-detection on
+      payment-page HTTP headers + script content to alert on
+      unauthorised modifications. Primary control set for
+      Magecart-style supply-chain attacks.
+
+  - id: PCI-SAQ-A-EP-quarterly-ASV
+    standard: PCI DSS v4.0
+    section: "Requirement 11.3.2 + ASV Program Guide"
+    summary: |
+      Quarterly external vulnerability scan by PCI SSC Approved
+      Scanning Vendor (ASV) required. Failed scans must be
+      remediated + rescanned to achieve passing status. Annual
+      penetration test of CDE + segmentation controls per Req
+      11.4.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (PCI DSS SAQ-A-EP — extends QMS policy with merchant-controlled-payment-page commitment + script-integrity discipline + quarterly ASV scan + annual pentest)"
+    addresses:
+      - PCI-SAQ-A-EP-eligibility
+      - PCI-SAQ-A-EP-applicable-requirements
+      - PCI-SAQ-A-EP-script-integrity
+      - PCI-SAQ-A-EP-quarterly-ASV

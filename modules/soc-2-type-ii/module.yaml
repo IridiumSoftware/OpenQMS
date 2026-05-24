@@ -1,0 +1,91 @@
+# Open QMS — SOC 2 Type II sub-overlay
+# --------------------------------------
+# Sub-overlay on the soc-2 cross-cutting overlay encoding the
+# **observation-period operating-effectiveness assessment** of a
+# SOC 2 Type II examination. Type II attests to both DESIGN
+# SUITABILITY (as of a date) AND OPERATING EFFECTIVENESS over the
+# observation period (typically 6 or 12 months).
+#
+# Type II is the enterprise-customer steady-state SOC 2 report.
+#
+# Standards licensing: same as soc-2 (AICPA TSC PUBLIC).
+
+name: soc-2-type-ii
+version: 0.1.0
+
+standards:
+  - "AICPA TSC 2017"
+
+clauses:
+
+  - id: SOC2-TII-design-and-operating
+    standard: AICPA TSC 2017
+    section: "AT-C 105 + 205"
+    summary: |
+      Type II scope — attestation by independent CPA firm covering
+      BOTH (i) suitability of design of controls + (ii) operating
+      effectiveness of those controls OVER the specified observation
+      period. Auditor opinion covers both dimensions.
+
+  - id: SOC2-TII-observation-period
+    standard: AICPA TSC 2017
+    section: "AT-C 205.A23-A28"
+    summary: |
+      Observation period — minimum 3 months per AICPA guidance;
+      **6-month** for first Type II; **12-month** for subsequent
+      annual renewals. Continuous observation — gaps in observation
+      window weaken auditor opinion. Sample-based testing of
+      controls over the period — auditor selects samples per
+      population characteristics.
+
+  - id: SOC2-TII-renewal-cadence
+    standard: AICPA TSC 2017
+    section: "AICPA SOC 2 Reporting Framework"
+    summary: |
+      Renewal cadence — annual continuous attestation typical.
+      Common observation window: 11/1-10/31 (Q4-Q3) OR
+      10/1-9/30 (fiscal year). Auditor's report ready ~30-60
+      days after observation period end. "Gap letter" or bridge
+      letter optionally issued by auditor for the period between
+      observation-period-end + next-report-availability covering
+      no-material-change-occurred.
+
+  - id: SOC2-TII-enterprise-default
+    standard: AICPA TSC 2017
+    section: "Practice note (not in AT-C)"
+    summary: |
+      Enterprise customer default — Type II is the de-facto
+      enterprise-customer SOC 2 requirement. Procurement teams
+      typically reject Type I. Vendor management programs require
+      annual Type II refresh. SLAs sometimes specify a maximum-age-
+      of-current-Type-II-report (e.g., 12 months) as a contractual
+      requirement.
+
+  - id: SOC2-TII-control-failures
+    standard: AICPA TSC 2017
+    section: "AT-C 205.41-43 modified opinions"
+    summary: |
+      Control failures over the observation period — auditor
+      may issue modified opinion: (i) qualified — material control
+      failures isolated to specific area; (ii) adverse — pervasive
+      failures; (iii) disclaimer — unable to obtain sufficient
+      evidence. Most adopters target unqualified opinion;
+      management response section documents remediation of
+      identified failures + recurrence-prevention actions.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (SOC 2 Type II — extends QMS policy with observation-period operating-effectiveness attestation + annual continuous-attestation cycle + control-failure remediation commitment)"
+    addresses:
+      - SOC2-TII-design-and-operating
+      - SOC2-TII-observation-period
+      - SOC2-TII-renewal-cadence
+      - SOC2-TII-enterprise-default
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "SOC 2 Type II operational SOPs (observation-period evidence collection + sample-based testing coordination + control-failure remediation tracking + bridge-letter handling + customer-distribution + annual renewal calendar)"
+    addresses:
+      - SOC2-TII-observation-period
+      - SOC2-TII-control-failures
+      - SOC2-TII-renewal-cadence

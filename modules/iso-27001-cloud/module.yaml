@@ -1,0 +1,106 @@
+# Open QMS — ISO/IEC 27017:2015 Cloud Services sub-overlay
+# ----------------------------------------------------------
+# Sub-overlay on the iso-27001 cross-cutting overlay encoding cloud-
+# services-specific information security controls per ISO/IEC
+# 27017:2015 (Code of practice for information security controls
+# based on ISO/IEC 27002 for cloud services).
+#
+# Applies to BOTH cloud service providers (CSPs) AND cloud service
+# customers (CSCs). Adds 37 cloud-specific control guidance items
+# extending ISO/IEC 27002 controls plus 7 NEW cloud-specific
+# controls (CLD.6.3.1, CLD.8.1.5, CLD.9.5.1, CLD.9.5.2, CLD.12.1.5,
+# CLD.12.4.5, CLD.13.1.4).
+#
+# Standards licensing: COMMERCIAL (ISO).
+
+name: iso-27001-cloud
+version: 0.1.0
+
+standards:
+  - "ISO/IEC 27017:2015"
+  - "ISO/IEC 27001:2022"
+
+clauses:
+
+  - id: ISO27017-shared-responsibility
+    standard: ISO/IEC 27017:2015
+    section: "§6.1.1 — Shared responsibility"
+    summary: |
+      Shared responsibility model — both CSP and CSC roles + duties
+      explicitly identified + agreed in cloud service agreement.
+      Traditional ISO 27001 SoA + risk treatment plan extended to
+      cover responsibility-allocation per service model (IaaS / PaaS /
+      SaaS) + deployment model (public / private / community /
+      hybrid). Customer reviews CSP's SoA + responsibility-matrix at
+      onboarding + annually + on material service change.
+
+  - id: ISO27017-CLD-6-3-1-relationship
+    standard: ISO/IEC 27017:2015
+    section: "CLD.6.3.1 — Shared roles + responsibilities"
+    summary: |
+      Cloud-specific control — relationship between cloud service
+      customer + cloud service provider. CSP documents service-
+      specific responsibility allocation; CSC verifies + supplements
+      with customer-controllable security measures. Documentation
+      maintained for audit trail.
+
+  - id: ISO27017-CLD-9-5-virtual-environment
+    standard: ISO/IEC 27017:2015
+    section: "CLD.9.5.1 + CLD.9.5.2"
+    summary: |
+      Virtual environment controls — segregation of virtual machines
+      / containers / tenants per multi-tenant model (CLD.9.5.1) +
+      hardening of virtual-machine configuration (CLD.9.5.2). Network
+      micro-segmentation, hypervisor escape prevention, container
+      image scanning, host-OS hardening, secure-by-default templates.
+
+  - id: ISO27017-CLD-12-data-removal
+    standard: ISO/IEC 27017:2015
+    section: "CLD.8.1.5 + CLD.12.1.5"
+    summary: |
+      Data removal at service termination + admin operations
+      monitoring — CSP-documented data-deletion process at service
+      termination (covers active + backup + replicated data); CSP
+      logs administrative operations performed on customer data +
+      makes logs available to customer. Critical for GDPR Article
+      28(3)(g) deletion/return obligations + GDPR Article 28(3)(h)
+      auditability.
+
+  - id: ISO27017-CLD-13-1-4-network-virtual
+    standard: ISO/IEC 27017:2015
+    section: "CLD.13.1.4"
+    summary: |
+      Alignment of security management for virtual + physical
+      networks — when virtual + physical networks coexist, security
+      management is consistent + aligned. Virtual-network controls
+      not weaker than physical-network controls; visibility +
+      monitoring extends across both layers.
+
+  - id: ISO27017-customer-responsibility-supplement
+    standard: ISO/IEC 27017:2015
+    section: "Throughout (CSC perspective)"
+    summary: |
+      Customer-side supplementary controls — even where CSP
+      operates secure infrastructure, CSC retains responsibility
+      for: configuration of customer-controllable settings (IAM,
+      encryption keys, network ACLs, audit log routing);
+      authentication of CSC users; classification + handling of
+      data placed in cloud; CSC-side incident detection (CSP
+      controls infrastructure; CSC controls workload). CSP-CSC
+      shared-responsibility matrix per service.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (ISO 27017 cloud — extends QMS policy with cloud shared-responsibility-model + CSP/CSC role discipline + multi-tenant segregation commitment)"
+    addresses:
+      - ISO27017-shared-responsibility
+      - ISO27017-CLD-6-3-1-relationship
+      - ISO27017-customer-responsibility-supplement
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "ISO 27017 cloud operational SOPs (shared-responsibility-matrix maintenance per CSP service + virtual-environment hardening + service-termination data-removal verification + admin-operations log retrieval + cloud-incident response across CSP-CSC boundary)"
+    addresses:
+      - ISO27017-CLD-9-5-virtual-environment
+      - ISO27017-CLD-12-data-removal
+      - ISO27017-CLD-13-1-4-network-virtual

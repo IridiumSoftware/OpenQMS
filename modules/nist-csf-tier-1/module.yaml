@@ -1,0 +1,63 @@
+# Open QMS — NIST CSF Implementation Tier 1 (Partial) sub-overlay
+# -----------------------------------------------------------------
+# Sub-overlay on the nist-csf cross-cutting overlay encoding
+# NIST CSF 2.0 Implementation Tier 1 (Partial) per §3.4.
+
+name: nist-csf-tier-1
+version: 0.1.0
+
+standards:
+  - "NIST CSF 2.0"
+
+clauses:
+
+  - id: NIST-CSF-T1-risk-management-process
+    standard: NIST CSF 2.0
+    section: "§3.4.1 Tier 1 — Risk Management Process"
+    summary: |
+      Risk management practices are not formalised; risk is managed
+      in an ad hoc + sometimes reactive manner. Prioritization of
+      cybersecurity activities may not be directly informed by
+      organisational risk objectives, threat environment, or
+      business/mission requirements.
+
+  - id: NIST-CSF-T1-integrated-risk-program
+    standard: NIST CSF 2.0
+    section: "§3.4.2 Tier 1 — Integrated Risk Management Program"
+    summary: |
+      Limited awareness of cybersecurity risk at the organisational
+      level. Organisation implements cybersecurity risk management
+      on an irregular, case-by-case basis. Cybersecurity information
+      is not routinely shared across the organisation.
+
+  - id: NIST-CSF-T1-external-participation
+    standard: NIST CSF 2.0
+    section: "§3.4.3 Tier 1 — External Participation"
+    summary: |
+      Organisation does not understand its role in the larger
+      ecosystem with respect to either its dependencies or
+      dependents. Organisation does not collaborate with or
+      receive information from external parties (information-
+      sharing groups, ISACs, supply chain partners) nor share
+      information externally.
+
+  - id: NIST-CSF-T1-typical-adopters
+    standard: NIST CSF 2.0
+    section: "Profile usage"
+    summary: |
+      Typical Tier 1 adopters: very-small businesses; startups
+      pre-security-investment; organisations whose dependency on
+      cyber-enabled systems is limited. Tier 1 is rarely a TARGET
+      state — usually a current-state baseline before maturity
+      growth. Documenting Tier 1 current-state is the entry-step
+      for the CSF maturity journey.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (NIST CSF Tier 1 Partial — extends QMS policy with explicit Tier-1-current-state acknowledgement + maturity-growth commitment)"
+    addresses:
+      - NIST-CSF-T1-risk-management-process
+      - NIST-CSF-T1-integrated-risk-program
+      - NIST-CSF-T1-external-participation
+      - NIST-CSF-T1-typical-adopters

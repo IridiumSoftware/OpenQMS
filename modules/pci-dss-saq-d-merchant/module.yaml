@@ -1,0 +1,84 @@
+# Open QMS — PCI DSS SAQ-D Merchant sub-overlay
+# ------------------------------------------------
+# General merchant SAQ — covers ALL PCI DSS requirements (~300+).
+# For merchants that store + process + transmit CHD electronically
+# OR have any complexity beyond what the simpler SAQs allow.
+#
+# Effectively a full PCI DSS validation in self-assessment form;
+# at higher merchant levels (Level 1 / Level 2 depending on brand)
+# an external QSA Report on Compliance (ROC) replaces self-
+# assessment.
+
+name: pci-dss-saq-d-merchant
+version: 0.1.0
+
+standards:
+  - "PCI DSS v4.0"
+
+clauses:
+
+  - id: PCI-SAQ-D-M-eligibility
+    standard: PCI DSS v4.0
+    section: "SAQ-D Merchant Eligibility"
+    summary: |
+      Eligibility — applies when a merchant cannot use any of the
+      simpler SAQs (A / A-EP / B / B-IP / C / C-VT / P2PE). Common
+      situations: merchant stores CHD electronically; multiple
+      channels (e-commerce + in-store + MOTO); custom-built payment
+      systems; merchant-acquirer-bank acquired complex environment.
+
+  - id: PCI-SAQ-D-M-full-requirement-set
+    standard: PCI DSS v4.0
+    section: "Requirements 1-12 (all applicable)"
+    summary: |
+      All applicable PCI DSS requirements — ~300+ requirements
+      across all 12 high-level requirement areas. Customised
+      Approach (v4.0 new) optional for any requirement where
+      merchant + auditor agree alternative meets stated security
+      objective. Compensating controls retained for legitimate
+      technical or business constraints. Targeted Risk Analysis
+      (TRA, v4.0 new) required for frequency-defined requirements.
+
+  - id: PCI-SAQ-D-M-level-validation-by-volume
+    standard: PCI DSS v4.0
+    section: "Card brand programs"
+    summary: |
+      Validation level by transaction volume — Visa / Mastercard /
+      Amex / Discover / JCB define merchant levels (1-4 typically;
+      thresholds vary by brand). Level 1 (~6M Visa/MC txn/year +
+      special listings) requires external QSA-led Report on
+      Compliance + ASV scans + pen test. Level 2-4 may use SAQ-D
+      Merchant self-assessment supplemented by acquirer requirements.
+
+  - id: PCI-SAQ-D-M-PCI-DSS-v4-transition
+    standard: PCI DSS v4.0
+    section: "v3.2.1 → v4.0 transition"
+    summary: |
+      PCI DSS v4.0 mandatory effective 2024-03-31; future-dated
+      v4.0 requirements (effective 2025-03-31) include Req 6.4.3
+      script management + Req 11.6.1 payment-page integrity +
+      Req 11.5.1.1 IDS for service providers + Req 12.6.3.1 security
+      awareness based on role + Req 8.3.10.1 customer authentication
+      + several others. Merchant must plan transition; some v3.2.1
+      compliant configurations will become non-compliant.
+
+  - id: PCI-SAQ-D-M-segmentation
+    standard: PCI DSS v4.0
+    section: "Scoping Guidance + Penetration Testing Guidance"
+    summary: |
+      Network segmentation strongly recommended — reduces CDE scope
+      + therefore audit + remediation cost. Segmentation must be
+      verified by annual penetration test per Req 11.4 segmentation
+      pen-test guidance. Unverified segmentation = no scope reduction;
+      all systems become in-scope CDE.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (PCI DSS SAQ-D Merchant — extends QMS policy with full-PCI-DSS-validation commitment + v4.0 transition planning + segmentation discipline + level-based-validation per acquirer)"
+    addresses:
+      - PCI-SAQ-D-M-eligibility
+      - PCI-SAQ-D-M-full-requirement-set
+      - PCI-SAQ-D-M-level-validation-by-volume
+      - PCI-SAQ-D-M-PCI-DSS-v4-transition
+      - PCI-SAQ-D-M-segmentation

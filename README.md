@@ -6,20 +6,21 @@ Open QMS resolves a `(product, jurisdictions, standards, modules)` bundle into a
 
 The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD for enforcement, Git for the audit trail.
 
-## Current scope (v0.41.0)
+## Current scope (v0.42.0)
 
 | Dimension | Count |
 |---|---|
 | Verticals (regulated industries) | **7** — medical-devices, aerospace, automotive, manufacturing, pharma, food-safety, chemicals |
 | Class overlays (rigor-level + product-class) | **44** across 6 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5 / chemicals 6) |
-| Cross-cutting overlays | **24** — iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas, **privacy** |
-| Registry — standards | **~117** (v0.41.0 +2 PUBLIC: GDPR + CCPA) |
+| Cross-cutting overlays | **24** — iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas, privacy |
+| **Sub-overlays** (class-overlay-shape deltas on cross-cutting overlays) | **16** — cmmc-level-1/2/3, soc-2-type-i/ii, iso-27001-cloud/privacy, nist-csf-tier-1/2/3/4, pci-dss-saq-a/a-ep/d-merchant/d-sp/p2pe |
+| Registry — standards | **~119** (v0.42.0 +2 commercial: ISO/IEC 27017:2015 + ISO/IEC 27701:2019) |
 | Registry — jurisdictions | **20** (FDA / EMA / MHRA / WHO-PQ / Health Canada / EU MDR / PMDA / TGA / ANVISA / FAA / EASA / TCCA / NHTSA / UNECE / KBA / TC-MVS / FDA-Food / USDA-FSIS / EFSA / CFIA) |
-| Document templates | **92** (v0.41.0 +5 privacy: PRIVACY-POLICY / DPA / DPIA / ROPA / PERSONAL-DATA-BREACH-NOTIFICATION) |
+| Document templates | **92** (sub-overlays reuse parent-overlay templates; no new templates at v0.42.0) |
 | Example bundles (validated end-to-end) | **8** |
-| Total modules | **76** + general |
-| Spec entries (status: 6 :verified / 81 :tested / 5 :argued / 0 :open) | **92** |
-| Deepest composition tested in CI | **17-module ultimate composite** (chemicals top-rigor + adjacent + IMS + privacy) |
+| Total modules | **92** + general |
+| Spec entries (status: 6 :verified / 82 :tested / 5 :argued / 0 :open) | **93** |
+| Deepest composition tested in CI | **19-module ultimate composite** (chemicals top-rigor + adjacent + IMS + ISO 27001 cloud + PIMS + privacy) |
 
 The compose primitive validates 11-module composites: e.g., `pharma + pharma-sterile + pharma-biologics + atmp + iso-27001 + soc-2 + iso-31000 + iso-22301 + iso-14001 + iso-45001 + iso-50001` — the realistic shape for a clinical-stage biotech doing sterile ATMP manufacturing with full integrated management system + SOC 2 attestation + ISO 31000 risk framework.
 

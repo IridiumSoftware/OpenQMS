@@ -1,0 +1,111 @@
+# Open QMS — CMMC Level 2 sub-overlay
+# -------------------------------------
+# Sub-overlay on the cmmc cross-cutting overlay encoding the
+# **110 security requirements** at CMMC Level 2 per 32 CFR Part 170
+# §170.14(c)(2) aligned with NIST SP 800-171 Rev 2 (and migration to
+# Rev 3 per §170.14(c)(2)(ii) implementation timeline).
+#
+# Level 2 applies to contractors handling Controlled Unclassified
+# Information (CUI). Assessment regime BIFURCATES:
+#  - Self-assessment for non-prioritized acquisitions per §170.16
+#  - C3PAO third-party assessment for prioritized acquisitions
+#    (national-security-critical) per §170.17
+#
+# Standards licensing: PUBLIC (32 CFR Part 170 + NIST SP 800-171).
+
+name: cmmc-level-2
+version: 0.1.0
+
+standards:
+  - "CMMC 2.0"
+  - "NIST SP 800-171"
+
+clauses:
+
+  - id: CMMC-L2-110-NIST-800-171-requirements
+    standard: NIST SP 800-171
+    section: "Chapters 3.1-3.14"
+    summary: |
+      110 security requirements across 14 control families: Access
+      Control (3.1); Awareness + Training (3.2); Audit + Accountability
+      (3.3); Configuration Management (3.4); Identification +
+      Authentication (3.5); Incident Response (3.6); Maintenance
+      (3.7); Media Protection (3.8); Personnel Security (3.9);
+      Physical Protection (3.10); Risk Assessment (3.11); Security
+      Assessment (3.12); System + Communications Protection (3.13);
+      System + Information Integrity (3.14). Each requirement
+      mapped to NIST SP 800-53 Rev 5 controls.
+
+  - id: CMMC-L2-scope-CUI
+    standard: CMMC 2.0
+    section: "32 CFR §170.14(c)(2)"
+    summary: |
+      Scope — Level 2 applies to organisations processing CUI per
+      32 CFR Part 2002 (NARA CUI Registry) under DoD contract.
+      CUI categories include CTI (Controlled Technical Information),
+      export-controlled, PII, financial, legal, etc. CUI marking
+      per DoD 5200.48 Manual.
+
+  - id: CMMC-L2-self-vs-C3PAO
+    standard: CMMC 2.0
+    section: "32 CFR §170.16 + §170.17"
+    summary: |
+      Assessment regime bifurcation — non-prioritized acquisitions
+      self-assess per §170.16 (annual + senior official affirmation);
+      **prioritized acquisitions** (DoD-designated national-security-
+      critical) require **C3PAO** (Certified Third-Party Assessment
+      Organization) assessment per §170.17 every 3 years +
+      self-assessment in interim years. Contract solicitation
+      indicates required assessment type.
+
+  - id: CMMC-L2-POAM-conditional
+    standard: CMMC 2.0
+    section: "32 CFR §170.21"
+    summary: |
+      POAM allowance — Level 2 permits Plans of Action + Milestones
+      for up to 5% of requirements as "Conditional CMMC Status
+      Level 2" valid for 180 days from assessment + 1 close-out
+      assessment for full status. Highest-weight requirements (per
+      §170.24 SPRS scoring weights) NOT POAM-eligible — must be
+      MET at assessment.
+
+  - id: CMMC-L2-SPRS-scoring
+    standard: CMMC 2.0
+    section: "32 CFR §170.24 + DoD Assessment Methodology v1.2.1"
+    summary: |
+      SPRS scoring — starts at 110 (perfect); deductions per
+      unmet requirement weighted 1 / 3 / 5 points. Score ≥ 88
+      typical pre-CMMC contract eligibility floor per DFARS
+      252.204-7019. SPRS submission via PIEE portal; senior
+      official affirmation required. Score visible to DoD
+      contracting officers.
+
+  - id: CMMC-L2-incident-reporting-7012
+    standard: CMMC 2.0
+    section: "DFARS 252.204-7012 + 32 CFR §170.22"
+    summary: |
+      Cyber incident reporting — within 72 hours of discovery to
+      DIBNet (https://dibnet.dod.mil) per DFARS 252.204-7012(c).
+      Includes preservation of affected media for 90 days; malicious
+      software submission to DC3; cooperation with DoD damage
+      assessment. Reporting threshold = "cyber incident" affecting
+      covered contractor information system OR covered defense
+      information OR contractor's ability to perform requirements
+      designated as operationally critical.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (CMMC Level 2 — extends QMS policy with CUI handling + 14-control-family commitment + cyber incident 72h DIBNet reporting + SPRS score maintenance discipline)"
+    addresses:
+      - CMMC-L2-110-NIST-800-171-requirements
+      - CMMC-L2-scope-CUI
+      - CMMC-L2-SPRS-scoring
+      - CMMC-L2-incident-reporting-7012
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "CMMC Level 2 operational SOPs (CUI inventory + per-family control implementation + self-assessment vs C3PAO scoping + POAM management ≤5% non-high-weight + DIBNet incident reporting workflow)"
+    addresses:
+      - CMMC-L2-110-NIST-800-171-requirements
+      - CMMC-L2-self-vs-C3PAO
+      - CMMC-L2-POAM-conditional

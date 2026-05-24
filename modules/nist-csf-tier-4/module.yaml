@@ -1,0 +1,66 @@
+# Open QMS — NIST CSF Implementation Tier 4 (Adaptive) sub-overlay
+
+name: nist-csf-tier-4
+version: 0.1.0
+
+standards:
+  - "NIST CSF 2.0"
+
+clauses:
+
+  - id: NIST-CSF-T4-risk-management-process
+    standard: NIST CSF 2.0
+    section: "§3.4.1 Tier 4 — Risk Management Process"
+    summary: |
+      Organisation adapts cybersecurity practices based on previous
+      and current cybersecurity activities, including lessons learned
+      and predictive indicators. Continuous improvement incorporating
+      advanced cybersecurity technologies + practices. Organisation
+      actively adapts to a changing threat + technology landscape +
+      responds in a timely and effective manner to evolving + sophisticated
+      threats.
+
+  - id: NIST-CSF-T4-integrated-risk-program
+    standard: NIST CSF 2.0
+    section: "§3.4.2 Tier 4 — Integrated Risk Management Program"
+    summary: |
+      Organisation-wide approach to managing cybersecurity risk
+      uses risk-informed policies + processes + procedures to address
+      potential cybersecurity events. Relationship between cybersecurity
+      risk + organisational objectives + mission clearly understood +
+      considered when making decisions. Cybersecurity risk
+      management is part of organisational culture; evolves from
+      awareness of previous activities + continuous awareness of
+      activities on their systems + networks.
+
+  - id: NIST-CSF-T4-external-participation
+    standard: NIST CSF 2.0
+    section: "§3.4.3 Tier 4 — External Participation"
+    summary: |
+      Organisation understands its role + dependencies + dependents
+      in larger ecosystem AND contributes to community's broader
+      understanding of risks. Receives + generates + shares
+      real-time information internally + externally to enable
+      continuous, accurate adjustments to cybersecurity. Strong
+      bidirectional collaboration with external parties.
+
+  - id: NIST-CSF-T4-typical-adopters
+    standard: NIST CSF 2.0
+    section: "Profile usage"
+    summary: |
+      Typical Tier 4 adopters: large financial institutions; cloud
+      hyperscalers; cybersecurity vendors themselves; intelligence
+      community + DoD elements at the high end. Tier 4 is rare;
+      most organisations targeting Tier 3 — Tier 4 is a stretch
+      goal requiring continuous-monitoring + automated-response
+      maturity beyond most adopters' resource envelope.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (NIST CSF Tier 4 Adaptive — extends QMS policy with continuous-adaptation commitment + bidirectional ecosystem real-time information sharing + culture-of-risk-management acknowledgement)"
+    addresses:
+      - NIST-CSF-T4-risk-management-process
+      - NIST-CSF-T4-integrated-risk-program
+      - NIST-CSF-T4-external-participation
+      - NIST-CSF-T4-typical-adopters

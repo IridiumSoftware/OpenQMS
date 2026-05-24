@@ -1259,3 +1259,26 @@ standards:
       - "California Consumer Privacy Act"
       - "California Privacy Rights Act"
       - "Cal. Civ. Code 1798"
+
+  - id: "ISO/IEC 27017:2015"
+    name: "Information technology — Security techniques — Code of practice for information security controls based on ISO/IEC 27002 for cloud services"
+    publisher: International Organization for Standardization
+    edition: "ISO/IEC 27017:2015 (under revision)"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 27017"
+      - "27017"
+      - "ISO/IEC 27017"
+
+  - id: "ISO/IEC 27701:2019"
+    name: "Security techniques — Extension to ISO/IEC 27001 and ISO/IEC 27002 for privacy information management — Requirements and guidelines"
+    publisher: International Organization for Standardization
+    edition: "ISO/IEC 27701:2019 (PIMS — Privacy Information Management System)"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 27701"
+      - "27701"
+      - "PIMS"
+      - "ISO/IEC 27701"

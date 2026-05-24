@@ -1,0 +1,97 @@
+# Open QMS — ISO/IEC 27701:2019 PIMS sub-overlay
+# ------------------------------------------------
+# Sub-overlay on the iso-27001 cross-cutting overlay encoding the
+# Privacy Information Management System (PIMS) extension per
+# ISO/IEC 27701:2019.
+#
+# 27701 extends ISO/IEC 27001 (ISMS) + ISO/IEC 27002 (controls
+# code-of-practice) to cover privacy. Adds requirements for PII
+# controllers + PII processors. Internationally recognized
+# certification analog to a privacy management system.
+#
+# Strong complement to the `privacy` cross-cutting overlay
+# (GDPR + CCPA) — the privacy overlay encodes legal-framework
+# obligations; 27701 encodes the management-system to operationalise
+# them.
+#
+# Standards licensing: COMMERCIAL (ISO).
+
+name: iso-27001-privacy
+version: 0.1.0
+
+standards:
+  - "ISO/IEC 27701:2019"
+  - "ISO/IEC 27001:2022"
+
+clauses:
+
+  - id: ISO27701-PIMS-scope-extension
+    standard: ISO/IEC 27701:2019
+    section: "§5 + §6"
+    summary: |
+      PIMS scope — Privacy Information Management System extends
+      ISMS to cover Personally Identifiable Information (PII)
+      processing. Scope must explicitly include PII processing
+      operations + identify role(s) (controller / processor / both).
+      Annex A (controllers) + Annex B (processors) provide controls
+      mapping to ISO/IEC 27002 with privacy-specific guidance.
+
+  - id: ISO27701-Annex-A-controllers
+    standard: ISO/IEC 27701:2019
+    section: "Annex A"
+    summary: |
+      PII controller controls — 31 controls organised across legal
+      basis (A.7.2), purpose (A.7.2.2), consent (A.7.2.3-4),
+      records of PII processing (A.7.2.8), DPIA (A.7.2.5), contract
+      with PII processor (A.7.2.6), joint controller (A.7.2.7),
+      subject rights (A.7.3), privacy by design + default (A.7.4),
+      sharing/transfer (A.7.5). Maps closely to GDPR controller
+      obligations + CCPA business obligations.
+
+  - id: ISO27701-Annex-B-processors
+    standard: ISO/IEC 27701:2019
+    section: "Annex B"
+    summary: |
+      PII processor controls — 18 controls organised across
+      customer-agreement (B.8.2.1), customer obligations (B.8.2.2),
+      records of processor PII processing (B.8.2.6), sub-processors
+      (B.8.5.6-7), PII return + erasure (B.8.4.3). Maps closely to
+      GDPR Article 28 processor obligations + CCPA §1798.140
+      service-provider classification.
+
+  - id: ISO27701-certification-extension
+    standard: ISO/IEC 27701:2019
+    section: "§5.1 + §5.2"
+    summary: |
+      Certification — PIMS certification is an EXTENSION to ISO/IEC
+      27001 certification, NOT a standalone. Organisation must
+      hold valid 27001 cert before pursuing 27701. Combined audit
+      typical; ISMS scope expanded to include PII processing as
+      PIMS scope.
+
+  - id: ISO27701-GDPR-CCPA-mapping
+    standard: ISO/IEC 27701:2019
+    section: "Annex D + Annex E"
+    summary: |
+      Mapping to GDPR + ISO/IEC 29100 — Annex D provides GDPR
+      Article-by-Article mapping to 27701 clauses + Annex A/B
+      controls. Annex E maps to ISO/IEC 29100 privacy framework.
+      Useful for adopters demonstrating GDPR compliance via 27701
+      certification + for adopters bridging GDPR + CCPA + other
+      privacy regimes through a single ISMS+PIMS.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (ISO 27701 PIMS — extends QMS policy with PIMS scope declaration + controller/processor role identification + GDPR/CCPA compliance-via-certification commitment)"
+    addresses:
+      - ISO27701-PIMS-scope-extension
+      - ISO27701-certification-extension
+      - ISO27701-GDPR-CCPA-mapping
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "ISO 27701 PIMS operational SOPs (PII inventory + Annex A controller controls implementation + Annex B processor controls implementation + ISMS-PIMS combined audit preparation + 27701-to-GDPR-to-CCPA mapping maintenance)"
+    addresses:
+      - ISO27701-Annex-A-controllers
+      - ISO27701-Annex-B-processors
+      - ISO27701-GDPR-CCPA-mapping
