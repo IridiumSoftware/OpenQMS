@@ -483,3 +483,80 @@ standards:
     aliases:
       - "ISO 50001"
       - "EnMS"
+
+  # === Pharmaceutical GMP + quality-system standards ===
+
+  - id: "ICH Q7"
+    name: "Good Manufacturing Practice Guide for Active Pharmaceutical Ingredients"
+    publisher: ICH (International Council for Harmonisation)
+    edition: "Step 4 (2000); adopted by FDA / EMA / PMDA / MHRA / Health Canada"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "Q7"
+      - "API GMP"
+      - "ICH-Q7"
+
+  - id: "21 CFR 210"
+    name: "Current Good Manufacturing Practice in Manufacturing, Processing, Packing, or Holding of Drugs; General"
+    publisher: U.S. Food and Drug Administration
+    edition: "21 CFR Part 210"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 210"
+      - "cGMP general"
+
+  - id: "21 CFR 211"
+    name: "Current Good Manufacturing Practice for Finished Pharmaceuticals"
+    publisher: U.S. Food and Drug Administration
+    edition: "21 CFR Part 211"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 211"
+      - "cGMP finished pharmaceuticals"
+
+  - id: "EudraLex Vol. 4"
+    name: "EU Guidelines for Good Manufacturing Practice for Medicinal Products for Human and Veterinary Use"
+    publisher: European Commission
+    edition: "EudraLex Volume 4 — Parts I + II + III + Annexes"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "EU GMP"
+      - "EudraLex"
+      - "EU GMP Vol 4"
+
+  - id: "PIC/S Annex 1"
+    name: "PIC/S Guide to GMP for Medicinal Products — Annex 1: Manufacture of Sterile Medicinal Products"
+    publisher: Pharmaceutical Inspection Co-operation Scheme (PIC/S)
+    edition: "August 2022 (effective 25 August 2023)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "Annex 1"
+      - "PIC/S A1"
+      - "Sterile GMP"
+
+  - id: "ICH Q9"
+    name: "Quality Risk Management"
+    publisher: ICH
+    edition: "Q9(R1) Step 4 (2023)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "Q9"
+      - "QRM"
+      - "ICH-Q9"
+
+  - id: "ICH Q10"
+    name: "Pharmaceutical Quality System"
+    publisher: ICH
+    edition: "Step 4 (2008)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "Q10"
+      - "PQS"
+      - "ICH-Q10"

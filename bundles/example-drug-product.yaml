@@ -1,0 +1,37 @@
+# Open QMS — example pharmaceutical drug-product bundle definition
+# -----------------------------------------------------------------
+# Demonstrates the pharma vertical end-to-end against an example
+# sterile drug-product (a small-volume parenteral / SVP injection)
+# manufactured at a US + EU dual-licensed site. Composes pharma +
+# iso-27001 (GxP IT systems posture) + iso-14001 (solvent handling
+# + hazardous waste) + iso-45001 (chemical + biological + shift-work
+# psychosocial hazards) + iso-50001 (sterile manufacturing HVAC +
+# cleanroom energy intensity).
+
+name: example-drug-product
+product: ExampleSterileInjectable
+jurisdictions:
+  - FDA
+  - EMA
+  - MHRA
+
+standards:
+  - "ICH Q7"
+  - "ICH Q9"
+  - "ICH Q10"
+  - "21 CFR 210"
+  - "21 CFR 211"
+  - "21 CFR Part 11"
+  - "EudraLex Vol. 4"
+  - "PIC/S Annex 1"
+  - "ISO/IEC 27001:2022"
+  - "ISO 14001:2015"
+  - "ISO 45001:2018"
+  - "ISO 50001:2018"
+
+modules:
+  - pharma
+  - iso-27001
+  - iso-14001
+  - iso-45001
+  - iso-50001

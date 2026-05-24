@@ -1,0 +1,426 @@
+# Open QMS — pharmaceutical GMP vertical module
+# ----------------------------------------------
+# Vertical module for pharmaceutical manufacturing — both Active
+# Pharmaceutical Ingredient (API; drug substance) and Drug Product
+# (DP; finished pharmaceutical form). Covers small-molecule + large-
+# molecule (biologics) + sterile + non-sterile manufacturing under
+# FDA + EMA + MHRA + WHO PQ regulatory frameworks.
+#
+# Standards covered:
+#  - QMS substrate: ICH Q10 (Pharmaceutical Quality System) + ICH Q9
+#    (Quality Risk Management) — the harmonized PQS framework adopted
+#    globally.
+#  - API GMP: ICH Q7 (Good Manufacturing Practice Guide for Active
+#    Pharmaceutical Ingredients) — adopted by FDA / EMA / PMDA / MHRA /
+#    Health Canada.
+#  - US cGMP: 21 CFR 210 (general cGMP for drugs) + 21 CFR 211 (cGMP
+#    for finished pharmaceuticals).
+#  - EU GMP: EudraLex Vol. 4 (EU Guidelines for GMP) — Parts I, II, III,
+#    and Annexes (the harmonized EU GMP framework).
+#  - Sterile manufacturing: PIC/S Annex 1 (August 2022; effective
+#    August 2023) — globally most stringent sterile manufacturing
+#    standard.
+#
+# Out of scope (deferred to future modules + class overlays):
+#  - Cell + gene therapy specifics — ATMPs per EU GMP Annex 2A + 2B;
+#    FDA 21 CFR 1271 + Q5A(R2). Forward overlay.
+#  - Radiopharmaceuticals — EU GMP Annex 3; USP <823>. Forward overlay.
+#  - Veterinary medicines — EudraLex Vol. 4 also covers but with
+#    veterinary-specific guidance. Forward overlay.
+#  - Medical-device combination products — use medical-devices vertical
+#    composed with pharma vertical (combination-product pathway).
+#  - Investigational medicinal products (IMPs) — EU GMP Annex 13.
+#    Forward overlay.
+#
+# Composes cleanly with:
+#  - iso-27001 (information security — GxP-relevant IT systems require
+#    elevated IS posture).
+#  - regulated-ai (when AI is used in manufacturing control + decision-
+#    support; cross-references ICH Q9 risk-management framework).
+#  - iso-14001 (environmental — pharma manufacturing has significant
+#    aspects: solvent handling, hazardous waste, water use).
+#  - iso-45001 (OH&S — chemical + biological + ergonomic + radiation
+#    hazards prominent in pharma operations).
+#  - iso-50001 (energy — sterile manufacturing especially energy-
+#    intensive due to HVAC + cleanroom requirements).
+#  - 21 CFR Part 11 (covered in medical-devices module; reusable here
+#    for electronic-records + electronic-signatures discipline).
+#
+# Standards licensing: ICH Q7, Q9, Q10 are publicly available from
+# ich.org. 21 CFR 210/211 are public US regulations. EudraLex Vol. 4 +
+# PIC/S Annex 1 are publicly available from EU Commission + PIC/S
+# respectively. This is the first Open QMS vertical where most
+# regulatory references are public-license — a meaningful adopter cost
+# reduction vs. medical-devices / aerospace / automotive verticals
+# where most standards are commercial.
+
+name: pharma
+version: 0.1.0
+
+standards:
+  - ICH Q7
+  - ICH Q9
+  - ICH Q10
+  - 21 CFR 210
+  - 21 CFR 211
+  - EudraLex Vol. 4
+  - PIC/S Annex 1
+  - 21 CFR Part 11
+
+clauses:
+
+  # === Pharmaceutical Quality System (ICH Q10) ===
+
+  - id: ICHQ10-3.2.1
+    standard: ICH Q10
+    section: "§3.2.1"
+    summary: |
+      Management responsibility for the PQS — top management commits
+      to + provides resources for the Pharmaceutical Quality System;
+      establishes quality policy + objectives; reviews PQS
+      effectiveness through periodic management review.
+
+  - id: ICHQ10-3.2.2
+    standard: ICH Q10
+    section: "§3.2.2"
+    summary: |
+      Process performance + product quality monitoring system,
+      corrective action + preventive action system, and change
+      management system as integrated elements of the PQS. Operates
+      across the entire product lifecycle (pharmaceutical
+      development through technology transfer + commercial
+      manufacturing + product discontinuation).
+
+  - id: ICHQ10-3.2.4
+    standard: ICH Q10
+    section: "§3.2.4"
+    summary: |
+      Process performance + product quality monitoring — Stage 3
+      Continued Process Verification per FDA Process Validation
+      Guidance 2011. Statistical control of critical process
+      parameters + critical quality attributes from routine
+      manufacturing batches.
+
+  # === Quality Risk Management (ICH Q9) ===
+
+  - id: ICHQ9-risk-framework
+    standard: ICH Q9
+    section: "all"
+    summary: |
+      Quality Risk Management framework — systematic process for
+      assessment + control + communication + review of quality risks
+      to the medicinal product (and ultimately to the patient).
+      Methods include FMEA, FMECA, FTA, HAZOP, HACCP, PHA. Applied
+      across PQS elements: validation, change control, deviation
+      categorization, batch disposition, supplier qualification,
+      facility design, computer-system validation.
+
+  # === API GMP (ICH Q7) ===
+
+  - id: ICHQ7-quality-management
+    standard: ICH Q7
+    section: "§2"
+    summary: |
+      Quality management for API manufacturing — independent QC unit,
+      written procedures, internal audit program, product quality
+      review.
+
+  - id: ICHQ7-production
+    standard: ICH Q7
+    section: "§8"
+    summary: |
+      Production + in-process controls for APIs — written production
+      instructions, in-process controls, sampling, identification of
+      reprocessed + reworked materials.
+
+  - id: ICHQ7-validation
+    standard: ICH Q7
+    section: "§12"
+    summary: |
+      Validation for API manufacturing — validation policy,
+      qualification of equipment + facilities + utilities, validation
+      of analytical methods, cleaning validation, process
+      validation, periodic revalidation.
+
+  # === US cGMP (21 CFR 210 + 211) ===
+
+  - id: CFR211-Subpart-B-Organization
+    standard: 21 CFR 211
+    section: "Subpart B (§§211.22–211.34)"
+    summary: |
+      Organization + personnel — Quality Control Unit (§211.22)
+      independent of manufacturing with authority to approve / reject
+      components + drug products + materials / procedures + batch
+      records + change controls + production / control records.
+      Qualifications + training of personnel (§211.25). Adequate
+      personnel for production (§211.34).
+
+  - id: CFR211-Subpart-D-Equipment
+    standard: 21 CFR 211
+    section: "Subpart D (§§211.63–211.72)"
+    summary: |
+      Equipment — equipment design, size, location (§211.63);
+      construction (§211.65); cleaning + maintenance (§211.67);
+      automatic + mechanical + electronic equipment (§211.68 —
+      including 21 CFR Part 11 cross-reference); filters (§211.72).
+
+  - id: CFR211-Subpart-E-Components
+    standard: 21 CFR 211
+    section: "Subpart E (§§211.80–211.94)"
+    summary: |
+      Control of components + drug product containers + closures —
+      receipt + identification + storage + handling + sampling +
+      testing + approval / rejection of components. Approved-supplier
+      management. Container + closure system testing.
+
+  - id: CFR211-Subpart-F-Production
+    standard: 21 CFR 211
+    section: "Subpart F (§§211.100–211.115)"
+    summary: |
+      Production + process controls — written procedures + deviations
+      (§211.100); charge-in of components (§211.101); calculation of
+      yield (§211.103); equipment identification (§211.105); sampling
+      + testing of in-process materials + drug products (§211.110);
+      time limitations on production (§211.111); microbial
+      contamination control (§211.113); reprocessing (§211.115).
+
+  - id: CFR211-Subpart-G-Packaging-Labeling
+    standard: 21 CFR 211
+    section: "Subpart G (§§211.122–211.137)"
+    summary: |
+      Packaging + labeling control — materials examination + usage
+      criteria; labeling issuance; packaging + labeling operations;
+      tamper-evident packaging for OTC; drug product inspection;
+      expiration dating.
+
+  - id: CFR211-Subpart-I-Laboratory
+    standard: 21 CFR 211
+    section: "Subpart I (§§211.160–211.176)"
+    summary: |
+      Laboratory controls — general requirements (§211.160); testing
+      + release for distribution (§211.165); stability testing
+      (§211.166); special testing requirements (§211.167); reserve
+      samples (§211.170); laboratory animals (§211.173); penicillin
+      contamination (§211.176).
+
+  - id: CFR211-Subpart-J-Records
+    standard: 21 CFR 211
+    section: "Subpart J (§§211.180–211.198)"
+    summary: |
+      Records + reports — general requirements (§211.180 — including
+      ANNUAL PRODUCT QUALITY REVIEW per §211.180(e)); equipment
+      cleaning + use log (§211.182); component + drug product
+      container records (§211.184); master production + control
+      records (§211.186); batch production + control records
+      (§211.188); production record review (§211.192); laboratory
+      records (§211.194); distribution records (§211.196); complaint
+      files (§211.198).
+
+  # === EU GMP (EudraLex Vol. 4) ===
+
+  - id: EUGMP-Ch1-PQS
+    standard: EudraLex Vol. 4
+    section: "Part I Chapter 1"
+    summary: |
+      Pharmaceutical Quality System (ICH Q10 adopted into EU GMP) —
+      §1.4(xiv) explicitly covers Change Management + Deviation
+      handling. §1.10 mandates Annual Product Quality Review
+      (Product Quality Review / PQR).
+
+  - id: EUGMP-Ch2-Personnel
+    standard: EudraLex Vol. 4
+    section: "Part I Chapter 2"
+    summary: |
+      Personnel — qualifications, training, organizational structure,
+      key personnel including Production Manager + QC Manager +
+      QUALIFIED PERSON (QP) (§§2.5–2.7). QP responsibilities per
+      Article 51 of Directive 2001/83/EC.
+
+  - id: EUGMP-Ch6-QC
+    standard: EudraLex Vol. 4
+    section: "Part I Chapter 6"
+    summary: |
+      Quality Control — laboratory practice, reference samples,
+      testing of materials + intermediates + finished products,
+      ongoing stability programme. §6.34 specifically covers
+      Out-of-Specification investigation (alongside FDA 2006 OOS
+      Guidance).
+
+  - id: EUGMP-Annex15-Qualification
+    standard: EudraLex Vol. 4
+    section: "Annex 15"
+    summary: |
+      Qualification + Validation — defines IQ / OQ / PQ + process
+      validation (Stage 1 design + Stage 2 PQ typically 3 consecutive
+      batches + Stage 3 ongoing) + cleaning validation + analytical
+      method validation requirements.
+
+  - id: EUGMP-Annex16-QP-Release
+    standard: EudraLex Vol. 4
+    section: "Annex 16"
+    summary: |
+      Certification by a Qualified Person + Batch Release — Qualified
+      Person personally certifies each batch of medicinal product
+      meets requirements before release for sale or distribution to
+      EU market. QP certification is in addition to (not instead of)
+      QA release per ICH Q10.
+
+  # === Sterile manufacturing (PIC/S Annex 1) ===
+
+  - id: PICS-A1-contamination-control-strategy
+    standard: PIC/S Annex 1
+    section: "§2 + §8"
+    summary: |
+      Contamination Control Strategy (CCS) — site-level documented
+      strategy describing all controls in place to prevent microbial,
+      particulate, and pyrogen contamination of sterile products.
+      Required by 2022 revision of Annex 1; CCS spans facility design,
+      personnel, materials, equipment, processes, environmental
+      monitoring, and product-protection technologies (RABS, isolators,
+      single-use systems).
+
+  - id: PICS-A1-aseptic-process-simulation
+    standard: PIC/S Annex 1
+    section: "§9.40–§9.50"
+    summary: |
+      Aseptic Process Simulation (APS) — media fill validation of
+      aseptic operations. Initial qualification + periodic
+      re-qualification (typically every 6 months per shift per line);
+      acceptance criterion of zero contaminated units (with specified
+      investigation triggers for any positive result).
+
+  - id: PICS-A1-environmental-monitoring
+    standard: PIC/S Annex 1
+    section: "§9 EM + §9.27 cleanroom classification"
+    summary: |
+      Environmental monitoring + cleanroom classification — Grade A
+      (most stringent — point of fill / open product exposure),
+      Grade B (background for aseptic operations), Grade C, Grade D.
+      Continuous viable + non-viable particle monitoring in Grade A;
+      defined-frequency monitoring in lower grades. Alert + action
+      limits with trend analysis.
+
+  # === 21 CFR Part 11 (electronic records + signatures) ===
+
+  - id: CFR-Part-11-applicability
+    standard: 21 CFR Part 11
+    section: "Subpart A + Subpart B + Subpart C"
+    summary: |
+      Electronic records + electronic signatures requirements
+      applicable to pharma manufacturing computerized systems (LIMS,
+      MES, ERP, electronic batch records, electronic logbooks,
+      analytical instruments). Includes validation, audit trails,
+      record retention, copies, signatures, and signature meaning
+      (Open QMS handles §11.50 via commit-trailer convention OQ-060
+      for github-native scope).
+
+templates:
+
+  # === Pharma-specific bindings ===
+
+  - path: templates/product-pharma/batch-record/MASTER-BATCH-RECORD-TEMPLATE.md
+    name: Master Batch Record (21 CFR 211.186 + EU GMP Part I Ch. 4)
+    addresses:
+      - CFR211-Subpart-F-Production
+      - CFR211-Subpart-J-Records
+      - ICHQ7-production
+      - EUGMP-Ch1-PQS
+
+  - path: templates/product-pharma/validation/VALIDATION-MASTER-PLAN-TEMPLATE.md
+    name: Validation Master Plan (ICH Q9 + Q10 + EU GMP Annex 15 + FDA Process Validation 2011)
+    addresses:
+      - ICHQ10-3.2.4
+      - ICHQ9-risk-framework
+      - ICHQ7-validation
+      - EUGMP-Annex15-Qualification
+
+  - path: templates/product-pharma/deviation/DEVIATION-TEMPLATE.md
+    name: Deviation Report (21 CFR 211.100 + 211.192 + EU GMP Ch. 1 §1.4(xiv) + ICH Q10 §3.2.2.2)
+    addresses:
+      - ICHQ10-3.2.2
+
+  - path: templates/product-pharma/change-control/CHANGE-CONTROL-TEMPLATE.md
+    name: Change Control (ICH Q10 §3.2.3 + EU GMP Ch. 1 §1.4(xiv) + 21 CFR 211.100)
+    addresses:
+      - ICHQ10-3.2.2
+
+  - path: templates/product-pharma/oos/OOS-INVESTIGATION-TEMPLATE.md
+    name: Out-of-Specification Investigation (FDA OOS Guidance 2006 + 21 CFR 211.192 + EU GMP Ch. 6 §6.34)
+    addresses:
+      - CFR211-Subpart-I-Laboratory
+      - EUGMP-Ch6-QC
+
+  - path: templates/product-pharma/apqr/APQR-TEMPLATE.md
+    name: Annual Product Quality Review (21 CFR 211.180(e) + EU GMP Ch. 1 §1.10)
+    addresses:
+      - ICHQ10-3.2.1
+      - EUGMP-Ch1-PQS
+
+  # === Cross-cutting template bindings ===
+
+  - path: templates/qms-policy/quality-policy.md
+    name: Quality policy (pharma — extends QMS policy with PQS commitments per ICH Q10)
+    addresses:
+      - ICHQ10-3.2.1
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: SOPs covering API production / equipment / components / packaging / labeling / lab controls / Part 11 (multiple 21 CFR 211 + EU GMP + ICH Q7 cross-references)
+    addresses:
+      - CFR211-Subpart-B-Organization
+      - CFR211-Subpart-D-Equipment
+      - CFR211-Subpart-E-Components
+      - CFR211-Subpart-G-Packaging-Labeling
+      - EUGMP-Ch2-Personnel
+      - ICHQ7-quality-management
+      - CFR-Part-11-applicability
+
+  - path: templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md
+    name: Internal audit (ICH Q7 §2 + Part I Ch. 9 EU GMP self-inspection)
+    addresses:
+      - ICHQ7-quality-management
+
+  - path: templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md
+    name: Management review (ICH Q10 §3.2.1 management responsibility — periodic PQS review)
+    addresses:
+      - ICHQ10-3.2.1
+
+  - path: templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md
+    name: Approved Supplier List (component + container + closure supplier qualification per 21 CFR 211.84 + EU GMP Ch. 5)
+    addresses:
+      - CFR211-Subpart-E-Components
+
+  - path: templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md
+    name: Supplier evaluation (component + API supplier qualification + re-qualification)
+    addresses:
+      - CFR211-Subpart-E-Components
+
+  - path: .github/ISSUE_TEMPLATE/capa.yml
+    name: CAPA — pharma CAPA (ICH Q10 §3.2.2.2 alongside Deviation + OOS workflows)
+    addresses:
+      - ICHQ10-3.2.2
+
+  - path: .github/ISSUE_TEMPLATE/nonconformance.yml
+    name: Nonconformance — pharma material / finished-product non-conformance (distinct from Deviation which covers procedural departures)
+    addresses:
+      - CFR211-Subpart-E-Components
+
+  - path: templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md
+    name: Quality Risk Management file (ICH Q9 framework — applied across PQS elements)
+    addresses:
+      - ICHQ9-risk-framework
+
+  # === Sterile + APS bindings (PIC/S Annex 1) ===
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Contamination Control Strategy + APS + EM SOPs (PIC/S Annex 1 — applicable where sterile manufacturing in scope)
+    addresses:
+      - PICS-A1-contamination-control-strategy
+      - PICS-A1-aseptic-process-simulation
+      - PICS-A1-environmental-monitoring
+
+  # === QP batch release (EU) ===
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: QP batch release SOP (EU GMP Annex 16 — applicable where EU market release in scope)
+    addresses:
+      - EUGMP-Annex16-QP-Release

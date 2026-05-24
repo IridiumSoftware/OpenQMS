@@ -20,6 +20,11 @@ jurisdictions:
       - "21 CFR 820"
       - "21 CFR Part 11"
       - "ISO 13485:2016"
+      - "21 CFR 210"
+      - "21 CFR 211"
+      - "ICH Q7"
+      - "ICH Q9"
+      - "ICH Q10"
 
   - id: Health Canada
     name: Health Canada — Medical Devices Directorate
@@ -137,3 +142,35 @@ jurisdictions:
       - "ISO 9001:2015"
       - "ISO 26262:2018"
       - "ISO/SAE 21434:2021"
+
+  # === Pharmaceutical jurisdictions ===
+
+  - id: EMA
+    name: European Medicines Agency
+    region: European Union
+    applicable_standards:
+      - "EudraLex Vol. 4"
+      - "PIC/S Annex 1"
+      - "ICH Q7"
+      - "ICH Q9"
+      - "ICH Q10"
+
+  - id: MHRA
+    name: Medicines and Healthcare products Regulatory Agency
+    region: United Kingdom
+    applicable_standards:
+      - "EudraLex Vol. 4"
+      - "PIC/S Annex 1"
+      - "ICH Q7"
+      - "ICH Q9"
+      - "ICH Q10"
+
+  - id: WHO-PQ
+    name: World Health Organization Prequalification Programme
+    region: International (WHO member states procurement)
+    applicable_standards:
+      - "EudraLex Vol. 4"
+      - "PIC/S Annex 1"
+      - "ICH Q7"
+      - "ICH Q9"
+      - "ICH Q10"
