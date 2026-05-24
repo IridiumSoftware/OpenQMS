@@ -1,0 +1,82 @@
+# Open QMS — food-usda-fsis class overlay
+# ----------------------------------------
+# Composes with the food-safety vertical to add USDA-FSIS-specific
+# requirements for meat + poultry + processed-egg-products
+# manufacturers. The FSIS regulatory framework (9 CFR 416 sanitation
+# + 9 CFR 417 HACCP) is distinct from FDA FSMA Preventive Controls
+# (21 CFR 117) — different agency, different inspection model
+# (FSIS has continuous on-site inspectors), different recall
+# coordination (9 CFR 418).
+
+name: food-usda-fsis-overlay
+version: 0.1.0
+
+standards:
+  - 9 CFR 416
+  - 9 CFR 417
+
+clauses:
+
+  - id: FSIS-416-sanitation-SSOPs
+    standard: 9 CFR 416
+    section: "§416.11-§416.17"
+    summary: |
+      Sanitation Standard Operating Procedures (SSOPs) — written
+      pre-operational + operational sanitation procedures. Daily
+      records signed + dated. SSOP failures documented + corrected.
+      Distinct from HACCP — sanitation is the foundation upon which
+      HACCP plans operate.
+
+  - id: FSIS-416-establishment-grounds
+    standard: 9 CFR 416
+    section: "§416.2-§416.5"
+    summary: |
+      Establishment + grounds + facilities — grounds + pest control,
+      construction (durable + maintainable surfaces), lighting +
+      ventilation + plumbing, water + ice + steam suitable for
+      contact with edible product.
+
+  - id: FSIS-417-HACCP-plan
+    standard: 9 CFR 417
+    section: "§417.2-§417.4"
+    summary: |
+      HACCP plan — hazard analysis (biological + chemical + physical);
+      CCPs determined; critical limits established + scientifically
+      supported; monitoring procedures + records + corrective actions
+      + verification activities (calibration + targeted sampling +
+      direct observation + records review). HACCP plan must be
+      reassessed annually + on triggering event.
+
+  - id: FSIS-417-ongoing-verification
+    standard: 9 CFR 417
+    section: "§417.4(a)"
+    summary: |
+      Ongoing verification activities — direct observation +
+      records review by establishment employee (different from
+      person performing the activity) at least daily for CCPs.
+
+  - id: FSIS-inspector-presence
+    standard: 9 CFR 416
+    section: "(operational — Federal Meat Inspection Act + Poultry Products Inspection Act)"
+    summary: |
+      Continuous inspector presence — unlike FDA Preventive
+      Controls (audit-based), FSIS has continuous on-site inspectors
+      (Public Health Veterinarians + Consumer Safety Inspectors)
+      with authority to suspend operations for non-compliance.
+      Establishment must maintain inspector access + records access
+      + provide office space.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: SSOPs + establishment sanitation + HACCP daily verification + FSIS inspector liaison (USDA-FSIS specific)
+    addresses:
+      - FSIS-416-sanitation-SSOPs
+      - FSIS-416-establishment-grounds
+      - FSIS-417-ongoing-verification
+      - FSIS-inspector-presence
+
+  - path: templates/product-food/haccp/HACCP-PLAN-TEMPLATE.md
+    name: HACCP Plan — FSIS variant per 9 CFR 417 (annual reassessment + daily ongoing verification)
+    addresses:
+      - FSIS-417-HACCP-plan

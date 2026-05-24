@@ -412,6 +412,33 @@ A spec entry may have status `:proved` only if evidence type is `lean-proved`, `
 - **Claim:** Open QMS ships a regulated-AI cross-cutting overlay at `modules/regulated-ai/module.yaml` (version 0.1.0). Composes with ANY vertical regulatory module (medical-devices today; future fintech / automotive / employment / education AI verticals later). 13 clauses: NIST AI RMF 1.0 four functions (Govern, Map, Measure, Manage); EU AI Act Chapter III §2 high-risk AI requirements (Articles 9-15); ISO/IEC 42001:2023 AIMS (consolidated); ISO/IEC 23894:2023 AI risk management guidance. Ships 2 new templates: AI System Card / Model Card (Mitchell et al. 2019 extended with EU AI Act + IMDRF SaMD) and AI Impact Assessment (Article 9 + Article 14 + Article 27 + NIST AI RMF Govern/Measure/Manage). Existing templates gain AI bindings: RMF (ISO 23894), quality-policy (ISO 42001), SAD (Article 15), STP (Article 10), TFI (Article 12).
 - **Notes:** Shipped at v0.12.0 (commit `3e231d5`). Registry addition: ISO/IEC 23894:2023 (other AI standards already registered as roadmap entries at v0.5.0). Overlay's clauses primarily target EU AI Act *high-risk* AI scope (Annex III); limited-risk and minimal-risk scope a subset.
 
+### OQ-101 — Pharma class overlay batch (5)
+
+- **Tier:** Module
+- **Evidence type:** example-tested
+- **Status:** :tested
+- **Depends_on:** OQ-011, OQ-092
+- **Claim:** 5 new pharma class overlays at `modules/pharma-{sterile,biologics,imp,generic-biosimilar,clinical-stage}/`. Sterile (PIC/S Annex 1 2022 enforced rigor — CCS / isolator+RABS / APS / EM Grade A / personnel quals / line clearance); Biologics (ICH Q5A+B+D+E + Q6B + Q11 + EU GMP Annex 2B — cell-bank discipline + viral safety + comparability + biotech specs); IMP (EU GMP Annex 13 + 21 CFR 312 — sponsor model + blinding + IMP-QP + Phase 1 enforcement discretion + protocol amendments); Generic+Biosimilar (ANDA + 351(k) — bioequivalence + Paragraph IV + interchangeability + post-approval reporting); Clinical-Stage (Phase 1-3 staged-expectations + evolving specs + supply forecasting + pre-commercial readiness). All standards PUBLIC license. 6-pharma-module mega composite validates.
+- **Notes:** Shipped at v0.28.0. Registry +9 standards (ICH Q5B/Q5D/Q5E/Q6B/Q11 + EU GMP Annex 13 + 21 CFR 312 + 21 CFR 314 + 42 USC 262(k)).
+
+### OQ-102 — Food-safety class overlay batch (5)
+
+- **Tier:** Module
+- **Evidence type:** example-tested
+- **Status:** :tested
+- **Depends_on:** OQ-011, OQ-093
+- **Claim:** 5 new food-safety class overlays at `modules/food-{usda-fsis,animal,produce-safety,intentional-adulteration,fsvp}/`. USDA-FSIS (9 CFR 416 sanitation + 9 CFR 417 HACCP — continuous inspector model distinct from FDA); Animal Food (21 CFR 507 FSMA Animal Food Preventive Controls); Produce Safety (21 CFR 112 farm-stage); Intentional Adulteration (21 CFR 121 IA Rule — Food Defense Plan + FDQI); FSVP (21 CFR 1 Subpart L Foreign Supplier Verification — per-food per-supplier evaluation + SAHCODHA verification activities). All standards PUBLIC license. 6-food-module mega composite validates.
+- **Notes:** Shipped at v0.29.0. Registry +6 standards (9 CFR 416/417 + 21 CFR 507/112/121 + 21 CFR 1 Subpart L).
+
+### OQ-103 — Aerospace + automotive extension + IVDR class overlay batch (6)
+
+- **Tier:** Module
+- **Evidence type:** example-tested
+- **Status:** :tested
+- **Depends_on:** OQ-011, OQ-059, OQ-072, OQ-040
+- **Claim:** 6 new class overlays at `modules/{aerospace-defense,aerospace-commercial-space,automotive-defense,automotive-motorcycle,ivdr-class-c,ivdr-class-d}/`. Aerospace-defense (MIL-STD-882E + ITAR + EAR — DoD acquisition, deemed-export controls); Aerospace-commercial-space (14 CFR Part 450 — FAA-AST licensing, EC ≤ 1×10⁻⁴, FTS, financial responsibility); Automotive-defense (MIL-STD-882E + USML Cat VII + EAR Cat 9/0 + CMMC readiness); Automotive-motorcycle (ISO 26262 Part 12 — MSIL instead of ASIL, rider-specific controllability); IVDR-Class-C (Annex VIII Rule 3 — NB conformity + clinical evidence + biennial PSUR); IVDR-Class-D (Annex VIII Rule 1 — highest IVD risk; EU Reference Laboratory + batch verification + annual PSUR). All standards PUBLIC license.
+- **Notes:** Shipped at v0.30.0. Registry +6 standards (MIL-STD-882E + ITAR + EAR + 14 CFR Part 450 + ISO 26262 Part 12 + EU IVDR Annex VIII). **Standards-licensing scope-boundary**: cited regulations are PUBLIC, but the controlled technical data referenced by ITAR + EAR is heavily restricted — Open QMS handles procedural framework only; actual controlled data must be handled per adopter's separate Technology Control Plan + DCSA / DDTC / BIS oversight.
+
 ### OQ-100 — Per-module READMEs backfilled (class overlays + cross-cutting overlays)
 
 - **Tier:** Gap
@@ -807,11 +834,11 @@ A spec entry may have status `:proved` only if evidence type is `lean-proved`, `
 |---|---|
 | `:proved` | 0 |
 | `:verified` | 6 |
-| `:tested` | 71 |
+| `:tested` | 74 |
 | `:benchmarked` | 0 |
 | `:argued` | 7 |
 | `:open` | 0 |
-| **Total entries** | **84** |
+| **Total entries** | **87** |
 
 **Zero `:open` entries as of v0.8.0.** Every spec claim now carries at least manual evidence (`:argued`) or mechanical evidence (`:tested`). The remaining `:argued` entries are honest-effort items (module-coverage population, manual-only-by-nature licensing claims, partially-mechanized substrate claims) — none of them are "we haven't started yet."
 

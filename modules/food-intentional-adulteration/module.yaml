@@ -1,0 +1,76 @@
+# Open QMS — food-intentional-adulteration class overlay
+# -------------------------------------------------------
+# Composes with the food-safety vertical to add FSMA Intentional
+# Adulteration Rule (21 CFR 121) — separate from accidental
+# contamination (handled by HACCP / Preventive Controls). The IA
+# Rule addresses food defense — protecting food from intentional
+# adulteration intended to cause wide-scale public health harm
+# (terrorism + economically motivated adulteration).
+
+name: food-intentional-adulteration-overlay
+version: 0.1.0
+
+standards:
+  - 21 CFR 121
+
+clauses:
+
+  - id: IA-121-Subpart-C-FDP
+    standard: 21 CFR 121
+    section: "§121.126"
+    summary: |
+      Food Defense Plan — written plan addressing vulnerability
+      assessment + mitigation strategies + procedures for food
+      defense monitoring + corrective actions + verification +
+      records. Reanalysis every 3 years or on triggering event.
+
+  - id: IA-121-vulnerability-assessment
+    standard: 21 CFR 121
+    section: "§121.130"
+    summary: |
+      Vulnerability assessment — evaluate each process step for
+      potential public health impact + degree of physical access
+      + ability of an attacker to successfully contaminate.
+      Identify Actionable Process Steps (APS — significant
+      vulnerabilities). Required at registration + reanalysis
+      cadence.
+
+  - id: IA-121-mitigation-strategies
+    standard: 21 CFR 121
+    section: "§121.135"
+    summary: |
+      Mitigation strategies — identified APS protected by
+      mitigation strategies that significantly minimize or prevent
+      the significant vulnerability. Strategies may include access
+      controls + inspection of inputs + supervision + tamper-
+      evident packaging.
+
+  - id: IA-121-food-defense-monitoring
+    standard: 21 CFR 121
+    section: "§121.140"
+    summary: |
+      Food defense monitoring + corrective actions + verification —
+      monitor mitigation strategies are implemented; corrective
+      actions when failures occur; verification activities ensuring
+      monitoring is performed + corrective actions are appropriate.
+
+  - id: IA-121-PCQI-training
+    standard: 21 CFR 121
+    section: "§121.4"
+    summary: |
+      Food Defense Qualified Individual (FDQI) — individual
+      qualified through training or experience to perform
+      vulnerability assessment, identify + select mitigation
+      strategies, prepare the Food Defense Plan, and conduct
+      reanalysis. FDA-recognized FDQI curriculum available.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Food Defense Plan + vulnerability assessment + mitigation strategies + monitoring + FDQI designation (21 CFR 121)
+    addresses:
+      - IA-121-Subpart-C-FDP
+      - IA-121-vulnerability-assessment
+      - IA-121-mitigation-strategies
+      - IA-121-food-defense-monitoring
+      - IA-121-PCQI-training

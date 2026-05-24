@@ -1,0 +1,68 @@
+# Open QMS — automotive-defense class overlay
+# --------------------------------------------
+# Composes with the automotive vertical to add defense-specific
+# requirements for military ground vehicles (armored personnel
+# carriers, MRAPs, JLTV, etc.) + defense variants of commercial
+# platforms.
+
+name: automotive-defense-overlay
+version: 0.1.0
+
+standards:
+  - MIL-STD-882E
+  - ITAR
+  - EAR
+
+clauses:
+
+  - id: AutoDefense-MIL-STD-882E
+    standard: MIL-STD-882E
+    section: "(automotive-domain application)"
+    summary: |
+      MIL-STD-882E System Safety applied to ground-vehicle
+      acquisition programs. Hazard categorization + tracking +
+      mitigation per the MIL-STD-882E framework — ground-vehicle-
+      specific PHA / SHA / SSHA / O&SHA covering crew protection,
+      ballistic + blast survivability, mobility safety, weapon-
+      system integration, electronic-warfare exposure, NBC
+      (nuclear/biological/chemical) protection.
+
+  - id: AutoDefense-USML-Cat-VII
+    standard: ITAR
+    section: "22 CFR §121.1 USML Category VII"
+    summary: |
+      USML Category VII — Ground vehicles. Tanks + military
+      ground vehicles + specially-designed components subject to
+      ITAR. Commercial-derived vehicles modified for military
+      use trigger ITAR jurisdiction even if base platform is
+      EAR-controlled commercial vehicle.
+
+  - id: AutoDefense-EAR-9A991
+    standard: EAR
+    section: "15 CFR §774 Supp. 1"
+    summary: |
+      EAR Category 9 (Aerospace + Propulsion) coverage of automotive-
+      adjacent items — engines, fuel systems, navigation. Commercial
+      heavy vehicles + components may be EAR-controlled per ECCNs
+      including 9A991 (commercial aircraft + parts), 0A606 (military
+      ground vehicle items not in USML), 0A987 (optical sighting).
+
+  - id: AutoDefense-CMMC-readiness
+    standard: ITAR
+    section: "(cross-reference DFARS 252.204-7012 + CMMC)"
+    summary: |
+      Cybersecurity Maturity Model Certification (CMMC) readiness
+      — DoD contractors handling Controlled Unclassified Information
+      (CUI) must comply with NIST SP 800-171 + CMMC tiers per DFARS
+      252.204-7012. Composes naturally with iso-27001 + regulated-ai
+      cross-cutting overlays.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Automotive defense SOPs (ground-vehicle SSPP + USML Cat VII + EAR Category 9/0/CMMC readiness)
+    addresses:
+      - AutoDefense-MIL-STD-882E
+      - AutoDefense-USML-Cat-VII
+      - AutoDefense-EAR-9A991
+      - AutoDefense-CMMC-readiness

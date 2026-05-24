@@ -1,0 +1,84 @@
+# Open QMS — food-fsvp class overlay
+# -----------------------------------
+# Composes with the food-safety vertical to add Foreign Supplier
+# Verification Program (FSVP) requirements per 21 CFR 1 Subpart L.
+# FSVP applies to US IMPORTERS of food for humans + animals,
+# requiring verification that foreign suppliers' food meets the
+# same US safety standards as domestic food.
+
+name: food-fsvp-overlay
+version: 0.1.0
+
+standards:
+  - 21 CFR 1 Subpart L
+
+clauses:
+
+  - id: FSVP-importer-identification
+    standard: 21 CFR 1 Subpart L
+    section: "§1.500-§1.505"
+    summary: |
+      FSVP importer identification — for each food article imported
+      into the US, an FSVP importer must be identified at entry
+      (DUNS number + name + email per CBP entry filing). The
+      importer is the US owner / consignee at time of entry; if no
+      US owner/consignee, the US agent or representative of the
+      foreign owner/consignee.
+
+  - id: FSVP-hazard-analysis
+    standard: 21 CFR 1 Subpart L
+    section: "§1.504"
+    summary: |
+      Hazard analysis — for each food + each foreign supplier, the
+      FSVP importer determines + evaluates known + reasonably
+      foreseeable hazards (biological + chemical + physical +
+      radiological + decomposition for fish + drug-residue +
+      pesticide-residue + heavy metals + allergens +
+      nutrient-toxicity + IA hazards as applicable).
+
+  - id: FSVP-supplier-evaluation
+    standard: 21 CFR 1 Subpart L
+    section: "§1.505"
+    summary: |
+      Foreign supplier evaluation — written evaluation of the
+      foreign supplier's performance + the risk posed by the food.
+      Consider: results of supplier audit; results of sampling +
+      testing; review of supplier's relevant records; FDA + foreign
+      regulatory inspection records; history of compliance.
+
+  - id: FSVP-supplier-verification
+    standard: 21 CFR 1 Subpart L
+    section: "§1.506-§1.508"
+    summary: |
+      Supplier verification activities — per-supplier-and-food
+      determination of appropriate verification: onsite audit
+      (required for SAHCODHA hazards — Serious Adverse Health
+      Consequences Or Death to Humans or Animals); sampling +
+      testing; review of relevant records; or other appropriate
+      activity. Records retained.
+
+  - id: FSVP-corrective-actions
+    standard: 21 CFR 1 Subpart L
+    section: "§1.508"
+    summary: |
+      Corrective actions — when an FSVP importer becomes aware
+      that a foreign supplier is failing to produce food in a
+      manner that provides the same level of public health
+      protection as US requirements, the importer takes
+      appropriate corrective actions (discontinuing use of the
+      supplier; investigating; revising the FSVP).
+
+templates:
+
+  - path: templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md
+    name: Foreign supplier evaluation (21 CFR 1 Subpart L §1.505 — FSVP importer per-supplier-and-food evaluation)
+    addresses:
+      - FSVP-supplier-evaluation
+      - FSVP-supplier-verification
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: FSVP SOPs (importer identification + hazard analysis + corrective actions per 21 CFR 1 Subpart L)
+    addresses:
+      - FSVP-importer-identification
+      - FSVP-hazard-analysis
+      - FSVP-corrective-actions

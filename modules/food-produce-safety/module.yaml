@@ -1,0 +1,83 @@
+# Open QMS — food-produce-safety class overlay
+# ---------------------------------------------
+# Composes with the food-safety vertical to add FSMA Produce Safety
+# Rule (21 CFR 112) — farm-stage scope distinct from the food-safety
+# vertical's primarily-processor scope. Produce Safety Rule applies
+# to growing, harvesting, packing, and holding of fresh produce that
+# is normally consumed raw.
+
+name: food-produce-safety-overlay
+version: 0.1.0
+
+standards:
+  - 21 CFR 112
+
+clauses:
+
+  - id: Produce-112-Subpart-C-personnel
+    standard: 21 CFR 112
+    section: "Subpart C"
+    summary: |
+      Personnel qualifications + training — adequate training in
+      principles of food hygiene + food safety + health + hygiene;
+      visitors comply with applicable health + hygiene practices.
+
+  - id: Produce-112-Subpart-D-health-hygiene
+    standard: 21 CFR 112
+    section: "Subpart D"
+    summary: |
+      Health + hygiene — workers ill or with open wounds must not
+      handle produce or food-contact surfaces; handwashing
+      facilities + procedures; toilet facilities; smoking +
+      eating + drinking restrictions in production areas.
+
+  - id: Produce-112-Subpart-E-agricultural-water
+    standard: 21 CFR 112
+    section: "Subpart E"
+    summary: |
+      Agricultural water — used during growing activities + post-
+      harvest activities. Water quality criteria + testing
+      requirements + corrective measures + records. Distinct
+      criteria for pre-harvest vs. post-harvest water (most-
+      stringent post-harvest equivalent to drinking water).
+
+  - id: Produce-112-Subpart-F-BSAAO
+    standard: 21 CFR 112
+    section: "Subpart F"
+    summary: |
+      Biological Soil Amendments of Animal Origin (BSAAO) — raw
+      manure + composted manure + other biological soil
+      amendments. Application + treatment requirements + intervals
+      between application + harvest. Records of source + treatment
+      + application maintained.
+
+  - id: Produce-112-Subpart-I-equipment-tools
+    standard: 21 CFR 112
+    section: "Subpart I"
+    summary: |
+      Equipment + tools + buildings — adequately designed +
+      maintained; food-contact surfaces sanitary; pest control;
+      handwashing facilities adequate. Storage + transportation
+      conditions prevent contamination.
+
+  - id: Produce-112-Subpart-K-growing-sprouts
+    standard: 21 CFR 112
+    section: "Subpart K"
+    summary: |
+      Growing, harvesting, packing + holding of sprouts —
+      sprout-specific requirements (more stringent given documented
+      historical outbreaks). Seed treatment + agricultural water
+      + environmental testing + microbiological testing of spent
+      sprout irrigation water.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Produce Safety SOPs (personnel hygiene + agricultural water + BSAAO application intervals + equipment/tools + sprout-specific if applicable)
+    addresses:
+      - Produce-112-Subpart-C-personnel
+      - Produce-112-Subpart-D-health-hygiene
+      - Produce-112-Subpart-E-agricultural-water
+      - Produce-112-Subpart-F-BSAAO
+      - Produce-112-Subpart-I-equipment-tools
+      - Produce-112-Subpart-K-growing-sprouts

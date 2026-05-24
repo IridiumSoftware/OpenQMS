@@ -1,0 +1,72 @@
+# Open QMS — automotive-motorcycle class overlay
+# -----------------------------------------------
+# Composes with the automotive vertical to add ISO 26262 Part 12
+# motorcycle adaptations. Motorcycles + similar 2-3 wheeled vehicles
+# present functional-safety challenges distinct from cars: rider
+# (not enclosed in vehicle body); lateral dynamics + stability
+# considerations; smaller margin for fault detection + warning;
+# rider-vehicle interaction qualitatively different.
+
+name: automotive-motorcycle-overlay
+version: 0.1.0
+
+standards:
+  - ISO 26262 Part 12
+
+clauses:
+
+  - id: Motorcycle-P12-scope
+    standard: ISO 26262 Part 12
+    section: "§4"
+    summary: |
+      Scope — Part 12 adapts ISO 26262 for motorcycles. Applies
+      to 2-3 wheeled motor vehicles intended for public road use.
+      Excludes mopeds + e-bikes per regional regulatory definitions
+      (varies; check applicable jurisdiction).
+
+  - id: Motorcycle-P12-MSIL-instead-of-ASIL
+    standard: ISO 26262 Part 12
+    section: "§7 + Annex A"
+    summary: |
+      Motorcycle Safety Integrity Level (MSIL) — replaces ASIL
+      for motorcycle scope. MSIL A through D follow analogous
+      determination structure (S × E × C → MSIL) but with
+      motorcycle-specific severity + exposure + controllability
+      criteria. Rider-vehicle dynamics + non-enclosed rider
+      affect classification.
+
+  - id: Motorcycle-P12-controllability-rider
+    standard: ISO 26262 Part 12
+    section: "§7 + Table 1"
+    summary: |
+      Controllability for motorcycle scope — rider's ability to
+      avoid harm depends on rider skill + reaction time + ability
+      to maintain control (lateral stability is much more
+      uncontrollable than a 4-wheeled vehicle). Controllability
+      classes adapted accordingly.
+
+  - id: Motorcycle-P12-architecture
+    standard: ISO 26262 Part 12
+    section: "Part 4 + Part 5 motorcycle adaptations"
+    summary: |
+      Architectural considerations — limited installation space +
+      power constraints affect HW + SW architecture options.
+      Redundancy strategies adapted (rider can serve as fall-back
+      for some functions in ways that wouldn't apply to ADAS in
+      cars).
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Motorcycle FuSa SOPs (Part 12 MSIL determination + rider-vehicle dynamics + architectural adaptations)
+    addresses:
+      - Motorcycle-P12-scope
+      - Motorcycle-P12-MSIL-instead-of-ASIL
+      - Motorcycle-P12-controllability-rider
+      - Motorcycle-P12-architecture
+
+  - path: templates/product-dhf/hara/HARA-TEMPLATE.md
+    name: HARA — motorcycle variant (per Part 12 §7 + Annex A — rider-specific controllability + lateral-stability hazard categories)
+    addresses:
+      - Motorcycle-P12-MSIL-instead-of-ASIL
+      - Motorcycle-P12-controllability-rider

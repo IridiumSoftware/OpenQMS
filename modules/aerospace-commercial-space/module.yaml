@@ -1,0 +1,73 @@
+# Open QMS — aerospace-commercial-space class overlay
+# ----------------------------------------------------
+# Composes with the aerospace vertical to add FAA commercial space
+# launch + re-entry licensing requirements (14 CFR Part 450).
+# Distinct from civil aviation type certification (Part 21) —
+# commercial space operates under FAA-AST (Office of Commercial
+# Space Transportation) regulatory framework.
+
+name: aerospace-commercial-space-overlay
+version: 0.1.0
+
+standards:
+  - 14 CFR Part 450
+
+clauses:
+
+  - id: CommSpace-450-Subpart-B-license
+    standard: 14 CFR Part 450
+    section: "Subpart B"
+    summary: |
+      License application — vehicle operator license per 14 CFR
+      Part 450. Application covers operator qualifications + safety
+      review + payload review + policy review + financial
+      responsibility. Single license can cover multiple vehicle
+      configurations + missions per safety-case justification.
+
+  - id: CommSpace-450-Subpart-C-safety-review
+    standard: 14 CFR Part 450
+    section: "Subpart C §450.101-§450.115"
+    summary: |
+      Safety review — operator demonstrates expected casualty (EC)
+      ≤ 1×10⁻⁴ per mission for collective risk to public + property;
+      individual risk ≤ 1×10⁻⁶ per mission. System safety + flight
+      safety system + collision avoidance + flight termination
+      criteria.
+
+  - id: CommSpace-450-Subpart-E-FTS
+    standard: 14 CFR Part 450
+    section: "Subpart E §450.141-§450.171"
+    summary: |
+      Flight Termination System (FTS) — required for most launches.
+      Autonomous (per §450.143) or operator-controlled. Coverage
+      + reliability requirements; pre-flight test + functional
+      check + safe-state initialization.
+
+  - id: CommSpace-450-Subpart-D-launch-area
+    standard: 14 CFR Part 450
+    section: "Subpart D"
+    summary: |
+      Launch + re-entry area control — coordination with FAA-AST
+      + applicable spaceport authority + airspace control + maritime
+      coordination + downrange asset coordination. Notification to
+      affected entities; airspace clearance.
+
+  - id: CommSpace-450-Subpart-G-financial
+    standard: 14 CFR Part 450
+    section: "Subpart G"
+    summary: |
+      Financial responsibility — operator demonstrates financial
+      responsibility for Maximum Probable Loss (MPL) for third-
+      party claims + US government property. Insurance OR
+      demonstration of adequate financial resources required.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: Commercial space SOPs (license application + safety review with EC ≤ 1e-4 + FTS + launch-area coordination + financial responsibility)
+    addresses:
+      - CommSpace-450-Subpart-B-license
+      - CommSpace-450-Subpart-C-safety-review
+      - CommSpace-450-Subpart-E-FTS
+      - CommSpace-450-Subpart-D-launch-area
+      - CommSpace-450-Subpart-G-financial

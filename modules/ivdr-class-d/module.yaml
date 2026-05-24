@@ -1,0 +1,79 @@
+# Open QMS — ivdr-class-d class overlay
+# --------------------------------------
+# Composes with the medical-devices vertical to add EU IVDR
+# HIGHEST-risk class D requirements per Annex VIII Rule 1. Class D
+# captures life-threatening transmissible-disease screening +
+# transfusion-transmissible-agent screening for blood/tissue/cells
+# intended for transplantation. The most stringent IVDR risk class.
+
+name: ivdr-class-d-overlay
+version: 0.1.0
+
+standards:
+  - EU IVDR Annex VIII
+
+clauses:
+
+  - id: IVDR-D-classification
+    standard: EU IVDR Annex VIII
+    section: "Rule 1"
+    summary: |
+      Class D classification — devices intended to be used to
+      detect the presence of, or exposure to, a transmissible
+      agent in blood/blood components/cells/tissues/organs OR any
+      of their derivatives in order to assess their suitability
+      for transfusion, transplantation, or cell administration;
+      OR to determine infectious load of life-threatening disease
+      where monitoring is critical; OR to detect transmissible
+      agents causing life-threatening disease with high or
+      suspected risk of propagation.
+
+  - id: IVDR-D-EU-reference-lab
+    standard: EU IVDR Annex VIII
+    section: "Article 100 + Annex IX §4.9"
+    summary: |
+      EU Reference Laboratory (EURL) involvement — Class D devices
+      may require batch verification by EURL prior to release.
+      Performance evaluation studies + Notified-Body conformity
+      assessment include consultation with EURL where designated.
+
+  - id: IVDR-D-clinical-evidence-rigor
+    standard: EU IVDR Annex VIII
+    section: "Annex XIII Part A + Article 58"
+    summary: |
+      Clinical evidence — Class D requires the most extensive
+      clinical evidence package: large performance studies (multi-
+      site + multi-population); scientific validity established
+      through peer-reviewed scientific literature OR equivalent
+      methods; analytical performance covering sensitivity +
+      specificity + accuracy + precision + LoD + LoQ; clinical
+      performance established through clinical performance
+      studies per Article 58.
+
+  - id: IVDR-D-PSUR-annual
+    standard: EU IVDR Annex VIII
+    section: "Article 81"
+    summary: |
+      PSUR — Class D devices require PSUR annually throughout
+      the device lifecycle (more frequent than Class C which is
+      biennial after first 2 years).
+
+  - id: IVDR-D-batch-verification
+    standard: EU IVDR Annex VIII
+    section: "Annex IX §4 + Annex XI"
+    summary: |
+      Batch verification — each batch of Class D devices may be
+      subject to verification by Notified Body + EU Reference
+      Laboratory before market release. Particularly stringent
+      for blood/tissue screening assays.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: IVDR Class D SOPs (EURL coordination + batch verification + clinical evidence package + annual PSUR)
+    addresses:
+      - IVDR-D-classification
+      - IVDR-D-EU-reference-lab
+      - IVDR-D-clinical-evidence-rigor
+      - IVDR-D-PSUR-annual
+      - IVDR-D-batch-verification

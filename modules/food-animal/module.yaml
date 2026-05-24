@@ -1,0 +1,80 @@
+# Open QMS — food-animal class overlay
+# -------------------------------------
+# Composes with the food-safety vertical to add FSMA Preventive
+# Controls for Animal Food (21 CFR 507) — separate from human food
+# (21 CFR 117) but mostly parallel structure with animal-food-
+# specific hazard analysis + preventive control framework.
+
+name: food-animal-overlay
+version: 0.1.0
+
+standards:
+  - 21 CFR 507
+
+clauses:
+
+  - id: AnimalFood-507-Subpart-B-cGMP
+    standard: 21 CFR 507
+    section: "Subpart B"
+    summary: |
+      cGMP for animal food — personnel hygiene + GMP training;
+      plants + grounds; sanitary operations + facilities + controls;
+      equipment + utensils; processes + controls including animal-
+      food-specific medication carry-over prevention; warehousing
+      + distribution; holding + distribution of human-food
+      by-products for animal food use.
+
+  - id: AnimalFood-507-Subpart-C-FSP
+    standard: 21 CFR 507
+    section: "Subpart C"
+    summary: |
+      Food Safety Plan for animal food — written FSP; hazard
+      analysis covering animal-food-specific hazards (mycotoxins +
+      nutrient toxicity + drug carryover + zoonotic pathogens +
+      heavy metals + adventitious materials); preventive controls
+      (process / sanitation / supply-chain); monitoring +
+      corrective + verification + validation + reanalysis;
+      records. Preventive Controls Qualified Individual (PCQI)
+      with animal-food competence per §507.4.
+
+  - id: AnimalFood-507-Subpart-E-Supply-Chain
+    standard: 21 CFR 507
+    section: "Subpart E"
+    summary: |
+      Supply-chain program — for hazards requiring a supply-chain-
+      applied control: approved suppliers + supplier-verification
+      activities (onsite audit / sampling + testing / review of
+      relevant records). FSVP cross-reference for imported animal-
+      food ingredients.
+
+  - id: AnimalFood-507-Subpart-D-recall
+    standard: 21 CFR 507
+    section: "§507.38"
+    summary: |
+      Recall Plan — required when a hazard requiring a preventive
+      control is identified. Per FDA-Vet recall coordination +
+      21 CFR 7 general policy. Notification to veterinarians +
+      retailers + consumers (where applicable). Reportable Food
+      Registry per 21 USC §350f applies to animal food.
+
+templates:
+
+  - path: templates/product-food/haccp/HACCP-PLAN-TEMPLATE.md
+    name: Animal Food Safety Plan (21 CFR 507 Subpart C — adopters use the human-food HACCP template with animal-food-specific hazard panel)
+    addresses:
+      - AnimalFood-507-Subpart-C-FSP
+
+  - path: templates/product-food/prp/PREREQUISITE-PROGRAMS-TEMPLATE.md
+    name: Prerequisite Programs (21 CFR 507 Subpart B cGMP — animal-food-specific)
+    addresses:
+      - AnimalFood-507-Subpart-B-cGMP
+
+  - path: templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md
+    name: Supply-chain program (21 CFR 507 Subpart E)
+    addresses:
+      - AnimalFood-507-Subpart-E-Supply-Chain
+
+  - path: templates/product-food/recall/RECALL-WITHDRAWAL-PROCEDURE-TEMPLATE.md
+    name: Animal Food Recall Plan (21 CFR 507 §507.38 — adopters use the food-safety recall template with FDA-Vet coordination)
+    addresses:
+      - AnimalFood-507-Subpart-D-recall

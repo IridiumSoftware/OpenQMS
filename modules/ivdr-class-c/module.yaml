@@ -1,0 +1,62 @@
+# Open QMS — ivdr-class-c class overlay
+# --------------------------------------
+# Composes with the medical-devices vertical (or its ivd overlay) to
+# add EU IVDR risk class C requirements per Annex VIII classification
+# rules. Class C is the second-highest IVD risk class — high
+# individual risk and/or moderate public-health risk.
+
+name: ivdr-class-c-overlay
+version: 0.1.0
+
+standards:
+  - EU IVDR Annex VIII
+
+clauses:
+
+  - id: IVDR-C-classification
+    standard: EU IVDR Annex VIII
+    section: "Rule 2 + Rule 3 + Rule 4"
+    summary: |
+      Class C classification — Annex VIII Rule 3 captures most
+      Class C IVDs: detection of infectious agents where erroneous
+      result poses high risk to individual + moderate to public
+      health; genetic testing; companion diagnostics; near-patient
+      testing for life-threatening conditions; cancer diagnosis +
+      staging; congenital disorders in pre-natal screening; etc.
+
+  - id: IVDR-C-NB-conformity
+    standard: EU IVDR Annex VIII
+    section: "Annex IX + Annex X"
+    summary: |
+      Conformity assessment requires Notified Body involvement —
+      Annex IX (full quality assurance) OR combination Annex XI +
+      Annex IX Chapter II. NB reviews technical documentation per
+      Annex II + III; QMS audit; certificate issuance.
+
+  - id: IVDR-C-clinical-evidence
+    standard: EU IVDR Annex VIII
+    section: "Annex XIII Part A"
+    summary: |
+      Clinical evidence requirements — scientific validity +
+      analytical performance + clinical performance. Class C
+      requires significant clinical evidence; performance studies
+      for diagnostic devices intended for clinical use; PMCF
+      (Post-Market Clinical Follow-up).
+
+  - id: IVDR-C-PSUR
+    standard: EU IVDR Annex VIII
+    section: "Article 81"
+    summary: |
+      Periodic Safety Update Report (PSUR) — Class C devices
+      require PSUR annually for first 2 years post-CE-marking,
+      then at intervals not exceeding 2 years thereafter.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: IVDR Class C SOPs (Annex IX NB conformity + clinical-evidence package + PSUR annual+biennial cadence)
+    addresses:
+      - IVDR-C-classification
+      - IVDR-C-NB-conformity
+      - IVDR-C-clinical-evidence
+      - IVDR-C-PSUR

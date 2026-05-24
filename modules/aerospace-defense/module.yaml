@@ -1,0 +1,101 @@
+# Open QMS — aerospace-defense class overlay
+# -------------------------------------------
+# Composes with the aerospace vertical to add defense-specific
+# requirements: MIL-STD-882E System Safety Program + ITAR + EAR
+# controlled-technology handling. Applies to military aircraft +
+# defense variants of civilian platforms + Department of Defense
+# acquisition programs.
+#
+# Standards licensing: ALL public license (US federal regulations
+# + DoD standards). But the controlled technical data referenced
+# BY these regulations is heavily restricted — Open QMS handles
+# the procedural framework; the actual controlled data must be
+# handled per the adopter's organization's separate Technology
+# Control Plan + DCSA / DDTC / BIS oversight.
+
+name: aerospace-defense-overlay
+version: 0.1.0
+
+standards:
+  - MIL-STD-882E
+  - ITAR
+  - EAR
+
+clauses:
+
+  - id: MIL-STD-882E-SSPP
+    standard: MIL-STD-882E
+    section: "Element 1-3"
+    summary: |
+      System Safety Program Plan (SSPP) — required by DoD acquisition
+      programs covering all phases of the system lifecycle (concept
+      + development + production + deployment + sustainment + disposal).
+      Identifies hazards through PHA / SHA / SSHA / HHA / O&SHA;
+      assigns Risk Assessment Codes (Severity × Probability) →
+      Catastrophic / Critical / Marginal / Negligible; applies
+      hazard-mitigation hierarchy.
+
+  - id: MIL-STD-882E-hazard-tracking
+    standard: MIL-STD-882E
+    section: "Element 4-10"
+    summary: |
+      Hazard tracking system — Hazard Tracking Database with per-
+      hazard identification + analysis + tracking through mitigation
+      + verification. Risk acceptance authority levels per
+      program-defined matrix (program manager → Component Acquisition
+      Executive → DoD Component Head per residual risk level).
+
+  - id: ITAR-USML-categorization
+    standard: ITAR
+    section: "22 CFR §121.1 USML"
+    summary: |
+      US Munitions List categorization — defense articles +
+      services subject to ITAR per 21 categories on the USML.
+      Items "specifically designed, developed, configured, adapted,
+      or modified for a military application" trigger ITAR
+      jurisdiction. Brokering activities + technical data per
+      §120.10 also ITAR-controlled.
+
+  - id: ITAR-Technology-Control-Plan
+    standard: ITAR
+    section: "22 CFR §120-130"
+    summary: |
+      Technology Control Plan + DDTC registration + export licensing
+      — companies dealing in defense articles + services must
+      register with DDTC. Export of defense articles, services,
+      OR technical data requires DDTC license OR exemption per
+      §125-127. Foreign-person access to ITAR-controlled technical
+      data within US is a "deemed export" requiring license.
+
+  - id: EAR-EAR99-vs-CCL
+    standard: EAR
+    section: "15 CFR §734-§774"
+    summary: |
+      EAR jurisdiction — dual-use items (commercial primary use,
+      potential military application) on Commerce Control List
+      (CCL). Items classified by ECCN (Export Control Classification
+      Number); EAR99 = items subject to EAR but not on CCL (most
+      consumer/commercial goods). End-use + end-user + destination
+      country drive license requirement.
+
+  - id: EAR-deemed-export
+    standard: EAR
+    section: "15 CFR §734.13"
+    summary: |
+      Deemed export — release of EAR-controlled technology or
+      source code to a foreign person within the US is "deemed"
+      to be an export to that person's country of citizenship +
+      may require license. Personnel + visitor access controls +
+      ITAR-equivalent controls for EAR-restricted technology.
+
+templates:
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: SSPP + hazard tracking + Technology Control Plan + ITAR/EAR export licensing + deemed-export controls (defense-specific)
+    addresses:
+      - MIL-STD-882E-SSPP
+      - MIL-STD-882E-hazard-tracking
+      - ITAR-USML-categorization
+      - ITAR-Technology-Control-Plan
+      - EAR-EAR99-vs-CCL
+      - EAR-deemed-export

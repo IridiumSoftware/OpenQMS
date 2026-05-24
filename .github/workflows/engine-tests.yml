@@ -103,6 +103,25 @@ jobs:
           openqms validate --module food-safety --module recall-workflow
           # 10-module deepest-composite (automotive top-rigor + recall + 5 cross-cutting + BCMS)
           openqms validate --module automotive --module automotive-asil-d --module automotive-cal-4 --module recall-workflow --module regulated-ai --module iso-27001 --module iso-14001 --module iso-45001 --module iso-50001 --module iso-22301
+          # v0.28.0 — pharma class overlays (5)
+          openqms validate --module pharma --module pharma-sterile
+          openqms validate --module pharma --module pharma-biologics
+          openqms validate --module pharma --module pharma-imp
+          openqms validate --module pharma --module pharma-generic-biosimilar
+          openqms validate --module pharma --module pharma-clinical-stage
+          # v0.29.0 — food-safety class overlays (5)
+          openqms validate --module food-safety --module food-usda-fsis
+          openqms validate --module food-safety --module food-animal
+          openqms validate --module food-safety --module food-produce-safety
+          openqms validate --module food-safety --module food-intentional-adulteration
+          openqms validate --module food-safety --module food-fsvp
+          # v0.30.0 — aero/auto extension + IVDR class overlays (6)
+          openqms validate --module aerospace --module aerospace-defense
+          openqms validate --module aerospace --module aerospace-commercial-space
+          openqms validate --module automotive --module automotive-defense
+          openqms validate --module automotive --module automotive-motorcycle
+          openqms validate --module medical-devices --module ivd --module ivdr-class-c
+          openqms validate --module medical-devices --module ivd --module ivdr-class-d
           # Top-rigor mega-composite — safety-critical + cyber-critical ML-enabled ECU
           openqms validate --module automotive --module automotive-asil-d --module automotive-cal-4 --module regulated-ai --module iso-27001
           # Full-stack mega-composite — manufacturing + all 5 cross-cutting management-system overlays

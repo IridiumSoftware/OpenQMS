@@ -826,6 +826,136 @@ standards:
       - "Seafood HACCP"
       - "CFR 123"
 
+  # === Food-safety class-overlay standards ===
+
+  - id: "9 CFR 416"
+    name: "Sanitation (USDA-FSIS meat + poultry + processed eggs)"
+    publisher: USDA-FSIS
+    edition: "9 CFR Part 416"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 416"
+      - "FSIS Sanitation"
+
+  - id: "9 CFR 417"
+    name: "HACCP Systems (USDA-FSIS meat + poultry)"
+    publisher: USDA-FSIS
+    edition: "9 CFR Part 417"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 417"
+      - "FSIS HACCP"
+
+  - id: "21 CFR 507"
+    name: "Current Good Manufacturing Practice, Hazard Analysis, and Risk-Based Preventive Controls for Food for Animals"
+    publisher: U.S. Food and Drug Administration
+    edition: "21 CFR Part 507"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 507"
+      - "FSMA Animal Food"
+
+  - id: "21 CFR 112"
+    name: "Standards for the Growing, Harvesting, Packing, and Holding of Produce for Human Consumption (FSMA Produce Safety Rule)"
+    publisher: U.S. Food and Drug Administration
+    edition: "21 CFR Part 112"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 112"
+      - "Produce Safety Rule"
+      - "PSR"
+
+  - id: "21 CFR 121"
+    name: "Mitigation Strategies to Protect Food Against Intentional Adulteration (FSMA IA Rule)"
+    publisher: U.S. Food and Drug Administration
+    edition: "21 CFR Part 121"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 121"
+      - "IA Rule"
+      - "Intentional Adulteration"
+
+  - id: "21 CFR 1 Subpart L"
+    name: "Foreign Supplier Verification Programs (FSVP) for Importers of Food for Humans and Animals"
+    publisher: U.S. Food and Drug Administration
+    edition: "21 CFR Part 1 Subpart L"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "FSVP"
+      - "Foreign Supplier Verification"
+
+  # === Aerospace + automotive defense + commercial-space + motorcycle standards ===
+
+  - id: "MIL-STD-882E"
+    name: "Standard Practice for System Safety"
+    publisher: U.S. Department of Defense
+    edition: "MIL-STD-882E (May 2012) — Change 1 (2018)"
+    kind: standard
+    license_kind: public
+    aliases:
+      - "MIL-STD-882"
+      - "System Safety Standard Practice"
+
+  - id: "ITAR"
+    name: "International Traffic in Arms Regulations"
+    publisher: U.S. State Department — Directorate of Defense Trade Controls (DDTC)
+    edition: "22 CFR Parts 120-130 (ITAR)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "22 CFR 120-130"
+      - "International Traffic in Arms Regulations"
+
+  - id: "EAR"
+    name: "Export Administration Regulations"
+    publisher: U.S. Department of Commerce — Bureau of Industry and Security (BIS)
+    edition: "15 CFR Parts 730-774 (EAR)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "15 CFR 730-774"
+      - "Export Administration Regulations"
+
+  - id: "14 CFR Part 450"
+    name: "Commercial Space Launch + Re-entry Licensing"
+    publisher: U.S. Federal Aviation Administration
+    edition: "14 CFR Part 450"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR Part 450"
+      - "Commercial Space Licensing"
+
+  - id: "ISO 26262 Part 12"
+    name: "Road vehicles — Functional safety — Part 12: Adaptation of ISO 26262 for motorcycles"
+    publisher: ISO
+    edition: "2018"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 26262-12"
+      - "Motorcycle FuSa"
+
+  # === IVDR class overlay standards ===
+  # (EU IVDR 2017/746 already in registry from medical-devices vertical;
+  # IVDR class C/D class designation comes from Annex VIII classification rules)
+
+  - id: "EU IVDR Annex VIII"
+    name: "EU IVDR 2017/746 Annex VIII — Classification Rules"
+    publisher: European Commission
+    edition: "Regulation (EU) 2017/746 Annex VIII"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "IVDR Annex VIII"
+      - "IVDR Classification Rules"
+
   # === Governance + resilience cross-cutting management-system standards ===
 
   - id: "ISO 37001:2016"
