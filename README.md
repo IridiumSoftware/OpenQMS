@@ -6,20 +6,21 @@ Open QMS resolves a `(product, jurisdictions, standards, modules)` bundle into a
 
 The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD for enforcement, Git for the audit trail.
 
-## Current scope (v0.22.0)
+## Current scope (v0.35.0)
 
 | Dimension | Count |
 |---|---|
 | Verticals (regulated industries) | **6** — medical-devices, aerospace, automotive, manufacturing, pharma, food-safety |
-| Class overlays (rigor-level + product-class) | **22** across 4 verticals |
-| Cross-cutting overlays (Annex-SL management systems) | **7** — iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301 |
-| Registry — standards | **63** (mix of public + commercial license) |
+| Class overlays (rigor-level + product-class) | **38** across 5 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5) |
+| Cross-cutting overlays | **19** — iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc |
+| Registry — standards | **~100** (mix of public + commercial license) |
 | Registry — jurisdictions | **20** (FDA / EMA / MHRA / WHO-PQ / Health Canada / EU MDR / PMDA / TGA / ANVISA / FAA / EASA / TCCA / NHTSA / UNECE / KBA / TC-MVS / FDA-Food / USDA-FSIS / EFSA / CFIA) |
-| Document templates | **57** |
+| Document templates | **69+** (15 standalone templates from v0.25.0 now bound to natural modules at v0.34.0) |
 | Example bundles (validated end-to-end) | **11** |
-| Spec entries (status: 6 :verified / 67 :tested / 7 :argued / 0 :open) | **80** |
+| Total modules | **64** + general |
+| Spec entries (status: 6 :verified / 75 :tested / 7 :argued / 0 :open) | **88** |
 
-The compose primitive validates 9-module composites: e.g., `pharma + atmp + iso-27001 + regulated-ai + iso-14001 + iso-45001 + iso-50001 + iso-37001 + iso-22301` — the realistic shape for a commercial-stage cell-therapy organization pursuing fully-integrated management-system certification.
+The compose primitive validates 11-module composites: e.g., `pharma + pharma-sterile + pharma-biologics + atmp + iso-27001 + soc-2 + iso-31000 + iso-22301 + iso-14001 + iso-45001 + iso-50001` — the realistic shape for a clinical-stage biotech doing sterile ATMP manufacturing with full integrated management system + SOC 2 attestation + ISO 31000 risk framework.
 
 **See [`docs/modules-catalog.md`](docs/modules-catalog.md) for the complete catalog with per-module standards covered + adoption guidance.**
 
