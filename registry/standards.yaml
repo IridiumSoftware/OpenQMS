@@ -560,3 +560,56 @@ standards:
       - "Q10"
       - "PQS"
       - "ICH-Q10"
+
+  # === Food safety standards ===
+
+  - id: "ISO 22000:2018"
+    name: "Food safety management systems — Requirements for any organization in the food chain"
+    publisher: ISO
+    edition: "2018"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 22000"
+      - "FSMS"
+
+  - id: "FSSC 22000 v6"
+    name: "Food Safety System Certification — Scheme based on ISO 22000 + ISO/TS 22002 PRPs + additional scheme requirements"
+    publisher: Foundation FSSC
+    edition: "Version 6 (2023)"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "FSSC 22000"
+      - "FSSC"
+
+  - id: "Codex HACCP"
+    name: "General Principles of Food Hygiene + HACCP Annex — Codex Alimentarius CXC 1-1969"
+    publisher: Codex Alimentarius Commission (FAO/WHO)
+    edition: "Revised 2020"
+    kind: standard
+    license_kind: public
+    aliases:
+      - "HACCP"
+      - "Codex CXC 1-1969"
+
+  - id: "21 CFR 117"
+    name: "Current Good Manufacturing Practice, Hazard Analysis, and Risk-Based Preventive Controls for Human Food (Preventive Controls Rule)"
+    publisher: U.S. Food and Drug Administration
+    edition: "21 CFR Part 117"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 117"
+      - "FSMA PCHF"
+      - "Preventive Controls"
+
+  - id: "21 CFR 123"
+    name: "Procedures for the Safe and Sanitary Processing and Importing of Fish and Fishery Products (Seafood HACCP)"
+    publisher: U.S. Food and Drug Administration
+    edition: "21 CFR Part 123"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "Seafood HACCP"
+      - "CFR 123"

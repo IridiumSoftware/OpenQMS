@@ -1,0 +1,29 @@
+# Open QMS — example food-processor bundle definition
+# ----------------------------------------------------
+# Mid-size RTE chilled-foods processor under FSMA Preventive
+# Controls + ISO 22000 + FSSC 22000 v6. Composes food-safety +
+# iso-14001 (water + waste + refrigerants) + iso-45001 (cold-room +
+# chemical sanitizer hazards) + iso-50001 (refrigeration energy
+# intensity).
+
+name: example-food-processor
+product: ExampleRTEChilledFoods
+jurisdictions:
+  - FDA-Food
+  - EFSA
+  - CFIA
+
+standards:
+  - "ISO 22000:2018"
+  - "FSSC 22000 v6"
+  - "Codex HACCP"
+  - "21 CFR 117"
+  - "ISO 14001:2015"
+  - "ISO 45001:2018"
+  - "ISO 50001:2018"
+
+modules:
+  - food-safety
+  - iso-14001
+  - iso-45001
+  - iso-50001

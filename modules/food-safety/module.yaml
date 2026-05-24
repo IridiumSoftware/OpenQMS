@@ -1,0 +1,294 @@
+# Open QMS — food safety vertical module
+# ---------------------------------------
+# Vertical module for food + beverage manufacturing under ISO 22000 +
+# Codex HACCP + FSMA frameworks. Covers manufacturing of human food
+# (the FSMA Preventive Controls scope) at FDA-regulated facilities;
+# EU food businesses under EFSA hygiene regulations; Codex-aligned
+# operations globally.
+#
+# Standards covered:
+#  - FSMS substrate: ISO 22000:2018 — Food Safety Management Systems.
+#    Follows Annex SL high-level structure (so composes cleanly with
+#    ISO 9001 / 14001 / 27001 / 45001 / 50001).
+#  - GFSI-recognized certification scheme: FSSC 22000 v6 (2023) —
+#    extends ISO 22000 with ISO/TS 22002 PRPs + scheme-specific
+#    requirements; one of the major GFSI-benchmarked schemes.
+#  - HACCP: Codex Alimentarius CXC 1-1969 — General Principles of
+#    Food Hygiene with HACCP Annex. The globally-harmonized HACCP
+#    framework.
+#  - US FSMA: 21 CFR 117 — Current Good Manufacturing Practice,
+#    Hazard Analysis, and Risk-Based Preventive Controls for Human
+#    Food (the Preventive Controls Rule).
+#  - Seafood HACCP: 21 CFR 123 — for facilities in seafood scope.
+#
+# Out of scope (deferred to future overlays / verticals):
+#  - USDA-regulated meat + poultry — 9 CFR 416 sanitation + 9 CFR 417
+#    HACCP. Forward overlay (the FSIS regulatory framework is distinct
+#    from FDA Preventive Controls).
+#  - Animal food / feed — 21 CFR 507 (FSMA Preventive Controls for
+#    Animal Food). Forward overlay.
+#  - Produce safety — 21 CFR 112 (FSMA Produce Safety Rule). Forward
+#    overlay (farm-stage scope).
+#  - Dietary supplements — 21 CFR 111 (DSHEA cGMP). Separate
+#    regulatory regime; forward vertical if adopters require.
+#  - BRCGS / SQF / IFS — other GFSI-benchmarked schemes; only FSSC
+#    22000 included in this module to demonstrate one GFSI scheme.
+#    Other schemes forward.
+#  - Intentional Adulteration (FSMA IA Rule) — 21 CFR 121. Surfaced
+#    in PRP template's §10 forward; standalone module possible.
+#  - Foreign Supplier Verification Programs (FSVP) — 21 CFR 1
+#    Subpart L. Surfaced in PRP template; standalone module possible
+#    for importers.
+#
+# Composes cleanly with:
+#  - iso-27001 (information security — food companies handle
+#    customer + supplier proprietary data; FSMA records).
+#  - regulated-ai (if AI is used in vision-based foreign-object
+#    detection, predictive maintenance, demand forecasting affecting
+#    food safety).
+#  - iso-14001 (environmental — significant aspects: water, waste,
+#    energy, refrigerants).
+#  - iso-45001 (OH&S — chemical sanitizer hazards, cold rooms,
+#    machinery, slip/fall, lifting).
+#  - iso-50001 (energy — refrigeration + freezing are
+#    energy-intensive food operations).
+#
+# Standards licensing: Codex HACCP + 21 CFR 117 + 21 CFR 123 are
+# PUBLIC. ISO 22000 + FSSC 22000 + ISO/TS 22002 series are
+# commercially-licensed. See repo-root README "Standards licensing"
+# section for the broader policy.
+
+name: food-safety
+version: 0.1.0
+
+standards:
+  - ISO 22000:2018
+  - FSSC 22000 v6
+  - Codex HACCP
+  - 21 CFR 117
+  - 21 CFR 123
+
+clauses:
+
+  # === FSMS substrate (ISO 22000:2018) ===
+
+  - id: ISO22000-5.2
+    standard: ISO 22000:2018
+    section: "5.2"
+    summary: |
+      Food safety policy — top management establishes a policy
+      appropriate to the role of the organization in the food chain;
+      includes commitment to applicable food safety statutory + legal
+      + regulatory + customer requirements; addresses internal +
+      external communication; supports development + maintenance +
+      improvement of the FSMS.
+
+  - id: ISO22000-6.1
+    standard: ISO 22000:2018
+    section: "6.1"
+    summary: |
+      Actions to address risks + opportunities — for the FSMS,
+      including determination of food-safety risks + opportunities,
+      planning + integration of actions + evaluation of effectiveness.
+
+  - id: ISO22000-8.2
+    standard: ISO 22000:2018
+    section: "8.2"
+    summary: |
+      Prerequisite programmes (PRPs) — establish + implement +
+      maintain + update PRP(s) addressing infrastructure +
+      workspace + utilities + supporting services + suppliers +
+      pest control + cleaning + sanitation + personnel hygiene +
+      cross-contamination prevention + product information per
+      ISO/TS 22002 series (food manufacturing / farming / packaging
+      / transport+storage / catering / animal feed).
+
+  - id: ISO22000-8.5
+    standard: ISO 22000:2018
+    section: "8.5"
+    summary: |
+      Hazard control — hazard analysis (§8.5.2) covering biological
+      + chemical + physical + allergen hazards across operational
+      steps; significance evaluation; CCP + oPRP determination;
+      critical limits; monitoring procedures; corrections + corrective
+      actions when limits not met; verification activities.
+
+  - id: ISO22000-8.7
+    standard: ISO 22000:2018
+    section: "8.7"
+    summary: |
+      Control of monitoring + measuring — calibration + verification
+      of monitoring equipment at planned intervals; control of
+      monitoring equipment important to PRPs, oPRPs, CCPs.
+
+  - id: ISO22000-8.9
+    standard: ISO 22000:2018
+    section: "8.9"
+    summary: |
+      Control of product + process nonconformities — handling of
+      potentially unsafe products; withdrawal / recall procedures;
+      effectiveness evaluation of recall execution.
+
+  - id: ISO22000-9.2
+    standard: ISO 22000:2018
+    section: "9.2"
+    summary: |
+      Internal audit — planned audit program covering FSMS
+      conformity + effectiveness; auditor competence + objectivity;
+      corrective actions on findings.
+
+  - id: ISO22000-9.3
+    standard: ISO 22000:2018
+    section: "9.3"
+    summary: |
+      Management review — periodic review of FSMS by top management;
+      inputs include audit results, customer feedback, monitoring
+      + measurement results, withdrawals + recalls, supplier
+      performance, food safety policy + objectives.
+
+  - id: ISO22000-10.1
+    standard: ISO 22000:2018
+    section: "10.1"
+    summary: |
+      Nonconformity + corrective action — react to nonconformity;
+      evaluate need for action to eliminate causes; implement +
+      review effectiveness; update FSMS as necessary.
+
+  # === FSSC 22000 v6 scheme-specific additions ===
+
+  - id: FSSC22000-PRP-detail
+    standard: FSSC 22000 v6
+    section: "Scheme — Part 2 Additional Requirements"
+    summary: |
+      FSSC 22000 v6 supplements ISO 22000 with: detailed sector-
+      specific PRPs per the applicable ISO/TS 22002 part; specific
+      requirements for management of services + purchased materials;
+      product labeling + printed materials; food defense; food fraud
+      mitigation; allergen management; environmental monitoring (for
+      relevant sectors); product design + development.
+
+  # === Codex HACCP (CXC 1-1969 + HACCP Annex) ===
+
+  - id: Codex-HACCP-7-principles
+    standard: Codex HACCP
+    section: "HACCP Annex Step 6-12"
+    summary: |
+      The 7 HACCP principles + 12 implementation steps. Principle 1:
+      hazard analysis. Principle 2: CCP determination (decision
+      tree). Principle 3: critical limits. Principle 4: monitoring.
+      Principle 5: corrective actions (pre-defined). Principle 6:
+      verification. Principle 7: record-keeping. Steps 1-5 are
+      preparatory (HACCP team, product description, intended use,
+      flow diagram, on-site verification).
+
+  - id: Codex-good-hygienic-practice
+    standard: Codex HACCP
+    section: "General Principles of Food Hygiene §3-§9"
+    summary: |
+      Good Hygienic Practices (GHPs) — environment + production
+      controls; food handler training + competence; transport;
+      cleaning + maintenance; personnel hygiene; recall procedures.
+      Foundational to HACCP; not specific to a particular hazard.
+
+  # === US FSMA Preventive Controls Rule (21 CFR 117) ===
+
+  - id: CFR117-Subpart-B-cGMP
+    standard: 21 CFR 117
+    section: "Subpart B (§§117.10–117.110)"
+    summary: |
+      Current Good Manufacturing Practice — personnel hygiene + GMP
+      training (§117.10); plants + grounds (§117.20); sanitary
+      operations (§117.35); sanitary facilities + controls (§117.37);
+      equipment + utensils (§117.40); processes + controls (§117.80);
+      warehousing + distribution (§117.93); defect action levels
+      (§117.110).
+
+  - id: CFR117-Subpart-C-FoodSafetyPlan
+    standard: 21 CFR 117
+    section: "Subpart C (§§117.126–117.190)"
+    summary: |
+      Food Safety Plan + Hazard Analysis + Preventive Controls —
+      written Food Safety Plan (§117.126); hazard analysis (§117.130);
+      preventive controls for hazards requiring a preventive control
+      (process / food allergen / sanitation / supply-chain) per
+      §§117.135–117.140; monitoring + corrective actions +
+      verification (§§117.145–117.165); validation (§117.160);
+      reanalysis (§117.170); records (§117.190). Reviewed +
+      maintained by a Preventive Controls Qualified Individual
+      (PCQI) per §117.180.
+
+  - id: CFR117-Subpart-D-Recall
+    standard: 21 CFR 117
+    section: "Subpart D (§117.137)"
+    summary: |
+      Recall Plan — required when a hazard requiring a preventive
+      control is identified for a food. The recall plan includes
+      procedures for direct notification of consignees + the public
+      where appropriate; effectiveness checks; product disposition.
+
+  # === Seafood HACCP (21 CFR 123) — for facilities in scope ===
+
+  - id: CFR123-Seafood-HACCP
+    standard: 21 CFR 123
+    section: "Subpart A + Subpart B"
+    summary: |
+      Mandatory HACCP for processors of fish + fishery products
+      (Subpart A — general); processor-specific provisions
+      (Subpart B); separate provisions for imports. Predates FSMA
+      Preventive Controls; remains in force for seafood facilities
+      (which therefore operate under both 21 CFR 123 + 21 CFR 117
+      depending on facility scope).
+
+templates:
+
+  # === Food-safety-specific bindings ===
+
+  - path: templates/product-food/haccp/HACCP-PLAN-TEMPLATE.md
+    name: HACCP Plan (Codex HACCP + ISO 22000 §8.5 + 21 CFR 117 Subpart C + 21 CFR 123)
+    addresses:
+      - ISO22000-8.5
+      - Codex-HACCP-7-principles
+      - CFR117-Subpart-C-FoodSafetyPlan
+      - CFR123-Seafood-HACCP
+
+  - path: templates/product-food/prp/PREREQUISITE-PROGRAMS-TEMPLATE.md
+    name: Prerequisite Programs index (ISO 22000 §8.2 + ISO/TS 22002 series + Codex GHPs + 21 CFR 117 Subpart B)
+    addresses:
+      - ISO22000-8.2
+      - Codex-good-hygienic-practice
+      - CFR117-Subpart-B-cGMP
+      - FSSC22000-PRP-detail
+
+  - path: templates/product-food/recall/RECALL-WITHDRAWAL-PROCEDURE-TEMPLATE.md
+    name: Recall + Withdrawal Procedure (ISO 22000 §8.9 + Codex §5.7 + 21 CFR 117 Subpart D + 21 CFR 7)
+    addresses:
+      - ISO22000-8.9
+      - CFR117-Subpart-D-Recall
+
+  # === Cross-cutting template bindings ===
+
+  - path: templates/qms-policy/quality-policy.md
+    name: Quality + Food Safety policy (ISO 22000 §5.2 — adopters extend the QMS policy template with food-safety commitments)
+    addresses:
+      - ISO22000-5.2
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: SOPs for ISO 22000 risk-and-opportunity planning + monitoring + measuring equipment calibration (ISO 22000 §6.1 + §8.7)
+    addresses:
+      - ISO22000-6.1
+      - ISO22000-8.7
+
+  - path: templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md
+    name: Internal audit (ISO 22000 §9.2)
+    addresses:
+      - ISO22000-9.2
+
+  - path: templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md
+    name: Management review (ISO 22000 §9.3)
+    addresses:
+      - ISO22000-9.3
+
+  - path: .github/ISSUE_TEMPLATE/capa.yml
+    name: CAPA — food safety NC + corrective action (ISO 22000 §10.1)
+    addresses:
+      - ISO22000-10.1

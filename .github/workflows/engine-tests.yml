@@ -81,6 +81,9 @@ jobs:
           openqms validate --module pharma
           openqms validate --module medical-devices --module pharma
           openqms validate --module pharma --module iso-27001 --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001
+          # Food safety vertical (6th vertical) + composites
+          openqms validate --module food-safety
+          openqms validate --module food-safety --module iso-27001 --module iso-14001 --module iso-45001 --module iso-50001
           # Top-rigor mega-composite — safety-critical + cyber-critical ML-enabled ECU
           openqms validate --module automotive --module automotive-asil-d --module automotive-cal-4 --module regulated-ai --module iso-27001
           # Full-stack mega-composite — manufacturing + all 5 cross-cutting management-system overlays
@@ -100,6 +103,7 @@ jobs:
           openqms regenerate --bundle example-vehicle
           openqms regenerate --bundle example-machine-shop
           openqms regenerate --bundle example-drug-product
+          openqms regenerate --bundle example-food-processor
 
       - name: Signatures export (smoke check)
         # Walks the repo's own git log and emits a signature audit trail.

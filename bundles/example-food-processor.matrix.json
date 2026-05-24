@@ -1,0 +1,698 @@
+{
+  "bundle": {
+    "product": "ExampleRTEChilledFoods",
+    "jurisdictions": [
+      "FDA-Food",
+      "EFSA",
+      "CFIA"
+    ],
+    "standards": [
+      "ISO 22000:2018",
+      "FSSC 22000 v6",
+      "Codex HACCP",
+      "21 CFR 117",
+      "ISO 14001:2015",
+      "ISO 45001:2018",
+      "ISO 50001:2018"
+    ]
+  },
+  "module": {
+    "name": "food-safety+iso-14001-overlay+iso-45001-overlay+iso-50001-overlay",
+    "version": "composed"
+  },
+  "in_scope_clauses": [
+    {
+      "id": "ISO22000-5.2",
+      "standard": "ISO 22000:2018",
+      "section": "5.2",
+      "summary": "Food safety policy \u2014 top management establishes a policy\nappropriate to the role of the organization in the food chain;\nincludes commitment to applicable food safety statutory + legal\n+ regulatory + customer requirements; addresses internal +\nexternal communication; supports development + maintenance +\nimprovement of the FSMS.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22000-6.1",
+      "standard": "ISO 22000:2018",
+      "section": "6.1",
+      "summary": "Actions to address risks + opportunities \u2014 for the FSMS,\nincluding determination of food-safety risks + opportunities,\nplanning + integration of actions + evaluation of effectiveness.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22000-8.2",
+      "standard": "ISO 22000:2018",
+      "section": "8.2",
+      "summary": "Prerequisite programmes (PRPs) \u2014 establish + implement +\nmaintain + update PRP(s) addressing infrastructure +\nworkspace + utilities + supporting services + suppliers +\npest control + cleaning + sanitation + personnel hygiene +\ncross-contamination prevention + product information per\nISO/TS 22002 series (food manufacturing / farming / packaging\n/ transport+storage / catering / animal feed).",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22000-8.5",
+      "standard": "ISO 22000:2018",
+      "section": "8.5",
+      "summary": "Hazard control \u2014 hazard analysis (\u00a78.5.2) covering biological\n+ chemical + physical + allergen hazards across operational\nsteps; significance evaluation; CCP + oPRP determination;\ncritical limits; monitoring procedures; corrections + corrective\nactions when limits not met; verification activities.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22000-8.7",
+      "standard": "ISO 22000:2018",
+      "section": "8.7",
+      "summary": "Control of monitoring + measuring \u2014 calibration + verification\nof monitoring equipment at planned intervals; control of\nmonitoring equipment important to PRPs, oPRPs, CCPs.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22000-8.9",
+      "standard": "ISO 22000:2018",
+      "section": "8.9",
+      "summary": "Control of product + process nonconformities \u2014 handling of\npotentially unsafe products; withdrawal / recall procedures;\neffectiveness evaluation of recall execution.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22000-9.2",
+      "standard": "ISO 22000:2018",
+      "section": "9.2",
+      "summary": "Internal audit \u2014 planned audit program covering FSMS\nconformity + effectiveness; auditor competence + objectivity;\ncorrective actions on findings.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22000-9.3",
+      "standard": "ISO 22000:2018",
+      "section": "9.3",
+      "summary": "Management review \u2014 periodic review of FSMS by top management;\ninputs include audit results, customer feedback, monitoring\n+ measurement results, withdrawals + recalls, supplier\nperformance, food safety policy + objectives.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22000-10.1",
+      "standard": "ISO 22000:2018",
+      "section": "10.1",
+      "summary": "Nonconformity + corrective action \u2014 react to nonconformity;\nevaluate need for action to eliminate causes; implement +\nreview effectiveness; update FSMS as necessary.",
+      "gap_note": null
+    },
+    {
+      "id": "FSSC22000-PRP-detail",
+      "standard": "FSSC 22000 v6",
+      "section": "Scheme \u2014 Part 2 Additional Requirements",
+      "summary": "FSSC 22000 v6 supplements ISO 22000 with: detailed sector-\nspecific PRPs per the applicable ISO/TS 22002 part; specific\nrequirements for management of services + purchased materials;\nproduct labeling + printed materials; food defense; food fraud\nmitigation; allergen management; environmental monitoring (for\nrelevant sectors); product design + development.",
+      "gap_note": null
+    },
+    {
+      "id": "Codex-HACCP-7-principles",
+      "standard": "Codex HACCP",
+      "section": "HACCP Annex Step 6-12",
+      "summary": "The 7 HACCP principles + 12 implementation steps. Principle 1:\nhazard analysis. Principle 2: CCP determination (decision\ntree). Principle 3: critical limits. Principle 4: monitoring.\nPrinciple 5: corrective actions (pre-defined). Principle 6:\nverification. Principle 7: record-keeping. Steps 1-5 are\npreparatory (HACCP team, product description, intended use,\nflow diagram, on-site verification).",
+      "gap_note": null
+    },
+    {
+      "id": "Codex-good-hygienic-practice",
+      "standard": "Codex HACCP",
+      "section": "General Principles of Food Hygiene \u00a73-\u00a79",
+      "summary": "Good Hygienic Practices (GHPs) \u2014 environment + production\ncontrols; food handler training + competence; transport;\ncleaning + maintenance; personnel hygiene; recall procedures.\nFoundational to HACCP; not specific to a particular hazard.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR117-Subpart-B-cGMP",
+      "standard": "21 CFR 117",
+      "section": "Subpart B (\u00a7\u00a7117.10\u2013117.110)",
+      "summary": "Current Good Manufacturing Practice \u2014 personnel hygiene + GMP\ntraining (\u00a7117.10); plants + grounds (\u00a7117.20); sanitary\noperations (\u00a7117.35); sanitary facilities + controls (\u00a7117.37);\nequipment + utensils (\u00a7117.40); processes + controls (\u00a7117.80);\nwarehousing + distribution (\u00a7117.93); defect action levels\n(\u00a7117.110).",
+      "gap_note": null
+    },
+    {
+      "id": "CFR117-Subpart-C-FoodSafetyPlan",
+      "standard": "21 CFR 117",
+      "section": "Subpart C (\u00a7\u00a7117.126\u2013117.190)",
+      "summary": "Food Safety Plan + Hazard Analysis + Preventive Controls \u2014\nwritten Food Safety Plan (\u00a7117.126); hazard analysis (\u00a7117.130);\npreventive controls for hazards requiring a preventive control\n(process / food allergen / sanitation / supply-chain) per\n\u00a7\u00a7117.135\u2013117.140; monitoring + corrective actions +\nverification (\u00a7\u00a7117.145\u2013117.165); validation (\u00a7117.160);\nreanalysis (\u00a7117.170); records (\u00a7117.190). Reviewed +\nmaintained by a Preventive Controls Qualified Individual\n(PCQI) per \u00a7117.180.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR117-Subpart-D-Recall",
+      "standard": "21 CFR 117",
+      "section": "Subpart D (\u00a7117.137)",
+      "summary": "Recall Plan \u2014 required when a hazard requiring a preventive\ncontrol is identified for a food. The recall plan includes\nprocedures for direct notification of consignees + the public\nwhere appropriate; effectiveness checks; product disposition.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-4.2",
+      "standard": "ISO 14001:2015",
+      "section": "4.2",
+      "summary": "Understanding the needs + expectations of interested parties \u2014\ndetermine relevant interested parties (regulators, neighboring\ncommunities, customers, suppliers, workers, NGOs), their relevant\nneeds + expectations, and which of those become compliance\nobligations.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-5.2",
+      "standard": "ISO 14001:2015",
+      "section": "5.2",
+      "summary": "Environmental policy \u2014 top management establishes + maintains\na policy appropriate to the purpose + context including the\nnature + scale + environmental impacts of activities, products,\nservices. Includes commitments to protection of the environment\n(incl. prevention of pollution + other commitments e.g.,\nsustainable resource use, climate change mitigation +\nadaptation, biodiversity), fulfillment of compliance\nobligations, continual improvement of EMS to enhance\nenvironmental performance.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-6.1.2",
+      "standard": "ISO 14001:2015",
+      "section": "6.1.2",
+      "summary": "Environmental aspects \u2014 identify aspects of activities, products,\nservices that can be controlled or influenced; determine\nassociated environmental impacts considering a lifecycle\nperspective. Determine significant environmental aspects\nusing established criteria. Maintain documented information\nof aspects + impacts + criteria + SEAs.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-6.1.3",
+      "standard": "ISO 14001:2015",
+      "section": "6.1.3",
+      "summary": "Compliance obligations \u2014 determine + have access to the\ncompliance obligations related to environmental aspects;\ndetermine how these apply to the organization; take obligations\ninto account when establishing + implementing + maintaining +\ncontinually improving the EMS.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-6.1.4",
+      "standard": "ISO 14001:2015",
+      "section": "6.1.4",
+      "summary": "Planning action \u2014 plan to take actions to address significant\nenvironmental aspects + compliance obligations + risks +\nopportunities identified per \u00a76.1.1, and to evaluate the\neffectiveness of these actions. Integration into EMS\nprocesses per \u00a76.1.1.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-6.2",
+      "standard": "ISO 14001:2015",
+      "section": "6.2",
+      "summary": "Environmental objectives + planning to achieve them \u2014 establish\nat relevant functions + levels, consistent with environmental\npolicy, considering SEAs + compliance obligations + risks +\nopportunities. Measurable, monitored, communicated, updated.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-7.4",
+      "standard": "ISO 14001:2015",
+      "section": "7.4",
+      "summary": "Communication \u2014 internal + external communications relevant to\nthe EMS including: what, when, with whom, how. External\ncommunication of significant environmental information as\nestablished by compliance obligations + the communication\nprocess. Responsiveness to relevant communications received.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-8.1",
+      "standard": "ISO 14001:2015",
+      "section": "8.1",
+      "summary": "Operational planning + control \u2014 establish + implement +\ncontrol + maintain processes needed to meet EMS requirements\n+ implement actions identified in \u00a76.1 + \u00a76.2. Includes\noperational criteria for SEAs, control of planned changes,\nreview of unintended changes + mitigation of adverse effects,\ncontrol / influence of outsourced processes, lifecycle\nperspective in design + procurement.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-8.2",
+      "standard": "ISO 14001:2015",
+      "section": "8.2",
+      "summary": "Emergency preparedness + response \u2014 establish + implement +\nmaintain processes needed to prepare for + respond to potential\nemergency situations identified in \u00a76.1.1. Periodic test of\nplanned response actions where practicable. Periodic review +\nrevision based on test results + actual occurrences.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-9.1.2",
+      "standard": "ISO 14001:2015",
+      "section": "9.1.2",
+      "summary": "Evaluation of compliance \u2014 establish + implement + maintain\nprocesses needed to evaluate fulfillment of compliance\nobligations. Determine frequency, evaluate compliance + take\naction if needed, maintain knowledge + understanding of\ncompliance status. Documented information retained as\nevidence of evaluation results.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-10.2",
+      "standard": "ISO 14001:2015",
+      "section": "10.2",
+      "summary": "Nonconformity + corrective action \u2014 react to nonconformity\nincluding taking action to control + correct it + deal with\nconsequences (including mitigating adverse environmental\nimpacts); evaluate need for action to eliminate causes;\nimplement; review effectiveness; make changes to EMS if\nnecessary.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-4.2",
+      "standard": "ISO 45001:2018",
+      "section": "4.2",
+      "summary": "Understanding the needs + expectations of workers + other\ninterested parties \u2014 determine + monitor interested parties\n(workers, contractors, suppliers, customers, visitors,\nregulators, communities, families of workers), their relevant\nneeds + expectations, which become compliance obligations.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-5.2",
+      "standard": "ISO 45001:2018",
+      "section": "5.2",
+      "summary": "OH&S policy \u2014 top management establishes + implements +\nmaintains a policy that includes commitment to: provide safe\n+ healthy working conditions for prevention of work-related\ninjury + ill-health, appropriate to purpose + size + context\nand the specific nature of OH&S risks + opportunities;\nprovide framework for setting OH&S objectives; fulfil legal\n+ other requirements; eliminate hazards + reduce OH&S risks;\ncontinual improvement of OHSMS; consultation + participation\nof workers + their representatives.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-5.4",
+      "standard": "ISO 45001:2018",
+      "section": "5.4",
+      "summary": "Consultation + participation of workers \u2014 establish + implement\n+ maintain processes for consultation + participation of\nnon-managerial workers (and their representatives where they\nexist) in development + planning + implementation + performance\nevaluation + actions for improvement of the OHSMS. Provide\nmechanisms + time + training + resources; remove + minimize\nbarriers; specific topics requiring consultation OR\nparticipation are listed in \u00a75.4 a) and b).",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-6.1.2",
+      "standard": "ISO 45001:2018",
+      "section": "6.1.2",
+      "summary": "Hazard identification + assessment of risks + opportunities \u2014\nestablish + implement + maintain a hazard identification process\nongoing + proactive. Consider routine + non-routine activities,\nworkplace, work organization, factors affecting workers\n(incl. psychosocial), past relevant incidents, emergency\nsituations. Assess OH&S risks + identify other risks to the\nOHSMS. Identify OH&S opportunities + other opportunities.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-6.1.3",
+      "standard": "ISO 45001:2018",
+      "section": "6.1.3",
+      "summary": "Determination of legal + other requirements \u2014 determine + have\naccess to up-to-date legal + other requirements applicable to\nhazards + OH&S risks + OHSMS; determine how these requirements\napply + need to be communicated; take into account when\nestablishing + implementing + maintaining + improving OHSMS.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-6.1.4",
+      "standard": "ISO 45001:2018",
+      "section": "6.1.4",
+      "summary": "Planning action \u2014 plan to take actions to address risks +\nopportunities, address legal + other requirements, prepare\nfor + respond to emergency situations. Integrate into OHSMS\nprocesses + other business processes. Evaluate effectiveness.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-7.3",
+      "standard": "ISO 45001:2018",
+      "section": "7.3",
+      "summary": "Awareness \u2014 workers shall be made aware of the OH&S policy +\nobjectives, their contribution to OHSMS effectiveness,\nimplications + consequences of not conforming to OHSMS\nrequirements, incidents + outcomes of investigations\nrelevant to them, hazards + OH&S risks + actions\ndetermined relevant to them, ability to remove themselves\nfrom work situations they consider to present an imminent\n+ serious danger to their life or health, and arrangements\nfor protecting them from undue consequences for doing so.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-8.1.2",
+      "standard": "ISO 45001:2018",
+      "section": "8.1.2",
+      "summary": "Eliminating hazards + reducing OH&S risks \u2014 establish +\nimplement + maintain a process(es) for the elimination of\nhazards + reduction of OH&S risks using the hierarchy of\ncontrols: eliminate the hazard; substitute with less\nhazardous processes / operations / materials / equipment;\nuse engineering controls + reorganization of work;\nadministrative controls including training; PPE. PPE is\nthe last resort.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-8.1.3",
+      "standard": "ISO 45001:2018",
+      "section": "8.1.3",
+      "summary": "Management of change \u2014 establish process(es) for implementation\n+ control of planned temporary + permanent changes that\naffect OH&S performance (new / modified products / services /\nprocesses; workplace / surroundings / work organization /\nworking conditions; equipment; workforce; legal + other\nrequirements; knowledge / information about hazards + OH&S\nrisks; technology development). Review consequences of\nunintended changes + mitigate adverse effects.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-8.1.4",
+      "standard": "ISO 45001:2018",
+      "section": "8.1.4",
+      "summary": "Procurement \u2014 establish process(es) to control procurement of\nproducts + services so they conform to OHSMS. Includes\ncoordinating procurement processes with contractors to identify\nhazards + assess + control OH&S risks arising from contractors'\nactivities + operations that impact organization OR workers OR\nother interested parties.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-8.2",
+      "standard": "ISO 45001:2018",
+      "section": "8.2",
+      "summary": "Emergency preparedness + response \u2014 establish + implement +\nmaintain process(es) needed to prepare for + respond to\npotential emergency situations identified in \u00a76.1.2.1.\nPlanned response, training, communication of relevant\ninformation to workers + interested parties, periodic testing\n+ revision, evaluation + revision after testing + occurrence.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-10.2",
+      "standard": "ISO 45001:2018",
+      "section": "10.2",
+      "summary": "Incident + nonconformity + corrective action \u2014 react in a\ntimely manner to incidents + nonconformities including\ncontrolling + correcting them, dealing with consequences;\nevaluate (with participation of workers + involvement of\nother relevant interested parties) the need for corrective\naction to eliminate root cause(s); review existing\nOH&S risk assessments + other risks; determine + implement\naction needed including corrective; review effectiveness;\nmake changes to OHSMS if necessary.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-5.2",
+      "standard": "ISO 50001:2018",
+      "section": "5.2",
+      "summary": "Energy policy \u2014 top management establishes + implements +\nmaintains an energy policy that is appropriate to the\norganization's purpose, provides framework for setting +\nreviewing energy objectives + targets, includes commitment\nto ensure information + necessary resources for achieving\nthe objectives + targets, commitment to satisfy applicable\nlegal + other requirements related to energy efficiency +\nuse + consumption, commitment to continual improvement of\nenergy performance + the EnMS, supports procurement of\nenergy-efficient products + services + design activities\nto improve energy performance.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-6.3",
+      "standard": "ISO 50001:2018",
+      "section": "6.3",
+      "summary": "Energy review \u2014 develop + record + maintain an energy review\nbased on measurement + other data: analyze energy use +\nconsumption based on measurement + other data, identify\nSignificant Energy Uses (SEUs) based on energy use +\nconsumption + criteria, determine current energy performance\nof facilities + equipment + systems + processes + personnel\naffecting SEUs, identify + prioritize + record opportunities\nfor improving energy performance + for changing in the future\nenergy use + consumption.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-6.4",
+      "standard": "ISO 50001:2018",
+      "section": "6.4",
+      "summary": "Energy performance indicators (EnPIs) \u2014 determine EnPIs\nappropriate for measuring + monitoring energy performance,\nincluding methodology for determining + updating EnPIs.\nEnPI values shall be reviewed + compared to corresponding\nenergy baselines. Documented information of EnPI methodology\n+ values + measures + their changes.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-6.5",
+      "standard": "ISO 50001:2018",
+      "section": "6.5",
+      "summary": "Energy baseline (EnB) \u2014 establish EnB(s) using information\nfrom energy review considering a suitable period of data.\nChanges to EnPIs shall be measured against the corresponding\nEnB. EnB(s) shall be revised in the case of: EnPI(s) no\nlonger reflecting organizational energy performance;\nmajor changes to static factors; significant changes to\noperations + processes + energy systems. Maintained as\ndocumented information.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-6.6",
+      "standard": "ISO 50001:2018",
+      "section": "6.6",
+      "summary": "Planning for collection of energy data \u2014 ensure that the key\ncharacteristics of operations affecting energy performance\nare identified + measured + monitored + analyzed at planned\nintervals. Energy data collection plan addresses: relevant\nvariables related to SEUs, energy consumption related to\nSEUs + the organization, operational criteria related to\nSEUs, static factors (if applicable), data specified in\naction plans. Data + methods recorded + reviewed + updated.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-8.1",
+      "standard": "ISO 50001:2018",
+      "section": "8.1",
+      "summary": "Operational planning + control \u2014 plan + implement + control\nprocesses related to SEUs by establishing criteria for\neffective operation + maintenance of SEUs (the absence of\nsuch criteria could lead to a significant deviation from\neffective energy performance), operating + maintaining\nfacilities + equipment + systems + processes in accordance\nwith operational criteria, communicating operational\ncontrols to relevant persons. Control of planned changes.\nReview of consequences of unintended changes + mitigation\nof adverse effects.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-8.2",
+      "standard": "ISO 50001:2018",
+      "section": "8.2",
+      "summary": "Design \u2014 consider energy performance improvement opportunities\n+ operational control in design of new, modified, and\nrenovated facilities + equipment + systems + processes that\ncan have significant impact on energy performance over the\nplanned or expected operating lifetime. Results of energy\nperformance considerations shall be incorporated into\nspecification + design + procurement activities.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-8.3",
+      "standard": "ISO 50001:2018",
+      "section": "8.3",
+      "summary": "Procurement \u2014 establish + implement criteria for assessing\nenergy performance over the planned or expected operating\nlifetime when procuring energy-using products + equipment +\nservices that are expected to have significant impact on\norganization's energy performance. Inform suppliers that\nprocurement is partly evaluated on basis of energy\nperformance. For procurement of energy: define + document\nspecifications, as applicable, for purchased energy.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-9.1.1",
+      "standard": "ISO 50001:2018",
+      "section": "9.1.1",
+      "summary": "Monitoring + measurement + analysis + evaluation of energy\nperformance + the EnMS \u2014 key characteristics determined +\nmonitored at planned intervals, including effectiveness\nof action plans in achieving objectives + targets, EnPIs,\noperation of SEUs, actual vs. expected energy consumption.\nEnPI values investigated + responded to where significant\ndeviations occur. Documented information retained.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-10.2",
+      "standard": "ISO 50001:2018",
+      "section": "10.2",
+      "summary": "Nonconformity + corrective action \u2014 react to nonconformity\n(incl. taking action to control + correct it, dealing with\nconsequences); evaluate need for action to eliminate root\ncause(s); implement; review effectiveness; make changes to\nEnMS if necessary. Documented information retained as\nevidence of NC + actions + results.",
+      "gap_note": null
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "templates/product-food/haccp/HACCP-PLAN-TEMPLATE.md",
+      "name": "HACCP Plan (Codex HACCP + ISO 22000 \u00a78.5 + 21 CFR 117 Subpart C + 21 CFR 123)",
+      "addresses": [
+        "ISO22000-8.5",
+        "Codex-HACCP-7-principles",
+        "CFR117-Subpart-C-FoodSafetyPlan",
+        "CFR123-Seafood-HACCP"
+      ]
+    },
+    {
+      "path": "templates/product-food/prp/PREREQUISITE-PROGRAMS-TEMPLATE.md",
+      "name": "Prerequisite Programs index (ISO 22000 \u00a78.2 + ISO/TS 22002 series + Codex GHPs + 21 CFR 117 Subpart B)",
+      "addresses": [
+        "ISO22000-8.2",
+        "Codex-good-hygienic-practice",
+        "CFR117-Subpart-B-cGMP",
+        "FSSC22000-PRP-detail"
+      ]
+    },
+    {
+      "path": "templates/product-food/recall/RECALL-WITHDRAWAL-PROCEDURE-TEMPLATE.md",
+      "name": "Recall + Withdrawal Procedure (ISO 22000 \u00a78.9 + Codex \u00a75.7 + 21 CFR 117 Subpart D + 21 CFR 7)",
+      "addresses": [
+        "ISO22000-8.9",
+        "CFR117-Subpart-D-Recall"
+      ]
+    },
+    {
+      "path": "templates/qms-policy/quality-policy.md",
+      "name": "Quality + Food Safety policy (ISO 22000 \u00a75.2 \u2014 adopters extend the QMS policy template with food-safety commitments)",
+      "addresses": [
+        "ISO22000-5.2",
+        "ISO14001-5.2",
+        "ISO14001-4.2",
+        "ISO45001-5.2",
+        "ISO45001-4.2",
+        "ISO45001-5.4",
+        "ISO50001-5.2"
+      ]
+    },
+    {
+      "path": "templates/qms-sops/SOP-TEMPLATE.md",
+      "name": "SOPs for ISO 22000 risk-and-opportunity planning + monitoring + measuring equipment calibration (ISO 22000 \u00a76.1 + \u00a78.7)",
+      "addresses": [
+        "ISO22000-6.1",
+        "ISO22000-8.7",
+        "ISO14001-6.1.4",
+        "ISO14001-6.2",
+        "ISO14001-7.4",
+        "ISO45001-6.1.4",
+        "ISO45001-7.3",
+        "ISO50001-9.1.1"
+      ]
+    },
+    {
+      "path": "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md",
+      "name": "Internal audit (ISO 22000 \u00a79.2)",
+      "addresses": [
+        "ISO22000-9.2",
+        "ISO14001-9.1.2"
+      ]
+    },
+    {
+      "path": "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md",
+      "name": "Management review (ISO 22000 \u00a79.3)",
+      "addresses": [
+        "ISO22000-9.3"
+      ]
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/capa.yml",
+      "name": "CAPA \u2014 food safety NC + corrective action (ISO 22000 \u00a710.1)",
+      "addresses": [
+        "ISO22000-10.1",
+        "ISO14001-10.2",
+        "ISO45001-10.2",
+        "ISO50001-10.2"
+      ]
+    },
+    {
+      "path": "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md",
+      "name": "Environmental Aspects + Impacts Register (ISO 14001 \u00a76.1.2 + \u00a76.1.3 + \u00a78.1 + \u00a78.2 cross-references)",
+      "addresses": [
+        "ISO14001-6.1.2",
+        "ISO14001-6.1.3",
+        "ISO14001-8.1",
+        "ISO14001-8.2"
+      ]
+    },
+    {
+      "path": "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md",
+      "name": "HIRA \u2014 Hazard Identification + Risk Assessment with Hierarchy of Controls (ISO 45001 \u00a76.1.2 + \u00a76.1.3 + \u00a78.1.2 + \u00a78.1.3 + \u00a78.1.4 + \u00a78.2)",
+      "addresses": [
+        "ISO45001-6.1.2",
+        "ISO45001-6.1.3",
+        "ISO45001-8.1.2",
+        "ISO45001-8.1.3",
+        "ISO45001-8.1.4",
+        "ISO45001-8.2"
+      ]
+    },
+    {
+      "path": "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md",
+      "name": "Energy Review + EnPIs + EnB Baseline (ISO 50001 \u00a76.3 + \u00a76.4 + \u00a76.5 + \u00a76.6 + \u00a78.1 + \u00a78.2 + \u00a78.3 cross-references)",
+      "addresses": [
+        "ISO50001-6.3",
+        "ISO50001-6.4",
+        "ISO50001-6.5",
+        "ISO50001-6.6",
+        "ISO50001-8.1",
+        "ISO50001-8.2",
+        "ISO50001-8.3"
+      ]
+    }
+  ],
+  "traceability": {
+    "forward": {
+      "templates/product-food/haccp/HACCP-PLAN-TEMPLATE.md": [
+        "ISO22000-8.5",
+        "Codex-HACCP-7-principles",
+        "CFR117-Subpart-C-FoodSafetyPlan"
+      ],
+      "templates/product-food/prp/PREREQUISITE-PROGRAMS-TEMPLATE.md": [
+        "ISO22000-8.2",
+        "Codex-good-hygienic-practice",
+        "CFR117-Subpart-B-cGMP",
+        "FSSC22000-PRP-detail"
+      ],
+      "templates/product-food/recall/RECALL-WITHDRAWAL-PROCEDURE-TEMPLATE.md": [
+        "ISO22000-8.9",
+        "CFR117-Subpart-D-Recall"
+      ],
+      "templates/qms-policy/quality-policy.md": [
+        "ISO22000-5.2",
+        "ISO14001-5.2",
+        "ISO14001-4.2",
+        "ISO45001-5.2",
+        "ISO45001-4.2",
+        "ISO45001-5.4",
+        "ISO50001-5.2"
+      ],
+      "templates/qms-sops/SOP-TEMPLATE.md": [
+        "ISO22000-6.1",
+        "ISO22000-8.7",
+        "ISO14001-6.1.4",
+        "ISO14001-6.2",
+        "ISO14001-7.4",
+        "ISO45001-6.1.4",
+        "ISO45001-7.3",
+        "ISO50001-9.1.1"
+      ],
+      "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md": [
+        "ISO22000-9.2",
+        "ISO14001-9.1.2"
+      ],
+      "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md": [
+        "ISO22000-9.3"
+      ],
+      ".github/ISSUE_TEMPLATE/capa.yml": [
+        "ISO22000-10.1",
+        "ISO14001-10.2",
+        "ISO45001-10.2",
+        "ISO50001-10.2"
+      ],
+      "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md": [
+        "ISO14001-6.1.2",
+        "ISO14001-6.1.3",
+        "ISO14001-8.1",
+        "ISO14001-8.2"
+      ],
+      "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md": [
+        "ISO45001-6.1.2",
+        "ISO45001-6.1.3",
+        "ISO45001-8.1.2",
+        "ISO45001-8.1.3",
+        "ISO45001-8.1.4",
+        "ISO45001-8.2"
+      ],
+      "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md": [
+        "ISO50001-6.3",
+        "ISO50001-6.4",
+        "ISO50001-6.5",
+        "ISO50001-6.6",
+        "ISO50001-8.1",
+        "ISO50001-8.2",
+        "ISO50001-8.3"
+      ]
+    },
+    "reverse": {
+      "ISO22000-5.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO22000-6.1": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO22000-8.2": [
+        "templates/product-food/prp/PREREQUISITE-PROGRAMS-TEMPLATE.md"
+      ],
+      "ISO22000-8.5": [
+        "templates/product-food/haccp/HACCP-PLAN-TEMPLATE.md"
+      ],
+      "ISO22000-8.7": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO22000-8.9": [
+        "templates/product-food/recall/RECALL-WITHDRAWAL-PROCEDURE-TEMPLATE.md"
+      ],
+      "ISO22000-9.2": [
+        "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md"
+      ],
+      "ISO22000-9.3": [
+        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md"
+      ],
+      "ISO22000-10.1": [
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ],
+      "FSSC22000-PRP-detail": [
+        "templates/product-food/prp/PREREQUISITE-PROGRAMS-TEMPLATE.md"
+      ],
+      "Codex-HACCP-7-principles": [
+        "templates/product-food/haccp/HACCP-PLAN-TEMPLATE.md"
+      ],
+      "Codex-good-hygienic-practice": [
+        "templates/product-food/prp/PREREQUISITE-PROGRAMS-TEMPLATE.md"
+      ],
+      "CFR117-Subpart-B-cGMP": [
+        "templates/product-food/prp/PREREQUISITE-PROGRAMS-TEMPLATE.md"
+      ],
+      "CFR117-Subpart-C-FoodSafetyPlan": [
+        "templates/product-food/haccp/HACCP-PLAN-TEMPLATE.md"
+      ],
+      "CFR117-Subpart-D-Recall": [
+        "templates/product-food/recall/RECALL-WITHDRAWAL-PROCEDURE-TEMPLATE.md"
+      ],
+      "ISO14001-4.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO14001-5.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO14001-6.1.2": [
+        "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md"
+      ],
+      "ISO14001-6.1.3": [
+        "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md"
+      ],
+      "ISO14001-6.1.4": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO14001-6.2": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO14001-7.4": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO14001-8.1": [
+        "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md"
+      ],
+      "ISO14001-8.2": [
+        "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md"
+      ],
+      "ISO14001-9.1.2": [
+        "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md"
+      ],
+      "ISO14001-10.2": [
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ],
+      "ISO45001-4.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO45001-5.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO45001-5.4": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO45001-6.1.2": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-6.1.3": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-6.1.4": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO45001-7.3": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO45001-8.1.2": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-8.1.3": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-8.1.4": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-8.2": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-10.2": [
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ],
+      "ISO50001-5.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO50001-6.3": [
+        "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md"
+      ],
+      "ISO50001-6.4": [
+        "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md"
+      ],
+      "ISO50001-6.5": [
+        "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md"
+      ],
+      "ISO50001-6.6": [
+        "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md"
+      ],
+      "ISO50001-8.1": [
+        "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md"
+      ],
+      "ISO50001-8.2": [
+        "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md"
+      ],
+      "ISO50001-8.3": [
+        "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md"
+      ],
+      "ISO50001-9.1.1": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO50001-10.2": [
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ]
+    }
+  }
+}

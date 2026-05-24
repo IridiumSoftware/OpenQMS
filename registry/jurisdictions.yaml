@@ -174,3 +174,35 @@ jurisdictions:
       - "ICH Q7"
       - "ICH Q9"
       - "ICH Q10"
+
+  # === Food-safety jurisdictions ===
+
+  - id: FDA-Food
+    name: U.S. Food and Drug Administration — Food (CFSAN + FSMA)
+    region: United States
+    applicable_standards:
+      - "21 CFR 117"
+      - "21 CFR 123"
+      - "ISO 22000:2018"
+      - "Codex HACCP"
+
+  - id: USDA-FSIS
+    name: U.S. Department of Agriculture — Food Safety and Inspection Service
+    region: United States
+    applicable_standards:
+      - "Codex HACCP"
+
+  - id: EFSA
+    name: European Food Safety Authority
+    region: European Union
+    applicable_standards:
+      - "ISO 22000:2018"
+      - "FSSC 22000 v6"
+      - "Codex HACCP"
+
+  - id: CFIA
+    name: Canadian Food Inspection Agency
+    region: Canada
+    applicable_standards:
+      - "Codex HACCP"
+      - "ISO 22000:2018"
