@@ -1,0 +1,1082 @@
+{
+  "bundle": {
+    "product": "ExampleAutologousCAR-T-CD19",
+    "jurisdictions": [
+      "FDA",
+      "EMA",
+      "MHRA"
+    ],
+    "standards": [
+      "ICH Q7",
+      "ICH Q9",
+      "ICH Q10",
+      "21 CFR 210",
+      "21 CFR 211",
+      "21 CFR Part 11",
+      "EudraLex Vol. 4",
+      "PIC/S Annex 1",
+      "EU GMP Annex 2A",
+      "EU GMP Annex 2B",
+      "21 CFR 1271",
+      "ICH Q5A(R2)",
+      "ISO/IEC 27001:2022",
+      "ISO 14001:2015",
+      "ISO 45001:2018",
+      "ISO 50001:2018"
+    ]
+  },
+  "module": {
+    "name": "pharma+atmp-overlay+iso-27001-overlay+iso-14001-overlay+iso-45001-overlay+iso-50001-overlay",
+    "version": "composed"
+  },
+  "in_scope_clauses": [
+    {
+      "id": "ICHQ10-3.2.1",
+      "standard": "ICH Q10",
+      "section": "\u00a73.2.1",
+      "summary": "Management responsibility for the PQS \u2014 top management commits\nto + provides resources for the Pharmaceutical Quality System;\nestablishes quality policy + objectives; reviews PQS\neffectiveness through periodic management review.",
+      "gap_note": null
+    },
+    {
+      "id": "ICHQ10-3.2.2",
+      "standard": "ICH Q10",
+      "section": "\u00a73.2.2",
+      "summary": "Process performance + product quality monitoring system,\ncorrective action + preventive action system, and change\nmanagement system as integrated elements of the PQS. Operates\nacross the entire product lifecycle (pharmaceutical\ndevelopment through technology transfer + commercial\nmanufacturing + product discontinuation).",
+      "gap_note": null
+    },
+    {
+      "id": "ICHQ10-3.2.4",
+      "standard": "ICH Q10",
+      "section": "\u00a73.2.4",
+      "summary": "Process performance + product quality monitoring \u2014 Stage 3\nContinued Process Verification per FDA Process Validation\nGuidance 2011. Statistical control of critical process\nparameters + critical quality attributes from routine\nmanufacturing batches.",
+      "gap_note": null
+    },
+    {
+      "id": "ICHQ9-risk-framework",
+      "standard": "ICH Q9",
+      "section": "all",
+      "summary": "Quality Risk Management framework \u2014 systematic process for\nassessment + control + communication + review of quality risks\nto the medicinal product (and ultimately to the patient).\nMethods include FMEA, FMECA, FTA, HAZOP, HACCP, PHA. Applied\nacross PQS elements: validation, change control, deviation\ncategorization, batch disposition, supplier qualification,\nfacility design, computer-system validation.",
+      "gap_note": null
+    },
+    {
+      "id": "ICHQ7-quality-management",
+      "standard": "ICH Q7",
+      "section": "\u00a72",
+      "summary": "Quality management for API manufacturing \u2014 independent QC unit,\nwritten procedures, internal audit program, product quality\nreview.",
+      "gap_note": null
+    },
+    {
+      "id": "ICHQ7-production",
+      "standard": "ICH Q7",
+      "section": "\u00a78",
+      "summary": "Production + in-process controls for APIs \u2014 written production\ninstructions, in-process controls, sampling, identification of\nreprocessed + reworked materials.",
+      "gap_note": null
+    },
+    {
+      "id": "ICHQ7-validation",
+      "standard": "ICH Q7",
+      "section": "\u00a712",
+      "summary": "Validation for API manufacturing \u2014 validation policy,\nqualification of equipment + facilities + utilities, validation\nof analytical methods, cleaning validation, process\nvalidation, periodic revalidation.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR211-Subpart-B-Organization",
+      "standard": "21 CFR 211",
+      "section": "Subpart B (\u00a7\u00a7211.22\u2013211.34)",
+      "summary": "Organization + personnel \u2014 Quality Control Unit (\u00a7211.22)\nindependent of manufacturing with authority to approve / reject\ncomponents + drug products + materials / procedures + batch\nrecords + change controls + production / control records.\nQualifications + training of personnel (\u00a7211.25). Adequate\npersonnel for production (\u00a7211.34).",
+      "gap_note": null
+    },
+    {
+      "id": "CFR211-Subpart-D-Equipment",
+      "standard": "21 CFR 211",
+      "section": "Subpart D (\u00a7\u00a7211.63\u2013211.72)",
+      "summary": "Equipment \u2014 equipment design, size, location (\u00a7211.63);\nconstruction (\u00a7211.65); cleaning + maintenance (\u00a7211.67);\nautomatic + mechanical + electronic equipment (\u00a7211.68 \u2014\nincluding 21 CFR Part 11 cross-reference); filters (\u00a7211.72).",
+      "gap_note": null
+    },
+    {
+      "id": "CFR211-Subpart-E-Components",
+      "standard": "21 CFR 211",
+      "section": "Subpart E (\u00a7\u00a7211.80\u2013211.94)",
+      "summary": "Control of components + drug product containers + closures \u2014\nreceipt + identification + storage + handling + sampling +\ntesting + approval / rejection of components. Approved-supplier\nmanagement. Container + closure system testing.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR211-Subpart-F-Production",
+      "standard": "21 CFR 211",
+      "section": "Subpart F (\u00a7\u00a7211.100\u2013211.115)",
+      "summary": "Production + process controls \u2014 written procedures + deviations\n(\u00a7211.100); charge-in of components (\u00a7211.101); calculation of\nyield (\u00a7211.103); equipment identification (\u00a7211.105); sampling\n+ testing of in-process materials + drug products (\u00a7211.110);\ntime limitations on production (\u00a7211.111); microbial\ncontamination control (\u00a7211.113); reprocessing (\u00a7211.115).",
+      "gap_note": null
+    },
+    {
+      "id": "CFR211-Subpart-G-Packaging-Labeling",
+      "standard": "21 CFR 211",
+      "section": "Subpart G (\u00a7\u00a7211.122\u2013211.137)",
+      "summary": "Packaging + labeling control \u2014 materials examination + usage\ncriteria; labeling issuance; packaging + labeling operations;\ntamper-evident packaging for OTC; drug product inspection;\nexpiration dating.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR211-Subpart-I-Laboratory",
+      "standard": "21 CFR 211",
+      "section": "Subpart I (\u00a7\u00a7211.160\u2013211.176)",
+      "summary": "Laboratory controls \u2014 general requirements (\u00a7211.160); testing\n+ release for distribution (\u00a7211.165); stability testing\n(\u00a7211.166); special testing requirements (\u00a7211.167); reserve\nsamples (\u00a7211.170); laboratory animals (\u00a7211.173); penicillin\ncontamination (\u00a7211.176).",
+      "gap_note": null
+    },
+    {
+      "id": "CFR211-Subpart-J-Records",
+      "standard": "21 CFR 211",
+      "section": "Subpart J (\u00a7\u00a7211.180\u2013211.198)",
+      "summary": "Records + reports \u2014 general requirements (\u00a7211.180 \u2014 including\nANNUAL PRODUCT QUALITY REVIEW per \u00a7211.180(e)); equipment\ncleaning + use log (\u00a7211.182); component + drug product\ncontainer records (\u00a7211.184); master production + control\nrecords (\u00a7211.186); batch production + control records\n(\u00a7211.188); production record review (\u00a7211.192); laboratory\nrecords (\u00a7211.194); distribution records (\u00a7211.196); complaint\nfiles (\u00a7211.198).",
+      "gap_note": null
+    },
+    {
+      "id": "EUGMP-Ch1-PQS",
+      "standard": "EudraLex Vol. 4",
+      "section": "Part I Chapter 1",
+      "summary": "Pharmaceutical Quality System (ICH Q10 adopted into EU GMP) \u2014\n\u00a71.4(xiv) explicitly covers Change Management + Deviation\nhandling. \u00a71.10 mandates Annual Product Quality Review\n(Product Quality Review / PQR).",
+      "gap_note": null
+    },
+    {
+      "id": "EUGMP-Ch2-Personnel",
+      "standard": "EudraLex Vol. 4",
+      "section": "Part I Chapter 2",
+      "summary": "Personnel \u2014 qualifications, training, organizational structure,\nkey personnel including Production Manager + QC Manager +\nQUALIFIED PERSON (QP) (\u00a7\u00a72.5\u20132.7). QP responsibilities per\nArticle 51 of Directive 2001/83/EC.",
+      "gap_note": null
+    },
+    {
+      "id": "EUGMP-Ch6-QC",
+      "standard": "EudraLex Vol. 4",
+      "section": "Part I Chapter 6",
+      "summary": "Quality Control \u2014 laboratory practice, reference samples,\ntesting of materials + intermediates + finished products,\nongoing stability programme. \u00a76.34 specifically covers\nOut-of-Specification investigation (alongside FDA 2006 OOS\nGuidance).",
+      "gap_note": null
+    },
+    {
+      "id": "EUGMP-Annex15-Qualification",
+      "standard": "EudraLex Vol. 4",
+      "section": "Annex 15",
+      "summary": "Qualification + Validation \u2014 defines IQ / OQ / PQ + process\nvalidation (Stage 1 design + Stage 2 PQ typically 3 consecutive\nbatches + Stage 3 ongoing) + cleaning validation + analytical\nmethod validation requirements.",
+      "gap_note": null
+    },
+    {
+      "id": "EUGMP-Annex16-QP-Release",
+      "standard": "EudraLex Vol. 4",
+      "section": "Annex 16",
+      "summary": "Certification by a Qualified Person + Batch Release \u2014 Qualified\nPerson personally certifies each batch of medicinal product\nmeets requirements before release for sale or distribution to\nEU market. QP certification is in addition to (not instead of)\nQA release per ICH Q10.",
+      "gap_note": null
+    },
+    {
+      "id": "PICS-A1-contamination-control-strategy",
+      "standard": "PIC/S Annex 1",
+      "section": "\u00a72 + \u00a78",
+      "summary": "Contamination Control Strategy (CCS) \u2014 site-level documented\nstrategy describing all controls in place to prevent microbial,\nparticulate, and pyrogen contamination of sterile products.\nRequired by 2022 revision of Annex 1; CCS spans facility design,\npersonnel, materials, equipment, processes, environmental\nmonitoring, and product-protection technologies (RABS, isolators,\nsingle-use systems).",
+      "gap_note": null
+    },
+    {
+      "id": "PICS-A1-aseptic-process-simulation",
+      "standard": "PIC/S Annex 1",
+      "section": "\u00a79.40\u2013\u00a79.50",
+      "summary": "Aseptic Process Simulation (APS) \u2014 media fill validation of\naseptic operations. Initial qualification + periodic\nre-qualification (typically every 6 months per shift per line);\nacceptance criterion of zero contaminated units (with specified\ninvestigation triggers for any positive result).",
+      "gap_note": null
+    },
+    {
+      "id": "PICS-A1-environmental-monitoring",
+      "standard": "PIC/S Annex 1",
+      "section": "\u00a79 EM + \u00a79.27 cleanroom classification",
+      "summary": "Environmental monitoring + cleanroom classification \u2014 Grade A\n(most stringent \u2014 point of fill / open product exposure),\nGrade B (background for aseptic operations), Grade C, Grade D.\nContinuous viable + non-viable particle monitoring in Grade A;\ndefined-frequency monitoring in lower grades. Alert + action\nlimits with trend analysis.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR-Part-11-applicability",
+      "standard": "21 CFR Part 11",
+      "section": "Subpart A + Subpart B + Subpart C",
+      "summary": "Electronic records + electronic signatures requirements\napplicable to pharma manufacturing computerized systems (LIMS,\nMES, ERP, electronic batch records, electronic logbooks,\nanalytical instruments). Includes validation, audit trails,\nrecord retention, copies, signatures, and signature meaning\n(Open QMS handles \u00a711.50 via commit-trailer convention OQ-060\nfor github-native scope).",
+      "gap_note": null
+    },
+    {
+      "id": "Annex2A-risk-based",
+      "standard": "EU GMP Annex 2A",
+      "section": "\u00a72",
+      "summary": "Risk-based approach \u2014 ATMP manufacturing applies a risk-based\napproach per EU GMP Annex 2A \u00a72, with the depth + rigor of\ncontrols scaled to the product-specific risks (autologous vs.\nallogeneic, viral vector vs. cell-only, donor-screened vs.\nestablished cell line). Documented risk assessment per ICH Q9\ndrives process design + control strategy.",
+      "gap_note": null
+    },
+    {
+      "id": "Annex2A-personnel-aseptic",
+      "standard": "EU GMP Annex 2A",
+      "section": "\u00a74 + \u00a77",
+      "summary": "Personnel + aseptic manufacturing \u2014 ATMP personnel require\nspecific training in aseptic technique + cell-handling +\nbiosafety. Gowning + behavior in Grade A/B environments (per\nPIC/S Annex 1) with ATMP-specific adaptations: closed-system\nprocessing preferred; isolator + RABS use where feasible;\nqualified for media-fill APS per ATMP scope.",
+      "gap_note": null
+    },
+    {
+      "id": "Annex2A-donor-starting-material",
+      "standard": "EU GMP Annex 2A",
+      "section": "\u00a73 + \u00a76",
+      "summary": "Donor + starting material \u2014 ATMP starting materials derived\nfrom human tissues + cells shall be procured + tested per\nDirective 2004/23/EC + Directive 2006/17/EC (EU) with\nequivalent provisions under 21 CFR 1271 (US). Donor\neligibility determination per \u00a76 mandatory.",
+      "gap_note": null
+    },
+    {
+      "id": "Annex2A-traceability",
+      "standard": "EU GMP Annex 2A",
+      "section": "\u00a710",
+      "summary": "Traceability \u2014 full bidirectional traceability from donor\nthrough manufacturing intermediates through finished ATMP to\nrecipient administration. Per Directive 2004/23/EC Art. 8 +\nDirective 2006/86/EC. Single European Code (SEC) coding\nmandatory per Directive 2015/565 for EU human-tissue-and-cell\nsources.",
+      "gap_note": null
+    },
+    {
+      "id": "Annex2A-OOS-autologous",
+      "standard": "EU GMP Annex 2A",
+      "section": "\u00a78 + \u00a711",
+      "summary": "Quality control + OOS for autologous products \u2014 autologous\nATMPs cannot easily be rejected (product is patient-specific;\npatient has typically already undergone lymphodepletion or\nconditioning). Risk-based release strategy with rapid\ninvestigation + risk-benefit clinical decision in\ncollaboration with treating physician. Documented\ndecision-making process required.",
+      "gap_note": null
+    },
+    {
+      "id": "Annex2B-biological-active",
+      "standard": "EU GMP Annex 2B",
+      "section": "all",
+      "summary": "Biological active substances + medicinal products \u2014 applies\nto recombinant proteins, monoclonal antibodies, vaccines,\nhyperimmune sera, AND advanced therapies. Provides the\ncross-cutting biological-GMP framework with ATMP-specific\nadditions in Annex 2A. Cell-bank management, characterization,\nstability, comparability per ICH Q5D + Q5E + Q5C.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR1271-Subpart-C-donor-eligibility",
+      "standard": "21 CFR 1271",
+      "section": "Subpart C (\u00a7\u00a71271.45-1271.90)",
+      "summary": "Donor eligibility for HCT/Ps \u2014 screening (\u00a71271.75) + testing\nfor Relevant Communicable Disease Agents (\u00a71271.85: HIV-1/2,\nHBV, HCV, HTLV-1/2, Treponema pallidum, T. cruzi, WNV, Zika\nas applicable). Determination by a licensed physician or\nqualified responsible person per \u00a71271.50. Exception\nprovisions per \u00a71271.65 (autologous; directed donation;\nurgent medical need).",
+      "gap_note": null
+    },
+    {
+      "id": "CFR1271-Subpart-D-Current-Good-Tissue-Practice",
+      "standard": "21 CFR 1271",
+      "section": "Subpart D (\u00a7\u00a71271.150-1271.320)",
+      "summary": "Current Good Tissue Practice (CGTP) \u2014 establishment\nrequirements (registration \u00a71271.150-160), personnel\n(\u00a71271.170), procedures (\u00a71271.180), facilities (\u00a71271.190),\nenvironmental control + monitoring (\u00a71271.195), equipment\n(\u00a71271.200), supplies + reagents (\u00a71271.210), recovery +\nprocessing + storage + labeling + distribution (\u00a7\u00a71271.220-\n265), records (\u00a71271.270), tracking (\u00a71271.290), complaint\nfile (\u00a71271.320). For ATMPs that are HCT/Ps regulated under\nboth 1271 + drug/biologic pathways, CGTP + cGMP both apply.",
+      "gap_note": null
+    },
+    {
+      "id": "CFR1271-350-reporting",
+      "standard": "21 CFR 1271",
+      "section": "\u00a71271.350",
+      "summary": "HCT/P deviation reporting \u2014 any event representing a\ndeviation from applicable regulations / standards /\nspecifications that may relate to transmission or potential\ntransmission of a communicable disease + any unexpected\nevent reportable to FDA per \u00a71271.350(a). Adverse-reaction\nreporting per \u00a71271.350(b).",
+      "gap_note": null
+    },
+    {
+      "id": "Q5A-R2-viral-safety",
+      "standard": "ICH Q5A(R2)",
+      "section": "all (2023 revision)",
+      "summary": "Viral safety evaluation \u2014 three pillars: (1) selection +\ntesting of cell substrates + raw materials; (2) capacity of\nproduction process to clear infectious viruses (model-virus\nchallenge with cumulative log reduction); (3) testing the\nproduct at appropriate steps. Q5A(R2) (2023) explicitly\nextends scope to genetically engineered viral vectors with\nvector-specific Replication-Competent Virus (RCV) testing\nstrategy where viral clearance is not applicable (the vector\nIS the product).",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.5.1",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.5.1",
+      "summary": "Policies for information security \u2014 defined, approved by management,\npublished, communicated to and acknowledged by relevant personnel\nand interested parties, and reviewed at planned intervals or when\nsignificant changes occur.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.5.31",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.5.31",
+      "summary": "Legal, statutory, regulatory, and contractual requirements relevant\nto information security shall be identified, documented, and kept\nup to date. The organization's approach to meeting each shall be\ndefined.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.8.31",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.8.31",
+      "summary": "Separation of development, test, and production environments \u2014\nincluding separation of duties where appropriate \u2014 to reduce the\nrisk of unauthorized access or unauthorized changes to the\noperational environment.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-4.2",
+      "standard": "ISO 14001:2015",
+      "section": "4.2",
+      "summary": "Understanding the needs + expectations of interested parties \u2014\ndetermine relevant interested parties (regulators, neighboring\ncommunities, customers, suppliers, workers, NGOs), their relevant\nneeds + expectations, and which of those become compliance\nobligations.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-5.2",
+      "standard": "ISO 14001:2015",
+      "section": "5.2",
+      "summary": "Environmental policy \u2014 top management establishes + maintains\na policy appropriate to the purpose + context including the\nnature + scale + environmental impacts of activities, products,\nservices. Includes commitments to protection of the environment\n(incl. prevention of pollution + other commitments e.g.,\nsustainable resource use, climate change mitigation +\nadaptation, biodiversity), fulfillment of compliance\nobligations, continual improvement of EMS to enhance\nenvironmental performance.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-6.1.2",
+      "standard": "ISO 14001:2015",
+      "section": "6.1.2",
+      "summary": "Environmental aspects \u2014 identify aspects of activities, products,\nservices that can be controlled or influenced; determine\nassociated environmental impacts considering a lifecycle\nperspective. Determine significant environmental aspects\nusing established criteria. Maintain documented information\nof aspects + impacts + criteria + SEAs.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-6.1.3",
+      "standard": "ISO 14001:2015",
+      "section": "6.1.3",
+      "summary": "Compliance obligations \u2014 determine + have access to the\ncompliance obligations related to environmental aspects;\ndetermine how these apply to the organization; take obligations\ninto account when establishing + implementing + maintaining +\ncontinually improving the EMS.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-6.1.4",
+      "standard": "ISO 14001:2015",
+      "section": "6.1.4",
+      "summary": "Planning action \u2014 plan to take actions to address significant\nenvironmental aspects + compliance obligations + risks +\nopportunities identified per \u00a76.1.1, and to evaluate the\neffectiveness of these actions. Integration into EMS\nprocesses per \u00a76.1.1.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-6.2",
+      "standard": "ISO 14001:2015",
+      "section": "6.2",
+      "summary": "Environmental objectives + planning to achieve them \u2014 establish\nat relevant functions + levels, consistent with environmental\npolicy, considering SEAs + compliance obligations + risks +\nopportunities. Measurable, monitored, communicated, updated.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-7.4",
+      "standard": "ISO 14001:2015",
+      "section": "7.4",
+      "summary": "Communication \u2014 internal + external communications relevant to\nthe EMS including: what, when, with whom, how. External\ncommunication of significant environmental information as\nestablished by compliance obligations + the communication\nprocess. Responsiveness to relevant communications received.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-8.1",
+      "standard": "ISO 14001:2015",
+      "section": "8.1",
+      "summary": "Operational planning + control \u2014 establish + implement +\ncontrol + maintain processes needed to meet EMS requirements\n+ implement actions identified in \u00a76.1 + \u00a76.2. Includes\noperational criteria for SEAs, control of planned changes,\nreview of unintended changes + mitigation of adverse effects,\ncontrol / influence of outsourced processes, lifecycle\nperspective in design + procurement.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-8.2",
+      "standard": "ISO 14001:2015",
+      "section": "8.2",
+      "summary": "Emergency preparedness + response \u2014 establish + implement +\nmaintain processes needed to prepare for + respond to potential\nemergency situations identified in \u00a76.1.1. Periodic test of\nplanned response actions where practicable. Periodic review +\nrevision based on test results + actual occurrences.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-9.1.2",
+      "standard": "ISO 14001:2015",
+      "section": "9.1.2",
+      "summary": "Evaluation of compliance \u2014 establish + implement + maintain\nprocesses needed to evaluate fulfillment of compliance\nobligations. Determine frequency, evaluate compliance + take\naction if needed, maintain knowledge + understanding of\ncompliance status. Documented information retained as\nevidence of evaluation results.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-10.2",
+      "standard": "ISO 14001:2015",
+      "section": "10.2",
+      "summary": "Nonconformity + corrective action \u2014 react to nonconformity\nincluding taking action to control + correct it + deal with\nconsequences (including mitigating adverse environmental\nimpacts); evaluate need for action to eliminate causes;\nimplement; review effectiveness; make changes to EMS if\nnecessary.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-4.2",
+      "standard": "ISO 45001:2018",
+      "section": "4.2",
+      "summary": "Understanding the needs + expectations of workers + other\ninterested parties \u2014 determine + monitor interested parties\n(workers, contractors, suppliers, customers, visitors,\nregulators, communities, families of workers), their relevant\nneeds + expectations, which become compliance obligations.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-5.2",
+      "standard": "ISO 45001:2018",
+      "section": "5.2",
+      "summary": "OH&S policy \u2014 top management establishes + implements +\nmaintains a policy that includes commitment to: provide safe\n+ healthy working conditions for prevention of work-related\ninjury + ill-health, appropriate to purpose + size + context\nand the specific nature of OH&S risks + opportunities;\nprovide framework for setting OH&S objectives; fulfil legal\n+ other requirements; eliminate hazards + reduce OH&S risks;\ncontinual improvement of OHSMS; consultation + participation\nof workers + their representatives.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-5.4",
+      "standard": "ISO 45001:2018",
+      "section": "5.4",
+      "summary": "Consultation + participation of workers \u2014 establish + implement\n+ maintain processes for consultation + participation of\nnon-managerial workers (and their representatives where they\nexist) in development + planning + implementation + performance\nevaluation + actions for improvement of the OHSMS. Provide\nmechanisms + time + training + resources; remove + minimize\nbarriers; specific topics requiring consultation OR\nparticipation are listed in \u00a75.4 a) and b).",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-6.1.2",
+      "standard": "ISO 45001:2018",
+      "section": "6.1.2",
+      "summary": "Hazard identification + assessment of risks + opportunities \u2014\nestablish + implement + maintain a hazard identification process\nongoing + proactive. Consider routine + non-routine activities,\nworkplace, work organization, factors affecting workers\n(incl. psychosocial), past relevant incidents, emergency\nsituations. Assess OH&S risks + identify other risks to the\nOHSMS. Identify OH&S opportunities + other opportunities.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-6.1.3",
+      "standard": "ISO 45001:2018",
+      "section": "6.1.3",
+      "summary": "Determination of legal + other requirements \u2014 determine + have\naccess to up-to-date legal + other requirements applicable to\nhazards + OH&S risks + OHSMS; determine how these requirements\napply + need to be communicated; take into account when\nestablishing + implementing + maintaining + improving OHSMS.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-6.1.4",
+      "standard": "ISO 45001:2018",
+      "section": "6.1.4",
+      "summary": "Planning action \u2014 plan to take actions to address risks +\nopportunities, address legal + other requirements, prepare\nfor + respond to emergency situations. Integrate into OHSMS\nprocesses + other business processes. Evaluate effectiveness.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-7.3",
+      "standard": "ISO 45001:2018",
+      "section": "7.3",
+      "summary": "Awareness \u2014 workers shall be made aware of the OH&S policy +\nobjectives, their contribution to OHSMS effectiveness,\nimplications + consequences of not conforming to OHSMS\nrequirements, incidents + outcomes of investigations\nrelevant to them, hazards + OH&S risks + actions\ndetermined relevant to them, ability to remove themselves\nfrom work situations they consider to present an imminent\n+ serious danger to their life or health, and arrangements\nfor protecting them from undue consequences for doing so.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-8.1.2",
+      "standard": "ISO 45001:2018",
+      "section": "8.1.2",
+      "summary": "Eliminating hazards + reducing OH&S risks \u2014 establish +\nimplement + maintain a process(es) for the elimination of\nhazards + reduction of OH&S risks using the hierarchy of\ncontrols: eliminate the hazard; substitute with less\nhazardous processes / operations / materials / equipment;\nuse engineering controls + reorganization of work;\nadministrative controls including training; PPE. PPE is\nthe last resort.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-8.1.3",
+      "standard": "ISO 45001:2018",
+      "section": "8.1.3",
+      "summary": "Management of change \u2014 establish process(es) for implementation\n+ control of planned temporary + permanent changes that\naffect OH&S performance (new / modified products / services /\nprocesses; workplace / surroundings / work organization /\nworking conditions; equipment; workforce; legal + other\nrequirements; knowledge / information about hazards + OH&S\nrisks; technology development). Review consequences of\nunintended changes + mitigate adverse effects.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-8.1.4",
+      "standard": "ISO 45001:2018",
+      "section": "8.1.4",
+      "summary": "Procurement \u2014 establish process(es) to control procurement of\nproducts + services so they conform to OHSMS. Includes\ncoordinating procurement processes with contractors to identify\nhazards + assess + control OH&S risks arising from contractors'\nactivities + operations that impact organization OR workers OR\nother interested parties.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-8.2",
+      "standard": "ISO 45001:2018",
+      "section": "8.2",
+      "summary": "Emergency preparedness + response \u2014 establish + implement +\nmaintain process(es) needed to prepare for + respond to\npotential emergency situations identified in \u00a76.1.2.1.\nPlanned response, training, communication of relevant\ninformation to workers + interested parties, periodic testing\n+ revision, evaluation + revision after testing + occurrence.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-10.2",
+      "standard": "ISO 45001:2018",
+      "section": "10.2",
+      "summary": "Incident + nonconformity + corrective action \u2014 react in a\ntimely manner to incidents + nonconformities including\ncontrolling + correcting them, dealing with consequences;\nevaluate (with participation of workers + involvement of\nother relevant interested parties) the need for corrective\naction to eliminate root cause(s); review existing\nOH&S risk assessments + other risks; determine + implement\naction needed including corrective; review effectiveness;\nmake changes to OHSMS if necessary.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-5.2",
+      "standard": "ISO 50001:2018",
+      "section": "5.2",
+      "summary": "Energy policy \u2014 top management establishes + implements +\nmaintains an energy policy that is appropriate to the\norganization's purpose, provides framework for setting +\nreviewing energy objectives + targets, includes commitment\nto ensure information + necessary resources for achieving\nthe objectives + targets, commitment to satisfy applicable\nlegal + other requirements related to energy efficiency +\nuse + consumption, commitment to continual improvement of\nenergy performance + the EnMS, supports procurement of\nenergy-efficient products + services + design activities\nto improve energy performance.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-6.3",
+      "standard": "ISO 50001:2018",
+      "section": "6.3",
+      "summary": "Energy review \u2014 develop + record + maintain an energy review\nbased on measurement + other data: analyze energy use +\nconsumption based on measurement + other data, identify\nSignificant Energy Uses (SEUs) based on energy use +\nconsumption + criteria, determine current energy performance\nof facilities + equipment + systems + processes + personnel\naffecting SEUs, identify + prioritize + record opportunities\nfor improving energy performance + for changing in the future\nenergy use + consumption.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-6.4",
+      "standard": "ISO 50001:2018",
+      "section": "6.4",
+      "summary": "Energy performance indicators (EnPIs) \u2014 determine EnPIs\nappropriate for measuring + monitoring energy performance,\nincluding methodology for determining + updating EnPIs.\nEnPI values shall be reviewed + compared to corresponding\nenergy baselines. Documented information of EnPI methodology\n+ values + measures + their changes.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-6.5",
+      "standard": "ISO 50001:2018",
+      "section": "6.5",
+      "summary": "Energy baseline (EnB) \u2014 establish EnB(s) using information\nfrom energy review considering a suitable period of data.\nChanges to EnPIs shall be measured against the corresponding\nEnB. EnB(s) shall be revised in the case of: EnPI(s) no\nlonger reflecting organizational energy performance;\nmajor changes to static factors; significant changes to\noperations + processes + energy systems. Maintained as\ndocumented information.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-6.6",
+      "standard": "ISO 50001:2018",
+      "section": "6.6",
+      "summary": "Planning for collection of energy data \u2014 ensure that the key\ncharacteristics of operations affecting energy performance\nare identified + measured + monitored + analyzed at planned\nintervals. Energy data collection plan addresses: relevant\nvariables related to SEUs, energy consumption related to\nSEUs + the organization, operational criteria related to\nSEUs, static factors (if applicable), data specified in\naction plans. Data + methods recorded + reviewed + updated.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-8.1",
+      "standard": "ISO 50001:2018",
+      "section": "8.1",
+      "summary": "Operational planning + control \u2014 plan + implement + control\nprocesses related to SEUs by establishing criteria for\neffective operation + maintenance of SEUs (the absence of\nsuch criteria could lead to a significant deviation from\neffective energy performance), operating + maintaining\nfacilities + equipment + systems + processes in accordance\nwith operational criteria, communicating operational\ncontrols to relevant persons. Control of planned changes.\nReview of consequences of unintended changes + mitigation\nof adverse effects.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-8.2",
+      "standard": "ISO 50001:2018",
+      "section": "8.2",
+      "summary": "Design \u2014 consider energy performance improvement opportunities\n+ operational control in design of new, modified, and\nrenovated facilities + equipment + systems + processes that\ncan have significant impact on energy performance over the\nplanned or expected operating lifetime. Results of energy\nperformance considerations shall be incorporated into\nspecification + design + procurement activities.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-8.3",
+      "standard": "ISO 50001:2018",
+      "section": "8.3",
+      "summary": "Procurement \u2014 establish + implement criteria for assessing\nenergy performance over the planned or expected operating\nlifetime when procuring energy-using products + equipment +\nservices that are expected to have significant impact on\norganization's energy performance. Inform suppliers that\nprocurement is partly evaluated on basis of energy\nperformance. For procurement of energy: define + document\nspecifications, as applicable, for purchased energy.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-9.1.1",
+      "standard": "ISO 50001:2018",
+      "section": "9.1.1",
+      "summary": "Monitoring + measurement + analysis + evaluation of energy\nperformance + the EnMS \u2014 key characteristics determined +\nmonitored at planned intervals, including effectiveness\nof action plans in achieving objectives + targets, EnPIs,\noperation of SEUs, actual vs. expected energy consumption.\nEnPI values investigated + responded to where significant\ndeviations occur. Documented information retained.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO50001-10.2",
+      "standard": "ISO 50001:2018",
+      "section": "10.2",
+      "summary": "Nonconformity + corrective action \u2014 react to nonconformity\n(incl. taking action to control + correct it, dealing with\nconsequences); evaluate need for action to eliminate root\ncause(s); implement; review effectiveness; make changes to\nEnMS if necessary. Documented information retained as\nevidence of NC + actions + results.",
+      "gap_note": null
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "templates/product-pharma/batch-record/MASTER-BATCH-RECORD-TEMPLATE.md",
+      "name": "Master Batch Record (21 CFR 211.186 + EU GMP Part I Ch. 4)",
+      "addresses": [
+        "CFR211-Subpart-F-Production",
+        "CFR211-Subpart-J-Records",
+        "ICHQ7-production",
+        "EUGMP-Ch1-PQS",
+        "Annex2B-biological-active"
+      ]
+    },
+    {
+      "path": "templates/product-pharma/validation/VALIDATION-MASTER-PLAN-TEMPLATE.md",
+      "name": "Validation Master Plan (ICH Q9 + Q10 + EU GMP Annex 15 + FDA Process Validation 2011)",
+      "addresses": [
+        "ICHQ10-3.2.4",
+        "ICHQ9-risk-framework",
+        "ICHQ7-validation",
+        "EUGMP-Annex15-Qualification"
+      ]
+    },
+    {
+      "path": "templates/product-pharma/deviation/DEVIATION-TEMPLATE.md",
+      "name": "Deviation Report (21 CFR 211.100 + 211.192 + EU GMP Ch. 1 \u00a71.4(xiv) + ICH Q10 \u00a73.2.2.2)",
+      "addresses": [
+        "ICHQ10-3.2.2"
+      ]
+    },
+    {
+      "path": "templates/product-pharma/change-control/CHANGE-CONTROL-TEMPLATE.md",
+      "name": "Change Control (ICH Q10 \u00a73.2.3 + EU GMP Ch. 1 \u00a71.4(xiv) + 21 CFR 211.100)",
+      "addresses": [
+        "ICHQ10-3.2.2"
+      ]
+    },
+    {
+      "path": "templates/product-pharma/oos/OOS-INVESTIGATION-TEMPLATE.md",
+      "name": "Out-of-Specification Investigation (FDA OOS Guidance 2006 + 21 CFR 211.192 + EU GMP Ch. 6 \u00a76.34)",
+      "addresses": [
+        "CFR211-Subpart-I-Laboratory",
+        "EUGMP-Ch6-QC",
+        "Annex2A-OOS-autologous"
+      ]
+    },
+    {
+      "path": "templates/product-pharma/apqr/APQR-TEMPLATE.md",
+      "name": "Annual Product Quality Review (21 CFR 211.180(e) + EU GMP Ch. 1 \u00a71.10)",
+      "addresses": [
+        "ICHQ10-3.2.1",
+        "EUGMP-Ch1-PQS"
+      ]
+    },
+    {
+      "path": "templates/qms-policy/quality-policy.md",
+      "name": "Quality policy (pharma \u2014 extends QMS policy with PQS commitments per ICH Q10)",
+      "addresses": [
+        "ICHQ10-3.2.1",
+        "ISO27001-A.5.1",
+        "ISO27001-A.5.31",
+        "ISO14001-5.2",
+        "ISO14001-4.2",
+        "ISO45001-5.2",
+        "ISO45001-4.2",
+        "ISO45001-5.4",
+        "ISO50001-5.2"
+      ]
+    },
+    {
+      "path": "templates/qms-sops/SOP-TEMPLATE.md",
+      "name": "SOPs covering API production / equipment / components / packaging / labeling / lab controls / Part 11 (multiple 21 CFR 211 + EU GMP + ICH Q7 cross-references)",
+      "addresses": [
+        "CFR211-Subpart-B-Organization",
+        "CFR211-Subpart-D-Equipment",
+        "CFR211-Subpart-E-Components",
+        "CFR211-Subpart-G-Packaging-Labeling",
+        "EUGMP-Ch2-Personnel",
+        "ICHQ7-quality-management",
+        "CFR-Part-11-applicability",
+        "PICS-A1-contamination-control-strategy",
+        "PICS-A1-aseptic-process-simulation",
+        "PICS-A1-environmental-monitoring",
+        "EUGMP-Annex16-QP-Release",
+        "Annex2A-risk-based",
+        "Annex2A-personnel-aseptic",
+        "Annex2A-OOS-autologous",
+        "CFR1271-Subpart-D-Current-Good-Tissue-Practice",
+        "CFR1271-350-reporting",
+        "ISO27001-A.5.31",
+        "ISO14001-6.1.4",
+        "ISO14001-6.2",
+        "ISO14001-7.4",
+        "ISO45001-6.1.4",
+        "ISO45001-7.3",
+        "ISO50001-9.1.1"
+      ]
+    },
+    {
+      "path": "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md",
+      "name": "Internal audit (ICH Q7 \u00a72 + Part I Ch. 9 EU GMP self-inspection)",
+      "addresses": [
+        "ICHQ7-quality-management",
+        "ISO14001-9.1.2"
+      ]
+    },
+    {
+      "path": "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md",
+      "name": "Management review (ICH Q10 \u00a73.2.1 management responsibility \u2014 periodic PQS review)",
+      "addresses": [
+        "ICHQ10-3.2.1"
+      ]
+    },
+    {
+      "path": "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md",
+      "name": "Approved Supplier List (component + container + closure supplier qualification per 21 CFR 211.84 + EU GMP Ch. 5)",
+      "addresses": [
+        "CFR211-Subpart-E-Components"
+      ]
+    },
+    {
+      "path": "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md",
+      "name": "Supplier evaluation (component + API supplier qualification + re-qualification)",
+      "addresses": [
+        "CFR211-Subpart-E-Components"
+      ]
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/capa.yml",
+      "name": "CAPA \u2014 pharma CAPA (ICH Q10 \u00a73.2.2.2 alongside Deviation + OOS workflows)",
+      "addresses": [
+        "ICHQ10-3.2.2",
+        "ISO14001-10.2",
+        "ISO45001-10.2",
+        "ISO50001-10.2"
+      ]
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/nonconformance.yml",
+      "name": "Nonconformance \u2014 pharma material / finished-product non-conformance (distinct from Deviation which covers procedural departures)",
+      "addresses": [
+        "CFR211-Subpart-E-Components"
+      ]
+    },
+    {
+      "path": "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md",
+      "name": "Quality Risk Management file (ICH Q9 framework \u2014 applied across PQS elements)",
+      "addresses": [
+        "ICHQ9-risk-framework"
+      ]
+    },
+    {
+      "path": "templates/product-atmp/donor-eligibility/DONOR-ELIGIBILITY-ASSESSMENT-TEMPLATE.md",
+      "name": "Donor Eligibility Assessment (21 CFR 1271 Subpart C + EU Directive 2004/23/EC + EU Directive 2006/17/EC + EU GMP Annex 2A \u00a73)",
+      "addresses": [
+        "CFR1271-Subpart-C-donor-eligibility",
+        "Annex2A-donor-starting-material"
+      ]
+    },
+    {
+      "path": "templates/product-atmp/traceability/TISSUE-CELL-TRACEABILITY-RECORD-TEMPLATE.md",
+      "name": "Tissue/Cell Traceability Record (EU GMP Annex 2A \u00a710 + Directive 2004/23/EC Art. 8 + Directive 2006/86/EC + 21 CFR 1271.290 + Single European Code per Directive 2015/565)",
+      "addresses": [
+        "Annex2A-traceability"
+      ]
+    },
+    {
+      "path": "templates/product-atmp/viral-safety/VIRAL-SAFETY-EVALUATION-REPORT-TEMPLATE.md",
+      "name": "Viral Safety Evaluation Report (ICH Q5A(R2) 2023 \u2014 three-pillar framework + vector-specific RCV testing for vector products)",
+      "addresses": [
+        "Q5A-R2-viral-safety"
+      ]
+    },
+    {
+      "path": "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md",
+      "name": "Software release record template (information-security overlay binding)",
+      "addresses": [
+        "ISO27001-A.8.31"
+      ]
+    },
+    {
+      "path": "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md",
+      "name": "Environmental Aspects + Impacts Register (ISO 14001 \u00a76.1.2 + \u00a76.1.3 + \u00a78.1 + \u00a78.2 cross-references)",
+      "addresses": [
+        "ISO14001-6.1.2",
+        "ISO14001-6.1.3",
+        "ISO14001-8.1",
+        "ISO14001-8.2"
+      ]
+    },
+    {
+      "path": "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md",
+      "name": "HIRA \u2014 Hazard Identification + Risk Assessment with Hierarchy of Controls (ISO 45001 \u00a76.1.2 + \u00a76.1.3 + \u00a78.1.2 + \u00a78.1.3 + \u00a78.1.4 + \u00a78.2)",
+      "addresses": [
+        "ISO45001-6.1.2",
+        "ISO45001-6.1.3",
+        "ISO45001-8.1.2",
+        "ISO45001-8.1.3",
+        "ISO45001-8.1.4",
+        "ISO45001-8.2"
+      ]
+    },
+    {
+      "path": "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md",
+      "name": "Energy Review + EnPIs + EnB Baseline (ISO 50001 \u00a76.3 + \u00a76.4 + \u00a76.5 + \u00a76.6 + \u00a78.1 + \u00a78.2 + \u00a78.3 cross-references)",
+      "addresses": [
+        "ISO50001-6.3",
+        "ISO50001-6.4",
+        "ISO50001-6.5",
+        "ISO50001-6.6",
+        "ISO50001-8.1",
+        "ISO50001-8.2",
+        "ISO50001-8.3"
+      ]
+    }
+  ],
+  "traceability": {
+    "forward": {
+      "templates/product-pharma/batch-record/MASTER-BATCH-RECORD-TEMPLATE.md": [
+        "CFR211-Subpart-F-Production",
+        "CFR211-Subpart-J-Records",
+        "ICHQ7-production",
+        "EUGMP-Ch1-PQS",
+        "Annex2B-biological-active"
+      ],
+      "templates/product-pharma/validation/VALIDATION-MASTER-PLAN-TEMPLATE.md": [
+        "ICHQ10-3.2.4",
+        "ICHQ9-risk-framework",
+        "ICHQ7-validation",
+        "EUGMP-Annex15-Qualification"
+      ],
+      "templates/product-pharma/deviation/DEVIATION-TEMPLATE.md": [
+        "ICHQ10-3.2.2"
+      ],
+      "templates/product-pharma/change-control/CHANGE-CONTROL-TEMPLATE.md": [
+        "ICHQ10-3.2.2"
+      ],
+      "templates/product-pharma/oos/OOS-INVESTIGATION-TEMPLATE.md": [
+        "CFR211-Subpart-I-Laboratory",
+        "EUGMP-Ch6-QC",
+        "Annex2A-OOS-autologous"
+      ],
+      "templates/product-pharma/apqr/APQR-TEMPLATE.md": [
+        "ICHQ10-3.2.1",
+        "EUGMP-Ch1-PQS"
+      ],
+      "templates/qms-policy/quality-policy.md": [
+        "ICHQ10-3.2.1",
+        "ISO27001-A.5.1",
+        "ISO27001-A.5.31",
+        "ISO14001-5.2",
+        "ISO14001-4.2",
+        "ISO45001-5.2",
+        "ISO45001-4.2",
+        "ISO45001-5.4",
+        "ISO50001-5.2"
+      ],
+      "templates/qms-sops/SOP-TEMPLATE.md": [
+        "CFR211-Subpart-B-Organization",
+        "CFR211-Subpart-D-Equipment",
+        "CFR211-Subpart-E-Components",
+        "CFR211-Subpart-G-Packaging-Labeling",
+        "EUGMP-Ch2-Personnel",
+        "ICHQ7-quality-management",
+        "CFR-Part-11-applicability",
+        "PICS-A1-contamination-control-strategy",
+        "PICS-A1-aseptic-process-simulation",
+        "PICS-A1-environmental-monitoring",
+        "EUGMP-Annex16-QP-Release",
+        "Annex2A-risk-based",
+        "Annex2A-personnel-aseptic",
+        "Annex2A-OOS-autologous",
+        "CFR1271-Subpart-D-Current-Good-Tissue-Practice",
+        "CFR1271-350-reporting",
+        "ISO27001-A.5.31",
+        "ISO14001-6.1.4",
+        "ISO14001-6.2",
+        "ISO14001-7.4",
+        "ISO45001-6.1.4",
+        "ISO45001-7.3",
+        "ISO50001-9.1.1"
+      ],
+      "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md": [
+        "ICHQ7-quality-management",
+        "ISO14001-9.1.2"
+      ],
+      "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md": [
+        "ICHQ10-3.2.1"
+      ],
+      "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md": [
+        "CFR211-Subpart-E-Components"
+      ],
+      "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md": [
+        "CFR211-Subpart-E-Components"
+      ],
+      ".github/ISSUE_TEMPLATE/capa.yml": [
+        "ICHQ10-3.2.2",
+        "ISO14001-10.2",
+        "ISO45001-10.2",
+        "ISO50001-10.2"
+      ],
+      ".github/ISSUE_TEMPLATE/nonconformance.yml": [
+        "CFR211-Subpart-E-Components"
+      ],
+      "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md": [
+        "ICHQ9-risk-framework"
+      ],
+      "templates/product-atmp/donor-eligibility/DONOR-ELIGIBILITY-ASSESSMENT-TEMPLATE.md": [
+        "CFR1271-Subpart-C-donor-eligibility",
+        "Annex2A-donor-starting-material"
+      ],
+      "templates/product-atmp/traceability/TISSUE-CELL-TRACEABILITY-RECORD-TEMPLATE.md": [
+        "Annex2A-traceability"
+      ],
+      "templates/product-atmp/viral-safety/VIRAL-SAFETY-EVALUATION-REPORT-TEMPLATE.md": [
+        "Q5A-R2-viral-safety"
+      ],
+      "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md": [
+        "ISO27001-A.8.31"
+      ],
+      "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md": [
+        "ISO14001-6.1.2",
+        "ISO14001-6.1.3",
+        "ISO14001-8.1",
+        "ISO14001-8.2"
+      ],
+      "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md": [
+        "ISO45001-6.1.2",
+        "ISO45001-6.1.3",
+        "ISO45001-8.1.2",
+        "ISO45001-8.1.3",
+        "ISO45001-8.1.4",
+        "ISO45001-8.2"
+      ],
+      "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md": [
+        "ISO50001-6.3",
+        "ISO50001-6.4",
+        "ISO50001-6.5",
+        "ISO50001-6.6",
+        "ISO50001-8.1",
+        "ISO50001-8.2",
+        "ISO50001-8.3"
+      ]
+    },
+    "reverse": {
+      "ICHQ10-3.2.1": [
+        "templates/product-pharma/apqr/APQR-TEMPLATE.md",
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md"
+      ],
+      "ICHQ10-3.2.2": [
+        "templates/product-pharma/deviation/DEVIATION-TEMPLATE.md",
+        "templates/product-pharma/change-control/CHANGE-CONTROL-TEMPLATE.md",
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ],
+      "ICHQ10-3.2.4": [
+        "templates/product-pharma/validation/VALIDATION-MASTER-PLAN-TEMPLATE.md"
+      ],
+      "ICHQ9-risk-framework": [
+        "templates/product-pharma/validation/VALIDATION-MASTER-PLAN-TEMPLATE.md",
+        "templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md"
+      ],
+      "ICHQ7-quality-management": [
+        "templates/qms-sops/SOP-TEMPLATE.md",
+        "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md"
+      ],
+      "ICHQ7-production": [
+        "templates/product-pharma/batch-record/MASTER-BATCH-RECORD-TEMPLATE.md"
+      ],
+      "ICHQ7-validation": [
+        "templates/product-pharma/validation/VALIDATION-MASTER-PLAN-TEMPLATE.md"
+      ],
+      "CFR211-Subpart-B-Organization": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "CFR211-Subpart-D-Equipment": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "CFR211-Subpart-E-Components": [
+        "templates/qms-sops/SOP-TEMPLATE.md",
+        "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md",
+        "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md",
+        ".github/ISSUE_TEMPLATE/nonconformance.yml"
+      ],
+      "CFR211-Subpart-F-Production": [
+        "templates/product-pharma/batch-record/MASTER-BATCH-RECORD-TEMPLATE.md"
+      ],
+      "CFR211-Subpart-G-Packaging-Labeling": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "CFR211-Subpart-I-Laboratory": [
+        "templates/product-pharma/oos/OOS-INVESTIGATION-TEMPLATE.md"
+      ],
+      "CFR211-Subpart-J-Records": [
+        "templates/product-pharma/batch-record/MASTER-BATCH-RECORD-TEMPLATE.md"
+      ],
+      "EUGMP-Ch1-PQS": [
+        "templates/product-pharma/batch-record/MASTER-BATCH-RECORD-TEMPLATE.md",
+        "templates/product-pharma/apqr/APQR-TEMPLATE.md"
+      ],
+      "EUGMP-Ch2-Personnel": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "EUGMP-Ch6-QC": [
+        "templates/product-pharma/oos/OOS-INVESTIGATION-TEMPLATE.md"
+      ],
+      "EUGMP-Annex15-Qualification": [
+        "templates/product-pharma/validation/VALIDATION-MASTER-PLAN-TEMPLATE.md"
+      ],
+      "EUGMP-Annex16-QP-Release": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "PICS-A1-contamination-control-strategy": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "PICS-A1-aseptic-process-simulation": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "PICS-A1-environmental-monitoring": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "CFR-Part-11-applicability": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "Annex2A-risk-based": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "Annex2A-personnel-aseptic": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "Annex2A-donor-starting-material": [
+        "templates/product-atmp/donor-eligibility/DONOR-ELIGIBILITY-ASSESSMENT-TEMPLATE.md"
+      ],
+      "Annex2A-traceability": [
+        "templates/product-atmp/traceability/TISSUE-CELL-TRACEABILITY-RECORD-TEMPLATE.md"
+      ],
+      "Annex2A-OOS-autologous": [
+        "templates/product-pharma/oos/OOS-INVESTIGATION-TEMPLATE.md",
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "Annex2B-biological-active": [
+        "templates/product-pharma/batch-record/MASTER-BATCH-RECORD-TEMPLATE.md"
+      ],
+      "CFR1271-Subpart-C-donor-eligibility": [
+        "templates/product-atmp/donor-eligibility/DONOR-ELIGIBILITY-ASSESSMENT-TEMPLATE.md"
+      ],
+      "CFR1271-Subpart-D-Current-Good-Tissue-Practice": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "CFR1271-350-reporting": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "Q5A-R2-viral-safety": [
+        "templates/product-atmp/viral-safety/VIRAL-SAFETY-EVALUATION-REPORT-TEMPLATE.md"
+      ],
+      "ISO27001-A.5.1": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO27001-A.5.31": [
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO27001-A.8.31": [
+        "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md"
+      ],
+      "ISO14001-4.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO14001-5.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO14001-6.1.2": [
+        "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md"
+      ],
+      "ISO14001-6.1.3": [
+        "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md"
+      ],
+      "ISO14001-6.1.4": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO14001-6.2": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO14001-7.4": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO14001-8.1": [
+        "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md"
+      ],
+      "ISO14001-8.2": [
+        "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md"
+      ],
+      "ISO14001-9.1.2": [
+        "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md"
+      ],
+      "ISO14001-10.2": [
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ],
+      "ISO45001-4.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO45001-5.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO45001-5.4": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO45001-6.1.2": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-6.1.3": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-6.1.4": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO45001-7.3": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO45001-8.1.2": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-8.1.3": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-8.1.4": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-8.2": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-10.2": [
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ],
+      "ISO50001-5.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO50001-6.3": [
+        "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md"
+      ],
+      "ISO50001-6.4": [
+        "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md"
+      ],
+      "ISO50001-6.5": [
+        "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md"
+      ],
+      "ISO50001-6.6": [
+        "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md"
+      ],
+      "ISO50001-8.1": [
+        "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md"
+      ],
+      "ISO50001-8.2": [
+        "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md"
+      ],
+      "ISO50001-8.3": [
+        "templates/qms-energy/ENERGY-REVIEW-AND-ENPI-BASELINE-TEMPLATE.md"
+      ],
+      "ISO50001-9.1.1": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO50001-10.2": [
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ]
+    }
+  }
+}

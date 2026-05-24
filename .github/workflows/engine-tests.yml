@@ -91,6 +91,10 @@ jobs:
           openqms validate --module pharma --module iso-37001 --module iso-22301
           # 8-module ultimate-composite — pharma + 7 cross-cutting management-system overlays
           openqms validate --module pharma --module iso-27001 --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301
+          # ATMP class overlay (cell + gene therapy) — composes with pharma vertical
+          openqms validate --module pharma --module atmp
+          # 9-module deepest-composite — ATMP cell+gene-therapy manufacturer with full IMS
+          openqms validate --module pharma --module atmp --module iso-27001 --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301
           # Top-rigor mega-composite — safety-critical + cyber-critical ML-enabled ECU
           openqms validate --module automotive --module automotive-asil-d --module automotive-cal-4 --module regulated-ai --module iso-27001
           # Full-stack mega-composite — manufacturing + all 5 cross-cutting management-system overlays
@@ -111,6 +115,7 @@ jobs:
           openqms regenerate --bundle example-machine-shop
           openqms regenerate --bundle example-drug-product
           openqms regenerate --bundle example-food-processor
+          openqms regenerate --bundle example-cart
 
       - name: Signatures export (smoke check)
         # Walks the repo's own git log and emits a signature audit trail.

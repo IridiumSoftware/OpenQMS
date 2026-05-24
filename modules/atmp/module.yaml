@@ -1,0 +1,235 @@
+# Open QMS — ATMP (Advanced Therapy Medicinal Products) class overlay
+# --------------------------------------------------------------------
+# Composes with the pharma vertical to add the cell + gene therapy
+# specific requirements. ATMPs are the most stringent biologics
+# scope — autologous + allogeneic cell-based + gene-modified products
+# (CAR-T, iPSC-derived therapies, AAV gene therapies, lentiviral
+# gene therapies, ex vivo gene-modified HSCT, oncolytic viruses).
+#
+# Use via:
+#   openqms resolve --module pharma --module atmp ...
+#
+# Most distinguishing ATMP requirements vs. baseline pharma:
+#
+# 1. Donor eligibility — unique to cell-based ATMPs derived from
+#    HCT/Ps. 21 CFR 1271 Subpart C requires screening + testing of
+#    Relevant Communicable Disease Agents (RCDAs) for every donor
+#    (autologous donors with exception per §1271.65(a)). EU
+#    Directive 2004/23/EC + Directive 2006/17/EC equivalent.
+#
+# 2. Bidirectional donor → product → recipient traceability with
+#    EXTREMELY long retention: 30 years EU per Directive 2004/23/EC
+#    Article 8; 10 years US per 21 CFR 1271.270. Outlasts most
+#    operational systems → archival + format-stability planning
+#    required.
+#
+# 3. Aseptic processing throughout — ATMPs typically cannot be
+#    terminally sterilized (live cells + viral vectors). PIC/S
+#    Annex 1 applies with ATMP-specific adaptations per Annex 2A
+#    (e.g., closed-system processing where feasible; isolator +
+#    RABS use).
+#
+# 4. Limited batch size + N=1 batches for autologous — quality
+#    decisions can't easily "reject" autologous batches because
+#    the product is patient-specific. Rapid investigation +
+#    risk-based administration decision is the workflow.
+#
+# 5. Viral safety per ICH Q5A(R2) (2023 revision explicitly addresses
+#    viral vector products) — cell substrate characterization + raw
+#    material viral risk + viral clearance studies (for non-vector
+#    products) OR Replication-Competent Virus testing (for vector
+#    products).
+#
+# 6. Comparability after manufacturing changes per ICH Q5E — ATMP
+#    manufacturing changes require demonstration that the post-change
+#    product is comparable to the pre-change product, which is
+#    particularly challenging for autologous products (no reference
+#    standard from same patient).
+#
+# 7. Adverse-event reporting under EU pharmacovigilance + FDA
+#    postmarketing rules with HCT/P-specific deviation reporting
+#    per 21 CFR 1271.350.
+#
+# Out of scope (deferred):
+#  - Reproductive tissue / gametes specific requirements (21 CFR
+#    1271 has reproductive-tissue-specific subprovisions). Forward
+#    overlay if adopter needs.
+#  - HCT/P that is NOT an ATMP (e.g., transplantation cells/tissue
+#    regulated only under 21 CFR 1270/1271 without IND/BLA pathway).
+#    Forward overlay; different regulatory pathway from drug+biologic.
+#  - Veterinary ATMPs.
+#  - In situ gene editing (CRISPR direct administration without ex
+#    vivo cell processing) — different manufacturing model; forward.
+#
+# Standards licensing: EU GMP Annex 2A + 2B + 21 CFR 1271 + ICH
+# Q5A(R2) are all PUBLIC license (same character as parent pharma
+# vertical — adopters can read every cited requirement for free).
+
+name: atmp-overlay
+version: 0.1.0
+
+standards:
+  - EU GMP Annex 2A
+  - EU GMP Annex 2B
+  - 21 CFR 1271
+  - ICH Q5A(R2)
+
+clauses:
+
+  - id: Annex2A-risk-based
+    standard: EU GMP Annex 2A
+    section: "§2"
+    summary: |
+      Risk-based approach — ATMP manufacturing applies a risk-based
+      approach per EU GMP Annex 2A §2, with the depth + rigor of
+      controls scaled to the product-specific risks (autologous vs.
+      allogeneic, viral vector vs. cell-only, donor-screened vs.
+      established cell line). Documented risk assessment per ICH Q9
+      drives process design + control strategy.
+
+  - id: Annex2A-personnel-aseptic
+    standard: EU GMP Annex 2A
+    section: "§4 + §7"
+    summary: |
+      Personnel + aseptic manufacturing — ATMP personnel require
+      specific training in aseptic technique + cell-handling +
+      biosafety. Gowning + behavior in Grade A/B environments (per
+      PIC/S Annex 1) with ATMP-specific adaptations: closed-system
+      processing preferred; isolator + RABS use where feasible;
+      qualified for media-fill APS per ATMP scope.
+
+  - id: Annex2A-donor-starting-material
+    standard: EU GMP Annex 2A
+    section: "§3 + §6"
+    summary: |
+      Donor + starting material — ATMP starting materials derived
+      from human tissues + cells shall be procured + tested per
+      Directive 2004/23/EC + Directive 2006/17/EC (EU) with
+      equivalent provisions under 21 CFR 1271 (US). Donor
+      eligibility determination per §6 mandatory.
+
+  - id: Annex2A-traceability
+    standard: EU GMP Annex 2A
+    section: "§10"
+    summary: |
+      Traceability — full bidirectional traceability from donor
+      through manufacturing intermediates through finished ATMP to
+      recipient administration. Per Directive 2004/23/EC Art. 8 +
+      Directive 2006/86/EC. Single European Code (SEC) coding
+      mandatory per Directive 2015/565 for EU human-tissue-and-cell
+      sources.
+
+  - id: Annex2A-OOS-autologous
+    standard: EU GMP Annex 2A
+    section: "§8 + §11"
+    summary: |
+      Quality control + OOS for autologous products — autologous
+      ATMPs cannot easily be rejected (product is patient-specific;
+      patient has typically already undergone lymphodepletion or
+      conditioning). Risk-based release strategy with rapid
+      investigation + risk-benefit clinical decision in
+      collaboration with treating physician. Documented
+      decision-making process required.
+
+  - id: Annex2B-biological-active
+    standard: EU GMP Annex 2B
+    section: "all"
+    summary: |
+      Biological active substances + medicinal products — applies
+      to recombinant proteins, monoclonal antibodies, vaccines,
+      hyperimmune sera, AND advanced therapies. Provides the
+      cross-cutting biological-GMP framework with ATMP-specific
+      additions in Annex 2A. Cell-bank management, characterization,
+      stability, comparability per ICH Q5D + Q5E + Q5C.
+
+  - id: CFR1271-Subpart-C-donor-eligibility
+    standard: 21 CFR 1271
+    section: "Subpart C (§§1271.45-1271.90)"
+    summary: |
+      Donor eligibility for HCT/Ps — screening (§1271.75) + testing
+      for Relevant Communicable Disease Agents (§1271.85: HIV-1/2,
+      HBV, HCV, HTLV-1/2, Treponema pallidum, T. cruzi, WNV, Zika
+      as applicable). Determination by a licensed physician or
+      qualified responsible person per §1271.50. Exception
+      provisions per §1271.65 (autologous; directed donation;
+      urgent medical need).
+
+  - id: CFR1271-Subpart-D-Current-Good-Tissue-Practice
+    standard: 21 CFR 1271
+    section: "Subpart D (§§1271.150-1271.320)"
+    summary: |
+      Current Good Tissue Practice (CGTP) — establishment
+      requirements (registration §1271.150-160), personnel
+      (§1271.170), procedures (§1271.180), facilities (§1271.190),
+      environmental control + monitoring (§1271.195), equipment
+      (§1271.200), supplies + reagents (§1271.210), recovery +
+      processing + storage + labeling + distribution (§§1271.220-
+      265), records (§1271.270), tracking (§1271.290), complaint
+      file (§1271.320). For ATMPs that are HCT/Ps regulated under
+      both 1271 + drug/biologic pathways, CGTP + cGMP both apply.
+
+  - id: CFR1271-350-reporting
+    standard: 21 CFR 1271
+    section: "§1271.350"
+    summary: |
+      HCT/P deviation reporting — any event representing a
+      deviation from applicable regulations / standards /
+      specifications that may relate to transmission or potential
+      transmission of a communicable disease + any unexpected
+      event reportable to FDA per §1271.350(a). Adverse-reaction
+      reporting per §1271.350(b).
+
+  - id: Q5A-R2-viral-safety
+    standard: ICH Q5A(R2)
+    section: "all (2023 revision)"
+    summary: |
+      Viral safety evaluation — three pillars: (1) selection +
+      testing of cell substrates + raw materials; (2) capacity of
+      production process to clear infectious viruses (model-virus
+      challenge with cumulative log reduction); (3) testing the
+      product at appropriate steps. Q5A(R2) (2023) explicitly
+      extends scope to genetically engineered viral vectors with
+      vector-specific Replication-Competent Virus (RCV) testing
+      strategy where viral clearance is not applicable (the vector
+      IS the product).
+
+templates:
+
+  # === ATMP-specific bindings ===
+
+  - path: templates/product-atmp/donor-eligibility/DONOR-ELIGIBILITY-ASSESSMENT-TEMPLATE.md
+    name: Donor Eligibility Assessment (21 CFR 1271 Subpart C + EU Directive 2004/23/EC + EU Directive 2006/17/EC + EU GMP Annex 2A §3)
+    addresses:
+      - CFR1271-Subpart-C-donor-eligibility
+      - Annex2A-donor-starting-material
+
+  - path: templates/product-atmp/traceability/TISSUE-CELL-TRACEABILITY-RECORD-TEMPLATE.md
+    name: Tissue/Cell Traceability Record (EU GMP Annex 2A §10 + Directive 2004/23/EC Art. 8 + Directive 2006/86/EC + 21 CFR 1271.290 + Single European Code per Directive 2015/565)
+    addresses:
+      - Annex2A-traceability
+
+  - path: templates/product-atmp/viral-safety/VIRAL-SAFETY-EVALUATION-REPORT-TEMPLATE.md
+    name: Viral Safety Evaluation Report (ICH Q5A(R2) 2023 — three-pillar framework + vector-specific RCV testing for vector products)
+    addresses:
+      - Q5A-R2-viral-safety
+
+  # === Cross-cutting binding extensions ===
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: SOPs — ATMP risk-based approach + personnel/aseptic + CGTP + OOS-for-autologous + HCT/P deviation reporting (Annex 2A §2/§4/§7/§8/§11 + 21 CFR 1271 Subpart D + §1271.350)
+    addresses:
+      - Annex2A-risk-based
+      - Annex2A-personnel-aseptic
+      - Annex2A-OOS-autologous
+      - CFR1271-Subpart-D-Current-Good-Tissue-Practice
+      - CFR1271-350-reporting
+
+  - path: templates/product-pharma/batch-record/MASTER-BATCH-RECORD-TEMPLATE.md
+    name: MBR — ATMP-specific extensions (closed-system steps, in-process aseptic monitoring, donor-material handling, EU GMP Annex 2B cell-bank management)
+    addresses:
+      - Annex2B-biological-active
+
+  - path: templates/product-pharma/oos/OOS-INVESTIGATION-TEMPLATE.md
+    name: OOS Investigation — autologous-product variant (Annex 2A §11 risk-benefit clinical decision in collaboration with treating physician)
+    addresses:
+      - Annex2A-OOS-autologous

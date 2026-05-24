@@ -561,6 +561,54 @@ standards:
       - "PQS"
       - "ICH-Q10"
 
+  # === ATMP (Advanced Therapy Medicinal Products) — cell + gene therapy ===
+
+  - id: "EU GMP Annex 2A"
+    name: "EudraLex Vol. 4 Annex 2A — Manufacture of Advanced Therapy Medicinal Products for Human Use"
+    publisher: European Commission
+    edition: "2023"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "Annex 2A"
+      - "ATMP GMP"
+      - "EU GMP Annex 2A ATMP"
+
+  - id: "EU GMP Annex 2B"
+    name: "EudraLex Vol. 4 Annex 2B — Manufacture of Biological Active Substances and Medicinal Products for Human Use"
+    publisher: European Commission
+    edition: "2023"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "Annex 2B"
+      - "Biological GMP"
+      - "EU GMP Annex 2B"
+
+  - id: "21 CFR 1271"
+    name: "Human Cells, Tissues, and Cellular and Tissue-Based Products (HCT/Ps)"
+    publisher: U.S. Food and Drug Administration
+    edition: "21 CFR Part 1271"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CFR 1271"
+      - "HCT/P regulation"
+      - "Current Good Tissue Practice"
+      - "cGTP"
+
+  - id: "ICH Q5A(R2)"
+    name: "Viral Safety Evaluation of Biotechnology Products Derived From Cell Lines of Human or Animal Origin"
+    publisher: ICH
+    edition: "Q5A(R2) Step 4 (2023)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "Q5A"
+      - "Q5A R2"
+      - "ICH-Q5A"
+      - "Viral Safety"
+
   # === Food safety standards ===
 
   - id: "ISO 22000:2018"

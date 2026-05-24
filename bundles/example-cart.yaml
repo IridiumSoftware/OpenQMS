@@ -1,0 +1,41 @@
+# Open QMS — example autologous CAR-T (ATMP) bundle definition
+# -------------------------------------------------------------
+# Demonstrates the ATMP class overlay end-to-end against an example
+# autologous CD19-targeted CAR-T product manufactured at a US + EU
+# dual-licensed cell therapy facility. Composes pharma + atmp +
+# the full cross-cutting overlay stack — realistic shape for a
+# commercial-stage cell therapy organization pursuing fully-
+# integrated management system certification.
+
+name: example-cart
+product: ExampleAutologousCAR-T-CD19
+jurisdictions:
+  - FDA
+  - EMA
+  - MHRA
+
+standards:
+  - "ICH Q7"
+  - "ICH Q9"
+  - "ICH Q10"
+  - "21 CFR 210"
+  - "21 CFR 211"
+  - "21 CFR Part 11"
+  - "EudraLex Vol. 4"
+  - "PIC/S Annex 1"
+  - "EU GMP Annex 2A"
+  - "EU GMP Annex 2B"
+  - "21 CFR 1271"
+  - "ICH Q5A(R2)"
+  - "ISO/IEC 27001:2022"
+  - "ISO 14001:2015"
+  - "ISO 45001:2018"
+  - "ISO 50001:2018"
+
+modules:
+  - pharma
+  - atmp
+  - iso-27001
+  - iso-14001
+  - iso-45001
+  - iso-50001
