@@ -1234,3 +1234,28 @@ standards:
       - "TSCA PFAS"
       - "PFAS Reporting Rule"
       - "40 CFR Part 705"
+
+  - id: "GDPR"
+    name: "General Data Protection Regulation"
+    publisher: European Union
+    edition: "Regulation (EU) 2016/679 (effective 25 May 2018; UK GDPR is the GB-retained near-identical version under DPA 2018)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "EU GDPR"
+      - "Regulation 2016/679"
+      - "EU 2016/679"
+      - "General Data Protection Regulation"
+
+  - id: "CCPA"
+    name: "California Consumer Privacy Act + California Privacy Rights Act"
+    publisher: State of California
+    edition: "Cal. Civ. Code §1798.100-199 (CCPA effective 2020-01-01; CPRA amendments effective 2023-01-01; CPPA final regulations + ADMT + Cybersecurity Audit + Risk Assessment regulations in force 2025-2026)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CPRA"
+      - "CCPA/CPRA"
+      - "California Consumer Privacy Act"
+      - "California Privacy Rights Act"
+      - "Cal. Civ. Code 1798"

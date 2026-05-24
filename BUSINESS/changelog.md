@@ -4,6 +4,73 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.41.0 DRAFT — 2026-05-24 — Privacy cross-cutting overlay (GDPR + CCPA/CPRA) — last major management-system gap
+
+**1 NEW entry** OQ-108. Spec total 91 → 92. Engine 0.40.0 → 0.41.0.
+
+24th cross-cutting overlay shipped — closes the last major management-system gap in the Open QMS overlay set. Universally applicable since virtually every adopter processes personal data (customers, employees, suppliers, clinical-trial subjects, complaint reporters, safety reporters).
+
+**Standards:**
+- **EU GDPR** (Regulation (EU) 2016/679) — PUBLIC; effective 2018-05-25
+- **CCPA/CPRA** (Cal. Civ. Code §1798.100-199) — PUBLIC; CCPA effective 2020-01-01; CPRA amendments 2023-01-01; CPPA final ADMT + Risk Assessment + Cybersecurity Audit regulations 2025-2026
+- UK GDPR addressed under same clauses (DPA 2018 retains EU GDPR with UK ICO as supervisory authority)
+
+**21 clauses across the two frameworks:**
+
+*GDPR (15 clauses):* Article 5 principles + Article 6 lawful bases + Article 7 consent + Article 9 special categories + Article 12 modalities + Articles 13-14 information + Articles 15-22 substantive rights + Article 25 by-design/default + Article 28 processor + DPA + Article 30 ROPA + Article 32 security + Articles 33-34 breach + Article 35 DPIA + Articles 37-39 DPO + Articles 44-49 international transfers (with Schrems II Transfer Impact Assessment).
+
+*CCPA/CPRA (6 consumer + 4 business = 10 clauses):* §1798.100/110/115 right to know + §1798.105 right to delete + §1798.106 right to correct + §1798.120/135 opt-out of sale/share (+ GPC honoring per CPPA §7025) + §1798.121 limit use of SPI + §1798.130 methods + 45-day response + §1798.135/§7012 notice at collection + §1798.140/§7050-7053 service provider/contractor/third party + §1798.150 private right of action + §1798.185 CPPA regulatory regime (ADMT + Risk Assessment + Cybersecurity Audit 2025-2026).
+
+**5 new privacy-specific templates:**
+
+1. **`PRIVACY-POLICY-TEMPLATE.md`** — Public-facing policy covering GDPR Articles 13-14 information requirements + CCPA notice-at-collection in one document. Includes the 11 CCPA personal-information categories (A-K + SPI L) table; GDPR Article 6 lawful-basis-per-purpose grid; special-category / SPI handling per GDPR Article 9 + CPRA SPI; CCPA + GDPR rights summary; Global Privacy Control honoring; international transfer disclosure; cookies + tracking; children's privacy; dispute channels with EU SA + UK ICO + Swiss FDPIC + CPPA + FTC + state AG contacts.
+
+2. **`DPA-TEMPLATE.md`** — Multi-regime Data Processing Agreement covering GDPR Article 28 required content + CCPA §1798.140 service-provider/contractor/third-party classification per CPPA §7050-7053 + Implementing Decision 2021/915 SCCs + Transfer Impact Assessment per Schrems II + sub-processor authorisation modes + audit rights with SOC 2 / ISO 27001 / ISO 27701 acceptable-attestation alternatives + 24-hour breach notification SLA + deletion/return at termination + CPPA Cybersecurity Audit + Risk Assessment + ADMT assistance.
+
+3. **`DPIA-TEMPLATE.md`** — GDPR Article 35 DPIA + CCPA Risk Assessment per CPPA §7150-7157. Threshold assessment (Article 35(3) automatic triggers + lead SA positive/negative lists + EDPB WP248 rev.01 9-criteria scoring + CCPA Risk Assessment triggers) + systematic description (nature / scope / context / purposes) + necessity + proportionality + risk assessment (per WP250 + EDPB Guidelines 4/2019 consequence categories with likelihood × severity) + measures (Article 25 by-design + Article 32 security) + DPO + data subject consultation + decision matrix (proceed / with conditions / Article 36 prior consultation / not proceed).
+
+4. **`ROPA-TEMPLATE.md`** — GDPR Article 30 Records of Processing Activities. Part A controller variant (all 7 required fields per 30(1)(a)-(g) + supplementary metadata) + Part B processor variant (all 4 required fields per 30(2)(a)-(d)). Maintenance discipline table mapping triggering events (new purpose / modified purpose / retirement / new recipient / retention change / Article 32 measure change / annual review / SA Article 30(4) request) to ROPA actions.
+
+5. **`PERSONAL-DATA-BREACH-NOTIFICATION-TEMPLATE.md`** — Multi-regime breach record covering GDPR Article 33 (72-hour SA notification) + Article 34 (data subject notification when high risk) + Article 33(5) documentation obligation (records retained regardless of notification threshold) + CCPA §1798.150 documented incident record + US state AG breach notification cross-reference (Cal. Civ. Code §1798.82, TX/NY/FL/IL state laws) + HIPAA Breach Notification Rule + FTC Health Breach Notification Rule + SEC Item 1.05 8-K for material cybersecurity incidents at US-public-company controllers. CIA-triad classification + cause categorisation + encryption/pseudonymisation state (which determines Article 34(3)(a) exemption + CCPA §1798.150 private-action exposure) + WP250 consequence-category risk assessment + notification decision matrix per regime + Article 33(3) info elements.
+
+Plus 1 cross-cutting binding (SOP-TEMPLATE) for privacy operational SOPs (consent management + DSR intake + DPO escalation + identity verification per CPPA §7060-7064 3-2-1 tier model + transfer impact assessment per Schrems II).
+
+**Registry +2 PUBLIC standards** (GDPR + CCPA). EDPB Guidelines (WP248 rev.01 + WP250 + 07/2019 + 07/2020 + 03/2022 + 4/2019 + 9/2022) + CPPA regulations + 2021/915 SCCs + UK IDTA all PUBLIC supplementary.
+
+**Cross-cutting overlay count: 23 → 24.** Last major management-system gap closed.
+
+**17-module ultimate composite validates (new depth record beats prior 16-module):**
+```
+openqms validate --module chemicals --module chemicals-svhc \
+  --module chemicals-authorisation --module chemicals-tonnage-1000 \
+  --module osha-hcs --module transport-hazmat --module eu-biocides \
+  --module tsca-pfas --module iso-27001 --module regulated-ai \
+  --module iso-14001 --module iso-45001 --module iso-50001 \
+  --module iso-37001 --module iso-22301 --module iso-31000 \
+  --module privacy
+# → invariant_holds: True
+```
+
+Repo-wide zero-orphan invariant holds: **76 modules / 639 clauses / 305 templates / 0 orphaned clauses / 0 orphaned templates** per `openqms trace --all`.
+
+**Particularly natural compositions** documented in `modules/privacy/README.md`:
+- privacy + iso-27001 (privacy is WHY; iso-27001 is HOW for Article 32 security)
+- privacy + soc-2 (SOC 2 Privacy criterion overlap)
+- privacy + hitrust-csf (HITRUST internally maps HIPAA + GDPR + CCPA)
+- privacy + regulated-ai (GDPR Article 22 + CCPA ADMT for automated decision-making)
+- privacy + recall-workflow (recall customer notifications process personal data)
+- privacy + medical-devices/pharma/food-safety/automotive/chemicals — universal
+
+**Out of scope (deferred):** UK GDPR specialist overlay (UK ICO + UK IDTA specialisation); PIPEDA (Canada); LGPD (Brazil); APPI (Japan); PIPL (China); US state-privacy overlays (Virginia VCDPA + Colorado CPA + Connecticut CTDPA + Utah UCPA + Texas TDPSA + Oregon OCPA + Montana MCDPA + Iowa ICDPA + Florida FDBR + Delaware DPDPA + New Jersey NJDPA + Tennessee TIPA + Indiana INCDPA + New Hampshire NHPA — most follow VCDPA template; could ship as single `us-state-privacy` overlay); HIPAA dedicated overlay; GLBA Safeguards Rule; COPPA; FERPA; EU ePrivacy standalone; CPPA ADMT/Risk/Cybersecurity sub-overlays once final; DSR Workflow issue templates; TIA standalone; cookie banner standards; DPO appointment letter; Article 27 EU representative appointment.
+
+CI extended (+11 validate steps including the 17-module ultimate composite). 116/116 pytest pass. All 8 bundle baselines clean. YAML linter clean on all 76 modules.
+
+Status counts: 6 `:verified` / 81 `:tested` / 5 `:argued` / 0 `:open` (total 92).
+
+Per user direction: "let's start with the privacy overlay" — shipped.
+
+---
+
 ## v0.40.0 DRAFT — 2026-05-24 — Hygiene pass — audit F1-F6 + YAML linter + v0.39 companion
 
 **0 spec entries; 0 status changes.** Pure hygiene release discharging audit `audit_2026-05-24.md` findings + adding tooling discipline + closing v0.39.0 documentation. Engine 0.39.0 → 0.40.0.

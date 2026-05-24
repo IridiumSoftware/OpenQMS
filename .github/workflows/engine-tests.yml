@@ -170,6 +170,19 @@ jobs:
           openqms validate --module chemicals --module chemicals-svhc --module chemicals-authorisation --module chemicals-tonnage-1000
           # Chemicals top-rigor mega-composite — vertical + SVHC + Authorisation + top tonnage + adjacent + full IMS (16-module new depth)
           openqms validate --module chemicals --module chemicals-svhc --module chemicals-authorisation --module chemicals-tonnage-1000 --module osha-hcs --module transport-hazmat --module eu-biocides --module tsca-pfas --module iso-27001 --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000
+          # v0.41.0 — privacy cross-cutting overlay (GDPR + CCPA)
+          openqms validate --module privacy
+          openqms validate --module medical-devices --module privacy
+          openqms validate --module pharma --module privacy
+          openqms validate --module automotive --module privacy
+          openqms validate --module food-safety --module privacy
+          openqms validate --module chemicals --module privacy
+          openqms validate --module manufacturing --module privacy
+          openqms validate --module aerospace --module privacy
+          openqms validate --module privacy --module iso-27001 --module regulated-ai
+          openqms validate --module privacy --module soc-2 --module hitrust-csf --module iso-27001
+          # 17-module ultimate composite — chemicals top-rigor + adjacent + IMS + privacy
+          openqms validate --module chemicals --module chemicals-svhc --module chemicals-authorisation --module chemicals-tonnage-1000 --module osha-hcs --module transport-hazmat --module eu-biocides --module tsca-pfas --module iso-27001 --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000 --module privacy
 
       - name: Inspect registry (smoke check)
         run: openqms registry list

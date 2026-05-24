@@ -1,21 +1,21 @@
 # Modules catalog
 
-Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.38.0. Use this page to choose the modules for your scope.
+Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.41.0. Use this page to choose the modules for your scope.
 
 **Current scope:**
 
 | Dimension | Count |
 |---|---|
 | Verticals | **7** (medical-devices, aerospace, automotive, manufacturing, pharma, food-safety, chemicals) |
-| Class overlays | **44** across 6 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5 / **chemicals 6**: chemicals-svhc, chemicals-authorisation, chemicals-tonnage-1/10/100/1000) |
-| Cross-cutting overlays | **23** (iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas) |
-| **Total modules** | **75** + general |
-| Registry standards | **~114** (no new at v0.38.0; chemicals class overlays reuse existing EU REACH) |
+| Class overlays | **44** across 6 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5 / chemicals 6) |
+| Cross-cutting overlays | **24** (iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas, **privacy**) |
+| **Total modules** | **76** + general |
+| Registry standards | **~117** (v0.41.0 +2 PUBLIC: GDPR + CCPA) |
 | Registry jurisdictions | **20** |
-| Document templates | **87** (v0.38.0 +3 chemicals class-overlay; v0.37.0 +5 chemicals-adjacent) |
+| Document templates | **92** (v0.41.0 +5 privacy: PRIVACY-POLICY / DPA / DPIA / ROPA / PERSONAL-DATA-BREACH-NOTIFICATION) |
 | Example bundles | **8** (validated end-to-end with committed baseline matrices) |
-| Spec entries | **91** (0 `:open`) |
-| Deepest composition tested in CI | **16-module mega-composite** (chemicals + SVHC + Authorisation + top tonnage + 4 adjacent + 8 cross-cutting) |
+| Spec entries | **92** (0 `:open`) |
+| Deepest composition tested in CI | **17-module ultimate composite** (chemicals top-rigor + adjacent + IMS + privacy) |
 
 **Three module types:**
 
@@ -117,7 +117,7 @@ The OQ-011 compose primitive (built v0.4.0, unchanged since) handles composition
 
 ---
 
-## Cross-cutting overlays (23)
+## Cross-cutting overlays (24)
 
 Each composes with ANY vertical. Annex-SL-aligned overlays compose cleanly with each other (verified by 11-module mega-composite in CI).
 
@@ -142,6 +142,7 @@ Each composes with ANY vertical. Annex-SL-aligned overlays compose cleanly with 
 | `tisax` | VDA-ISA v6.0 | Automotive supply-chain IS (German + European OEM requirement) |
 | `defense-cui` | DFARS 252.204-7012 + NIST SP 800-171 Rev 3 | US DoD contractors handling CDI; 14 control families + SPRS scoring |
 | `cmmc` | CMMC 2.0 (32 CFR Part 170) | DoD CUI certification; Levels 1/2/3 with C3PAO; phased rollout 2025-2028 |
+| `privacy` | EU GDPR + US CCPA/CPRA | Personal data protection; universally applicable; closes last major management-system gap |
 
 ---
 
