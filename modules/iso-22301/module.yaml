@@ -1,0 +1,186 @@
+# Open QMS — ISO 22301:2019 business continuity management cross-cutting overlay
+# ------------------------------------------------------------------------------
+# Composes with any vertical. Adds Business Continuity Management
+# System (BCMS) discipline. ISO 22301:2019 follows the Annex SL
+# high-level structure — clean composition with all other Annex-SL
+# management-system standards. Substantive additions are the
+# Business Impact Analysis (BIA), BC-specific risk assessment, BC
+# strategies + solutions (incl. RTO/RPO/MBCO), BC plans + procedures,
+# and the exercise programme.
+#
+# Particularly applicable for: organizations with significant
+# disruption exposure (single-site dependencies, complex supply
+# chains, regulated services with continuity obligations such as
+# financial services under DORA, healthcare, critical infrastructure,
+# utility providers, telecommunications).
+#
+# Standards licensing: see repo-root README. ISO 22301:2019 is a
+# commercially-published copyrighted work.
+
+name: iso-22301-overlay
+version: 0.1.0
+
+standards:
+  - ISO 22301:2019
+
+clauses:
+
+  - id: ISO22301-5.2
+    standard: ISO 22301:2019
+    section: "5.2"
+    summary: |
+      Business continuity policy — top management establishes a
+      documented policy that is appropriate to the purpose; provides
+      framework for setting BC objectives; includes commitment to
+      satisfy applicable requirements + continual improvement of the
+      BCMS; communicated within the organization + available to
+      interested parties.
+
+  - id: ISO22301-6.1
+    standard: ISO 22301:2019
+    section: "6.1"
+    summary: |
+      Actions to address risks + opportunities — for the BCMS, to
+      give assurance that the BCMS can achieve its intended outcomes
+      + prevent / reduce undesired effects + achieve continual
+      improvement.
+
+  - id: ISO22301-6.2
+    standard: ISO 22301:2019
+    section: "6.2"
+    summary: |
+      Business continuity objectives + planning to achieve them —
+      consistent with policy + measurable where practicable +
+      monitored + communicated + updated. The BC objectives are
+      derived from the BIA.
+
+  - id: ISO22301-8.2.2
+    standard: ISO 22301:2019
+    section: "8.2.2"
+    summary: |
+      Business Impact Analysis (BIA) — systematic process to identify
+      + assess the impacts of disruption on prioritized activities;
+      determine prioritized activities + their resource requirements
+      + identification of dependencies; determine prioritized
+      timeframes for resumption (RTO + MAO + MBCO + RPO).
+
+  - id: ISO22301-8.2.3
+    standard: ISO 22301:2019
+    section: "8.2.3"
+    summary: |
+      Risk assessment — identify + analyze + evaluate risks of
+      disruption to prioritized activities. Outputs inform selection
+      of BC strategies + solutions (§8.4).
+
+  - id: ISO22301-8.4
+    standard: ISO 22301:2019
+    section: "8.4"
+    summary: |
+      Business continuity strategies + solutions — selected to meet
+      RTO/RPO/MBCO targets per BIA; cover protection of prioritized
+      activities + their resources (people, information +
+      communication technology, infrastructure, supplies, partners
+      + suppliers, financial resources). Stabilization, continuity,
+      recovery, return.
+
+  - id: ISO22301-8.5
+    standard: ISO 22301:2019
+    section: "8.5"
+    summary: |
+      Business continuity plans + procedures — documented procedures
+      to ensure continuity of prioritized activities during disruption
+      + respond to + manage the disruption; specific to types of
+      disruption per the risk assessment + BC strategies; reviewed +
+      tested + maintained.
+
+  - id: ISO22301-8.6
+    standard: ISO 22301:2019
+    section: "8.6"
+    summary: |
+      Exercise programme — exercises (tabletop, communications
+      cascade, technical, full-scale) at planned intervals to
+      validate the BCMS; clearly defined aims, objectives, scope,
+      success criteria; post-exercise review with documented
+      improvements; varied scenarios over time.
+
+  - id: ISO22301-8.7
+    standard: ISO 22301:2019
+    section: "8.7"
+    summary: |
+      Evaluation of business continuity documentation + capabilities
+      — periodic + post-disruption + post-exercise review of the
+      effectiveness of BC strategies, solutions, plans, procedures.
+
+  - id: ISO22301-9.1
+    standard: ISO 22301:2019
+    section: "9.1"
+    summary: |
+      Monitoring + measurement + analysis + evaluation — what is
+      monitored + how + when + by whom; effectiveness of BC measures;
+      results documented + retained as evidence.
+
+  - id: ISO22301-9.2
+    standard: ISO 22301:2019
+    section: "9.2"
+    summary: |
+      Internal audit — planned audits of the BCMS at planned
+      intervals; consideration of importance of processes + previous
+      audit results; auditor objectivity + impartiality; corrective
+      action.
+
+  - id: ISO22301-9.3
+    standard: ISO 22301:2019
+    section: "9.3"
+    summary: |
+      Management review — top management reviews the BCMS at planned
+      intervals; inputs include audit results, BC exercise results,
+      changes in interested-party needs, risk + opportunity
+      identification, performance information, status of corrective
+      actions.
+
+  - id: ISO22301-10.2
+    standard: ISO 22301:2019
+    section: "10.2"
+    summary: |
+      Nonconformity + corrective action — react to NC; evaluate
+      need for action; implement; review effectiveness; update BCMS
+      if necessary.
+
+templates:
+
+  - path: templates/qms-bcms/BCMS-PLAN-TEMPLATE.md
+    name: Business Continuity Plan (ISO 22301 §8.4 + §8.5 + §8.6 + §8.7 — incorporates BIA + Risk Assessment + scenarios + CMT + recovery procedures + exercise programme)
+    addresses:
+      - ISO22301-8.2.2
+      - ISO22301-8.2.3
+      - ISO22301-8.4
+      - ISO22301-8.5
+      - ISO22301-8.6
+      - ISO22301-8.7
+
+  - path: templates/qms-policy/quality-policy.md
+    name: Quality + Business Continuity policy (ISO 22301 §5.2 — adopters extend the QMS policy with BC commitments)
+    addresses:
+      - ISO22301-5.2
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: BCMS SOPs (risk-and-opportunity + objectives + monitoring + measurement)
+    addresses:
+      - ISO22301-6.1
+      - ISO22301-6.2
+      - ISO22301-9.1
+
+  - path: templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md
+    name: BCMS internal audit (ISO 22301 §9.2)
+    addresses:
+      - ISO22301-9.2
+
+  - path: templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md
+    name: BCMS management review (ISO 22301 §9.3)
+    addresses:
+      - ISO22301-9.3
+
+  - path: .github/ISSUE_TEMPLATE/capa.yml
+    name: CAPA — BCMS nonconformity + corrective action (ISO 22301 §10.2)
+    addresses:
+      - ISO22301-10.2

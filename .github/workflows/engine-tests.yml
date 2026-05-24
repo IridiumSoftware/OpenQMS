@@ -84,6 +84,13 @@ jobs:
           # Food safety vertical (6th vertical) + composites
           openqms validate --module food-safety
           openqms validate --module food-safety --module iso-27001 --module iso-14001 --module iso-45001 --module iso-50001
+          # Anti-bribery (ISO 37001) + business continuity (ISO 22301) cross-cutting overlays
+          openqms validate --module iso-37001
+          openqms validate --module iso-22301
+          openqms validate --module manufacturing --module iso-37001 --module iso-22301
+          openqms validate --module pharma --module iso-37001 --module iso-22301
+          # 8-module ultimate-composite — pharma + 7 cross-cutting management-system overlays
+          openqms validate --module pharma --module iso-27001 --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301
           # Top-rigor mega-composite — safety-critical + cyber-critical ML-enabled ECU
           openqms validate --module automotive --module automotive-asil-d --module automotive-cal-4 --module regulated-ai --module iso-27001
           # Full-stack mega-composite — manufacturing + all 5 cross-cutting management-system overlays

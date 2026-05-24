@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "openqms"
-version = "0.20.0"
+version = "0.21.0"
 description = "Open QMS — generator for regulated-industry Quality Management Systems"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -47,6 +47,10 @@ keywords = [
   "fssc-22000",
   "haccp",
   "fsma",
+  "iso-37001",
+  "anti-bribery",
+  "iso-22301",
+  "business-continuity",
 ]
 classifiers = [
   "Development Status :: 3 - Alpha",

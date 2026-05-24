@@ -613,3 +613,25 @@ standards:
     aliases:
       - "Seafood HACCP"
       - "CFR 123"
+
+  # === Governance + resilience cross-cutting management-system standards ===
+
+  - id: "ISO 37001:2016"
+    name: "Anti-bribery management systems — Requirements with guidance for use"
+    publisher: ISO
+    edition: "2016"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 37001"
+      - "ABMS"
+
+  - id: "ISO 22301:2019"
+    name: "Security and resilience — Business continuity management systems — Requirements"
+    publisher: ISO
+    edition: "2019"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 22301"
+      - "BCMS"
