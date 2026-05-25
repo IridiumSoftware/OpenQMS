@@ -6,7 +6,7 @@ Open QMS resolves a `(product, jurisdictions, standards, modules)` bundle into a
 
 The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD for enforcement, Git for the audit trail.
 
-## Current scope (v0.61.0)
+## Current scope (v0.62.0)
 
 | Dimension | Count |
 |---|---|
@@ -21,7 +21,7 @@ The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD f
 | Example bundles (validated end-to-end) | **8** |
 | Total modules | **116** + general |
 | Spec entries (status: 6 :verified / 92 :tested / 5 :argued / 0 :open) | **103** |
-| Engine CLI subcommands | **9** — `resolve`, `validate`, `regenerate`, `signatures`, `trace`, `coverage` (v0.49.0), `crosswalk` (v0.49.0), `jurisdictions-query` (v0.49.0), `registry` |
+| Engine CLI subcommands | **10** — `resolve`, `validate`, `regenerate`, `signatures`, `trace`, `coverage` (v0.49.0), `crosswalk` (v0.49.0), `jurisdictions-query` (v0.49.0), `registry`, `verify-deployment` (v0.62.0) |
 | Deepest composition tested in CI | **24-module ultra composite** (medical-devices + pharma + combination-product + connected-medical-device + digital-health-multi-region + sterile + hipaa + privacy + 11 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy + ISO 37301) |
 
 The compose primitive validates 11-module composites: e.g., `pharma + pharma-sterile + pharma-biologics + atmp + iso-27001 + soc-2 + iso-31000 + iso-22301 + iso-14001 + iso-45001 + iso-50001` — the realistic shape for a clinical-stage biotech doing sterile ATMP manufacturing with full integrated management system + SOC 2 attestation + ISO 31000 risk framework.

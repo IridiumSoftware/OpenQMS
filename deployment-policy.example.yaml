@@ -1,0 +1,56 @@
+# deployment-policy.example.yaml
+# -------------------------------
+# Example adopter-deployment policy. Copy to your fork as
+# `deployment-policy.yaml` and adjust to match your org's configuration.
+#
+# Run:  openqms verify-deployment --policy deployment-policy.yaml
+#
+# The verifier queries the GitHub API via `gh` CLI subprocess to compare
+# actual configuration of the named repo's protected branch against
+# declared policy. Exits 1 on any error (missing protection settings,
+# weakened controls, missing CODEOWNERS entries).
+#
+# Closes compliance-architecture forward-work P11 (OQ-126 at v0.62.0).
+# See docs/compliance-architecture.md §11 + §6 for the WHY.
+
+# Which repo + branch to verify
+repo:
+  owner: my-org            # GitHub org or user
+  name: my-qms-fork        # repo name
+  branch: main             # protected branch (typically main)
+
+# Branch-protection requirements
+# All fields are optional — declare only what your adopter policy requires.
+# Missing fields mean "we don't care about this setting" (no check run).
+branch_protection:
+
+  required_pull_request_reviews:
+    required_approving_review_count: 1            # CI fails if actual count < 1
+    require_code_owner_reviews: true              # CODEOWNERS becomes load-bearing
+    dismiss_stale_reviews: true                   # forces re-review after new commits
+
+  required_status_checks:
+    strict: true                                  # branch must be up-to-date before merge
+    contexts:                                     # list of required check names
+      - "Engine tests / pytest + module validation"
+      - "Document Control / Doc-control state-machine + version-drift check"
+      # Add more required checks as your CI matures.
+
+  require_signed_commits: true                    # §11.100 unique-attribution anchor (OQ-023)
+
+  enforce_admins: true                            # admins are bound by branch protection too
+
+  required_linear_history: true                   # prevents merge-commit confusion
+
+  # Negated flags — declared false means must NOT be enabled
+  allow_force_pushes: false                       # OQ-022 immutability depends on this
+  allow_deletions: false                          # branch-deletion erodes audit-trail recovery
+
+# CODEOWNERS coverage — paths that MUST have a CODEOWNERS entry
+codeowners:
+  required_paths:
+    - "modules/"
+    - "templates/"
+    - "BUSINESS/"
+    - ".github/workflows/"
+    - "registry/"

@@ -4,6 +4,80 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.62.0 DRAFT — 2026-05-25 — Verify-deployment subcommand (P11)
+
+**1 NEW entry** OQ-126 (Architecture-tier — third since v0.49.0; first since v0.60.0 OQ-124). Spec total 109 → 110. Engine 0.61.0 → 0.62.0.
+
+Closes compliance-architecture forward-work P11 (medium effort per v0.54.0 distribution). **Last open medium priority — closes the medium queue entirely.**
+
+### What ships
+
+- **`engine/openqms/verify_deployment.py`** — pure-Python module (PyYAML only):
+  - `Policy` loading + validation (`load_policy`)
+  - `verify_branch_protection` (compares declared vs API response)
+  - `verify_codeowners` (local-file check + path-coverage)
+  - `verify_deployment` (orchestrator with injectable `gh_invoker`)
+  - `format_result_text` (human-readable rendering)
+  - `Finding` + `VerifyResult` dataclasses
+- **`engine/openqms/cli.py`** — new `_cmd_verify_deployment()` + `p_verify_dep` argparser block; subcommand `openqms verify-deployment --policy <path> [--codeowners <path>] [--format text|json]`
+- **`scripts/verify-deployment.sh`** — shell wrapper for adopters who prefer a script entry point
+- **`deployment-policy.example.yaml`** — annotated reference policy at repo root
+- **`docs/guide/verify-deployment.md`** — adopter usage + CI cron example + adopter checklist
+- **`engine/tests/test_verify_deployment.py`** — 23 new pytest tests (count 228 → 251)
+
+### What the verifier checks
+
+| Category | Field | What it does |
+|---|---|---|
+| **Branch protection** | `required_approving_review_count` | declared count ≤ actual count |
+| | `require_code_owner_reviews` | actual must be true if declared true |
+| | `dismiss_stale_reviews` | actual must be true if declared true |
+| | `enforce_admins` | actual must be enabled if declared true |
+| | `required_linear_history` | actual must be enabled if declared true |
+| **Signed commits** | `require_signed_commits` | actual must be enabled if declared true — the §11.100 unique-attribution anchor (OQ-023) |
+| **Status checks** | `required_status_checks.strict` | actual must be true if declared true |
+| | `required_status_checks.contexts` | every declared context appears in actual |
+| **Negated flags** | `allow_force_pushes` | actual must NOT be enabled if declared false — preserves OQ-022 immutability |
+| | `allow_deletions` | actual must NOT be enabled if declared false — preserves audit-trail recoverability |
+| **CODEOWNERS** | file presence | exists at `.github/CODEOWNERS` / `CODEOWNERS` / `docs/CODEOWNERS` |
+| | required_paths coverage | every declared path has a CODEOWNERS pattern |
+
+### What it does NOT check (intentional gaps documented in guide)
+
+- Org-level 2FA enforcement (needs org-admin API)
+- Per-individual GPG key registration (covered by `IDENTITY-MAPPING-SOP-TEMPLATE.md` OQ-120 P12)
+- Audit-log retention (varies by GitHub plan)
+- External service integrations (out of QMS scope)
+- Secret rotation cadence (out of substrate scope)
+
+### Design choices
+
+- **Zero new Python deps.** Uses `gh api` via subprocess. Reuses existing `gh` CLI authentication.
+- **Injectable `gh_invoker` for testability.** Production injects `real_gh_invoker` (subprocess call); tests inject canned-response callables. No real API hits in CI.
+- **Soft failure on API error.** A failed `gh api` call becomes a finding, not an unhandled exception. The adopter sees the failure as part of the verification output.
+- **Policy is optional-per-field.** Missing fields mean "no check run." Declare only what your adopter policy actually requires.
+- **Architecture-tier.** Changes the engine's surface (new module + new CLI subcommand + new shell wrapper). Third Architecture-tier entry since v0.49.0 OQ-115/116/117.
+
+### Pattern observation
+
+This release operationalizes the reviewer's deepest substantive concern (`docs/compliance-architecture.md` §"Adopter-deployment governance"): *"branch protection, GPG enforcement, role/identity mapping, backup posture — all live in the adopter's GitHub org configuration, not the Open QMS source tree. Open QMS can ship the tools that help adopters verify their own deployment is configured correctly."* The IDENTITY-MAPPING-SOP (OQ-120 P12) documents the HR-to-GitHub identity discipline; the BACKUP-RESTORE-SOP (OQ-120 P13) documents the backup-restore discipline; this verifier checks that the GitHub controls those SOPs depend on are actually in force.
+
+### Forward-work status after v0.62.0
+
+| Status | Count | Priorities |
+|---|---|---|
+| ✓ Closed | 13 | P1 + P3 + P4 + P5 + P6 + P7 + P8 + P9 + P10 + P11 + P12 + P13 + P14 |
+| Open hard | 2 | P2 (validation package) + P15 (integration-architecture trace network) |
+| Open medium | 0 | **medium queue empty** |
+
+The medium queue is now closed entirely. The remaining open priorities are the two hard items — P2 (validation package; the highest-value remaining customer-facing deliverable per adopter feedback) and P15 (integration-architecture cross-record trace network; the strategic differentiator per reviewer #2).
+
+No engine logic change (resolver / loader / validation unchanged). 251/251 pytest pass. Bundle baselines clean (8 example + 4 preset). Module lint clean. Template lint clean. Repo invariants hold (116 modules / 867 clauses / 379 template bindings / 0 orphans / 100.0% aggregate coverage). CLI subcommand count 9 → 10 (added `verify-deployment`).
+
+Status counts: 6 `:verified` / 99 `:tested` / 5 `:argued` / 0 `:open` (total 110).
+
+---
+
 ## v0.61.0 DRAFT — 2026-05-25 — Startup-stage presets (P4)
 
 **1 NEW entry** OQ-125 (Gap-tier). Spec total 108 → 109. Engine 0.60.0 → 0.61.0.

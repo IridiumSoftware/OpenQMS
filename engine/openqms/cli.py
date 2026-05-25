@@ -301,6 +301,36 @@ def main(argv: list[str] | None = None) -> int:
         help="Output format: text (default), json, or md.",
     )
 
+    p_verify_dep = sub.add_parser(
+        "verify-deployment",
+        help=(
+            "Verify adopter-fork deployment configuration against a "
+            "declared deployment-policy.yaml (OQ-126; closes "
+            "compliance-architecture forward-work P11). Queries GitHub "
+            "API via `gh` CLI subprocess; compares actual branch-"
+            "protection + CODEOWNERS + signed-commits + required-status-"
+            "checks vs declared policy."
+        ),
+    )
+    p_verify_dep.add_argument(
+        "--policy",
+        required=True,
+        help="Path to deployment-policy.yaml.",
+    )
+    p_verify_dep.add_argument(
+        "--codeowners",
+        help=(
+            "Path to CODEOWNERS file. Default: auto-detect at "
+            ".github/CODEOWNERS, CODEOWNERS, or docs/CODEOWNERS."
+        ),
+    )
+    p_verify_dep.add_argument(
+        "--format",
+        choices=("text", "json"),
+        default="text",
+        help="Output format. Default: text.",
+    )
+
     p_registry = sub.add_parser(
         "registry",
         help="Inspect the standards-and-jurisdictions registry (OQ-014).",
@@ -359,8 +389,50 @@ def main(argv: list[str] | None = None) -> int:
         return _cmd_crosswalk(args)
     if args.cmd == "jurisdictions-query":
         return _cmd_jurisdictions_query(args)
+    if args.cmd == "verify-deployment":
+        return _cmd_verify_deployment(args)
     parser.print_help()
     return 2
+
+
+def _cmd_verify_deployment(args) -> int:
+    """`openqms verify-deployment` — OQ-126 (P11)."""
+    import json as _json
+    from pathlib import Path as _Path
+
+    from .verify_deployment import (
+        format_result_text,
+        load_policy,
+        verify_deployment,
+    )
+
+    try:
+        policy = load_policy(_Path(args.policy))
+    except (FileNotFoundError, ValueError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 2
+
+    codeowners_path = _Path(args.codeowners) if args.codeowners else None
+
+    try:
+        result = verify_deployment(policy, codeowners_path=codeowners_path)
+    except RuntimeError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 2
+
+    if args.format == "json":
+        body = _json.dumps({
+            "passed": result.passed,
+            "findings": [
+                {"severity": f.severity, "category": f.category, "message": f.message}
+                for f in result.findings
+            ],
+        }, indent=2)
+        print(body)
+    else:
+        print(format_result_text(result))
+
+    return 0 if result.passed else 1
 
 
 def _try_load_registry():
