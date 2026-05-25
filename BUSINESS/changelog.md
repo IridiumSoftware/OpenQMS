@@ -4,6 +4,51 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.63.0 DRAFT — 2026-05-25 — Pages site refresh
+
+**1 NEW entry** OQ-127 (Gap-tier). Spec total 110 → 111. Engine 0.62.0 → 0.63.0. Pure documentation refinement; no engine code change.
+
+User-flagged in v0.62 retrospective: *"A Pages demo would be nice. Existing one looks stale."* The mkdocs Pages site under `mkdocs.yml` + `docs/index.md` was last meaningfully updated at v0.7.0 — showed a 4-item nav and generic marketing index while the project had grown to v0.62 + 110 spec entries + 19 docs/guide pages + 4 compliance/maturity/catalog docs.
+
+### What ships
+
+- **`mkdocs.yml`** — nav rewrite from 4-item to 7-section (~25 entries):
+  - Home
+  - For evaluators (compliance-architecture · modules-catalog)
+  - Getting started (quick-start · onboarding · configuration)
+  - Role guides (Quality Manager · Engineer · Auditor)
+  - Workflows (12 entries: doc-control · document-routing · capa-lifecycle · traceability · training · supplier-controls · management-review · complaints · signature-meaning · gpg-signing · release · verify-deployment)
+  - Schemas + maturity (template-frontmatter · maturity-model)
+  - Regulatory reference (overview · medical-devices)
+- **`docs/index.md`** — rewritten landing page with:
+  - 14-row scope table (verticals · shapes · class overlays · cross-cutting · sub-overlays · cross-overlays · modules · standards · jurisdictions · templates · bundles · spec entries · CLI subcommands · pytest count · deepest composite)
+  - 14-row QMS-activity → GitHub-equivalent mapping
+  - 4-audience quick-paths (new-to-project · new-hire · startup-stage-pick · fork-setup · audit)
+  - 5-bullet honest disclaimers
+- **Deployment** — auto via existing `.github/workflows/deploy-docs.yml`; push to main with `docs/**` or `mkdocs.yml` triggers redeploy.
+- **Build verification** — `mkdocs build --strict` runs clean (zero broken links).
+
+### Pattern observation
+
+OQ-097 (public adopter-surface release, v0.23.0) rewrote `README.md` + introduced `docs/modules-catalog.md` but the Pages-site `mkdocs.yml` + `docs/index.md` weren't in scope. This release closes that loop. Going forward, the per-release version-counts in `index.md` should be updated alongside the per-release version bumps in `README.md` + `docs/modules-catalog.md` (add to release checklist).
+
+### Forward-work status after v0.63.0
+
+| Status | Count | Priorities |
+|---|---|---|
+| ✓ Closed | 13 | P1 + P3 + P4 + P5 + P6 + P7 + P8 + P9 + P10 + P11 + P12 + P13 + P14 |
+| Open hard | 2 | P2 (validation package) + P15 (integration-architecture trace network) |
+| Open medium | 0 | (empty) |
+| Open light | 0 | (empty) |
+
+Forward-work unchanged from v0.62.0 (OQ-127 is not in the P-series; it's a parallel doc-debt cleanup). The remaining queue is exactly the 2 hard items.
+
+No engine code change. 251/251 pytest pass. Bundle baselines clean. Module lint clean. Template lint clean. Repo invariants hold (116 modules / 867 clauses / 379 template bindings / 0 orphans / 100.0% aggregate coverage).
+
+Status counts: 6 `:verified` / 100 `:tested` / 5 `:argued` / 0 `:open` (total 111).
+
+---
+
 ## v0.62.0 DRAFT — 2026-05-25 — Verify-deployment subcommand (P11)
 
 **1 NEW entry** OQ-126 (Architecture-tier — third since v0.49.0; first since v0.60.0 OQ-124). Spec total 109 → 110. Engine 0.61.0 → 0.62.0.

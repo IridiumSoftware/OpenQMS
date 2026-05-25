@@ -1,6 +1,7 @@
 site_name: Open QMS
-site_description: GitHub-native Quality Management System
+site_description: Open-source GitHub-native QMS generator — 116 modules across 7 verticals + 26 cross-cutting overlays + 26 sub-overlays + 12 cross-overlays; clause-to-template traceability invariant; v0.63.0
 repo_url: https://github.com/IridiumSoftware/open-qms
+edit_uri: edit/main/docs/
 
 theme:
   name: material
@@ -10,23 +11,50 @@ theme:
   features:
     - navigation.sections
     - navigation.expand
+    - navigation.top
     - search.highlight
+    - search.suggest
     - content.code.copy
+    - content.action.edit
 
 nav:
   - Home: index.md
-  - Getting Started:
-    - Quick Start: guide/quickstart.md
+
+  - For evaluators:
+    - Compliance architecture (trust gate): compliance-architecture.md
+    - Modules catalog: modules-catalog.md
+
+  - Getting started:
+    - Quick start: guide/quickstart.md
+    - Onboarding (first 30 days): guide/onboarding.md
     - Configuration: guide/configuration.md
-    - For Auditors: guide/auditor-walkthrough.md
-  - Regulatory Reference:
-    - Overview: regulatory/overview.md
-    - Medical Devices: regulatory/medical-devices.md
+
+  - Role guides:
+    - Quality Manager: guide/role-quality-manager.md
+    - Engineer: guide/role-engineer.md
+    - Auditor walkthrough: guide/auditor-walkthrough.md
+
   - Workflows:
-    - Document Control: guide/doc-control.md
+    - Document control: guide/doc-control.md
+    - Document routing (CODEOWNERS): guide/document-routing.md
+    - CAPA lifecycle: guide/capa-lifecycle.md
     - Traceability: guide/traceability.md
     - Training: guide/training.md
-    - Release Management: guide/release.md
+    - Supplier controls: guide/supplier-controls.md
+    - Management review: guide/management-review.md
+    - Complaints: guide/complaints.md
+    - Signature meaning (§11.50): guide/signature-meaning.md
+    - GPG signing: guide/gpg-signing.md
+    - Release management: guide/release.md
+    - Verify deployment: guide/verify-deployment.md
+
+  - Schemas + maturity:
+    - Template frontmatter schema: guide/template-frontmatter.md
+    - Maturity model (startup-stage presets): guide/maturity-model.md
+
+  - Regulatory reference:
+    - Overview: regulatory/overview.md
+    - Medical devices: regulatory/medical-devices.md
 
 markdown_extensions:
   - tables
