@@ -4,6 +4,65 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.59.0 DRAFT — 2026-05-25 — Negative-path test suite for bad modules (P10)
+
+**1 NEW entry** OQ-123 (Gap-tier). Spec total 106 → 107. Engine 0.58.0 → 0.59.0.
+
+Closes compliance-architecture forward-work P10 (medium effort per v0.54.0 distribution). Pure test addition — no engine code changes; no template changes; no documentation requiring updates beyond this changelog + spec.
+
+### What ships
+
+`engine/tests/test_negative_modules.py` — 23 broken-by-construction fixtures + assertions on the specific error type + message produced by each. Pytest count 152 → 175.
+
+### Coverage by category
+
+| Category | Tests | Targets |
+|---|---|---|
+| Loader: module-level errors | 5 | missing `name` · `clauses` not a list · `templates` not a list · `standards` not a list · module file not found |
+| Loader: per-clause errors | 4 | missing `id` · missing `standard` · missing `section` · missing `summary` |
+| Loader: per-template errors | 3 | missing `path` · missing `name` · `addresses` not a list |
+| Compose errors | 2 | empty input · conflicting clause across modules |
+| Validation harness orphan detection | 2 | orphan clause (no template binds it) · orphan template (addresses unknown clause) |
+| Linter findings | 6 | YAML parse error · top-level not a mapping · duplicate clause id · addresses references unknown clause · clause missing required field · template missing required field |
+| Composite | 1 | both orphan kinds simultaneously in same module |
+
+### Design choices
+
+- **Inline-string fixtures over on-disk:** the broken construction sits next to its assertion. Easier to read; no fixture-discovery overhead.
+- **`tmp_path` per test:** each fixture is written to a fresh temp directory; no test-pollution risk.
+- **Linter imported via `importlib.util.spec_from_file_location`:** the hyphenated filename (`scripts/lint-module-yaml.py`) can't be imported directly because `lint-module-yaml` is not a valid Python identifier.
+- **Assertion on message substrings, not full strings:** the tests check the substring uniquely identifying each error path, allowing the engine to refine error messages without breaking tests for cosmetic word changes.
+
+### Pattern observation
+
+This release parallels OQ-122 (template schema tests, v0.58.0) — both shore up the engine's error-rejection surface with explicit assertions. Coincidentally both ship 23 tests (152 → 175 here; 129 → 152 there). The pattern: when an engine surface is established as production-bearing (clause-template trace, template schema), the next release after is the negative-path coverage that catches regressions in the rejection paths.
+
+### What this enables
+
+Any future refactor that subtly weakens an error path now fails one or more of these tests:
+- Loosening a required-field check
+- Catching an exception that should propagate
+- Dropping a finding from the linter
+- Allowing duplicate clause IDs to slip through
+
+Message-quality drift is also visible — tests assert on specific substrings, so if an error message becomes less informative, the test fails and prompts a deliberate decision.
+
+### Forward-work status after v0.59.0
+
+| Status | Count | Priorities |
+|---|---|---|
+| ✓ Closed | 10 | P1 + P3 + P6 + P7 + P8 + P9 + P10 + P12 + P13 + P14 |
+| Open hard | 2 | P2 (validation package) + P15 (integration-architecture trace network) |
+| Open medium | 3 | P4 (startup-stage presets) + P5 (doc-control hardening) + P11 (verify-deployment script) |
+
+Medium queue is down to 3. The remaining priorities are either bounded-medium (P4/P5/P11 — each a clean single-release deliverable) or genuinely hard (P2/P15 — each multi-session).
+
+No functional code changes. 175/175 pytest pass. Bundle baselines clean. Module lint clean. Template lint clean. Repo invariants hold (116 modules / 867 clauses / 379 template bindings / 0 orphans / 100.0% aggregate coverage).
+
+Status counts: 6 `:verified` / 96 `:tested` / 5 `:argued` / 0 `:open` (total 107).
+
+---
+
 ## v0.58.0 DRAFT — 2026-05-25 — Template frontmatter schema validation (P9)
 
 **1 NEW entry** OQ-122 (Architecture-tier — first since OQ-115/OQ-116/OQ-117 at v0.49.0). Spec total 105 → 106. Engine 0.57.0 → 0.58.0.
