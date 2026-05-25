@@ -4,6 +4,56 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.46.0 DRAFT — 2026-05-25 — HIPAA satellite templates (discharges OQ-112 forward-work bucket)
+
+**0 NEW entries; 1 new clause + 5 new templates** added to existing OQ-112 hipaa module. Spec total unchanged at 96. Engine 0.45.0 → 0.46.0.
+
+5 HIPAA satellite templates shipped — finishes the HIPAA story end-to-end. Plus 1 new clause added to the hipaa module for the 2024 Reproductive Health Care Privacy Rule attestation requirement per §164.509.
+
+**New clause added to hipaa module:**
+
+- `HIPAA-164-509-reproductive-health-attestation` — §164.509 attestation requirement per HHS Final Rule 89 FR 32976 (April 2024; effective 2026-12-23). CE/BA may not disclose PHI potentially related to reproductive health care for health-oversight / judicial-administrative / law-enforcement / coroner purposes without signed attestation per §164.509(c). Companion to §164.502(a)(5)(iii) prohibition on using PHI to investigate or impose liability for lawful reproductive health care.
+
+**5 new HIPAA satellite templates:**
+
+1. **`HIPAA-AUTHORIZATION-TEMPLATE.md`** — §164.508 written Authorization. Required content per §164.508(c)(1) + required statements per §164.508(c)(2) including right to revoke + treatment-conditioning prohibition + re-disclosure potential + marketing/sale-of-PHI notices. Validity check per §164.508(b)(2). Compound-Authorization prohibition handling. Psychotherapy-notes SEPARATE Authorization requirement. Cross-reference to §164.509 Reproductive Health Care Privacy Rule.
+
+2. **`ACCOUNTING-OF-DISCLOSURES-LOG-TEMPLATE.md`** — §164.528 ongoing log of accountable disclosures. Exempted-disclosures catalog (TPO + to individual + via Authorization + facility directory + §510(b) involvement + national security + correctional + pre-April 2003 + Limited Data Set). Temporary-suspension handling per §164.528(a)(2) for health-oversight + law-enforcement. Individual-request handling: 60-day deadline + 30-day extension + first-accounting-free per 12-month + reasonable cost-based fee for subsequent. 6-year retention.
+
+3. **`RESTRICTION-REQUEST-LOG-TEMPLATE.md`** — §164.522(a) permissive restrictions + HITECH §13405(a) MANDATORY out-of-pocket restrictions + §164.522(a)(2) termination handling + §164.522(b) confidential communications co-administered. Critical: mandatory out-of-pocket restrictions MUST be agreed by CE; operational implications for billing system (segregate patient + service from claim; no insurance bill; subsequent collection efforts must not disclose to health plan).
+
+4. **`OCR-INVESTIGATION-RESPONSE-TEMPLATE.md`** — HHS OCR Compliance Investigation full lifecycle. Document Request response tracking with privileged-log discipline. Interview coordination. Site-visit logistics. Letter of Findings response strategy. Resolution Agreement + Corrective Action Plan execution. CMP tier mapping per §160.404 HITECH 4-tier (Tier 1 unknowing → Tier 4 willful neglect uncorrected; 2024 inflation-adjusted ranges). 42 USC §1320d-6 criminal-penalty cross-reference. Wall of Shame public-listing risk + communications planning. SEC Item 1.05 8-K coordination for material incidents at US-public-company controllers.
+
+5. **`REPRODUCTIVE-HEALTH-ATTESTATION-TEMPLATE.md`** — §164.509 Attestation per HHS Final Rule. Threshold determination ("could the PHI potentially relate to reproductive health care"). Required content per §164.509(c). Validity check (incomplete / compound / known-false / substantial-evidence-of-false defects). Refusal handling. Cross-state-line scenario coordination (reproductive health care lawful in provider state but criminalised in requestor state — engage legal counsel). Accounting of Disclosures cross-logging.
+
+Plus the existing SOP template binding updated to reference §164.509 attestation handling alongside existing operational items.
+
+**hipaa module: 14→15 clauses, 5→10 templates.**
+
+**No new registry standards** — all reuse existing HIPAA + HITECH registrations.
+
+**Total templates: 96 → 101.** Total modules unchanged at 106.
+
+**OQ-112 forward-work bucket discharged:**
+- ✓ Authorization form template per §164.508
+- ✓ Accounting of Disclosures log template per §164.528
+- ✓ Restriction Request log per §164.522(a)
+- ✓ OCR Compliance Investigation response template
+- ✓ Reproductive Health Care Privacy Rule 2024 attestation template per §164.509
+
+Remaining OQ-112 forward work (deferred per scope):
+- 42 CFR Part 2 (substance use disorder) overlay — narrower scope than HIPAA + additional consent requirements; separate dedicated overlay rather than HIPAA satellite template
+- ONC certified EHR technology adoption tracker
+- connected-medical-devices cross-overlay
+
+CI: 116/116 pytest pass. All 8 bundle baselines clean. YAML linter clean on all 106 modules.
+
+Status counts unchanged: 6 `:verified` / 85 `:tested` / 5 `:argued` / 0 `:open` (total 96).
+
+Per user direction: "do 1" + scope clarification "HIPAA satellite templates only" — shipped here. Finishes the HIPAA story end-to-end.
+
+---
+
 ## v0.45.0 DRAFT — 2026-05-24 — HIPAA dedicated cross-cutting overlay
 
 **1 NEW entry** OQ-112. Spec total 95 → 96. Engine 0.44.0 → 0.45.0.

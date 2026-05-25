@@ -6,7 +6,7 @@ Open QMS resolves a `(product, jurisdictions, standards, modules)` bundle into a
 
 The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD for enforcement, Git for the audit trail.
 
-## Current scope (v0.45.0)
+## Current scope (v0.46.0)
 
 | Dimension | Count |
 |---|---|
@@ -17,7 +17,7 @@ The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD f
 | **Cross-overlays** (bind ACROSS specific vertical combinations) | **3** — combination-product (medical-devices + pharma), integrated-management-system (multi-MS Annex SL), food-pharma-grade (chemicals + food-safety + pharma) |
 | Registry — standards | **~126** (v0.45.0 +2 PUBLIC: HIPAA + HITECH) |
 | Registry — jurisdictions | **20** (FDA / EMA / MHRA / WHO-PQ / Health Canada / EU MDR / PMDA / TGA / ANVISA / FAA / EASA / TCCA / NHTSA / UNECE / KBA / TC-MVS / FDA-Food / USDA-FSIS / EFSA / CFIA) |
-| Document templates | **96** (v0.45.0 +4 HIPAA: NPP + BAA + Risk Analysis + Breach Risk Assessment) |
+| Document templates | **101** (v0.46.0 +5 HIPAA satellites: Authorization + Accounting + Restriction + OCR Response + Reproductive Health Attestation; v0.45.0 +4 HIPAA: NPP + BAA + Risk Analysis + Breach Risk Assessment) |
 | Example bundles (validated end-to-end) | **8** |
 | Total modules | **106** + general |
 | Spec entries (status: 6 :verified / 85 :tested / 5 :argued / 0 :open) | **96** |

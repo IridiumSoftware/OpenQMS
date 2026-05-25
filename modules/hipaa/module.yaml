@@ -227,6 +227,30 @@ clauses:
       (knowingly: $50k+1yr; false pretenses: $100k+5yr; intent to
       sell/transfer for personal gain: $250k+10yr).
 
+  - id: HIPAA-164-509-reproductive-health-attestation
+    standard: HIPAA
+    section: "45 CFR §164.509 (HHS Final Rule 89 FR 32976, April 2024; effective Dec 23 2024)"
+    summary: |
+      Reproductive Health Care Privacy Rule attestation — added by
+      HHS Final Rule strengthening HIPAA Privacy Rule protections
+      for Reproductive Health Care (89 FR 32976, April 26, 2024).
+      §164.502(a)(5)(iii) prohibits use/disclosure of PHI to
+      investigate or impose liability on any person for the mere
+      act of seeking / obtaining / providing / facilitating
+      reproductive health care lawful in the state in which
+      provided OR under federal law. §164.509 requires a signed
+      Attestation BEFORE disclosing PHI potentially related to
+      reproductive health care for: health oversight per
+      §164.512(d), judicial+administrative proceedings per
+      §164.512(e), law enforcement per §164.512(f), or coroners/
+      medical examiners per §164.512(g)(1). Attestation required
+      content per §164.509(c): description of information requested
+      with sufficient specificity; identification of person whose
+      PHI is requested + recipient; signatory name + title; attestation
+      that disclosure is NOT for prohibited purposes; notice of
+      penalties for false attestation per 42 USC §1320d-6. CE/BA
+      may not disclose if attestation incomplete or known false.
+
   - id: HITECH-promoting-interoperability
     standard: HITECH
     section: "HITECH §13001-13424 + CMS Promoting Interoperability"
@@ -269,10 +293,45 @@ templates:
       - HIPAA-164-400-414-breach-notification
       - HIPAA-164-530-administrative-requirements
 
+  - path: templates/qms-hipaa/HIPAA-AUTHORIZATION-TEMPLATE.md
+    name: "Authorization for Use or Disclosure of PHI (§164.508 written Authorization with required content + required statements + revocation procedure + validity check + recordkeeping; cross-references §164.509 Reproductive Health Care Privacy Rule for reproductive-health-related authorizations)"
+    addresses:
+      - HIPAA-164-508-510-512-permitted-without-authorization
+      - HIPAA-164-520-528-individual-rights
+
+  - path: templates/qms-hipaa/ACCOUNTING-OF-DISCLOSURES-LOG-TEMPLATE.md
+    name: "Accounting of Disclosures log (§164.528 — ongoing log of accountable disclosures + exempted-disclosures catalog + temporary-suspension handling + individual-request response within 60 days + first-accounting free + 6-year lookback + 6-year retention)"
+    addresses:
+      - HIPAA-164-520-528-individual-rights
+      - HIPAA-164-530-administrative-requirements
+      - HIPAA-164-316-documentation-retention
+
+  - path: templates/qms-hipaa/RESTRICTION-REQUEST-LOG-TEMPLATE.md
+    name: "Restriction Request log (§164.522(a) permissive restrictions on TPO + persons-involved + HITECH §13405(a) MANDATORY out-of-pocket restrictions + termination per §164.522(a)(2) + Confidential Communications §164.522(b) co-administered + 6-year retention)"
+    addresses:
+      - HIPAA-164-520-528-individual-rights
+      - HIPAA-164-530-administrative-requirements
+
+  - path: templates/qms-hipaa/OCR-INVESTIGATION-RESPONSE-TEMPLATE.md
+    name: "HHS OCR Compliance Investigation Response (document-request response tracking + privileged-log discipline + interview coordination + site-visit logistics + Letter of Findings response strategy + Resolution Agreement + CAP execution + CMP tier mapping per §160.404 HITECH 4-tier + 42 USC §1320d-6 criminal penalty cross-reference + Wall of Shame public-listing risk)"
+    addresses:
+      - HIPAA-160-Subpart-D-enforcement
+      - HIPAA-164-530-administrative-requirements
+      - HIPAA-164-316-documentation-retention
+
+  - path: templates/qms-hipaa/REPRODUCTIVE-HEALTH-ATTESTATION-TEMPLATE.md
+    name: "Reproductive Health Care Privacy Attestation (§164.509 attestation required content per HHS Final Rule 89 FR 32976; threshold determination + validity check + disclosure decision matrix + refusal-letter handling + Accounting-of-Disclosures cross-logging + 6-year retention; legal counsel engagement standard)"
+    addresses:
+      - HIPAA-164-509-reproductive-health-attestation
+      - HIPAA-164-508-510-512-permitted-without-authorization
+      - HIPAA-164-520-528-individual-rights
+      - HIPAA-164-530-administrative-requirements
+
   - path: templates/qms-sops/SOP-TEMPLATE.md
-    name: "HIPAA operational SOPs (Privacy Officer + Security Officer designation + workforce training cadence + sanctions + minimum necessary + access management + audit log review + incident response + BAA management + Authorization handling + de-identification methodology)"
+    name: "HIPAA operational SOPs (Privacy Officer + Security Officer designation + workforce training cadence + sanctions + minimum necessary + access management + audit log review + incident response + BAA management + Authorization handling + de-identification methodology + Reproductive Health Care attestation handling per §164.509)"
     addresses:
       - HIPAA-164-530-administrative-requirements
       - HIPAA-164-514-de-identification
       - HIPAA-160-Subpart-D-enforcement
       - HITECH-promoting-interoperability
+      - HIPAA-164-509-reproductive-health-attestation

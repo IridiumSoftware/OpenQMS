@@ -21,7 +21,7 @@ Current state + priority stack. Read this first every session. For claim status,
 | `:open` | 0 | — |
 | **Total** | **96** | — |
 
-Counts: 6 + 85 + 5 + 0 = 96 ✓. **Latest at v0.45.0**: HIPAA dedicated cross-cutting overlay shipped — 25th cross-cutting. US healthcare-specific privacy + security per 45 CFR Parts 160 + 164 + HITECH. 14 clauses across Privacy Rule + Security Rule (administrative + physical + technical safeguards) + Breach Notification Rule 4-factor + Enforcement Rule. 4 new HIPAA-specific templates (NPP + BAA + Risk Analysis + Breach Risk Assessment). Registry +2 PUBLIC standards. **22-module healthcare ultimate composite validates** (new depth record). Zero-orphan invariant holds (106 modules / 792 clauses / 350 templates / 0 orphans). Spec total 95 → 96.
+Counts: 6 + 85 + 5 + 0 = 96 ✓. **Latest at v0.46.0**: HIPAA satellite templates — discharges OQ-112 forward-work bucket. 5 new templates (HIPAA-AUTHORIZATION + ACCOUNTING-OF-DISCLOSURES-LOG + RESTRICTION-REQUEST-LOG + OCR-INVESTIGATION-RESPONSE + REPRODUCTIVE-HEALTH-ATTESTATION) + 1 new clause (HIPAA-164-509-reproductive-health-attestation per HHS Final Rule 89 FR 32976 effective 2026-12-23). hipaa module 14→15 clauses + 5→10 templates. Total templates 96→101. No spec entries added. Engine version corrected to 0.46.0 (had silently lagged at 0.43.0 through v0.44+v0.45 due to earlier batch-edit failures). Spec total unchanged at 96.
 
 **Phase 0 round-out complete (v0.2.1 → v0.3.0).** P5, P6, P7 all closed. **Phase 1 mostly closed.** P1.1 at v0.4.0; P1.2 at v0.5.0. Remaining Phase 1: P1.3 (re-resolution on mutation, OQ-015 + OQ-065). P8 (Part 11 §11.50 prototype, OQ-060) and continued module-coverage population remain.
 

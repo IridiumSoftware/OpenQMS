@@ -1,6 +1,6 @@
 # Modules catalog
 
-Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.45.0. Use this page to choose the modules for your scope.
+Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.46.0. Use this page to choose the modules for your scope.
 
 **Current scope:**
 
@@ -14,7 +14,7 @@ Comprehensive inventory of every regulatory module shipped with Open QMS as of v
 | **Total modules** | **106** + general |
 | Registry standards | **~126** (v0.45.0 +2 PUBLIC: HIPAA + HITECH) |
 | Registry jurisdictions | **20** |
-| Document templates | **96** (v0.45.0 +4 HIPAA: NPP + BAA + Risk Analysis + Breach Risk Assessment) |
+| Document templates | **101** (v0.46.0 +5 HIPAA satellites: Authorization + Accounting + Restriction + OCR Response + Reproductive Health Attestation; v0.45.0 +4 HIPAA: NPP + BAA + Risk Analysis + Breach Risk Assessment) |
 | Example bundles | **8** (validated end-to-end with committed baseline matrices) |
 | Spec entries | **96** (0 `:open`) |
 | Deepest composition tested in CI | **22-module healthcare ultimate composite** (medical-devices + pharma + combination-product + sterile + hipaa + privacy + 11 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy + ISO 37301) |
