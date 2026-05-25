@@ -4,6 +4,37 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.56.0 DRAFT — 2026-05-25 — P15 added (integration-architecture trace network)
+
+**0 NEW entries.** Spec total unchanged at 104. Engine 0.55.0 → 0.56.0. Doc-only refinement of OQ-119.
+
+Independent reviewer comment received 2026-05-25:
+
+> Risk management should not be a separate artifact. The future is integrated: requirements ↔ hazards ↔ mitigations ↔ testing ↔ CAPA ↔ complaints ↔ post-market surveillance. That connectedness is where modern systems win.
+
+**Assessment of redundancy + effort:**
+
+- **Redundancy: low.** The existing clause-level trace (OQ-001 invariant + OQ-067 `openqms trace`) operates on module-YAML `clause ↔ template` bindings, NOT on living-record cross-references. Partial precedent in the RMF template (`templates/product-dhf/risk-management/`) which gives an ISO 14971 unified-view artifact, and informal free-text `capa_link` fields in `complaint.yml` + `nonconformance.yml`, but nothing enforces or validates a cross-record graph today.
+- **Effort: hard.** Comparable in scope to P2 (validation package). Multi-session. Requires frontmatter schema for trace-link IDs + structured-ID conversion of free-text link fields + new engine subcommand walking the cross-record graph + instance-level zero-orphan invariant + per-template frontmatter migration + CI gate + docs.
+
+**P15 added** to `docs/compliance-architecture.md` forward-work as a new third reviewer-flagged cluster: **Integration-architecture priorities**. Sits next to the existing P2 (hard) in queue.
+
+**Forward-work distribution updated:**
+
+| Status | Count | Priorities |
+|---|---|---|
+| ✓ Closed | 7 | P1 + P6 + P7 + P8 + P12 + P13 + P14 |
+| Open hard | 2 | P2 (validation package) + P15 (integration-architecture trace network) |
+| Open medium | 6 | P3 + P4 + P5 + P9 + P10 + P11 |
+
+No functional code changes. 129/129 pytest pass. Bundle baselines clean. Lint clean. Repo invariants hold (116 modules / 867 clauses / 379 template bindings / 0 orphans / 100.0% aggregate coverage).
+
+Status counts unchanged: 6 `:verified` / 93 `:tested` / 5 `:argued` / 0 `:open` (total 104).
+
+Maybe we'll get to it someday.
+
+---
+
 ## v0.55.0 DRAFT — 2026-05-25 — Light-batch hardening release (P6 + P7 + P8 + P12 + P13 + P14)
 
 **1 NEW entry** OQ-120 (Gap-tier; batched per OQ-104 / OQ-109 / OQ-118 precedent). Spec total 103 → 104. Engine 0.54.0 → 0.55.0.

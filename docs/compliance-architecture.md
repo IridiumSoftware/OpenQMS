@@ -316,7 +316,7 @@ The reviewer's headline framing — *"worth pursuing, but treat it as a generato
 - **medium** — multiple deliverables: new templates + workflow changes + tests + composites; ½ to 2 days; bounded scope.
 - **hard** — substantial new feature surface: new module + multiple templates + standards crosswalks + tests + composites + docs + per-jurisdiction handling; 2+ days; multi-session.
 
-**Current effort distribution across remaining 7 open priorities** (post-v0.55.0): 1 hard · 6 medium · 0 light. The 6 light priorities (P6 + P7 + P8 + P12 + P13 + P14) were closed as a single batched hardening release at v0.55.0 (OQ-120 `:tested`).
+**Current effort distribution across remaining 8 open priorities** (post-v0.55.0 / post-P15 addition): 2 hard (P2 + P15) · 6 medium (P3 + P4 + P5 + P9 + P10 + P11) · 0 light. The 6 light priorities (P6 + P7 + P8 + P12 + P13 + P14) were closed as a single batched hardening release at v0.55.0 (OQ-120 `:tested`).
 
 ### Adopter-experience priorities
 
@@ -350,6 +350,16 @@ The reviewer's deepest substantive point: *"the 'immutability' and approval mode
 | ✓ **P12** | light | No SOP template for HR-to-GitHub identity mapping (§11.100 unique-attribution depends on it) | **Closed at v0.55.0** — `templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md` (9 sections covering register schema + new-hire provisioning + quarterly review + key rotation + offboarding + audit-log retention; bound to §11.100 + HIPAA §164.308(a)(3) + ISO 27001 A.9 + GDPR Art. 32). |
 | ✓ **P13** | light | No backup/restore SOP template + restoration-test discipline | **Closed at v0.55.0** — `templates/qms-bcms/BACKUP-RESTORE-SOP-TEMPLATE.md` (8 sections covering 3-2-1 backup posture + cron automation + RTO/RPO/MAO/MBCO declaration framework + 13-step annual restoration-test runbook + format-stability planning + failure-escalation matrix). |
 | ✓ **P14** | light | Process gap — no documented cadence for third-party regulatory review of module crosswalk semantics | **Closed at v0.55.0** — `BUSINESS/regulatory_review_cadence.md` (8 sections covering cadence schedule per standard kind + 6-criterion reviewer-qualification + finding-log format with 3-tier severity + per-module attestation badge + honest 0/116 review-debt baseline + 8-module first-tier review-target list). |
+
+### Integration-architecture priorities (reviewer-flagged)
+
+A separate reviewer comment received 2026-05-25: *"Risk management should not be a separate artifact. The future is integrated: requirements ↔ hazards ↔ mitigations ↔ testing ↔ CAPA ↔ complaints ↔ post-market surveillance. That connectedness is where modern systems win."*
+
+The point lands. Open QMS today enforces *clause-level* trace (OQ-001 invariant: every in-scope clause has ≥ 1 bound template; OQ-067 `openqms trace` walks forward + reverse maps; zero-orphan invariant in CI on every push). What's missing is *instance-level* trace across living records — the cross-record graph the reviewer names.
+
+| Priority | Effort | Gap | Plan |
+|---|---|---|---|
+| **P15** | **hard** | No enforced instance-level trace network across the living-record kinds in the regulatory lifecycle (requirement ↔ hazard ↔ mitigation ↔ test ↔ CAPA ↔ complaint ↔ post-market surveillance finding). Existing precedent is partial: `templates/product-dhf/risk-management/RISK-MANAGEMENT-FILE-TEMPLATE.md` is a single-artifact unified view per ISO 14971; `.github/ISSUE_TEMPLATE/complaint.yml` + `nonconformance.yml` have free-text `capa_link` / "linked CAPA issue" fields with no engine validation. The clause-level trace (OQ-001 + OQ-067) operates one layer up at module YAML, not at instance level. | Future release — (1) define frontmatter schema for trace-link IDs across the ~7 record kinds (e.g., `req_id: REQ-NNN`, `linked_hazards: [HAZ-NNN]`, `linked_tests: [TST-NNN]`, `linked_capas: [CAPA-NNN]`); (2) convert free-text link fields in issue templates to structured IDs; (3) new engine subcommand `openqms trace-instances` walking the cross-record link graph across issues + markdown records; (4) instance-level zero-orphan invariant parallel to the clause-level one (e.g., every hazard has ≥ 1 mitigation; every test cites ≥ 1 requirement; every CAPA cites ≥ 1 trigger); (5) per-template frontmatter migration across ~20-40 record-producing templates; (6) CI gate; (7) documentation. Multi-session; comparable to P2 in scope. **Strategic note:** this is the differentiator the reviewer named ("connectedness is where modern systems win"); the existing OQ-001 + OQ-067 + module composition primitives are the natural substrate to build on. |
 
 ### What the reviewer flagged that is already addressed
 
