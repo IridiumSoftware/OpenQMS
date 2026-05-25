@@ -6,7 +6,7 @@ Open QMS resolves a `(product, jurisdictions, standards, modules)` bundle into a
 
 The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD for enforcement, Git for the audit trail.
 
-## Current scope (v0.51.0)
+## Current scope (v0.52.0)
 
 | Dimension | Count |
 |---|---|
@@ -20,13 +20,15 @@ The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD f
 | Document templates | **103** (v0.50.0 cross-overlays reuse parent-overlay templates; no new templates) |
 | Example bundles (validated end-to-end) | **8** |
 | Total modules | **116** + general |
-| Spec entries (status: 6 :verified / 91 :tested / 5 :argued / 0 :open) | **102** |
+| Spec entries (status: 6 :verified / 92 :tested / 5 :argued / 0 :open) | **103** |
 | Engine CLI subcommands | **9** — `resolve`, `validate`, `regenerate`, `signatures`, `trace`, `coverage` (v0.49.0), `crosswalk` (v0.49.0), `jurisdictions-query` (v0.49.0), `registry` |
 | Deepest composition tested in CI | **24-module ultra composite** (medical-devices + pharma + combination-product + connected-medical-device + digital-health-multi-region + sterile + hipaa + privacy + 11 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy + ISO 37301) |
 
 The compose primitive validates 11-module composites: e.g., `pharma + pharma-sterile + pharma-biologics + atmp + iso-27001 + soc-2 + iso-31000 + iso-22301 + iso-14001 + iso-45001 + iso-50001` — the realistic shape for a clinical-stage biotech doing sterile ATMP manufacturing with full integrated management system + SOC 2 attestation + ISO 31000 risk framework.
 
 **See [`docs/modules-catalog.md`](docs/modules-catalog.md) for the complete catalog with per-module standards covered + adoption guidance.**
+
+**For quality leaders / regulatory affairs / IT-SecOps evaluating Open QMS at audit:** see [`docs/compliance-architecture.md`](docs/compliance-architecture.md) — the trust-gate document mapping 21 CFR Part 11 + EU GMP Annex 11 + ISO 13485 + audit trails + e-signatures + permissions + validation + backup/recovery + record retention + cybersecurity + system administration controls to architecture components + spec entries + evidence files + adopter responsibilities.
 
 ## Quick start
 

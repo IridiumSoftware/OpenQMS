@@ -15,13 +15,13 @@ Current state + priority stack. Read this first every session. For claim status,
 | `:proved` | 0 | — |
 | `:verified` | 0 | — |
 | `:verified` | 6 | Invariant (2, OQ-001 + OQ-002) · Architecture (4, OQ-010 + OQ-011 + OQ-013 + OQ-015) |
-| `:tested` | 91 | Architecture (5, OQ-012 + OQ-014 + OQ-115 + OQ-116 + OQ-117) · Substrate (3) · Workflow (9) · Module (61, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-096 + OQ-098 + OQ-101..OQ-114 + OQ-118) · Gap (13, OQ-060 + OQ-061 + OQ-062 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-067 + OQ-068 + OQ-069 + OQ-080 + OQ-097 + OQ-099 + OQ-100) |
+| `:tested` | 92 | Architecture (5, OQ-012 + OQ-014 + OQ-115 + OQ-116 + OQ-117) · Substrate (3) · Workflow (9) · Module (61, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-096 + OQ-098 + OQ-101..OQ-114 + OQ-118) · Gap (14, OQ-060 + OQ-061 + OQ-062 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-067 + OQ-068 + OQ-069 + OQ-080 + OQ-097 + OQ-099 + OQ-100 + OQ-119) |
 | `:benchmarked` | 0 | — |
 | `:argued` | 5 | Invariant (1, OQ-003) · Substrate (2, OQ-022 + OQ-023) · Licensing (2, OQ-070 + OQ-071) |
 | `:open` | 0 | — |
-| **Total** | **102** | — |
+| **Total** | **103** | — |
 
-Counts: 6 + 91 + 5 + 0 = 102 ✓. **Latest at v0.51.0** (polishing pass — pure bookkeeping; no spec changes): A0-A6 cross-audit clean (zero findings; see `audit_2026-05-25_v0_50.md`); v0.48-v0.51 omnibus companion shipped (`companion_v0_48_to_51.md`); companion_index updated. Closes the v0.46-v0.50 build arc.
+Counts: 6 + 92 + 5 + 0 = 103 ✓. **Latest at v0.52.0**: Compliance architecture trust-gate document (closes adopter-feedback P1). OQ-119 NEW `:tested` (Gap-tier). Shipped `docs/compliance-architecture.md` — 11-section comprehensive trust-gate document mapping 10 highest-frequency adopter-evaluator topics to architecture components + spec entries + evidence files + adopter responsibilities. Forward-work section acknowledges remaining feedback priorities P2 (validation package templates) + P3 (non-technical UX) + P4 (opinionated startup-stage presets) for transparency. Spec total 102 → 103. Engine 0.51.0 → 0.52.0.
 
 **v0.50.0** (prior release): Final cross-overlay batch (4). OQ-118 NEW `:tested` — completes cross-overlay shape coverage across remaining major vertical intersections. **automotive-supply-chain** (automotive + asil-d + cal-4 + recall-workflow — DIA + CIA + AIAG PPAP + UN R155 + R156 + NHTSA Part 573 + tier-N flow-down). **clinical-trial-multi-region** (pharma + privacy + hipaa + digital-health-multi-region — ICH E6(R3) + EU CTR + 21 CFR 312 + DCT + multi-region PHI + parallel IRB/IEC + RBM + multi-region PV). **banking-resilience** (iso-37301-financial-services + dora + nist-csf + iso-22301 — DORA + FFIEC + NIST CSF backbone + multi-stream incident + TLPT + CTPP). **utility-cybersecurity** (manufacturing + iso-27001 + nist-csf — NERC CIP + TSA SD + CISA 16-sector + EU NIS2 + IEC 62443 + CIRCIA). Registry +5 PUBLIC. Cross-overlay count 8 → 12. Module count 112 → 116. CI +8 validate steps. Spec total 101 → 102.
 

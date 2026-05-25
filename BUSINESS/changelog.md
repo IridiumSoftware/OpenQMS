@@ -4,6 +4,55 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.52.0 DRAFT — 2026-05-25 — Compliance architecture trust-gate document (adopter-feedback P1)
+
+**1 NEW entry** OQ-119 (Gap-tier). Spec total 102 → 103. Engine 0.51.0 → 0.52.0.
+
+First response to adopter feedback received same day. Feedback highlighted four priorities; this release closes P1 (the trust-gate prerequisite). P2, P3, P4 acknowledged + scoped for future releases.
+
+**OQ-119 — Compliance architecture trust-gate document**
+
+Shipped `docs/compliance-architecture.md` — 11-section comprehensive trust-gate document for quality leaders + regulatory affairs + IT/SecOps evaluating Open QMS for adoption.
+
+The 10 highest-frequency adopter-evaluator topics covered:
+
+1. **21 CFR Part 11** — Electronic records & signatures (US FDA)
+2. **EU GMP Annex 11** — Computerised systems
+3. **ISO 13485:2016** — Medical devices QMS
+4. **Audit trails** — git as the immutable audit trail
+5. **E-signatures** — GPG + signature-meaning trailers (§11.50 binding)
+6. **Permissions / access controls** — GitHub org permissions + branch protection + CODEOWNERS
+7. **Validation** — engine validation + module validation + forward-work acknowledgment
+8. **Backup / recovery** — git distributed model + GitHub durability + adopter export
+9. **Record retention** — per-module clause-level retention requirements
+10. **Cybersecurity** — full cross-cutting + sub-overlay + cross-overlay catalog
+11. **System administration controls** — GitHub org admin + audit log + change management
+
+For each topic the document maps:
+- Regulatory requirement → architecture component → spec entry → evidence file → adopter responsibility
+
+Plus:
+- **"How to use this document at audit"** 6-step workflow for at-audit demonstration
+- **"What Open QMS is NOT"** honest disclaimers reinforcing OQ-080
+- **Forward-work** section acknowledging adopter-feedback priorities P2 + P3 + P4
+
+The document is intentionally pointer-heavy — it indexes existing spec entries + modules + templates + 12 docs/guide pages rather than re-claiming evidence. The trust-gate framing is that quality leaders need a single document that maps "what auditor asks → what evidence we point to" rather than scattered repository spelunking.
+
+**Adopter feedback received 2026-05-25 (full four-priority list):**
+
+| Priority | Status | Future plan |
+|---|---|---|
+| **P1 — Compliance architecture documentation** | ✓ closed at v0.52.0 | n/a |
+| P2 — Validation package templates (URS + IQ/OQ/PQ + Change Assessment + CSV) | acknowledged | future release — `validation-package` cross-cutting overlay |
+| P3 — Better non-technical UX (CAPA + training + approvals + document routing + onboarding) | acknowledged with architecture-boundary note | future release — additional issue templates + role-specific quickstart guides; Open QMS is GitHub-native, not a web app |
+| P4 — Opinionated best-practice workflows (startup-stage presets + phased maturity models + compliant defaults) | acknowledged | future release — `presets/` family extending `bundles/` |
+
+No functional code changes. README pointer added to compliance-architecture.md. 129/129 pytest pass. Bundle baselines clean. Lint clean. Repo invariants hold (116 modules / 867 clauses / 379 templates / 0 orphans / 100.0% aggregate coverage).
+
+Status counts: 6 `:verified` / 92 `:tested` / 5 `:argued` / 0 `:open` (total 103).
+
+---
+
 ## v0.51.0 DRAFT — 2026-05-25 — Polishing pass
 
 **0 NEW entries.** Spec total unchanged at 102. Engine 0.50.0 → 0.51.0.
