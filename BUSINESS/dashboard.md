@@ -15,13 +15,13 @@ Current state + priority stack. Read this first every session. For claim status,
 | `:proved` | 0 | — |
 | `:verified` | 0 | — |
 | `:verified` | 6 | Invariant (2, OQ-001 + OQ-002) · Architecture (4, OQ-010 + OQ-011 + OQ-013 + OQ-015) |
-| `:tested` | 85 | Architecture (2, OQ-012 + OQ-014) · Substrate (3) · Workflow (9) · Module (58, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-096 + OQ-098 + OQ-101..OQ-112) · Gap (13, OQ-060 + OQ-061 + OQ-062 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-067 + OQ-068 + OQ-069 + OQ-080 + OQ-097 + OQ-099 + OQ-100) |
+| `:tested` | 86 | Architecture (2, OQ-012 + OQ-014) · Substrate (3) · Workflow (9) · Module (59, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-096 + OQ-098 + OQ-101..OQ-113) · Gap (13, OQ-060 + OQ-061 + OQ-062 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-067 + OQ-068 + OQ-069 + OQ-080 + OQ-097 + OQ-099 + OQ-100) |
 | `:benchmarked` | 0 | — |
 | `:argued` | 5 | Invariant (1, OQ-003) · Substrate (2, OQ-022 + OQ-023) · Licensing (2, OQ-070 + OQ-071) |
 | `:open` | 0 | — |
-| **Total** | **96** | — |
+| **Total** | **97** | — |
 
-Counts: 6 + 85 + 5 + 0 = 96 ✓. **Latest at v0.46.0**: HIPAA satellite templates — discharges OQ-112 forward-work bucket. 5 new templates (HIPAA-AUTHORIZATION + ACCOUNTING-OF-DISCLOSURES-LOG + RESTRICTION-REQUEST-LOG + OCR-INVESTIGATION-RESPONSE + REPRODUCTIVE-HEALTH-ATTESTATION) + 1 new clause (HIPAA-164-509-reproductive-health-attestation per HHS Final Rule 89 FR 32976 effective 2026-12-23). hipaa module 14→15 clauses + 5→10 templates. Total templates 96→101. No spec entries added. Engine version corrected to 0.46.0 (had silently lagged at 0.43.0 through v0.44+v0.45 due to earlier batch-edit failures). Spec total unchanged at 96.
+Counts: 6 + 86 + 5 + 0 = 97 ✓. **Latest at v0.47.0**: Cross-overlay batch (5) — connected-medical-device (med-dev + regulated-ai + privacy + iso-27001 + hipaa) + cell-therapy-supply-chain (pharma + atmp + transport-hazmat) + food-allergen-recall (food-safety + recall-workflow + privacy) + defense-aerospace-cyber (aerospace + aerospace-defense + defense-cui + cmmc + cmmc-level-2) + digital-health-multi-region (med-dev + privacy + regulated-ai). Cross-overlay count 3→8. Registry +3 PUBLIC standards (FD&C §524B + FALCPA+FASTER Act + Cures Act). Total modules 106→111. **24-module ultra composite validates** (new depth record). Zero-orphan invariant holds (111 modules / 828 clauses / 367 templates / 0 orphans). Spec total 96→97.
 
 **Phase 0 round-out complete (v0.2.1 → v0.3.0).** P5, P6, P7 all closed. **Phase 1 mostly closed.** P1.1 at v0.4.0; P1.2 at v0.5.0. Remaining Phase 1: P1.3 (re-resolution on mutation, OQ-015 + OQ-065). P8 (Part 11 §11.50 prototype, OQ-060) and continued module-coverage population remain.
 

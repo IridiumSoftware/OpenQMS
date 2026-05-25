@@ -250,6 +250,19 @@ jobs:
           openqms validate --module hipaa --module iso-37301 --module iso-37301-healthcare --module privacy
           # 22-module healthcare ultimate composite — medical-devices + pharma + combination-product + HIPAA + privacy + IMS + HITRUST + everything
           openqms validate --module medical-devices --module pharma --module combination-product --module pharma-sterile --module hipaa --module privacy --module iso-27001 --module iso-27001-cloud --module iso-27001-privacy --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000 --module integrated-management-system --module soc-2 --module soc-2-type-ii --module hitrust-csf --module hitrust-r2 --module iso-37301
+          # v0.47.0 — cross-overlay batch (5): connected-medical-device + cell-therapy-supply-chain + food-allergen-recall + defense-aerospace-cyber + digital-health-multi-region
+          openqms validate --module connected-medical-device
+          openqms validate --module cell-therapy-supply-chain
+          openqms validate --module food-allergen-recall
+          openqms validate --module defense-aerospace-cyber
+          openqms validate --module digital-health-multi-region
+          openqms validate --module medical-devices --module regulated-ai --module privacy --module iso-27001 --module hipaa --module connected-medical-device
+          openqms validate --module pharma --module atmp --module transport-hazmat --module cell-therapy-supply-chain
+          openqms validate --module food-safety --module recall-workflow --module privacy --module food-allergen-recall
+          openqms validate --module aerospace --module aerospace-defense --module defense-cui --module cmmc --module cmmc-level-2 --module defense-aerospace-cyber
+          openqms validate --module medical-devices --module privacy --module regulated-ai --module hipaa --module digital-health-multi-region
+          # 24-module ultra composite — medical-devices + pharma + connected-medical-device + digital-health-multi-region + HIPAA + everything
+          openqms validate --module medical-devices --module pharma --module combination-product --module connected-medical-device --module digital-health-multi-region --module pharma-sterile --module hipaa --module privacy --module iso-27001 --module iso-27001-cloud --module iso-27001-privacy --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000 --module integrated-management-system --module soc-2 --module soc-2-type-ii --module hitrust-csf --module hitrust-r2 --module iso-37301
 
       - name: Inspect registry (smoke check)
         run: openqms registry list

@@ -1,6 +1,6 @@
 # Modules catalog
 
-Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.46.0. Use this page to choose the modules for your scope.
+Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.47.0. Use this page to choose the modules for your scope.
 
 **Current scope:**
 
@@ -8,16 +8,16 @@ Comprehensive inventory of every regulatory module shipped with Open QMS as of v
 |---|---|
 | Verticals | **7** (medical-devices, aerospace, automotive, manufacturing, pharma, food-safety, chemicals) |
 | Class overlays | **44** across 6 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5 / chemicals 6) |
-| Cross-cutting overlays | **25** (iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas, privacy, **hipaa**) |
+| Cross-cutting overlays | **25** (iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas, privacy, hipaa) |
 | **Sub-overlays** | **26** — class-overlay-shape deltas on cross-cutting overlays. v0.42.0 (16): cmmc-level-1/2/3, soc-2-type-i/ii, iso-27001-cloud/privacy, nist-csf-tier-1/2/3/4, pci-dss-saq-a/a-ep/d-merchant/d-sp/p2pe. v0.43.0 (10): dora-ctpp/non-ctpp/tlpt, hitrust-e1/i1/r2, iso-37301-public-sector/financial-services/healthcare/general-business |
-| **Cross-overlays** | **3** — bind ACROSS specific vertical combinations: combination-product (medical-devices + pharma); integrated-management-system (multi-MS Annex SL); food-pharma-grade (chemicals + food-safety + pharma) |
-| **Total modules** | **106** + general |
-| Registry standards | **~126** (v0.45.0 +2 PUBLIC: HIPAA + HITECH) |
+| **Cross-overlays** | **8** — bind ACROSS specific vertical combinations. v0.44 (3): combination-product, integrated-management-system, food-pharma-grade. **v0.47 (+5)**: connected-medical-device (medical-devices + regulated-ai + privacy + iso-27001 + hipaa); cell-therapy-supply-chain (pharma + atmp + transport-hazmat); food-allergen-recall (food-safety + recall-workflow + privacy); defense-aerospace-cyber (aerospace + aerospace-defense + defense-cui + cmmc + cmmc-level-2); digital-health-multi-region (medical-devices + privacy + regulated-ai) |
+| **Total modules** | **111** + general |
+| Registry standards | **~129** (v0.47.0 +3 PUBLIC: FD&C §524B + FALCPA+FASTER Act + Cures Act) |
 | Registry jurisdictions | **20** |
-| Document templates | **101** (v0.46.0 +5 HIPAA satellites: Authorization + Accounting + Restriction + OCR Response + Reproductive Health Attestation; v0.45.0 +4 HIPAA: NPP + BAA + Risk Analysis + Breach Risk Assessment) |
+| Document templates | **101** (cross-overlays reuse parent-overlay templates; no new at v0.47.0) |
 | Example bundles | **8** (validated end-to-end with committed baseline matrices) |
-| Spec entries | **96** (0 `:open`) |
-| Deepest composition tested in CI | **22-module healthcare ultimate composite** (medical-devices + pharma + combination-product + sterile + hipaa + privacy + 11 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy + ISO 37301) |
+| Spec entries | **97** (0 `:open`) |
+| Deepest composition tested in CI | **24-module ultra composite** (medical-devices + pharma + combination-product + connected-medical-device + digital-health-multi-region + sterile + hipaa + privacy + 11 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy + ISO 37301) |
 
 **Three module types:**
 

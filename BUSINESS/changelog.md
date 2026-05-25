@@ -4,6 +4,97 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.47.0 DRAFT — 2026-05-25 — Cross-overlay batch (5): connected-medical-device + cell-therapy-supply-chain + food-allergen-recall + defense-aerospace-cyber + digital-health-multi-region
+
+**1 NEW entry** OQ-113. Spec total 96 → 97. Engine 0.46.0 → 0.47.0.
+
+5 new cross-overlays extending the cross-overlay shape (introduced at v0.44.0 OQ-111) to additional vertical intersections. Cross-overlay count: 3 → 8.
+
+**connected-medical-device** (medical-devices + regulated-ai + privacy + iso-27001 + hipaa):
+- FDA §524B cyber-device cybersecurity per Sept 2023 Final Guidance — premarket submission requires SBOM + vulnerability monitoring plan + cybersecurity processes
+- EU MDR Annex I §17.2 + MDCG 2019-16 + IEC 81001-5-1
+- FDA AI/ML SaMD Predetermined Change Control Plan (PCCP) per Cures Act §3060(d) — pre-authorized algorithm changes without new 510(k)
+- NTIA Minimum Elements SBOM (SPDX / CycloneDX / SWID)
+- Postmarket cybersecurity per FDA Guidance + 21 CFR 806 corrections + 21 CFR 803 MDR
+- ONC Cures Act EHR interoperability (USCDI + FHIR + information-blocking prohibition + 8 exceptions)
+- Cross-overlay PHI data-flow coordination (DPIA + HIPAA Risk Analysis + FDA Cybersecurity Risk Assessment shared threat catalog)
+
+**cell-therapy-supply-chain** (pharma + atmp + transport-hazmat):
+- Chain of Identity (vein-to-vein for autologous; donor+lot+recipient for allogeneic; 30-yr EU + indefinite US retention)
+- Chain of Custody per EU GMP Annex 2A §11
+- Cryogenic UN1977 LN2 dry-shipper per IATA PI 202 + 7-14 day vapor-shipper hold time
+- Time-Out-of-Storage (TOS) cumulative budget across manufacturing + transport + clinical site
+- 21 CFR 1271 HCT/P Subpart A registration + C donor eligibility + D cGTP + F additional requirements
+- Autologous failure-mode escalation per FDA CAR-T 2024 Guidance (no batch-pool backup)
+- IATA TTSC certification + CEIV Pharma carrier qualification
+
+**food-allergen-recall** (food-safety + recall-workflow + privacy):
+- 9 major allergens per FALCPA + FASTER Act (sesame addition effective 2023-01-01)
+- 21 CFR 7 Class I default for undeclared allergens — reasonable probability of serious adverse health consequences
+- FSMA §117.135(c)(2) food allergen preventive control + §117.140 verification
+- Reportable Food Registry 24-hour reporting per FDA
+- Consumer-notification ≥98% Level A effectiveness target
+- Privacy-compliant consumer data handling per GDPR Article 6(1)(c) legal-obligation basis + CCPA §1798.145(a)(1) compliance-with-legal-obligation exception
+
+**defense-aerospace-cyber** (aerospace + aerospace-defense + defense-cui + cmmc + cmmc-level-2):
+- DFARS 252.204-7012 / 7019 / 7020 / 7021 stack
+- MIL-STD-882E joint safety+cyber hazard tracking per Tasks 102 + 200 + 300
+- ITAR USML Category VIII controlled technical data per 22 CFR §126.18
+- Airworthiness cybersecurity per DO-326A / DO-356A / DO-355 / ED-202A
+- Supply Chain Risk Management per NIST SP 800-161 + FY19 NDAA §889 prohibition (Huawei / ZTE / Hytera / Hikvision / Dahua) + counterfeit-parts AS9120 / AS6081 / GIDEP
+- DoDI 5000.90 platform cyber resilience for acquisition programs
+- CMMC Level 2 binding (NS-critical may require Level 3)
+
+**digital-health-multi-region** (medical-devices + privacy + regulated-ai):
+- Per-jurisdiction regulatory scope determination (FDA SaMD + EU MDR + UK MDR/Future Regulations + Swiss MepV + Canada MDR)
+- Data residency + localisation (GDPR + EU-US DPF + China PIPL + Russia 152-FZ + India DPDP)
+- Multi-region consent frameworks (GDPR Article 6+7+9 + HIPAA Authorization + Quebec Law 25 + Ontario PHIPA + state-specific)
+- Multi-region AI/ML coordination (EU AI Act + FDA AI/ML SaMD + Canada AIDA + UK AI principles)
+- Multi-stream breach notification (HIPAA + GDPR + state AG + MDR §92 + FDA §524B)
+- ISO 13485 + MDSAP harmonisation (single audit covering US + Canada + Brazil + Australia + Japan)
+- Per-jurisdiction vigilance reporting (FDA MDR + EUDAMED + UK Yellow Card + Health Canada Section 59-60 + Swissmedic)
+
+All 5 reuse parent-overlay templates with binding deltas — no new templates required.
+
+**Registry +3 PUBLIC standards:**
+- FD&C §524B — 21 USC §360n-2 cyber-device cybersecurity
+- FALCPA + FASTER Act — 21 USC §343(w) + §343(qq) food allergen labeling with sesame addition
+- 21st Century Cures Act — Pub. L. 114-255 digital health + interoperability
+
+**Cross-overlay count: 3 → 8.** Total module count: 106 → 111.
+
+**24-module ultra composite validates (new depth record beats prior 22-module healthcare ultimate):**
+```
+openqms validate \
+  --module medical-devices --module pharma --module combination-product \
+  --module connected-medical-device --module digital-health-multi-region \
+  --module pharma-sterile --module hipaa --module privacy \
+  --module iso-27001 --module iso-27001-cloud --module iso-27001-privacy \
+  --module regulated-ai --module iso-14001 --module iso-45001 \
+  --module iso-50001 --module iso-37001 --module iso-22301 \
+  --module iso-31000 --module integrated-management-system \
+  --module soc-2 --module soc-2-type-ii \
+  --module hitrust-csf --module hitrust-r2 --module iso-37301
+# → invariant_holds: True
+```
+
+Repo-wide zero-orphan invariant holds: **111 modules / 828 clauses / 367 templates / 0 orphans**.
+
+**Particularly natural compositions:**
+- `medical-devices + samd + connected-medical-device + privacy + hipaa + regulated-ai + iso-27001 + iso-27001-cloud` (SaMD-with-cloud-backend)
+- `pharma + atmp + transport-hazmat + cell-therapy-supply-chain + recall-workflow` (commercial CAR-T with vein-to-vein logistics)
+- `food-safety + recall-workflow + privacy + food-allergen-recall + iso-22000` (multi-channel food brand)
+- `aerospace + aerospace-defense + defense-cui + cmmc + cmmc-level-2 + defense-aerospace-cyber + iso-27001 + iso-27001-cloud` (DoD aerospace prime)
+- `medical-devices + samd + privacy + hipaa + regulated-ai + digital-health-multi-region` (multi-region digital health SaaS)
+
+CI extended (+11 validate steps including the 24-module ultra composite). 116/116 pytest pass. All 8 bundle baselines clean. YAML linter clean on all 111 modules.
+
+Status counts: 6 `:verified` / 86 `:tested` / 5 `:argued` / 0 `:open` (total 97).
+
+Per user direction: "do more cross-overlays" — all 5 candidates from earlier forward-work list shipped together. Discharges 4 of 5 cross-overlay candidates named in last what's-left analysis (cell-therapy-supply-chain + connected-medical-device + defense-aerospace-cyber + digital-health-multi-region) + adds food-allergen-recall.
+
+---
+
 ## v0.46.0 DRAFT — 2026-05-25 — HIPAA satellite templates (discharges OQ-112 forward-work bucket)
 
 **0 NEW entries; 1 new clause + 5 new templates** added to existing OQ-112 hipaa module. Spec total unchanged at 96. Engine 0.45.0 → 0.46.0.

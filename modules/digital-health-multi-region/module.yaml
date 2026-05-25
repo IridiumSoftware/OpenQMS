@@ -1,0 +1,140 @@
+# Open QMS — Digital Health Multi-Region cross-overlay
+# ------------------------------------------------------
+# Cross-overlay binding medical-devices + privacy + regulated-ai
+# for digital health solutions operating across multiple
+# jurisdictions (US + EU + UK + Switzerland + Canada).
+#
+# Scope: SaaS digital health platforms; telemedicine; clinical
+# decision support; patient apps; remote patient monitoring
+# operating multi-region.
+
+name: digital-health-multi-region
+version: 0.1.0
+
+standards:
+  - "EU MDR 2017/745"
+  - "GDPR"
+  - "HIPAA"
+
+clauses:
+
+  - id: DHMR-jurisdiction-determination
+    standard: EU MDR 2017/745
+    section: "Cross-jurisdiction scope analysis"
+    summary: |
+      Per-jurisdiction regulatory scope determination — does the
+      digital health product qualify as a regulated medical device
+      in each target jurisdiction? US: FDA SaMD per IMDRF N12 +
+      21 CFR 820 + Pre-Cert (if applicable). EU: EU MDR Annex VIII
+      Rule 11 (most SaMD = Class IIa minimum; Class IIb-III if
+      high-impact). UK: UK MDR 2002 (as amended) with MHRA
+      authorisation + UKCA marking transitioning to MDR 2024 (UK
+      Future Regulations Roadmap). Switzerland: MedDO + MepV with
+      Swissmedic. Canada: Medical Devices Regulations Class I-IV
+      with Health Canada. Each jurisdiction's scope determination
+      documented in regulatory strategy.
+
+  - id: DHMR-data-residency-localization
+    standard: GDPR
+    section: "GDPR Article 44-49 + EU-US DPF + China PIPL + Russia data localization"
+    summary: |
+      Data residency + localisation — EU GDPR Articles 44-49 govern
+      international transfers from EU; EU-US Data Privacy Framework
+      (2023) provides US adequacy via Commerce DPF certification.
+      China PIPL requires data localisation for CIIO + significant
+      data + personal info volumes; cross-border CAC security
+      assessment. Russia Federal Law 152-FZ requires Russian
+      citizens' data in Russia (rarely applicable for Western
+      digital health). India DPDP Act 2023 + sectoral healthcare
+      rules forthcoming. Per-jurisdiction data flow + storage
+      location documented.
+
+  - id: DHMR-consent-frameworks
+    standard: GDPR
+    section: "GDPR Article 6+7+9 + HIPAA Authorization + Quebec Law 25 + jurisdiction-specific"
+    summary: |
+      Multi-region consent framework — EU/UK/CH: GDPR Article 6
+      lawful basis + Article 7 conditions for consent + Article 9
+      special-category condition for health data (typically 9(2)(a)
+      explicit consent or 9(2)(h) provision of healthcare or
+      9(2)(i) public health). US (state-by-state where applicable):
+      HIPAA Authorization §164.508; CMIA (California); state-
+      specific consent laws (NY SHIELD Act; Illinois BIPA for
+      biometric). Canada: PIPEDA + provincial (Quebec Law 25
+      explicit + meaningful consent; Ontario PHIPA for health).
+      Unified consent capture infrastructure + per-jurisdiction
+      conditional logic.
+
+  - id: DHMR-AI-ML-regulatory-coordination
+    standard: EU MDR 2017/745
+    section: "EU AI Act + FDA AI/ML SaMD + Canada AI Bill C-27 + UK AI strategy"
+    summary: |
+      Multi-region AI/ML SaMD coordination — EU AI Act (Annex III
+      high-risk AI; medical-device interaction per Article 6); FDA
+      AI/ML SaMD Action Plan + Predetermined Change Control Plan
+      Guidance + September 2023 Cybersecurity Guidance; Canada AI
+      Bill C-27 AIDA forthcoming; UK AI principles per March 2023
+      White Paper. Composes with regulated-ai overlay for AI/ML
+      governance framework + connected-medical-device for FDA
+      §524B cyber-device requirements. Per-jurisdiction AI/ML
+      submission strategy + harmonisation roadmap.
+
+  - id: DHMR-breach-notification-multi-stream
+    standard: HIPAA
+    section: "HIPAA §164.400-414 + GDPR Article 33-34 + state breach laws + MDR Vigilance §92"
+    summary: |
+      Multi-stream breach notification — HIPAA §164.404 individual
+      60-day / §164.408 HHS / §164.406 media ≥500; GDPR Article 33
+      SA 72-hour + Article 34 data subjects without undue delay;
+      US state AG breach laws (Cal. Civ. Code §1798.82 etc.);
+      MDR §92 vigilance reporting for cybersecurity events
+      potentially affecting device safety performance; FDA cyber
+      incident reporting per FD&C §524B; possible parallel
+      reporting streams require coordinated incident-response
+      playbook.
+
+  - id: DHMR-quality-system-harmonization
+    standard: EU MDR 2017/745
+    section: "ISO 13485:2016 + 21 CFR 820 + MDSAP"
+    summary: |
+      Quality System harmonisation — ISO 13485:2016 is the global
+      QMS backbone; 21 CFR 820 (Quality System Regulation; FDA
+      modernised via final rule 2024 aligning more closely with
+      ISO 13485); MDSAP (Medical Device Single Audit Program — US
+      FDA + Canada Health Canada + Brazil ANVISA + Australia TGA +
+      Japan PMDA single audit covering all 5 jurisdictions). Single
+      ISO 13485 + MDSAP audit reduces multi-region audit burden.
+      Compose `medical-devices` vertical baseline + jurisdiction-
+      specific class overlays (mdr-class-iia + fda-class-ii etc.).
+
+  - id: DHMR-jurisdiction-specific-vigilance
+    standard: EU MDR 2017/745
+    section: "Per-jurisdiction vigilance reporting"
+    summary: |
+      Per-jurisdiction vigilance reporting cadence — FDA MDR per
+      21 CFR 803 (death/serious-injury 30 days / malfunction
+      30-day-or-quarterly per device class); EU MDR §92 + EUDAMED
+      (serious incidents within 15 days; trends within 10 days);
+      UK MHRA Yellow Card; Health Canada Mandatory Problem
+      Reporting per Section 59-60; Swissmedic Vigilance; cross-
+      reporting via PIDR / WHO Uppsala Monitoring Centre.
+      Unified vigilance intake + per-jurisdiction conditional
+      submission logic.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (Digital Health Multi-Region — extends QMS policy with per-jurisdiction regulatory-scope commitment + data-residency map + unified consent framework + multi-region AI/ML governance + coordinated multi-stream breach notification + ISO 13485 + MDSAP harmonisation + per-jurisdiction vigilance reporting)"
+    addresses:
+      - DHMR-jurisdiction-determination
+      - DHMR-data-residency-localization
+      - DHMR-consent-frameworks
+      - DHMR-AI-ML-regulatory-coordination
+      - DHMR-quality-system-harmonization
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "Digital health multi-region operational SOPs (per-jurisdiction regulatory strategy + data flow mapping + consent infrastructure + multi-stream breach playbook + vigilance intake triage + MDSAP audit prep + ISO 13485 + 21 CFR 820 alignment)"
+    addresses:
+      - DHMR-breach-notification-multi-stream
+      - DHMR-jurisdiction-specific-vigilance
+      - DHMR-quality-system-harmonization

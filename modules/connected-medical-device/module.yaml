@@ -1,0 +1,140 @@
+# Open QMS — Connected Medical Device cross-overlay
+# ---------------------------------------------------
+# Cross-overlay binding ACROSS medical-devices + regulated-ai +
+# privacy + iso-27001 + hipaa to encode the regulatory framework
+# for SaMD-with-cloud-backend / connected medical devices.
+#
+# Scope: medical devices with cloud connectivity, telemetry,
+# remote-monitoring, AI/ML inference, OTA firmware updates,
+# clinician dashboards, patient apps. Increasing FDA + EU MDR
+# scrutiny on connected-device cybersecurity, AI, and privacy.
+#
+# Standards licensing: PUBLIC (FD&C §524B + EU MDR cybersecurity
+# guidance + NIST + FDA Premarket Cybersecurity Guidance + IEC
+# 81001-5-1 commercial).
+
+name: connected-medical-device
+version: 0.1.0
+
+standards:
+  - "FD&C 524B"
+  - "EU MDR 2017/745"
+  - "Cures Act"
+
+clauses:
+
+  - id: CMD-FD&C-524B-premarket
+    standard: FD&C 524B
+    section: "21 USC §360n-2 + FDA Premarket Cybersecurity Guidance Sept 2023"
+    summary: |
+      Cybersecurity submission requirements for "cyber devices" —
+      devices that (a) include software validated/installed/
+      authorized by sponsor, (b) have ability to connect to internet,
+      (c) contain technological characteristics validated for
+      cybersecurity. Premarket submission MUST include: (i) plan
+      to monitor + identify + address postmarket vulnerabilities;
+      (ii) processes + procedures providing reasonable assurance
+      device + related systems are cybersecure; (iii) software bill
+      of materials (SBOM) per NTIA minimum elements; (iv) other
+      info FDA deems necessary. Applies to 510(k), De Novo, PMA,
+      HDE, BLA, IDE.
+
+  - id: CMD-EU-MDR-Annex-I-17-cybersecurity
+    standard: EU MDR 2017/745
+    section: "Annex I §17.2 + MDCG 2019-16 Guidance"
+    summary: |
+      EU MDR Annex I §17.2 — software-incorporating devices must be
+      developed + manufactured per state-of-the-art cybersecurity.
+      MDCG 2019-16 Cybersecurity Guidance provides: minimum security
+      requirements per IT security + secure design + secure
+      production + secure deployment + post-market surveillance +
+      vulnerability handling + coordinated disclosure + incident
+      response. EU MDR + MDCG 2019-16 align with IEC 81001-5-1
+      (Health software + safety + security activities in product
+      lifecycle).
+
+  - id: CMD-AI-ML-Predetermined-Change-Control
+    standard: FD&C 524B
+    section: "FDA AI/ML SaMD Action Plan + Predetermined Change Control Plan Guidance"
+    summary: |
+      AI/ML SaMD lifecycle management — FDA Predetermined Change
+      Control Plan (PCCP) per Cures Act §3060(d) + April 2023 Final
+      Guidance allows pre-authorized modifications to AI/ML algorithm
+      WITHOUT new 510(k) submission per pre-specified change scope.
+      PCCP includes: Description of Modifications + Modification
+      Protocol (algorithm change protocol + data management protocol
+      + training protocol + verification + validation protocol +
+      assessment of impact protocol). Maps to ISO/IEC 23894 AI risk
+      management + ISO/IEC 42001 AIMS. Strongly composes with
+      regulated-ai overlay.
+
+  - id: CMD-postmarket-cybersecurity
+    standard: FD&C 524B
+    section: "FDA Postmarket Management of Cybersecurity in Medical Devices Guidance + 21 CFR Part 806"
+    summary: |
+      Postmarket cybersecurity — manufacturer establishes processes
+      for: vulnerability disclosure (CVD coordinated disclosure
+      policy); active monitoring of threat-intel + vulnerability
+      sources (CISA + MITRE CVE + ICS-CERT + manufacturer ISAC);
+      vulnerability triage with CVSS + product impact assessment;
+      patch deployment + customer notification + remediation
+      timeline. Reportable corrections + removals per 21 CFR 806.
+      Significant cybersecurity events may trigger MDR per 21 CFR
+      803 (Manufacturer + Importer + User Facility Reporting).
+
+  - id: CMD-SBOM-required
+    standard: FD&C 524B
+    section: "21 USC §360n-2(b)(2)(D) + NTIA minimum elements"
+    summary: |
+      Software Bill of Materials (SBOM) mandatory — submission must
+      include SBOM per NTIA Minimum Elements: data fields (supplier
+      name, component name, version, unique identifier, dependency
+      relationship, author of SBOM data, timestamp); machine-readable
+      automation (SPDX, CycloneDX, SWID); practices for
+      depth-of-component + known-unknowns labeling + distribution
+      + access controls + accommodation of errors. SBOM provided to
+      FDA premarket + maintained current postmarket.
+
+  - id: CMD-EHR-interoperability
+    standard: Cures Act
+    section: "ONC Cures Act Final Rule 85 FR 25642 + FHIR + HL7"
+    summary: |
+      ONC Cures Act interoperability requirements — Certified EHR
+      Technology (CEHRT) supports US Core Data for Interoperability
+      (USCDI) + FHIR APIs for patient + provider + payer access.
+      Information-blocking prohibition per §4004 — practices likely
+      to interfere with access/exchange/use of EHI are unlawful with
+      8 exceptions. Connected device manufacturers integrating with
+      EHRs subject to ONC Health IT Certification requirements +
+      §170 ONC technology criteria.
+
+  - id: CMD-PHI-data-flow-cross-overlay
+    standard: FD&C 524B
+    section: "Cross-overlay binding"
+    summary: |
+      PHI data flow coordination — connected devices typically
+      collect + transmit + process PHI (patient identifiers + health
+      data). Adopters compose `hipaa + privacy` for legal-framework
+      coverage + `iso-27001 + iso-27001-privacy` for ISMS+PIMS
+      certification + `regulated-ai` for AI/ML governance + this
+      cross-overlay for the device-specific regulatory layer.
+      DPIA (GDPR Article 35) + HIPAA Risk Analysis (§164.308) +
+      FDA Cybersecurity Risk Assessment all required + should share
+      threat catalog + control framework.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (Connected Medical Device — extends QMS policy with FDA §524B cyber-device commitment + EU MDR Annex I §17.2 + AI/ML PCCP discipline + SBOM maintenance + ONC EHR interoperability + cross-overlay PHI data-flow coordination)"
+    addresses:
+      - CMD-FD&C-524B-premarket
+      - CMD-EU-MDR-Annex-I-17-cybersecurity
+      - CMD-AI-ML-Predetermined-Change-Control
+      - CMD-SBOM-required
+      - CMD-EHR-interoperability
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "Connected Medical Device operational SOPs (cybersecurity premarket dossier preparation + SBOM lifecycle management + CVD coordinated disclosure policy + AI/ML PCCP execution + EHR integration + cross-stream PHI breach coordination across HIPAA + GDPR + MDR §92 + 21 CFR 803 MDR streams)"
+    addresses:
+      - CMD-postmarket-cybersecurity
+      - CMD-PHI-data-flow-cross-overlay

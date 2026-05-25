@@ -1,0 +1,133 @@
+# Open QMS — Defense Aerospace Cyber cross-overlay
+# --------------------------------------------------
+# Cross-overlay binding aerospace + aerospace-defense + defense-cui +
+# cmmc + cmmc-level-2 to encode the DoD aerospace cybersecurity
+# regulatory intersection.
+#
+# Scope: defense aerospace prime contractors + sub-contractors
+# handling Controlled Unclassified Information (CUI) + Covered
+# Defense Information (CDI) + ITAR-controlled technical data +
+# operating airworthiness-certified systems with cybersecurity
+# requirements.
+
+name: defense-aerospace-cyber
+version: 0.1.0
+
+standards:
+  - "MIL-STD-882E"
+  - "CMMC 2.0"
+  - "NIST SP 800-171"
+
+clauses:
+
+  - id: DAC-DFARS-7012-7019-7020-7021
+    standard: NIST SP 800-171
+    section: "DFARS 252.204-7012 + 7019 + 7020 + 7021"
+    summary: |
+      DFARS clause stack — 7012 (Safeguarding Covered Defense
+      Information + Cyber Incident Reporting; NIST SP 800-171
+      implementation; 72h DIBNet reporting); 7019 (Notice of NIST
+      SP 800-171 DoD Assessment Requirements — basic / medium /
+      high assessment levels with PIEE SPRS scoring); 7020 (NIST
+      SP 800-171 DoD Assessment Requirements — basic assessment
+      score required pre-contract; ongoing for high); 7021 (CMMC
+      Requirements — flows down at appropriate Level). Adopters
+      typically subject to all 4 + must coordinate compliance
+      posture across them.
+
+  - id: DAC-MIL-STD-882E-system-safety
+    standard: MIL-STD-882E
+    section: "MIL-STD-882E Tasks 102 + 200 + 300"
+    summary: |
+      DoD System Safety per MIL-STD-882E — Task 102 System Safety
+      Program Plan; Task 200 Hazard Identification + Tracking;
+      Task 300 Functional Hazard Analysis. Cybersecurity hazards
+      explicitly in scope per 882E §4.4 — software safety +
+      cyber-physical hazards + cybersecurity-induced safety hazards
+      tracked alongside traditional safety hazards. Joint safety +
+      cyber risk assessment + Hazard Tracking System integration.
+
+  - id: DAC-ITAR-USML-Category-VIII-controlled-data
+    standard: NIST SP 800-171
+    section: "22 CFR §120-130 ITAR + USML Category VIII (aircraft + parts)"
+    summary: |
+      ITAR + USML Category VIII controlled technical data — aircraft
+      + aircraft engines + parts + components + accessories +
+      attachments + associated equipment + production equipment +
+      associated software + technical data. ITAR-controlled data
+      flow analysis MANDATORY — identification of who has access +
+      cleared-personnel-only access + export-license-conditioned
+      export + foreign-person access pre-authorisation per §126.18.
+      Data spillage triggers ITAR disclosure obligations +
+      Department of State remediation.
+
+  - id: DAC-airworthiness-cybersecurity-integration
+    standard: NIST SP 800-171
+    section: "14 CFR §25.1309 + DO-326A/ED-202A Airworthiness Cybersecurity"
+    summary: |
+      Airworthiness cybersecurity integration — DO-326A Airworthiness
+      Security Process Specification + DO-356A Airworthiness Security
+      Methods and Considerations + DO-355 Information Security
+      Guidance for Continuing Airworthiness. FAA + EASA cybersecurity
+      certification requirements for transport-category aircraft +
+      avionics. Joint safety (DO-178C / DO-254 / ARP4754A) + cyber
+      (DO-326A) lifecycle integration. Composes with aerospace-dal-a
+      / dal-b for safety + cyber-criticality joint assessment.
+
+  - id: DAC-supply-chain-NIST-800-161
+    standard: NIST SP 800-171
+    section: "NIST SP 800-161 + DoD Supply Chain Risk Management"
+    summary: |
+      Supply Chain Risk Management — NIST SP 800-161 + DoD-specific
+      SCRM per DFARS 252.239-7018 (Supply Chain Risk for
+      Information Technology Products) + 252.204-7016 (Covered
+      Defense Telecommunications Equipment per FY19 NDAA §889
+      prohibition on Huawei / ZTE / Hytera / Hikvision / Dahua).
+      Supplier vetting + product origin verification + foreign-
+      ownership-control-or-influence (FOCI) declarations + ongoing
+      monitoring + counterfeit-parts AS9120 / AS6081 / GIDEP
+      alerting.
+
+  - id: DAC-platform-cyber-resilience-mission
+    standard: MIL-STD-882E
+    section: "DoDI 5000.90 Cybersecurity for Acquisition Programs"
+    summary: |
+      Platform cyber resilience for mission systems — DoDI 5000.90
+      (Cybersecurity for Acquisition Programs; supersedes 8500.01
+      for acquisition) requires program-protection-plan-derived
+      cybersecurity strategy across the entire weapon-system life-
+      cycle. Mission-essential cyber-resilience attributes:
+      Resilience-by-Design + Continuous-Monitoring-Across-Lifecycle
+      + Cyber-Survivability-Endorsement (CSE) for high-pedigree
+      programs. Acquisition contract clauses embed program-protection.
+
+  - id: DAC-CMMC-Level-2-CUI-handlers
+    standard: CMMC 2.0
+    section: "32 CFR §170.14(c)(2) + cmmc + cmmc-level-2 sub-overlay binding"
+    summary: |
+      CMMC Level 2 binding — most DoD aerospace contractors handling
+      CUI require CMMC Level 2 certification (either self-assessment
+      or C3PAO per prioritized-acquisition designation). Highly
+      sensitive aerospace contracts (NS-critical) may require
+      cmmc-level-3 with DIBCAC assessment. Coordination with
+      cmmc-level-2 sub-overlay for the 110-control NIST SP 800-171
+      implementation. cmmc + cmmc-level-2 + defense-cui + this
+      cross-overlay typical compose.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (Defense Aerospace Cyber — extends QMS policy with DFARS 7012/7019/7020/7021 stack commitment + MIL-STD-882E joint safety+cyber hazard tracking + ITAR USML Category VIII access controls + airworthiness cybersecurity DO-326A/ED-202A integration + supply-chain SCRM + DoDI 5000.90 program-protection)"
+    addresses:
+      - DAC-DFARS-7012-7019-7020-7021
+      - DAC-MIL-STD-882E-system-safety
+      - DAC-ITAR-USML-Category-VIII-controlled-data
+      - DAC-airworthiness-cybersecurity-integration
+      - DAC-CMMC-Level-2-CUI-handlers
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "Defense aerospace cyber operational SOPs (CUI inventory + ITAR data flow analysis + joint Hazard Tracking System for safety + cyber hazards + airworthiness security workflow + supply-chain vendor vetting + FOCI declarations + counterfeit-parts surveillance + CMMC assessment readiness)"
+    addresses:
+      - DAC-ITAR-USML-Category-VIII-controlled-data
+      - DAC-supply-chain-NIST-800-161
+      - DAC-platform-cyber-resilience-mission

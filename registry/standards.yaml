@@ -1365,3 +1365,38 @@ standards:
     aliases:
       - "HITECH Act"
       - "Promoting Interoperability"
+
+  - id: "FD&C 524B"
+    name: "FD&C Act §524B — Cybersecurity for Cyber Devices (Consolidated Appropriations Act 2023 §3305 codifying FDORA + FDA Final Guidance Sept 2023)"
+    publisher: U.S. Food and Drug Administration
+    edition: "21 USC §360n-2 (added by Pub. L. 117-328 §3305 / Cures Act §3060 ecosystem; FDA Final Guidance Sept 27 2023 + premarket-cyber CGuidance June 2025 update)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "Section 524B"
+      - "Cyber Device Cybersecurity"
+      - "21 USC 360n-2"
+      - "FDA Premarket Cybersecurity"
+
+  - id: "FALCPA + FASTER Act"
+    name: "Food Allergen Labeling and Consumer Protection Act 2004 + Food Allergy Safety Treatment Education Research Act 2021 (sesame addition)"
+    publisher: U.S. Food and Drug Administration
+    edition: "FALCPA Pub. L. 108-282 (2004); FASTER Act Pub. L. 117-11 (2021; sesame added as 9th major allergen effective 2023-01-01); 21 USC §343(w) + §343(x)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "FALCPA"
+      - "FASTER Act"
+      - "Food Allergen Labeling"
+      - "9 major allergens"
+
+  - id: "Cures Act"
+    name: "21st Century Cures Act (digital health + interoperability + EHR certification provisions)"
+    publisher: U.S. Congress / HHS / FDA
+    edition: "Pub. L. 114-255 (2016); ONC Cures Act Final Rule 85 FR 25642 (2020) + CMS Interoperability + Patient Access Final Rule 85 FR 25510"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "21st Century Cures"
+      - "Cures Act §3060"
+      - "ONC Cures"

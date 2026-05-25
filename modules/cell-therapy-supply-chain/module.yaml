@@ -1,0 +1,134 @@
+# Open QMS — Cell Therapy Supply Chain cross-overlay
+# ----------------------------------------------------
+# Cross-overlay binding pharma + atmp + transport-hazmat to
+# encode the cold-chain logistics regulatory framework for
+# autologous + allogeneic cell therapies (CAR-T, iPSC-derived,
+# stem cells).
+#
+# Scope: vein-to-vein supply chain for autologous CAR-T;
+# manufacturer-to-patient supply chain for allogeneic ATMP;
+# cryogenic shipping; chain-of-identity + chain-of-custody;
+# critical timeline-from-collection-to-infusion.
+
+name: cell-therapy-supply-chain
+version: 0.1.0
+
+standards:
+  - "EU GMP Annex 2A"
+  - "21 CFR 1271"
+  - "IATA DGR"
+
+clauses:
+
+  - id: CTSC-chain-of-identity-COI
+    standard: EU GMP Annex 2A
+    section: "Annex 2A §10 + §11 — Traceability"
+    summary: |
+      Chain of Identity (COI) — unique identifier linking starting
+      material from specific donor/patient through all manufacturing
+      steps to specific therapy administered to specific recipient.
+      Autologous: same-patient COI from apheresis through infusion
+      (vein-to-vein). Allogeneic: donor + lot + recipient COI
+      across batch-pool boundary. Bidirectional traceability
+      mandatory; 30-year EU retention per Annex 2A §11; FDA HCT/P
+      tracking per 21 CFR 1271.290 indefinite (or longer state law).
+
+  - id: CTSC-chain-of-custody-COC
+    standard: EU GMP Annex 2A
+    section: "Annex 2A §11 — Custody handoffs"
+    summary: |
+      Chain of Custody (COC) — documented handoffs across collection
+      site (apheresis center) → cryopreservation → packaging →
+      transport carrier → manufacturing site → finished-product
+      cryopreservation → transport → infusion site → patient
+      administration. Each handoff: identity verified + condition
+      verified + temperature continuous-monitoring + custodian
+      acknowledgment + time-stamp + GPS where applicable.
+
+  - id: CTSC-cryogenic-shipping
+    standard: IATA DGR
+    section: "IATA DGR PI 202 (refrigerated liquid nitrogen Dewars) + UN1977"
+    summary: |
+      Cryogenic shipping — UN1977 (Nitrogen, refrigerated liquid)
+      shipped as Class 2.2 non-flammable non-toxic gas. Dry shipper
+      (vapor-shipper) Dewar maintains LN2 vapor < -150°C for 7-14
+      days post-charge. Specific PI 202 packaging + labelling +
+      marking + emergency contact. Dewar inspection + qualification
+      + retest cycle. Cryogenic temperature loggers continuous; gap
+      in temperature data triggers product investigation.
+
+  - id: CTSC-time-out-of-storage-TOS
+    standard: EU GMP Annex 2A
+    section: "Annex 2A §10.5 — Specified ranges"
+    summary: |
+      Time-Out-of-Storage (TOS) tracking — every minute the cell
+      product is above cryopreservation temperature (typical
+      ≤ -150°C) counted toward cumulative TOS budget. CMC stability
+      defines maximum allowed TOS at each thaw/manipulation step.
+      Manufacturing TOS + transport TOS + clinical-site TOS
+      cumulative. Investigation triggered when threshold approached;
+      product release decision integrates TOS data.
+
+  - id: CTSC-FDA-21-CFR-1271-tissue
+    standard: 21 CFR 1271
+    section: "21 CFR 1271 Subpart A + C + F"
+    summary: |
+      US HCT/P (Human Cells, Tissues, and Cellular and Tissue-Based
+      Products) — Subpart A registration + listing per §1271.21;
+      Subpart C donor eligibility per §1271.45-90 (RCDA + relevant
+      communicable disease testing + medical record review);
+      Subpart D current Good Tissue Practice (cGTP) covering
+      facilities + environmental controls + processing + storage +
+      labeling; Subpart F additional requirements for non-reproductive
+      cells. ATMP cell therapies that meet §1271.10 351 HCT/P
+      criteria regulated as biological products under PHSA §351
+      requiring IND/BLA in addition to HCT/P compliance.
+
+  - id: CTSC-autologous-failure-mode
+    standard: EU GMP Annex 2A
+    section: "Annex 2A §6 + §11 — Out-of-Specification handling"
+    summary: |
+      Autologous failure mode — autologous CAR-T has no batch-pool
+      backup. Manufacturing failure = patient-specific product loss
+      = retreatment from new apheresis OR clinical bridge. Specific
+      OOS escalation pathway requires: immediate physician
+      notification + alternate-plan coordination + apheresis re-
+      collection scheduling + cumulative-time-to-treatment patient
+      counseling. Per Annex 2A §11.3 + FDA CAR-T 2024 Guidance.
+
+  - id: CTSC-cold-chain-integrity-monitoring
+    standard: IATA DGR
+    section: "ICH Q5C + EU GDP Guidance Section 9 + IATA TTSC"
+    summary: |
+      Cold chain integrity monitoring — continuous temperature
+      logging from manufacturing release through patient
+      administration. Excursion handling: define
+      stability-data-derived excursion windows; investigate every
+      excursion; product disposition decision documented. IATA
+      Time and Temperature Sensitive Cargo (TTSC) certification +
+      Center of Excellence for Independent Validators (CEIV)
+      Pharma certification for carriers handling cell therapy.
+      Composes with `transport-hazmat` for UN1977 cryogenic
+      transport compliance.
+
+templates:
+
+  - path: templates/product-atmp/traceability/TISSUE-CELL-TRACEABILITY-RECORD-TEMPLATE.md
+    name: "Cell therapy COI + COC record (extends ATMP traceability template with vein-to-vein supply-chain tracking + per-handoff custodian acknowledgment + cumulative TOS budget tracking + chain-of-custody handoff log + cryogenic temperature continuous-logger reference)"
+    addresses:
+      - CTSC-chain-of-identity-COI
+      - CTSC-chain-of-custody-COC
+      - CTSC-time-out-of-storage-TOS
+      - CTSC-FDA-21-CFR-1271-tissue
+
+  - path: templates/qms-logistics/SHIPPING-PAPER-TEMPLATE.md
+    name: "Cryogenic cell therapy shipping paper (UN1977 LN2 dry-shipper + per-PI 202 packaging + 24-hour emergency contact + temperature-logger device serial + cumulative TOS budget reference)"
+    addresses:
+      - CTSC-cryogenic-shipping
+      - CTSC-cold-chain-integrity-monitoring
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "Cell therapy supply chain operational SOPs (apheresis-to-manufacturing handoff + manufacturing-to-clinical-site handoff + carrier qualification per IATA TTSC + CEIV Pharma + autologous-failure escalation pathway + cumulative TOS reconciliation + OOS investigation triggered by temperature excursion)"
+    addresses:
+      - CTSC-autologous-failure-mode
+      - CTSC-cold-chain-integrity-monitoring

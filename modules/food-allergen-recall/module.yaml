@@ -1,0 +1,132 @@
+# Open QMS — Food Allergen Recall cross-overlay
+# -----------------------------------------------
+# Cross-overlay binding food-safety + recall-workflow + privacy
+# to encode the food-allergen-specific recall regulatory framework.
+#
+# Undeclared allergens are the #1 cause of FDA Class I food recalls
+# in the US. FALCPA + FASTER Act add sesame as 9th major allergen
+# effective 2023-01-01.
+
+name: food-allergen-recall
+version: 0.1.0
+
+standards:
+  - "FALCPA + FASTER Act"
+  - "21 CFR 117"
+  - "21 CFR 7"
+
+clauses:
+
+  - id: FAR-9-major-allergens
+    standard: FALCPA + FASTER Act
+    section: "21 USC §343(w) + §343(qq)"
+    summary: |
+      9 major food allergens — milk, eggs, fish, crustacean shellfish,
+      tree nuts, peanuts, wheat, soybeans, sesame (added by FASTER
+      Act 2021; effective 2023-01-01). Each must be declared on
+      label per FALCPA §201 + §403 in either (1) "Contains" statement
+      OR (2) parenthetical after ingredient name. Cross-contact
+      allergens not requiring declaration; voluntary advisory
+      labeling per FDA Guidance ("may contain" + "made in facility
+      with"). Critical: FASTER Act DID NOT add sesame to GRAS
+      exception list — sesame addition triggered massive
+      reformulation OR explicit-declaration adjustment industry-wide.
+
+  - id: FAR-undeclared-allergen-Class-I
+    standard: 21 CFR 7
+    section: "21 CFR §7.41 + §7.42 Class I classification"
+    summary: |
+      Undeclared allergen classification — Class I recall (reasonable
+      probability of serious adverse health consequences or death).
+      Undeclared major allergen = automatic Class I unless allergen-
+      free product variant + scope clearly excludes affected
+      consumers. FDA Class I triggers media notification +
+      Reportable Food Registry filing + aggressive recovery
+      effectiveness expectations (≥98%) + consumer-direct
+      notification.
+
+  - id: FAR-FSMA-117-allergen-preventive-control
+    standard: 21 CFR 117
+    section: "21 CFR §117.135 + §117.140"
+    summary: |
+      FSMA Preventive Controls — food allergen preventive control
+      mandatory per §117.135(c)(2): identify allergen hazards +
+      determine reasonable likelihood of cross-contact +
+      implement preventive controls (sequencing + segregation +
+      cleaning validation + label verification) + verify per
+      §117.140 (visual + analytical with validated method).
+      Documented food allergen plan within Food Safety Plan.
+
+  - id: FAR-consumer-notification-recall
+    standard: 21 CFR 7
+    section: "21 CFR §7.49 + FDA Consumer Notification Guidance"
+    summary: |
+      Consumer notification — undeclared allergen recall requires
+      direct-to-consumer notification when contact info available
+      (loyalty programs, online orders, registration cards).
+      Notification content: product identification + specific
+      allergen + specific lots/dates + health risk + recovery
+      instructions + refund/replacement. Multi-channel: postal +
+      email + phone + website + retail point-of-sale + press
+      release + social media + Reportable Food Registry +
+      FoodSafety.gov posting.
+
+  - id: FAR-PHI-PII-in-allergen-notification
+    standard: 21 CFR 7
+    section: "Cross-overlay binding to privacy"
+    summary: |
+      Personal data in allergen recall notification — consumer
+      contact data + allergy disclosure + purchase history processed
+      for recall notification triggers GDPR Article 6(1)(c) legal-
+      obligation lawful basis (recall is legal obligation) or
+      6(1)(f) legitimate interests (consumer safety overrides
+      privacy interest). CCPA §1798.145(a)(1) compliance-with-legal-
+      obligation exception. NPP / Privacy Policy disclosure of
+      recall use must exist pre-recall. Data minimisation per Article
+      5: use only the contact data necessary; do not aggregate.
+
+  - id: FAR-effectiveness-tracking
+    standard: 21 CFR 7
+    section: "21 CFR §7.55 + 7.59 effectiveness checks"
+    summary: |
+      Effectiveness checks for Class I — Level A (intensive — 100%
+      of distribution chain contacted + status verified). FDA
+      district office monitoring + status reports cadence per
+      district direction. Effectiveness target ≥98% recovery
+      required to avoid escalated FDA action. Effectiveness checks
+      documented + reported to district + final report filed at
+      termination per §7.55(b).
+
+  - id: FAR-RFR-Reportable-Food-Registry
+    standard: 21 CFR 117
+    section: "FDA Reportable Food Registry per FSMA §211"
+    summary: |
+      Reportable Food Registry — electronic portal for industry
+      reporting of food where there is reasonable probability that
+      the use of, or exposure to, the food will cause serious adverse
+      health consequences or death (SAHCODHA). Undeclared major
+      allergen typically triggers RFR. 24-hour reporting requirement
+      per FDA. RFR submission ID feeds FDA-internal investigation
+      coordination + may trigger CDC partnership for case linkage.
+
+templates:
+
+  - path: templates/qms-recall/RECALL-PROCEDURE-TEMPLATE.md
+    name: "Generalized recall procedure (allergen-recall extension — 9-major-allergen Class I default + RFR 24h reporting + FDA district coordination + effectiveness ≥98% target + consumer-notification multi-channel with privacy-overlay compliance)"
+    addresses:
+      - FAR-undeclared-allergen-Class-I
+      - FAR-effectiveness-tracking
+      - FAR-RFR-Reportable-Food-Registry
+      - FAR-consumer-notification-recall
+
+  - path: templates/product-food/haccp/HACCP-PLAN-TEMPLATE.md
+    name: "HACCP / Food Safety Plan (allergen extension — FSMA §117.135(c)(2) food allergen preventive control + cross-contact hazard analysis + sequencing + segregation + cleaning validation + label verification per §117.140)"
+    addresses:
+      - FAR-9-major-allergens
+      - FAR-FSMA-117-allergen-preventive-control
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "Food allergen recall operational SOPs (allergen-hazard surveillance + label-control verification + cross-contact investigation + consumer-data-handling per privacy overlay + RFR submission + district-coordination + effectiveness check escalation)"
+    addresses:
+      - FAR-PHI-PII-in-allergen-notification
+      - FAR-FSMA-117-allergen-preventive-control
