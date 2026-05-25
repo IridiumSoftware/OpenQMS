@@ -1,5 +1,10 @@
 name: Document Control
 
+# P5 hardening — rewritten at v0.60.0 to replace shell/grep parsing with
+# PyYAML schema-validated parsing, hard-fail version drift, enforce
+# state-transition rules, and emit a signed audit artifact per PR.
+# See engine/openqms/doc_control.py + docs/guide/doc-control.md.
+
 on:
   pull_request:
     paths:
@@ -10,13 +15,34 @@ on:
       - 'product-*/design-*/**'
       - 'product-*/risk-management/**'
       - 'product-*/technical-file/**'
+      - '!**/*.json'
 
 jobs:
-  check-metadata:
-    name: Verify document metadata
+  check:
+    name: Doc-control state-machine + version-drift check
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write  # for posting audit comment
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # full history needed for base-ref comparison
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: '0.11.7'
+
+      - name: Install engine via lockfile
+        run: |
+          cd engine && uv sync --frozen --all-extras
+          cd engine && uv pip install -e '.'
 
       - name: Get changed files
         id: changed
@@ -25,64 +51,55 @@ jobs:
           files: |
             **/*.md
 
-      - name: Check document metadata
+      - name: Run doc-control checks
+        # The script parses changed files via PyYAML (no more shell/grep),
+        # runs the state-machine + version-drift checks, parses
+        # Signature-Meaning trailers from the PR commits, and writes an
+        # audit-artifact JSON + Markdown.
+        # Exits 1 on any error (hard-fail mode — change from v0.55.0 era
+        # warning-only).
         if: steps.changed.outputs.any_changed == 'true'
         run: |
-          exit_code=0
-          for file in ${{ steps.changed.outputs.all_changed_files }}; do
-            echo "Checking: $file"
+          echo "${{ steps.changed.outputs.all_changed_files }}" | tr ' ' '\n' > /tmp/changed-files.txt
+          python3 scripts/doc-control-check.py \
+            --base-ref "origin/${{ github.base_ref }}" \
+            --head-ref HEAD \
+            --commit-sha "${{ github.sha }}" \
+            --pr-number "${{ github.event.pull_request.number }}" \
+            --changed-files /tmp/changed-files.txt \
+            --output doc-control-audit.json \
+            --markdown-output doc-control-audit.md \
+            --ci-status pending
 
-            # Skip non-controlled directories
-            case "$file" in
-              .github/*|docs/*|scripts/*|modules/*|templates/*) continue ;;
-            esac
+      - name: Upload audit artifact
+        if: always() && steps.changed.outputs.any_changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: doc-control-audit-${{ github.event.pull_request.number }}
+          path: |
+            doc-control-audit.json
+            doc-control-audit.md
+          retention-days: 90
 
-            # Check required frontmatter fields
-            if ! head -20 "$file" | grep -q "^document_id:"; then
-              echo "::error file=$file::Missing required field: document_id"
-              exit_code=1
-            fi
-
-            if ! head -20 "$file" | grep -q "^version:"; then
-              echo "::error file=$file::Missing required field: version"
-              exit_code=1
-            fi
-
-            if ! head -20 "$file" | grep -q "^effective_date:"; then
-              echo "::error file=$file::Missing required field: effective_date"
-              exit_code=1
-            fi
-
-            if ! head -20 "$file" | grep -q "^owner:"; then
-              echo "::error file=$file::Missing required field: owner"
-              exit_code=1
-            fi
-
-            if ! head -20 "$file" | grep -q "^status:"; then
-              echo "::error file=$file::Missing required field: status"
-              exit_code=1
-            fi
-
-            # Check version was incremented (compare to base branch)
-            if git show "origin/${{ github.base_ref }}:$file" 2>/dev/null | head -20 | grep -q "^version:"; then
-              base_version=$(git show "origin/${{ github.base_ref }}:$file" | head -20 | grep "^version:" | sed 's/version: *//')
-              pr_version=$(head -20 "$file" | grep "^version:" | sed 's/version: *//')
-              if [ "$base_version" = "$pr_version" ]; then
-                echo "::warning file=$file::Version not incremented (still $base_version). Update version for controlled document changes."
-              fi
-            fi
-          done
-          exit $exit_code
+      - name: Post audit summary to PR
+        if: always() && steps.changed.outputs.any_changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -f doc-control-audit.md ]; then
+            gh pr comment "${{ github.event.pull_request.number }}" \
+              --body-file doc-control-audit.md \
+              || echo "::warning::Could not post audit comment (gh pr comment failed)"
+          fi
 
   check-approvers:
-    name: Verify required approvers
+    name: Verify CODEOWNERS coverage
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Check CODEOWNERS coverage
         run: |
-          # Verify that all controlled document paths have CODEOWNERS entries
           if [ ! -f CODEOWNERS ] && [ ! -f .github/CODEOWNERS ]; then
             echo "::error::No CODEOWNERS file found. Required for document approval routing."
             exit 1

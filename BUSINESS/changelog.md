@@ -4,6 +4,139 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.60.0 DRAFT — 2026-05-25 — Doc-control workflow hardening (P5)
+
+**1 NEW entry** OQ-124 (Architecture-tier — second since v0.49.0 OQ-115/116/117; first since v0.58.0 OQ-122). Spec total 107 → 108. Engine 0.59.0 → 0.60.0.
+
+Closes compliance-architecture forward-work P5 (medium effort per v0.54.0 distribution). Substantive behavioral change: version-drift becomes **hard-fail** (was warning-only). Adopters with currently-stale versions on controlled docs will see CI errors on next PR until they bump.
+
+### What ships
+
+- **`engine/openqms/doc_control.py`** — pure-Python module (depends on `openqms.template_schema` from OQ-122):
+  - `ALLOWED_TRANSITIONS` dict encoding the 8-status state machine
+  - `NON_VERSION_TRIGGERING_FIELDS` for housekeeping-exempt fields
+  - `check_state_transition()`, `check_version_drift()`, `check_file()` core checks
+  - `build_audit_artifact()`, `format_audit_markdown()` artifact emission
+  - `FileCheck` + `AuditArtifact` dataclasses
+- **`scripts/doc-control-check.py`** — CI-invokable script:
+  - Reads changed-file list from `--changed-files` or stdin
+  - Computes base vs head text via `git show`
+  - Runs `check_file()` per file
+  - Parses `Signature-Meaning:` trailers from PR commits via git log
+  - Emits `::error` and `::warning` GitHub Actions annotations
+  - Writes audit JSON + Markdown
+  - Exits 1 on any error
+- **`.github/workflows/doc-control.yml`** — rewritten:
+  - Sets up Python 3.12 + uv 0.11.7 (parallel to engine-tests.yml)
+  - Installs engine via `uv sync --frozen`
+  - Invokes `scripts/doc-control-check.py`
+  - Uploads `doc-control-audit.json` + `.md` as 90-day workflow artifact
+  - Posts Markdown summary as PR comment via `gh pr comment`
+  - `pull-requests: write` permission scoped to comment posting only
+
+### Three hardenings
+
+**(1) PyYAML schema-validated parsing — chemicals-arc lesson applied retroactively.** The legacy `.github/workflows/doc-control.yml` used `head -20 | grep ^field:` to scan for required frontmatter fields. This is the same shell-over-YAML antipattern that broke the chemicals-arc release at v0.36-v0.38 (unquoted colon in template `name:` value). The rewrite uses `openqms.template_schema.parse_frontmatter()` — true YAML parsing, no whitespace/colon assumptions.
+
+**(2) Document state-transition machine.**
+
+Document lifecycle:
+```
+draft ──→ review ──→ approved ──→ effective ──→ superseded (terminal)
+  ↑         ↓             ↑            ↑
+  └─────────┴─────────────┴────────────┘
+   (rollback paths: review→draft, approved→draft, effective→draft)
+   (superseded reachable from any non-terminal state)
+```
+
+Record lifecycle:
+```
+open ──→ closed (terminal)
+  └──→ cancelled (terminal)
+```
+
+`ALLOWED_TRANSITIONS` enforces these. Status head-token is what's checked (parenthetical qualifiers like `'draft (pending NHTSA acceptance)'` are stripped).
+
+**(3) Hard-fail version drift.**
+
+Rule: substantive change without version increment → fail.
+
+| Field changed | Triggers version-bump requirement? |
+|---|---|
+| `version` itself | n/a |
+| `status` (alone) | no (handled by state machine) |
+| `last_review_date`, `next_review` | no (housekeeping) |
+| `owner`, `effective_date`, `title`, `addresses`, etc. | **yes** |
+| Body text (non-frontmatter) | **yes** |
+
+**Exemption:** draft documents may iterate freely without version bumps (drafting is intentionally iterative). Once status leaves `draft`, the hard-fail kicks in.
+
+### Audit artifact
+
+Per-PR JSON written to workflow artifact + Markdown rendered into a PR comment. Shape:
+
+```json
+{
+  "pr_number": 42,
+  "commit_sha": "abc...",
+  "base_ref": "origin/main",
+  "head_ref": "HEAD",
+  "ci_status": "pass" | "fail" | "pending",
+  "files": [
+    {
+      "path": "qms-policy/quality-manual.md",
+      "passed": true,
+      "base_version": "1.0",
+      "head_version": "1.1",
+      "base_status": "approved",
+      "head_status": "approved",
+      "changed_fields": ["owner", "version"],
+      "errors": [],
+      "warnings": []
+    }
+  ],
+  "signature_trailers": [
+    { "sha": "abc...", "meaning": "Approved", "role": "Quality Manager", "justification": "annual review" }
+  ]
+}
+```
+
+Posted as a PR comment via `gh pr comment` for auditor walkthrough; uploaded as 90-day workflow artifact for adopter long-term mirroring per `BACKUP-RESTORE-SOP-TEMPLATE.md` §2.
+
+**Not yet:** GPG-signing of the audit artifact JSON itself. Today the artifact is unsigned (the `Signature-Meaning:` trailers it cites ARE signed via per-commit GPG, so the chain holds at the commit layer). Adopters with a CI signing key can extend the workflow to GPG-sign the JSON before upload.
+
+### 38 new pytest tests
+
+`engine/tests/test_doc_control.py`:
+
+- `check_state_transition` — 14 tests covering self / new-file / removal / all 8 state transitions in/out / parenthetical-stripping / unrecognized-old-status
+- `changed_fields` + `needs_version_bump` — 5 tests
+- `check_version_drift` — 8 tests covering draft-exempt / substantive-fail / substantive-with-bump / housekeeping-only / body-change / version-downgrade / three-part-version / malformed-version
+- `check_file` — 7 tests covering new-file / missing-frontmatter / invalid-transition / drift-fail / drift-pass / draft-iteration / changed-fields-record
+- `build_audit_artifact` + `format_audit_markdown` — 4 tests covering empty / JSON serializable / Markdown empty section / Markdown with files+trailers
+
+### Pattern observation
+
+This release builds directly on OQ-122 (template schema, v0.58.0) — `doc_control.py` imports `parse_frontmatter` + `RECOGNIZED_STATUSES` from the schema module. The two together implement two layers of the same discipline:
+- OQ-122: static-shape — does the file have the right fields with the right types?
+- OQ-124: temporal-shape — given the field values, is the change a valid step in the lifecycle?
+
+### Forward-work status after v0.60.0
+
+| Status | Count | Priorities |
+|---|---|---|
+| ✓ Closed | 11 | P1 + P3 + P5 + P6 + P7 + P8 + P9 + P10 + P12 + P13 + P14 |
+| Open hard | 2 | P2 (validation package) + P15 (integration-architecture trace network) |
+| Open medium | 2 | P4 (startup-stage presets) + P11 (verify-deployment script) |
+
+Medium queue down to 2. Of the remaining medium items, P11 has natural overlap with this release (the audit-artifact emission pattern + workflow-permission scoping) and P4 is the most-customer-facing item left.
+
+No functional change to engine code (loader / compose / validation / resolver / CLI unchanged). 213/213 pytest pass. Bundle baselines clean. Module lint clean. Template lint clean. Repo invariants hold (116 modules / 867 clauses / 379 template bindings / 0 orphans / 100.0% aggregate coverage).
+
+Status counts: 6 `:verified` / 97 `:tested` / 5 `:argued` / 0 `:open` (total 108).
+
+---
+
 ## v0.59.0 DRAFT — 2026-05-25 — Negative-path test suite for bad modules (P10)
 
 **1 NEW entry** OQ-123 (Gap-tier). Spec total 106 → 107. Engine 0.58.0 → 0.59.0.
