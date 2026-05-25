@@ -1,6 +1,6 @@
 # Modules catalog
 
-Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.48.0. Use this page to choose the modules for your scope.
+Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.49.0. Use this page to choose the modules for your scope.
 
 **Current scope:**
 
@@ -16,7 +16,7 @@ Comprehensive inventory of every regulatory module shipped with Open QMS as of v
 | Registry jurisdictions | **20** |
 | Document templates | **103** (v0.48.0 +2 us-state-privacy: US-STATE-PRIVACY-MATRIX + DATA-PROTECTION-ASSESSMENT) |
 | Example bundles | **8** (validated end-to-end with committed baseline matrices) |
-| Spec entries | **98** (0 `:open`) |
+| Spec entries | **101** (0 `:open`; v0.49.0 +3 Architecture-tier entries OQ-115 + OQ-116 + OQ-117 for new engine CLI subcommands) |
 | Deepest composition tested in CI | **24-module ultra composite** (medical-devices + pharma + combination-product + connected-medical-device + digital-health-multi-region + sterile + hipaa + privacy + 11 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy + ISO 37301) |
 
 **Three module types:**

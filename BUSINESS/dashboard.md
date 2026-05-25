@@ -15,13 +15,13 @@ Current state + priority stack. Read this first every session. For claim status,
 | `:proved` | 0 | — |
 | `:verified` | 0 | — |
 | `:verified` | 6 | Invariant (2, OQ-001 + OQ-002) · Architecture (4, OQ-010 + OQ-011 + OQ-013 + OQ-015) |
-| `:tested` | 87 | Architecture (2, OQ-012 + OQ-014) · Substrate (3) · Workflow (9) · Module (60, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-096 + OQ-098 + OQ-101..OQ-114) · Gap (13, OQ-060 + OQ-061 + OQ-062 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-067 + OQ-068 + OQ-069 + OQ-080 + OQ-097 + OQ-099 + OQ-100) |
+| `:tested` | 90 | Architecture (5, OQ-012 + OQ-014 + OQ-115 + OQ-116 + OQ-117) · Substrate (3) · Workflow (9) · Module (60, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-096 + OQ-098 + OQ-101..OQ-114) · Gap (13, OQ-060 + OQ-061 + OQ-062 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-067 + OQ-068 + OQ-069 + OQ-080 + OQ-097 + OQ-099 + OQ-100) |
 | `:benchmarked` | 0 | — |
 | `:argued` | 5 | Invariant (1, OQ-003) · Substrate (2, OQ-022 + OQ-023) · Licensing (2, OQ-070 + OQ-071) |
 | `:open` | 0 | — |
-| **Total** | **98** | — |
+| **Total** | **101** | — |
 
-Counts: 6 + 87 + 5 + 0 = 98 ✓. **Latest at v0.48.0**: US State Privacy Umbrella cross-cutting overlay shipped — 26th cross-cutting. VCDPA template family covering ~14 US states with state-divergence handling. 10 clauses + 2 new templates (US-STATE-PRIVACY-MATRIX + DATA-PROTECTION-ASSESSMENT). Covers Virginia + Colorado + Connecticut + Utah + Texas + Oregon + Montana + Iowa + Delaware + NH + NJ + Tennessee + Minnesota + Maryland (stricter) + Indiana + Florida (narrow). Registry +1 PUBLIC standard. Cross-cutting overlay count 25→26. Total modules 111→112. 7-module privacy/healthcare mega composite validates. Zero-orphan invariant holds (112 modules / 838 clauses / 371 templates / 0 orphans). Spec total 97→98.
+Counts: 6 + 90 + 5 + 0 = 101 ✓. **Latest at v0.49.0**: Engine adopter-features — 3 new CLI subcommands. OQ-115 `openqms coverage` (per-module + aggregate coverage metrics + --threshold N CI gate; aggregate = 100% at audit). OQ-116 `openqms crosswalk` (same-(standard, section) overlap detection between modules). OQ-117 `openqms jurisdictions-query` (registry standards by jurisdiction via publisher-inference; 30+ publishers mapped; FDA query returns 18 standards). 13 new pytest tests (116→129). CI extended with coverage-100% regression gate + crosswalk + jurisdictions smoke. First Architecture-tier additions since OQ-067 (trace, v0.39.0). 3 new spec entries. No new modules. Spec total 98→101.
 
 **Phase 0 round-out complete (v0.2.1 → v0.3.0).** P5, P6, P7 all closed. **Phase 1 mostly closed.** P1.1 at v0.4.0; P1.2 at v0.5.0. Remaining Phase 1: P1.3 (re-resolution on mutation, OQ-015 + OQ-065). P8 (Part 11 §11.50 prototype, OQ-060) and continued module-coverage population remain.
 

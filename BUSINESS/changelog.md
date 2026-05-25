@@ -4,6 +4,41 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.49.0 DRAFT — 2026-05-25 — Engine adopter-features (coverage + crosswalk + jurisdictions-query)
+
+**3 NEW entries** OQ-115 + OQ-116 + OQ-117. Spec total 98 → 101. Engine 0.48.0 → 0.49.0.
+
+3 new CLI subcommands extending the engine adopter-surface. First Architecture-tier additions since OQ-067 (`openqms trace`, v0.39.0). No new modules; no new registry standards.
+
+**OQ-115 — `openqms coverage`**
+
+Per-module + aggregate coverage metrics + `--threshold N` CI regression gate. At v0.49.0 audit time **aggregate coverage = 100.0%** across 112 modules / 838 clauses / 0 orphans. Paired complement to OQ-067 zero-orphan trace invariant.
+
+**OQ-116 — `openqms crosswalk`**
+
+Identifies clauses referencing the same (standard, section) across multiple modules + per-module shared-vs-own-only counts. Useful for spotting overlap across compose-partner modules + per-jurisdiction implementations + cross-overlay parent/child relationships.
+
+**OQ-117 — `openqms jurisdictions-query`**
+
+Queries the registry for standards applicable to a given jurisdiction via publisher-inference (`_PUBLISHER_TO_JURISDICTIONS` table covering 30+ major regulatory publishers: FDA / EPA / DOT / NHTSA / FAA / DoD / HHS / OSHA / USP / EU / EMA / EASA / ISO / ICAO / IATA / IMO / UNECE / OECD / AICPA / PCI SSC / HITRUST / NIST / RTCA / SAE / ICH / WHO etc.). Forward-compatible with explicit `jurisdictions:` field on registry standards entries. FDA query returns 18 standards at audit; EU MDR returns 11.
+
+**13 new pytest tests** (116 → 129):
+- `engine/tests/test_coverage.py` — 5 tests
+- `engine/tests/test_crosswalk.py` — 4 tests
+- `engine/tests/test_jurisdictions_query.py` — 4 tests
+
+CI extended (+3 new smoke-check steps).
+
+All commands work on the current codebase without modification (no per-module migration required).
+
+129/129 pytest pass. All 8 bundle baselines clean. YAML linter clean on all 112 modules. Repo-wide invariants: 112 modules / 838 clauses / 371 templates / 0 orphans / **100.0% aggregate coverage**.
+
+Status counts: 6 `:verified` / 90 `:tested` / 5 `:argued` / 0 `:open` (total 101).
+
+Per user direction "do the engine first then" — shipped. Final cross-overlays (automotive-supply-chain + clinical-trial-multi-region + banking-resilience + utility-cybersecurity) + polishing follow as v0.50.0+.
+
+---
+
 ## v0.48.0 DRAFT — 2026-05-25 — US State Privacy Umbrella cross-cutting overlay
 
 **1 NEW entry** OQ-114. Spec total 97 → 98. Engine 0.47.0 → 0.48.0.

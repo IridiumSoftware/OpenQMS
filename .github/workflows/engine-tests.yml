@@ -270,6 +270,32 @@ jobs:
           openqms validate --module medical-devices --module privacy --module us-state-privacy --module hipaa --module iso-27001
           openqms validate --module privacy --module us-state-privacy --module hipaa --module iso-27001 --module iso-27001-privacy --module hitrust-csf --module hitrust-r2
 
+      - name: Coverage report (smoke check + repo-wide invariant)
+        # v0.49.0 — `openqms coverage` per-module + aggregate coverage metrics.
+        # Asserts aggregate clause-coverage = 100% (every clause bound to
+        # at least one template); paired with the zero-orphan trace check.
+        run: |
+          openqms coverage --all --output /tmp/openqms-coverage.json
+          python3 -c "import json; d=json.load(open('/tmp/openqms-coverage.json')); s=d['summary']; assert s['aggregate_clause_coverage_pct']==100.0, f'coverage regression: {s}'; print(f'coverage ok — {s[\"modules_in_scope\"]} modules / aggregate {s[\"aggregate_clause_coverage_pct\"]}%')"
+
+      - name: Crosswalk smoke check
+        # v0.49.0 — `openqms crosswalk` between privacy + us-state-privacy +
+        # hipaa (three US-privacy-adjacent overlays). Exercises the new
+        # CLI surface; output not gated.
+        run: |
+          openqms crosswalk --module privacy --module us-state-privacy --module hipaa --format md > /tmp/openqms-crosswalk-privacy.md
+          echo "crosswalk privacy+us-state-privacy+hipaa: $(wc -l < /tmp/openqms-crosswalk-privacy.md) lines"
+
+      - name: Jurisdictions query smoke check
+        # v0.49.0 — `openqms jurisdictions-query` publisher-inferred lookup.
+        # Asserts FDA + EU MDR return >=1 standards each.
+        run: |
+          fda_count=$(openqms jurisdictions-query --jurisdiction FDA --format json | python3 -c "import json,sys; print(json.load(sys.stdin)['match_count'])")
+          eu_count=$(openqms jurisdictions-query --jurisdiction "EU MDR" --format json | python3 -c "import json,sys; print(json.load(sys.stdin)['match_count'])")
+          test "$fda_count" -gt 0 || (echo "FDA jurisdiction query returned 0; expected >0"; exit 1)
+          test "$eu_count" -gt 0 || (echo "EU MDR jurisdiction query returned 0; expected >0"; exit 1)
+          echo "jurisdictions-query ok — FDA=$fda_count standards, EU MDR=$eu_count standards"
+
       - name: Inspect registry (smoke check)
         run: openqms registry list
 

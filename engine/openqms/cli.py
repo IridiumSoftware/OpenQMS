@@ -201,6 +201,106 @@ def main(argv: list[str] | None = None) -> int:
         help="Output path. Default: stdout.",
     )
 
+    p_coverage = sub.add_parser(
+        "coverage",
+        help=(
+            "Report per-module + aggregate coverage metrics: percent of "
+            "clauses bound to >=1 template, percent of declared standards "
+            "with >=1 clause, average template-per-clause depth, orphan "
+            "counts (OQ-115)."
+        ),
+    )
+    p_coverage.add_argument(
+        "--module",
+        action="append",
+        default=[],
+        help=(
+            "Module name or path to module.yaml. Repeatable. If omitted, "
+            "every module under ./modules/ is included."
+        ),
+    )
+    p_coverage.add_argument(
+        "--all",
+        action="store_true",
+        help="Include every module under ./modules/.",
+    )
+    p_coverage.add_argument(
+        "--format",
+        choices=("json", "md"),
+        default="json",
+        help="Output format: json (default) or md.",
+    )
+    p_coverage.add_argument(
+        "--output",
+        default="-",
+        help="Output path. Default: stdout.",
+    )
+    p_coverage.add_argument(
+        "--threshold",
+        type=int,
+        default=0,
+        help=(
+            "Exit code 1 if any in-scope module's clause-coverage percentage "
+            "falls below this integer. Default 0 (never fail). Use in CI to "
+            "gate against coverage regression."
+        ),
+    )
+
+    p_crosswalk = sub.add_parser(
+        "crosswalk",
+        help=(
+            "Emit a clause-crosswalk between modules — identifies clauses "
+            "that reference the same standard + section across modules "
+            "(common across compose-partner modules and per-jurisdiction "
+            "implementations) (OQ-116)."
+        ),
+    )
+    p_crosswalk.add_argument(
+        "--module",
+        action="append",
+        default=[],
+        required=True,
+        help=(
+            "Module name or path. Repeatable. At least 2 modules required "
+            "for a meaningful crosswalk."
+        ),
+    )
+    p_crosswalk.add_argument(
+        "--format",
+        choices=("json", "md"),
+        default="json",
+        help="Output format: json (default) or md.",
+    )
+    p_crosswalk.add_argument(
+        "--output",
+        default="-",
+        help="Output path. Default: stdout.",
+    )
+
+    p_jurisdictions = sub.add_parser(
+        "jurisdictions-query",
+        help=(
+            "Query the registry for standards applicable to a given "
+            "jurisdiction (publisher-based inference) — supports adopter "
+            "planning of per-jurisdiction module scope (OQ-117)."
+        ),
+    )
+    p_jurisdictions.add_argument(
+        "--jurisdiction",
+        required=True,
+        help=(
+            "Jurisdiction id or alias (e.g., FDA, EU MDR, NHTSA, EMA). "
+            "Returns standards whose registry publisher matches the "
+            "jurisdiction's known publishers."
+        ),
+    )
+    p_jurisdictions.add_argument(
+        "--format",
+        choices=("json", "md", "text"),
+        default="text",
+        help="Output format: text (default), json, or md.",
+    )
+
     p_registry = sub.add_parser(
         "registry",
         help="Inspect the standards-and-jurisdictions registry (OQ-014).",
@@ -253,6 +353,12 @@ def main(argv: list[str] | None = None) -> int:
         return _cmd_signatures(args)
     if args.cmd == "trace":
         return _cmd_trace(args)
+    if args.cmd == "coverage":
+        return _cmd_coverage(args)
+    if args.cmd == "crosswalk":
+        return _cmd_crosswalk(args)
+    if args.cmd == "jurisdictions-query":
+        return _cmd_jurisdictions_query(args)
     parser.print_help()
     return 2
 
@@ -856,3 +962,430 @@ def _format_trace_markdown(output: dict) -> str:
             lines.append(f"| `{cid}` | {tcell} |")
         lines.append("")
     return "\n".join(lines)
+
+
+# ============================================================================
+# OQ-115: openqms coverage — per-module + aggregate coverage metrics
+# ============================================================================
+
+
+def _cmd_coverage(args) -> int:
+    """Emit per-module + aggregate coverage metrics.
+
+    Per module: % clauses bound to ≥1 template (clause coverage), % declared
+    standards with ≥1 clause (standard coverage), average templates per clause,
+    orphaned clause + template counts. Aggregate: same metrics over the set.
+
+    --threshold N: exit 1 if any in-scope module's clause-coverage % < N.
+    """
+    modules_root = Path("./modules")
+    if args.module:
+        module_names = list(args.module)
+    else:
+        if not modules_root.is_dir():
+            print("error: ./modules/ not found", file=sys.stderr)
+            return 2
+        module_names = sorted(
+            p.name
+            for p in modules_root.iterdir()
+            if (p / "module.yaml").is_file() and p.name != "general"
+        )
+
+    per_module: list[dict] = []
+    threshold_failures: list[str] = []
+    for name in module_names:
+        try:
+            mod = load_module(name)
+        except (FileNotFoundError, ValueError) as exc:
+            print(f"error: failed to load {name!r}: {exc}", file=sys.stderr)
+            return 2
+
+        clause_ids = [c.id for c in mod.clauses]
+        clause_standards = {c.standard for c in mod.clauses}
+        declared_standards = set(mod.standards)
+
+        # Clause -> #templates addressing it
+        clause_template_count: dict[str, int] = {cid: 0 for cid in clause_ids}
+        # Template -> #clauses addressed (within this module)
+        template_clause_count: dict[str, int] = {}
+        orphan_templates: list[str] = []
+
+        for tpl in mod.templates:
+            in_scope_addresses = [a for a in tpl.addresses if a in clause_template_count]
+            template_clause_count[tpl.path] = len(in_scope_addresses)
+            if not in_scope_addresses:
+                orphan_templates.append(tpl.path)
+            for cid in in_scope_addresses:
+                clause_template_count[cid] += 1
+
+        clauses_bound = sum(1 for cnt in clause_template_count.values() if cnt > 0)
+        orphan_clauses = [cid for cid, cnt in clause_template_count.items() if cnt == 0]
+        standards_with_clauses = declared_standards & clause_standards
+        standards_unused = declared_standards - clause_standards
+
+        total_clauses = len(clause_ids)
+        clause_coverage_pct = (
+            (clauses_bound / total_clauses * 100) if total_clauses else 100.0
+        )
+        standard_coverage_pct = (
+            (len(standards_with_clauses) / len(declared_standards) * 100)
+            if declared_standards
+            else 100.0
+        )
+        avg_templates_per_clause = (
+            sum(clause_template_count.values()) / total_clauses
+            if total_clauses
+            else 0.0
+        )
+
+        per_module.append({
+            "module": name,
+            "version": mod.version,
+            "total_clauses": total_clauses,
+            "total_templates": len(mod.templates),
+            "total_standards_declared": len(declared_standards),
+            "clauses_bound": clauses_bound,
+            "clause_coverage_pct": round(clause_coverage_pct, 2),
+            "standards_with_clauses": sorted(standards_with_clauses),
+            "standards_unused": sorted(standards_unused),
+            "standard_coverage_pct": round(standard_coverage_pct, 2),
+            "avg_templates_per_clause": round(avg_templates_per_clause, 2),
+            "orphan_clauses": sorted(orphan_clauses),
+            "orphan_templates": sorted(orphan_templates),
+        })
+
+        if args.threshold > 0 and clause_coverage_pct < args.threshold:
+            threshold_failures.append(
+                f"{name}: clause coverage {clause_coverage_pct:.1f}% < threshold {args.threshold}%"
+            )
+
+    # Aggregate
+    total_clauses_all = sum(m["total_clauses"] for m in per_module)
+    total_templates_all = sum(m["total_templates"] for m in per_module)
+    total_bound_all = sum(m["clauses_bound"] for m in per_module)
+    total_orphans_all = sum(len(m["orphan_clauses"]) for m in per_module)
+    total_orphan_templates = sum(len(m["orphan_templates"]) for m in per_module)
+    avg_coverage_pct = (
+        sum(m["clause_coverage_pct"] for m in per_module) / len(per_module)
+        if per_module
+        else 0.0
+    )
+
+    output = {
+        "summary": {
+            "modules_in_scope": len(per_module),
+            "total_clauses": total_clauses_all,
+            "total_templates": total_templates_all,
+            "total_clauses_bound": total_bound_all,
+            "aggregate_clause_coverage_pct": round(
+                (total_bound_all / total_clauses_all * 100) if total_clauses_all else 100.0,
+                2,
+            ),
+            "average_per_module_coverage_pct": round(avg_coverage_pct, 2),
+            "orphan_clauses_total": total_orphans_all,
+            "orphan_templates_total": total_orphan_templates,
+            "threshold_pct": args.threshold,
+            "threshold_failures": len(threshold_failures),
+        },
+        "modules": per_module,
+    }
+
+    if args.format == "json":
+        rendered = json.dumps(output, indent=2, sort_keys=True)
+    else:
+        rendered = _format_coverage_markdown(output)
+
+    if args.output == "-":
+        print(rendered)
+    else:
+        Path(args.output).write_text(rendered + "\n", encoding="utf-8")
+        print(
+            f"wrote coverage report for {len(per_module)} module(s) to {args.output}"
+        )
+
+    if threshold_failures:
+        for f in threshold_failures:
+            print(f"threshold-fail: {f}", file=sys.stderr)
+        return 1
+    return 0
+
+
+def _format_coverage_markdown(output: dict) -> str:
+    s = output["summary"]
+    lines: list[str] = []
+    lines.append("# Open QMS — coverage report")
+    lines.append("")
+    lines.append(
+        f"**Modules:** {s['modules_in_scope']} · "
+        f"**Clauses:** {s['total_clauses']} · "
+        f"**Templates:** {s['total_templates']} · "
+        f"**Clauses bound:** {s['total_clauses_bound']} · "
+        f"**Aggregate coverage:** {s['aggregate_clause_coverage_pct']}% · "
+        f"**Average per-module coverage:** {s['average_per_module_coverage_pct']}% · "
+        f"**Orphan clauses:** {s['orphan_clauses_total']} · "
+        f"**Orphan templates:** {s['orphan_templates_total']}"
+    )
+    if s["threshold_pct"]:
+        lines.append(
+            f"\n**Threshold:** {s['threshold_pct']}% — "
+            f"{s['threshold_failures']} failure(s)"
+        )
+    lines.append("")
+    lines.append("| Module | Clauses | Bound | Coverage | Templates | Standards | Avg tpls/clause | Orphan clauses | Orphan tpls |")
+    lines.append("|---|---|---|---|---|---|---|---|---|")
+    for m in output["modules"]:
+        lines.append(
+            f"| `{m['module']}` v{m['version']} | {m['total_clauses']} | "
+            f"{m['clauses_bound']} | **{m['clause_coverage_pct']}%** | "
+            f"{m['total_templates']} | "
+            f"{len(m['standards_with_clauses'])}/{m['total_standards_declared']} "
+            f"({m['standard_coverage_pct']}%) | "
+            f"{m['avg_templates_per_clause']} | "
+            f"{len(m['orphan_clauses'])} | {len(m['orphan_templates'])} |"
+        )
+    return "\n".join(lines)
+
+
+# ============================================================================
+# OQ-116: openqms crosswalk — clause-crosswalk between modules
+# ============================================================================
+
+
+def _cmd_crosswalk(args) -> int:
+    """Emit a clause crosswalk between modules.
+
+    Identifies clauses referencing the same standard + section across the
+    modules in scope. Output groups matching clauses by (standard, section)
+    key with cross-module clause-ID + summary preview.
+    """
+    if len(args.module) < 2:
+        print("error: crosswalk requires at least 2 --module arguments", file=sys.stderr)
+        return 2
+
+    modules: list = []
+    for name in args.module:
+        try:
+            modules.append(load_module(name))
+        except (FileNotFoundError, ValueError) as exc:
+            print(f"error: failed to load {name!r}: {exc}", file=sys.stderr)
+            return 2
+
+    # Build (standard, section) -> [(module_name, clause_id, summary_preview)] index
+    index: dict[tuple[str, str], list[dict]] = {}
+    for mod in modules:
+        for c in mod.clauses:
+            key = (c.standard, c.section)
+            index.setdefault(key, []).append({
+                "module": mod.name,
+                "clause_id": c.id,
+                "summary_preview": (c.summary or "").strip().splitlines()[0][:160]
+                if c.summary else "",
+            })
+
+    # Only emit crosswalks where ≥2 modules reference the same (standard, section)
+    crosswalks = [
+        {
+            "standard": std,
+            "section": sec,
+            "entries": entries,
+            "module_count": len(set(e["module"] for e in entries)),
+        }
+        for (std, sec), entries in index.items()
+        if len(set(e["module"] for e in entries)) >= 2
+    ]
+    crosswalks.sort(key=lambda x: (x["standard"], x["section"]))
+
+    # Per-module own-only clauses (not in any crosswalk)
+    crosswalked_keys = {(c["standard"], c["section"]) for c in crosswalks}
+    own_only: dict[str, int] = {}
+    shared: dict[str, int] = {}
+    for mod in modules:
+        own_only[mod.name] = 0
+        shared[mod.name] = 0
+        for c in mod.clauses:
+            if (c.standard, c.section) in crosswalked_keys:
+                shared[mod.name] += 1
+            else:
+                own_only[mod.name] += 1
+
+    output = {
+        "summary": {
+            "modules_in_scope": [m.name for m in modules],
+            "total_crosswalks": len(crosswalks),
+            "per_module_shared_clauses": shared,
+            "per_module_own_only_clauses": own_only,
+        },
+        "crosswalks": crosswalks,
+    }
+
+    if args.format == "json":
+        rendered = json.dumps(output, indent=2, sort_keys=True)
+    else:
+        rendered = _format_crosswalk_markdown(output)
+
+    if args.output == "-":
+        print(rendered)
+    else:
+        Path(args.output).write_text(rendered + "\n", encoding="utf-8")
+        print(
+            f"wrote crosswalk report ({len(crosswalks)} overlaps) to {args.output}"
+        )
+    return 0
+
+
+def _format_crosswalk_markdown(output: dict) -> str:
+    s = output["summary"]
+    lines: list[str] = []
+    lines.append("# Open QMS — clause crosswalk")
+    lines.append("")
+    lines.append(
+        f"**Modules in scope:** {', '.join('`' + n + '`' for n in s['modules_in_scope'])}"
+    )
+    lines.append(f"**Total cross-module (standard, section) overlaps:** {s['total_crosswalks']}")
+    lines.append("")
+    lines.append("**Per-module clause distribution:**")
+    lines.append("")
+    lines.append("| Module | Shared (crosswalked) | Own-only |")
+    lines.append("|---|---|---|")
+    for mod_name in s["modules_in_scope"]:
+        lines.append(
+            f"| `{mod_name}` | {s['per_module_shared_clauses'][mod_name]} | "
+            f"{s['per_module_own_only_clauses'][mod_name]} |"
+        )
+    lines.append("")
+    if output["crosswalks"]:
+        lines.append("## Crosswalk details")
+        lines.append("")
+        for cw in output["crosswalks"]:
+            lines.append(f"### {cw['standard']} — `{cw['section']}`")
+            lines.append("")
+            lines.append("| Module | Clause ID | Summary preview |")
+            lines.append("|---|---|---|")
+            for e in cw["entries"]:
+                lines.append(
+                    f"| `{e['module']}` | `{e['clause_id']}` | {e['summary_preview']} |"
+                )
+            lines.append("")
+    return "\n".join(lines)
+
+
+# ============================================================================
+# OQ-117: openqms jurisdictions-query — standards by jurisdiction
+# ============================================================================
+
+
+# Publisher → jurisdiction-id mapping (inference fallback when registry lacks
+# explicit per-standard jurisdiction tag). Covers the major regulatory
+# publishers known to Open QMS.
+_PUBLISHER_TO_JURISDICTIONS: dict[str, tuple[str, ...]] = {
+    "U.S. Food and Drug Administration": ("FDA", "FDA-Food"),
+    "U.S. Environmental Protection Agency": ("EPA",),
+    "U.S. Department of Transportation, Pipeline and Hazardous Materials Safety Administration (PHMSA)": ("DOT", "PHMSA"),
+    "U.S. National Highway Traffic Safety Administration": ("NHTSA",),
+    "U.S. Federal Aviation Administration": ("FAA",),
+    "U.S. Department of Defense": ("DoD",),
+    "U.S. Department of Health and Human Services": ("HHS", "OCR", "CMS"),
+    "U.S. Department of Labor (Occupational Safety and Health Administration)": ("OSHA",),
+    "U.S. Occupational Safety and Health Administration": ("OSHA",),
+    "U.S. Department of Agriculture (Food Safety and Inspection Service)": ("USDA-FSIS",),
+    "U.S. Pharmacopeial Convention": ("USP",),
+    "U.S. Congress / HHS / FDA": ("FDA", "HHS"),
+    "U.S. State Legislatures": ("US-States",),
+    "State of California": ("California", "CPPA"),
+    "European Union": ("EU MDR", "EMA", "ECHA"),
+    "European Medicines Agency": ("EMA",),
+    "European Aviation Safety Agency": ("EASA",),
+    "International Organization for Standardization": ("INTL",),
+    "International Civil Aviation Organization": ("ICAO",),
+    "International Air Transport Association": ("INTL",),
+    "International Maritime Organization (IMO)": ("INTL",),
+    "United Nations Economic Commission for Europe (UNECE)": ("UNECE",),
+    "Intergovernmental Organisation for International Carriage by Rail (OTIF)": ("OTIF",),
+    "Organisation for Economic Co-operation and Development (OECD)": ("OECD",),
+    "AICPA": ("AICPA", "US"),
+    "PCI Security Standards Council": ("INTL",),
+    "HITRUST Alliance": ("US",),
+    "National Institute of Standards and Technology": ("NIST", "US"),
+    "RTCA Inc.": ("FAA", "EASA"),
+    "SAE International": ("INTL",),
+    "AIAG": ("US",),
+    "IATF (International Automotive Task Force)": ("INTL",),
+    "Codex Alimentarius Commission": ("INTL", "WHO"),
+    "International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use (ICH)": ("INTL", "FDA", "EMA"),
+    "Pharmaceutical Inspection Co-operation Scheme (PIC/S)": ("INTL",),
+    "WHO": ("WHO",),
+}
+
+
+def _cmd_jurisdictions_query(args) -> int:
+    """Query the registry for standards applicable to a given jurisdiction.
+
+    Inference based on publisher → jurisdiction mapping (cli._PUBLISHER_TO_JURISDICTIONS)
+    + any explicit jurisdictions: field on registry standards entries
+    (forward-compatibility — none today have it but the field is honored).
+    """
+    target = args.jurisdiction.strip()
+    target_norm = target.lower()
+
+    registry = _try_load_registry()
+    if registry is None:
+        print("error: registry not found at ./registry/", file=sys.stderr)
+        return 2
+
+    # Build standards list with inferred jurisdictions
+    matching: list[dict] = []
+    for std in registry.standards:
+        # Forward-compatible explicit field (None today)
+        explicit = getattr(std, "jurisdictions", None) or ()
+        inferred = _PUBLISHER_TO_JURISDICTIONS.get(std.publisher, ())
+        all_jurs = tuple(explicit) + inferred
+
+        # Match by id, by alias, or by case-insensitive prefix
+        if any(
+            j.lower() == target_norm
+            or target_norm in j.lower()
+            or j.lower() in target_norm
+            for j in all_jurs
+        ):
+            matching.append({
+                "id": std.id,
+                "name": std.name,
+                "publisher": std.publisher,
+                "kind": std.kind,
+                "license_kind": std.license_kind,
+                "inferred_jurisdictions": list(all_jurs),
+            })
+
+    matching.sort(key=lambda x: x["id"])
+
+    output = {
+        "query": target,
+        "match_count": len(matching),
+        "standards": matching,
+    }
+
+    if args.format == "json":
+        print(json.dumps(output, indent=2, sort_keys=True))
+    elif args.format == "md":
+        print(f"# Standards in jurisdiction `{target}`")
+        print()
+        print(f"**Match count:** {len(matching)}")
+        print()
+        print("| Standard ID | Publisher | Kind | License | Inferred jurisdictions |")
+        print("|---|---|---|---|---|")
+        for m in matching:
+            print(
+                f"| `{m['id']}` | {m['publisher']} | {m['kind']} | "
+                f"{m['license_kind']} | {', '.join(m['inferred_jurisdictions'])} |"
+            )
+    else:
+        # text
+        print(f"jurisdiction: {target}")
+        print(f"matched: {len(matching)} standards")
+        print()
+        for m in matching:
+            print(
+                f"  {m['id']:50s} ({m['license_kind']:10s}) {m['publisher']}"
+            )
+
+    return 0
