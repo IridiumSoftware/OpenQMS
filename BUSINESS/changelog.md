@@ -4,6 +4,24 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.51.0 DRAFT — 2026-05-25 — Polishing pass
+
+**0 NEW entries.** Spec total unchanged at 102. Engine 0.50.0 → 0.51.0.
+
+Pure bookkeeping release closing the v0.46-v0.50 build arc:
+
+- **A0-A6 cross-audit clean** (zero findings; see `BUSINESS/audit_2026-05-25_v0_50.md`)
+- **Omnibus companion** for the 4-release arc (`BUSINESS/companion_v0_48_to_51.md`) covering us-state-privacy + 3 engine adopter-features + final cross-overlay batch + this polishing pass
+- **companion_index.md** updated with the new omnibus row
+- **dashboard.md "Latest" note** refreshed to v0.51.0 polishing-pass
+- **README.md + docs/modules-catalog.md** version-refs bumped 0.50.0 → 0.51.0
+
+No functional code changes. All 129/129 pytest pass. Bundle baselines clean. Lint clean. Repo invariants hold (116 modules / 867 clauses / 379 templates / 0 orphans / 100.0% aggregate coverage).
+
+Status counts unchanged: 6 `:verified` / 91 `:tested` / 5 `:argued` / 0 `:open` (total 102).
+
+---
+
 ## v0.50.0 DRAFT — 2026-05-25 — Final cross-overlay batch (4)
 
 **1 NEW entry** OQ-118. Spec total 101 → 102. Engine 0.49.0 → 0.50.0.
