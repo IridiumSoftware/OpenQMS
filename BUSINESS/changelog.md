@@ -4,6 +4,58 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.53.0 DRAFT — 2026-05-25 — Reviewer-feedback integration (forward-work expansion)
+
+**0 NEW entries.** Spec total unchanged at 103. Engine 0.52.0 → 0.53.0. Pure documentation refinement of the OQ-119 deliverable.
+
+Independent reviewer assessment received 2026-05-25 (reviewer evaluated a slightly older state — v0.38–v0.39 era — so several of their concerns are already addressed; remaining concerns expand the forward-work catalog).
+
+**Reviewer's headline framing**: *"worth pursuing, but treat it as a generator for QMS infrastructure, not as 'the QMS'"* — matches the project's own honesty bound (OQ-080).
+
+**Updated `docs/compliance-architecture.md` forward-work section** with three additions:
+
+### 10 new priorities
+
+**Engine-hardening cluster** (treating the engine itself as production-grade compliance tooling):
+
+| Priority | Gap |
+|---|---|
+| P5 | `.github/workflows/doc-control.yml` parses YAML frontmatter via `head -20 \| grep`; version non-increment is warning not failure. Replace with PyYAML parser; hard-fail version drift; enforce document state-transition rules; signed audit artifact per PR |
+| P6 | Dependency pins are floor-versions only (no lockfile). Adopt `uv` with `uv.lock` (hashed) |
+| P7 | Release tags not signed. Add `git tag -s` discipline + CI verification step |
+| P8 | CI logs are GitHub-default-retention. Add release-artifact ZIP snapshot of full CI run + invariant-check outputs |
+| P9 | Template files have no schema validation today (only module.yaml does, via lint-module-yaml.py). Add JSON Schema / Pydantic for template frontmatter |
+| P10 | No explicit negative-path test suite for bad modules. Add `engine/tests/test_negative_modules.py` with ~20 broken-by-construction fixtures + specific-error assertions |
+
+**Adopter-deployment governance cluster** (the reviewer's deepest substantive point: "immutability and approval model are deployment controls, not intrinsic properties of the repo"):
+
+| Priority | Gap |
+|---|---|
+| P11 | No automated verification that an adopter fork has required branch-protection + GPG-signing + required-reviewers + required-status-checks. Add `scripts/verify-deployment.sh` or `openqms verify-deployment` subcommand querying GitHub API + comparing against `deployment-policy.yaml` |
+| P12 | No SOP template for HR-to-GitHub identity mapping (§11.100 unique-attribution depends on it). Add `templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md` |
+| P13 | No backup/restore SOP template + restoration-test discipline. Add `templates/qms-bcms/BACKUP-RESTORE-SOP-TEMPLATE.md` with `git clone --mirror` cron pattern + RTO/RPO declaration + annual restoration-test runbook + format-stability planning |
+| P14 | Process gap — no documented cadence for third-party regulatory review of module crosswalk semantics. Add `BUSINESS/regulatory_review_cadence.md` |
+
+### Transparency table — what the reviewer flagged that is already addressed
+
+| Reviewer concern | Status today |
+|---|---|
+| README version drift (v0.38.0 stale) | Fixed at v0.51.0 polishing pass; A5 stale-counts is a per-release gate |
+| Immutable audit export | Shipped v0.7.0 (OQ-060) — `openqms signatures export` |
+| Schema validation for module YAML | Shipped v0.40.0 — `scripts/lint-module-yaml.py` is a pre-pytest CI gate |
+| Bidirectional traceability invariant | `:verified` at OQ-001 via hypothesis property tests |
+| Standards-licensing posture | OQ-070 + OQ-071 `:argued` with documented disclosure in README |
+
+### Permanent-not-gap callout
+
+The reviewer's foundational point — *"coverage is not compliance"* — is permanent and architectural, not a gap to close. This is the OQ-080 firewall. Open QMS produces traceable scaffolds; semantic adequacy requires QA judgment and (where regulator requires) third-party assessment. P11 + P14 in particular make the substrate harder to lose / fake / drift — they do NOT claim Open QMS will replace regulatory expertise.
+
+No functional code changes. 129/129 pytest pass. Bundle baselines clean. Lint clean. Repo invariants hold (116 modules / 867 clauses / 379 templates / 0 orphans / 100.0% aggregate coverage).
+
+Status counts unchanged: 6 `:verified` / 92 `:tested` / 5 `:argued` / 0 `:open` (total 103).
+
+---
+
 ## v0.52.0 DRAFT — 2026-05-25 — Compliance architecture trust-gate document (adopter-feedback P1)
 
 **1 NEW entry** OQ-119 (Gap-tier). Spec total 102 → 103. Engine 0.51.0 → 0.52.0.

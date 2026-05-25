@@ -303,15 +303,61 @@ Keep `BUSINESS/dashboard.md` open as the at-a-glance status snapshot. Keep `BUSI
 
 ## Forward work (acknowledged gaps)
 
-Per adopter feedback received 2026-05-25, these gaps are recognized and prioritized:
+This section consolidates two feedback inputs:
+
+1. **Adopter-experience feedback received 2026-05-25** (four priorities, P1 closed at v0.52.0 by this document).
+2. **Independent reviewer technical assessment received 2026-05-25** (reviewed a slightly older state at the v0.38–v0.39 era; reviewer's tactical concerns assessed against current state below).
+
+The reviewer's headline framing — *"worth pursuing, but treat it as a generator for QMS infrastructure, not as 'the QMS'"* — matches the project's own honesty bound (OQ-080). This section names the work remaining to harden that infrastructure-layer claim.
+
+### Adopter-experience priorities
 
 | Priority | Gap | Plan |
 |---|---|---|
-| P2 (next, after P1) | Validation package templates (URS + IQ/OQ/PQ + Change Assessment + CSV) | Future release — `validation-package` cross-cutting overlay |
-| P4 | Opinionated startup-stage presets (pre-seed / seed / Series A / Series B+) | Future release — `presets/` family extending `bundles/` |
-| P3 | Better non-technical UX (CAPA usability, document routing, role-specific onboarding) | Future release — additional issue templates + role-specific quickstart guides (acknowledging that Open QMS is GitHub-native, not a web app) |
+| ✓ **P1** | Compliance architecture trust-gate documentation | Closed at v0.52.0 by this document |
+| **P2** (next) | Validation package templates (URS + IQ/OQ/PQ + Change Assessment + Computer System Validation protocol + Validation Master Plan) | Future release — `validation-package` cross-cutting overlay bound to 21 CFR Part 11 + EU GMP Annex 11 + ISO 13485 §7.5.6 |
+| **P3** | Better non-technical UX (CAPA usability, document routing, role-specific onboarding) | Future release — additional issue templates + role-specific quickstart guides (Open QMS is GitHub-native, not a web app — UX scope is bounded by that) |
+| **P4** | Opinionated startup-stage presets (pre-seed / seed / Series A / Series B+) | Future release — `presets/` family extending `bundles/`; compounds on P2 |
 
-This compliance-architecture document itself (P1) is the trust-gate deliverable, shipped at v0.52.0 — establishing the architectural defense before extending the surface further.
+### Engine-hardening priorities (reviewer-flagged)
+
+The reviewer identified a cluster of concerns about treating the engine itself as production-grade compliance tooling, not just a scaffold generator. Each of these is a concrete tactical fix.
+
+| Priority | Gap | Plan |
+|---|---|---|
+| **P5** | `.github/workflows/doc-control.yml` parses YAML frontmatter via `head -20 | grep ^field:` (shell over the first 20 lines); version non-increment emits a warning not a hard failure | Future release — replace with PyYAML schema-validated frontmatter parser; hard-fail version drift on controlled documents; enforce document state-transition rules (`draft → review → approved → effective → superseded`); emit a signed audit artifact per PR (commit SHA + frontmatter delta + signature trailers + CI green status, exported via `openqms signatures export` and persisted to a PR comment or artifact upload) |
+| **P6** | Dependency pins are floor-versions only (`pyyaml>=6.0`, `pytest>=8.0`); no lockfile with hashed pins | Future release — adopt `uv` with `uv.lock` (hashes per CLAUDE.md package-management discipline); make lockfile-presence a CI gate; document the upgrade-with-rationale-commit pattern |
+| **P7** | Release tags are not signed | Future release — `git tag -s` discipline for every released version; CI step verifies tag signature against the project's release-signing GPG key; document the verification step for adopters |
+| **P8** | CI logs are GitHub-default-retention; no archival pattern for the reproducible-CI-evidence claim | Future release — workflow that snapshots full CI run logs + invariant-check outputs (trace + coverage + signatures export) to a release-artifact ZIP per tagged release; multi-year retention supports the "reproducible at audit" claim |
+| **P9** | Template files have no schema validation today; only `module.yaml` files are linted by `scripts/lint-module-yaml.py` | Future release — JSON Schema (or Pydantic) for template-frontmatter declarations; CI gate runs schema-validation on every template; aligns template hygiene with module hygiene |
+| **P10** | No explicit negative-path test suite for bad modules (the validation harness rejects invalid YAML at runtime, but there is no curated set of intentionally-broken modules paired with assertions about the specific error messages produced) | Future release — `engine/tests/test_negative_modules.py` with ~20 broken-by-construction module fixtures (missing required field, clause-id collision, template path doesn't exist, addresses references non-existent clause, malformed YAML, duplicate name, etc.) + assertion that each produces a specific error type + message |
+
+### Adopter-deployment governance priorities (reviewer-flagged)
+
+The reviewer's deepest substantive point: *"the 'immutability' and approval model are not intrinsic properties of the repo. They are deployment controls."* Branch protection, GPG enforcement, role/identity mapping, backup posture — all live in the adopter's GitHub org configuration, not the Open QMS source tree. Open QMS can ship the tools that help adopters verify their own deployment is configured correctly.
+
+| Priority | Gap | Plan |
+|---|---|---|
+| **P11** | No automated verification that an adopter fork has the required branch-protection + GPG-signing + required-reviewers + required-status-checks configuration | Future release — `scripts/verify-deployment.sh` (or `openqms verify-deployment` subcommand) that queries the GitHub API for branch protection settings, CODEOWNERS coverage, signed-commits requirement, and required-status-checks list, then compares against a `deployment-policy.yaml` declared by the adopter; failures exit nonzero |
+| **P12** | No SOP template for HR-to-GitHub identity mapping (the §11.100 unique-attribution control depends on it but it lives entirely in the adopter org today) | Future release — `templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md` covering: new-hire GitHub account provisioning, GPG key registration with HR-attested fingerprint capture, role-to-team-membership mapping, periodic access review cadence, offboarding revocation procedure, audit-log retention policy |
+| **P13** | No backup/restore SOP template + restoration-test discipline | Future release — `templates/qms-bcms/BACKUP-RESTORE-SOP-TEMPLATE.md` covering: `git clone --mirror` cron pattern, backup-destination requirements, RTO/RPO declaration, restoration-test cadence (annual minimum), restoration-test runbook, archive-integrity verification + format-stability planning (parallel to ATMP 30-year clauses) |
+| **P14** | Process gap — no documented cadence for third-party regulatory review of module crosswalk semantics | Future release — `BUSINESS/regulatory_review_cadence.md` documenting: per-module review cadence (annual is typical for active standards; on-revision for any cited standard update), reviewer-qualification standard, review-finding tracking format, public-facing "last reviewed by X on Y" badge per module |
+
+### What the reviewer flagged that is already addressed
+
+For transparency:
+
+| Reviewer concern | Status today |
+|---|---|
+| README scope says v0.38.0 but Actions shows v0.39.0 (documentation/versioning drift) | **Fixed.** v0.51.0 polishing pass synchronized scope-version across `README.md` + `docs/modules-catalog.md` + `BUSINESS/changelog.md` + `BUSINESS/ENGINE_SPEC.md` + `engine/pyproject.toml` + `engine/openqms/__init__.py`. Audit `audit_2026-05-25_v0_50.md` includes A5 (stale counts) as a per-release gate. |
+| Immutable audit export | **Shipped at v0.7.0 (OQ-060).** `openqms signatures export --output audit.json` emits a Part 11–style JSON of every commit with parsed signature-meaning trailers + GPG verification status. |
+| Schema validation for module YAML | **Shipped at v0.40.0.** `scripts/lint-module-yaml.py` runs as a pre-pytest CI gate; rejects malformed YAML + asserts required clause fields + asserts template `addresses` entries refer to in-module clauses. (Template-side schema validation is the P9 gap above.) |
+| Bidirectional traceability invariant | **`:verified`** at OQ-001 via hypothesis property tests in `engine/tests/test_property.py`; enforced repo-wide by the zero-orphan trace invariant in CI on every push. |
+| Standards-licensing posture | **Addressed at OQ-070 + OQ-071** with `:argued` status (manual-by-nature licensing claim); README "Standards licensing — important" section discloses what Apache-2.0 does and does not cover. |
+
+### Open-but-permanent: coverage is not compliance
+
+The reviewer's foundational point — *"the tool can prove 'each declared clause has at least one declared document,' but it cannot prove 'this SOP actually satisfies ISO 13485, Part 11, EU MDR, IEC 62304, AS9100D, IATF 16949, or cGMP in a certifiable way'"* — is permanent and architectural, not a gap to close. This is the OQ-080 firewall. Open QMS produces traceable scaffolds; semantic adequacy of any specific SOP against any specific clause requires QA judgment and (where the regulator requires) third-party assessment. The forward work above (P11 + P14 in particular) is about making the *substrate* harder to lose / fake / drift — not about claiming Open QMS will replace regulatory expertise.
 
 ---
 
