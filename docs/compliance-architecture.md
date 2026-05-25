@@ -310,38 +310,46 @@ This section consolidates two feedback inputs:
 
 The reviewer's headline framing — *"worth pursuing, but treat it as a generator for QMS infrastructure, not as 'the QMS'"* — matches the project's own honesty bound (OQ-080). This section names the work remaining to harden that infrastructure-layer claim.
 
+**Effort calibration** (qualitative; informs sequencing, not commitment):
+
+- **light** — single file or small set; mostly documentation or contained script; ≤ ½ day of focused work.
+- **medium** — multiple deliverables: new templates + workflow changes + tests + composites; ½ to 2 days; bounded scope.
+- **hard** — substantial new feature surface: new module + multiple templates + standards crosswalks + tests + composites + docs + per-jurisdiction handling; 2+ days; multi-session.
+
+**Current effort distribution across the 13 open priorities:** 1 hard · 6 medium · 6 light.
+
 ### Adopter-experience priorities
 
-| Priority | Gap | Plan |
-|---|---|---|
-| ✓ **P1** | Compliance architecture trust-gate documentation | Closed at v0.52.0 by this document |
-| **P2** (next) | Validation package templates (URS + IQ/OQ/PQ + Change Assessment + Computer System Validation protocol + Validation Master Plan) | Future release — `validation-package` cross-cutting overlay bound to 21 CFR Part 11 + EU GMP Annex 11 + ISO 13485 §7.5.6 |
-| **P3** | Better non-technical UX (CAPA usability, document routing, role-specific onboarding) | Future release — additional issue templates + role-specific quickstart guides (Open QMS is GitHub-native, not a web app — UX scope is bounded by that) |
-| **P4** | Opinionated startup-stage presets (pre-seed / seed / Series A / Series B+) | Future release — `presets/` family extending `bundles/`; compounds on P2 |
+| Priority | Effort | Gap | Plan |
+|---|---|---|---|
+| ✓ **P1** | — | Compliance architecture trust-gate documentation | Closed at v0.52.0 by this document |
+| **P2** (next) | **hard** | Validation package templates (URS + IQ/OQ/PQ + Change Assessment + Computer System Validation protocol + Validation Master Plan) | Future release — `validation-package` cross-cutting overlay bound to 21 CFR Part 11 + EU GMP Annex 11 + ISO 13485 §7.5.6. New overlay module + 7 templates + clause crosswalks across 3 standards + composites + tests + documentation. Largest single deliverable in the queue. |
+| **P3** | medium | Better non-technical UX (CAPA usability, document routing, role-specific onboarding) | Future release — additional issue templates + role-specific quickstart guides (Open QMS is GitHub-native, not a web app — UX scope is bounded by that). Multiple guide docs + multiple issue-template YAMLs; mechanical but multi-piece. |
+| **P4** | medium | Opinionated startup-stage presets (pre-seed / seed / Series A / Series B+) | Future release — `presets/` family extending `bundles/`; compounds on P2. 4 preset bundles (YAML + matrix.json each) + maturity-model guide doc + per-stage progression rationale + CI integration. |
 
 ### Engine-hardening priorities (reviewer-flagged)
 
 The reviewer identified a cluster of concerns about treating the engine itself as production-grade compliance tooling, not just a scaffold generator. Each of these is a concrete tactical fix.
 
-| Priority | Gap | Plan |
-|---|---|---|
-| **P5** | `.github/workflows/doc-control.yml` parses YAML frontmatter via `head -20 | grep ^field:` (shell over the first 20 lines); version non-increment emits a warning not a hard failure | Future release — replace with PyYAML schema-validated frontmatter parser; hard-fail version drift on controlled documents; enforce document state-transition rules (`draft → review → approved → effective → superseded`); emit a signed audit artifact per PR (commit SHA + frontmatter delta + signature trailers + CI green status, exported via `openqms signatures export` and persisted to a PR comment or artifact upload) |
-| **P6** | Dependency pins are floor-versions only (`pyyaml>=6.0`, `pytest>=8.0`); no lockfile with hashed pins | Future release — adopt `uv` with `uv.lock` (hashes per CLAUDE.md package-management discipline); make lockfile-presence a CI gate; document the upgrade-with-rationale-commit pattern |
-| **P7** | Release tags are not signed | Future release — `git tag -s` discipline for every released version; CI step verifies tag signature against the project's release-signing GPG key; document the verification step for adopters |
-| **P8** | CI logs are GitHub-default-retention; no archival pattern for the reproducible-CI-evidence claim | Future release — workflow that snapshots full CI run logs + invariant-check outputs (trace + coverage + signatures export) to a release-artifact ZIP per tagged release; multi-year retention supports the "reproducible at audit" claim |
-| **P9** | Template files have no schema validation today; only `module.yaml` files are linted by `scripts/lint-module-yaml.py` | Future release — JSON Schema (or Pydantic) for template-frontmatter declarations; CI gate runs schema-validation on every template; aligns template hygiene with module hygiene |
-| **P10** | No explicit negative-path test suite for bad modules (the validation harness rejects invalid YAML at runtime, but there is no curated set of intentionally-broken modules paired with assertions about the specific error messages produced) | Future release — `engine/tests/test_negative_modules.py` with ~20 broken-by-construction module fixtures (missing required field, clause-id collision, template path doesn't exist, addresses references non-existent clause, malformed YAML, duplicate name, etc.) + assertion that each produces a specific error type + message |
+| Priority | Effort | Gap | Plan |
+|---|---|---|---|
+| **P5** | medium | `.github/workflows/doc-control.yml` parses YAML frontmatter via `head -20 | grep ^field:` (shell over the first 20 lines); version non-increment emits a warning not a hard failure | Future release — replace with PyYAML schema-validated frontmatter parser; hard-fail version drift on controlled documents; enforce document state-transition rules (`draft → review → approved → effective → superseded`); emit a signed audit artifact per PR (commit SHA + frontmatter delta + signature trailers + CI green status, exported via `openqms signatures export` and persisted to a PR comment or artifact upload). Multi-piece: workflow rewrite + state-machine + signed-artifact emission + tests. |
+| **P6** | light | Dependency pins are floor-versions only (`pyyaml>=6.0`, `pytest>=8.0`); no lockfile with hashed pins | Future release — adopt `uv` with `uv.lock` (hashes per CLAUDE.md package-management discipline); make lockfile-presence a CI gate; document the upgrade-with-rationale-commit pattern. Migration + CI step + docs. |
+| **P7** | light | Release tags are not signed | Future release — `git tag -s` discipline for every released version; CI step verifies tag signature against the project's release-signing GPG key; document the verification step for adopters. Mostly process + small workflow + docs. |
+| **P8** | light | CI logs are GitHub-default-retention; no archival pattern for the reproducible-CI-evidence claim | Future release — workflow that snapshots full CI run logs + invariant-check outputs (trace + coverage + signatures export) to a release-artifact ZIP per tagged release; multi-year retention supports the "reproducible at audit" claim. New workflow + release-artifact pattern. |
+| **P9** | medium | Template files have no schema validation today; only `module.yaml` files are linted by `scripts/lint-module-yaml.py` | Future release — JSON Schema (or Pydantic) for template-frontmatter declarations; CI gate runs schema-validation on every template; aligns template hygiene with module hygiene. Requires schema design first (templates currently lack rigorous frontmatter) + implementation + per-template migration. |
+| **P10** | medium | No explicit negative-path test suite for bad modules (the validation harness rejects invalid YAML at runtime, but there is no curated set of intentionally-broken modules paired with assertions about the specific error messages produced) | Future release — `engine/tests/test_negative_modules.py` with ~20 broken-by-construction module fixtures (missing required field, clause-id collision, template path doesn't exist, addresses references non-existent clause, malformed YAML, duplicate name, etc.) + assertion that each produces a specific error type + message. Bounded but ~20 curated fixtures is substantial. |
 
 ### Adopter-deployment governance priorities (reviewer-flagged)
 
 The reviewer's deepest substantive point: *"the 'immutability' and approval model are not intrinsic properties of the repo. They are deployment controls."* Branch protection, GPG enforcement, role/identity mapping, backup posture — all live in the adopter's GitHub org configuration, not the Open QMS source tree. Open QMS can ship the tools that help adopters verify their own deployment is configured correctly.
 
-| Priority | Gap | Plan |
-|---|---|---|
-| **P11** | No automated verification that an adopter fork has the required branch-protection + GPG-signing + required-reviewers + required-status-checks configuration | Future release — `scripts/verify-deployment.sh` (or `openqms verify-deployment` subcommand) that queries the GitHub API for branch protection settings, CODEOWNERS coverage, signed-commits requirement, and required-status-checks list, then compares against a `deployment-policy.yaml` declared by the adopter; failures exit nonzero |
-| **P12** | No SOP template for HR-to-GitHub identity mapping (the §11.100 unique-attribution control depends on it but it lives entirely in the adopter org today) | Future release — `templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md` covering: new-hire GitHub account provisioning, GPG key registration with HR-attested fingerprint capture, role-to-team-membership mapping, periodic access review cadence, offboarding revocation procedure, audit-log retention policy |
-| **P13** | No backup/restore SOP template + restoration-test discipline | Future release — `templates/qms-bcms/BACKUP-RESTORE-SOP-TEMPLATE.md` covering: `git clone --mirror` cron pattern, backup-destination requirements, RTO/RPO declaration, restoration-test cadence (annual minimum), restoration-test runbook, archive-integrity verification + format-stability planning (parallel to ATMP 30-year clauses) |
-| **P14** | Process gap — no documented cadence for third-party regulatory review of module crosswalk semantics | Future release — `BUSINESS/regulatory_review_cadence.md` documenting: per-module review cadence (annual is typical for active standards; on-revision for any cited standard update), reviewer-qualification standard, review-finding tracking format, public-facing "last reviewed by X on Y" badge per module |
+| Priority | Effort | Gap | Plan |
+|---|---|---|---|
+| **P11** | medium | No automated verification that an adopter fork has the required branch-protection + GPG-signing + required-reviewers + required-status-checks configuration | Future release — `scripts/verify-deployment.sh` (or `openqms verify-deployment` subcommand) that queries the GitHub API for branch protection settings, CODEOWNERS coverage, signed-commits requirement, and required-status-checks list, then compares against a `deployment-policy.yaml` declared by the adopter; failures exit nonzero. New subcommand + GitHub API integration + policy-schema design + tests + docs. |
+| **P12** | light | No SOP template for HR-to-GitHub identity mapping (the §11.100 unique-attribution control depends on it but it lives entirely in the adopter org today) | Future release — `templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md` covering: new-hire GitHub account provisioning, GPG key registration with HR-attested fingerprint capture, role-to-team-membership mapping, periodic access review cadence, offboarding revocation procedure, audit-log retention policy. Single comprehensive template doc. |
+| **P13** | light | No backup/restore SOP template + restoration-test discipline | Future release — `templates/qms-bcms/BACKUP-RESTORE-SOP-TEMPLATE.md` covering: `git clone --mirror` cron pattern, backup-destination requirements, RTO/RPO declaration, restoration-test cadence (annual minimum), restoration-test runbook, archive-integrity verification + format-stability planning (parallel to ATMP 30-year clauses). Single template doc with runbook. |
+| **P14** | light | Process gap — no documented cadence for third-party regulatory review of module crosswalk semantics | Future release — `BUSINESS/regulatory_review_cadence.md` documenting: per-module review cadence (annual is typical for active standards; on-revision for any cited standard update), reviewer-qualification standard, review-finding tracking format, public-facing "last reviewed by X on Y" badge per module. Single process-governance doc + per-module badge format. |
 
 ### What the reviewer flagged that is already addressed
 

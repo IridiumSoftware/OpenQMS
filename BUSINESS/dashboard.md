@@ -21,7 +21,9 @@ Current state + priority stack. Read this first every session. For claim status,
 | `:open` | 0 | — |
 | **Total** | **103** | — |
 
-Counts: 6 + 92 + 5 + 0 = 103 ✓. **Latest at v0.53.0**: Reviewer-feedback integration — expanded `docs/compliance-architecture.md` forward-work section to incorporate independent reviewer's technical assessment. Added 10 new priorities P5-P14 across engine-hardening (P5 doc-control parser + hard-fail version drift + signed audit artifact / P6 lockfile / P7 signed release tags / P8 CI log archival / P9 template schema / P10 negative-path tests) and adopter-deployment governance (P11 verify-deployment script / P12 identity-mapping SOP / P13 backup-restore SOP / P14 regulatory-review cadence). Plus transparency table on 5 reviewer items already addressed. No new spec entries; pure doc refinement. Engine 0.52.0 → 0.53.0.
+Counts: 6 + 92 + 5 + 0 = 103 ✓. **Latest at v0.54.0**: Forward-work effort qualifiers — added per-priority `light/medium/hard` effort calibration to all three forward-work tables in `docs/compliance-architecture.md`. Current distribution across 13 open priorities: 1 hard (P2) · 6 medium (P3 + P4 + P5 + P9 + P10 + P11) · 6 light (P6 + P7 + P8 + P12 + P13 + P14). Pure doc refinement; no spec changes. Engine 0.53.0 → 0.54.0.
+
+**v0.53.0** (prior release): Reviewer-feedback integration — expanded `docs/compliance-architecture.md` forward-work section to incorporate independent reviewer's technical assessment. Added 10 new priorities P5-P14 (engine-hardening + adopter-deployment governance) + transparency table on 5 reviewer items already addressed. No new spec entries.
 
 **v0.52.0** (prior release): Compliance architecture trust-gate document (closes adopter-feedback P1). OQ-119 NEW `:tested` (Gap-tier). Shipped `docs/compliance-architecture.md` — 11-section comprehensive trust-gate document. Spec total 102 → 103.
 

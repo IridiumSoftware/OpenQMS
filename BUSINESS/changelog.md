@@ -4,6 +4,34 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.54.0 DRAFT — 2026-05-25 — Forward-work effort qualifiers
+
+**0 NEW entries.** Spec total unchanged at 103. Engine 0.53.0 → 0.54.0. Pure documentation refinement of the OQ-119 deliverable.
+
+Added per-priority `light/medium/hard` effort calibration to all three forward-work tables in `docs/compliance-architecture.md`. Helps adopters + maintainers understand sequencing options at a glance.
+
+**Calibration scale:**
+
+- **light** — single file or small set; mostly documentation or contained script; ≤ ½ day focused work
+- **medium** — multiple deliverables: new templates + workflow changes + tests + composites; ½ to 2 days; bounded scope
+- **hard** — substantial new feature surface: new module + multiple templates + standards crosswalks + tests + composites + docs + per-jurisdiction handling; 2+ days; multi-session
+
+**Current distribution across the 13 open priorities:**
+
+| Effort | Count | Priorities |
+|---|---|---|
+| **hard** | 1 | P2 (validation package — largest single deliverable in queue) |
+| **medium** | 6 | P3 (non-technical UX) · P4 (startup-stage presets) · P5 (doc-control hardening) · P9 (template schema validation) · P10 (negative-path test suite) · P11 (verify-deployment script) |
+| **light** | 6 | P6 (lockfile) · P7 (signed release tags) · P8 (CI log archival) · P12 (identity-mapping SOP) · P13 (backup-restore SOP) · P14 (regulatory-review cadence doc) |
+
+The 6 light items could realistically be batched as a single hardening release; the 6 medium items each warrant their own release; P2 is the single multi-session deliverable.
+
+No functional code changes. 129/129 pytest pass. Bundle baselines clean. Lint clean. Repo invariants hold (116 modules / 867 clauses / 379 templates / 0 orphans / 100.0% aggregate coverage).
+
+Status counts unchanged: 6 `:verified` / 92 `:tested` / 5 `:argued` / 0 `:open` (total 103).
+
+---
+
 ## v0.53.0 DRAFT — 2026-05-25 — Reviewer-feedback integration (forward-work expansion)
 
 **0 NEW entries.** Spec total unchanged at 103. Engine 0.52.0 → 0.53.0. Pure documentation refinement of the OQ-119 deliverable.
