@@ -15,15 +15,13 @@ Current state + priority stack. Read this first every session. For claim status,
 | `:proved` | 0 | — |
 | `:verified` | 0 | — |
 | `:verified` | 6 | Invariant (2, OQ-001 + OQ-002) · Architecture (4, OQ-010 + OQ-011 + OQ-013 + OQ-015) |
-| `:tested` | 92 | Architecture (5, OQ-012 + OQ-014 + OQ-115 + OQ-116 + OQ-117) · Substrate (3) · Workflow (9) · Module (61, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-096 + OQ-098 + OQ-101..OQ-114 + OQ-118) · Gap (14, OQ-060 + OQ-061 + OQ-062 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-067 + OQ-068 + OQ-069 + OQ-080 + OQ-097 + OQ-099 + OQ-100 + OQ-119) |
+| `:tested` | 93 | Architecture (5, OQ-012 + OQ-014 + OQ-115 + OQ-116 + OQ-117) · Substrate (3) · Workflow (9) · Module (61, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-096 + OQ-098 + OQ-101..OQ-114 + OQ-118) · Gap (15, OQ-060 + OQ-061 + OQ-062 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-067 + OQ-068 + OQ-069 + OQ-080 + OQ-097 + OQ-099 + OQ-100 + OQ-119 + OQ-120) |
 | `:benchmarked` | 0 | — |
 | `:argued` | 5 | Invariant (1, OQ-003) · Substrate (2, OQ-022 + OQ-023) · Licensing (2, OQ-070 + OQ-071) |
 | `:open` | 0 | — |
-| **Total** | **103** | — |
+| **Total** | **104** | — |
 
-Counts: 6 + 92 + 5 + 0 = 103 ✓. **Latest at v0.54.0**: Forward-work effort qualifiers — added per-priority `light/medium/hard` effort calibration to all three forward-work tables in `docs/compliance-architecture.md`. Current distribution across 13 open priorities: 1 hard (P2) · 6 medium (P3 + P4 + P5 + P9 + P10 + P11) · 6 light (P6 + P7 + P8 + P12 + P13 + P14). Pure doc refinement; no spec changes. Engine 0.53.0 → 0.54.0.
-
-**v0.53.0** (prior release): Reviewer-feedback integration — expanded `docs/compliance-architecture.md` forward-work section to incorporate independent reviewer's technical assessment. Added 10 new priorities P5-P14 (engine-hardening + adopter-deployment governance) + transparency table on 5 reviewer items already addressed. No new spec entries.
+Counts: 6 + 93 + 5 + 0 = 104 ✓. **Latest at v0.55.0**: Light-batch hardening release. OQ-120 NEW `:tested` (Gap-tier) — single batched release closing 6 forward-work priorities. **P6** `engine/uv.lock` (10 packages, hashed) + `uv sync --frozen` CI gate. **P7** `git tag -s` discipline documented; verification embedded in P8 workflow. **P8** `.github/workflows/release-artifact.yml` captures trace + coverage + signatures + pytest + lint + module-count + tag-signature per tag push; attached to GitHub Release. **P12** `templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md` (9 sections). **P13** `templates/qms-bcms/BACKUP-RESTORE-SOP-TEMPLATE.md` (8 sections; 3-2-1 backup + 13-step annual restoration-test runbook). **P14** `BUSINESS/regulatory_review_cadence.md` (8 sections; honest 0/116 review-debt baseline). Engine 0.54.0 → 0.55.0. Forward-work after v0.55.0: 6 closed · 7 open (P2 hard · P3 + P4 + P5 + P9 + P10 + P11 medium).
 
 **v0.52.0** (prior release): Compliance architecture trust-gate document (closes adopter-feedback P1). OQ-119 NEW `:tested` (Gap-tier). Shipped `docs/compliance-architecture.md` — 11-section comprehensive trust-gate document. Spec total 102 → 103.
 

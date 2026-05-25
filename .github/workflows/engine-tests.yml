@@ -31,10 +31,27 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install engine + dev deps
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: '0.11.7'
+
+      - name: Verify lockfile is present (P6 gate)
+        # The lockfile MUST be present for reproducible installs. If
+        # engine/uv.lock is missing, this commit breaks the
+        # pinned-deps discipline added at v0.55.0 (compliance-
+        # architecture P6) and CI must fail loudly rather than fall
+        # back to floor-version resolution.
+        run: test -f engine/uv.lock || (echo "engine/uv.lock missing — see docs/compliance-architecture.md §forward-work P6"; exit 1)
+
+      - name: Install engine + dev deps (hashed via uv.lock)
+        # uv sync installs the exact pinned + hashed versions in
+        # engine/uv.lock. No floor-version drift; CI re-runs are
+        # bit-identical wrt deps. Editable install of the engine
+        # itself via uv pip install -e for test discoverability.
         run: |
-          python -m pip install --upgrade pip
-          pip install -e './engine[dev]'
+          cd engine && uv sync --frozen --all-extras
+          cd engine && uv pip install -e '.[dev]'
 
       - name: Lint module.yaml files
         # Catches the YAML failure modes observed in the v0.36-v0.38
