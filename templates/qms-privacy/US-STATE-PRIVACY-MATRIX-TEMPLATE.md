@@ -1,3 +1,11 @@
+---
+document_id: PRIV-USS-MTX-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Privacy Officer + Legal Counsel]"
+status: draft
+---
+
 # US State Privacy Matrix
 
 **Template for:** state-by-state US privacy law applicability + obligation tracker. Single matrix capturing where the organisation is in scope + what state-specific obligations apply.

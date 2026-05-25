@@ -1,3 +1,11 @@
+---
+document_id: HIPAA-OCR-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Privacy Officer + Legal Counsel + CEO]"
+status: draft
+---
+
 # HHS OCR Compliance Investigation Response
 
 **Template for:** Response to HHS Office for Civil Rights (OCR) compliance investigation. OCR investigates complaints, compliance reviews (proactive), + breach reports (mandatory per §164.408). OCR may impose Civil Monetary Penalties per §160.404 + Corrective Action Plans (CAPs) per Resolution Agreements.

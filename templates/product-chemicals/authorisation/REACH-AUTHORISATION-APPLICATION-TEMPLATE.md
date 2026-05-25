@@ -1,3 +1,11 @@
+---
+document_id: CHEM-REACH-AUTH-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Regulatory Affairs — Chemicals]"
+status: draft
+---
+
 # REACH Authorisation Application (Article 62)
 
 **Template for:** REACH Title VII Authorisation application per Article 62 for a substance listed on Annex XIV.

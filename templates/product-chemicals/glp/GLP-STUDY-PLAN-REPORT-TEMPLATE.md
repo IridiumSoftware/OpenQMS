@@ -2,6 +2,9 @@
 document_id: GLP-XXX
 title: "[Test Item Name] — GLP Study Plan + Final Report"
 version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Study Director + Test Facility Management]"
+status: draft
 study_plan_date: YYYY-MM-DD
 study_director: "[Name + qualifications]"
 sponsor: "[Sponsor name + address]"

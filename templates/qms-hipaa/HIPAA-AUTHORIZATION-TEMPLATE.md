@@ -1,3 +1,11 @@
+---
+document_id: HIPAA-AUTH-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Privacy Officer]"
+status: draft
+---
+
 # HIPAA Authorization for Use or Disclosure of PHI
 
 **Template for:** HIPAA Privacy Rule §164.508 written Authorization. Required when a CE wishes to use or disclose PHI for purposes NOT permitted by Privacy Rule (TPO + 12 enumerated §164.512 exceptions + permitted-without-authorisation cases). All other uses/disclosures require Authorization.

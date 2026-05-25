@@ -1,3 +1,11 @@
+---
+document_id: CHEM-PFAS-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Regulatory Affairs — Chemicals]"
+status: draft
+---
+
 # TSCA PFAS Reporting Form (40 CFR Part 705)
 
 **Template for:** US EPA TSCA Section 8(a)(7) PFAS Reporting and Recordkeeping (40 CFR Part 705, final rule October 2023). Per-substance per-year per-site data structure plus CBI / non-CBI dual-version organisation plus article-importer due-diligence record.

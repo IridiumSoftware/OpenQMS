@@ -1,3 +1,11 @@
+---
+document_id: CHEM-BPR-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Regulatory Affairs — Chemicals]"
+status: draft
+---
+
 # BPR Biocidal Product Authorisation Application
 
 **Template for:** EU Biocidal Products Regulation (BPR) 528/2012 Article 17 product authorisation application. Covers Article 19 conditions + Annex VI Common Principles for evaluation + per-Product-Type (PT) data requirements per Annex II + III.

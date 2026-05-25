@@ -1,3 +1,11 @@
+---
+document_id: PRIV-DPA-US-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Privacy Officer / DPO]"
+status: draft
+---
+
 # Data Protection Assessment (US State Privacy)
 
 **Template for:** Data Protection Assessment (DPA) required by US state comprehensive privacy laws (VCDPA template). Parallel to GDPR DPIA + CCPA Risk Assessment; ONE assessment may satisfy multiple regimes when scope overlaps.

@@ -1,3 +1,11 @@
+---
+document_id: HIPAA-RA-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Security Officer + Privacy Officer]"
+status: draft
+---
+
 # HIPAA Security Rule Risk Analysis
 
 **Template for:** HIPAA Security Rule §164.308(a)(1)(ii)(A) Risk Analysis — foundational Security Rule artifact. Required for CEs + BAs. Updated at least annually + on material change to systems / threats / business operations / regulations.

@@ -1,3 +1,11 @@
+---
+document_id: PRIV-BREACH-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Privacy Officer + Legal Counsel + Security Officer]"
+status: draft
+---
+
 # Personal Data Breach Notification
 
 **Template for:** Multi-regime personal data breach notification covering GDPR Article 33 (supervisory authority within 72 hours) + Article 34 (data subjects without undue delay when high risk) + CCPA §1798.150 documented incident record (basis for potential consumer civil action) + US state attorney-general breach notification laws cross-reference.

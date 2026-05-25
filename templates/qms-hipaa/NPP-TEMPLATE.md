@@ -1,3 +1,11 @@
+---
+document_id: HIPAA-NPP-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Privacy Officer]"
+status: draft
+---
+
 # Notice of Privacy Practices (NPP)
 
 **Template for:** HIPAA Privacy Rule §164.520 Notice of Privacy Practices.

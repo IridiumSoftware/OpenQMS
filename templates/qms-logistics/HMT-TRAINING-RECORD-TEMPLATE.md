@@ -1,3 +1,11 @@
+---
+document_id: LOG-HMT-TRAIN-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[HazMat Training Coordinator]"
+status: draft
+---
+
 # HazMat / Dangerous Goods Training Record
 
 **Template for:** Multi-regime dangerous-goods training record covering US DOT §172.704 (HMT four-component training), IATA DGR §1.5 (CBTA — Competency-Based Training and Assessment per ICAO Doc 9284 effective 2023-01-01), ADR §8.2 (Driver Vocational Training Certificate), ADR §1.8.3 (DGSA).

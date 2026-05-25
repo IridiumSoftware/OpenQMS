@@ -1,3 +1,11 @@
+---
+document_id: HIPAA-BRA-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Privacy Officer + Security Officer]"
+status: draft
+---
+
 # HIPAA Breach 4-Factor Risk Assessment
 
 **Template for:** HIPAA Breach Notification Rule §164.402(2) 4-factor presumption-rebuttal assessment. Used to determine whether an impermissible use/disclosure of PHI constitutes a reportable "Breach" requiring §164.404 individual / §164.406 media / §164.408 HHS notification.

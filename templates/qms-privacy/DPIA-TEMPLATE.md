@@ -1,3 +1,11 @@
+---
+document_id: PRIV-DPIA-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Privacy Officer / DPO]"
+status: draft
+---
+
 # Data Protection Impact Assessment (DPIA)
 
 **Template for:** GDPR Article 35 Data Protection Impact Assessment + CCPA Risk Assessment per CPPA regulations §7150-7157 (2025-2026 final).

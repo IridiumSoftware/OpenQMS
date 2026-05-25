@@ -1,3 +1,11 @@
+---
+document_id: HIPAA-RHA-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Privacy Officer]"
+status: draft
+---
+
 # HIPAA Reproductive Health Care Privacy Attestation
 
 **Template for:** HIPAA Privacy Rule §164.509 Attestation. Required by HHS Final Rule strengthening HIPAA Privacy Rule protections for Reproductive Health Care (89 FR 32976, April 26, 2024; effective December 23, 2024; compliance for most provisions February 16, 2026 — verify HHS announcements for adjusted dates).

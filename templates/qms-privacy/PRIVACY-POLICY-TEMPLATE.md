@@ -1,3 +1,11 @@
+---
+document_id: PRIV-POL-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Privacy Officer + Legal Counsel]"
+status: draft
+---
+
 # Privacy Policy
 
 **Template for:** Public-facing privacy policy satisfying GDPR Articles 13-14 information requirements + CCPA/CPRA §1798.135 notice at collection + §1798.130 privacy policy requirements.

@@ -4,6 +4,98 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.58.0 DRAFT — 2026-05-25 — Template frontmatter schema validation (P9)
+
+**1 NEW entry** OQ-122 (Architecture-tier — first since OQ-115/OQ-116/OQ-117 at v0.49.0). Spec total 105 → 106. Engine 0.57.0 → 0.58.0.
+
+Closes compliance-architecture forward-work P9 (medium effort per v0.54.0 distribution). Engine surface change — new schema module + new linter script + new CI gate.
+
+### What ships
+
+- **`engine/openqms/template_schema.py`** — pure-Python (PyYAML only) schema module with `parse_frontmatter()`, `validate_frontmatter()`, `lint_template()`, `lint_templates()`, `discover_templates()` + `Finding` and `LintResult` dataclasses
+- **`scripts/lint-template-frontmatter.py`** — CI-gate executable parallel to `scripts/lint-module-yaml.py` (from OQ-040 at v0.40.0)
+- **`engine/tests/test_template_schema.py`** — 23 new pytest tests (parse / validate per-field / lint per-file / lint aggregate / **repo-wide invariant** asserting all shipped templates pass schema)
+- **`.github/workflows/engine-tests.yml`** — extended with "Lint template frontmatter (P9 gate)" step before pytest
+- **`docs/guide/template-frontmatter.md`** — companion guide documenting schema + prefix conventions per template group + minimal-new-template recipe
+
+### The schema
+
+**Required fields:**
+
+| Field | Pattern | Notes |
+|---|---|---|
+| `document_id` | `^[A-Za-z0-9][A-Za-z0-9_\-\[\]]*$` | Allows leading digit (`510K-XXX`) + bracket placeholders (`DI-[PRODUCT]-001`) |
+| `version` | `^\d+\.\d+(\.\d+)?$` | Two-part or three-part semver-ish |
+| `owner` | non-empty string | Role or named individual |
+| `status` | one of 8 recognized | See state lists below |
+| **one of:** `effective_date` / `issued_date` / `issue_date` / `opened_date` / `assessment_date` / `notification_date` / `approval_date` | `YYYY-MM-DD` or literal placeholder | 7 acceptable aliases per document-vs-record kind |
+
+**8 recognized status values** across two lifecycle families:
+
+- **Document lifecycle:** `draft → review → approved → effective → superseded`
+- **Record lifecycle:** `open → closed` (or `open → cancelled`)
+
+**Permissive on extras** — domain-specific fields (`recall_campaign_number`, `worker_consultation`, `mock_recall_cadence`, `qa_approval`, `archive_location`, `phi_classification`, etc.) pass without modification.
+
+### Migration: 24 templates batched in this release
+
+The schema run on initial commit revealed 37 errors across 27 files. After schema relaxation (broader date-field aliases + open/closed/cancelled status + bracket-permissive document_id + leading-digit-permissive document_id), 27 errors remained. 24 templates without frontmatter were migrated in this same release using a one-shot script (per-template document_id prefix + owner-role hint):
+
+| Group | Count | Templates |
+|---|---|---|
+| qms-hipaa | 8 | BAA, HIPAA-AUTHORIZATION, REPRODUCTIVE-HEALTH-ATTESTATION, ACCOUNTING-OF-DISCLOSURES-LOG, OCR-INVESTIGATION-RESPONSE, HIPAA-RISK-ANALYSIS, NPP, RESTRICTION-REQUEST-LOG, HIPAA-BREACH-RISK-ASSESSMENT |
+| qms-privacy | 7 | DPA, ROPA, DPIA, PRIVACY-POLICY, US-STATE-PRIVACY-MATRIX, DATA-PROTECTION-ASSESSMENT, PERSONAL-DATA-BREACH-NOTIFICATION |
+| qms-logistics | 2 | SHIPPING-PAPER, HMT-TRAINING-RECORD |
+| qms-ohs | 1 | HAZCOM-WRITTEN-PROGRAM |
+| product-chemicals | 5 | BPR-AUTHORISATION-APPLICATION, PFAS-REPORTING-FORM, SVHC-COMMUNICATION-LETTER, REACH-AUTHORISATION-APPLICATION, SUBSTITUTION-PLAN |
+| product-chemicals/glp | 1 | GLP-STUDY-PLAN-REPORT (had frontmatter but missing required fields owner/status/date) |
+
+Each migrated template gets minimal stub:
+
+```yaml
+---
+document_id: <PREFIX>-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Role / Team]"
+status: draft
+---
+```
+
+End state: **105/105 templates pass schema** at v0.58.0.
+
+### Pytest count: 129 → 152
+
+23 new tests in `test_template_schema.py`:
+
+- `parse_frontmatter`: present / absent / unclosed / YAML-error cases
+- `validate_frontmatter`: clean / missing-required / missing-date / alternate-date-field / placeholder-date / bad-version / two-and-three-part-version / bad-document_id / leading-digit-OK / bracket-placeholder-OK / recognized-status / unrecognized-status warns / parenthetical-qualifier-OK / extras-permitted
+- `lint_template` + `lint_templates`: per-file and aggregate behavior + hard-fail vs soft-warn
+- **Repo-wide invariant:** all shipped templates pass schema (this is the fail-fast for any future template that lands without frontmatter or with bad frontmatter)
+
+### Forward-work status after v0.58.0
+
+| Status | Count | Priorities |
+|---|---|---|
+| ✓ Closed | 9 | P1 + P3 + P6 + P7 + P8 + P9 + P12 + P13 + P14 |
+| Open hard | 2 | P2 (validation package) + P15 (integration-architecture trace network) |
+| Open medium | 4 | P4 + P5 + P10 + P11 |
+
+The medium queue is shrinking — only 4 medium items remain. P10 (negative-path test suite) is the natural complement to this release (now that there's a schema, negative-path tests are easier to construct).
+
+### Lessons + design choices
+
+- **Schema relaxation iterations.** Initial schema rejected 14 legitimate templates beyond the 23 missing-frontmatter ones. Each rejection drove a real schema design decision: 7 date-field aliases reflect document-vs-record distinction; bracket-permissive document_id supports adopter fill-in templates; leading-digit-OK supports regulator-defined IDs (510K-XXX); open/closed/cancelled status family supports operational-record templates.
+- **Permissive-on-extras is non-negotiable.** Templates ship with very heterogeneous frontmatter. The schema validates the spine (5 required fields + 1 date) and ignores everything else. This is the only way the schema doesn't become a maintenance burden as new domain-specific fields appear.
+- **Hard-fail from day 1.** The migration was small enough (24 templates) to do same-release. No need for soft-warn-then-upgrade phase. End state is cleaner.
+- **Architecture tier.** OQ-122 changes the engine's surface (new module + new gate), so it's Architecture-tier rather than Gap-tier (which is where the previous P-batch releases like OQ-120 and OQ-121 landed).
+
+No engine logic changes (no `cli.py` touched; no resolver/validator changes). 152/152 pytest pass. Bundle baselines clean. Module lint clean. Template lint clean (P9 gate active). Repo invariants hold (116 modules / 867 clauses / 379 template bindings / 0 orphans / 100.0% aggregate coverage).
+
+Status counts: 6 `:verified` / 95 `:tested` / 5 `:argued` / 0 `:open` (total 106).
+
+---
+
 ## v0.57.0 DRAFT — 2026-05-25 — Non-technical UX batch (P3)
 
 **1 NEW entry** OQ-121 (Gap-tier; batched). Spec total 104 → 105. Engine 0.56.0 → 0.57.0.

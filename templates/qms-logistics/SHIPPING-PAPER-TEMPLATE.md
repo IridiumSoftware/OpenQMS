@@ -1,3 +1,11 @@
+---
+document_id: LOG-SHIP-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Shipping / Logistics Lead]"
+status: draft
+---
+
 # Dangerous Goods Shipping Paper
 
 **Template for:** Multi-modal shipping paper / Multimodal Dangerous Goods Form per IMO/ILO/UNECE Guidelines — compatible with US DOT HMR shipping paper (49 CFR 172.202-205), IMDG DG Declaration (Part 5 Chapter 5.4), IATA Shipper's Declaration for Dangerous Goods (Section 8), ADR/RID shipping documentation (Part 5 Chapter 5.4).

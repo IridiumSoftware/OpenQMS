@@ -1,3 +1,11 @@
+---
+document_id: PRIV-ROPA-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Privacy Officer / DPO]"
+status: draft
+---
+
 # Records of Processing Activities (ROPA)
 
 **Template for:** GDPR Article 30 Records of Processing Activities — required record per controller + per processor (when acting as processor). One row per processing activity.

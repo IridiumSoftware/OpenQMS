@@ -1,3 +1,11 @@
+---
+document_id: HIPAA-RRL-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Privacy Officer]"
+status: draft
+---
+
 # HIPAA Restriction Request Log
 
 **Template for:** HIPAA Privacy Rule §164.522(a) restriction request handling. Individuals have the right to request restrictions on uses/disclosures of their PHI for TPO + uses/disclosures to persons involved in their care.

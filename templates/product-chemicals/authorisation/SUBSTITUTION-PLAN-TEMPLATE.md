@@ -1,3 +1,11 @@
+---
+document_id: CHEM-SUBST-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Regulatory Affairs — Chemicals]"
+status: draft
+---
+
 # Substitution Plan (REACH Article 60(4)(c))
 
 **Template for:** REACH Article 60(4)(c) Substitution Plan — required when applicant identifies a suitable alternative for the use applied for under Authorisation. Submitted alongside the Authorisation Application.

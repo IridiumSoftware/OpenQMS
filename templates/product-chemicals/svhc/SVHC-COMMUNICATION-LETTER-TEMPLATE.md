@@ -1,3 +1,11 @@
+---
+document_id: CHEM-SVHC-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Regulatory Affairs — Chemicals]"
+status: draft
+---
+
 # SVHC Article 33 Communication Letter
 
 **Template for:** REACH Article 33(1) supply-chain communication + Article 33(2) consumer response + SCIP database notification record under Waste Framework Directive (EU) 2018/851.

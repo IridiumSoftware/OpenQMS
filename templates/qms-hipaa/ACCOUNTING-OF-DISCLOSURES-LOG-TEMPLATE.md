@@ -1,3 +1,11 @@
+---
+document_id: HIPAA-ADL-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Privacy Officer]"
+status: draft
+---
+
 # HIPAA Accounting of Disclosures Log
 
 **Template for:** HIPAA Privacy Rule §164.528 accounting of disclosures. Maintained as an ongoing log of accountable disclosures of PHI; on individual request, CE produces an accounting covering the prior 6 years (or shorter period if requested).

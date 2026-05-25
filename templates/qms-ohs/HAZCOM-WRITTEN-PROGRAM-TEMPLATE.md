@@ -1,3 +1,11 @@
+---
+document_id: OHS-HAZCOM-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[OH&S Manager / EHS Lead]"
+status: draft
+---
+
 # Hazard Communication Written Program
 
 **Template for:** OSHA HazCom (29 CFR 1910.1200(e)(1)) — workplace chemical hazard communication program.

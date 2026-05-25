@@ -1,3 +1,11 @@
+---
+document_id: PRIV-DPA-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Privacy Officer + Legal Counsel]"
+status: draft
+---
+
 # Data Processing Agreement (DPA)
 
 **Template for:** Controller-Processor agreement satisfying GDPR Article 28(3) required content + CCPA §1798.140 service provider / contractor / third party contractual restrictions per §7050-7053 CPPA regs.

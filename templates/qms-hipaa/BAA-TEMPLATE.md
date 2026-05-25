@@ -1,3 +1,11 @@
+---
+document_id: HIPAA-BAA-XXX
+version: "1.0"
+effective_date: YYYY-MM-DD
+owner: "[Privacy Officer + Legal Counsel]"
+status: draft
+---
+
 # Business Associate Agreement (BAA)
 
 **Template for:** HIPAA §164.504(e) + §164.314(a) Business Associate Agreement.
