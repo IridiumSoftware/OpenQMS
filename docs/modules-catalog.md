@@ -1,6 +1,6 @@
 # Modules catalog
 
-Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.56.0. Use this page to choose the modules for your scope.
+Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.57.0. Use this page to choose the modules for your scope.
 
 **Current scope:**
 

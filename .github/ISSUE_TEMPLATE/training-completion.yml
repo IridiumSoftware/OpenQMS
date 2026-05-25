@@ -1,0 +1,94 @@
+name: Training Completion
+description: Record completion of a training event (auto-triggered by training-trigger workflow or manual)
+labels: ["training", "training-pending"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this issue to record that an individual has completed required training on a document or topic.
+
+        **Closing this issue is the training record.** Do not delete or edit after close — the `closed_at` timestamp + signature trailer is the evidence.
+
+        Per `docs/guide/training.md` + ISO 13485 §6.2.2 + 21 CFR §820.25(b).
+
+  - type: input
+    id: trainee
+    attributes:
+      label: Trainee
+      description: GitHub username of the individual being trained
+      placeholder: "@username"
+    validations:
+      required: true
+
+  - type: input
+    id: training_topic
+    attributes:
+      label: Training topic / document
+      description: Document ID, SOP title, or topic. If linked to a controlled document, use the document_id from frontmatter.
+      placeholder: "SOP-IDM-001 — HR-to-GitHub Identity Mapping"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: training_kind
+    attributes:
+      label: Training kind
+      options:
+        - New-document (initial release)
+        - Revised-document (version change)
+        - Refresher (periodic)
+        - New-hire (onboarding)
+        - Role-change (new responsibilities)
+        - Remediation (CAPA-driven)
+    validations:
+      required: true
+
+  - type: input
+    id: completion_date
+    attributes:
+      label: Completion date
+      description: YYYY-MM-DD
+      placeholder: "2026-05-25"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: completion_method
+    attributes:
+      label: Completion method
+      options:
+        - Read-and-acknowledge
+        - Read + quiz (passed)
+        - Instructor-led session
+        - Hands-on demonstration
+        - Self-study + supervisor sign-off
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence of completion
+      description: Quiz score / instructor confirmation / demonstration outcome. Required if completion-method is not "Read-and-acknowledge".
+      placeholder: "Quiz score 18/20 (90%); pass threshold 80%"
+
+  - type: input
+    id: supervisor
+    attributes:
+      label: Supervisor / trainer
+      description: GitHub username of the person attesting completion (often differs from trainee for instructor-led / hands-on)
+      placeholder: "@username"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: attestation
+    attributes:
+      label: Attestation
+      options:
+        - label: Trainee attests they have read and understood the material
+          required: true
+        - label: Supervisor attests that completion-method criteria above were met
+          required: true
+        - label: When closing this issue, the closer will include the `Signature-Meaning: Acknowledged` trailer on the close commit if it is the trainee, or `Signature-Meaning: Approved` if it is the supervisor (per `docs/guide/signature-meaning.md`)
+          required: true

@@ -1,0 +1,111 @@
+name: Document Review (periodic)
+description: Periodic review of a controlled document (annual cadence typical; on-revision trigger)
+labels: ["doc-review", "doc-review-pending"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this issue to record a periodic review of a controlled document. Per ISO 13485 §4.2.4 + 21 CFR §820.40(b) + EU GMP Annex 11 §4.5 + the document's own review cadence declared in frontmatter `next_review` field.
+
+        **Three review outcomes:**
+
+        1. **No changes needed** — close this issue with `Signature-Meaning: Reviewed` trailer + bump `last_review_date` in the document frontmatter via a follow-up PR.
+        2. **Minor changes needed** — open a Change Request issue, raise a PR, then close this issue once the change is merged.
+        3. **Major revision needed** — open a Change Request issue marked `major`, raise a PR that increments the document version, then close this issue once merged.
+
+  - type: input
+    id: document_id
+    attributes:
+      label: Document ID
+      description: From the document frontmatter
+      placeholder: "SOP-IDM-001"
+    validations:
+      required: true
+
+  - type: input
+    id: document_path
+    attributes:
+      label: Document path
+      description: Relative repo path
+      placeholder: "templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md"
+    validations:
+      required: true
+
+  - type: input
+    id: current_version
+    attributes:
+      label: Current document version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+
+  - type: input
+    id: last_review_date
+    attributes:
+      label: Last review date (from frontmatter or git log)
+      placeholder: "2025-05-25"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: review_trigger
+    attributes:
+      label: Review trigger
+      options:
+        - Annual periodic (calendar-driven)
+        - Standard revision (cited standard updated)
+        - Process change (upstream/downstream process modified)
+        - Audit finding (internal or external)
+        - CAPA-driven (corrective action requires review)
+        - Incident-driven (post-incident retrospective)
+    validations:
+      required: true
+
+  - type: textarea
+    id: review_findings
+    attributes:
+      label: Review findings
+      description: What did the review find? Map each finding to one of the three outcome categories above.
+      placeholder: |
+        - Finding 1: ...  (No changes needed | Minor change | Major revision)
+        - Finding 2: ...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: Review outcome
+      options:
+        - No changes needed (close issue + bump last_review_date)
+        - Minor changes needed (link to Change Request)
+        - Major revision needed (link to Change Request + version bump)
+    validations:
+      required: true
+
+  - type: input
+    id: linked_change_request
+    attributes:
+      label: Linked Change Request issue (if outcome 2 or 3)
+      placeholder: "#123 (leave blank if outcome 1)"
+
+  - type: input
+    id: reviewer
+    attributes:
+      label: Reviewer
+      description: GitHub username of the qualified reviewer
+      placeholder: "@username"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: attestation
+    attributes:
+      label: Attestation
+      options:
+        - label: Reviewer has read the current effective version end-to-end
+          required: true
+        - label: Reviewer is qualified per the document's owner-declared review criteria
+          required: true
+        - label: When closing this issue, the closer will include `Signature-Meaning: Reviewed` on the close commit
+          required: true

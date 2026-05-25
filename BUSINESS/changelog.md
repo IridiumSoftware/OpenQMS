@@ -4,6 +4,59 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.57.0 DRAFT — 2026-05-25 — Non-technical UX batch (P3)
+
+**1 NEW entry** OQ-121 (Gap-tier; batched). Spec total 104 → 105. Engine 0.56.0 → 0.57.0.
+
+Closes compliance-architecture forward-work P3 (medium effort per v0.54.0 distribution). Adopter-facing surface — issue templates + guides — no engine code changes.
+
+### 5 new GitHub Issue Forms
+
+| Template | Purpose | Aligns with |
+|---|---|---|
+| `training-completion.yml` | Record completion of training event | ISO 13485 §6.2.2 + 21 CFR §820.25(b) + `docs/guide/training.md` |
+| `document-review.yml` | Periodic doc review with 3-outcome flow (no-change / minor / major revision) | ISO 13485 §4.2.4 + 21 CFR §820.40(b) + Annex 11 §4.5 |
+| `access-review.yml` | Quarterly access review | `templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md` §4 (shipped v0.55.0) |
+| `restoration-test.yml` | Annual restoration test with 13-step runbook outcomes | `templates/qms-bcms/BACKUP-RESTORE-SOP-TEMPLATE.md` §4 (shipped v0.55.0) |
+| `regulatory-review.yml` | Per-module independent regulatory review | `BUSINESS/regulatory_review_cadence.md` §2-3 (shipped v0.55.0) |
+
+These align 1:1 with the SOPs shipped at OQ-120 — completing the SOP-template → operating-record-form lifecycle. Total GitHub issue templates: 7 → 12.
+
+### 5 new role + process guides
+
+| Guide | Audience | Notable content |
+|---|---|---|
+| `docs/guide/onboarding.md` | New hires + new contractors | First-30-days checklist (day-1 / day-2-7 / week-2 / week-3-4 / month-1) with completion criteria |
+| `docs/guide/role-quality-manager.md` | Quality Manager / Quality Lead | Daily / weekly / monthly / quarterly / annual cadence with linked workflows + anti-patterns |
+| `docs/guide/role-engineer.md` | Software / hardware / design engineers | Commit signing + when-to-use-which-trailer table + per-change-type workflow + anti-pattern list |
+| `docs/guide/document-routing.md` | Anyone raising or reviewing PRs | Traditional-eQMS → GitHub-native mapping + example CODEOWNERS structure + branch-protection rules + edge cases |
+| `docs/guide/capa-lifecycle.md` | Anyone touching CAPAs | 7-state state machine: OPEN → INVESTIGATION → ROOT-CAUSE → ACTION PLANNED → ACTION EXECUTED → EFFECTIVENESS CHECK → CLOSED + anti-patterns + aggregation at Management Review |
+
+Total `docs/guide/` files: 12 → 17.
+
+### Pattern observations
+
+- **SOP ↔ operating-record-form pairing.** OQ-120 shipped 3 new SOP templates (identity-mapping + backup-restore + regulatory-review). OQ-121 ships the 3 corresponding issue forms that operate them (access-review + restoration-test + regulatory-review) plus 2 more (training-completion + document-review) covering cadences that pre-existed but lacked structured forms.
+- **Role-specific guides reduce the "I don't know which form to use" friction.** Each role guide now points to the exact issue form for each common scenario.
+- **Document-routing guide makes CODEOWNERS load-bearing.** Before this release the CODEOWNERS file existed but the WHY was scattered; the new guide consolidates the regulatory framing.
+- **CAPA-lifecycle guide formalises a state machine that existed only implicitly.** The 7 states were always there in the workflow; documenting them explicitly enables non-technical users to navigate the lifecycle without coaching.
+
+### Forward-work status after v0.57.0
+
+| Status | Count | Priorities |
+|---|---|---|
+| ✓ Closed | 8 | P1 + P3 + P6 + P7 + P8 + P12 + P13 + P14 |
+| Open hard | 2 | P2 (validation package) + P15 (integration-architecture trace network) |
+| Open medium | 5 | P4 + P5 + P9 + P10 + P11 |
+
+Remaining queue: 2 hard + 5 medium (was 2 + 6).
+
+No functional code changes (issue templates + guides only; no engine code touched). 129/129 pytest pass. Bundle baselines clean. Lint clean. Repo invariants hold (116 modules / 867 clauses / 379 template bindings / 0 orphans / 100.0% aggregate coverage).
+
+Status counts: 6 `:verified` / 94 `:tested` / 5 `:argued` / 0 `:open` (total 105).
+
+---
+
 ## v0.56.0 DRAFT — 2026-05-25 — P15 added (integration-architecture trace network)
 
 **0 NEW entries.** Spec total unchanged at 104. Engine 0.55.0 → 0.56.0. Doc-only refinement of OQ-119.

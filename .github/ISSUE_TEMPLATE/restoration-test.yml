@@ -1,0 +1,125 @@
+name: Restoration Test (annual)
+description: Annual restoration test per templates/qms-bcms/BACKUP-RESTORE-SOP-TEMPLATE.md §4
+labels: ["restoration-test", "bcms", "compliance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Annual restoration test per `templates/qms-bcms/BACKUP-RESTORE-SOP-TEMPLATE.md` §4.
+
+        Simulates total loss of the primary GitHub repository + restoration from Mirror 1 (or Mirror 2).
+
+        Owner: IT/Security Lead. Quality Manager + Internal Auditor receive notification.
+
+        Test-fail handling: if any step fails, raise an incident; treat as CAPA.
+
+  - type: input
+    id: test_date
+    attributes:
+      label: Test date
+      placeholder: "2026-05-25"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: restoration_source
+    attributes:
+      label: Restoration source
+      options:
+        - Mirror 1 (daily org-controlled git server)
+        - Mirror 2 (weekly cold-storage encrypted bundle)
+        - Mirror 3 (monthly off-site)
+    validations:
+      required: true
+
+  - type: textarea
+    id: runbook_steps
+    attributes:
+      label: 13-step runbook outcomes
+      description: Mark pass/fail for each step from SOP §4.
+      placeholder: |
+        1. Declared test + notified: pass
+        2. Pulled mirror to fresh workstation: pass
+        3. git fsck --full --strict: pass (0 errors)
+        4. Commit count: pass (867 commits, within RPO tolerance)
+        5. HEAD signature verified: pass
+        6. Pushed to test-repo: pass
+        7. Engine validation pytest: pass (129/129)
+        8. Repo-wide invariants: pass (0 orphans, 100% coverage)
+        9. Bundle baseline regression: pass (0 diff on example-samd + example-aircraft)
+        10. Elapsed time measured: 3h 12m
+        11. Findings document committed: pass (BUSINESS/restoration_test_YYYY-MM-DD.md)
+        12. QM signature on file: pending
+        13. Test repo deleted: pending
+    validations:
+      required: true
+
+  - type: input
+    id: elapsed_time
+    attributes:
+      label: Elapsed time from step 1 to step 9
+      placeholder: "3h 12m"
+    validations:
+      required: true
+
+  - type: input
+    id: declared_rto
+    attributes:
+      label: Declared RTO (from BCMS BIA)
+      placeholder: "4h"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: Test outcome
+      options:
+        - Pass (all steps pass + elapsed within RTO)
+        - Pass-with-findings (all steps pass + elapsed within RTO + minor findings to address)
+        - Pass-but-over-RTO (all steps pass but elapsed > RTO; backup posture review required)
+        - Fail (one or more steps fail; raise incident + CAPA)
+    validations:
+      required: true
+
+  - type: input
+    id: findings_doc
+    attributes:
+      label: Findings document path
+      placeholder: "BUSINESS/restoration_test_YYYY-MM-DD.md"
+    validations:
+      required: true
+
+  - type: input
+    id: capa_link
+    attributes:
+      label: Linked CAPA issue (if outcome is Fail)
+      placeholder: "#NNN (leave blank if pass)"
+
+  - type: input
+    id: it_security_lead
+    attributes:
+      label: IT/Security Lead (test owner)
+      placeholder: "@username"
+    validations:
+      required: true
+
+  - type: input
+    id: quality_manager
+    attributes:
+      label: Quality Manager (signs findings doc)
+      placeholder: "@username"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: attestation
+    attributes:
+      label: Attestation
+      options:
+        - label: Quality Manager has signed the findings document (`Signature-Meaning: Reviewed`)
+          required: true
+        - label: Test repository deleted to avoid drift
+          required: true
+        - label: Findings document archived in BUSINESS/ per retention policy
+          required: true

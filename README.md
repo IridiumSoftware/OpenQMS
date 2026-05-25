@@ -6,7 +6,7 @@ Open QMS resolves a `(product, jurisdictions, standards, modules)` bundle into a
 
 The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD for enforcement, Git for the audit trail.
 
-## Current scope (v0.56.0)
+## Current scope (v0.57.0)
 
 | Dimension | Count |
 |---|---|

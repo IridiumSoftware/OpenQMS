@@ -316,7 +316,7 @@ The reviewer's headline framing — *"worth pursuing, but treat it as a generato
 - **medium** — multiple deliverables: new templates + workflow changes + tests + composites; ½ to 2 days; bounded scope.
 - **hard** — substantial new feature surface: new module + multiple templates + standards crosswalks + tests + composites + docs + per-jurisdiction handling; 2+ days; multi-session.
 
-**Current effort distribution across remaining 8 open priorities** (post-v0.55.0 / post-P15 addition): 2 hard (P2 + P15) · 6 medium (P3 + P4 + P5 + P9 + P10 + P11) · 0 light. The 6 light priorities (P6 + P7 + P8 + P12 + P13 + P14) were closed as a single batched hardening release at v0.55.0 (OQ-120 `:tested`).
+**Current effort distribution across remaining 7 open priorities** (post-v0.57.0): 2 hard (P2 + P15) · 5 medium (P4 + P5 + P9 + P10 + P11) · 0 light. Closed since v0.51: P1 (v0.52.0) · P6 + P7 + P8 + P12 + P13 + P14 (light batch at v0.55.0) · P3 (non-technical UX batch at v0.57.0).
 
 ### Adopter-experience priorities
 
@@ -324,7 +324,7 @@ The reviewer's headline framing — *"worth pursuing, but treat it as a generato
 |---|---|---|---|
 | ✓ **P1** | — | Compliance architecture trust-gate documentation | Closed at v0.52.0 by this document |
 | **P2** (next) | **hard** | Validation package templates (URS + IQ/OQ/PQ + Change Assessment + Computer System Validation protocol + Validation Master Plan) | Future release — `validation-package` cross-cutting overlay bound to 21 CFR Part 11 + EU GMP Annex 11 + ISO 13485 §7.5.6. New overlay module + 7 templates + clause crosswalks across 3 standards + composites + tests + documentation. Largest single deliverable in the queue. |
-| **P3** | medium | Better non-technical UX (CAPA usability, document routing, role-specific onboarding) | Future release — additional issue templates + role-specific quickstart guides (Open QMS is GitHub-native, not a web app — UX scope is bounded by that). Multiple guide docs + multiple issue-template YAMLs; mechanical but multi-piece. |
+| ✓ **P3** | medium | Better non-technical UX (CAPA usability, document routing, role-specific onboarding) | **Closed at v0.57.0** (OQ-121) — 5 new issue forms (training-completion / document-review / access-review / restoration-test / regulatory-review) align 1:1 with v0.55.0 SOPs + 5 new role/process guides (`onboarding.md` + `role-quality-manager.md` + `role-engineer.md` + `document-routing.md` + `capa-lifecycle.md`). `docs/guide/` 12 → 17. |
 | **P4** | medium | Opinionated startup-stage presets (pre-seed / seed / Series A / Series B+) | Future release — `presets/` family extending `bundles/`; compounds on P2. 4 preset bundles (YAML + matrix.json each) + maturity-model guide doc + per-stage progression rationale + CI integration. |
 
 ### Engine-hardening priorities (reviewer-flagged)

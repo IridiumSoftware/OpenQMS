@@ -1,0 +1,112 @@
+name: Access Review (quarterly)
+description: Quarterly review of identity-mapping register per templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md §4
+labels: ["access-review", "compliance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Quarterly access review per `templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md` §4.
+
+        Cadence: every 90 days, calendar-driven, no event-based skip.
+
+        Reviewer: Quality Manager + IT/Security (joint).
+
+        Output: signed review record (this issue, closed with `Signature-Meaning: Reviewed` trailer).
+
+  - type: input
+    id: review_period
+    attributes:
+      label: Review period
+      description: Quarter being reviewed (e.g., Q2 2026)
+      placeholder: "Q2 2026"
+    validations:
+      required: true
+
+  - type: input
+    id: review_date
+    attributes:
+      label: Review date
+      placeholder: "2026-06-30"
+    validations:
+      required: true
+
+  - type: input
+    id: total_active_users
+    attributes:
+      label: Total active users at start of review
+      description: Count of rows in identity-mapping register with status=active
+      placeholder: "23"
+    validations:
+      required: true
+
+  - type: textarea
+    id: per_user_checks
+    attributes:
+      label: Per-user checks performed (all 5 from SOP §4)
+      description: |
+        For every active row, the reviewer verifies:
+        1. Individual still employed/contracted per HR
+        2. GitHub role assignment matches current job function
+        3. GPG fingerprint on file matches `gpg --fingerprint`
+        4. Recent commits attributed to user verify cleanly
+        5. CODEOWNERS team memberships are appropriate
+
+        Confirm completed for all active rows.
+      placeholder: |
+        - HR cross-check: complete (23 of 23 active in HRIS)
+        - Role assignment cross-check: 1 finding (user X has admin role but is now in contractor role; downgrade pending)
+        - GPG fingerprint cross-check: complete (no rotations since last review)
+        - Commit-verification sample: 5 random commits per user; all verify
+        - CODEOWNERS team-membership cross-check: complete
+    validations:
+      required: true
+
+  - type: textarea
+    id: findings
+    attributes:
+      label: Findings + remediation
+      description: Any deviations from policy + planned remediation
+      placeholder: |
+        - Finding: user X has admin role despite role change to contractor
+        - Remediation: downgrade to triage role by 2026-07-07; assign succession for admin responsibilities
+        - Tracked in: #NNN
+    validations:
+      required: true
+
+  - type: input
+    id: revocations_pending
+    attributes:
+      label: Number of revocations triggered this review
+      placeholder: "0"
+    validations:
+      required: true
+
+  - type: input
+    id: quality_manager
+    attributes:
+      label: Quality Manager (reviewer 1)
+      placeholder: "@username"
+    validations:
+      required: true
+
+  - type: input
+    id: it_security
+    attributes:
+      label: IT/Security Lead (reviewer 2)
+      placeholder: "@username"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: attestation
+    attributes:
+      label: Attestation
+      options:
+        - label: All 5 per-user checks completed for every active row
+          required: true
+        - label: All findings have a remediation plan with named owner + deadline
+          required: true
+        - label: Register `last_review_date` updated on every reviewed row
+          required: true
+        - label: Close commit will include `Signature-Meaning: Reviewed` trailer from both reviewers
+          required: true
