@@ -6,7 +6,7 @@ Open QMS resolves a `(product, jurisdictions, standards, modules)` bundle into a
 
 The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD for enforcement, Git for the audit trail.
 
-## Current scope (v0.63.0)
+## Current scope (v0.64.0)
 
 | Dimension | Count |
 |---|---|
@@ -17,10 +17,10 @@ The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD f
 | **Cross-overlays** (bind ACROSS specific vertical combinations) | **12** — combination-product, integrated-management-system, food-pharma-grade, connected-medical-device, cell-therapy-supply-chain, food-allergen-recall, defense-aerospace-cyber, digital-health-multi-region, **automotive-supply-chain** (v0.50.0), **clinical-trial-multi-region** (v0.50.0), **banking-resilience** (v0.50.0), **utility-cybersecurity** (v0.50.0) |
 | Registry — standards | **~135** (v0.50.0 +5 PUBLIC: ICH E6(R3) + EU CTR 536/2014 + NERC CIP + EU NIS2 + FFIEC IT Handbook) |
 | Registry — jurisdictions | **20** (FDA / EMA / MHRA / WHO-PQ / Health Canada / EU MDR / PMDA / TGA / ANVISA / FAA / EASA / TCCA / NHTSA / UNECE / KBA / TC-MVS / FDA-Food / USDA-FSIS / EFSA / CFIA) |
-| Document templates | **103** (v0.50.0 cross-overlays reuse parent-overlay templates; no new templates) |
+| Document templates | **105** on disk (v0.55.0 +2 standalone SOPs IDENTITY-MAPPING-SOP + BACKUP-RESTORE-SOP); 379 in-module bindings via `addresses:` declarations |
 | Example bundles (validated end-to-end) | **8** |
 | Total modules | **116** + general |
-| Spec entries (status: 6 :verified / 92 :tested / 5 :argued / 0 :open) | **103** |
+| Spec entries (status: 6 :verified / 100 :tested / 5 :argued / 0 :open) | **111** |
 | Engine CLI subcommands | **10** — `resolve`, `validate`, `regenerate`, `signatures`, `trace`, `coverage` (v0.49.0), `crosswalk` (v0.49.0), `jurisdictions-query` (v0.49.0), `registry`, `verify-deployment` (v0.62.0) |
 | Deepest composition tested in CI | **24-module ultra composite** (medical-devices + pharma + combination-product + connected-medical-device + digital-health-multi-region + sterile + hipaa + privacy + 11 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy + ISO 37301) |
 

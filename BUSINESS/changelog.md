@@ -4,6 +4,53 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.64.0 DRAFT — 2026-05-25 — Omnibus + cross-audit (closes v0.52-v0.63 arc)
+
+**0 NEW entries.** Spec total unchanged at 111. Engine 0.63.0 → 0.64.0. Pure bookkeeping release closing the v0.52-v0.63 build arc cleanly.
+
+### What ships
+
+- **A0-A6 cross-audit** (`BUSINESS/audit_2026-05-25_v0_63.md`) — covers the 12-release window from v0.52.0 through v0.63.0:
+  - A0 Self-audit: ✓
+  - A1 Coverage: ✓ (111 spec / 111 registry; zero drift)
+  - A2 Logic & Status parity: ✓
+  - A3 Evidence exists: ✓ (spot-checked all new files in 9 new spec entries)
+  - A4 Status honesty: ✓
+  - A5 Stale counts: 3 findings (F-A + F-B + F-C — README + catalog scope cells were stale on `Spec entries: 103` and `Document templates: 103`); remediated inline as part of audit
+  - A6 Test sync: ✓ (251/251 pytest pass; lint clean on 116 modules + 105 templates; bundle baselines clean on 8 + 4 presets; mkdocs builds clean under --strict)
+- **Omnibus companion** (`BUSINESS/companion_v0_52_to_63.md`) — 12-release record covering:
+  - 9 new spec entries (OQ-119..OQ-127)
+  - 13 of 15 forward-work priorities closed
+  - 3 new engine modules (template_schema + doc_control + verify_deployment)
+  - 3 new CI scripts + 1 new CLI subcommand
+  - 5 new issue templates + 5 new role/process guides
+  - 2 new SOP templates + 4 new preset bundles + 1 new trust-gate document + 1 new cadence governance document + 1 new maturity-model guide
+  - 1 new workflow + 1 rewritten workflow
+  - Pytest count 129 → 251 (+122)
+  - 6 lessons + observations captured
+- **`companion_index.md`** — new omnibus row added at top of table
+- **README.md + docs/modules-catalog.md** scope cells corrected (A5 remediation): `Spec entries: 111` and `Document templates: 105 on disk / 379 in-module bindings`
+
+### Forward-work status after v0.64.0
+
+| Status | Count | Priorities |
+|---|---|---|
+| ✓ Closed | 13 | P1 + P3 + P4 + P5 + P6 + P7 + P8 + P9 + P10 + P11 + P12 + P13 + P14 |
+| Open hard | 2 | P2 (validation package) + P15 (integration-architecture trace network) |
+| Open medium + light | 0 | (queues empty) |
+
+Both remaining priorities are multi-session deliverables. Each warrants dedicated scope decision before kickoff.
+
+### Pattern observation from the arc
+
+13 substantive releases closed 13 of 15 priorities across 5 weeks of session work. The light-batch pattern (v0.55.0 closed 6 lights in 1 release) was the highest-leverage move; without it the arc would have been ~19 releases instead of 13. Light items batch well when they share infrastructure (SOP templates, governance docs, light CI additions). Medium items don't batch — each got its own release. Hard items haven't been touched and likely shouldn't be without explicit scope decisions.
+
+No functional code change in this release. 251/251 pytest pass. Bundle baselines clean. Module lint clean. Template lint clean. Repo invariants hold (116 modules / 867 clauses / 379 template bindings / 0 orphans / 100.0% aggregate coverage).
+
+Status counts unchanged: 6 `:verified` / 100 `:tested` / 5 `:argued` / 0 `:open` (total 111).
+
+---
+
 ## v0.63.0 DRAFT — 2026-05-25 — Pages site refresh
 
 **1 NEW entry** OQ-127 (Gap-tier). Spec total 110 → 111. Engine 0.62.0 → 0.63.0. Pure documentation refinement; no engine code change.
