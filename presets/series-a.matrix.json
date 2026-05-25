@@ -1,0 +1,2032 @@
+{
+  "bundle": {
+    "product": "SeriesA-Startup",
+    "jurisdictions": [],
+    "standards": [
+      "21 CFR 7",
+      "21 CFR 806",
+      "49 CFR 573",
+      "49 CFR 577",
+      "49 CFR 579",
+      "AICPA TSC 2017",
+      "CCPA",
+      "CPSIA Section 15",
+      "GDPR",
+      "ISO 14001:2015",
+      "ISO 22301:2019",
+      "ISO 31000:2018",
+      "ISO 37001:2016",
+      "ISO 45001:2018",
+      "ISO 50001:2018",
+      "ISO 9001:2015",
+      "ISO/IEC 27001:2022",
+      "ISO/IEC 27017:2015",
+      "ISO/IEC 27701:2019"
+    ]
+  },
+  "module": {
+    "name": "iso-31000-overlay+iso-27001-overlay+integrated-management-system+privacy+iso-37001-overlay+iso-22301-overlay+manufacturing+soc-2-overlay+soc-2-type-ii+iso-27001-cloud+iso-27001-privacy+iso-14001-overlay+iso-45001-overlay+recall-workflow-overlay",
+    "version": "composed"
+  },
+  "in_scope_clauses": [
+    {
+      "id": "ISO31000-principles",
+      "standard": "ISO 31000:2018",
+      "section": "\u00a74",
+      "summary": "8 risk management principles \u2014 integrated (part of all\nactivities), structured + comprehensive, customized (tailored\nto org context), inclusive (stakeholder engagement), dynamic\n(responsive to change), best available information, human +\ncultural factors, continual improvement.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO31000-framework",
+      "standard": "ISO 31000:2018",
+      "section": "\u00a75",
+      "summary": "Risk management framework \u2014 leadership + commitment +\nintegration into governance + design + implementation +\nevaluation + improvement of the framework itself. Distinct\nfrom the risk management PROCESS (\u00a76) which is the operational\nexecution.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO31000-process",
+      "standard": "ISO 31000:2018",
+      "section": "\u00a76",
+      "summary": "Risk management process \u2014 communication + consultation; scope\n+ context + criteria; risk assessment (identification +\nanalysis + evaluation); risk treatment; monitoring + review;\nrecording + reporting. Iterative across the lifecycle.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO31000-integration",
+      "standard": "ISO 31000:2018",
+      "section": "\u00a75.2",
+      "summary": "Integration \u2014 risk management is integrated into ALL\norganizational activities + functions. Not a separate\nfunction; embedded in strategy + governance + decision-\nmaking + operations. ISO 31000 + ISO 31010 (risk assessment\ntechniques) together provide the meta-framework supporting\ndomain-specific risk standards (ICH Q9 / HARA / TARA /\nHACCP / etc.).",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.5.1",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.5.1",
+      "summary": "Policies for information security \u2014 defined, approved by management,\npublished, communicated to and acknowledged by relevant personnel\nand interested parties, and reviewed at planned intervals or when\nsignificant changes occur.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.5.31",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.5.31",
+      "summary": "Legal, statutory, regulatory, and contractual requirements relevant\nto information security shall be identified, documented, and kept\nup to date. The organization's approach to meeting each shall be\ndefined.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.8.31",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.8.31",
+      "summary": "Separation of development, test, and production environments \u2014\nincluding separation of duties where appropriate \u2014 to reduce the\nrisk of unauthorized access or unauthorized changes to the\noperational environment.",
+      "gap_note": null
+    },
+    {
+      "id": "IMS-Annex-SL-shared-structure",
+      "standard": "ISO 9001:2015",
+      "section": "Annex SL high-level structure (HLS) \u2014 common to all Annex SL standards",
+      "summary": "Shared high-level structure \u2014 Annex SL HLS provides common\nclause numbering across all ISO management-system standards:\n\u00a74 Context of organisation; \u00a75 Leadership; \u00a76 Planning;\n\u00a77 Support; \u00a78 Operation; \u00a79 Performance evaluation;\n\u00a710 Improvement. Common-clause identical text + discipline-\nspecific sub-clauses. IMS implementation leverages HLS for\nsingle integrated documentation + single integrated\nmanagement review.",
+      "gap_note": null
+    },
+    {
+      "id": "IMS-shared-policy-objectives",
+      "standard": "ISO 9001:2015",
+      "section": "\u00a75.2 + \u00a76.2 cross-MS integration",
+      "summary": "Shared policy + objectives \u2014 integrated quality + environment\n+ OH&S + energy policy statement reflecting commitment to\nall in-scope management systems. Per-MS objectives consolidated\ninto single objectives register; common cascade to operational\nKPIs. Top management single signoff covering all included MSes.",
+      "gap_note": null
+    },
+    {
+      "id": "IMS-shared-context-stakeholders",
+      "standard": "ISO 9001:2015",
+      "section": "\u00a74.1 + \u00a74.2 cross-MS integration",
+      "summary": "Shared context + interested-party analysis \u2014 single context\nanalysis covering organisational external + internal issues\nrelevant to all included management systems; single\ninterested-parties register noting per-party expectations\nacross quality + environmental + OH&S + energy + IS scopes.",
+      "gap_note": null
+    },
+    {
+      "id": "IMS-shared-risk-opportunity",
+      "standard": "ISO 9001:2015",
+      "section": "\u00a76.1 cross-MS integration",
+      "summary": "Integrated risk + opportunity register \u2014 single risk register\ncapturing quality risks (ISO 9001 \u00a76.1) + environmental\naspects + impacts (ISO 14001 \u00a76.1.2) + OH&S hazards + risks\n(ISO 45001 \u00a76.1.2) + IS risks (ISO 27001 \u00a76.1.2) + energy\nreview-derived risks (ISO 50001 \u00a76.3) + others. Common risk\nassessment methodology (often ISO 31000-aligned). Composes\ncleanly with iso-31000 meta-framework overlay.",
+      "gap_note": null
+    },
+    {
+      "id": "IMS-shared-management-review",
+      "standard": "ISO 9001:2015",
+      "section": "\u00a79.3 cross-MS integration",
+      "summary": "Combined management review \u2014 single meeting + record covering\nall in-scope MS-specific inputs per each standard's \u00a79.3\n(audit results, customer feedback, process performance,\nnonconformities + corrective actions, monitoring + measurement\nresults, risk + opportunity status, supplier performance,\netc., plus MS-specific inputs like environmental performance,\nOH&S performance, energy performance, IS performance). Outputs\nconsolidated into integrated improvement actions.",
+      "gap_note": null
+    },
+    {
+      "id": "IMS-combined-audit-programme",
+      "standard": "ISO 9001:2015",
+      "section": "\u00a79.2 + ISO 19011:2018 combined audits",
+      "summary": "Combined audit programme \u2014 internal audits planned per ISO\n19011:2018 covering multiple management systems in single\naudit visits where practical. Auditor competency requirements\ncover all in-scope MS standards. External certification body\nmay offer combined IMS certification audit (multi-MS audit\nday-rate reduction; common observations resolution; single\nintegrated audit report).",
+      "gap_note": null
+    },
+    {
+      "id": "IMS-documentation-control",
+      "standard": "ISO 9001:2015",
+      "section": "\u00a77.5 cross-MS integration",
+      "summary": "Integrated documented-information control \u2014 single document-\ncontrol SOP covering all MS scopes; integrated document index\nmapping documents to applicable MS clauses; common version\ncontrol + approval + distribution + retention rules. Single\nrecords-retention SOP covering MS-specific retention\nrequirements (e.g., training records, calibration records,\nincident records).",
+      "gap_note": null
+    },
+    {
+      "id": "IMS-Annex-SL-version-control",
+      "standard": "ISO 9001:2015",
+      "section": "Annex SL HLS revision tracking",
+      "summary": "Annex SL HLS version tracking \u2014 ISO/IEC Directives Part 1\nAnnex SL revised periodically (Edition 2 in 2018; further\nrevisions ongoing); MS standards adopt revised HLS at next\nstandard revision. IMS implementation tracks per-MS standard\nrevision adoption + plans coordinated transitions\n(e.g., ISO 9001 next revision; ISO 27001:2022 already\nadopted Annex SL Edition 2 HLS).",
+      "gap_note": null
+    },
+    {
+      "id": "GDPR-Art-5-principles",
+      "standard": "GDPR",
+      "section": "Article 5",
+      "summary": "Principles relating to processing \u2014 (1)(a) lawfulness fairness\ntransparency; (1)(b) purpose limitation (specified explicit\nlegitimate); (1)(c) data minimisation; (1)(d) accuracy; (1)(e)\nstorage limitation (no longer than necessary); (1)(f) integrity +\nconfidentiality (security); (2) ACCOUNTABILITY \u2014 controller\nresponsible for and able to demonstrate compliance with (1).\nAccountability is the meta-principle behind ROPA (Article 30) +\nDPIA (Article 35) + records discipline.",
+      "gap_note": null
+    },
+    {
+      "id": "GDPR-Art-6-lawful-bases",
+      "standard": "GDPR",
+      "section": "Article 6",
+      "summary": "Lawful bases for processing \u2014 at least one of: (1)(a) consent;\n(1)(b) contract performance; (1)(c) legal obligation; (1)(d)\nvital interests; (1)(e) public interest; (1)(f) legitimate\ninterests (controller's or third party's, not overridden by\ndata subject's rights). Special-category data (Article 9) +\ncriminal-conviction data (Article 10) require additional\nconditions. Lawful basis must be documented + communicated in\nprivacy notice (Articles 13-14).",
+      "gap_note": null
+    },
+    {
+      "id": "GDPR-Art-7-consent",
+      "standard": "GDPR",
+      "section": "Article 7",
+      "summary": "Conditions for consent \u2014 freely given + specific + informed +\nunambiguous indication by statement or clear affirmative action.\nDemonstrable (controller must show consent obtained); withdrawable\nas easily as given; written form requirements distinguishable\nfrom other matters; bundled-consent prohibition; performance of\ncontract cannot be conditional on unnecessary consent (Article\n7(4)).",
+      "gap_note": null
+    },
+    {
+      "id": "GDPR-Art-9-special-categories",
+      "standard": "GDPR",
+      "section": "Article 9",
+      "summary": "Special categories of personal data \u2014 racial/ethnic origin,\npolitical opinions, religious/philosophical beliefs, trade-union\nmembership, genetic, biometric (for identification), health,\nsex life or sexual orientation. Processing prohibited unless\none of 10 derogations (9(2)(a) explicit consent through (j)\nresearch/statistics with safeguards). Most adopter-relevant for\nmedical-devices (patient health) + pharma (clinical trial\nparticipants) + HR (health/disability info).",
+      "gap_note": null
+    },
+    {
+      "id": "GDPR-Art-12-modalities",
+      "standard": "GDPR",
+      "section": "Article 12",
+      "summary": "Modalities for exercising data subject rights \u2014 controller\nprovides info in concise transparent intelligible easily-\naccessible form, plain language. Response within 1 month\n(extendable 2 months for complex requests with notification).\nFree of charge unless manifestly unfounded or excessive (then\nreasonable fee OR refusal with justification). Identity-\nverification proportionate.",
+      "gap_note": null
+    },
+    {
+      "id": "GDPR-Art-13-14-information",
+      "standard": "GDPR",
+      "section": "Articles 13 + 14",
+      "summary": "Information to data subjects \u2014 provided at collection (Article\n13 when from subject; Article 14 when from third party). Required\ncontent: identity of controller + DPO contact; purposes +\nlawful basis (legitimate interests detail if used); recipients\n+ transfers (international transfer safeguards); retention\nperiod; existence of rights (access / rectification / erasure /\nrestriction / object / portability / consent withdrawal / DPA\ncomplaint); automated-decision-making + profiling logic and\nconsequences.",
+      "gap_note": null
+    },
+    {
+      "id": "GDPR-Art-15-22-rights",
+      "standard": "GDPR",
+      "section": "Articles 15-22",
+      "summary": "Substantive rights \u2014 Article 15 access (copy + categories +\npurposes + sources + automated-decision logic); Article 16\nrectification; Article 17 erasure (right to be forgotten) with\n6 grounds + 5 exceptions; Article 18 restriction (4 grounds);\nArticle 19 notification to recipients of rectification/erasure/\nrestriction; Article 20 portability (structured commonly-used\nmachine-readable format; direct controller-to-controller\ntransmission where technically feasible); Article 21 object\n(legitimate-interests + direct-marketing absolute right);\nArticle 22 automated individual decision-making + profiling.",
+      "gap_note": null
+    },
+    {
+      "id": "GDPR-Art-25-DP-by-design-default",
+      "standard": "GDPR",
+      "section": "Article 25",
+      "summary": "Data protection by design + by default \u2014 technical + organisational\nmeasures implementing data-protection principles (e.g., data\nminimisation) effectively + integrating necessary safeguards\ninto processing. By default only personal data necessary for\neach specific purpose are processed. Amount + extent + storage\nperiod + accessibility all subject to default-minimisation.",
+      "gap_note": null
+    },
+    {
+      "id": "GDPR-Art-28-processor-agreements",
+      "standard": "GDPR",
+      "section": "Article 28",
+      "summary": "Processor obligations + DPA (Data Processing Agreement)\nrequired content per Article 28(3): subject-matter + duration;\nnature + purpose; type of personal data + categories of data\nsubjects; controller obligations + rights; processor\nobligations (act on documented instructions only; confidentiality;\nArticle 32 security; sub-processor authorisation; assist with\ndata-subject rights; assist with breach notification + DPIA;\ndelete/return data at end; audit rights + information). Standard\nContractual Clauses (Implementing Decision 2021/915) +\nCommission-approved codes of conduct (Article 40) acceptable.",
+      "gap_note": null
+    },
+    {
+      "id": "GDPR-Art-30-ROPA",
+      "standard": "GDPR",
+      "section": "Article 30",
+      "summary": "Records of Processing Activities (ROPA) \u2014 controller maintains:\n(1)(a) controller + DPO + joint-controller + EU rep contacts;\n(1)(b) purposes; (1)(c) categories of data subjects + personal\ndata; (1)(d) categories of recipients incl. international;\n(1)(e) third-country transfers + safeguards; (1)(f) retention\nschedule; (1)(g) Article 32 technical + organisational\nsecurity measures. Processor ROPA per Article 30(2). Exemption\nunder Article 30(5) for orgs <250 employees IS LIMITED (only\nwhere processing is occasional AND not high-risk AND not special-\ncategory) \u2014 most orgs in scope.",
+      "gap_note": null
+    },
+    {
+      "id": "GDPR-Art-32-security",
+      "standard": "GDPR",
+      "section": "Article 32",
+      "summary": "Security of processing \u2014 appropriate technical + organisational\nmeasures considering state of the art + costs + nature/scope/\ncontext/purposes of processing + risks to rights. Article 32(1)\nillustrative measures: pseudonymisation + encryption; ensuring\nconfidentiality + integrity + availability + resilience of\nprocessing systems; ability to restore + access after incident;\nregular testing + evaluation of effectiveness. Maps cleanly to\nISO 27001 Annex A controls (compose with iso-27001 overlay).",
+      "gap_note": null
+    },
+    {
+      "id": "GDPR-Art-33-34-breach",
+      "standard": "GDPR",
+      "section": "Articles 33 + 34",
+      "summary": "Personal data breach notification \u2014 Article 33 controller\nnotifies supervisory authority within **72 hours** of becoming\naware unless unlikely to result in risk to rights + freedoms.\nNotification content: nature of breach + categories + approximate\nnumbers of data subjects + records concerned + DPO contact +\nlikely consequences + measures taken. Article 34 notification\nto data subjects WITHOUT UNDUE DELAY when HIGH RISK to rights\n+ freedoms (unless one of 3 exceptions). Documented incident\nrecord per Article 33(5) regardless of notification threshold.",
+      "gap_note": null
+    },
+    {
+      "id": "GDPR-Art-35-DPIA",
+      "standard": "GDPR",
+      "section": "Article 35",
+      "summary": "Data Protection Impact Assessment \u2014 required when processing\nLIKELY to result in HIGH RISK to rights + freedoms,\nparticularly: (3)(a) systematic + extensive evaluation by\nautomated means incl. profiling with legal/significant effect;\n(3)(b) large-scale special-category or criminal-conviction\ndata; (3)(c) systematic monitoring of publicly accessible area\non large scale. Each supervisory authority publishes positive +\nnegative list of processing types. DPIA content: systematic\ndescription of processing + purposes + legitimate interests;\nnecessity + proportionality assessment; risk assessment to\nrights + freedoms; measures to address risks. DPO consulted\nwhere designated.",
+      "gap_note": null
+    },
+    {
+      "id": "GDPR-Art-37-39-DPO",
+      "standard": "GDPR",
+      "section": "Articles 37-39",
+      "summary": "Data Protection Officer \u2014 designation mandatory when (37)(1)(a)\npublic authority/body, (b) core activities require regular +\nsystematic monitoring of data subjects on large scale, or (c)\ncore activities consist of large-scale processing of special-\ncategory or criminal-conviction data. Tasks per Article 39:\ninform + advise; monitor compliance; advise on DPIA; cooperate\nwith + be contact point for supervisory authority. Article 38\nposition: involved in all DPP issues; provided with resources;\nindependent (no instructions on tasks; no dismissal for\nperforming tasks); reports to highest management.",
+      "gap_note": null
+    },
+    {
+      "id": "GDPR-Art-44-49-transfers",
+      "standard": "GDPR",
+      "section": "Articles 44-49",
+      "summary": "Transfers to third countries / international organisations \u2014\ntransfer permitted only if: (45) Commission adequacy decision\n(currently incl. UK + Switzerland + Israel + Japan + Korea +\nNew Zealand + Andorra + Argentina + Canada commercial + Faroe\nIslands + Guernsey + Isle of Man + Jersey + Uruguay + US under\nEU-US Data Privacy Framework 2023); OR (46) appropriate\nsafeguards (Binding Corporate Rules, Standard Contractual Clauses\n(2021/915), approved codes of conduct, certification mechanisms);\nOR (49) specific derogations (consent, contract necessity,\nimportant public interest, legal claims, vital interests, public\nregister). Post-Schrems II (C-311/18): transfer impact assessment\n(TIA) required to evaluate destination country surveillance laws\nvs. essential equivalence to EU rights.",
+      "gap_note": null
+    },
+    {
+      "id": "CCPA-1798-100-right-to-know",
+      "standard": "CCPA",
+      "section": "\u00a71798.100, \u00a71798.110, \u00a71798.115",
+      "summary": "Right to know \u2014 consumer may request disclosure of: categories\nof personal information collected; categories of sources;\nbusiness or commercial purposes; categories of third parties\nshared with; specific pieces of personal information collected.\nLook-back period: prior 12 months (24 months effective\n2025-2026 per CPRA regulations). Response within 45 days\n(extendable +45 with notice). Two free reports per year.",
+      "gap_note": null
+    },
+    {
+      "id": "CCPA-1798-105-right-to-delete",
+      "standard": "CCPA",
+      "section": "\u00a71798.105",
+      "summary": "Right to delete \u2014 consumer may request deletion of personal\ninformation business has collected from them. Business must\ndelete + direct service providers + contractors + third parties\nto delete. **9 exceptions** including: complete transaction;\ndetect security incidents; debug/repair errors; exercise free\nspeech; CalECPA compliance; public-interest research with\nethics review; internal uses reasonably aligned with consumer\nexpectations; compliance with legal obligation; internal\nlawful uses compatible with collection context.",
+      "gap_note": null
+    },
+    {
+      "id": "CCPA-1798-120-opt-out",
+      "standard": "CCPA",
+      "section": "\u00a71798.120, \u00a71798.135",
+      "summary": "Right to opt-out of sale + sharing \u2014 consumer may at any time\ndirect business not to sell or share personal information.\nTwo-link or single combined-link notice methods per \u00a71798.135;\n\"Do Not Sell or Share My Personal Information\" + \"Limit the Use\nof My Sensitive Personal Information\" required where applicable.\nGlobal Privacy Control (GPC) signal must be honored as opt-out\nunder \u00a77025 of CPPA regs. 12-month opt-in waiting period before\nrequesting reconsent.",
+      "gap_note": null
+    },
+    {
+      "id": "CCPA-1798-121-limit-SPI",
+      "standard": "CCPA",
+      "section": "\u00a71798.121",
+      "summary": "Right to limit use of sensitive personal information (SPI) \u2014\nconsumer may direct business to limit use + disclosure of SPI\nto that necessary to perform services or provide goods reasonably\nexpected. SPI categories: SSN, driver's license, financial\naccount + login credentials, precise geolocation, racial/\nethnic origin, religious/philosophical beliefs, union\nmembership, contents of mail/email/text not directed to\nbusiness, genetic data, biometric for identification, health,\nsex life or sexual orientation.",
+      "gap_note": null
+    },
+    {
+      "id": "CCPA-1798-106-right-to-correct",
+      "standard": "CCPA",
+      "section": "\u00a71798.106",
+      "summary": "Right to correct \u2014 consumer may request correction of inaccurate\npersonal information. Business must use commercially reasonable\nefforts to correct. Effective from CPRA (2023-01-01).",
+      "gap_note": null
+    },
+    {
+      "id": "CCPA-1798-130-methods",
+      "standard": "CCPA",
+      "section": "\u00a71798.130",
+      "summary": "Methods for submitting requests + response \u2014 two methods\n(toll-free phone for offline + online form/email for online-\nonly businesses). Identity verification per \u00a77060-7064 CPPA\nregs (3-2-1 tier model \u2014 3 data points for high-risk, 2 for\nmedium, 1 for low). 10-day acknowledgement + 45-day response\n(extendable +45). Authorised agent provisions.",
+      "gap_note": null
+    },
+    {
+      "id": "CCPA-1798-135-notice-at-collection",
+      "standard": "CCPA",
+      "section": "\u00a71798.135 + \u00a77012 CPPA regs",
+      "summary": "Notice at collection \u2014 provided at or before collection.\nRequired content: categories of personal information to be\ncollected; purposes for which used; whether sold or shared;\nretention period per category; SPI categories collected +\nwhether used for purposes other than those allowed under\n\u00a71798.121; link to privacy policy. Just-in-time disclosure\nfor new categories.",
+      "gap_note": null
+    },
+    {
+      "id": "CCPA-1798-140-service-provider-contractor",
+      "standard": "CCPA",
+      "section": "\u00a71798.140 + \u00a77050-7053 CPPA regs",
+      "summary": "Service provider + contractor + third party \u2014 contractual\nrestrictions distinguish service-provider relationship\n(broader permitted uses for business purposes) vs. third-party\nsale/share relationship (requires opt-out). Required contract\nterms include: limit processing to business purposes specified\nin contract; certification of compliance with CCPA; assistance\nwith consumer requests + cybersecurity audits + risk assessments;\nflow-down to sub-processors; deletion-on-termination + audit-\nrights. Maps closely to GDPR Article 28 DPA but distinct\ncategorization scheme.",
+      "gap_note": null
+    },
+    {
+      "id": "CCPA-1798-150-data-breach-civil-action",
+      "standard": "CCPA",
+      "section": "\u00a71798.150",
+      "summary": "Private right of action for data breach \u2014 consumer may bring\ncivil action for unauthorised access + exfiltration + theft +\ndisclosure of nonencrypted + nonredacted personal information\nresulting from business's violation of duty to implement +\nmaintain reasonable security procedures + practices appropriate\nto nature of information. Statutory damages: $100-$750 per\nconsumer per incident OR actual damages, whichever greater.\n30-day cure notice required (does not apply when actual harm).\nClass actions permitted.",
+      "gap_note": null
+    },
+    {
+      "id": "CCPA-1798-185-ADMT-risk-cybersecurity",
+      "standard": "CCPA",
+      "section": "\u00a71798.185 (CPPA regulations 2025-2026)",
+      "summary": "CPPA regulatory regime additions \u2014 three regulatory packages\nfinalising 2025-2026: (1) **Automated Decision-Making\nTechnology (ADMT)** regulations \u2014 pre-use notice + opt-out +\nright to know logic for \"significant decisions\"; (2) **Risk\nAssessment** regulations \u2014 required when processing presents\nsignificant risk to consumer privacy (analog to GDPR DPIA);\n(3) **Cybersecurity Audit** regulations \u2014 annual audit by\nindependent auditor for businesses whose processing presents\nsignificant risk to security. Applicability thresholds vary\nby regulation.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO37001-5.1.2",
+      "standard": "ISO 37001:2016",
+      "section": "5.1.2",
+      "summary": "Anti-bribery governing-body responsibility + senior-management\nresponsibility \u2014 the governing body (where one exists) shall\ntake overall responsibility for the ABMS, ensure its\nestablishment + maintenance, and approve the anti-bribery policy.\nSenior management shall demonstrate leadership + commitment to\nthe ABMS.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO37001-5.2",
+      "standard": "ISO 37001:2016",
+      "section": "5.2",
+      "summary": "Anti-bribery policy \u2014 top management establishes a documented\nanti-bribery policy that prohibits bribery; complies with\napplicable anti-bribery laws; is appropriate to the purpose +\ncontext; includes commitments to satisfy ABMS requirements,\ncontinual improvement, ability of personnel to raise concerns\nin good faith without fear of reprisal; communicated to\npersonnel + business associates; available publicly where\nappropriate.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO37001-5.3.2",
+      "standard": "ISO 37001:2016",
+      "section": "5.3.2",
+      "summary": "Anti-bribery compliance function \u2014 top management designates an\nanti-bribery compliance function with appropriate competence +\nstatus + authority + independence + resources. Reports directly\nto the governing body / senior management with appropriate\naccess.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO37001-6.1",
+      "standard": "ISO 37001:2016",
+      "section": "6.1",
+      "summary": "Actions to address risks + opportunities \u2014 ABMS risks +\nopportunities determined to give assurance that the ABMS can\nachieve intended results + prevent / reduce undesired effects\n+ achieve continual improvement.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO37001-7.2.2.2",
+      "standard": "ISO 37001:2016",
+      "section": "7.2.2.2",
+      "summary": "Due diligence on personnel \u2014 for positions exposed to more than\na low bribery risk, due diligence shall be conducted on\ncandidates + on personnel transferring into such positions. Re-\nconducted on a reasonable periodic basis or on suitable trigger.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO37001-7.3",
+      "standard": "ISO 37001:2016",
+      "section": "7.3",
+      "summary": "Awareness + training \u2014 anti-bribery awareness + training\nprovided to all personnel appropriate to the bribery risk faced\nin their roles. Specific training for higher-risk roles.\nRecords of training maintained.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO37001-8.2",
+      "standard": "ISO 37001:2016",
+      "section": "8.2",
+      "summary": "Due diligence on transactions, projects, activities, business\nassociates + personnel \u2014 risk-proportionate due diligence\nconducted before engagement (transactions, projects, activities,\nbusiness associates) and periodically thereafter. Higher-risk\nengagements receive enhanced due diligence.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO37001-8.3",
+      "standard": "ISO 37001:2016",
+      "section": "8.3",
+      "summary": "Financial controls \u2014 controls over financial transactions to\nreduce bribery risk: segregation of duties, authorization\nlimits, two-signature requirements, controls over cash + cash\nequivalents, expense + reimbursement controls, controls over\ngifts + hospitality + donations.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO37001-8.4",
+      "standard": "ISO 37001:2016",
+      "section": "8.4",
+      "summary": "Non-financial controls \u2014 procurement + commercial + operational\n+ HR controls to reduce bribery risk: documented procurement\ncriteria, competitive bidding, conflict-of-interest disclosure,\ncontrols over hiring + promotion + termination, controls over\ncontractor + agent appointments.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO37001-8.5",
+      "standard": "ISO 37001:2016",
+      "section": "8.5",
+      "summary": "Implementation of anti-bribery controls by controlled\norganizations and by business associates \u2014 risk-proportionate\nrequirement for business associates (Medium + High risk) to\neither implement equivalent anti-bribery controls or commit\ncontractually to the organization's ABMS. Audit rights for\nverification.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO37001-8.7",
+      "standard": "ISO 37001:2016",
+      "section": "8.7",
+      "summary": "Gifts, hospitality, donations + similar benefits \u2014 controls\nensure such activities are not, and cannot reasonably be\nperceived as, bribery. Pre-approval thresholds, documented\nregister, recipient + purpose disclosure, alignment with\norganization's policy + applicable law.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO37001-8.9",
+      "standard": "ISO 37001:2016",
+      "section": "8.9",
+      "summary": "Raising concerns \u2014 procedures encouraging + enabling personnel\n+ business associates to raise concerns in good faith\n(whistleblowing channel); anonymity + confidentiality\nprotection; non-retaliation; investigation; escalation to\ncompliance function.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO37001-8.10",
+      "standard": "ISO 37001:2016",
+      "section": "8.10",
+      "summary": "Investigating + dealing with bribery \u2014 procedures for\ninvestigation of suspected bribery + non-compliance with the\nABMS; authority + independence of investigators; preservation\nof evidence; escalation to law enforcement where required;\ndisciplinary + corrective + preventive action.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO37001-9.4",
+      "standard": "ISO 37001:2016",
+      "section": "9.4",
+      "summary": "Review by anti-bribery compliance function \u2014 periodic review\nof the ABMS by the compliance function; reporting to top\nmanagement + governing body; consideration of changes to the\nABMS as a result of the review.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22301-5.2",
+      "standard": "ISO 22301:2019",
+      "section": "5.2",
+      "summary": "Business continuity policy \u2014 top management establishes a\ndocumented policy that is appropriate to the purpose; provides\nframework for setting BC objectives; includes commitment to\nsatisfy applicable requirements + continual improvement of the\nBCMS; communicated within the organization + available to\ninterested parties.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22301-6.1",
+      "standard": "ISO 22301:2019",
+      "section": "6.1",
+      "summary": "Actions to address risks + opportunities \u2014 for the BCMS, to\ngive assurance that the BCMS can achieve its intended outcomes\n+ prevent / reduce undesired effects + achieve continual\nimprovement.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22301-6.2",
+      "standard": "ISO 22301:2019",
+      "section": "6.2",
+      "summary": "Business continuity objectives + planning to achieve them \u2014\nconsistent with policy + measurable where practicable +\nmonitored + communicated + updated. The BC objectives are\nderived from the BIA.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22301-8.2.2",
+      "standard": "ISO 22301:2019",
+      "section": "8.2.2",
+      "summary": "Business Impact Analysis (BIA) \u2014 systematic process to identify\n+ assess the impacts of disruption on prioritized activities;\ndetermine prioritized activities + their resource requirements\n+ identification of dependencies; determine prioritized\ntimeframes for resumption (RTO + MAO + MBCO + RPO).",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22301-8.2.3",
+      "standard": "ISO 22301:2019",
+      "section": "8.2.3",
+      "summary": "Risk assessment \u2014 identify + analyze + evaluate risks of\ndisruption to prioritized activities. Outputs inform selection\nof BC strategies + solutions (\u00a78.4).",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22301-8.4",
+      "standard": "ISO 22301:2019",
+      "section": "8.4",
+      "summary": "Business continuity strategies + solutions \u2014 selected to meet\nRTO/RPO/MBCO targets per BIA; cover protection of prioritized\nactivities + their resources (people, information +\ncommunication technology, infrastructure, supplies, partners\n+ suppliers, financial resources). Stabilization, continuity,\nrecovery, return.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22301-8.5",
+      "standard": "ISO 22301:2019",
+      "section": "8.5",
+      "summary": "Business continuity plans + procedures \u2014 documented procedures\nto ensure continuity of prioritized activities during disruption\n+ respond to + manage the disruption; specific to types of\ndisruption per the risk assessment + BC strategies; reviewed +\ntested + maintained.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22301-8.6",
+      "standard": "ISO 22301:2019",
+      "section": "8.6",
+      "summary": "Exercise programme \u2014 exercises (tabletop, communications\ncascade, technical, full-scale) at planned intervals to\nvalidate the BCMS; clearly defined aims, objectives, scope,\nsuccess criteria; post-exercise review with documented\nimprovements; varied scenarios over time.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22301-8.7",
+      "standard": "ISO 22301:2019",
+      "section": "8.7",
+      "summary": "Evaluation of business continuity documentation + capabilities\n\u2014 periodic + post-disruption + post-exercise review of the\neffectiveness of BC strategies, solutions, plans, procedures.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22301-9.1",
+      "standard": "ISO 22301:2019",
+      "section": "9.1",
+      "summary": "Monitoring + measurement + analysis + evaluation \u2014 what is\nmonitored + how + when + by whom; effectiveness of BC measures;\nresults documented + retained as evidence.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22301-9.2",
+      "standard": "ISO 22301:2019",
+      "section": "9.2",
+      "summary": "Internal audit \u2014 planned audits of the BCMS at planned\nintervals; consideration of importance of processes + previous\naudit results; auditor objectivity + impartiality; corrective\naction.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22301-9.3",
+      "standard": "ISO 22301:2019",
+      "section": "9.3",
+      "summary": "Management review \u2014 top management reviews the BCMS at planned\nintervals; inputs include audit results, BC exercise results,\nchanges in interested-party needs, risk + opportunity\nidentification, performance information, status of corrective\nactions.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO22301-10.2",
+      "standard": "ISO 22301:2019",
+      "section": "10.2",
+      "summary": "Nonconformity + corrective action \u2014 react to NC; evaluate\nneed for action; implement; review effectiveness; update BCMS\nif necessary.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-4.1",
+      "standard": "ISO 9001:2015",
+      "section": "4.1",
+      "summary": "Understanding the organization and its context \u2014 internal +\nexternal issues relevant to the QMS purpose + strategic\ndirection. Documented in a context-of-the-organization\nanalysis (often the opening section of the quality manual).",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-4.4",
+      "standard": "ISO 9001:2015",
+      "section": "4.4",
+      "summary": "Quality management system + its processes \u2014 process approach,\nincluding determining processes needed, their sequence +\ninteraction, criteria + methods for operation + control,\nresources, responsibilities, risks + opportunities.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-5.1",
+      "standard": "ISO 9001:2015",
+      "section": "5.1",
+      "summary": "Leadership and commitment \u2014 top management demonstrates\nleadership via accountability, customer focus, integration\nof QMS into business processes, promoting process + risk-\nbased thinking, ensuring resources, communicating QMS\nimportance, engaging + supporting people, promoting\nimprovement.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-5.2",
+      "standard": "ISO 9001:2015",
+      "section": "5.2",
+      "summary": "Quality policy \u2014 established by top management, appropriate\nto the organization's purpose + context, includes commitment\nto satisfy applicable requirements + continual improvement,\nprovides a framework for setting quality objectives,\ndocumented, communicated, applied, available.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-6.1",
+      "standard": "ISO 9001:2015",
+      "section": "6.1",
+      "summary": "Actions to address risks + opportunities \u2014 determined for the\nQMS based on \u00a74.1 context + \u00a74.2 interested-party requirements.\nPlanned actions integrated into QMS processes. Effectiveness\nevaluated. The \"risk-based thinking\" core of ISO 9001:2015.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-7.1",
+      "standard": "ISO 9001:2015",
+      "section": "7.1",
+      "summary": "Resources \u2014 people, infrastructure (buildings, equipment,\ntransport, ICT), environment for process operation\n(physical, social, psychological), monitoring + measuring\nresources (with traceability per \u00a77.1.5.2 where applicable),\norganizational knowledge.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-7.1.5.2",
+      "standard": "ISO 9001:2015",
+      "section": "7.1.5.2",
+      "summary": "Measurement traceability \u2014 when measurement traceability is a\nrequirement or considered essential, measuring equipment shall\nbe calibrated + verified against measurement standards\ntraceable to international or national measurement standards;\nidentified to determine status; safeguarded against\nadjustments + damage + deterioration.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-7.4",
+      "standard": "ISO 9001:2015",
+      "section": "7.4",
+      "summary": "Communication \u2014 relevant internal + external communications\nincluding on what, when, with whom, how, and who\ncommunicates. Customer communication per \u00a78.2.1.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-7.5",
+      "standard": "ISO 9001:2015",
+      "section": "7.5",
+      "summary": "Documented information \u2014 creation + updating + control of\ndocumented information required by the QMS + by the standard.\nIdentification + description, format, review + approval,\ndistribution + access + retrieval + use, storage +\npreservation, control of changes, retention + disposition.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-8.1",
+      "standard": "ISO 9001:2015",
+      "section": "8.1",
+      "summary": "Operational planning + control \u2014 plan + implement + control\nprocesses needed to meet requirements for products + services,\nincluding determining requirements, establishing criteria,\ndetermining resources, implementing control of processes per\ncriteria, determining + keeping documented information\nneeded to confirm processes have been carried out as planned.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-8.4",
+      "standard": "ISO 9001:2015",
+      "section": "8.4",
+      "summary": "Control of externally-provided processes, products + services\n\u2014 supplier controls. Type + extent of control determined by\npotential impact on product conformity, effectiveness of\nsupplier's controls, ability to provide processes meeting\nrequirements. Supplier evaluation + selection + monitoring +\nre-evaluation; flow-down of requirements; verification of\nreceived product.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-8.5",
+      "standard": "ISO 9001:2015",
+      "section": "8.5",
+      "summary": "Production + service provision \u2014 implemented under controlled\nconditions: documented information defining characteristics of\nproducts + activities + results; suitable monitoring +\nmeasuring resources; monitoring + measurement at appropriate\nstages; suitable infrastructure + environment; competence +\nqualification of persons; validation + periodic revalidation\nof processes where resulting output cannot be verified by\nsubsequent monitoring + measurement; preventing human error;\nrelease + delivery + post-delivery activities.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-8.5.5",
+      "standard": "ISO 9001:2015",
+      "section": "8.5.5",
+      "summary": "Post-delivery activities \u2014 determined by statutory + regulatory\nrequirements, potential undesired consequences of products,\nnature + use + intended lifetime of products, customer\nrequirements, customer feedback. Includes warranty provisions,\ncontractual obligations such as maintenance services, final\ndisposal + recycling.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-8.7",
+      "standard": "ISO 9001:2015",
+      "section": "8.7",
+      "summary": "Control of nonconforming outputs \u2014 identified + controlled to\nprevent unintended use + delivery. Actions: correction,\nsegregation, containment, return + suspension of provision,\ninforming customer, obtaining authorization for acceptance\nunder concession. Documented information retained on\nnonconformity + actions taken + concessions + authorities\nthat decided actions.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-9.1",
+      "standard": "ISO 9001:2015",
+      "section": "9.1",
+      "summary": "Monitoring + measurement + analysis + evaluation \u2014 determine\nwhat needs monitoring + measuring, methods, when, results-\nanalysis cadence. Evaluation of QMS performance + effectiveness.\nCustomer satisfaction (\u00a79.1.2) monitored. Analysis +\nevaluation results used as input to management review.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-9.2",
+      "standard": "ISO 9001:2015",
+      "section": "9.2",
+      "summary": "Internal audit \u2014 conducted at planned intervals to provide\ninformation on QMS conformance + effective implementation +\nmaintenance. Audit program planned, established, implemented,\nmaintained, considering importance of processes, changes,\nprevious results. Auditors objective + impartial; corrective\nactions taken without undue delay; documented information\nretained.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-9.3",
+      "standard": "ISO 9001:2015",
+      "section": "9.3",
+      "summary": "Management review \u2014 top management reviews QMS at planned\nintervals for continuing suitability, adequacy, effectiveness,\nalignment with strategic direction. Inputs: status of actions\nfrom prior reviews, changes in external + internal issues,\ninfo on QMS performance + effectiveness (customer satisfaction,\nobjective achievement, process performance, conformity of\nproducts, nonconformities + corrective actions, monitoring +\nmeasurement results, audit results, supplier performance),\nresource adequacy, effectiveness of actions on risks +\nopportunities, opportunities for improvement.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO9001-10.2",
+      "standard": "ISO 9001:2015",
+      "section": "10.2",
+      "summary": "Nonconformity + corrective action \u2014 when nonconformity occurs\n(including from complaints): react, evaluate need for action\nto eliminate causes, implement, review effectiveness, update\nrisks + opportunities, make changes to QMS if necessary.\nDocumented information retained on nature of NC + actions\ntaken + results.",
+      "gap_note": null
+    },
+    {
+      "id": "SOC2-CC-common-criteria",
+      "standard": "AICPA TSC 2017",
+      "section": "Common Criteria (CC1-CC9)",
+      "summary": "Common Criteria \u2014 control environment + communication +\ninformation + risk assessment + monitoring + control activities\n+ logical + physical access controls + system operations +\nchange management + risk mitigation. Required for any SOC 2\nexamination regardless of category. Maps closely to ISO 27001\nAnnex A controls but with attestation-focused framing.",
+      "gap_note": null
+    },
+    {
+      "id": "SOC2-Security-TSC",
+      "standard": "AICPA TSC 2017",
+      "section": "Security (Common Criteria; mandatory)",
+      "summary": "Security Trust Services Category \u2014 the foundational + mandatory\nTSC for any SOC 2. Information + systems protected against\nunauthorized access (logical + physical) + unauthorized\ndisclosure of information + damage to systems that could\ncompromise availability + integrity + confidentiality + privacy\nof information.",
+      "gap_note": null
+    },
+    {
+      "id": "SOC2-Availability-TSC",
+      "standard": "AICPA TSC 2017",
+      "section": "Availability",
+      "summary": "Availability TSC (optional) \u2014 information + systems available\nfor operation + use as committed or agreed. Includes capacity\nmonitoring + disaster recovery + business continuity. Composes\nwith iso-22301 BCMS overlay.",
+      "gap_note": null
+    },
+    {
+      "id": "SOC2-Processing-Integrity-TSC",
+      "standard": "AICPA TSC 2017",
+      "section": "Processing Integrity",
+      "summary": "Processing Integrity TSC (optional) \u2014 system processing is\ncomplete + valid + accurate + timely + authorized to meet the\nentity's objectives. Particularly relevant for financial\ntransaction processing + data-pipeline integrity.",
+      "gap_note": null
+    },
+    {
+      "id": "SOC2-Confidentiality-TSC",
+      "standard": "AICPA TSC 2017",
+      "section": "Confidentiality",
+      "summary": "Confidentiality TSC (optional) \u2014 information designated as\nconfidential is protected. Distinct from Privacy (which covers\npersonal information specifically). Composes with iso-27001.",
+      "gap_note": null
+    },
+    {
+      "id": "SOC2-Privacy-TSC",
+      "standard": "AICPA TSC 2017",
+      "section": "Privacy",
+      "summary": "Privacy TSC (optional) \u2014 personal information is collected +\nused + retained + disclosed + disposed of to meet the entity's\nobjectives. Maps to GDPR + CCPA + sectoral privacy regs.",
+      "gap_note": null
+    },
+    {
+      "id": "SOC2-Type-I-vs-II",
+      "standard": "AICPA TSC 2017",
+      "section": "(examination type)",
+      "summary": "Type I vs. Type II \u2014 Type I is point-in-time control design\nexamination; Type II is operating-effectiveness examination\nover a period (typically 6-12 months). Customers + adopters\nexpect Type II for ongoing service relationships.",
+      "gap_note": null
+    },
+    {
+      "id": "SOC2-TII-design-and-operating",
+      "standard": "AICPA TSC 2017",
+      "section": "AT-C 105 + 205",
+      "summary": "Type II scope \u2014 attestation by independent CPA firm covering\nBOTH (i) suitability of design of controls + (ii) operating\neffectiveness of those controls OVER the specified observation\nperiod. Auditor opinion covers both dimensions.",
+      "gap_note": null
+    },
+    {
+      "id": "SOC2-TII-observation-period",
+      "standard": "AICPA TSC 2017",
+      "section": "AT-C 205.A23-A28",
+      "summary": "Observation period \u2014 minimum 3 months per AICPA guidance;\n**6-month** for first Type II; **12-month** for subsequent\nannual renewals. Continuous observation \u2014 gaps in observation\nwindow weaken auditor opinion. Sample-based testing of\ncontrols over the period \u2014 auditor selects samples per\npopulation characteristics.",
+      "gap_note": null
+    },
+    {
+      "id": "SOC2-TII-renewal-cadence",
+      "standard": "AICPA TSC 2017",
+      "section": "AICPA SOC 2 Reporting Framework",
+      "summary": "Renewal cadence \u2014 annual continuous attestation typical.\nCommon observation window: 11/1-10/31 (Q4-Q3) OR\n10/1-9/30 (fiscal year). Auditor's report ready ~30-60\ndays after observation period end. \"Gap letter\" or bridge\nletter optionally issued by auditor for the period between\nobservation-period-end + next-report-availability covering\nno-material-change-occurred.",
+      "gap_note": null
+    },
+    {
+      "id": "SOC2-TII-enterprise-default",
+      "standard": "AICPA TSC 2017",
+      "section": "Practice note (not in AT-C)",
+      "summary": "Enterprise customer default \u2014 Type II is the de-facto\nenterprise-customer SOC 2 requirement. Procurement teams\ntypically reject Type I. Vendor management programs require\nannual Type II refresh. SLAs sometimes specify a maximum-age-\nof-current-Type-II-report (e.g., 12 months) as a contractual\nrequirement.",
+      "gap_note": null
+    },
+    {
+      "id": "SOC2-TII-control-failures",
+      "standard": "AICPA TSC 2017",
+      "section": "AT-C 205.41-43 modified opinions",
+      "summary": "Control failures over the observation period \u2014 auditor\nmay issue modified opinion: (i) qualified \u2014 material control\nfailures isolated to specific area; (ii) adverse \u2014 pervasive\nfailures; (iii) disclaimer \u2014 unable to obtain sufficient\nevidence. Most adopters target unqualified opinion;\nmanagement response section documents remediation of\nidentified failures + recurrence-prevention actions.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27017-shared-responsibility",
+      "standard": "ISO/IEC 27017:2015",
+      "section": "\u00a76.1.1 \u2014 Shared responsibility",
+      "summary": "Shared responsibility model \u2014 both CSP and CSC roles + duties\nexplicitly identified + agreed in cloud service agreement.\nTraditional ISO 27001 SoA + risk treatment plan extended to\ncover responsibility-allocation per service model (IaaS / PaaS /\nSaaS) + deployment model (public / private / community /\nhybrid). Customer reviews CSP's SoA + responsibility-matrix at\nonboarding + annually + on material service change.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27017-CLD-6-3-1-relationship",
+      "standard": "ISO/IEC 27017:2015",
+      "section": "CLD.6.3.1 \u2014 Shared roles + responsibilities",
+      "summary": "Cloud-specific control \u2014 relationship between cloud service\ncustomer + cloud service provider. CSP documents service-\nspecific responsibility allocation; CSC verifies + supplements\nwith customer-controllable security measures. Documentation\nmaintained for audit trail.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27017-CLD-9-5-virtual-environment",
+      "standard": "ISO/IEC 27017:2015",
+      "section": "CLD.9.5.1 + CLD.9.5.2",
+      "summary": "Virtual environment controls \u2014 segregation of virtual machines\n/ containers / tenants per multi-tenant model (CLD.9.5.1) +\nhardening of virtual-machine configuration (CLD.9.5.2). Network\nmicro-segmentation, hypervisor escape prevention, container\nimage scanning, host-OS hardening, secure-by-default templates.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27017-CLD-12-data-removal",
+      "standard": "ISO/IEC 27017:2015",
+      "section": "CLD.8.1.5 + CLD.12.1.5",
+      "summary": "Data removal at service termination + admin operations\nmonitoring \u2014 CSP-documented data-deletion process at service\ntermination (covers active + backup + replicated data); CSP\nlogs administrative operations performed on customer data +\nmakes logs available to customer. Critical for GDPR Article\n28(3)(g) deletion/return obligations + GDPR Article 28(3)(h)\nauditability.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27017-CLD-13-1-4-network-virtual",
+      "standard": "ISO/IEC 27017:2015",
+      "section": "CLD.13.1.4",
+      "summary": "Alignment of security management for virtual + physical\nnetworks \u2014 when virtual + physical networks coexist, security\nmanagement is consistent + aligned. Virtual-network controls\nnot weaker than physical-network controls; visibility +\nmonitoring extends across both layers.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27017-customer-responsibility-supplement",
+      "standard": "ISO/IEC 27017:2015",
+      "section": "Throughout (CSC perspective)",
+      "summary": "Customer-side supplementary controls \u2014 even where CSP\noperates secure infrastructure, CSC retains responsibility\nfor: configuration of customer-controllable settings (IAM,\nencryption keys, network ACLs, audit log routing);\nauthentication of CSC users; classification + handling of\ndata placed in cloud; CSC-side incident detection (CSP\ncontrols infrastructure; CSC controls workload). CSP-CSC\nshared-responsibility matrix per service.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27701-PIMS-scope-extension",
+      "standard": "ISO/IEC 27701:2019",
+      "section": "\u00a75 + \u00a76",
+      "summary": "PIMS scope \u2014 Privacy Information Management System extends\nISMS to cover Personally Identifiable Information (PII)\nprocessing. Scope must explicitly include PII processing\noperations + identify role(s) (controller / processor / both).\nAnnex A (controllers) + Annex B (processors) provide controls\nmapping to ISO/IEC 27002 with privacy-specific guidance.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27701-Annex-A-controllers",
+      "standard": "ISO/IEC 27701:2019",
+      "section": "Annex A",
+      "summary": "PII controller controls \u2014 31 controls organised across legal\nbasis (A.7.2), purpose (A.7.2.2), consent (A.7.2.3-4),\nrecords of PII processing (A.7.2.8), DPIA (A.7.2.5), contract\nwith PII processor (A.7.2.6), joint controller (A.7.2.7),\nsubject rights (A.7.3), privacy by design + default (A.7.4),\nsharing/transfer (A.7.5). Maps closely to GDPR controller\nobligations + CCPA business obligations.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27701-Annex-B-processors",
+      "standard": "ISO/IEC 27701:2019",
+      "section": "Annex B",
+      "summary": "PII processor controls \u2014 18 controls organised across\ncustomer-agreement (B.8.2.1), customer obligations (B.8.2.2),\nrecords of processor PII processing (B.8.2.6), sub-processors\n(B.8.5.6-7), PII return + erasure (B.8.4.3). Maps closely to\nGDPR Article 28 processor obligations + CCPA \u00a71798.140\nservice-provider classification.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27701-certification-extension",
+      "standard": "ISO/IEC 27701:2019",
+      "section": "\u00a75.1 + \u00a75.2",
+      "summary": "Certification \u2014 PIMS certification is an EXTENSION to ISO/IEC\n27001 certification, NOT a standalone. Organisation must\nhold valid 27001 cert before pursuing 27701. Combined audit\ntypical; ISMS scope expanded to include PII processing as\nPIMS scope.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27701-GDPR-CCPA-mapping",
+      "standard": "ISO/IEC 27701:2019",
+      "section": "Annex D + Annex E",
+      "summary": "Mapping to GDPR + ISO/IEC 29100 \u2014 Annex D provides GDPR\nArticle-by-Article mapping to 27701 clauses + Annex A/B\ncontrols. Annex E maps to ISO/IEC 29100 privacy framework.\nUseful for adopters demonstrating GDPR compliance via 27701\ncertification + for adopters bridging GDPR + CCPA + other\nprivacy regimes through a single ISMS+PIMS.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-4.2",
+      "standard": "ISO 14001:2015",
+      "section": "4.2",
+      "summary": "Understanding the needs + expectations of interested parties \u2014\ndetermine relevant interested parties (regulators, neighboring\ncommunities, customers, suppliers, workers, NGOs), their relevant\nneeds + expectations, and which of those become compliance\nobligations.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-5.2",
+      "standard": "ISO 14001:2015",
+      "section": "5.2",
+      "summary": "Environmental policy \u2014 top management establishes + maintains\na policy appropriate to the purpose + context including the\nnature + scale + environmental impacts of activities, products,\nservices. Includes commitments to protection of the environment\n(incl. prevention of pollution + other commitments e.g.,\nsustainable resource use, climate change mitigation +\nadaptation, biodiversity), fulfillment of compliance\nobligations, continual improvement of EMS to enhance\nenvironmental performance.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-6.1.2",
+      "standard": "ISO 14001:2015",
+      "section": "6.1.2",
+      "summary": "Environmental aspects \u2014 identify aspects of activities, products,\nservices that can be controlled or influenced; determine\nassociated environmental impacts considering a lifecycle\nperspective. Determine significant environmental aspects\nusing established criteria. Maintain documented information\nof aspects + impacts + criteria + SEAs.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-6.1.3",
+      "standard": "ISO 14001:2015",
+      "section": "6.1.3",
+      "summary": "Compliance obligations \u2014 determine + have access to the\ncompliance obligations related to environmental aspects;\ndetermine how these apply to the organization; take obligations\ninto account when establishing + implementing + maintaining +\ncontinually improving the EMS.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-6.1.4",
+      "standard": "ISO 14001:2015",
+      "section": "6.1.4",
+      "summary": "Planning action \u2014 plan to take actions to address significant\nenvironmental aspects + compliance obligations + risks +\nopportunities identified per \u00a76.1.1, and to evaluate the\neffectiveness of these actions. Integration into EMS\nprocesses per \u00a76.1.1.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-6.2",
+      "standard": "ISO 14001:2015",
+      "section": "6.2",
+      "summary": "Environmental objectives + planning to achieve them \u2014 establish\nat relevant functions + levels, consistent with environmental\npolicy, considering SEAs + compliance obligations + risks +\nopportunities. Measurable, monitored, communicated, updated.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-7.4",
+      "standard": "ISO 14001:2015",
+      "section": "7.4",
+      "summary": "Communication \u2014 internal + external communications relevant to\nthe EMS including: what, when, with whom, how. External\ncommunication of significant environmental information as\nestablished by compliance obligations + the communication\nprocess. Responsiveness to relevant communications received.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-8.1",
+      "standard": "ISO 14001:2015",
+      "section": "8.1",
+      "summary": "Operational planning + control \u2014 establish + implement +\ncontrol + maintain processes needed to meet EMS requirements\n+ implement actions identified in \u00a76.1 + \u00a76.2. Includes\noperational criteria for SEAs, control of planned changes,\nreview of unintended changes + mitigation of adverse effects,\ncontrol / influence of outsourced processes, lifecycle\nperspective in design + procurement.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-8.2",
+      "standard": "ISO 14001:2015",
+      "section": "8.2",
+      "summary": "Emergency preparedness + response \u2014 establish + implement +\nmaintain processes needed to prepare for + respond to potential\nemergency situations identified in \u00a76.1.1. Periodic test of\nplanned response actions where practicable. Periodic review +\nrevision based on test results + actual occurrences.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-9.1.2",
+      "standard": "ISO 14001:2015",
+      "section": "9.1.2",
+      "summary": "Evaluation of compliance \u2014 establish + implement + maintain\nprocesses needed to evaluate fulfillment of compliance\nobligations. Determine frequency, evaluate compliance + take\naction if needed, maintain knowledge + understanding of\ncompliance status. Documented information retained as\nevidence of evaluation results.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO14001-10.2",
+      "standard": "ISO 14001:2015",
+      "section": "10.2",
+      "summary": "Nonconformity + corrective action \u2014 react to nonconformity\nincluding taking action to control + correct it + deal with\nconsequences (including mitigating adverse environmental\nimpacts); evaluate need for action to eliminate causes;\nimplement; review effectiveness; make changes to EMS if\nnecessary.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-4.2",
+      "standard": "ISO 45001:2018",
+      "section": "4.2",
+      "summary": "Understanding the needs + expectations of workers + other\ninterested parties \u2014 determine + monitor interested parties\n(workers, contractors, suppliers, customers, visitors,\nregulators, communities, families of workers), their relevant\nneeds + expectations, which become compliance obligations.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-5.2",
+      "standard": "ISO 45001:2018",
+      "section": "5.2",
+      "summary": "OH&S policy \u2014 top management establishes + implements +\nmaintains a policy that includes commitment to: provide safe\n+ healthy working conditions for prevention of work-related\ninjury + ill-health, appropriate to purpose + size + context\nand the specific nature of OH&S risks + opportunities;\nprovide framework for setting OH&S objectives; fulfil legal\n+ other requirements; eliminate hazards + reduce OH&S risks;\ncontinual improvement of OHSMS; consultation + participation\nof workers + their representatives.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-5.4",
+      "standard": "ISO 45001:2018",
+      "section": "5.4",
+      "summary": "Consultation + participation of workers \u2014 establish + implement\n+ maintain processes for consultation + participation of\nnon-managerial workers (and their representatives where they\nexist) in development + planning + implementation + performance\nevaluation + actions for improvement of the OHSMS. Provide\nmechanisms + time + training + resources; remove + minimize\nbarriers; specific topics requiring consultation OR\nparticipation are listed in \u00a75.4 a) and b).",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-6.1.2",
+      "standard": "ISO 45001:2018",
+      "section": "6.1.2",
+      "summary": "Hazard identification + assessment of risks + opportunities \u2014\nestablish + implement + maintain a hazard identification process\nongoing + proactive. Consider routine + non-routine activities,\nworkplace, work organization, factors affecting workers\n(incl. psychosocial), past relevant incidents, emergency\nsituations. Assess OH&S risks + identify other risks to the\nOHSMS. Identify OH&S opportunities + other opportunities.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-6.1.3",
+      "standard": "ISO 45001:2018",
+      "section": "6.1.3",
+      "summary": "Determination of legal + other requirements \u2014 determine + have\naccess to up-to-date legal + other requirements applicable to\nhazards + OH&S risks + OHSMS; determine how these requirements\napply + need to be communicated; take into account when\nestablishing + implementing + maintaining + improving OHSMS.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-6.1.4",
+      "standard": "ISO 45001:2018",
+      "section": "6.1.4",
+      "summary": "Planning action \u2014 plan to take actions to address risks +\nopportunities, address legal + other requirements, prepare\nfor + respond to emergency situations. Integrate into OHSMS\nprocesses + other business processes. Evaluate effectiveness.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-7.3",
+      "standard": "ISO 45001:2018",
+      "section": "7.3",
+      "summary": "Awareness \u2014 workers shall be made aware of the OH&S policy +\nobjectives, their contribution to OHSMS effectiveness,\nimplications + consequences of not conforming to OHSMS\nrequirements, incidents + outcomes of investigations\nrelevant to them, hazards + OH&S risks + actions\ndetermined relevant to them, ability to remove themselves\nfrom work situations they consider to present an imminent\n+ serious danger to their life or health, and arrangements\nfor protecting them from undue consequences for doing so.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-8.1.2",
+      "standard": "ISO 45001:2018",
+      "section": "8.1.2",
+      "summary": "Eliminating hazards + reducing OH&S risks \u2014 establish +\nimplement + maintain a process(es) for the elimination of\nhazards + reduction of OH&S risks using the hierarchy of\ncontrols: eliminate the hazard; substitute with less\nhazardous processes / operations / materials / equipment;\nuse engineering controls + reorganization of work;\nadministrative controls including training; PPE. PPE is\nthe last resort.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-8.1.3",
+      "standard": "ISO 45001:2018",
+      "section": "8.1.3",
+      "summary": "Management of change \u2014 establish process(es) for implementation\n+ control of planned temporary + permanent changes that\naffect OH&S performance (new / modified products / services /\nprocesses; workplace / surroundings / work organization /\nworking conditions; equipment; workforce; legal + other\nrequirements; knowledge / information about hazards + OH&S\nrisks; technology development). Review consequences of\nunintended changes + mitigate adverse effects.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-8.1.4",
+      "standard": "ISO 45001:2018",
+      "section": "8.1.4",
+      "summary": "Procurement \u2014 establish process(es) to control procurement of\nproducts + services so they conform to OHSMS. Includes\ncoordinating procurement processes with contractors to identify\nhazards + assess + control OH&S risks arising from contractors'\nactivities + operations that impact organization OR workers OR\nother interested parties.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-8.2",
+      "standard": "ISO 45001:2018",
+      "section": "8.2",
+      "summary": "Emergency preparedness + response \u2014 establish + implement +\nmaintain process(es) needed to prepare for + respond to\npotential emergency situations identified in \u00a76.1.2.1.\nPlanned response, training, communication of relevant\ninformation to workers + interested parties, periodic testing\n+ revision, evaluation + revision after testing + occurrence.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO45001-10.2",
+      "standard": "ISO 45001:2018",
+      "section": "10.2",
+      "summary": "Incident + nonconformity + corrective action \u2014 react in a\ntimely manner to incidents + nonconformities including\ncontrolling + correcting them, dealing with consequences;\nevaluate (with participation of workers + involvement of\nother relevant interested parties) the need for corrective\naction to eliminate root cause(s); review existing\nOH&S risk assessments + other risks; determine + implement\naction needed including corrective; review effectiveness;\nmake changes to OHSMS if necessary.",
+      "gap_note": null
+    },
+    {
+      "id": "NHTSA-573-defect-noncompliance",
+      "standard": "49 CFR 573",
+      "section": "\u00a7573.6",
+      "summary": "Defect Information Report (DIR) \u2014 manufacturer determining\nthat a safety-related defect or noncompliance with an FMVSS\nexists in its products shall furnish notification to NHTSA\nwithin 5 working days. Report content per \u00a7573.6(c) includes\nmanufacturer + product identification, defect/noncompliance\ndescription, hazard assessment, vehicle/equipment population\nidentification + numbers, remedy program, schedule, owner-\nnotification plan.",
+      "gap_note": null
+    },
+    {
+      "id": "NHTSA-577-owner-notification",
+      "standard": "49 CFR 577",
+      "section": "\u00a7577.5 + \u00a7577.7 + \u00a7577.8",
+      "summary": "Owner Notification \u2014 manufacturer shall send notification by\nfirst-class mail to each owner (per \u00a7577.6) within 60 days\nof submitting the 573 report (per \u00a7577.7). Letter content\nper \u00a7577.5 includes 10 mandatory elements (manufacturer +\nproduct identification, defect/noncompliance description,\nrisk to motor vehicle safety, warning against continued use,\nremedy description + time for availability, no-charge\nremedy statement, instructions + NHTSA complaint procedure,\ncampaign number). Second notification per \u00a7577.8 if remedy\ncompletion < 70% at 6 months. Reimbursement per \u00a7577.9 for\npre-notification remedy charges.",
+      "gap_note": null
+    },
+    {
+      "id": "NHTSA-579-TREAD-EWR",
+      "standard": "49 CFR 579",
+      "section": "\u00a7579.21",
+      "summary": "TREAD Act Early Warning Reporting \u2014 automotive manufacturers\nabove thresholds (passenger cars > 5,000 units; multipurpose\npassenger vehicles + trucks > 25,000 units; etc.) submit\nquarterly EWR reports per \u00a7579.21 covering: production data;\ndeath + injury + property damage claims; field reports;\nconsumer complaints; warranty claims; foreign defect\nnotifications + recalls. Pattern in EWR data may trigger\n573 defect determination \u2014 the two frameworks are linked.",
+      "gap_note": null
+    },
+    {
+      "id": "FDA-CFR7-recall-classification",
+      "standard": "21 CFR 7",
+      "section": "\u00a77.3 + \u00a77.41-\u00a77.42",
+      "summary": "FDA recall classification \u2014 Class I (reasonable probability\nthat use will cause serious adverse health consequences or\ndeath); Class II (use may cause temporary or medically\nreversible adverse health consequences or remote serious\nconsequences); Class III (use is not likely to cause adverse\nhealth consequences). Voluntary recalls initiated by firm;\nFDA classifies after firm submission. Effectiveness checks\nper \u00a77.42(b)(4) at three levels (A = 100% / B = sample /\nC = ~10%) per Class.",
+      "gap_note": null
+    },
+    {
+      "id": "FDA-CFR806-corrections-removals",
+      "standard": "21 CFR 806",
+      "section": "\u00a7806.10",
+      "summary": "Medical-device Reports of Corrections and Removals \u2014\nmanufacturers report corrections (e.g., field-software patch)\nand removals (e.g., device retrieval) initiated to reduce\nrisk to health or remedy violation. Within 10 working days\nof initiating the action. Report content per \u00a7806.10(c)\nincludes date + description + reason + product identification\n+ quantity + consignee identification + risk + copies of\ncommunications. Distinct from MDR adverse-event reports per\n21 CFR Part 803.",
+      "gap_note": null
+    },
+    {
+      "id": "CPSIA-Section-15-substantial-product-hazard",
+      "standard": "CPSIA Section 15",
+      "section": "\u00a715(b) \u2014 15 USC \u00a72064(b)",
+      "summary": "Substantial Product Hazard reporting \u2014 every manufacturer +\nimporter + distributor + retailer who obtains information\nwhich reasonably supports the conclusion that a product they\nmarket presents a substantial product hazard shall report to\nCPSC within 24 hours per \u00a715(b). Substantial product hazard\ndefined per \u00a715(a) as: (1) failure to comply with a CPSC\nrule + the failure creates substantial risk of injury, OR\n(2) defect which creates substantial risk of injury. CPSC\nreviews + may negotiate corrective action plan + publish\nrecall notice. 16 CFR Part 1115 provides further detail.",
+      "gap_note": null
+    },
+    {
+      "id": "Recall-decision-flow",
+      "standard": "21 CFR 7",
+      "section": "(cross-vertical)",
+      "summary": "Recall decision flow \u2014 single Recall Coordinator decision-\nmaker convenes multi-functional Recall Team within 4 hours\n(1 hour for known Class I / serious-risk / known substantial\nproduct hazard). Team reviews evidence + applies framework-\nspecific classification + decision documented with rationale\n+ time-stamped.",
+      "gap_note": null
+    },
+    {
+      "id": "Recall-distribution-list-traceability",
+      "standard": "21 CFR 7",
+      "section": "(cross-vertical)",
+      "summary": "Distribution-list extraction + product traceability \u2014\nframework-specific traceability granularity (NHTSA: per-VIN;\nFDA medical: per-UDI + per-lot/serial; FDA food: per-lot\n+ 1-up-1-down; CPSIA consumer products: per-batch +\nper-distributor). Target extraction time \u2264 4 hours after\nrecall decision.",
+      "gap_note": null
+    },
+    {
+      "id": "Recall-effectiveness-checks",
+      "standard": "21 CFR 7",
+      "section": "\u00a77.42(b)(4)",
+      "summary": "Effectiveness checks verifying that recall notifications\nreached consignees + consignees acted on them. Three FDA\nlevels per Class (A / B / C); NHTSA quarterly status\nreporting per \u00a7573.7 with completion rates; CPSC quarterly\nprogress reports per agreed schedule.",
+      "gap_note": null
+    },
+    {
+      "id": "Recall-recovery-disposition",
+      "standard": "21 CFR 7",
+      "section": "(cross-vertical)",
+      "summary": "Recovery + disposition \u2014 destroyed (with witness verification\n+ Certificate of Destruction) OR reworked / reconditioned\n(only with regulator agreement) OR returned-to-customer\nafter retrofit. Tracking units recovered vs. units shipped\nwith ongoing recovery rate.",
+      "gap_note": null
+    },
+    {
+      "id": "Recall-mock-recall-exercise",
+      "standard": "21 CFR 7",
+      "section": "(cross-vertical)",
+      "summary": "Mock recall exercise minimum annually \u2014 tests distribution-\nlist extraction speed + accuracy, lot/VIN/UDI traceability,\nteam activation + communication, documentation completeness.\nAcceptance target \u2264 4 hours for distribution-list completion\n(FDA food guidance; NHTSA expects manufacturer-defined\ntarget; medical-device UDI traceability expected near-\nimmediate).",
+      "gap_note": null
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "templates/qms-policy/RISK-ASSESSMENT-TEMPLATE.md",
+      "name": "Risk Assessment (per ISO 31000 framework + ISO 31010 techniques \u2014 already shipped at v0.25.0)",
+      "addresses": [
+        "ISO31000-process",
+        "ISO22301-8.2.3"
+      ]
+    },
+    {
+      "path": "templates/qms-policy/RISK-AND-OPPORTUNITY-REGISTER-TEMPLATE.md",
+      "name": "Risk + Opportunity Register (per ISO 31000 \u00a76 process \u2014 already shipped at v0.25.0)",
+      "addresses": [
+        "ISO31000-process",
+        "ISO9001-6.1"
+      ]
+    },
+    {
+      "path": "templates/qms-sops/SOP-TEMPLATE.md",
+      "name": "Risk Management Framework SOP (ISO 31000 \u00a75 \u2014 leadership + integration + design + implementation + evaluation + improvement)",
+      "addresses": [
+        "ISO31000-principles",
+        "ISO31000-framework",
+        "ISO31000-integration",
+        "ISO27001-A.5.31",
+        "IMS-combined-audit-programme",
+        "IMS-documentation-control",
+        "IMS-Annex-SL-version-control",
+        "GDPR-Art-7-consent",
+        "GDPR-Art-37-39-DPO",
+        "CCPA-1798-130-methods",
+        "ISO37001-5.3.2",
+        "ISO37001-6.1",
+        "ISO37001-7.2.2.2",
+        "ISO37001-7.3",
+        "ISO37001-8.3",
+        "ISO37001-8.4",
+        "ISO37001-8.7",
+        "ISO37001-8.9",
+        "ISO37001-8.10",
+        "ISO22301-6.1",
+        "ISO22301-6.2",
+        "ISO22301-9.1",
+        "ISO9001-6.1",
+        "ISO9001-7.1",
+        "ISO9001-7.1.5.2",
+        "ISO9001-7.4",
+        "ISO9001-7.5",
+        "ISO9001-8.1",
+        "ISO9001-8.5",
+        "ISO9001-8.5.5",
+        "ISO9001-8.7",
+        "SOC2-CC-common-criteria",
+        "SOC2-Security-TSC",
+        "SOC2-Availability-TSC",
+        "SOC2-Processing-Integrity-TSC",
+        "SOC2-Confidentiality-TSC",
+        "SOC2-Privacy-TSC",
+        "SOC2-Type-I-vs-II",
+        "SOC2-TII-observation-period",
+        "SOC2-TII-control-failures",
+        "SOC2-TII-renewal-cadence",
+        "ISO27017-CLD-9-5-virtual-environment",
+        "ISO27017-CLD-12-data-removal",
+        "ISO27017-CLD-13-1-4-network-virtual",
+        "ISO27701-Annex-A-controllers",
+        "ISO27701-Annex-B-processors",
+        "ISO27701-GDPR-CCPA-mapping",
+        "ISO14001-6.1.4",
+        "ISO14001-6.2",
+        "ISO14001-7.4",
+        "ISO45001-6.1.4",
+        "ISO45001-7.3",
+        "NHTSA-579-TREAD-EWR"
+      ]
+    },
+    {
+      "path": "templates/qms-policy/quality-policy.md",
+      "name": "Quality policy (information-security overlay binding)",
+      "addresses": [
+        "ISO27001-A.5.1",
+        "ISO27001-A.5.31",
+        "IMS-Annex-SL-shared-structure",
+        "IMS-shared-policy-objectives",
+        "IMS-shared-context-stakeholders",
+        "IMS-shared-risk-opportunity",
+        "ISO37001-5.1.2",
+        "ISO37001-5.2",
+        "ISO22301-5.2",
+        "ISO9001-4.1",
+        "ISO9001-4.4",
+        "ISO9001-5.1",
+        "ISO9001-5.2",
+        "SOC2-TII-design-and-operating",
+        "SOC2-TII-observation-period",
+        "SOC2-TII-renewal-cadence",
+        "SOC2-TII-enterprise-default",
+        "ISO27017-shared-responsibility",
+        "ISO27017-CLD-6-3-1-relationship",
+        "ISO27017-customer-responsibility-supplement",
+        "ISO27701-PIMS-scope-extension",
+        "ISO27701-certification-extension",
+        "ISO27701-GDPR-CCPA-mapping",
+        "ISO14001-5.2",
+        "ISO14001-4.2",
+        "ISO45001-5.2",
+        "ISO45001-4.2",
+        "ISO45001-5.4"
+      ]
+    },
+    {
+      "path": "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md",
+      "name": "Software release record template (information-security overlay binding)",
+      "addresses": [
+        "ISO27001-A.8.31"
+      ]
+    },
+    {
+      "path": "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md",
+      "name": "Management review (IMS \u2014 combined inputs + outputs covering all in-scope management systems' \u00a79.3 requirements per ISO 9001 + ISO 14001 + ISO 45001 + ISO 50001 + ISO 27001)",
+      "addresses": [
+        "IMS-shared-management-review",
+        "ISO37001-9.4",
+        "ISO22301-9.3",
+        "ISO9001-9.1",
+        "ISO9001-9.3"
+      ]
+    },
+    {
+      "path": "templates/qms-privacy/PRIVACY-POLICY-TEMPLATE.md",
+      "name": "Privacy Policy (GDPR Articles 13-14 + CCPA notice at collection + CPRA SPI categories + consumer rights summary)",
+      "addresses": [
+        "GDPR-Art-13-14-information",
+        "GDPR-Art-5-principles",
+        "GDPR-Art-6-lawful-bases",
+        "GDPR-Art-12-modalities",
+        "GDPR-Art-15-22-rights",
+        "CCPA-1798-135-notice-at-collection",
+        "CCPA-1798-100-right-to-know",
+        "CCPA-1798-105-right-to-delete",
+        "CCPA-1798-120-opt-out",
+        "CCPA-1798-121-limit-SPI",
+        "CCPA-1798-106-right-to-correct"
+      ]
+    },
+    {
+      "path": "templates/qms-privacy/DPA-TEMPLATE.md",
+      "name": "Data Processing Agreement (GDPR Article 28 + CCPA Service Provider/Contractor \u00a71798.140 + 2021/915 SCCs reference for international transfers)",
+      "addresses": [
+        "GDPR-Art-28-processor-agreements",
+        "GDPR-Art-44-49-transfers",
+        "CCPA-1798-140-service-provider-contractor"
+      ]
+    },
+    {
+      "path": "templates/qms-privacy/DPIA-TEMPLATE.md",
+      "name": "Data Protection Impact Assessment (GDPR Article 35 + CCPA Risk Assessment regulations 2025-2026)",
+      "addresses": [
+        "GDPR-Art-35-DPIA",
+        "GDPR-Art-25-DP-by-design-default",
+        "GDPR-Art-9-special-categories",
+        "CCPA-1798-185-ADMT-risk-cybersecurity"
+      ]
+    },
+    {
+      "path": "templates/qms-privacy/ROPA-TEMPLATE.md",
+      "name": "Records of Processing Activities (GDPR Article 30 with all 7 controller fields + processor variant)",
+      "addresses": [
+        "GDPR-Art-30-ROPA",
+        "GDPR-Art-5-principles",
+        "GDPR-Art-32-security"
+      ]
+    },
+    {
+      "path": "templates/qms-privacy/PERSONAL-DATA-BREACH-NOTIFICATION-TEMPLATE.md",
+      "name": "Personal Data Breach Notification (GDPR Article 33 SA 72-hour notice + Article 34 data subject notice + CCPA \u00a71798.150 documented incident record + state AG breach laws cross-reference)",
+      "addresses": [
+        "GDPR-Art-33-34-breach",
+        "GDPR-Art-32-security",
+        "CCPA-1798-150-data-breach-civil-action"
+      ]
+    },
+    {
+      "path": "templates/qms-abms/DUE-DILIGENCE-ASSESSMENT-TEMPLATE.md",
+      "name": "Anti-Bribery Due Diligence Assessment (ISO 37001 \u00a78.2 + \u00a78.5)",
+      "addresses": [
+        "ISO37001-8.2",
+        "ISO37001-8.5"
+      ]
+    },
+    {
+      "path": "templates/qms-bcms/BCMS-PLAN-TEMPLATE.md",
+      "name": "Business Continuity Plan (ISO 22301 \u00a78.4 + \u00a78.5 + \u00a78.6 + \u00a78.7 \u2014 incorporates BIA + Risk Assessment + scenarios + CMT + recovery procedures + exercise programme)",
+      "addresses": [
+        "ISO22301-8.2.2",
+        "ISO22301-8.2.3",
+        "ISO22301-8.4",
+        "ISO22301-8.5",
+        "ISO22301-8.6",
+        "ISO22301-8.7"
+      ]
+    },
+    {
+      "path": "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md",
+      "name": "BCMS internal audit (ISO 22301 \u00a79.2)",
+      "addresses": [
+        "ISO22301-9.2",
+        "ISO9001-9.2",
+        "ISO14001-9.1.2"
+      ]
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/capa.yml",
+      "name": "CAPA \u2014 BCMS nonconformity + corrective action (ISO 22301 \u00a710.2)",
+      "addresses": [
+        "ISO22301-10.2",
+        "ISO9001-10.2",
+        "ISO14001-10.2",
+        "ISO45001-10.2"
+      ]
+    },
+    {
+      "path": "templates/qms-bcms/BIA-TEMPLATE.md",
+      "name": "Business Impact Analysis standalone (ISO 22301 \u00a78.2.2; v0.25.0 standalone bound here at v0.34.0)",
+      "addresses": [
+        "ISO22301-8.2.2"
+      ]
+    },
+    {
+      "path": "templates/qms-bcms/IT-DR-PLAN-TEMPLATE.md",
+      "name": "IT Disaster Recovery Plan (IT subset of BCMS-PLAN per ISO 22301 \u00a78.5; v0.34.0)",
+      "addresses": [
+        "ISO22301-8.5"
+      ]
+    },
+    {
+      "path": "templates/qms-policy/QUALITY-MANUAL-TEMPLATE.md",
+      "name": "Quality Manual \u2014 top-level QMS organizing document (ISO 9001 \u00a74 + \u00a75; v0.25.0 standalone bound here at v0.34.0)",
+      "addresses": [
+        "ISO9001-4.1",
+        "ISO9001-4.4",
+        "ISO9001-5.1",
+        "ISO9001-5.2",
+        "ISO9001-6.1"
+      ]
+    },
+    {
+      "path": "templates/qms-policy/PROCESS-MAP-TEMPLATE.md",
+      "name": "QMS Process Map (ISO 9001 \u00a74.4 \u2014 process inventory + interaction; v0.25.0 standalone bound here at v0.34.0)",
+      "addresses": [
+        "ISO9001-4.4"
+      ]
+    },
+    {
+      "path": "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md",
+      "name": "Approved Supplier List (ISO 9001 \u00a78.4)",
+      "addresses": [
+        "ISO9001-8.4"
+      ]
+    },
+    {
+      "path": "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md",
+      "name": "Supplier evaluation (ISO 9001 \u00a78.4)",
+      "addresses": [
+        "ISO9001-8.4"
+      ]
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/nonconformance.yml",
+      "name": "Nonconformance report (ISO 9001 \u00a78.7)",
+      "addresses": [
+        "ISO9001-8.7"
+      ]
+    },
+    {
+      "path": "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md",
+      "name": "Environmental Aspects + Impacts Register (ISO 14001 \u00a76.1.2 + \u00a76.1.3 + \u00a78.1 + \u00a78.2 cross-references)",
+      "addresses": [
+        "ISO14001-6.1.2",
+        "ISO14001-6.1.3",
+        "ISO14001-8.1",
+        "ISO14001-8.2"
+      ]
+    },
+    {
+      "path": "templates/qms-environmental/COMPLIANCE-OBLIGATIONS-REGISTER-TEMPLATE.md",
+      "name": "Compliance Obligations Register (ISO 14001 \u00a76.1.3 dedicated; v0.25.0 standalone bound directly at v0.34.0)",
+      "addresses": [
+        "ISO14001-6.1.3"
+      ]
+    },
+    {
+      "path": "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md",
+      "name": "HIRA \u2014 Hazard Identification + Risk Assessment with Hierarchy of Controls (ISO 45001 \u00a76.1.2 + \u00a76.1.3 + \u00a78.1.2 + \u00a78.1.3 + \u00a78.1.4 + \u00a78.2)",
+      "addresses": [
+        "ISO45001-6.1.2",
+        "ISO45001-6.1.3",
+        "ISO45001-8.1.2",
+        "ISO45001-8.1.3",
+        "ISO45001-8.1.4",
+        "ISO45001-8.2"
+      ]
+    },
+    {
+      "path": "templates/qms-ohs/OHS-LEGAL-REQUIREMENTS-REGISTER-TEMPLATE.md",
+      "name": "OH&S Legal and Other Requirements Register (ISO 45001 \u00a76.1.3 dedicated; v0.25.0 standalone bound directly at v0.34.0)",
+      "addresses": [
+        "ISO45001-6.1.3"
+      ]
+    },
+    {
+      "path": "templates/qms-recall/GENERALIZED-RECALL-PROCEDURE-TEMPLATE.md",
+      "name": "Generalized Recall Procedure (cross-vertical with framework-specific notification windows + classification + content per NHTSA / FDA / CPSIA / EU)",
+      "addresses": [
+        "FDA-CFR7-recall-classification",
+        "FDA-CFR806-corrections-removals",
+        "CPSIA-Section-15-substantial-product-hazard",
+        "Recall-decision-flow",
+        "Recall-distribution-list-traceability",
+        "Recall-effectiveness-checks",
+        "Recall-recovery-disposition",
+        "Recall-mock-recall-exercise"
+      ]
+    },
+    {
+      "path": "templates/qms-recall/NHTSA-OWNER-NOTIFICATION-TEMPLATE.md",
+      "name": "NHTSA Part 577 Owner Notification Letter (49 CFR 577.5 + \u00a7577.7 + \u00a7577.8 + \u00a7577.9 \u2014 automotive-specific)",
+      "addresses": [
+        "NHTSA-573-defect-noncompliance",
+        "NHTSA-577-owner-notification"
+      ]
+    }
+  ],
+  "traceability": {
+    "forward": {
+      "templates/qms-policy/RISK-ASSESSMENT-TEMPLATE.md": [
+        "ISO31000-process",
+        "ISO22301-8.2.3"
+      ],
+      "templates/qms-policy/RISK-AND-OPPORTUNITY-REGISTER-TEMPLATE.md": [
+        "ISO31000-process",
+        "ISO9001-6.1"
+      ],
+      "templates/qms-sops/SOP-TEMPLATE.md": [
+        "ISO31000-principles",
+        "ISO31000-framework",
+        "ISO31000-integration",
+        "ISO27001-A.5.31",
+        "IMS-combined-audit-programme",
+        "IMS-documentation-control",
+        "IMS-Annex-SL-version-control",
+        "GDPR-Art-7-consent",
+        "GDPR-Art-37-39-DPO",
+        "CCPA-1798-130-methods",
+        "ISO37001-5.3.2",
+        "ISO37001-6.1",
+        "ISO37001-7.2.2.2",
+        "ISO37001-7.3",
+        "ISO37001-8.3",
+        "ISO37001-8.4",
+        "ISO37001-8.7",
+        "ISO37001-8.9",
+        "ISO37001-8.10",
+        "ISO22301-6.1",
+        "ISO22301-6.2",
+        "ISO22301-9.1",
+        "ISO9001-6.1",
+        "ISO9001-7.1",
+        "ISO9001-7.1.5.2",
+        "ISO9001-7.4",
+        "ISO9001-7.5",
+        "ISO9001-8.1",
+        "ISO9001-8.5",
+        "ISO9001-8.5.5",
+        "ISO9001-8.7",
+        "SOC2-CC-common-criteria",
+        "SOC2-Security-TSC",
+        "SOC2-Availability-TSC",
+        "SOC2-Processing-Integrity-TSC",
+        "SOC2-Confidentiality-TSC",
+        "SOC2-Privacy-TSC",
+        "SOC2-Type-I-vs-II",
+        "SOC2-TII-observation-period",
+        "SOC2-TII-control-failures",
+        "SOC2-TII-renewal-cadence",
+        "ISO27017-CLD-9-5-virtual-environment",
+        "ISO27017-CLD-12-data-removal",
+        "ISO27017-CLD-13-1-4-network-virtual",
+        "ISO27701-Annex-A-controllers",
+        "ISO27701-Annex-B-processors",
+        "ISO27701-GDPR-CCPA-mapping",
+        "ISO14001-6.1.4",
+        "ISO14001-6.2",
+        "ISO14001-7.4",
+        "ISO45001-6.1.4",
+        "ISO45001-7.3",
+        "NHTSA-579-TREAD-EWR"
+      ],
+      "templates/qms-policy/quality-policy.md": [
+        "ISO27001-A.5.1",
+        "ISO27001-A.5.31",
+        "IMS-Annex-SL-shared-structure",
+        "IMS-shared-policy-objectives",
+        "IMS-shared-context-stakeholders",
+        "IMS-shared-risk-opportunity",
+        "ISO37001-5.1.2",
+        "ISO37001-5.2",
+        "ISO22301-5.2",
+        "ISO9001-4.1",
+        "ISO9001-4.4",
+        "ISO9001-5.1",
+        "ISO9001-5.2",
+        "SOC2-TII-design-and-operating",
+        "SOC2-TII-observation-period",
+        "SOC2-TII-renewal-cadence",
+        "SOC2-TII-enterprise-default",
+        "ISO27017-shared-responsibility",
+        "ISO27017-CLD-6-3-1-relationship",
+        "ISO27017-customer-responsibility-supplement",
+        "ISO27701-PIMS-scope-extension",
+        "ISO27701-certification-extension",
+        "ISO27701-GDPR-CCPA-mapping",
+        "ISO14001-5.2",
+        "ISO14001-4.2",
+        "ISO45001-5.2",
+        "ISO45001-4.2",
+        "ISO45001-5.4"
+      ],
+      "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md": [
+        "ISO27001-A.8.31"
+      ],
+      "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md": [
+        "IMS-shared-management-review",
+        "ISO37001-9.4",
+        "ISO22301-9.3",
+        "ISO9001-9.1",
+        "ISO9001-9.3"
+      ],
+      "templates/qms-privacy/PRIVACY-POLICY-TEMPLATE.md": [
+        "GDPR-Art-13-14-information",
+        "GDPR-Art-5-principles",
+        "GDPR-Art-6-lawful-bases",
+        "GDPR-Art-12-modalities",
+        "GDPR-Art-15-22-rights",
+        "CCPA-1798-135-notice-at-collection",
+        "CCPA-1798-100-right-to-know",
+        "CCPA-1798-105-right-to-delete",
+        "CCPA-1798-120-opt-out",
+        "CCPA-1798-121-limit-SPI",
+        "CCPA-1798-106-right-to-correct"
+      ],
+      "templates/qms-privacy/DPA-TEMPLATE.md": [
+        "GDPR-Art-28-processor-agreements",
+        "GDPR-Art-44-49-transfers",
+        "CCPA-1798-140-service-provider-contractor"
+      ],
+      "templates/qms-privacy/DPIA-TEMPLATE.md": [
+        "GDPR-Art-35-DPIA",
+        "GDPR-Art-25-DP-by-design-default",
+        "GDPR-Art-9-special-categories",
+        "CCPA-1798-185-ADMT-risk-cybersecurity"
+      ],
+      "templates/qms-privacy/ROPA-TEMPLATE.md": [
+        "GDPR-Art-30-ROPA",
+        "GDPR-Art-5-principles",
+        "GDPR-Art-32-security"
+      ],
+      "templates/qms-privacy/PERSONAL-DATA-BREACH-NOTIFICATION-TEMPLATE.md": [
+        "GDPR-Art-33-34-breach",
+        "GDPR-Art-32-security",
+        "CCPA-1798-150-data-breach-civil-action"
+      ],
+      "templates/qms-abms/DUE-DILIGENCE-ASSESSMENT-TEMPLATE.md": [
+        "ISO37001-8.2",
+        "ISO37001-8.5"
+      ],
+      "templates/qms-bcms/BCMS-PLAN-TEMPLATE.md": [
+        "ISO22301-8.2.2",
+        "ISO22301-8.2.3",
+        "ISO22301-8.4",
+        "ISO22301-8.5",
+        "ISO22301-8.6",
+        "ISO22301-8.7"
+      ],
+      "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md": [
+        "ISO22301-9.2",
+        "ISO9001-9.2",
+        "ISO14001-9.1.2"
+      ],
+      ".github/ISSUE_TEMPLATE/capa.yml": [
+        "ISO22301-10.2",
+        "ISO9001-10.2",
+        "ISO14001-10.2",
+        "ISO45001-10.2"
+      ],
+      "templates/qms-bcms/BIA-TEMPLATE.md": [
+        "ISO22301-8.2.2"
+      ],
+      "templates/qms-bcms/IT-DR-PLAN-TEMPLATE.md": [
+        "ISO22301-8.5"
+      ],
+      "templates/qms-policy/QUALITY-MANUAL-TEMPLATE.md": [
+        "ISO9001-4.1",
+        "ISO9001-4.4",
+        "ISO9001-5.1",
+        "ISO9001-5.2",
+        "ISO9001-6.1"
+      ],
+      "templates/qms-policy/PROCESS-MAP-TEMPLATE.md": [
+        "ISO9001-4.4"
+      ],
+      "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md": [
+        "ISO9001-8.4"
+      ],
+      "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md": [
+        "ISO9001-8.4"
+      ],
+      ".github/ISSUE_TEMPLATE/nonconformance.yml": [
+        "ISO9001-8.7"
+      ],
+      "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md": [
+        "ISO14001-6.1.2",
+        "ISO14001-6.1.3",
+        "ISO14001-8.1",
+        "ISO14001-8.2"
+      ],
+      "templates/qms-environmental/COMPLIANCE-OBLIGATIONS-REGISTER-TEMPLATE.md": [
+        "ISO14001-6.1.3"
+      ],
+      "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md": [
+        "ISO45001-6.1.2",
+        "ISO45001-6.1.3",
+        "ISO45001-8.1.2",
+        "ISO45001-8.1.3",
+        "ISO45001-8.1.4",
+        "ISO45001-8.2"
+      ],
+      "templates/qms-ohs/OHS-LEGAL-REQUIREMENTS-REGISTER-TEMPLATE.md": [
+        "ISO45001-6.1.3"
+      ],
+      "templates/qms-recall/GENERALIZED-RECALL-PROCEDURE-TEMPLATE.md": [
+        "FDA-CFR7-recall-classification",
+        "FDA-CFR806-corrections-removals",
+        "CPSIA-Section-15-substantial-product-hazard",
+        "Recall-decision-flow",
+        "Recall-distribution-list-traceability",
+        "Recall-effectiveness-checks",
+        "Recall-recovery-disposition",
+        "Recall-mock-recall-exercise"
+      ],
+      "templates/qms-recall/NHTSA-OWNER-NOTIFICATION-TEMPLATE.md": [
+        "NHTSA-573-defect-noncompliance",
+        "NHTSA-577-owner-notification"
+      ]
+    },
+    "reverse": {
+      "ISO31000-principles": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO31000-framework": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO31000-process": [
+        "templates/qms-policy/RISK-ASSESSMENT-TEMPLATE.md",
+        "templates/qms-policy/RISK-AND-OPPORTUNITY-REGISTER-TEMPLATE.md"
+      ],
+      "ISO31000-integration": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO27001-A.5.1": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO27001-A.5.31": [
+        "templates/qms-sops/SOP-TEMPLATE.md",
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO27001-A.8.31": [
+        "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md"
+      ],
+      "IMS-Annex-SL-shared-structure": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "IMS-shared-policy-objectives": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "IMS-shared-context-stakeholders": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "IMS-shared-risk-opportunity": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "IMS-shared-management-review": [
+        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md"
+      ],
+      "IMS-combined-audit-programme": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "IMS-documentation-control": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "IMS-Annex-SL-version-control": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "GDPR-Art-5-principles": [
+        "templates/qms-privacy/PRIVACY-POLICY-TEMPLATE.md",
+        "templates/qms-privacy/ROPA-TEMPLATE.md"
+      ],
+      "GDPR-Art-6-lawful-bases": [
+        "templates/qms-privacy/PRIVACY-POLICY-TEMPLATE.md"
+      ],
+      "GDPR-Art-7-consent": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "GDPR-Art-9-special-categories": [
+        "templates/qms-privacy/DPIA-TEMPLATE.md"
+      ],
+      "GDPR-Art-12-modalities": [
+        "templates/qms-privacy/PRIVACY-POLICY-TEMPLATE.md"
+      ],
+      "GDPR-Art-13-14-information": [
+        "templates/qms-privacy/PRIVACY-POLICY-TEMPLATE.md"
+      ],
+      "GDPR-Art-15-22-rights": [
+        "templates/qms-privacy/PRIVACY-POLICY-TEMPLATE.md"
+      ],
+      "GDPR-Art-25-DP-by-design-default": [
+        "templates/qms-privacy/DPIA-TEMPLATE.md"
+      ],
+      "GDPR-Art-28-processor-agreements": [
+        "templates/qms-privacy/DPA-TEMPLATE.md"
+      ],
+      "GDPR-Art-30-ROPA": [
+        "templates/qms-privacy/ROPA-TEMPLATE.md"
+      ],
+      "GDPR-Art-32-security": [
+        "templates/qms-privacy/ROPA-TEMPLATE.md",
+        "templates/qms-privacy/PERSONAL-DATA-BREACH-NOTIFICATION-TEMPLATE.md"
+      ],
+      "GDPR-Art-33-34-breach": [
+        "templates/qms-privacy/PERSONAL-DATA-BREACH-NOTIFICATION-TEMPLATE.md"
+      ],
+      "GDPR-Art-35-DPIA": [
+        "templates/qms-privacy/DPIA-TEMPLATE.md"
+      ],
+      "GDPR-Art-37-39-DPO": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "GDPR-Art-44-49-transfers": [
+        "templates/qms-privacy/DPA-TEMPLATE.md"
+      ],
+      "CCPA-1798-100-right-to-know": [
+        "templates/qms-privacy/PRIVACY-POLICY-TEMPLATE.md"
+      ],
+      "CCPA-1798-105-right-to-delete": [
+        "templates/qms-privacy/PRIVACY-POLICY-TEMPLATE.md"
+      ],
+      "CCPA-1798-120-opt-out": [
+        "templates/qms-privacy/PRIVACY-POLICY-TEMPLATE.md"
+      ],
+      "CCPA-1798-121-limit-SPI": [
+        "templates/qms-privacy/PRIVACY-POLICY-TEMPLATE.md"
+      ],
+      "CCPA-1798-106-right-to-correct": [
+        "templates/qms-privacy/PRIVACY-POLICY-TEMPLATE.md"
+      ],
+      "CCPA-1798-130-methods": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "CCPA-1798-135-notice-at-collection": [
+        "templates/qms-privacy/PRIVACY-POLICY-TEMPLATE.md"
+      ],
+      "CCPA-1798-140-service-provider-contractor": [
+        "templates/qms-privacy/DPA-TEMPLATE.md"
+      ],
+      "CCPA-1798-150-data-breach-civil-action": [
+        "templates/qms-privacy/PERSONAL-DATA-BREACH-NOTIFICATION-TEMPLATE.md"
+      ],
+      "CCPA-1798-185-ADMT-risk-cybersecurity": [
+        "templates/qms-privacy/DPIA-TEMPLATE.md"
+      ],
+      "ISO37001-5.1.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO37001-5.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO37001-5.3.2": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO37001-6.1": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO37001-7.2.2.2": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO37001-7.3": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO37001-8.2": [
+        "templates/qms-abms/DUE-DILIGENCE-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO37001-8.3": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO37001-8.4": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO37001-8.5": [
+        "templates/qms-abms/DUE-DILIGENCE-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO37001-8.7": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO37001-8.9": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO37001-8.10": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO37001-9.4": [
+        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md"
+      ],
+      "ISO22301-5.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO22301-6.1": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO22301-6.2": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO22301-8.2.2": [
+        "templates/qms-bcms/BCMS-PLAN-TEMPLATE.md",
+        "templates/qms-bcms/BIA-TEMPLATE.md"
+      ],
+      "ISO22301-8.2.3": [
+        "templates/qms-policy/RISK-ASSESSMENT-TEMPLATE.md",
+        "templates/qms-bcms/BCMS-PLAN-TEMPLATE.md"
+      ],
+      "ISO22301-8.4": [
+        "templates/qms-bcms/BCMS-PLAN-TEMPLATE.md"
+      ],
+      "ISO22301-8.5": [
+        "templates/qms-bcms/BCMS-PLAN-TEMPLATE.md",
+        "templates/qms-bcms/IT-DR-PLAN-TEMPLATE.md"
+      ],
+      "ISO22301-8.6": [
+        "templates/qms-bcms/BCMS-PLAN-TEMPLATE.md"
+      ],
+      "ISO22301-8.7": [
+        "templates/qms-bcms/BCMS-PLAN-TEMPLATE.md"
+      ],
+      "ISO22301-9.1": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO22301-9.2": [
+        "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md"
+      ],
+      "ISO22301-9.3": [
+        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md"
+      ],
+      "ISO22301-10.2": [
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ],
+      "ISO9001-4.1": [
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-policy/QUALITY-MANUAL-TEMPLATE.md"
+      ],
+      "ISO9001-4.4": [
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-policy/QUALITY-MANUAL-TEMPLATE.md",
+        "templates/qms-policy/PROCESS-MAP-TEMPLATE.md"
+      ],
+      "ISO9001-5.1": [
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-policy/QUALITY-MANUAL-TEMPLATE.md"
+      ],
+      "ISO9001-5.2": [
+        "templates/qms-policy/quality-policy.md",
+        "templates/qms-policy/QUALITY-MANUAL-TEMPLATE.md"
+      ],
+      "ISO9001-6.1": [
+        "templates/qms-policy/RISK-AND-OPPORTUNITY-REGISTER-TEMPLATE.md",
+        "templates/qms-sops/SOP-TEMPLATE.md",
+        "templates/qms-policy/QUALITY-MANUAL-TEMPLATE.md"
+      ],
+      "ISO9001-7.1": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO9001-7.1.5.2": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO9001-7.4": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO9001-7.5": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO9001-8.1": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO9001-8.4": [
+        "templates/qms-suppliers/APPROVED-SUPPLIER-LIST-TEMPLATE.md",
+        "templates/qms-suppliers/SUPPLIER-EVALUATION-TEMPLATE.md"
+      ],
+      "ISO9001-8.5": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO9001-8.5.5": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO9001-8.7": [
+        "templates/qms-sops/SOP-TEMPLATE.md",
+        ".github/ISSUE_TEMPLATE/nonconformance.yml"
+      ],
+      "ISO9001-9.1": [
+        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md"
+      ],
+      "ISO9001-9.2": [
+        "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md"
+      ],
+      "ISO9001-9.3": [
+        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md"
+      ],
+      "ISO9001-10.2": [
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ],
+      "SOC2-CC-common-criteria": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "SOC2-Security-TSC": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "SOC2-Availability-TSC": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "SOC2-Processing-Integrity-TSC": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "SOC2-Confidentiality-TSC": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "SOC2-Privacy-TSC": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "SOC2-Type-I-vs-II": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "SOC2-TII-design-and-operating": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "SOC2-TII-observation-period": [
+        "templates/qms-sops/SOP-TEMPLATE.md",
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "SOC2-TII-renewal-cadence": [
+        "templates/qms-sops/SOP-TEMPLATE.md",
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "SOC2-TII-enterprise-default": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "SOC2-TII-control-failures": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO27017-shared-responsibility": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO27017-CLD-6-3-1-relationship": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO27017-CLD-9-5-virtual-environment": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO27017-CLD-12-data-removal": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO27017-CLD-13-1-4-network-virtual": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO27017-customer-responsibility-supplement": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO27701-PIMS-scope-extension": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO27701-Annex-A-controllers": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO27701-Annex-B-processors": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO27701-certification-extension": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO27701-GDPR-CCPA-mapping": [
+        "templates/qms-sops/SOP-TEMPLATE.md",
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO14001-4.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO14001-5.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO14001-6.1.2": [
+        "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md"
+      ],
+      "ISO14001-6.1.3": [
+        "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md",
+        "templates/qms-environmental/COMPLIANCE-OBLIGATIONS-REGISTER-TEMPLATE.md"
+      ],
+      "ISO14001-6.1.4": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO14001-6.2": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO14001-7.4": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO14001-8.1": [
+        "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md"
+      ],
+      "ISO14001-8.2": [
+        "templates/qms-environmental/ENVIRONMENTAL-ASPECTS-REGISTER-TEMPLATE.md"
+      ],
+      "ISO14001-9.1.2": [
+        "templates/qms-sops/AUDIT-PROCEDURE-TEMPLATE.md"
+      ],
+      "ISO14001-10.2": [
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ],
+      "ISO45001-4.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO45001-5.2": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO45001-5.4": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO45001-6.1.2": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-6.1.3": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md",
+        "templates/qms-ohs/OHS-LEGAL-REQUIREMENTS-REGISTER-TEMPLATE.md"
+      ],
+      "ISO45001-6.1.4": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO45001-7.3": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO45001-8.1.2": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-8.1.3": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-8.1.4": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-8.2": [
+        "templates/qms-ohs/HAZARD-IDENTIFICATION-RISK-ASSESSMENT-TEMPLATE.md"
+      ],
+      "ISO45001-10.2": [
+        ".github/ISSUE_TEMPLATE/capa.yml"
+      ],
+      "NHTSA-573-defect-noncompliance": [
+        "templates/qms-recall/NHTSA-OWNER-NOTIFICATION-TEMPLATE.md"
+      ],
+      "NHTSA-577-owner-notification": [
+        "templates/qms-recall/NHTSA-OWNER-NOTIFICATION-TEMPLATE.md"
+      ],
+      "NHTSA-579-TREAD-EWR": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "FDA-CFR7-recall-classification": [
+        "templates/qms-recall/GENERALIZED-RECALL-PROCEDURE-TEMPLATE.md"
+      ],
+      "FDA-CFR806-corrections-removals": [
+        "templates/qms-recall/GENERALIZED-RECALL-PROCEDURE-TEMPLATE.md"
+      ],
+      "CPSIA-Section-15-substantial-product-hazard": [
+        "templates/qms-recall/GENERALIZED-RECALL-PROCEDURE-TEMPLATE.md"
+      ],
+      "Recall-decision-flow": [
+        "templates/qms-recall/GENERALIZED-RECALL-PROCEDURE-TEMPLATE.md"
+      ],
+      "Recall-distribution-list-traceability": [
+        "templates/qms-recall/GENERALIZED-RECALL-PROCEDURE-TEMPLATE.md"
+      ],
+      "Recall-effectiveness-checks": [
+        "templates/qms-recall/GENERALIZED-RECALL-PROCEDURE-TEMPLATE.md"
+      ],
+      "Recall-recovery-disposition": [
+        "templates/qms-recall/GENERALIZED-RECALL-PROCEDURE-TEMPLATE.md"
+      ],
+      "Recall-mock-recall-exercise": [
+        "templates/qms-recall/GENERALIZED-RECALL-PROCEDURE-TEMPLATE.md"
+      ]
+    }
+  }
+}

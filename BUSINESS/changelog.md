@@ -4,6 +4,77 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.61.0 DRAFT — 2026-05-25 — Startup-stage presets (P4)
+
+**1 NEW entry** OQ-125 (Gap-tier). Spec total 108 → 109. Engine 0.60.0 → 0.61.0.
+
+Closes compliance-architecture forward-work P4 (medium effort per v0.54.0 distribution). Adopter-facing — 4 opinionated preset bundles + maturity-model guide; no engine code change required.
+
+### What ships
+
+**4 preset bundles at `presets/`** (industry-agnostic; strictly monotonic):
+
+| Preset | Modules | Headline | Graduation trigger |
+|---|---|---|---|
+| `pre-seed.yaml` | 3 | `iso-31000` + `iso-27001` + `integrated-management-system` | first paying customer · vertical commitment · first non-founder hire |
+| `seed.yaml` | 7 | + `privacy` + `iso-37001` + `iso-22301` + `manufacturing` placeholder | SOC 2 Type II asked · 15+ employees · first formal cert pursuit |
+| `series-a.yaml` | 14 | + `soc-2` + `soc-2-type-ii` + `iso-27001-cloud` + `iso-27001-privacy` + `iso-14001` + `iso-45001` + `recall-workflow` | HITRUST asked · 50+ employees · non-home-jurisdiction market · NIST CSF tier-3+ goal |
+| `series-b-plus.yaml` | 21 | + `hitrust-csf` + `hitrust-i1` + `nist-csf` + `nist-csf-tier-3` + `iso-37301` + `iso-37301-general-business` + `iso-50001` | beyond this stage, composition is too organization-specific — layer vertical + cross-overlays explicitly |
+
+Each preset includes:
+- YAML bundle definition
+- `.matrix.json` resolved-matrix baseline (committed for regression detection)
+- Per-stage README documenting what's IN + what's NOT + compliance-event graduation triggers + per-vertical layering examples
+
+Plus:
+- `presets/README.md` — family index with at-a-glance comparison table + composition examples
+- `docs/guide/maturity-model.md` — 264-line cross-stage progression guide with 4 anti-patterns + opinionated-choices-flagged section + per-vertical layering reference
+
+### Design choices (opinionated; documented in maturity-model guide)
+
+- **Funding-round labels** (`pre-seed` / `seed` / `series-a` / `series-b-plus`) over compliance-event labels — funding rounds are recognizable to founders + operators + boards. But the actual trigger to graduate is a compliance event, named per-stage in the README.
+- **Industry-agnostic** — no preset bakes in a vertical. `manufacturing` is the placeholder in seed+; adopters swap for `medical-devices` / `pharma` / `aerospace` / `automotive` / `food-safety` / `chemicals` based on their actual vertical.
+- **Strictly monotonic** — each stage contains the prior stage's modules exactly. No reverse progressions.
+- **Privacy at seed, not pre-seed** — privacy substrate is meaningful only when there's data flow to protect.
+- **SOC 2 at series-a, not seed** — Type II is what customers want; observation period is meaningful only with stable operations.
+- **HITRUST at series-b-plus, not series-a** — HITRUST is ongoing-attestation; needs a named compliance function.
+- **No HIPAA in any preset** — adopter-layered; keeps presets industry-agnostic.
+
+### Pattern parallel to `bundles/`
+
+`bundles/` (8 example bundles) are vertical-specific (`example-samd` for medical devices, `example-aircraft` for aerospace, etc.) — *scope by product*. `presets/` are stage-specific — *scope by maturity*. The two are orthogonal lenses on the same module catalog; adopters use whichever framing fits their current decision.
+
+### CI integration
+
+`.github/workflows/engine-tests.yml` extended with a new step running `openqms regenerate --bundle presets/<name>.yaml` in dry-run mode for all 4 presets on every push touching engine/, modules/, registry/, templates/, bundles/, or presets/. Same regression-detection pattern as the existing `bundles/example-*` baselines.
+
+### 15 new pytest tests
+
+`engine/tests/test_presets.py`:
+
+- `test_preset_loads_cleanly` × 4 — each bundle YAML parses
+- `test_preset_module_count` × 4 — counts match expected (3/7/14/21)
+- `test_preset_modules_exist_on_disk` × 4 — every referenced module exists
+- `test_preset_monotonic_progression` — each stage strictly contains the prior
+- `test_preset_matrix_files_present` — all 4 `.matrix.json` baselines committed
+- `test_preset_readmes_present` — family README + 4 per-stage READMEs + maturity-model guide all present
+
+### Forward-work status after v0.61.0
+
+| Status | Count | Priorities |
+|---|---|---|
+| ✓ Closed | 12 | P1 + P3 + P4 + P5 + P6 + P7 + P8 + P9 + P10 + P12 + P13 + P14 |
+| Open hard | 2 | P2 (validation package) + P15 (integration-architecture trace network) |
+| Open medium | 1 | P11 (verify-deployment script) |
+
+Down to 3 open. P11 is the last remaining medium; P2 + P15 are the multi-session hard items.
+
+No engine code change. 228/228 pytest pass. Bundle baselines clean (8 example + 4 preset). Module lint clean. Template lint clean. Repo invariants hold (116 modules / 867 clauses / 379 template bindings / 0 orphans / 100.0% aggregate coverage).
+
+Status counts: 6 `:verified` / 98 `:tested` / 5 `:argued` / 0 `:open` (total 109).
+
+---
+
 ## v0.60.0 DRAFT — 2026-05-25 — Doc-control workflow hardening (P5)
 
 **1 NEW entry** OQ-124 (Architecture-tier — second since v0.49.0 OQ-115/116/117; first since v0.58.0 OQ-122). Spec total 107 → 108. Engine 0.59.0 → 0.60.0.

@@ -350,6 +350,18 @@ jobs:
           openqms regenerate --bundle example-cart
           openqms regenerate --bundle example-specialty-chemical
 
+      - name: Regenerate startup-stage presets (dry-run regression check)
+        # v0.61.0 (P4) — same gating as example bundles, applied to the
+        # 4 startup-stage presets at presets/. Exits 1 if any preset's
+        # matrix has drifted; operator either reverts the offending
+        # change or runs `openqms regenerate --bundle presets/<name>.yaml
+        # --write-matrix` and commits the new matrix.
+        run: |
+          openqms regenerate --bundle presets/pre-seed.yaml
+          openqms regenerate --bundle presets/seed.yaml
+          openqms regenerate --bundle presets/series-a.yaml
+          openqms regenerate --bundle presets/series-b-plus.yaml
+
       - name: Repo-wide trace matrix (smoke check + zero-orphan invariant)
         # Walks every module and asserts: (i) the command runs cleanly,
         # (ii) the repo-wide invariant holds — zero orphaned clauses and

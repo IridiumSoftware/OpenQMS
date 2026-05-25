@@ -1,0 +1,38 @@
+# Open QMS — pre-seed startup preset
+# -----------------------------------
+# Opinionated minimum-viable QMS scaffold for a pre-seed-stage startup.
+# Assumes: 1-5 people, MVP product, no paying customers yet, no
+# specific regulator yet.
+#
+# What's in: risk-management awareness substrate + IS baseline + IMS
+# substrate. Three modules. ~30 clauses.
+#
+# What's NOT in (intentionally): privacy regime, sector vertical,
+# anti-bribery, BCMS, certifications, sub-overlays, cross-overlays.
+# These are seed+ concerns; adding them too early creates compliance
+# debt that doesn't yet earn its keep.
+#
+# Graduate to `seed` when: first paying customer signs OR you commit
+# to a specific regulator (FDA, EMA, etc.) OR you hire your first
+# non-founder employee.
+#
+# See presets/pre-seed-README.md for the full IN/OUT/graduate rationale.
+# See docs/guide/maturity-model.md for the cross-stage progression.
+
+name: pre-seed
+product: PreSeed-Startup
+
+jurisdictions: []
+
+standards:
+  - "ISO 31000:2018"
+  - "ISO/IEC 27001:2022"
+  - "ISO 9001:2015"
+  - "ISO 14001:2015"
+  - "ISO 45001:2018"
+  - "ISO 50001:2018"
+
+modules:
+  - iso-31000
+  - iso-27001
+  - integrated-management-system

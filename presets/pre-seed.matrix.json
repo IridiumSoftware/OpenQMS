@@ -1,0 +1,262 @@
+{
+  "bundle": {
+    "product": "PreSeed-Startup",
+    "jurisdictions": [],
+    "standards": [
+      "ISO 31000:2018",
+      "ISO/IEC 27001:2022",
+      "ISO 9001:2015",
+      "ISO 14001:2015",
+      "ISO 45001:2018",
+      "ISO 50001:2018"
+    ]
+  },
+  "module": {
+    "name": "iso-31000-overlay+iso-27001-overlay+integrated-management-system",
+    "version": "composed"
+  },
+  "in_scope_clauses": [
+    {
+      "id": "ISO31000-principles",
+      "standard": "ISO 31000:2018",
+      "section": "\u00a74",
+      "summary": "8 risk management principles \u2014 integrated (part of all\nactivities), structured + comprehensive, customized (tailored\nto org context), inclusive (stakeholder engagement), dynamic\n(responsive to change), best available information, human +\ncultural factors, continual improvement.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO31000-framework",
+      "standard": "ISO 31000:2018",
+      "section": "\u00a75",
+      "summary": "Risk management framework \u2014 leadership + commitment +\nintegration into governance + design + implementation +\nevaluation + improvement of the framework itself. Distinct\nfrom the risk management PROCESS (\u00a76) which is the operational\nexecution.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO31000-process",
+      "standard": "ISO 31000:2018",
+      "section": "\u00a76",
+      "summary": "Risk management process \u2014 communication + consultation; scope\n+ context + criteria; risk assessment (identification +\nanalysis + evaluation); risk treatment; monitoring + review;\nrecording + reporting. Iterative across the lifecycle.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO31000-integration",
+      "standard": "ISO 31000:2018",
+      "section": "\u00a75.2",
+      "summary": "Integration \u2014 risk management is integrated into ALL\norganizational activities + functions. Not a separate\nfunction; embedded in strategy + governance + decision-\nmaking + operations. ISO 31000 + ISO 31010 (risk assessment\ntechniques) together provide the meta-framework supporting\ndomain-specific risk standards (ICH Q9 / HARA / TARA /\nHACCP / etc.).",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.5.1",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.5.1",
+      "summary": "Policies for information security \u2014 defined, approved by management,\npublished, communicated to and acknowledged by relevant personnel\nand interested parties, and reviewed at planned intervals or when\nsignificant changes occur.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.5.31",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.5.31",
+      "summary": "Legal, statutory, regulatory, and contractual requirements relevant\nto information security shall be identified, documented, and kept\nup to date. The organization's approach to meeting each shall be\ndefined.",
+      "gap_note": null
+    },
+    {
+      "id": "ISO27001-A.8.31",
+      "standard": "ISO/IEC 27001:2022",
+      "section": "A.8.31",
+      "summary": "Separation of development, test, and production environments \u2014\nincluding separation of duties where appropriate \u2014 to reduce the\nrisk of unauthorized access or unauthorized changes to the\noperational environment.",
+      "gap_note": null
+    },
+    {
+      "id": "IMS-Annex-SL-shared-structure",
+      "standard": "ISO 9001:2015",
+      "section": "Annex SL high-level structure (HLS) \u2014 common to all Annex SL standards",
+      "summary": "Shared high-level structure \u2014 Annex SL HLS provides common\nclause numbering across all ISO management-system standards:\n\u00a74 Context of organisation; \u00a75 Leadership; \u00a76 Planning;\n\u00a77 Support; \u00a78 Operation; \u00a79 Performance evaluation;\n\u00a710 Improvement. Common-clause identical text + discipline-\nspecific sub-clauses. IMS implementation leverages HLS for\nsingle integrated documentation + single integrated\nmanagement review.",
+      "gap_note": null
+    },
+    {
+      "id": "IMS-shared-policy-objectives",
+      "standard": "ISO 9001:2015",
+      "section": "\u00a75.2 + \u00a76.2 cross-MS integration",
+      "summary": "Shared policy + objectives \u2014 integrated quality + environment\n+ OH&S + energy policy statement reflecting commitment to\nall in-scope management systems. Per-MS objectives consolidated\ninto single objectives register; common cascade to operational\nKPIs. Top management single signoff covering all included MSes.",
+      "gap_note": null
+    },
+    {
+      "id": "IMS-shared-context-stakeholders",
+      "standard": "ISO 9001:2015",
+      "section": "\u00a74.1 + \u00a74.2 cross-MS integration",
+      "summary": "Shared context + interested-party analysis \u2014 single context\nanalysis covering organisational external + internal issues\nrelevant to all included management systems; single\ninterested-parties register noting per-party expectations\nacross quality + environmental + OH&S + energy + IS scopes.",
+      "gap_note": null
+    },
+    {
+      "id": "IMS-shared-risk-opportunity",
+      "standard": "ISO 9001:2015",
+      "section": "\u00a76.1 cross-MS integration",
+      "summary": "Integrated risk + opportunity register \u2014 single risk register\ncapturing quality risks (ISO 9001 \u00a76.1) + environmental\naspects + impacts (ISO 14001 \u00a76.1.2) + OH&S hazards + risks\n(ISO 45001 \u00a76.1.2) + IS risks (ISO 27001 \u00a76.1.2) + energy\nreview-derived risks (ISO 50001 \u00a76.3) + others. Common risk\nassessment methodology (often ISO 31000-aligned). Composes\ncleanly with iso-31000 meta-framework overlay.",
+      "gap_note": null
+    },
+    {
+      "id": "IMS-shared-management-review",
+      "standard": "ISO 9001:2015",
+      "section": "\u00a79.3 cross-MS integration",
+      "summary": "Combined management review \u2014 single meeting + record covering\nall in-scope MS-specific inputs per each standard's \u00a79.3\n(audit results, customer feedback, process performance,\nnonconformities + corrective actions, monitoring + measurement\nresults, risk + opportunity status, supplier performance,\netc., plus MS-specific inputs like environmental performance,\nOH&S performance, energy performance, IS performance). Outputs\nconsolidated into integrated improvement actions.",
+      "gap_note": null
+    },
+    {
+      "id": "IMS-combined-audit-programme",
+      "standard": "ISO 9001:2015",
+      "section": "\u00a79.2 + ISO 19011:2018 combined audits",
+      "summary": "Combined audit programme \u2014 internal audits planned per ISO\n19011:2018 covering multiple management systems in single\naudit visits where practical. Auditor competency requirements\ncover all in-scope MS standards. External certification body\nmay offer combined IMS certification audit (multi-MS audit\nday-rate reduction; common observations resolution; single\nintegrated audit report).",
+      "gap_note": null
+    },
+    {
+      "id": "IMS-documentation-control",
+      "standard": "ISO 9001:2015",
+      "section": "\u00a77.5 cross-MS integration",
+      "summary": "Integrated documented-information control \u2014 single document-\ncontrol SOP covering all MS scopes; integrated document index\nmapping documents to applicable MS clauses; common version\ncontrol + approval + distribution + retention rules. Single\nrecords-retention SOP covering MS-specific retention\nrequirements (e.g., training records, calibration records,\nincident records).",
+      "gap_note": null
+    },
+    {
+      "id": "IMS-Annex-SL-version-control",
+      "standard": "ISO 9001:2015",
+      "section": "Annex SL HLS revision tracking",
+      "summary": "Annex SL HLS version tracking \u2014 ISO/IEC Directives Part 1\nAnnex SL revised periodically (Edition 2 in 2018; further\nrevisions ongoing); MS standards adopt revised HLS at next\nstandard revision. IMS implementation tracks per-MS standard\nrevision adoption + plans coordinated transitions\n(e.g., ISO 9001 next revision; ISO 27001:2022 already\nadopted Annex SL Edition 2 HLS).",
+      "gap_note": null
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "templates/qms-policy/RISK-ASSESSMENT-TEMPLATE.md",
+      "name": "Risk Assessment (per ISO 31000 framework + ISO 31010 techniques \u2014 already shipped at v0.25.0)",
+      "addresses": [
+        "ISO31000-process"
+      ]
+    },
+    {
+      "path": "templates/qms-policy/RISK-AND-OPPORTUNITY-REGISTER-TEMPLATE.md",
+      "name": "Risk + Opportunity Register (per ISO 31000 \u00a76 process \u2014 already shipped at v0.25.0)",
+      "addresses": [
+        "ISO31000-process"
+      ]
+    },
+    {
+      "path": "templates/qms-sops/SOP-TEMPLATE.md",
+      "name": "Risk Management Framework SOP (ISO 31000 \u00a75 \u2014 leadership + integration + design + implementation + evaluation + improvement)",
+      "addresses": [
+        "ISO31000-principles",
+        "ISO31000-framework",
+        "ISO31000-integration",
+        "ISO27001-A.5.31",
+        "IMS-combined-audit-programme",
+        "IMS-documentation-control",
+        "IMS-Annex-SL-version-control"
+      ]
+    },
+    {
+      "path": "templates/qms-policy/quality-policy.md",
+      "name": "Quality policy (information-security overlay binding)",
+      "addresses": [
+        "ISO27001-A.5.1",
+        "ISO27001-A.5.31",
+        "IMS-Annex-SL-shared-structure",
+        "IMS-shared-policy-objectives",
+        "IMS-shared-context-stakeholders",
+        "IMS-shared-risk-opportunity"
+      ]
+    },
+    {
+      "path": "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md",
+      "name": "Software release record template (information-security overlay binding)",
+      "addresses": [
+        "ISO27001-A.8.31"
+      ]
+    },
+    {
+      "path": "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md",
+      "name": "Management review (IMS \u2014 combined inputs + outputs covering all in-scope management systems' \u00a79.3 requirements per ISO 9001 + ISO 14001 + ISO 45001 + ISO 50001 + ISO 27001)",
+      "addresses": [
+        "IMS-shared-management-review"
+      ]
+    }
+  ],
+  "traceability": {
+    "forward": {
+      "templates/qms-policy/RISK-ASSESSMENT-TEMPLATE.md": [
+        "ISO31000-process"
+      ],
+      "templates/qms-policy/RISK-AND-OPPORTUNITY-REGISTER-TEMPLATE.md": [
+        "ISO31000-process"
+      ],
+      "templates/qms-sops/SOP-TEMPLATE.md": [
+        "ISO31000-principles",
+        "ISO31000-framework",
+        "ISO31000-integration",
+        "ISO27001-A.5.31",
+        "IMS-combined-audit-programme",
+        "IMS-documentation-control",
+        "IMS-Annex-SL-version-control"
+      ],
+      "templates/qms-policy/quality-policy.md": [
+        "ISO27001-A.5.1",
+        "ISO27001-A.5.31",
+        "IMS-Annex-SL-shared-structure",
+        "IMS-shared-policy-objectives",
+        "IMS-shared-context-stakeholders",
+        "IMS-shared-risk-opportunity"
+      ],
+      "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md": [
+        "ISO27001-A.8.31"
+      ],
+      "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md": [
+        "IMS-shared-management-review"
+      ]
+    },
+    "reverse": {
+      "ISO31000-principles": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO31000-framework": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO31000-process": [
+        "templates/qms-policy/RISK-ASSESSMENT-TEMPLATE.md",
+        "templates/qms-policy/RISK-AND-OPPORTUNITY-REGISTER-TEMPLATE.md"
+      ],
+      "ISO31000-integration": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "ISO27001-A.5.1": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO27001-A.5.31": [
+        "templates/qms-sops/SOP-TEMPLATE.md",
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "ISO27001-A.8.31": [
+        "templates/product-sw/release/SOFTWARE-RELEASE-TEMPLATE.md"
+      ],
+      "IMS-Annex-SL-shared-structure": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "IMS-shared-policy-objectives": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "IMS-shared-context-stakeholders": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "IMS-shared-risk-opportunity": [
+        "templates/qms-policy/quality-policy.md"
+      ],
+      "IMS-shared-management-review": [
+        "templates/qms-management-review/MANAGEMENT-REVIEW-TEMPLATE.md"
+      ],
+      "IMS-combined-audit-programme": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "IMS-documentation-control": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ],
+      "IMS-Annex-SL-version-control": [
+        "templates/qms-sops/SOP-TEMPLATE.md"
+      ]
+    }
+  }
+}

@@ -316,7 +316,7 @@ The reviewer's headline framing — *"worth pursuing, but treat it as a generato
 - **medium** — multiple deliverables: new templates + workflow changes + tests + composites; ½ to 2 days; bounded scope.
 - **hard** — substantial new feature surface: new module + multiple templates + standards crosswalks + tests + composites + docs + per-jurisdiction handling; 2+ days; multi-session.
 
-**Current effort distribution across remaining 4 open priorities** (post-v0.60.0): 2 hard (P2 + P15) · 2 medium (P4 + P11) · 0 light. Closed since v0.51: P1 (v0.52.0) · P6 + P7 + P8 + P12 + P13 + P14 (light batch at v0.55.0) · P3 (non-technical UX batch at v0.57.0) · P9 (template schema validation at v0.58.0) · P10 (negative-path test suite at v0.59.0) · P5 (doc-control hardening at v0.60.0).
+**Current effort distribution across remaining 3 open priorities** (post-v0.61.0): 2 hard (P2 + P15) · 1 medium (P11) · 0 light. Closed since v0.51: P1 (v0.52.0) · P6 + P7 + P8 + P12 + P13 + P14 (light batch at v0.55.0) · P3 (non-technical UX batch at v0.57.0) · P9 (template schema validation at v0.58.0) · P10 (negative-path test suite at v0.59.0) · P5 (doc-control hardening at v0.60.0) · P4 (startup-stage presets at v0.61.0).
 
 ### Adopter-experience priorities
 
@@ -325,7 +325,7 @@ The reviewer's headline framing — *"worth pursuing, but treat it as a generato
 | ✓ **P1** | — | Compliance architecture trust-gate documentation | Closed at v0.52.0 by this document |
 | **P2** (next) | **hard** | Validation package templates (URS + IQ/OQ/PQ + Change Assessment + Computer System Validation protocol + Validation Master Plan) | Future release — `validation-package` cross-cutting overlay bound to 21 CFR Part 11 + EU GMP Annex 11 + ISO 13485 §7.5.6. New overlay module + 7 templates + clause crosswalks across 3 standards + composites + tests + documentation. Largest single deliverable in the queue. |
 | ✓ **P3** | medium | Better non-technical UX (CAPA usability, document routing, role-specific onboarding) | **Closed at v0.57.0** (OQ-121) — 5 new issue forms (training-completion / document-review / access-review / restoration-test / regulatory-review) align 1:1 with v0.55.0 SOPs + 5 new role/process guides (`onboarding.md` + `role-quality-manager.md` + `role-engineer.md` + `document-routing.md` + `capa-lifecycle.md`). `docs/guide/` 12 → 17. |
-| **P4** | medium | Opinionated startup-stage presets (pre-seed / seed / Series A / Series B+) | Future release — `presets/` family extending `bundles/`; compounds on P2. 4 preset bundles (YAML + matrix.json each) + maturity-model guide doc + per-stage progression rationale + CI integration. |
+| ✓ **P4** | medium | Opinionated startup-stage presets (pre-seed / seed / Series A / Series B+) | **Closed at v0.61.0** (OQ-125) — 4 industry-agnostic preset bundles at `presets/`: pre-seed (3 modules) → seed (7) → series-a (14) → series-b-plus (21); strictly monotonic. Each ships YAML + `.matrix.json` baseline + per-stage README with what's IN/OUT + compliance-event graduation triggers. Companion `docs/guide/maturity-model.md` (264 lines) documents cross-stage progression + 4 anti-patterns + per-vertical layering. CI-gated via existing `openqms regenerate` workflow. 15 new pytest tests. |
 
 ### Engine-hardening priorities (reviewer-flagged)
 

@@ -1,0 +1,78 @@
+# Open QMS — Series B+ startup preset
+# ------------------------------------
+# Opinionated QMS scaffold for a Series B+ startup.
+# Assumes: 50-200+ people, multi-jurisdiction operations, regulator-
+# engaged, multiple formal certifications maintained in parallel,
+# compliance function exists as named org unit.
+#
+# What's added over series-a: HITRUST (CSF + i1 intermediate scoping)
+# + NIST CSF 2.0 with tier-3 (Repeatable) maturity + ISO 37301
+# compliance management substrate + ISO 37301 general-business
+# sectoral profile + ISO 50001 energy management.
+#
+# What's still NOT in (because vertical-specific or jurisdiction-
+# specific): EU-specific frameworks (DORA, NIS2, EU MDR/IVDR/AI Act),
+# US-sector-specific (HIPAA, FFIEC, NERC CIP, CMMC), specific
+# cross-overlays (banking-resilience, utility-cybersecurity,
+# clinical-trial-multi-region, etc.). Adopters layer these on top
+# based on actual business scope.
+#
+# This is the largest startup-stage preset. Beyond series-b-plus the
+# composition is too organization-specific to predict; adopters use
+# this as the foundation and add vertical-overlays + cross-overlays
+# explicitly.
+#
+# See presets/series-b-plus-README.md for the full IN/OUT/graduate
+# rationale + suggested layering pointers for common vertical paths.
+
+name: series-b-plus
+product: SeriesBPlus-Startup
+
+jurisdictions: []
+
+standards:
+  - "21 CFR 7"
+  - "21 CFR 806"
+  - "49 CFR 573"
+  - "49 CFR 577"
+  - "49 CFR 579"
+  - "AICPA TSC 2017"
+  - "CCPA"
+  - "CPSIA Section 15"
+  - "GDPR"
+  - "HITRUST CSF"
+  - "ISO 14001:2015"
+  - "ISO 22301:2019"
+  - "ISO 31000:2018"
+  - "ISO 37001:2016"
+  - "ISO 37301:2021"
+  - "ISO 45001:2018"
+  - "ISO 50001:2018"
+  - "ISO 9001:2015"
+  - "ISO/IEC 27001:2022"
+  - "ISO/IEC 27017:2015"
+  - "ISO/IEC 27701:2019"
+  - "NIST CSF 2.0"
+
+modules:
+  - iso-31000
+  - iso-27001
+  - integrated-management-system
+  - privacy
+  - iso-37001
+  - iso-22301
+  - manufacturing
+  - soc-2
+  - soc-2-type-ii
+  - iso-27001-cloud
+  - iso-27001-privacy
+  - iso-14001
+  - iso-45001
+  - recall-workflow
+  - hitrust-csf
+  - hitrust-i1
+  - nist-csf
+  - nist-csf-tier-3
+  - iso-37301
+  - iso-37301-general-business
+  - iso-50001

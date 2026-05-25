@@ -1,0 +1,64 @@
+# Open QMS — Series A startup preset
+# -----------------------------------
+# Opinionated QMS scaffold for a Series A startup.
+# Assumes: 15-50 people, scaling rapidly, certifications becoming
+# materially required by customers + regulators.
+#
+# What's added over seed: SOC 2 Type II (point-in-time + observation-
+# period sub-overlays) + IS sub-overlays for cloud (ISO 27017) and
+# privacy management (ISO 27701 PIMS) + environmental (ISO 14001) and
+# OH&S (ISO 45001) MS for physical operations + cross-vertical
+# recall-workflow.
+#
+# What's still NOT in: HITRUST, NIST CSF, ISO 37301 compliance MS,
+# energy MS, multi-jurisdiction cross-overlays. Those come at
+# series-b-plus.
+#
+# Graduate to `series-b-plus` when: HITRUST i1 or r2 attestation
+# becomes a customer requirement OR you cross 50 employees OR you
+# enter your first non-home-jurisdiction regulatory market OR you
+# pursue NIST CSF tier-3+ maturity.
+#
+# See presets/series-a-README.md for the full IN/OUT/graduate rationale.
+
+name: series-a
+product: SeriesA-Startup
+
+jurisdictions: []
+
+standards:
+  - "21 CFR 7"
+  - "21 CFR 806"
+  - "49 CFR 573"
+  - "49 CFR 577"
+  - "49 CFR 579"
+  - "AICPA TSC 2017"
+  - "CCPA"
+  - "CPSIA Section 15"
+  - "GDPR"
+  - "ISO 14001:2015"
+  - "ISO 22301:2019"
+  - "ISO 31000:2018"
+  - "ISO 37001:2016"
+  - "ISO 45001:2018"
+  - "ISO 50001:2018"
+  - "ISO 9001:2015"
+  - "ISO/IEC 27001:2022"
+  - "ISO/IEC 27017:2015"
+  - "ISO/IEC 27701:2019"
+
+modules:
+  - iso-31000
+  - iso-27001
+  - integrated-management-system
+  - privacy
+  - iso-37001
+  - iso-22301
+  - manufacturing
+  - soc-2
+  - soc-2-type-ii
+  - iso-27001-cloud
+  - iso-27001-privacy
+  - iso-14001
+  - iso-45001
+  - recall-workflow
