@@ -4,6 +4,86 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.48.0 DRAFT — 2026-05-25 — US State Privacy Umbrella cross-cutting overlay
+
+**1 NEW entry** OQ-114. Spec total 97 → 98. Engine 0.47.0 → 0.48.0.
+
+26th cross-cutting overlay — **US state comprehensive privacy laws** using the VCDPA template family + state-divergence handling. Single overlay covering ~14 US states. Distinct from the `privacy` overlay (GDPR + CCPA) because CCPA scope is California-only + the other ~14 state laws use a 2-way GDPR-like controller/processor framework distinct from CCPA's 4-way classification + the VCDPA-template states include unique provisions (right-to-appeal denial; UOOM mandatory in 8 states; Maryland MODPA data-minimization strict-necessity).
+
+**Covered state laws** (as of 2026-05-25):
+- **Virginia VCDPA** (effective 2023-01-01) — template state
+- **Colorado CPA** (2023-07-01)
+- **Connecticut CTDPA** (2023-07-01)
+- **Utah UCPA** (2023-12-31)
+- **Texas TDPSA** (2024-07-01)
+- **Oregon OCPA** (2024-07-01)
+- **Montana MCDPA** (2024-10-01)
+- **Iowa ICDPA** (2025-01-01)
+- **Delaware DPDPA** (2025-01-01)
+- **New Hampshire NHPA** (2025-01-01)
+- **New Jersey NJDPA** (2025-01-15)
+- **Tennessee TIPA** (2025-07-01)
+- **Minnesota MCDPA** (2025-07-31)
+- **Maryland MODPA** (2025-10-01) — **STRICTER** (data minimization strict-necessity + absolute ban on sale of sensitive data + absolute ban on targeted advertising to under-18)
+- **Indiana INCDPA** (2026-01-01)
+- **Florida FDBR** (2024-07-01) — **NARROW scope** (only entities ≥$1B from online consumer ad services OR consumer app store + ≥250k apps OR smart-speaker virtual assistant)
+
+**10 clauses:** applicability thresholds (per-state) + controller/processor framework + 6 common consumer rights (with right-to-appeal — unique to VCDPA template) + sensitive data divergence (per-state lists vary) + Universal Opt-Out Mechanism (GPC honoring; mandatory in 8 states, optional in 6) + Data Protection Assessment (state-level DPA parallel to GDPR DPIA) + cure period + AG enforcement framework + controller obligations + Maryland MODPA stricter posture + Florida FDBR narrow scope.
+
+**2 new templates:**
+
+1. **`US-STATE-PRIVACY-MATRIX-TEMPLATE.md`** — state-by-state divergence tracker. Per-state matrix with applicability thresholds + cure periods (30-day-sunset vs persistent) + UOOM recognition + sensitive data scope + penalty caps + response deadlines + Maryland MODPA stricter scrutiny + Florida FDBR narrow-scope analysis. Operational programme summary + cure-period management + AG enforcement response sections.
+
+2. **`DATA-PROTECTION-ASSESSMENT-TEMPLATE.md`** — state-level DPA (parallel to GDPR DPIA). Heightened-risk trigger determination (targeted advertising / sale of personal data / sensitive data / profiling / children's data) + 4-section processing description + benefits/risks assessment + Maryland MODPA strict-necessity assessment + Florida FDBR scope check + safeguards + risk-benefit balance decision. Coordinated with GDPR DPIA + CCPA Risk Assessment for single-assessment-multi-regime efficiency.
+
+Plus 2 extensions to existing privacy templates:
+- **PRIVACY-POLICY** — state-by-state addendum (per-state controller-contact + consumer-rights summary + UOOM honoring statement + appeal procedure)
+- **DPA** — controller-processor contractual requirements per VCDPA-template states
+
+**Registry +1 PUBLIC standard** ("US State Privacy Laws" — covers all 16 named state laws with per-state effective dates + code citations + aliases).
+
+**Cross-cutting overlay count: 25 → 26. Total module count: 111 → 112.**
+
+**7-module privacy/healthcare mega composite validates:**
+```
+openqms validate \
+  --module privacy --module us-state-privacy --module hipaa \
+  --module iso-27001 --module iso-27001-privacy \
+  --module hitrust-csf --module hitrust-r2
+# → invariant_holds: True
+```
+
+Repo-wide zero-orphan invariant holds: **112 modules / 838 clauses / 371 templates / 0 orphans** per `openqms trace --all`.
+
+**Particularly natural compositions:**
+- `privacy + us-state-privacy` (CCPA California + 14 other states; most common US digital operator stack)
+- `privacy + us-state-privacy + hipaa` (full US privacy + healthcare)
+- `privacy + us-state-privacy + hipaa + iso-27001 + iso-27001-privacy` (ISMS + PIMS + multi-state privacy + HIPAA — strongest US-operating SaaS posture)
+- `privacy + us-state-privacy + connected-medical-device + hipaa + iso-27001 + iso-27001-cloud` (US-operating connected medical device with multi-state consumer base)
+
+**Critical divergences from VCDPA template handled:**
+- **Maryland MODPA (effective 2025-10-01)** — data minimization "strictly necessary" standard for sensitive data; absolute prohibition on sale of sensitive data; absolute prohibition on targeted advertising to under-18; narrower GLBA exception; up to $10k + $25k subsequent penalties. Treat as separate compliance posture.
+- **Florida FDBR** — narrowest US state law; effectively only Google + Meta + Amazon + Apple. Most adopters OUT. Where applicable: provisions broadly similar to VCDPA + specific opt-out for sale of sensitive data.
+- **Texas TDPSA** — cure period does NOT sunset (most states' cure periods sunset after 2-4 years).
+- **UOOM divergence** — mandatory in 8 states (Colorado + Connecticut + Texas + Oregon + Montana + Delaware + New Jersey + Minnesota); optional in 6 (Virginia + Utah + Iowa + Tennessee + Indiana + New Hampshire).
+- **Right-to-appeal** — denial → appeal mechanism unique to VCDPA-template states; NOT in GDPR or CCPA.
+
+CI extended (+5 validate steps). 116/116 pytest pass. All 8 bundle baselines clean. YAML linter clean on all 112 modules.
+
+Status counts: 6 `:verified` / 87 `:tested` / 5 `:argued` / 0 `:open` (total 98).
+
+**Forward work** per us-state-privacy README:
+- Per-state appeal procedure templates
+- Universal Opt-Out Signal handling SOP (GPC + IAB GPP + DAA AppChoices)
+- Maryland MODPA-specific data minimization assessment
+- Florida FDBR threshold determination workflow
+- State-AG complaint response template
+- Washington My Health My Data Act (MHMDA) standalone overlay — distinct from comprehensive privacy; consumer health data only
+
+Per user direction: "do the us-state privacy umbrella, then we'll turn to the engine next and do final cross-overlays and polishing" — us-state-privacy shipped here. Engine adopter-features (jurisdiction filtering + crosswalk export + module-coverage % reports) follow as v0.49.0+. Final cross-overlays + polishing as v0.50.0+.
+
+---
+
 ## v0.47.0 DRAFT — 2026-05-25 — Cross-overlay batch (5): connected-medical-device + cell-therapy-supply-chain + food-allergen-recall + defense-aerospace-cyber + digital-health-multi-region
 
 **1 NEW entry** OQ-113. Spec total 96 → 97. Engine 0.46.0 → 0.47.0.

@@ -1400,3 +1400,29 @@ standards:
       - "21st Century Cures"
       - "Cures Act §3060"
       - "ONC Cures"
+
+  - id: "US State Privacy Laws"
+    name: "US State Comprehensive Privacy Laws (VCDPA-template family + Florida FDBR + Maryland MODPA stricter variant)"
+    publisher: U.S. State Legislatures
+    edition: "VCDPA-family includes: Virginia VCDPA (Va. Code §59.1-575 et seq.; effective 2023-01-01) + Colorado CPA (C.R.S. §6-1-1301 et seq.; 2023-07-01) + Connecticut CTDPA (Conn. Gen. Stat. §42-515 et seq.; 2023-07-01) + Utah UCPA (Utah Code §13-61-101 et seq.; 2023-12-31) + Texas TDPSA (Tex. Bus. & Com. Code §541; 2024-07-01) + Oregon OCPA (ORS §646A.570 et seq.; 2024-07-01) + Montana MCDPA (Mont. Code §30-14-2801 et seq.; 2024-10-01) + Iowa ICDPA (Iowa Code §715D; 2025-01-01) + Delaware DPDPA (6 Del. C. §12D; 2025-01-01) + New Jersey NJDPA (P.L. 2023 c.266; 2025-01-15) + Tennessee TIPA (Tenn. Code §47-18-3201; 2025-07-01) + Minnesota MCDPA (Minn. Stat. §325O; 2025-07-31) + Maryland MODPA (Md. Code Com. Law §14-4601; 2025-10-01; STRICTER) + New Hampshire NHPA (RSA 507-H; 2025-01-01) + Indiana INCDPA (Ind. Code §24-15; 2026-01-01); Florida FDBR (Fla. Stat. §501.701; 2024-07-01; NARROW scope — only entities with >$1B revenue from online consumer ad services)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "VCDPA"
+      - "CPA"
+      - "CTDPA"
+      - "UCPA"
+      - "TDPSA"
+      - "OCPA"
+      - "MCDPA"
+      - "ICDPA"
+      - "DPDPA"
+      - "NJDPA"
+      - "TIPA"
+      - "INCDPA"
+      - "NHPA"
+      - "MODPA"
+      - "FDBR"
+      - "Virginia Consumer Data Protection Act"
+      - "Colorado Privacy Act"
+      - "Maryland Online Data Privacy Act"

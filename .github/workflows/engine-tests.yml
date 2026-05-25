@@ -263,6 +263,12 @@ jobs:
           openqms validate --module medical-devices --module privacy --module regulated-ai --module hipaa --module digital-health-multi-region
           # 24-module ultra composite — medical-devices + pharma + connected-medical-device + digital-health-multi-region + HIPAA + everything
           openqms validate --module medical-devices --module pharma --module combination-product --module connected-medical-device --module digital-health-multi-region --module pharma-sterile --module hipaa --module privacy --module iso-27001 --module iso-27001-cloud --module iso-27001-privacy --module regulated-ai --module iso-14001 --module iso-45001 --module iso-50001 --module iso-37001 --module iso-22301 --module iso-31000 --module integrated-management-system --module soc-2 --module soc-2-type-ii --module hitrust-csf --module hitrust-r2 --module iso-37301
+          # v0.48.0 — US state-privacy umbrella cross-cutting overlay (26th cross-cutting; VCDPA template family covering ~14 US states)
+          openqms validate --module us-state-privacy
+          openqms validate --module privacy --module us-state-privacy
+          openqms validate --module hipaa --module privacy --module us-state-privacy
+          openqms validate --module medical-devices --module privacy --module us-state-privacy --module hipaa --module iso-27001
+          openqms validate --module privacy --module us-state-privacy --module hipaa --module iso-27001 --module iso-27001-privacy --module hitrust-csf --module hitrust-r2
 
       - name: Inspect registry (smoke check)
         run: openqms registry list

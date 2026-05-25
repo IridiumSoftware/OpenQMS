@@ -6,21 +6,21 @@ Open QMS resolves a `(product, jurisdictions, standards, modules)` bundle into a
 
 The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD for enforcement, Git for the audit trail.
 
-## Current scope (v0.47.0)
+## Current scope (v0.48.0)
 
 | Dimension | Count |
 |---|---|
 | Verticals (regulated industries) | **7** — medical-devices, aerospace, automotive, manufacturing, pharma, food-safety, chemicals |
 | Class overlays (rigor-level + product-class) | **44** across 6 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5 / chemicals 6) |
-| Cross-cutting overlays | **25** — iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas, privacy, hipaa |
+| Cross-cutting overlays | **26** — iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas, privacy, hipaa, **us-state-privacy** |
 | **Sub-overlays** (class-overlay-shape deltas on cross-cutting overlays) | **26** — cmmc-level-1/2/3, soc-2-type-i/ii, iso-27001-cloud/privacy, nist-csf-tier-1/2/3/4, pci-dss-saq-a/a-ep/d-merchant/d-sp/p2pe, dora-ctpp/non-ctpp/tlpt, hitrust-e1/i1/r2, iso-37301-public-sector/financial-services/healthcare/general-business |
-| **Cross-overlays** (bind ACROSS specific vertical combinations) | **8** — combination-product, integrated-management-system, food-pharma-grade, **connected-medical-device, cell-therapy-supply-chain, food-allergen-recall, defense-aerospace-cyber, digital-health-multi-region** |
-| Registry — standards | **~129** (v0.47.0 +3 PUBLIC: FD&C §524B + FALCPA+FASTER Act + Cures Act) |
+| **Cross-overlays** (bind ACROSS specific vertical combinations) | **8** — combination-product, integrated-management-system, food-pharma-grade, connected-medical-device, cell-therapy-supply-chain, food-allergen-recall, defense-aerospace-cyber, digital-health-multi-region |
+| Registry — standards | **~130** (v0.48.0 +1 PUBLIC: US State Privacy Laws covering ~14 states VCDPA template + Maryland MODPA stricter + Florida FDBR narrow) |
 | Registry — jurisdictions | **20** (FDA / EMA / MHRA / WHO-PQ / Health Canada / EU MDR / PMDA / TGA / ANVISA / FAA / EASA / TCCA / NHTSA / UNECE / KBA / TC-MVS / FDA-Food / USDA-FSIS / EFSA / CFIA) |
-| Document templates | **101** (cross-overlays reuse parent-overlay templates; no new at v0.47.0) |
+| Document templates | **103** (v0.48.0 +2 us-state-privacy: US-STATE-PRIVACY-MATRIX + DATA-PROTECTION-ASSESSMENT) |
 | Example bundles (validated end-to-end) | **8** |
-| Total modules | **111** + general |
-| Spec entries (status: 6 :verified / 86 :tested / 5 :argued / 0 :open) | **97** |
+| Total modules | **112** + general |
+| Spec entries (status: 6 :verified / 87 :tested / 5 :argued / 0 :open) | **98** |
 | Deepest composition tested in CI | **24-module ultra composite** (medical-devices + pharma + combination-product + connected-medical-device + digital-health-multi-region + sterile + hipaa + privacy + 11 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy + ISO 37301) |
 
 The compose primitive validates 11-module composites: e.g., `pharma + pharma-sterile + pharma-biologics + atmp + iso-27001 + soc-2 + iso-31000 + iso-22301 + iso-14001 + iso-45001 + iso-50001` — the realistic shape for a clinical-stage biotech doing sterile ATMP manufacturing with full integrated management system + SOC 2 attestation + ISO 31000 risk framework.

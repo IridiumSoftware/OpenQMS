@@ -1,0 +1,209 @@
+# Open QMS — US State Privacy Umbrella cross-cutting overlay
+# -----------------------------------------------------------
+# 26th cross-cutting overlay. US state comprehensive privacy laws
+# using the VCDPA template family — single overlay covering 14+
+# states with state-divergence handling.
+#
+# As of 2026-05-25, comprehensive state privacy laws in effect or
+# enacted in: California (covered by `privacy` CCPA), Virginia,
+# Colorado, Connecticut, Utah, Texas, Oregon, Montana, Iowa,
+# Delaware, New Jersey, Tennessee, New Hampshire, Minnesota,
+# Maryland (stricter), Florida (narrow), Indiana (forthcoming).
+#
+# Composes with `privacy` (CCPA + GDPR) — most US digital
+# operators need both since CCPA scope is California-only +
+# this umbrella covers the other ~14 states.
+#
+# Standards licensing: PUBLIC (state codes via state legislature
+# websites).
+
+name: us-state-privacy
+version: 0.1.0
+
+standards:
+  - "US State Privacy Laws"
+
+clauses:
+
+  - id: USP-scope-thresholds-by-state
+    standard: US State Privacy Laws
+    section: "Scope thresholds — per state"
+    summary: |
+      Applicability thresholds vary by state. Typical VCDPA-template
+      thresholds: (a) ≥100,000 consumers/year processed OR (b)
+      ≥25,000 consumers + ≥50% revenue from sale of personal data.
+      Texas TDPSA: based on small-business-employee count
+      definition; broad scope. Maryland MODPA: similar to VCDPA but
+      stricter sale + targeted-advertising prohibitions. Florida
+      FDBR: narrow — only entities >$1B online consumer ad revenue.
+      Per-state threshold analysis required before adoption
+      decision. Many adopters in scope of 3-7 states simultaneously.
+
+  - id: USP-controller-processor-framework
+    standard: US State Privacy Laws
+    section: "VCDPA §59.1-571 + analog provisions"
+    summary: |
+      Controller / processor framework — adopted from GDPR by
+      VCDPA + propagated through all template-family states.
+      Controller determines purpose + means of processing;
+      processor processes on behalf of controller per documented
+      contract. Distinct from CCPA business / service-provider /
+      contractor / third-party 4-way classification — VCDPA template
+      uses 2-way GDPR-like framework. DPA-equivalent contractual
+      requirements per state (most require Controller-Processor
+      contract addressing similar elements as GDPR Article 28).
+
+  - id: USP-consumer-rights-common-pattern
+    standard: US State Privacy Laws
+    section: "Common consumer rights (VCDPA + analogs)"
+    summary: |
+      Common consumer rights across VCDPA-template states:
+      (i) Right to confirm processing + access personal data;
+      (ii) Right to correct inaccuracies; (iii) Right to delete;
+      (iv) Right to portability (machine-readable format);
+      (v) Right to opt-out of (a) targeted advertising, (b) sale of
+      personal data, (c) profiling in furtherance of decisions
+      producing legal or similarly significant effects;
+      (vi) Right to appeal denial within reasonable period (varies
+      30-60 days per state — UNIQUE to VCDPA-template states; not
+      in GDPR or CCPA). Response deadline 45 days extendable +45.
+
+  - id: USP-sensitive-data-divergence
+    standard: US State Privacy Laws
+    section: "Sensitive data — per-state lists vary"
+    summary: |
+      Sensitive data categories vary significantly across states.
+      Common: racial/ethnic origin, religious beliefs, mental/
+      physical health diagnosis, sexual orientation, citizenship/
+      immigration status, genetic/biometric data, personal data
+      from known child. Variations: precise geolocation included
+      in some states (Virginia, Colorado), Maryland includes
+      additional consumer health data (similar to Washington MHMDA).
+      Most VCDPA-template states require CONSENT to process
+      sensitive data (vs CCPA "limit use" right). Maryland MODPA:
+      DATA MINIMIZATION standard — sensitive data processing only
+      when "strictly necessary" — significantly stricter than
+      VCDPA template.
+
+  - id: USP-Universal-Opt-Out-Mechanism-UOOM
+    standard: US State Privacy Laws
+    section: "Universal Opt-Out — per-state recognition"
+    summary: |
+      Universal Opt-Out Mechanism (UOOM) — Global Privacy Control
+      (GPC) browser signal MUST be honored as opt-out for sale +
+      targeted advertising per Colorado CPA (effective 2024-07-01),
+      Connecticut CTDPA, Texas TDPSA, Oregon OCPA, Montana MCDPA,
+      Delaware DPDPA, New Jersey NJDPA, Minnesota MCDPA. Optional
+      in: Virginia VCDPA, Utah UCPA, Iowa ICDPA, Tennessee TIPA,
+      Indiana INCDPA, New Hampshire NHPA. UOOM technical
+      requirements: per-state regulations specify acceptable
+      signal mechanisms (GPC, DAA AppChoices, IAB Global Privacy
+      Platform GPP).
+
+  - id: USP-data-protection-assessment-DPA-state
+    standard: US State Privacy Laws
+    section: "DPA — state-level Data Protection Assessment"
+    summary: |
+      Data Protection Assessment (DPA) — state-law equivalent of
+      GDPR DPIA. Required when processing presents heightened risk
+      of harm: targeted advertising, sale of personal data,
+      processing sensitive data, profiling presenting reasonably
+      foreseeable risk of unfair/deceptive treatment, processing
+      personal data of children. Documented + retained; AG may
+      request during investigation. Specific assessment criteria
+      vary per state but follow common pattern: identify processing
+      activity + identify benefits + identify risks + identify
+      safeguards + assess overall risk-benefit balance.
+
+  - id: USP-cure-period-AG-enforcement
+    standard: US State Privacy Laws
+    section: "Cure period + AG enforcement — per state"
+    summary: |
+      Cure period + AG enforcement framework. VCDPA + Colorado +
+      Connecticut + Utah + Indiana: 30-day cure period before AG
+      enforcement (initially; some states' cure periods sunset
+      after 2-4 years). Texas TDPSA: 30-day cure period that does
+      NOT sunset. Most states: AG-only enforcement (no private
+      right of action), distinct from CCPA §1798.150 PRA for data
+      breach + DC + Illinois BIPA private rights. California CPPA
+      regulatory agency model NOT replicated in any VCDPA-template
+      state. Civil penalties: typically up to $7,500 per violation
+      (varies $2,500-$10,000); Maryland MODPA up to $25k +
+      enhanced enforcement.
+
+  - id: USP-controller-obligations
+    standard: US State Privacy Laws
+    section: "Controller obligations across states"
+    summary: |
+      Controller obligations common across VCDPA-template states:
+      (a) limit collection to what is adequate + relevant +
+      reasonably necessary in relation to specified purposes
+      (data minimization); (b) not process personal data for
+      purposes not reasonably necessary OR compatible with
+      disclosed purposes (purpose limitation); (c) maintain
+      reasonable security; (d) not process sensitive data without
+      consent (or parental consent for known child); (e) provide
+      privacy notice with required content (similar to GDPR Article
+      13/14 + CCPA notice at collection); (f) not discriminate
+      against consumer for exercising rights; (g) honor universal
+      opt-out where applicable (see USP-Universal-Opt-Out-Mechanism-
+      UOOM).
+
+  - id: USP-Maryland-MODPA-stricter
+    standard: US State Privacy Laws
+    section: "Maryland MODPA divergences"
+    summary: |
+      Maryland MODPA (effective 2025-10-01) — stricter than VCDPA
+      template: (i) DATA MINIMIZATION — sensitive data processing
+      only when "strictly necessary" (sui generis among US state
+      laws); (ii) BANNED sale of sensitive data outright; (iii)
+      BANNED targeted advertising to consumers known to be under
+      18 (vs VCDPA "without consent for under 13"); (iv) GLBA
+      exception narrower than other states; (v) Civil penalty up
+      to $10k per violation + $25k for subsequent. Treat MODPA
+      as a separate compliance posture even when other states
+      use template logic.
+
+  - id: USP-FDBR-narrow-scope
+    standard: US State Privacy Laws
+    section: "Florida FDBR narrow scope"
+    summary: |
+      Florida Digital Bill of Rights (FDBR) — narrowest US state
+      privacy law. Applies ONLY to entities with: >$1B global gross
+      revenue AND derive >50% of revenue from online consumer ad
+      services OR operate consumer-app-store + ≥250k apps OR
+      operate smart speaker with virtual assistant. Effectively
+      targets only Google + Meta + Amazon + Apple. Most adopters
+      OUT of FDBR scope. Where applicable: provisions broadly
+      similar to VCDPA template + specific opt-out for sale of
+      sensitive data.
+
+templates:
+
+  - path: templates/qms-privacy/US-STATE-PRIVACY-MATRIX-TEMPLATE.md
+    name: "US State Privacy Matrix (state-by-state divergence tracker — applicability thresholds + cure periods + UOOM recognition + sensitive data scope + Maryland MODPA + Florida FDBR scope analysis + per-state response-deadline + per-state penalty cap)"
+    addresses:
+      - USP-scope-thresholds-by-state
+      - USP-sensitive-data-divergence
+      - USP-Universal-Opt-Out-Mechanism-UOOM
+      - USP-cure-period-AG-enforcement
+      - USP-Maryland-MODPA-stricter
+      - USP-FDBR-narrow-scope
+
+  - path: templates/qms-privacy/DATA-PROTECTION-ASSESSMENT-TEMPLATE.md
+    name: "Data Protection Assessment (state-level DPA — heightened-risk processing identification + safeguard assessment + risk-benefit balance; satisfies VCDPA-template + Colorado CPA + Connecticut CTDPA + others; parallel to GDPR DPIA when also processing EU data)"
+    addresses:
+      - USP-data-protection-assessment-DPA-state
+      - USP-controller-obligations
+
+  - path: templates/qms-privacy/PRIVACY-POLICY-TEMPLATE.md
+    name: "Privacy Policy (extends GDPR+CCPA template with US-state-privacy state-by-state addendum — per-state controller-contact + per-state consumer-rights summary + per-state UOOM honoring statement + per-state appeal procedure)"
+    addresses:
+      - USP-controller-obligations
+      - USP-consumer-rights-common-pattern
+      - USP-controller-processor-framework
+
+  - path: templates/qms-privacy/DPA-TEMPLATE.md
+    name: "Data Processing Agreement (extends GDPR Article 28 + CCPA §7050-7053 with US-state-privacy controller-processor contractual requirements per VCDPA-template states)"
+    addresses:
+      - USP-controller-processor-framework
