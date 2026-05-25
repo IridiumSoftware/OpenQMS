@@ -1,0 +1,137 @@
+# Open QMS — Utility Cybersecurity cross-overlay
+# ------------------------------------------------
+# Cross-overlay binding manufacturing + iso-27001 + nist-csf for
+# critical-infrastructure utility operators — electric (NERC CIP),
+# pipeline (TSA Security Directives), water (CISA + EPA),
+# transportation (TSA), telecom (FCC).
+
+name: utility-cybersecurity
+version: 0.1.0
+
+standards:
+  - "NERC CIP"
+  - "EU NIS2"
+  - "NIST CSF 2.0"
+
+clauses:
+
+  - id: UC-NERC-CIP-Bulk-Electric-System
+    standard: NERC CIP
+    section: "NERC CIP-002 through CIP-014"
+    summary: |
+      NERC CIP standards — apply to entities operating Bulk Electric
+      System (BES) Cyber Systems. CIP-002 asset identification +
+      BES Cyber System classification (High/Medium/Low Impact);
+      CIP-003 security management controls; CIP-004 personnel +
+      training; CIP-005 electronic security perimeters; CIP-006
+      physical security; CIP-007 systems security management; CIP-008
+      incident reporting; CIP-009 recovery plans; CIP-010 configuration
+      management + vulnerability assessment; CIP-011 information
+      protection; CIP-012 communications between control centers;
+      CIP-013 supply chain risk management; CIP-014 physical security
+      for transmission stations + substations. FERC-approved under
+      Section 215 of Federal Power Act; mandatory + enforceable per
+      Section 1211 of EPAct 2005.
+
+  - id: UC-TSA-Pipeline-Security-Directives
+    standard: NERC CIP
+    section: "TSA Pipeline Security Directives 2021-01 + 02 + 02A + 02B + 02C + 02D"
+    summary: |
+      TSA Pipeline Security Directives — issued post-Colonial Pipeline
+      ransomware May 2021. SD 02 series: cybersecurity practices for
+      pipeline owner/operators including: 24-hour cyber incident
+      reporting to CISA; cybersecurity coordinator designation;
+      cybersecurity assessment + implementation plan; CISA
+      vulnerability testing participation; access controls + segmentation;
+      backup + recovery. Originally TSA-mandatory; now overlapping
+      with proposed CIRCIA (Cyber Incident Reporting for Critical
+      Infrastructure Act 2022) regulations.
+
+  - id: UC-CISA-Critical-Infrastructure-Sectors
+    standard: NERC CIP
+    section: "CISA 16 Critical Infrastructure Sectors + Sector Risk Management Agencies"
+    summary: |
+      CISA Critical Infrastructure designation — 16 sectors per
+      Presidential Policy Directive 21 (Chemical, Commercial
+      Facilities, Communications, Critical Manufacturing, Dams,
+      Defense Industrial Base, Emergency Services, Energy, Financial
+      Services, Food + Agriculture, Government Facilities, Healthcare
+      + Public Health, Information Technology, Nuclear Reactors+
+      Materials+Waste, Transportation Systems, Water + Wastewater).
+      Sector Risk Management Agencies coordinate sector-specific
+      cybersecurity programmes. Critical-infrastructure designation
+      triggers CIRCIA reporting + enhanced FBI/CISA coordination.
+
+  - id: UC-EU-NIS2-essential-important-entities
+    standard: EU NIS2
+    section: "EU NIS2 Directive Articles 3 + 21 + 23"
+    summary: |
+      EU NIS2 (Directive 2022/2555; Member State transposition
+      deadline 2024-10-17) — Essential Entities (large + medium-
+      large per sector) + Important Entities (medium per sector) +
+      sectors include energy + transport + banking + healthcare +
+      drinking + waste water + digital infrastructure + ICT service
+      management + public administration + space + others. Article
+      21 cybersecurity risk-management measures (10 categories);
+      Article 23 incident reporting (early warning 24h + initial
+      assessment 72h + final report 1mo).
+
+  - id: UC-OT-IT-segregation-IEC-62443
+    standard: NERC CIP
+    section: "IEC 62443 series + NERC CIP-005 + IEC 62443-3-3 + NIST SP 800-82"
+    summary: |
+      OT (Operational Technology) / IT segregation per IEC 62443
+      series — IACS (Industrial Automation and Control Systems)
+      cybersecurity framework. NERC CIP-005 electronic security
+      perimeters; NIST SP 800-82 Rev 3 (2023) Guide to Operational
+      Technology Security; IEC 62443-3-3 system security requirements
+      with Security Levels SL-1 through SL-4; Purdue Reference Model
+      Levels 0-5 logical separation. OT cyber distinct from IT —
+      different threat landscape (safety + availability dominant)
+      + different protocol stack (Modbus + DNP3 + OPC UA + IEC
+      61850 + PROFINET) + longer asset lifecycles (20+ years).
+
+  - id: UC-CIRCIA-incident-reporting
+    standard: NERC CIP
+    section: "Cyber Incident Reporting for Critical Infrastructure Act 2022 + CISA implementing rules forthcoming"
+    summary: |
+      CIRCIA (Cyber Incident Reporting for Critical Infrastructure
+      Act 2022; CISA implementing regulations finalised 2025+).
+      Mandates reporting of cyber incidents to CISA within 72
+      hours + ransomware payments within 24 hours. Covered entities
+      include all 16 critical-infrastructure sectors. Replaces some
+      sector-specific reporting (e.g., TSA SD 02 24-hour reporting
+      may align/sunset). Overlaps with sector-specific reporting
+      (NERC CIP-008, FFIEC 36h CSI rule); CIRCIA harmonisation
+      pending.
+
+  - id: UC-NIST-CSF-backbone-utility-profile
+    standard: NIST CSF 2.0
+    section: "NIST CSF 2.0 + Energy Subsector Cybersecurity Framework Implementation Guidance"
+    summary: |
+      NIST CSF 2.0 as utility-cyber backbone — Energy Subsector
+      Cybersecurity Framework Implementation Guidance (DOE-OE
+      Cybersecurity Risk Management Process + ES-C2M2 + Oil and
+      Natural Gas Subsector Cybersecurity Capability Maturity Model
+      ONG-C2M2) leverage NIST CSF as common taxonomy. Water + Waste
+      Water Sector Cybersecurity Maturity Model. Cross-sector
+      sharing via E-ISAC + WaterISAC + Tx-ISAC + multi-state
+      Information Sharing Centers.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (Utility Cybersecurity — extends QMS policy with NERC CIP commitment for BES + TSA Pipeline SD compliance for pipelines + CISA critical-infrastructure coordination + EU NIS2 if EU operations + IEC 62443 OT/IT segregation + CIRCIA incident reporting + NIST CSF backbone)"
+    addresses:
+      - UC-NERC-CIP-Bulk-Electric-System
+      - UC-CISA-Critical-Infrastructure-Sectors
+      - UC-EU-NIS2-essential-important-entities
+      - UC-NIST-CSF-backbone-utility-profile
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "Utility cybersecurity operational SOPs (BES Cyber System classification + High/Medium/Low Impact handling + TSA SD reporting + CIRCIA 72h reporting + EU NIS2 24h+72h+1mo reporting + OT/IT segregation per IEC 62443 + ICS protocol monitoring + asset-lifecycle planning + E-ISAC + WaterISAC information sharing)"
+    addresses:
+      - UC-TSA-Pipeline-Security-Directives
+      - UC-OT-IT-segregation-IEC-62443
+      - UC-CIRCIA-incident-reporting
+      - UC-EU-NIS2-essential-important-entities

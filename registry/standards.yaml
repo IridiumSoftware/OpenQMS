@@ -1426,3 +1426,61 @@ standards:
       - "Virginia Consumer Data Protection Act"
       - "Colorado Privacy Act"
       - "Maryland Online Data Privacy Act"
+
+  - id: "ICH E6(R3)"
+    name: "ICH Harmonised Guideline — Good Clinical Practice (GCP) E6(R3)"
+    publisher: International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use (ICH)
+    edition: "ICH E6(R3) — Step 4 adoption 2024-01-19; FDA + EMA adoption rolling 2025+; supersedes E6(R2)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "GCP"
+      - "ICH GCP"
+      - "ICH E6"
+      - "Good Clinical Practice"
+
+  - id: "EU CTR 536/2014"
+    name: "EU Clinical Trials Regulation 536/2014"
+    publisher: European Union
+    edition: "Regulation (EU) No 536/2014 (effective 2022-01-31; CTIS Clinical Trials Information System mandatory; supersedes Directive 2001/20/EC)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "CTR"
+      - "EU CTR"
+      - "Clinical Trials Regulation"
+      - "CTIS"
+
+  - id: "NERC CIP"
+    name: "NERC Critical Infrastructure Protection Standards"
+    publisher: North American Electric Reliability Corporation
+    edition: "CIP-002 through CIP-014 (current versions 2025; FERC-approved per Section 215 of Federal Power Act)"
+    kind: standard
+    license_kind: public
+    aliases:
+      - "NERC CIP"
+      - "Bulk Electric System CIP"
+      - "CIP-002"
+      - "CIP-013"
+
+  - id: "EU NIS2"
+    name: "EU Network and Information Security Directive 2"
+    publisher: European Union
+    edition: "Directive (EU) 2022/2555 (effective 2023-01-16; Member State transposition deadline 2024-10-17; supersedes NIS1 Directive 2016/1148)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "NIS2"
+      - "NIS2 Directive"
+      - "Directive 2022/2555"
+
+  - id: "FFIEC IT Handbook"
+    name: "FFIEC IT Examination Handbook"
+    publisher: Federal Financial Institutions Examination Council (FFIEC)
+    edition: "Current 2024-2025 booklets (Information Security 2016 + Architecture+Infrastructure+Operations 2021 + Audit + Business Continuity Management 2019 + Cybersecurity Assessment Tool + others)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "FFIEC"
+      - "FFIEC IT"
+      - "FFIEC Examination Handbook"

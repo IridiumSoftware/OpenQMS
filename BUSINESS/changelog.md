@@ -4,6 +4,41 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.50.0 DRAFT — 2026-05-25 — Final cross-overlay batch (4)
+
+**1 NEW entry** OQ-118. Spec total 101 → 102. Engine 0.49.0 → 0.50.0.
+
+Completes the cross-overlay shape coverage across the remaining major vertical intersections (introduced v0.44.0 OQ-111; extended v0.47.0 OQ-113). The cross-overlay tour now spans medical-device intersections (combination-product + connected-medical-device + digital-health-multi-region) + pharma intersections (combination-product + cell-therapy-supply-chain + clinical-trial-multi-region) + food intersections (food-pharma-grade + food-allergen-recall) + automotive intersections (automotive-supply-chain) + financial intersections (banking-resilience) + utility intersections (utility-cybersecurity) + defense intersections (defense-aerospace-cyber) + IMS (integrated-management-system).
+
+**The 4 cross-overlays**
+
+- **automotive-supply-chain** — automotive + automotive-asil-d + automotive-cal-4 + recall-workflow. 7 clauses across Development Interface Agreement (DIA, ISO 26262-8 §5) + Cybersecurity Interface Agreement (CIA, ISO/SAE 21434-7) + AIAG PPAP 4th-Edition 18-element + 5-level submission framework + ISO/SAE 21434 §15 supplier management + UN R155 Type-Approval CSMS + R156 SUMS + production-suspension + NHTSA Part 573 5-working-day recall coordination + IATF 16949 §8.4 tier-N flow-down + software-supplier special considerations (OTA + AD + ADAS + RTOS).
+
+- **clinical-trial-multi-region** — pharma + privacy + hipaa + digital-health-multi-region. 7 clauses across ICH E6(R3) GCP (Step 4 2024-01-19) + EU CTR 536/2014 + CTIS portal + 21 CFR 312 IND + §312.32 Safety Reports (15-day + 7-day fatal/life-threatening) + DCT considerations (E6(R3) Annex 2 + FDA Sept 2024 final + EMA Recommendation 2022) + multi-region PHI coordination (HIPAA Authorization §164.508 + GDPR Article 9 + state-law sensitive-data consent + Common Rule 45 CFR 46) + parallel IRB/IEC tracking + Risk-Based Monitoring (E6(R3) Principle 4) + pharmacovigilance multi-region triage.
+
+- **banking-resilience** — iso-37301-financial-services + dora + dora-non-ctpp + nist-csf + nist-csf-tier-3 + iso-22301. 7 clauses across DORA + FFIEC IT Handbook cross-regime alignment + NIST CSF 2.0 6-Function backbone + multi-stream incident reporting (DORA 4h+72h+1mo + FRB/FDIC/OCC 36-hour CSI rule effective 2022-05-01 + NYDFS Part 500 72-hour + CIRCIA-eligible) + TLPT framework alignment (TIBER-EU + CBEST + MAS AASE + iCAST) + CTPP designation + Lead Overseer + OCC Third-Party Risk Bulletins + SR Letters + ISO 22301 BIA + RTO/MAO/MBCO/RPO + DORA Article 11 ICT BCP + Article 12 restoration testing.
+
+- **utility-cybersecurity** — manufacturing + iso-27001 + nist-csf + nist-csf-tier-3. 7 clauses across NERC CIP-002 through CIP-014 BES Cyber System framework (FERC-approved under Section 215 Federal Power Act) + TSA Pipeline SD 02 series (post-Colonial Pipeline May 2021; 24-hour CISA reporting) + CISA 16 Critical Infrastructure Sectors per PPD-21 + EU NIS2 Directive 2022/2555 Essential + Important Entities (transposition 2024-10-17; Article 23 early-warning 24h + 72h + 1mo) + IEC 62443 series IACS framework + NIST SP 800-82 Rev 3 (2023) OT Security + Purdue Reference Model + CIRCIA 72h cyber + 24h ransomware reporting + Energy Subsector + ONG-C2M2 + ES-C2M2 maturity models.
+
+All 4 reuse parent-overlay templates (no new template files).
+
+**Registry +5 PUBLIC standards:** ICH E6(R3) + EU CTR 536/2014 + NERC CIP + EU NIS2 + FFIEC IT Handbook.
+
+**Counts:**
+- Cross-overlay count: 8 → 12
+- Total module count: 112 → 116
+- Cross-cutting overlay count unchanged at 26
+
+CI extended (+8 validate steps: 4 standalone + 4 vertical-composite).
+
+All 129/129 pytest pass. All 8 bundle baselines clean. YAML linter clean on all 116 modules. Repo-wide invariants: 116 modules / 867 clauses / 379 templates / 0 orphans / **100.0% aggregate coverage**.
+
+Status counts: 6 `:verified` / 91 `:tested` / 5 `:argued` / 0 `:open` (total 102).
+
+Per user direction "do the final overlays" — shipped. **Polishing pass follows as v0.51.0.**
+
+---
+
 ## v0.49.0 DRAFT — 2026-05-25 — Engine adopter-features (coverage + crosswalk + jurisdictions-query)
 
 **3 NEW entries** OQ-115 + OQ-116 + OQ-117. Spec total 98 → 101. Engine 0.48.0 → 0.49.0.

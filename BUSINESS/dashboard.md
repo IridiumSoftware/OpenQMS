@@ -15,13 +15,13 @@ Current state + priority stack. Read this first every session. For claim status,
 | `:proved` | 0 | — |
 | `:verified` | 0 | — |
 | `:verified` | 6 | Invariant (2, OQ-001 + OQ-002) · Architecture (4, OQ-010 + OQ-011 + OQ-013 + OQ-015) |
-| `:tested` | 90 | Architecture (5, OQ-012 + OQ-014 + OQ-115 + OQ-116 + OQ-117) · Substrate (3) · Workflow (9) · Module (60, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-096 + OQ-098 + OQ-101..OQ-114) · Gap (13, OQ-060 + OQ-061 + OQ-062 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-067 + OQ-068 + OQ-069 + OQ-080 + OQ-097 + OQ-099 + OQ-100) |
+| `:tested` | 91 | Architecture (5, OQ-012 + OQ-014 + OQ-115 + OQ-116 + OQ-117) · Substrate (3) · Workflow (9) · Module (61, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-096 + OQ-098 + OQ-101..OQ-114 + OQ-118) · Gap (13, OQ-060 + OQ-061 + OQ-062 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-067 + OQ-068 + OQ-069 + OQ-080 + OQ-097 + OQ-099 + OQ-100) |
 | `:benchmarked` | 0 | — |
 | `:argued` | 5 | Invariant (1, OQ-003) · Substrate (2, OQ-022 + OQ-023) · Licensing (2, OQ-070 + OQ-071) |
 | `:open` | 0 | — |
-| **Total** | **101** | — |
+| **Total** | **102** | — |
 
-Counts: 6 + 90 + 5 + 0 = 101 ✓. **Latest at v0.49.0**: Engine adopter-features — 3 new CLI subcommands. OQ-115 `openqms coverage` (per-module + aggregate coverage metrics + --threshold N CI gate; aggregate = 100% at audit). OQ-116 `openqms crosswalk` (same-(standard, section) overlap detection between modules). OQ-117 `openqms jurisdictions-query` (registry standards by jurisdiction via publisher-inference; 30+ publishers mapped; FDA query returns 18 standards). 13 new pytest tests (116→129). CI extended with coverage-100% regression gate + crosswalk + jurisdictions smoke. First Architecture-tier additions since OQ-067 (trace, v0.39.0). 3 new spec entries. No new modules. Spec total 98→101.
+Counts: 6 + 91 + 5 + 0 = 102 ✓. **Latest at v0.50.0**: Final cross-overlay batch (4). OQ-118 NEW `:tested` — completes cross-overlay shape coverage across remaining major vertical intersections. **automotive-supply-chain** (automotive + asil-d + cal-4 + recall-workflow — DIA + CIA + AIAG PPAP + UN R155 + R156 + NHTSA Part 573 + tier-N flow-down). **clinical-trial-multi-region** (pharma + privacy + hipaa + digital-health-multi-region — ICH E6(R3) + EU CTR + 21 CFR 312 + DCT + multi-region PHI + parallel IRB/IEC + RBM + multi-region PV). **banking-resilience** (iso-37301-financial-services + dora + nist-csf + iso-22301 — DORA + FFIEC + NIST CSF backbone + multi-stream incident + TLPT + CTPP). **utility-cybersecurity** (manufacturing + iso-27001 + nist-csf — NERC CIP + TSA SD + CISA 16-sector + EU NIS2 + IEC 62443 + CIRCIA). Registry +5 PUBLIC. Cross-overlay count 8 → 12. Module count 112 → 116. CI +8 validate steps. Spec total 101 → 102. **Polishing pass follows as v0.51.0.**
 
 **Phase 0 round-out complete (v0.2.1 → v0.3.0).** P5, P6, P7 all closed. **Phase 1 mostly closed.** P1.1 at v0.4.0; P1.2 at v0.5.0. Remaining Phase 1: P1.3 (re-resolution on mutation, OQ-015 + OQ-065). P8 (Part 11 §11.50 prototype, OQ-060) and continued module-coverage population remain.
 

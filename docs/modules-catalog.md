@@ -1,6 +1,6 @@
 # Modules catalog
 
-Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.49.0. Use this page to choose the modules for your scope.
+Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.50.0. Use this page to choose the modules for your scope.
 
 **Current scope:**
 
@@ -10,13 +10,13 @@ Comprehensive inventory of every regulatory module shipped with Open QMS as of v
 | Class overlays | **44** across 6 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5 / chemicals 6) |
 | Cross-cutting overlays | **26** (iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas, privacy, hipaa, **us-state-privacy**) |
 | **Sub-overlays** | **26** — class-overlay-shape deltas on cross-cutting overlays. v0.42.0 (16): cmmc-level-1/2/3, soc-2-type-i/ii, iso-27001-cloud/privacy, nist-csf-tier-1/2/3/4, pci-dss-saq-a/a-ep/d-merchant/d-sp/p2pe. v0.43.0 (10): dora-ctpp/non-ctpp/tlpt, hitrust-e1/i1/r2, iso-37301-public-sector/financial-services/healthcare/general-business |
-| **Cross-overlays** | **8** — bind ACROSS specific vertical combinations. v0.44 (3): combination-product, integrated-management-system, food-pharma-grade. v0.47 (+5): connected-medical-device, cell-therapy-supply-chain, food-allergen-recall, defense-aerospace-cyber, digital-health-multi-region |
-| **Total modules** | **112** + general |
-| Registry standards | **~130** (v0.48.0 +1 PUBLIC: US State Privacy Laws covering ~14 states VCDPA template + Maryland MODPA stricter + Florida FDBR narrow) |
+| **Cross-overlays** | **12** — bind ACROSS specific vertical combinations. v0.44 (3): combination-product, integrated-management-system, food-pharma-grade. v0.47 (+5): connected-medical-device, cell-therapy-supply-chain, food-allergen-recall, defense-aerospace-cyber, digital-health-multi-region. v0.50 (+4): automotive-supply-chain, clinical-trial-multi-region, banking-resilience, utility-cybersecurity |
+| **Total modules** | **116** + general |
+| Registry standards | **~135** (v0.50.0 +5 PUBLIC: ICH E6(R3) + EU CTR 536/2014 + NERC CIP + EU NIS2 + FFIEC IT Handbook) |
 | Registry jurisdictions | **20** |
-| Document templates | **103** (v0.48.0 +2 us-state-privacy: US-STATE-PRIVACY-MATRIX + DATA-PROTECTION-ASSESSMENT) |
+| Document templates | **103** (v0.50.0 cross-overlays reuse parent-overlay templates; no new templates) |
 | Example bundles | **8** (validated end-to-end with committed baseline matrices) |
-| Spec entries | **101** (0 `:open`; v0.49.0 +3 Architecture-tier entries OQ-115 + OQ-116 + OQ-117 for new engine CLI subcommands) |
+| Spec entries | **102** (0 `:open`; v0.50.0 +1 Module-tier OQ-118 for final cross-overlay batch) |
 | Deepest composition tested in CI | **24-module ultra composite** (medical-devices + pharma + combination-product + connected-medical-device + digital-health-multi-region + sterile + hipaa + privacy + 11 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy + ISO 37301) |
 
 **Three module types:**
@@ -119,7 +119,7 @@ The OQ-011 compose primitive (built v0.4.0, unchanged since) handles composition
 
 ---
 
-## Cross-cutting overlays (25)
+## Cross-cutting overlays (26)
 
 Each composes with ANY vertical. Annex-SL-aligned overlays compose cleanly with each other (verified by 11-module mega-composite in CI).
 

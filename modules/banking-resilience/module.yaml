@@ -1,0 +1,126 @@
+# Open QMS — Banking Resilience cross-overlay
+# --------------------------------------------
+# Cross-overlay binding iso-37301-financial-services + dora +
+# nist-csf + iso-22301 + FFIEC IT Handbook to encode the financial-
+# services operational + cyber resilience framework — coordinated
+# across EU DORA + US FFIEC + global NIST CSF.
+
+name: banking-resilience
+version: 0.1.0
+
+standards:
+  - "EU DORA"
+  - "FFIEC IT Handbook"
+  - "NIST CSF 2.0"
+  - "ISO 22301:2019"
+
+clauses:
+
+  - id: BR-DORA-FFIEC-alignment
+    standard: EU DORA
+    section: "DORA + FFIEC IT Handbook"
+    summary: |
+      DORA + FFIEC IT Handbook alignment — both regimes share
+      operational-resilience focus but diverge in scope: DORA is
+      EU prescriptive (ICT risk management + incident reporting +
+      digital operational resilience testing + third-party risk +
+      info sharing); FFIEC IT Handbook is US guidance (Information
+      Security 2016 booklet + Audit + Business Continuity Management
+      2019 + Architecture/Infrastructure/Operations 2021). Multi-
+      jurisdictional banks coordinate single resilience programme
+      satisfying both via shared control framework (often NIST CSF
+      backbone) + per-region attestation.
+
+  - id: BR-ICT-risk-management
+    standard: EU DORA
+    section: "DORA Chapter II Articles 5-15 + FFIEC InfoSec"
+    summary: |
+      ICT risk-management framework — DORA Chapter II + FFIEC
+      Information Security: governance + identification + protection
+      + detection + response + recovery + learning-and-evolving.
+      Maps cleanly to NIST CSF 2.0 6 Functions (Govern + Identify
+      + Protect + Detect + Respond + Recover). Single risk register
+      satisfying multiple regimes via shared taxonomy + per-regime
+      mapping evidence.
+
+  - id: BR-incident-reporting-multi-stream
+    standard: EU DORA
+    section: "DORA Chapter III Articles 17-23 + FFIEC + state notification"
+    summary: |
+      Multi-stream incident reporting — DORA major-ICT-incident
+      initial 4h + intermediate 72h + final 1mo reports to lead
+      Competent Authority + EBA/ESMA/EIOPA forwarding. FFIEC Bank
+      Service Provider notification per FFIEC IT Handbook + 36-hour
+      Computer-Security Incident Notification rule (FRB/FDIC/OCC
+      effective 2022-05-01). State financial-services regulators
+      (NYDFS Part 500 — 72-hour cyber event reporting). Cross-
+      coordination: single incident triggers parallel reporting
+      streams.
+
+  - id: BR-TLPT-pen-testing
+    standard: EU DORA
+    section: "DORA Articles 26-27 (TIBER-EU) + FFIEC Cyber Assessment Tool + CBEST"
+    summary: |
+      Threat-Led Penetration Testing — DORA Articles 26-27 mandate
+      TLPT every 3 years for significant entities via TIBER-EU
+      framework (Threat Intelligence-Based Ethical Red-Teaming).
+      UK CBEST + Singapore MAS AASE + Hong Kong iCAST equivalent
+      frameworks. FFIEC Cybersecurity Assessment Tool (CAT) +
+      Cybersecurity Resource Guide complementary. Multi-region
+      banks: single TLPT-equivalent test programme mapped to each
+      jurisdiction's framework requirements.
+
+  - id: BR-third-party-CTPP-risk
+    standard: EU DORA
+    section: "DORA Chapter V Articles 28-44 + FFIEC TPRM + OCC Third-Party Risk Guidance"
+    summary: |
+      Third-party ICT risk — DORA Chapter V CTPP designation +
+      contractual requirements + Lead Overseer; FFIEC Outsourcing
+      Technology Services Booklet + OCC Third-Party Risk Management
+      Guidance (OCC Bulletin 2013-29 + 2020-10 + 2023-17); SR Letter
+      11-7 + 13-19. Common requirements: due diligence + risk
+      assessment + contractual safeguards + ongoing monitoring +
+      exit + transition planning. Concentration risk monitoring +
+      4th-party + sub-contractor flow-down.
+
+  - id: BR-business-continuity-RTO-MAO-MBCO
+    standard: ISO 22301:2019
+    section: "ISO 22301 + FFIEC BCM + DORA Article 11"
+    summary: |
+      Business continuity + ICT business continuity policy — ISO
+      22301 BIA → RTO + MAO + MBCO + RPO per business function;
+      strategies + plans + exercise programme. FFIEC BCM 2019
+      booklet sectoral guidance. DORA Article 11 ICT business
+      continuity policy + Article 12 backup + recovery procedures
+      + restoration testing.
+
+  - id: BR-cybersecurity-resilience-NIST-CSF-backbone
+    standard: NIST CSF 2.0
+    section: "NIST CSF 2.0 6 Functions cross-referenced to DORA + FFIEC"
+    summary: |
+      NIST CSF 2.0 as cross-regime backbone — NIST CSF 2.0 6
+      Functions (Govern + Identify + Protect + Detect + Respond +
+      Recover) provide common control taxonomy. Per-regime mapping:
+      DORA mapped to CSF via ESAs technical standards; FFIEC IT
+      Handbook control objectives mapped to CSF via FFIEC
+      Cybersecurity Assessment Tool; ISO 27001 Annex A → CSF
+      official mapping. Cross-regime control inheritance reduces
+      audit burden.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (Banking Resilience — extends QMS policy with NIST CSF backbone commitment + DORA + FFIEC + state-regulator + ISO 22301 coordinated resilience programme + multi-stream incident reporting + TLPT framework + CTPP/third-party risk discipline)"
+    addresses:
+      - BR-DORA-FFIEC-alignment
+      - BR-ICT-risk-management
+      - BR-incident-reporting-multi-stream
+      - BR-cybersecurity-resilience-NIST-CSF-backbone
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "Banking resilience operational SOPs (cross-regime control mapping + multi-stream incident-notification playbook + TLPT/CBEST/iCAST coordination + CTPP/third-party risk + ISO 22301 BIA + ICT business continuity + cross-regime audit prep)"
+    addresses:
+      - BR-incident-reporting-multi-stream
+      - BR-TLPT-pen-testing
+      - BR-third-party-CTPP-risk
+      - BR-business-continuity-RTO-MAO-MBCO

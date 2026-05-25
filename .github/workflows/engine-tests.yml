@@ -269,6 +269,15 @@ jobs:
           openqms validate --module hipaa --module privacy --module us-state-privacy
           openqms validate --module medical-devices --module privacy --module us-state-privacy --module hipaa --module iso-27001
           openqms validate --module privacy --module us-state-privacy --module hipaa --module iso-27001 --module iso-27001-privacy --module hitrust-csf --module hitrust-r2
+          # v0.50.0 — final cross-overlay batch
+          openqms validate --module automotive-supply-chain
+          openqms validate --module clinical-trial-multi-region
+          openqms validate --module banking-resilience
+          openqms validate --module utility-cybersecurity
+          openqms validate --module automotive --module automotive-asil-d --module automotive-cal-4 --module recall-workflow --module automotive-supply-chain
+          openqms validate --module pharma --module privacy --module hipaa --module digital-health-multi-region --module clinical-trial-multi-region
+          openqms validate --module iso-37301 --module iso-37301-financial-services --module dora --module dora-non-ctpp --module nist-csf --module nist-csf-tier-3 --module iso-22301 --module banking-resilience
+          openqms validate --module manufacturing --module iso-27001 --module nist-csf --module nist-csf-tier-3 --module utility-cybersecurity
 
       - name: Coverage report (smoke check + repo-wide invariant)
         # v0.49.0 — `openqms coverage` per-module + aggregate coverage metrics.

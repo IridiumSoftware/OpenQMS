@@ -1,0 +1,141 @@
+# Open QMS — Clinical Trial Multi-Region cross-overlay
+# ------------------------------------------------------
+# Cross-overlay binding pharma + privacy + hipaa + digital-health-
+# multi-region for sponsors + CROs running multi-region clinical
+# trials. Encodes ICH E6(R3) GCP + per-region clinical-trial
+# regulations + privacy framework coordination.
+
+name: clinical-trial-multi-region
+version: 0.1.0
+
+standards:
+  - "ICH E6(R3)"
+  - "EU CTR 536/2014"
+  - "21 CFR 312"
+
+clauses:
+
+  - id: CTMR-ICH-E6-R3-GCP
+    standard: ICH E6(R3)
+    section: "ICH E6(R3) Principles + Annex 1 + Annex 2"
+    summary: |
+      ICH E6(R3) GCP (Step 4 adoption 2024-01-19) — modernised GCP
+      framework with quality-by-design + risk-proportionate
+      oversight + critical-to-quality identification. 12
+      Principles + Annex 1 (Considerations for Interventional
+      Clinical Trials) + Annex 2 (Considerations for Additional
+      Trial Types — decentralised + real-world-data trials).
+      Replaces E6(R2) with shift from prescriptive to outcome-
+      based requirements. Apply across all ICH-region trials:
+      sponsor + investigator + IRB/IEC + monitor + auditor.
+
+  - id: CTMR-EU-CTR-CTIS
+    standard: EU CTR 536/2014
+    section: "EU CTR §7-15 + CTIS portal"
+    summary: |
+      EU Clinical Trials Regulation 536/2014 — effective 2022-01-31;
+      mandatory CTIS (Clinical Trials Information System) for EU
+      trial submission + assessment + transparency. Single-
+      Application + Single-Assessment-per-EU-MS pattern + reporting
+      regulator (RMS) coordination. Public transparency: protocol +
+      summary + results posted to CTIS public portal. Per-MS national-
+      contact + ethics-review handling. Substantive amendments
+      require re-submission + re-assessment.
+
+  - id: CTMR-US-FDA-IND-312
+    standard: 21 CFR 312
+    section: "21 CFR Part 312 + 312.32 IND Safety Reports"
+    summary: |
+      US FDA Investigational New Drug Application (IND) — sponsor
+      submission to FDA pre-Phase 1; clinical hold authority;
+      IND Safety Reporting per §312.32 (IND Safety Reports for
+      serious + unexpected suspected adverse reactions — 15-day
+      written + 7-day for fatal/life-threatening). Annual Report
+      per §312.33. clinicaltrials.gov registration + results
+      reporting per FDAAA §801.
+
+  - id: CTMR-decentralised-clinical-trial-DCT
+    standard: ICH E6(R3)
+    section: "ICH E6(R3) Annex 2 + FDA DCT Guidance + EMA Recommendation 2022"
+    summary: |
+      Decentralised Clinical Trial (DCT) considerations — telehealth
+      consultations + at-home assessments + electronic informed
+      consent (eIC) + direct-to-participant IMP shipping + remote
+      data collection (wearables + ePRO). FDA Decentralised Clinical
+      Trial Guidance Sept 2024 final. EMA Recommendation paper 2022.
+      Composes with `digital-health-multi-region` for the digital-
+      platform regulatory layer (FDA SaMD if app classified as
+      device; EU MDR if EU; HIPAA for US PHI; privacy + state laws).
+
+  - id: CTMR-multi-region-PHI-coordination
+    standard: ICH E6(R3)
+    section: "Cross-overlay binding to privacy + hipaa + us-state-privacy"
+    summary: |
+      Multi-region clinical PHI coordination — trial-participant
+      data includes PHI subject to HIPAA (US sites + US sponsor) +
+      special-category data under GDPR Article 9 (EU sites) +
+      sensitive data under VCDPA-template state laws (US site by
+      state) + per-jurisdiction healthcare privacy laws (UK + CH +
+      AU + JP + CA). Sponsor-CRO data-flow + reuse-for-secondary-
+      research requires layered consent. ICF (Informed Consent
+      Form) coordinates with HIPAA Authorization §164.508 + GDPR
+      Article 9 condition + state-law sensitive-data consent.
+      Common Rule (45 CFR 46) IRB review parallel.
+
+  - id: CTMR-IRB-IEC-coordination
+    standard: ICH E6(R3)
+    section: "ICH E6(R3) Principle 7 + per-region IRB/IEC frameworks"
+    summary: |
+      IRB / IEC coordination — US Common Rule (45 CFR 46) IRB; EU
+      CTR Member State ethics review; UK HRA REC; Canada REB; Swiss
+      Cantonal Ethics. Single-IRB models per FDA + NIH for US-only
+      multi-site (45 CFR 46.114 Cooperative Research; FDA Guidance
+      Aug 2024); EU CTR Member State coordinated assessment;
+      multi-region trials require parallel ethics-review tracking +
+      harmonised protocol + region-specific addenda for local
+      regulatory requirements.
+
+  - id: CTMR-sponsor-monitoring-RBM
+    standard: ICH E6(R3)
+    section: "ICH E6(R3) Annex 1 §3 + FDA Risk-Based Monitoring Guidance"
+    summary: |
+      Risk-Based Monitoring (RBM) — sponsor identifies critical-
+      to-quality factors per E6(R3) Principle 4 + designs monitoring
+      programme proportionate to risk; mix of centralised statistical
+      monitoring + targeted SDV + remote monitoring + on-site visits.
+      RBM-friendly via DCT digital-data-flow infrastructure.
+      Monitoring plan documented; review at protocol amendments +
+      identified-risk-changes.
+
+  - id: CTMR-pharmacovigilance-multi-region-coordination
+    standard: ICH E6(R3)
+    section: "ICH E2A/E2B/E2D + per-region PV authorities"
+    summary: |
+      Pharmacovigilance multi-region coordination — sponsor PV
+      database receives + triages + reports SUSARs per ICH E2A/E2B
+      to: FDA (IND Safety Reports 15-day + 7-day fatal/life-threatening),
+      EMA EudraVigilance (15-day + 7-day fatal/life-threatening),
+      MHRA Yellow Card, Health Canada, PMDA. Sponsor coordinates
+      with CRO + investigators on AE/SAE intake + causality +
+      sponsor-level expectedness assessment. Annual aggregate
+      reports (DSUR per ICH E2F; annual IND report per §312.33).
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (Clinical Trial Multi-Region — extends QMS policy with ICH E6(R3) GCP commitment + per-region regulatory framework + DCT capability + multi-region PHI coordination + IRB/IEC parallel-track management + RBM + pharmacovigilance multi-region triage)"
+    addresses:
+      - CTMR-ICH-E6-R3-GCP
+      - CTMR-EU-CTR-CTIS
+      - CTMR-US-FDA-IND-312
+      - CTMR-decentralised-clinical-trial-DCT
+      - CTMR-multi-region-PHI-coordination
+      - CTMR-pharmacovigilance-multi-region-coordination
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "Clinical trial multi-region operational SOPs (per-region protocol assembly + ICF/HIPAA Authorization coordination + CTIS submission + IND submission + RBM monitoring plan + IRB/IEC parallel-track submission + SUSAR triage + DSUR annual aggregate + clinicaltrials.gov registration + EU CTR transparency)"
+    addresses:
+      - CTMR-IRB-IEC-coordination
+      - CTMR-sponsor-monitoring-RBM
+      - CTMR-multi-region-PHI-coordination
+      - CTMR-pharmacovigilance-multi-region-coordination

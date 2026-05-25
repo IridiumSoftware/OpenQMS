@@ -1,0 +1,138 @@
+# Open QMS — Automotive Supply Chain cross-overlay
+# --------------------------------------------------
+# Cross-overlay binding automotive + ISO 26262 + ISO/SAE 21434 +
+# recall-workflow to encode the end-to-end automotive supply-chain
+# regulatory framework — OEM-to-tier-N coordination of functional
+# safety + cybersecurity + recall + supplier qualification.
+#
+# Scope: automotive OEMs + tier-1 + tier-2 suppliers; software
+# suppliers (OTA platforms + ADAS perception + AD stacks);
+# semiconductor + ECU + actuator suppliers.
+
+name: automotive-supply-chain
+version: 0.1.0
+
+standards:
+  - "ISO 26262:2018"
+  - "ISO/SAE 21434:2021"
+  - "IATF 16949:2016"
+  - "UN R155"
+
+clauses:
+
+  - id: ASC-Distributed-Development-Agreement-DIA
+    standard: ISO 26262:2018
+    section: "ISO 26262-8 §5 + ISO/SAE 21434-7 + ISO 21434 SCA"
+    summary: |
+      Development Interface Agreement (DIA) — written agreement
+      between OEM/integrator + supplier defining: assumed-safety/
+      cybersecurity-properties at item boundaries; allocated
+      requirements (e.g., DALs / ASILs / CALs); verification +
+      validation responsibilities; safety-case + cyber-case
+      contribution; configuration-management coordination; release
+      criteria; field-monitoring + incident-coordination. Mandatory
+      per ISO 26262-8 §5 + ISO/SAE 21434-7 Cybersecurity Case
+      sharing.
+
+  - id: ASC-Production-Part-Approval-Process-PPAP
+    standard: IATF 16949:2016
+    section: "IATF 16949 §8.3 + AIAG PPAP 4th"
+    summary: |
+      Production Part Approval Process — supplier-to-customer
+      approval submission per AIAG PPAP 4th Edition. 5 submission
+      levels (Level 1 PSW only through Level 5 PSW + records at
+      supplier for review). 18 PPAP elements including Design
+      Records, Engineering Change Documents, Customer Engineering
+      Approval, Design FMEA, Process FMEA, Control Plan, MSA,
+      Capability Studies, Records of Material/Performance Tests,
+      Initial Process Studies, Qualified Laboratory Documentation,
+      Appearance Approval, Sample Production Parts, Master Sample,
+      Checking Aids, Customer-Specific Requirements, PSW.
+
+  - id: ASC-cybersecurity-supplier-management
+    standard: ISO/SAE 21434:2021
+    section: "ISO/SAE 21434-7 + §15"
+    summary: |
+      Cybersecurity supplier management — per §15: OEM/integrator
+      assesses supplier cybersecurity capability + CSMS
+      certification status; allocates cyber-requirements to
+      supplier per §15.4; receives + reviews Cybersecurity
+      Interface Agreement (CIA — analog of DIA for cyber) per §15.3;
+      Cybersecurity Plan responsibilities defined per §6.4.7;
+      receives Vulnerability Disclosure + Triage from supplier
+      per §13.3; coordinates incident-response across supplier
+      boundaries per §13.4.
+
+  - id: ASC-UN-R155-Type-Approval-CSMS
+    standard: UN R155
+    section: "UN R155 §7 + R156 §7"
+    summary: |
+      UN R155 Type-Approval + CSMS — vehicle Type Approval Authority
+      (TAA) certifies the manufacturer's Cybersecurity Management
+      System (CSMS) per UN R155 §7 + product Type Approval requires
+      manufacturer demonstration of risk assessment + mitigation +
+      monitoring + management of cybersecurity throughout the
+      vehicle lifecycle. CSMS certificate valid 3 years. R156
+      parallel for Software Update Management System (SUMS) +
+      OTA. Supply chain implications: tier-1 supplier capability
+      flows up to OEM TAA submission.
+
+  - id: ASC-Production-Suspension-Recall-coordination
+    standard: IATF 16949:2016
+    section: "IATF 16949 §8.7 + NHTSA Part 573 + ISO/SAE 21434-13"
+    summary: |
+      Production-suspension + recall coordination across supply
+      chain — defective-part discovery at supplier triggers: (i)
+      immediate customer notification per IATF 16949 §8.7
+      Nonconforming Output; (ii) traceability + containment to
+      identify all affected production lots; (iii) supplier-side
+      8D problem-solving + ICA + PCA; (iv) coordination with OEM
+      for potential NHTSA Part 573 Defect Information Report (5
+      working days from OEM determination); (v) field-action plan
+      + warranty-handling. For cybersecurity-relevant defects:
+      ISO/SAE 21434-13 incident-response engaged in parallel.
+
+  - id: ASC-Tier-N-flow-down
+    standard: IATF 16949:2016
+    section: "IATF 16949 §8.4 + ISO/SAE 21434-15"
+    summary: |
+      Tier-N flow-down — IATF 16949 §8.4 requires OEM-imposed
+      customer-specific requirements + IATF requirements to flow
+      down to sub-tier suppliers. Cybersecurity flow-down per
+      ISO/SAE 21434-15 — supplier propagates allocated cyber-
+      requirements + DIA-equivalent to sub-suppliers. Concentration
+      risk monitoring (tier-2 + tier-3 supplier dependency mapping)
+      + supplier audit programme + 2nd-party audit cadence per
+      criticality classification.
+
+  - id: ASC-software-supplier-special-considerations
+    standard: ISO/SAE 21434:2021
+    section: "ISO 26262-6 + ISO/SAE 21434 + UN R156 SUMS"
+    summary: |
+      Software supplier special considerations — Software-Only
+      suppliers (OTA platform, AD stack, ADAS perception, infotainment,
+      embedded RTOS) may not fit IATF 16949 + PPAP traditional model.
+      Hybrid approaches: software requires SCS (Software Component
+      Specification) + V&V evidence + cybersecurity case + AS-derived
+      requirements traceability + UN R156 SUMS-compatible release
+      management. Composes with `automotive-asil-d` or `automotive-
+      cal-4` for top-rigor software.
+
+templates:
+
+  - path: templates/qms-policy/quality-policy.md
+    name: "Quality policy (Automotive Supply Chain — extends QMS policy with DIA + CIA discipline + AIAG PPAP discipline + UN R155/R156 CSMS/SUMS + tier-N flow-down + cross-functional production-suspension/recall coordination)"
+    addresses:
+      - ASC-Distributed-Development-Agreement-DIA
+      - ASC-Production-Part-Approval-Process-PPAP
+      - ASC-cybersecurity-supplier-management
+      - ASC-UN-R155-Type-Approval-CSMS
+      - ASC-Tier-N-flow-down
+
+  - path: templates/qms-sops/SOP-TEMPLATE.md
+    name: "Automotive supply chain operational SOPs (DIA + CIA template + PPAP submission workflow + supplier cybersecurity assessment + CSMS evidence assembly + UN R155 TAA submission coordination + production-suspension/recall escalation + tier-N supplier audit cadence + 8D coordination)"
+    addresses:
+      - ASC-Distributed-Development-Agreement-DIA
+      - ASC-Production-Suspension-Recall-coordination
+      - ASC-Tier-N-flow-down
+      - ASC-software-supplier-special-considerations
