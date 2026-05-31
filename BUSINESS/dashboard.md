@@ -1,7 +1,7 @@
 # Dashboard — Open QMS
 
-**Version:** v0.1.0 DRAFT (cumulative through engine v0.24.0)
-**Date:** 2026-05-23
+**Version:** v0.64.0 (cumulative; engine v0.64.0)
+**Date:** 2026-05-31
 **Maintainer:** Aaron Green
 
 Current state + priority stack. Read this first every session. For claim status, see `ENGINE_SPEC.md`. For history, `changelog.md`. For evidence map, `artifact_registry.md`.
@@ -75,9 +75,11 @@ Counts: 6 + 100 + 5 + 0 = 111 ✓. **Latest at v0.64.0**: Omnibus + cross-audit 
 **v0.41.0 transitions:** OQ-108 NEW `:tested` (privacy cross-cutting overlay — GDPR Regulation 2016/679 + CCPA Cal. Civ. Code §1798.100-199; 21 clauses across principles + lawful bases + Article 9 special categories + data subject rights + controller/processor obligations + ROPA + security + breach + DPIA + DPO + international transfers + CCPA consumer rights + business obligations + CPPA ADMT/Risk/Cybersecurity regulatory regime). 5 new substantial templates: PRIVACY-POLICY (Articles 13-14 + CCPA notice with all 11 CCPA categories + SPI + lawful-basis grid + GPC honoring); DPA (Article 28 + CCPA §7050-7053 + 2021/915 SCCs + Transfer Impact Assessment); DPIA (Article 35 + CCPA Risk Assessment + WP248 rev.01 9-criteria + WP250 consequences); ROPA (Article 30 controller Part A + processor Part B); PERSONAL-DATA-BREACH-NOTIFICATION (Article 33 SA 72h + Article 34 subjects + Article 33(5) documentation + CCPA §1798.150 PRA + US state AG cross-reference + HIPAA + FTC HBNR + SEC Item 1.05 8-K). Both standards PUBLIC license. 24th cross-cutting overlay; **last major management-system gap closed**. Registry +2 standards. **17-module ultimate composite validates** (new depth record beats prior 16-module). CI extended (+11 validate steps). Module-tier count 53 → 54. Spec total 91 → 92.
 **v0.42.0 transitions:** OQ-109 NEW `:tested` (sub-overlay batch — 16 sub-overlays splitting monolithic cross-cutting overlays into rigor/scope/tier deltas; new module shape). 3 CMMC levels (cmmc-level-1 FCI / cmmc-level-2 CUI / cmmc-level-3 NS-critical CUI) + 2 SOC 2 types (soc-2-type-i point-in-time / soc-2-type-ii observation-period) + 2 ISO 27001 extensions (iso-27001-cloud 27017 / iso-27001-privacy 27701 PIMS) + 4 NIST CSF Implementation Tiers (nist-csf-tier-1 Partial / tier-2 Risk Informed / tier-3 Repeatable / tier-4 Adaptive) + 5 PCI DSS SAQ types (pci-dss-saq-a / saq-a-ep / saq-d-merchant / saq-d-sp / saq-p2pe). Registry +2 commercial standards (ISO 27017 + ISO 27701); other 14 reuse existing registered standards. Total module count 76 → 92. Cross-cutting overlay count unchanged at 24. **19-module deepest composite validates** (new depth record). CI extended (+23 validate steps). Module-tier count 54 → 55. Spec total 92 → 93.
 
-**Zero `:open` entries.** Remaining work surface: module-coverage population continues (OQ-041 ISO 13485 5/full; OQ-042 21 CFR 820 5/full; OQ-045 IEC 62304 7/9; OQ-043 / 044 / 046 / 047 still `:argued` with no machine-readable bindings yet).
+**Zero `:open` entries.** All 10 module-tier entries (OQ-040..OQ-049) reached `:tested` by v0.10.0 — the medical-devices crosswalk is fully machine-readable (59 clauses / 11 standards). Remaining work surface: the 2 hard forward-work priorities (P2 + P15, see Priority stack) plus the 5 honest-effort `:argued` entries (OQ-003 invariant; OQ-022 + OQ-023 adopter-org-gated substrate enforcement; OQ-070 + OQ-071 manual-by-nature standards licensing).
 
-**Honest read of v0.1.0:** Phase 0 (scaffold + workflows) is substantially `:tested`. Phase 1 (generator engine) is uniformly `:open`. The load-bearing invariant (OQ-001) is `:argued` until Phase 1 lands. The regulatory module pattern is sketched (`:argued`) but the medical-devices module is not yet machine-readable.
+> **[Frozen v0.1.0 snapshot — historical baseline; superseded.]** Phase 0 (scaffold + workflows) is substantially `:tested`. Phase 1 (generator engine) is uniformly `:open`. The load-bearing invariant (OQ-001) is `:argued` until Phase 1 lands. The regulatory module pattern is sketched (`:argued`) but the medical-devices module is not yet machine-readable.
+>
+> *As of v0.64.0 this is fully superseded: Phase 1 shipped v0.2.0–v0.6.0; OQ-001 is now `:verified`; the medical-devices module is fully machine-readable (59 clauses / 11 standards). Retained verbatim as the project's honesty-baseline record.*
 
 ---
 
@@ -93,110 +95,65 @@ Phase 2+ = **additional regulatory modules** (regulated AI ✓ v0.12.0; aerospac
 
 ## Priority stack
 
-Ordered by load-bearingness. Each item names the S-ID it addresses, the artifact it produces, and the status transition expected.
+Canonical priority numbering follows the **Forward work** section of `docs/compliance-architecture.md` (P1–P15), which consolidates three 2026-05-25 feedback inputs: adopter-experience (P1–P4), independent-reviewer technical assessment (P5–P14), and the integration-architecture comment (P15). **13 of 15 closed as of v0.64.0; 2 hard items remain (P2 + P15).**
 
-### ~~P1 — Build the generator engine MVP (CLI bundle resolver)~~ ✓ (closed at v0.2.0)
+> **Numbering note.** This canonical P1–P15 scheme supersedes the original 2026-05-22 `P1–P10` + `P1.1/P1.2/P1.3` stack (the engine-MVP build-out). Every item in that old stack shipped across v0.1.1–v0.8.0 and is now a `:tested`/`:verified` spec entry — see the dated changelog below and `ENGINE_SPEC.md` for per-entry status. In particular, the **old-scheme "P2"** (make the medical-devices crosswalk machine-readable) closed at v0.9.0–v0.10.0 and is tracked as OQ-041..OQ-048 — it is **not** the validation-package P2 below.
 
-**Addresses:** OQ-010, OQ-013, OQ-066 closed. OQ-011, OQ-014, OQ-015 deferred to follow-up priorities below.
-**Resolution:** v0.2.0 — Python engine at `engine/` (commit `4a72a9f`). `openqms resolve` and `openqms validate` CLIs work end-to-end against the medical-devices module. 15-test pytest suite covering loader, resolver, validation, and a medical-devices integration smoke. CI workflow `.github/workflows/engine-tests.yml` runs on every push touching `engine/`, `modules/`, or `templates/`.
-**Status transitions:** OQ-010 `:open → :tested`, OQ-013 `:open → :tested`, OQ-066 `:open → :tested`, OQ-001 `:argued → :tested`, OQ-040 `:argued → :tested`.
-**Companion doc:** `BUSINESS/companion_engine_mvp.md`.
-**Follow-up priorities split out below as P1.1 (composition), P1.2 (registry), P1.3 (re-resolution).**
+### Open — 2 remaining (both hard, multi-session)
 
-### P2 — Convert medical-devices crosswalk into a machine-readable module *(partial at v0.2.0)*
+#### P2 — Validation package *(hard; next; highest-value remaining adopter-facing deliverable)*
 
-**Addresses:** OQ-040 closed; OQ-041..OQ-048 partial (~15% of the 27-clause full crosswalk machine-readable so far).
-**Status at v0.2.0:** `modules/medical-devices/module.yaml` ships with 4 of the 27 crosswalk clauses (ISO 13485 §4.2.4, §7.3; 21 CFR 820 §820.30, §820.40) bound to the 3 artifact templates currently in `templates/`. Validation harness passes.
-**Remaining work:** Fold in the remaining 23 clauses as additional artifact templates land. Each clause addition requires: (a) the clause entry in `module.yaml`, (b) at least one artifact template in `templates/` (existing or new) declaring the clause in its `addresses` binding, (c) the validation harness staying green.
-**Status transitions for completion:** OQ-041..OQ-048 each move `:argued → :tested` once the full clause set of that standard is in `module.yaml`. Partial mechanization is recorded in each entry's notes, not the status field.
+- **Gap:** no validation-package template set — URS + IQ/OQ/PQ + Change Assessment + Computer System Validation protocol + Validation Master Plan.
+- **Plan:** ship a `validation-package` cross-cutting overlay bound to **21 CFR Part 11 + EU GMP Annex 11 + ISO 13485 §7.5.6**. New overlay module + 7 templates + clause crosswalks across 3 standards + composites + tests + documentation. Largest single deliverable in the queue.
+- **Source of truth:** `docs/compliance-architecture.md` → Adopter-experience priorities.
 
-### ~~P1.1 — Multi-module composition~~ ✓ (closed at v0.4.0)
+#### P15 — Integration-architecture cross-record trace network *(hard; added v0.56.0)*
 
-**Addresses:** OQ-011, OQ-012, OQ-048.
-**Resolution:** v0.4.0 (commit `2a146ad`) — added `openqms.module.compose(list[Module]) -> Module` as a new primitive (resolver signature unchanged; composition is its own testable function). CLI `--module` is repeatable on both `resolve` and `validate`; multiple modules are composed before the operation. Shipped a minimal ISO/IEC 27001:2022 cross-cutting overlay module at `modules/iso-27001/` (3 clauses bound to 3 existing OpenQMS templates) to exercise the composition primitive end to end. Integration tests confirm the medical-devices + iso-27001 composite validates and resolves with merged template addresses.
-**Status transitions:** OQ-011 `:open → :tested`, OQ-012 `:open → :tested`, OQ-048 `:argued → :tested`.
+- **Gap:** no enforced *instance-level* trace network across the living-record kinds — requirement ↔ hazard ↔ mitigation ↔ test ↔ CAPA ↔ complaint ↔ post-market-surveillance finding. The shipped trace (OQ-001 + OQ-067 `openqms trace`) is *clause-level*, one layer up at module YAML. Instance-level precedent today is partial: the RISK-MANAGEMENT-FILE template is a single-artifact view; complaint/nonconformance issue forms carry free-text `capa_link` with no engine validation.
+- **Plan:** (1) frontmatter schema for trace-link IDs across the ~7 record kinds; (2) convert free-text issue-template link fields to structured IDs; (3) new `openqms trace-instances` subcommand walking the cross-record graph; (4) instance-level zero-orphan invariant (every hazard ≥ 1 mitigation; every test ≥ 1 requirement; every CAPA ≥ 1 trigger); (5) frontmatter migration across ~20–40 record-producing templates; (6) CI gate; (7) docs.
+- **Strategic note:** the reviewer-named differentiator — *"connectedness is where modern systems win."* Comparable to P2 in scope.
+- **Source of truth:** `docs/compliance-architecture.md` → Integration-architecture priorities.
 
-### ~~P1.2 — Standards-and-jurisdictions registry~~ ✓ (closed at v0.5.0)
+### Closed — 13 of 15
 
-**Addresses:** OQ-014.
-**Resolution:** v0.5.0 (commit `12b6b33`) — registry shipped at `registry/standards.yaml` (15 entries) + `registry/jurisdictions.yaml` (6 entries) + `registry/README.md`. Engine code at `engine/openqms/registry.py` with `Registry`/`StandardEntry`/`JurisdictionEntry` frozen dataclasses, `load_registry()` with dangling-reference cross-check, and `validate_module_against_registry()`. CLI normalizes `--standard` aliases to canonical ids before passing to resolver; rejects unknown standards and jurisdictions with helpful error messages listing registered ids. New subcommand `openqms registry list/show`. Escape hatch `--allow-unregistered-standards` for migration paths (jurisdictions remain strictly validated).
-**Status transitions:** OQ-014 `:open → :tested`.
+| Priority | Effort | Closed | Spec | Deliverable |
+|---|---|---|---|---|
+| P1 | — | v0.52.0 | OQ-119 | Compliance-architecture trust-gate document |
+| P3 | medium | v0.57.0 | OQ-121 | Non-technical UX batch — 5 issue forms + 5 role/process guides (`docs/guide/` 12→17) |
+| P4 | medium | v0.61.0 | OQ-125 | Startup-stage presets (pre-seed/seed/series-a/series-b-plus; monotonic) + maturity-model guide |
+| P5 | medium | v0.60.0 | OQ-124 | Doc-control hardening — schema-validated parsing, hard-fail on version drift, 8-state machine, per-PR audit artifact |
+| P6 | light | v0.55.0 | OQ-120 | `engine/uv.lock` (hashed pins) + `uv sync --frozen` CI gate |
+| P7 | light | v0.55.0 | OQ-120 | `git tag -s` discipline (`docs/guide/release.md`) + adopter-side verification |
+| P8 | light | v0.55.0 | OQ-120 | `release-artifact.yml` — per-tag trace/coverage/signatures/pytest/lint/tag-signature evidence bundle |
+| P9 | medium | v0.58.0 | OQ-122 | Template frontmatter schema + `lint-template-frontmatter.py` CI gate (105/105 pass) |
+| P10 | medium | v0.59.0 | OQ-123 | Negative-path test suite — 23 broken-by-construction fixtures |
+| P11 | medium | v0.62.0 | OQ-126 | `openqms verify-deployment --policy` — checks adopter fork's GitHub config vs declared policy |
+| P12 | light | v0.55.0 | OQ-120 | `IDENTITY-MAPPING-SOP-TEMPLATE.md` — HR→GitHub identity mapping (§11.100) |
+| P13 | light | v0.55.0 | OQ-120 | `BACKUP-RESTORE-SOP-TEMPLATE.md` — 3-2-1 posture + 13-step annual restoration-test runbook |
+| P14 | light | v0.55.0 | OQ-120 | `regulatory_review_cadence.md` — cadence + reviewer-qualification + honest 0/116 review-debt baseline |
 
-### ~~P1.3 — Re-resolution on mutation~~ ✓ (closed at v0.6.0)
-
-**Addresses:** OQ-015, OQ-065.
-**Resolution:** v0.6.0 (commit `3cfec2c`) — shipped `openqms regenerate --bundle <name>` CLI subcommand operating on stored bundle definitions at `bundles/<name>.yaml` and committed matrix files at `bundles/<name>.matrix.json`. The matrix file's Git diff is the regulatory audit trail. New modules `engine/openqms/bundle.py` (loader) and `engine/openqms/diff.py` (`MatrixDiff` + `format_diff`). Edition supersession via `superseded_by` field on registry entries + `--strict-editions` CLI flag on `validate` and `regenerate`. Shipped `bundles/example-samd.{yaml,matrix.json}` as a committed regression baseline; CI runs `regenerate` in dry-run mode on every push touching `engine/`, `modules/`, `registry/`, `templates/`, or `bundles/`.
-**Status transitions:** OQ-015 `:open → :tested`, OQ-065 `:open → :tested`.
-
-### ~~P3 — Implement or remove `generate-trace-matrix.sh`~~ ✓ (closed at v0.1.1)
-
-**Addresses:** OQ-067, OQ-031.
-**Resolution:** Doc-only fix at v0.1.1. Replaced the broken `./scripts/generate-trace-matrix.sh` reference in `docs/guide/traceability.md` with a "Repository-wide traceability matrix (forward)" subsection pointing at the engine-driven Phase-1 deliverable.
-**Status transitions:** OQ-067 `:open → :argued` ✓
-**Follow-up observation (not yet ticketed):** the YAML job ID `generate-trace-matrix` in `traceability.yml:43` is the same misleading name. The job's display name ("Generate traceability snippet") is accurate; the YAML ID is not. Renaming touches Actions run history and any branch-protection required-checks configured against the old name, so defer to a deliberate cleanup pass.
-
-### ~~P4 — Tighten training-trigger YAML parsing~~ ✓ (closed at v0.1.2)
-
-**Addresses:** OQ-061.
-**Resolution:** v0.1.2 — replaced the regex-based parsing in `.github/workflows/training-trigger.yml` with a Python 3.12 + PyYAML parse step that emits a JSON payload consumed by the issue-creation step. Parses both `docs/qms-config.yml` and per-document frontmatter using `yaml.safe_load`. Behaviour preserved (config-missing → no issues + warning; config-present-but-empty-trainees → issues with placeholder).
-**Status transitions:** OQ-035 stays `:tested`; OQ-061 stays `:tested` with the claim reframed (was "is brittle"; now "uses real parser — gap closed").
-
-### ~~P5 — Add complaint issue template (or document why deferred)~~ ✓ (closed at v0.2.1)
-
-**Addresses:** OQ-069, OQ-062.
-**Resolution:** v0.2.1 (commit `2fe3ef6`) — both deliverables in one release:
-- `.github/ISSUE_TEMPLATE/complaint.yml` ships with form validation, PHI-redacted intake fields, and required PHI-handling confirmation checkboxes.
-- `docs/guide/complaints.md` documents the compartmentalization architecture decision: PHI/PII lives in a sibling access-restricted record (Pattern A: private GitHub repo; Pattern B: external eQMS). The main-repo issue captures only triage metadata.
-- Medical-devices module manifest gains ISO 13485 §8.2.2 + 21 CFR 820.198 as clauses, both bound to the new template.
-**Status transitions:** OQ-069 stays `:tested` (claim reframed); OQ-062 `:open → :argued`.
-
-### ~~P6 — Populate the high-priority template subdirectories~~ ✓ (closed at v0.3.0)
-
-**Addresses:** OQ-068 (partial — 8 of original 15 dirs populated; 7 intentionally adopter-defined remain); OQ-049 (NEW — ISO 14971 full coverage); OQ-038 (template count 4 → 11).
-**Resolution:** v0.3.0 (commit `2625b98`) — eight IEC 62304 / ISO 14971 workhorse templates shipped: `RISK-MANAGEMENT-FILE-TEMPLATE` (ISO 14971 §4-10), `VERIFICATION-PROTOCOL-TEMPLATE`, `VALIDATION-PROTOCOL-TEMPLATE`, `SOFTWARE-REQUIREMENTS-TEMPLATE` (IEC 62304 §5.2), `SOFTWARE-ARCHITECTURE-TEMPLATE` (§5.3), `SOUP-REGISTER-TEMPLATE` (§8.1.2), `SOFTWARE-TEST-PROTOCOL-TEMPLATE` (§5.5 + §5.6 + §5.7), `SOFTWARE-RELEASE-TEMPLATE` (§5.8). Medical-devices module manifest extended with 14 new clauses and 8 new template bindings. Validation harness passes on 20 clauses / 12 artifacts.
-**Status transitions:** OQ-049 NEW `:tested`; OQ-068 stays `:tested` (claim reframed); OQ-038 updated.
-**Remaining template work (P6.1, low priority):** 7 dirs still placeholder-only: `qms-{capa,forms,training,suppliers,management-review}/` (org-level workflows) and `product-dhf/{design-outputs,technical-file}/` (product-specific). These are intentionally adopter-defined; not on the v0.4 roadmap.
-
-### ~~P7 — Org-level GPG enforcement documented~~ ✓ (closed at v0.2.2)
-
-**Addresses:** OQ-023, OQ-022.
-**Resolution:** v0.2.2 (commit `86bda4f`) — `docs/guide/gpg-signing.md` shipped as runnable checklist: pick signing scheme (GPG / SSH / S/MIME), per-individual key registration with HR-attested identity mapping, repository-level "Require signed commits" branch protection, optional org-level defaults, CI workflow snippet for belt-and-suspenders verification, periodic audit habit, and an explicit limitations section noting that GitHub "Verified" badges certify key→account but not account→person, that web edits sign as GitHub, and that signature meaning (§11.50) is out of scope.
-**Status transitions:** OQ-023 stays `:argued` — mechanism unchanged, but adopters now have a documented enforcement path. Upgrading to `:tested` would require either monitoring instrumentation outside this repo or an end-to-end test that doesn't compose with the org-level admin perms required.
-
-### ~~P8 — Part 11 §11.50 signature-meaning prototype~~ ✓ (closed at v0.7.0)
-
-**Addresses:** OQ-060.
-**Resolution:** v0.7.0 (commit `0b06381`) — shipped commit-trailer convention (`Signature-Meaning:` required; `Signature-Role:` and `Signature-Justification:` optional) plus `engine/openqms/signatures.py` (parser, GPG-status decoder, git-log extractor, Part 11 JSON exporter), CLI `openqms signatures verify|export` subcommand, dormant CI workflow `.github/workflows/signature-check.yml` (active in adopter forks via path filter), and comprehensive guide `docs/guide/signature-meaning.md`. 23 tests cover the round trip from commit through audit-trail export.
-**Status transitions:** OQ-060 `:open → :tested`.
-
-### P9 — Module-version drift detection
-
-**Addresses:** OQ-065, OQ-014.
-**Produces:** Each `modules/*/manifest.yaml` declares the standard editions it implements; engine refuses to resolve a bundle that references a stale module without explicit operator override.
-**Status transitions:** OQ-065 `:open → :tested`. Phase 1+ work, after P1 ships.
-
-### P10 — Public release of BUSINESS/ contents
-
-**Addresses:** governance posture for engaging Open Honest Foundation or other upstream homes (per `~/.claude/.../memory/project_open_honest_konscience_fit.md`).
-**Produces:** Move ENGINE_SPEC.md, DESIGN.md, artifact_registry.md, dashboard.md, changelog.md out of `BUSINESS/` (gitignored) and into a public top-level location, OR keep them in BUSINESS/ but with a public-versioned counterpart. Decide before any external standards-body conversation that requires the spec on-disk.
+Per-priority closure detail lives in `docs/compliance-architecture.md`; per-release narrative in `changelog.md`. The original-scheme engine build-out (old P1–P10 + P1.1/1.2/1.3) is preserved in the dated changelog at the bottom of this file.
 
 ---
 
 ## Open gaps (rolled up from ENGINE_SPEC for at-a-glance scan)
 
-| S-ID | Gap | Tier | Priority |
+**Zero `:open` spec entries as of v0.64.0.** Every Gap-tier entry once tracked here has closed to `:tested`:
+
+| S-ID | Gap (original framing) | Now | Closed |
 |---|---|---|---|
-| ~~OQ-060~~ | ~~Part 11 §11.50 signature meaning binding~~ ✓ closed v0.7.0 | Gap | ~~P8~~ |
-| ~~OQ-061~~ | ~~Training-trigger YAML parsing brittle~~ ✓ closed v0.1.2 | Gap | ~~P4~~ |
-| OQ-062 | PHI/PII compartmentalization for complaints | Gap | P5 |
-| ~~OQ-063~~ | ~~Supplier-evaluation workflow~~ ✓ closed v0.8.0 | Gap | — |
-| ~~OQ-064~~ | ~~Management-review aggregation~~ ✓ closed v0.8.0 | Gap | — |
-| OQ-065 | Module-version drift detection | Gap | P1.3 |
-| ~~OQ-066~~ | ~~Generator validation harness~~ ✓ closed v0.2.0 | Gap | ~~P1~~ |
-| ~~OQ-067~~ | ~~Trace-matrix generator script promised but missing~~ ✓ closed v0.1.1 | Gap | ~~P3~~ |
-| OQ-068 | Eleven template subdirectories placeholder-only | Gap | P6 |
-| OQ-069 | No complaint issue template | Gap | P5 |
-| OQ-080 | README disclaimer (gap-as-honesty-bound) | Gap | *(no action required; entry is the assurance)* |
+| OQ-060 | Part 11 §11.50 signature-meaning binding | `:tested` | v0.7.0 |
+| OQ-061 | Training-trigger YAML parsing brittle | `:tested` | v0.1.2 |
+| OQ-062 | PHI/PII compartmentalization for complaints | `:tested` | v0.39.0 |
+| OQ-063 | Supplier-evaluation workflow | `:tested` | v0.8.0 |
+| OQ-064 | Management-review aggregation | `:tested` | v0.8.0 |
+| OQ-065 | Module-version drift detection | `:tested` | v0.6.0 |
+| OQ-066 | Generator validation harness | `:tested` | v0.2.0 |
+| OQ-067 | Repo-wide trace matrix (`openqms trace`) | `:tested` | v0.39.0 |
+| OQ-068 | Template subdirectories placeholder-only | `:tested` | v0.3.0 (reframed) |
+| OQ-069 | Complaint issue template | `:tested` | v0.2.1 |
+
+**Genuinely open-by-nature** (not closeable mechanically): the 5 remaining `:argued` entries — OQ-003 (invariant), OQ-022 + OQ-023 (adopter-org-gated substrate enforcement), OQ-070 + OQ-071 (manual-by-nature standards licensing). **OQ-080** (README honesty disclaimer) is itself the assurance — no action required; the entry *is* the gap-as-honesty-bound. Forward feature work is the 2 hard priorities in the Priority stack above (P2 + P15).
 
 ---
 
