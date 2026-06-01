@@ -393,13 +393,14 @@ jobs:
           openqms trace --all --output /tmp/openqms-trace.json
           python3 -c "import json; d=json.load(open('/tmp/openqms-trace.json')); s=d['summary']; assert s['orphaned_clauses_total']==0, f'orphaned clauses: {s}'; assert s['orphaned_templates_total']==0, f'orphaned templates: {s}'; print(f'trace ok — {s[\"modules_in_scope\"]} modules / {s[\"total_clauses\"]} clauses / {s[\"total_templates\"]} templates / 0 orphans')"
 
-      - name: Instance-level trace (P15.1a smoke + invariant)
-        # Walks the committed worked example and enforces the instance-level
-        # invariants (referential integrity + per-kind minimum edges) against
-        # the reference policy. Exits 1 on any error finding — the
-        # instance-level analog of the clause-level zero-orphan gate above.
+      - name: Instance-level trace (P15.1a/1b/2 smoke + invariant)
+        # Walks the committed worked example — Tier-1 frontmatter + Tier-2
+        # in-body tables + the GitHub-issue export — and enforces the
+        # instance-level invariants (referential integrity + per-kind minimum
+        # edges) against the reference policy. Exits 1 on any error finding —
+        # the instance-level analog of the clause-level zero-orphan gate above.
         run: |
-          openqms trace-instances --path examples/trace-instances --policy trace-policy.example.yaml --output /tmp/openqms-trace-instances.json
+          openqms trace-instances --path examples/trace-instances --issues-json examples/trace-instances/issues-export.example.json --policy trace-policy.example.yaml --output /tmp/openqms-trace-instances.json
           python3 -c "import json; r=json.load(open('/tmp/openqms-trace-instances.json')); s=r['summary']; assert s['errors']==0, r['findings']; print(f'trace-instances ok — {s[\"records\"]} records / {s[\"edges\"]} edges / 0 errors')"
 
       - name: Signatures export (smoke check)

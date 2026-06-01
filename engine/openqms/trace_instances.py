@@ -18,7 +18,9 @@ P15.2 respectively and are out of scope here.
 
 from __future__ import annotations
 
+import json
 import re
+import subprocess
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -73,6 +75,7 @@ class TraceNode:
     # relationship -> tuple of target record IDs (as declared on this node)
     links: dict[str, tuple[str, ...]] = field(default_factory=dict)
     scope: str | None = None
+    origin: str = "markdown"  # "markdown" (Tier-1/Tier-2) or "issue" (P15.2)
 
 
 @dataclass
@@ -217,6 +220,100 @@ def discover_records(root: Path) -> list[TraceNode]:
     return nodes
 
 
+# --- P15.2: GitHub-issue substrate ---------------------------------------
+
+# Issue label -> trace record kind. First matching label on an issue wins.
+LABEL_TO_KIND: dict[str, str] = {
+    "capa": "CAPA",
+    "complaint": "CMPL",
+    "nonconformance": "NCR",
+    "ncr": "NCR",
+    "change-request": "CHG",
+    "design-input": "REQ",
+    "supplier-evaluation": "SUP",
+    "audit": "AUD",
+}
+
+_ISSUE_ID_RE = re.compile(r"^[A-Z]{2,5}-\d+$")
+_HEADING_RE = re.compile(r"^#{1,6}\s+(.*\S)\s*$")
+
+
+def extract_issue_trace_links(body: str) -> dict[str, tuple[str, ...]]:
+    """Parse the ``Trace links`` section of a GitHub-issue body.
+
+    GitHub Issue Forms render an input field as a ``### <label>`` heading
+    followed by its value (or ``_No response_`` when blank). This finds the
+    ``Trace links`` section and parses its value with the cell grammar.
+    """
+    collecting = False
+    captured: list[str] = []
+    for line in (body or "").splitlines():
+        m = _HEADING_RE.match(line)
+        if m:
+            if collecting:
+                break
+            collecting = m.group(1).strip().lower() == "trace links"
+            continue
+        if collecting:
+            captured.append(line)
+    value = " ".join(s.strip() for s in captured if s.strip())
+    if not value or value.lower() in ("_no response_", "no response"):
+        return {}
+    return parse_links_cell(value)
+
+
+def node_from_issue(issue: dict) -> TraceNode | None:
+    """Build a TraceNode from one `gh issue list --json number,labels,body` item.
+
+    Kind is inferred from the issue's labels (LABEL_TO_KIND); the synthetic
+    ID is ``KIND-<issue-number>``. Returns None for issues that carry no
+    trace-participating label.
+    """
+    number = issue.get("number")
+    if number is None:
+        return None
+    label_names = [str(lbl.get("name", "")).lower() for lbl in (issue.get("labels") or [])]
+    kind = next((LABEL_TO_KIND[ln] for ln in label_names if ln in LABEL_TO_KIND), None)
+    if kind is None:
+        return None
+    return TraceNode(
+        record_id=f"{kind}-{number}",
+        kind=kind,
+        source_path=f"github:issue/{number}",
+        links=extract_issue_trace_links(issue.get("body") or ""),
+        origin="issue",
+    )
+
+
+def nodes_from_issues(issues: list[dict]) -> list[TraceNode]:
+    return [n for n in (node_from_issue(i) for i in issues) if n is not None]
+
+
+def _default_gh_invoker(args: list[str]) -> str:
+    return subprocess.run(["gh", *args], check=True, capture_output=True, text=True).stdout
+
+
+def fetch_issues_via_gh(repo: str, *, gh_invoker=None, limit: int = 200) -> list[dict]:
+    """Pull issues for ``repo`` via the `gh` CLI (the verify-deployment pattern).
+
+    ``gh_invoker`` is a callable(list[str]) -> str; production runs the real
+    `gh`, tests inject a fake returning canned JSON.
+    """
+    invoker = gh_invoker or _default_gh_invoker
+    out = invoker(
+        ["issue", "list", "--repo", repo, "--state", "all",
+         "--limit", str(limit), "--json", "number,labels,body"]
+    )
+    data = json.loads(out) if out.strip() else []
+    return data if isinstance(data, list) else []
+
+
+def load_issues_json(path: Path) -> list[dict]:
+    """Read a pre-exported `gh issue list --json number,labels,body` file."""
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return data if isinstance(data, list) else []
+
+
 def _effective_edges(nodes: list[TraceNode]) -> set[tuple[str, str, str]]:
     """All (source_id, relationship, target_id) edges, with inverses
     materialized so a query works regardless of which endpoint declared it."""
@@ -241,6 +338,18 @@ def lint_records(nodes: list[TraceNode], require_scope: bool = True) -> list[Fin
     findings: list[Finding] = []
     seen: dict[str, str] = {}
     for n in nodes:
+        if n.origin == "issue":
+            if not _ISSUE_ID_RE.match(n.record_id):
+                findings.append(Finding("error", f"{n.source_path}: malformed issue record_id {n.record_id!r} (expect KIND-<number>)"))
+            elif n.kind not in RECORD_KINDS:
+                findings.append(Finding("error", f"{n.source_path}: unknown record_kind {n.kind!r}"))
+            if n.record_id in seen:
+                findings.append(Finding("error", f"{n.source_path}: duplicate record_id {n.record_id!r} (also in {seen[n.record_id]})"))
+            seen[n.record_id] = n.source_path
+            for rel in n.links:
+                if rel not in RELATIONSHIPS:
+                    findings.append(Finding("error", f"{n.source_path}: unknown relationship {rel!r} on {n.record_id}"))
+            continue
         parsed = parse_id(n.record_id)
         if parsed is None:
             findings.append(Finding("error", f"{n.source_path}: malformed record_id {n.record_id!r} (expect KIND-SCOPE-NNNN)"))

@@ -15,7 +15,12 @@ from openqms.trace_instances import (
     build_report,
     check_invariants,
     discover_records,
+    extract_issue_trace_links,
+    fetch_issues_via_gh,
     lint_records,
+    load_issues_json,
+    node_from_issue,
+    nodes_from_issues,
     parse_id,
     parse_item_tables,
     parse_links_cell,
@@ -197,5 +202,55 @@ def test_shipped_example_includes_tier2_rows(repo_root):
     ids = {n.record_id for n in nodes}
     # Tier-2 rows from RMF-CARDIO-0100.md are discovered alongside Tier-1 records
     assert "HAZ-CARDIO-0050" in ids and "MIT-CARDIO-0051" in ids
+    report = build_report(nodes, DEFAULT_POLICY)
+    assert report["summary"]["errors"] == 0, report["findings"]
+
+
+# --- P15.2: GitHub-issue substrate ---
+
+def test_extract_issue_trace_links_parses_section():
+    body = "### Description\n\nx\n\n### Trace links\n\ntriggered_by:NCR-3; relates_to:CMPL-2026-0003\n\n### Next\n\ny"
+    assert extract_issue_trace_links(body) == {"triggered_by": ("NCR-3",), "relates_to": ("CMPL-2026-0003",)}
+    assert extract_issue_trace_links("### Trace links\n\n_No response_") == {}
+    assert extract_issue_trace_links("no heading at all") == {}
+
+
+def test_node_from_issue_label_to_kind_and_id():
+    issue = {"number": 7, "labels": [{"name": "capa"}, {"name": "capa-open"}], "body": "### Trace links\n\ntriggered_by:NCR-3"}
+    n = node_from_issue(issue)
+    assert n is not None
+    assert n.kind == "CAPA" and n.record_id == "CAPA-7" and n.origin == "issue"
+    assert n.links == {"triggered_by": ("NCR-3",)}
+
+
+def test_node_from_issue_unlabeled_or_numberless_returns_none():
+    assert node_from_issue({"number": 12, "labels": [{"name": "question"}], "body": "x"}) is None
+    assert node_from_issue({"labels": [{"name": "capa"}]}) is None
+
+
+def test_issue_node_lints_clean_despite_short_numeric_id():
+    nodes = nodes_from_issues([{"number": 7, "labels": [{"name": "capa"}], "body": "### Trace links\n\ntriggered_by:NCR-3"}])
+    assert [f for f in lint_records(nodes, require_scope=True) if f.severity == "error"] == []
+
+
+def test_fetch_issues_via_gh_with_injected_invoker():
+    captured = {}
+
+    def fake_invoker(args):
+        captured["args"] = args
+        return '[{"number": 7, "labels": [{"name": "capa"}], "body": "### Trace links\\n\\ntriggered_by:NCR-3"}]'
+
+    issues = fetch_issues_via_gh("acme/repo", gh_invoker=fake_invoker)
+    assert issues[0]["number"] == 7
+    assert "--repo" in captured["args"] and "acme/repo" in captured["args"]
+
+
+def test_issues_fold_into_markdown_graph_clean(repo_root):
+    md = discover_records(repo_root / "examples" / "trace-instances")
+    issues = load_issues_json(repo_root / "examples" / "trace-instances" / "issues-export.example.json")
+    nodes = md + nodes_from_issues(issues)
+    ids = {n.record_id for n in nodes}
+    assert "CAPA-7" in ids and "NCR-3" in ids       # issue nodes folded in
+    assert not any(i == "QUESTION-12" for i in ids)  # unlabeled issue ignored
     report = build_report(nodes, DEFAULT_POLICY)
     assert report["summary"]["errors"] == 0, report["findings"]

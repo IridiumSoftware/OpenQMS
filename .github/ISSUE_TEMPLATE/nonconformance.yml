@@ -53,3 +53,11 @@ body:
       options:
         - label: CAPA required (create linked CAPA issue)
         - label: No CAPA required (justification in investigation)
+  - type: input
+    id: trace-links
+    attributes:
+      label: Trace links
+      description: "Instance-trace links in `rel:ID` syntax (P15 — folded into `openqms trace-instances`). Link the CAPA this NC triggers, if any."
+      placeholder: "triggers:CAPA-2026-0034"
+    validations:
+      required: false
