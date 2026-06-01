@@ -123,8 +123,89 @@ def parse_record(path: Path) -> TraceNode | None:
     )
 
 
+def parse_links_cell(cell: str) -> dict[str, tuple[str, ...]]:
+    """Parse a Tier-2 ``Trace links`` cell: ``rel:ID,ID; rel:ID`` (§7)."""
+    cell = cell.strip().strip("`").strip()
+    links: dict[str, tuple[str, ...]] = {}
+    if not cell or cell in ("—", "-", "n/a", "N/A"):
+        return links
+    for clause in cell.split(";"):
+        rel, sep, ids = clause.strip().partition(":")
+        if not sep:
+            continue
+        rel = rel.strip()
+        targets = tuple(t.strip().strip("`") for t in ids.split(",") if t.strip())
+        if rel and targets:
+            links[rel] = targets
+    return links
+
+
+def _split_row(line: str) -> list[str]:
+    s = line.strip()
+    if s.startswith("|"):
+        s = s[1:]
+    if s.endswith("|"):
+        s = s[:-1]
+    return [c.strip() for c in s.split("|")]
+
+
+_SEP_RE = re.compile(r"^\s*\|[\s:|-]+\|\s*$")
+
+
+def parse_item_tables(path: Path) -> list[TraceNode]:
+    """Tier-2: parse in-body markdown **trace tables** into TraceNodes.
+
+    A trace table is recognized by a header row containing both an ``ID``
+    column and a ``Trace links`` column. Each data row whose ID matches the
+    grammar becomes a node (kind = the ID's prefix); rows with bracket
+    placeholders (e.g. ``HAZ-[PRODUCT]-001`` in a blank template) don't match
+    and are skipped. See companion_p15_trace_schema.md §7.
+    """
+    lines = path.read_text(encoding="utf-8").splitlines()
+    nodes: list[TraceNode] = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if (
+            line.lstrip().startswith("|")
+            and i + 1 < len(lines)
+            and _SEP_RE.match(lines[i + 1])
+        ):
+            headers = [h.lower() for h in _split_row(line)]
+            id_col = headers.index("id") if "id" in headers else None
+            link_col = next((idx for idx, h in enumerate(headers) if "trace link" in h), None)
+            if id_col is not None and link_col is not None:
+                j = i + 2
+                while j < len(lines) and lines[j].lstrip().startswith("|"):
+                    cells = _split_row(lines[j])
+                    if len(cells) > max(id_col, link_col):
+                        rid = cells[id_col].strip().strip("`").strip()
+                        parsed = parse_id(rid)
+                        if parsed:
+                            kind, scope, _ = parsed
+                            nodes.append(
+                                TraceNode(
+                                    record_id=rid,
+                                    kind=kind,
+                                    source_path=str(path),
+                                    links=parse_links_cell(cells[link_col]),
+                                    scope=scope,
+                                )
+                            )
+                    j += 1
+                i = j
+                continue
+        i += 1
+    return nodes
+
+
 def discover_records(root: Path) -> list[TraceNode]:
-    """Find all trace-participating records under ``root`` (recursively)."""
+    """Find all trace-participating records under ``root`` (recursively).
+
+    Collects **Tier-1** whole-record frontmatter nodes (``parse_record``)
+    and **Tier-2** in-body item-table nodes (``parse_item_tables``); a single
+    file may contribute both.
+    """
     nodes: list[TraceNode] = []
     for p in sorted(root.rglob("*.md")):
         if not p.is_file():
@@ -132,6 +213,7 @@ def discover_records(root: Path) -> list[TraceNode]:
         node = parse_record(p)
         if node is not None:
             nodes.append(node)
+        nodes.extend(parse_item_tables(p))
     return nodes
 
 

@@ -17,6 +17,8 @@ from openqms.trace_instances import (
     discover_records,
     lint_records,
     parse_id,
+    parse_item_tables,
+    parse_links_cell,
     parse_record,
 )
 
@@ -139,5 +141,61 @@ def test_shipped_example_records_validate_clean(repo_root):
     assert len(nodes) >= 8, f"expected >=8 example records, found {len(nodes)}"
     lint = lint_records(nodes, require_scope=True)
     assert [f for f in lint if f.severity == "error"] == [], [f.message for f in lint if f.severity == "error"]
+    report = build_report(nodes, DEFAULT_POLICY)
+    assert report["summary"]["errors"] == 0, report["findings"]
+
+
+# --- Tier-2: in-body item tables ---
+
+def test_parse_links_cell_compact_grammar():
+    got = parse_links_cell("mitigated_by:MIT-X-0001,MIT-X-0002; verified_by:TST-X-0009")
+    assert got == {"mitigated_by": ("MIT-X-0001", "MIT-X-0002"), "verified_by": ("TST-X-0009",)}
+    assert parse_links_cell("—") == {}
+    assert parse_links_cell("`mitigated_by:MIT-X-0001`") == {"mitigated_by": ("MIT-X-0001",)}
+
+
+def test_parse_item_tables_extracts_rows_and_skips_placeholders(tmp_path):
+    doc = tmp_path / "rmf.md"
+    doc.write_text(
+        "---\ndocument_id: RMF-X-0001\nversion: \"1.0\"\nowner: x\nstatus: effective\neffective_date: 2026-06-01\n---\n"
+        "# RMF\n\n"
+        "## Hazards\n\n"
+        "| ID | Hazard | Severity | Trace links |\n"
+        "|---|---|---|---|\n"
+        "| `HAZ-CARDIO-0050` | Air-in-line | Critical | mitigated_by:MIT-CARDIO-0051 |\n"
+        "| `HAZ-[PRODUCT]-001` | (blank template placeholder) | — | mitigated_by:MIT-[PRODUCT]-001 |\n",
+        encoding="utf-8",
+    )
+    nodes = parse_item_tables(doc)
+    assert len(nodes) == 1  # placeholder row skipped (bracket ID fails grammar)
+    n = nodes[0]
+    assert n.record_id == "HAZ-CARDIO-0050" and n.kind == "HAZ"
+    assert n.links == {"mitigated_by": ("MIT-CARDIO-0051",)}
+
+
+def test_tier2_collection_doc_composes_into_clean_graph(tmp_path):
+    # A container RMF (no record_kind) with hazard + mitigation rows; the
+    # mitigation row verifies a Tier-1 whole-record test file.
+    (tmp_path / "rmf.md").write_text(
+        "---\ndocument_id: RMF-X-0001\nversion: \"1.0\"\nowner: x\nstatus: effective\neffective_date: 2026-06-01\n---\n"
+        "# RMF\n\n"
+        "| ID | Item | Trace links |\n|---|---|---|\n"
+        "| `HAZ-CARDIO-0050` | Air-in-line | mitigated_by:MIT-CARDIO-0051 |\n"
+        "| `MIT-CARDIO-0051` | Air detector | verified_by:TST-CARDIO-0021 |\n",
+        encoding="utf-8",
+    )
+    _write(tmp_path / "tst.md", "TST", "TST-CARDIO-0021")
+    nodes = discover_records(tmp_path)
+    ids = {n.record_id for n in nodes}
+    assert {"HAZ-CARDIO-0050", "MIT-CARDIO-0051", "TST-CARDIO-0021"} <= ids
+    report = build_report(nodes, DEFAULT_POLICY)
+    assert report["summary"]["errors"] == 0, report["findings"]
+
+
+def test_shipped_example_includes_tier2_rows(repo_root):
+    nodes = discover_records(repo_root / "examples" / "trace-instances")
+    ids = {n.record_id for n in nodes}
+    # Tier-2 rows from RMF-CARDIO-0100.md are discovered alongside Tier-1 records
+    assert "HAZ-CARDIO-0050" in ids and "MIT-CARDIO-0051" in ids
     report = build_report(nodes, DEFAULT_POLICY)
     assert report["summary"]["errors"] == 0, report["findings"]
