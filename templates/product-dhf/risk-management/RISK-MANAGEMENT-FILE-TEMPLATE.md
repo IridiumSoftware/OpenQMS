@@ -21,15 +21,19 @@ approval_date: YYYY-MM-DD
 
 ## 2. Hazard identification and risk analysis (ISO 14971 §5)
 
-| ID | Hazard | Hazardous situation | Foreseeable sequence of events | Harm | Probability | Severity | Pre-mitigation risk |
-|---|---|---|---|---|---|---|---|
-| H-001 | [e.g. battery overheating] | [device in use during ambulatory monitoring] | [overcurrent → thermal runaway → enclosure breach] | [thermal burn] | [Low/Med/High] | [Negligible/Minor/Serious/Critical] | [score per matrix] |
+This is a **P15 Tier-2 trace table** — `openqms trace-instances` walks each row as an individual node. The `ID` column uses the `HAZ-<SCOPE>-NNNN` grammar and `Trace links` uses the `rel:ID; rel:ID` syntax. Replace `[PRODUCT]` with your product SCOPE.
+
+| ID | Hazard | Hazardous situation | Foreseeable sequence of events | Harm | Probability | Severity | Pre-mitigation risk | Trace links |
+|---|---|---|---|---|---|---|---|---|
+| HAZ-[PRODUCT]-0001 | [e.g. battery overheating] | [device in use during ambulatory monitoring] | [overcurrent → thermal runaway → enclosure breach] | [thermal burn] | [Low/Med/High] | [Negligible/Minor/Serious/Critical] | [score per matrix] | mitigated_by:MIT-[PRODUCT]-0001 |
 
 ## 3. Risk control (ISO 14971 §7)
 
-| Hazard ID | Risk control measure | Type (inherent safety / protective measure / information for safety) | Implementation evidence | Verification of effectiveness |
-|---|---|---|---|---|
-| H-001 | [thermal cutoff at 60°C] | Protective measure (hardware) | [SAD §3.2; PCB rev D] | [VP-XXX-007 test case TC-12 results] |
+Each control is its own `MIT-<SCOPE>-NNNN` trace node; `Trace links` ties it back to the hazard it mitigates and forward to the test that verifies it (`TST-<SCOPE>-NNNN`).
+
+| ID | Hazard ID | Risk control measure | Type (inherent safety / protective measure / information for safety) | Implementation evidence | Trace links |
+|---|---|---|---|---|---|
+| MIT-[PRODUCT]-0001 | HAZ-[PRODUCT]-0001 | [thermal cutoff at 60°C] | Protective measure (hardware) | [SAD §3.2; PCB rev D] | mitigates:HAZ-[PRODUCT]-0001; verified_by:TST-[PRODUCT]-0007 |
 
 ## 4. Residual risk evaluation (ISO 14971 §8)
 
