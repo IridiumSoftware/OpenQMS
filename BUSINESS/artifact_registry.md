@@ -1,6 +1,6 @@
 # artifact_registry — Open QMS
 
-**Version:** v0.66.0
+**Version:** v0.67.0
 **Date:** 2026-06-01
 
 Maps every `ENGINE_SPEC.md` entry to its evidence file (test, proof, workflow YAML, template, script, or documented argument) and to the source file(s) implementing the claim. No registry row → no traceable evidence.

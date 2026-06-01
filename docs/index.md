@@ -8,7 +8,7 @@ Open QMS is **infrastructure, not a validated QMS.** Adopters validate the deplo
 
 ---
 
-## Current scope — v0.63.0
+## Current scope — v0.66.0
 
 | Dimension | Count |
 |---|---|
@@ -18,12 +18,13 @@ Open QMS is **infrastructure, not a validated QMS.** Adopters validate the deplo
 | Cross-cutting overlays | **26** — ISO 27001 · regulated-AI · ISO 14001/45001/50001 · ISO 37001 · ISO 22301 · ISO 31000 · ISO 37301 · SOC 2 · PCI DSS · HITRUST · NIST CSF · DORA · privacy (GDPR+CCPA) · HIPAA · US state privacy · recall-workflow · others |
 | Sub-overlays | **26** — CMMC levels · SOC 2 types · ISO 27001 extensions · NIST CSF tiers · PCI DSS SAQ types · DORA tiers · HITRUST levels · ISO 37301 sectoral profiles |
 | Cross-overlays | **12** — combination-product · IMS · food-pharma-grade · connected-medical-device · cell-therapy-supply-chain · food-allergen-recall · defense-aerospace-cyber · digital-health-multi-region · automotive-supply-chain · clinical-trial-multi-region · banking-resilience · utility-cybersecurity |
-| Total modules | **116** + general |
-| Registry standards | **~135** (most PUBLIC license; commercial standards flagged) |
+| Validation family (P2) | **3** — validation-package + validation-package-fda + validation-package-eu (risk-based CSV/CSA) |
+| Total modules | **119** + general |
+| Registry standards | **140** (most PUBLIC license; commercial standards flagged) |
 | Registry jurisdictions | **20** |
-| Document templates | **105** with frontmatter schema validated in CI |
+| Document templates | **113** with frontmatter schema validated in CI |
 | Example bundles | **8** vertical-specific + **4** stage-specific presets |
-| Spec entries (status) | **110** — 6 `:verified` / 99 `:tested` / 5 `:argued` / 0 `:open` |
+| Spec entries (status) | **113** — 6 `:verified` / 102 `:tested` / 5 `:argued` / 0 `:open` |
 | Engine CLI subcommands | **10** — `resolve` · `validate` · `regenerate` · `signatures` · `trace` · `coverage` · `crosswalk` · `jurisdictions-query` · `registry` · `verify-deployment` |
 | Pytest suite | **251 tests** in CI gating every push |
 | Deepest composition tested in CI | **24-module ultra composite** (medical-devices + pharma + combination-product + connected-medical-device + digital-health-multi-region + sterile + HIPAA + privacy + 11 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy + ISO 37301) |
@@ -89,7 +90,7 @@ Open QMS is **infrastructure, not a validated QMS.** Adopters validate the deplo
 - **Not a substitute for QA judgment.** The modules encode regulatory requirements; the adopter's quality professionals interpret them for their product, risk, and jurisdiction.
 - **Not a regulator-certified Part 11 implementation.** The §11.50 signature-meaning prototype is an opinionated convention; production drug-release records typically warrant validated commercial systems for the batch-records-themselves layer.
 - **Apache-2.0 on Open QMS code does NOT extend to referenced standards.** ISO / IEC / IATF / AIAG / USP / IMDG / IATA DGR / ISO 27017 / ISO 27701 and similar are commercial standards that adopters must license separately (per OQ-070 + OQ-071).
-- **Per-module regulatory review status is published.** Per [`BUSINESS/regulatory_review_cadence.md`](https://github.com/IridiumSoftware/open-qms/blob/main/BUSINESS/regulatory_review_cadence.md), the honest starting baseline is **0 / 116 modules** independently reviewed by a §2-qualified reviewer. Modules pass the engine's structural coverage invariant + clause-template binding; semantic adequacy against authoritative regulator text is process-governance work tracked separately.
+- **Per-module regulatory review status is published.** Per [`BUSINESS/regulatory_review_cadence.md`](https://github.com/IridiumSoftware/open-qms/blob/main/BUSINESS/regulatory_review_cadence.md), the honest starting baseline is **0 / 119 modules** independently reviewed by a §2-qualified reviewer. Modules pass the engine's structural coverage invariant + clause-template binding; semantic adequacy against authoritative regulator text is process-governance work tracked separately.
 
 ---
 
