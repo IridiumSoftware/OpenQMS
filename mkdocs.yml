@@ -38,7 +38,8 @@ nav:
     - Document control: guide/doc-control.md
     - Document routing (CODEOWNERS): guide/document-routing.md
     - CAPA lifecycle: guide/capa-lifecycle.md
-    - Traceability: guide/traceability.md
+    - Traceability (clause-level): guide/traceability.md
+    - Instance-level traceability (P15): guide/instance-traceability.md
     - Training: guide/training.md
     - Supplier controls: guide/supplier-controls.md
     - Management review: guide/management-review.md

@@ -1,0 +1,23 @@
+# Open QMS — instance-level trace policy (P15.1a reference)
+# Consumed by `openqms trace-instances --policy trace-policy.example.yaml`.
+# See BUSINESS/companion_p15_trace_schema.md §9.
+
+# Every referenced trace-link target must resolve to a known record.
+referential_integrity: error
+
+# Product-bound kinds (REQ/URS/HAZ/MIT/TST/IQ/OQ/PQ/FUNC) must carry a
+# SCOPE segment in their ID (KIND-SCOPE-NNNN). Set false for single-product forks.
+require_scope: true
+
+# Relationships that must form an acyclic graph.
+no_cycles: [derived_from]
+
+# Per-kind minimum-edge requirements. NOTE: the high-risk->scripted rule is
+# intentionally NOT encoded as an error here — CSA says risk->method is not
+# rigid (that determination lives in the Assurance Determination, not CI).
+require:
+  - { kind: HAZ,  edge: mitigated_by, min: 1, severity: error }
+  - { kind: MIT,  edge: verified_by,  min: 1, severity: error }
+  - { kind: REQ,  edge: verified_by,  min: 1, severity: warning }  # requirements coverage
+  - { kind: CAPA, edge: triggered_by, min: 1, severity: error }
+  - { kind: FUNC, edge: assured_by,   min: 1, severity: error }
