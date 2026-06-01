@@ -315,6 +315,12 @@ jobs:
           openqms validate --module validation-package --module validation-package-fda
           openqms validate --module medical-devices --module validation-package --module validation-package-fda
           openqms validate --module pharma --module validation-package --module validation-package-fda
+          # P2.3 — validation-package-eu (EU GMP Annex 11/15 + ISO 13485 + ICH Q9) market overlay
+          openqms validate --module validation-package-eu
+          openqms validate --module validation-package --module validation-package-eu
+          openqms validate --module pharma --module validation-package --module validation-package-eu
+          # US + EU — both market overlays compose onto one baseline
+          openqms validate --module validation-package --module validation-package-fda --module validation-package-eu
 
       - name: Coverage report (smoke check + repo-wide invariant)
         # v0.49.0 — `openqms coverage` per-module + aggregate coverage metrics.
