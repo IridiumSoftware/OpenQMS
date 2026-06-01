@@ -50,8 +50,14 @@ jobs:
         # bit-identical wrt deps. Editable install of the engine
         # itself via uv pip install -e for test discoverability.
         run: |
-          cd engine && uv sync --frozen --all-extras
-          cd engine && uv pip install -e '.[dev]'
+          cd engine
+          uv sync --frozen --all-extras
+          uv pip install -e '.[dev]'
+          # Put the uv-created venv on PATH so the later steps' bare
+          # `python3` / `pytest` / `openqms` resolve to it (uv installs
+          # into engine/.venv, not the system Python). Without this, the
+          # lint steps fail with ModuleNotFoundError: No module named 'yaml'.
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
 
       - name: Lint module.yaml files
         # Catches the YAML failure modes observed in the v0.36-v0.38
