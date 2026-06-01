@@ -1,23 +1,24 @@
 # Modules catalog
 
-Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.66.0. Use this page to choose the modules for your scope.
+Comprehensive inventory of every regulatory module shipped with Open QMS as of v0.68.0. Use this page to choose the modules for your scope.
 
 **Current scope:**
 
 | Dimension | Count |
 |---|---|
-| Verticals | **7** (medical-devices, aerospace, automotive, manufacturing, pharma, food-safety, chemicals) |
+| Verticals | **8** (medical-devices, aerospace, automotive, manufacturing, pharma, food-safety, chemicals, finance) |
 | Class overlays | **44** across 6 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5 / chemicals 6) |
 | Cross-cutting overlays | **26** (iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas, privacy, hipaa, **us-state-privacy**) |
 | **Sub-overlays** | **26** — class-overlay-shape deltas on cross-cutting overlays. v0.42.0 (16): cmmc-level-1/2/3, soc-2-type-i/ii, iso-27001-cloud/privacy, nist-csf-tier-1/2/3/4, pci-dss-saq-a/a-ep/d-merchant/d-sp/p2pe. v0.43.0 (10): dora-ctpp/non-ctpp/tlpt, hitrust-e1/i1/r2, iso-37301-public-sector/financial-services/healthcare/general-business |
 | **Cross-overlays** | **12** — bind ACROSS specific vertical combinations. v0.44 (3): combination-product, integrated-management-system, food-pharma-grade. v0.47 (+5): connected-medical-device, cell-therapy-supply-chain, food-allergen-recall, defense-aerospace-cyber, digital-health-multi-region. v0.50 (+4): automotive-supply-chain, clinical-trial-multi-region, banking-resilience, utility-cybersecurity |
 | **Validation family** (P2) | **3** — risk-based computerized-system validation. v0.65.0: validation-package (market-neutral baseline) + validation-package-fda (CSA + Part 11 + Part 820/QMSR) + validation-package-eu (Annex 11/15 + ISO 13485 + ICH Q9) |
-| **Total modules** | **119** + general |
-| Registry standards | **140** (v0.65.0 +5: GAMP 5 2nd ed. + IEC/IEEE/ISO 29119-1:2022 + FDA CSA Guidance 2026 + EU GMP Annex 11 + Annex 15) |
+| **Finance vertical** (SOX / ICFR) | **1** — `finance`: Sarbanes-Oxley §302/§404 + COSO 2013 + PCAOB AS 2201; the 8th vertical (v0.68.0) |
+| **Total modules** | **120** + general |
+| Registry standards | **144** (v0.68.0 +4: Sarbanes-Oxley Act + SEC Exchange Act ICFR rules + COSO IC-IF 2013 + PCAOB AS 2201) |
 | Registry jurisdictions | **20** |
-| Document templates | **113** on disk; **1,012** clause→template bindings via `addresses:` declarations |
+| Document templates | **119** on disk; **1,031** clause→template bindings via `addresses:` declarations |
 | Example bundles | **8** (validated end-to-end with committed baseline matrices) |
-| Spec entries | **113** (0 `:open`; OQ-119 through OQ-129 across the trust-gate + forward-work closures + Pages refresh + validation-package family OQ-128 + instance-level traceability OQ-129) |
+| Spec entries | **114** (0 `:open`; OQ-119 through OQ-130 across the trust-gate + forward-work closures + Pages refresh + validation-package family OQ-128 + instance-level traceability OQ-129 + finance vertical OQ-130) |
 | Deepest composition tested in CI | **24-module ultra composite** (medical-devices + pharma + combination-product + connected-medical-device + digital-health-multi-region + sterile + hipaa + privacy + 11 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy + ISO 37301) |
 
 **Three module types:**

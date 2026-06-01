@@ -1,0 +1,220 @@
+# Open QMS — finance vertical module (SOX / ICFR spine)
+# ----------------------------------------------------
+# Eighth vertical. The QMS-of-financial-reporting: Internal Control over
+# Financial Reporting (ICFR) for US public companies, built on the
+# Sarbanes-Oxley Act (§302 + §404), the COSO 2013 Internal Control —
+# Integrated Framework (5 components / 17 principles), and PCAOB AS 2201
+# (the integrated audit of ICFR). This is the control-framework spine;
+# the operational-resilience / infosec / compliance-management side is
+# already covered by the cross-cutting overlays (dora,
+# iso-37301-financial-services, banking-resilience, soc-2, iso-27001,
+# nist-csf) that compose with this vertical.
+#
+# Why a vertical: ICFR is a control framework you build, bind to evidence,
+# and test — the same shape Open QMS already implements for quality
+# systems. SOX §404 management assessment is literally "design + operate +
+# test controls + evaluate deficiencies," which maps cleanly onto the
+# engine's clause → template → (instance) trace model.
+#
+# Forward overlays (not in v1): EU market (CSRD/ESEF + EU audit reform),
+# SEC industry rules, broker-dealer (FINRA), AML/BSA program, banking
+# prudential (Basel) — each a class/market overlay or sibling vertical.
+#
+# Standards licensing: SOX + SEC Exchange Act + PCAOB AS 2201 are public
+# US works; COSO IC-IF (2013) is a commercially published copyrighted
+# framework. Summaries are paraphrases (OQ-070) — no standard text is
+# redistributed; adopters obtain their own licensed COSO copy.
+
+name: finance
+version: 0.1.0
+
+standards:
+  - Sarbanes-Oxley Act (SOX)
+  - SEC Exchange Act (ICFR rules)
+  - COSO IC-IF (2013)
+  - PCAOB AS 2201
+
+clauses:
+  - id: FIN-SOX-302
+    standard: Sarbanes-Oxley Act (SOX)
+    section: "§302"
+    summary: |
+      Quarterly certification by the principal executive and financial
+      officers that the periodic report fairly presents the financial
+      condition, and that they are responsible for and have evaluated the
+      effectiveness of disclosure controls and procedures.
+
+  - id: FIN-SOX-404A
+    standard: Sarbanes-Oxley Act (SOX)
+    section: "§404(a)"
+    summary: |
+      Annual management assessment of the effectiveness of internal control
+      over financial reporting (ICFR) against a suitable, recognized control
+      framework, with a documented basis for the conclusion.
+
+  - id: FIN-SOX-404B
+    standard: Sarbanes-Oxley Act (SOX)
+    section: "§404(b)"
+    summary: |
+      For accelerated and large-accelerated filers, the external auditor
+      attests to ICFR effectiveness in an integrated audit; management's
+      documentation and testing are organized to support that attestation.
+
+  - id: FIN-SEC-13A15
+    standard: SEC Exchange Act (ICFR rules)
+    section: "Rule 13a-15 / 15d-15"
+    summary: |
+      Maintain disclosure controls and procedures (DC&P) and ICFR; evaluate
+      DC&P effectiveness as of each period end; disclose any change in ICFR
+      that materially affected, or is reasonably likely to affect, ICFR.
+
+  - id: FIN-COSO-CE
+    standard: COSO IC-IF (2013)
+    section: "Control Environment (Principles 1-5)"
+    summary: |
+      Commitment to integrity and ethical values; board independence and
+      oversight; management's structures, reporting lines, authorities and
+      responsibilities; commitment to competence; and accountability.
+
+  - id: FIN-COSO-RA
+    standard: COSO IC-IF (2013)
+    section: "Risk Assessment (Principles 6-9)"
+    summary: |
+      Specify financial-reporting objectives with sufficient clarity;
+      identify and analyze risks to their achievement; assess fraud risk;
+      and identify and assess significant changes affecting the system.
+
+  - id: FIN-COSO-CA
+    standard: COSO IC-IF (2013)
+    section: "Control Activities (Principles 10-12)"
+    summary: |
+      Select and develop control activities that mitigate risks to an
+      acceptable level; select general controls over technology; and deploy
+      control activities through policies that establish expectations and
+      procedures that put them into action.
+
+  - id: FIN-COSO-IC
+    standard: COSO IC-IF (2013)
+    section: "Information & Communication (Principles 13-15)"
+    summary: |
+      Obtain or generate and use relevant, quality information; communicate
+      internally the information (including control responsibilities)
+      necessary to support internal control; and communicate with external
+      parties on matters affecting internal control.
+
+  - id: FIN-COSO-MA
+    standard: COSO IC-IF (2013)
+    section: "Monitoring Activities (Principles 16-17)"
+    summary: |
+      Select, develop and perform ongoing and/or separate evaluations to
+      ascertain whether the components of internal control are present and
+      functioning; evaluate and communicate deficiencies to those
+      responsible for corrective action, on a timely basis.
+
+  - id: FIN-ELC
+    standard: COSO IC-IF (2013)
+    section: "Entity-level controls"
+    summary: |
+      Document and evaluate entity-level controls across the five components
+      and seventeen principles — tone at the top, governance, risk culture —
+      and assess their precision and their effect on the scope and rigor of
+      process-level control testing.
+
+  - id: FIN-ITGC
+    standard: PCAOB AS 2201
+    section: "IT general controls"
+    summary: |
+      Establish IT general controls — logical access and security, change
+      management, computer operations, and program development — that
+      support the continued effective operation of automated controls and
+      the reliability of information produced by the entity (IPE) relied on
+      for ICFR. Composes with the iso-27001 overlay.
+
+  - id: FIN-SCOPING
+    standard: PCAOB AS 2201
+    section: "Top-down, risk-based scoping"
+    summary: |
+      Use a top-down, risk-based approach: identify significant accounts and
+      disclosures and their relevant assertions, understand likely sources
+      of misstatement, and scope in the processes and controls that address
+      them, applying financial-statement and ICFR materiality.
+
+  - id: FIN-RCM
+    standard: PCAOB AS 2201
+    section: "Risk-control matrix"
+    summary: |
+      Maintain a risk-control matrix mapping each significant account and
+      relevant assertion to the controls that address it, classified as key
+      vs non-key, preventive vs detective, manual vs automated, with control
+      frequency and owner.
+
+  - id: FIN-TESTING
+    standard: PCAOB AS 2201
+    section: "Test of design + operating effectiveness"
+    summary: |
+      Test both design effectiveness and operating effectiveness of key
+      controls using a mix of inquiry, observation, inspection and
+      re-performance; size samples by control frequency; and roll forward
+      interim conclusions to period end.
+
+  - id: FIN-DEFICIENCY
+    standard: PCAOB AS 2201
+    section: "Deficiency evaluation"
+    summary: |
+      Evaluate identified control deficiencies by likelihood and magnitude
+      of potential misstatement and classify each as a deficiency,
+      significant deficiency, or material weakness; remediate and re-test;
+      and disclose material weaknesses in the §404 assessment.
+
+  - id: FIN-FRAUD
+    standard: COSO IC-IF (2013)
+    section: "Fraud risk (Principle 8)"
+    summary: |
+      Assess fraud risk in achieving financial-reporting objectives,
+      including the risk of management override of controls, and design
+      antifraud controls and segregation of duties commensurate with that
+      risk.
+
+templates:
+  - path: templates/qms-finance/ICFR-CONTROL-MATRIX-TEMPLATE.md
+    name: ICFR risk-control matrix
+    addresses:
+      - FIN-SOX-404A
+      - FIN-COSO-RA
+      - FIN-COSO-CA
+      - FIN-SCOPING
+      - FIN-RCM
+      - FIN-FRAUD
+
+  - path: templates/qms-finance/ENTITY-LEVEL-CONTROLS-TEMPLATE.md
+    name: Entity-level controls assessment
+    addresses:
+      - FIN-COSO-CE
+      - FIN-COSO-IC
+      - FIN-COSO-MA
+      - FIN-ELC
+      - FIN-FRAUD
+
+  - path: templates/qms-finance/ITGC-REGISTER-TEMPLATE.md
+    name: IT general controls register
+    addresses:
+      - FIN-ITGC
+
+  - path: templates/qms-finance/CONTROL-TEST-PLAN-AND-RESULTS-TEMPLATE.md
+    name: Control test plan and results
+    addresses:
+      - FIN-SOX-404B
+      - FIN-COSO-MA
+      - FIN-TESTING
+
+  - path: templates/qms-finance/SOX-CERTIFICATION-TEMPLATE.md
+    name: SOX certification (302 + 404)
+    addresses:
+      - FIN-SOX-302
+      - FIN-SOX-404A
+      - FIN-SEC-13A15
+
+  - path: templates/qms-finance/CONTROL-DEFICIENCY-LOG-TEMPLATE.md
+    name: Control deficiency log
+    addresses:
+      - FIN-DEFICIENCY

@@ -327,6 +327,11 @@ jobs:
           openqms validate --module pharma --module validation-package --module validation-package-eu
           # US + EU — both market overlays compose onto one baseline
           openqms validate --module validation-package --module validation-package-fda --module validation-package-eu
+          # v0.68.0 — finance vertical (SOX / ICFR — 8th vertical)
+          openqms validate --module finance
+          openqms validate --module finance --module iso-27001
+          openqms validate --module finance --module iso-37301-financial-services --module soc-2
+          openqms validate --module finance --module dora --module nist-csf --module iso-22301
 
       - name: Coverage report (smoke check + repo-wide invariant)
         # v0.49.0 — `openqms coverage` per-module + aggregate coverage metrics.

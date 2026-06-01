@@ -8,24 +8,24 @@ Open QMS is **infrastructure, not a validated QMS.** Adopters validate the deplo
 
 ---
 
-## Current scope — v0.66.0
+## Current scope — v0.68.0
 
 | Dimension | Count |
 |---|---|
-| Verticals (regulated industries) | **7** — medical-devices · aerospace · automotive · manufacturing · pharma · food-safety · chemicals |
+| Verticals (regulated industries) | **8** — medical-devices · aerospace · automotive · manufacturing · pharma · food-safety · chemicals · finance (SOX/ICFR) |
 | Module shapes | **6** — vertical · sub-vertical · class overlay · cross-cutting overlay · sub-overlay · cross-overlay |
 | Class overlays (rigor / product-class) | **44** across 6 verticals |
 | Cross-cutting overlays | **26** — ISO 27001 · regulated-AI · ISO 14001/45001/50001 · ISO 37001 · ISO 22301 · ISO 31000 · ISO 37301 · SOC 2 · PCI DSS · HITRUST · NIST CSF · DORA · privacy (GDPR+CCPA) · HIPAA · US state privacy · recall-workflow · others |
 | Sub-overlays | **26** — CMMC levels · SOC 2 types · ISO 27001 extensions · NIST CSF tiers · PCI DSS SAQ types · DORA tiers · HITRUST levels · ISO 37301 sectoral profiles |
 | Cross-overlays | **12** — combination-product · IMS · food-pharma-grade · connected-medical-device · cell-therapy-supply-chain · food-allergen-recall · defense-aerospace-cyber · digital-health-multi-region · automotive-supply-chain · clinical-trial-multi-region · banking-resilience · utility-cybersecurity |
 | Validation family (P2) | **3** — validation-package + validation-package-fda + validation-package-eu (risk-based CSV/CSA) |
-| Total modules | **119** + general |
-| Registry standards | **140** (most PUBLIC license; commercial standards flagged) |
+| Total modules | **120** + general |
+| Registry standards | **144** (most PUBLIC license; commercial standards flagged) |
 | Registry jurisdictions | **20** |
-| Document templates | **113** with frontmatter schema validated in CI |
+| Document templates | **119** with frontmatter schema validated in CI |
 | Example bundles | **8** vertical-specific + **4** stage-specific presets |
-| Spec entries (status) | **113** — 6 `:verified` / 102 `:tested` / 5 `:argued` / 0 `:open` |
-| Engine CLI subcommands | **10** — `resolve` · `validate` · `regenerate` · `signatures` · `trace` · `coverage` · `crosswalk` · `jurisdictions-query` · `registry` · `verify-deployment` |
+| Spec entries (status) | **114** — 6 `:verified` / 103 `:tested` / 5 `:argued` / 0 `:open` |
+| Engine CLI subcommands | **11** — `resolve` · `validate` · `regenerate` · `signatures` · `trace` · `trace-instances` · `coverage` · `crosswalk` · `jurisdictions-query` · `registry` · `verify-deployment` |
 | Pytest suite | **251 tests** in CI gating every push |
 | Deepest composition tested in CI | **24-module ultra composite** (medical-devices + pharma + combination-product + connected-medical-device + digital-health-multi-region + sterile + HIPAA + privacy + 11 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy + ISO 37301) |
 

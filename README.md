@@ -6,22 +6,22 @@ Open QMS resolves a `(product, jurisdictions, standards, modules)` bundle into a
 
 The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD for enforcement, Git for the audit trail.
 
-## Current scope (v0.66.0)
+## Current scope (v0.68.0)
 
 | Dimension | Count |
 |---|---|
-| Verticals (regulated industries) | **7** — medical-devices, aerospace, automotive, manufacturing, pharma, food-safety, chemicals |
+| Verticals (regulated industries) | **8** — medical-devices, aerospace, automotive, manufacturing, pharma, food-safety, chemicals, finance (SOX/ICFR) |
 | Class overlays (rigor-level + product-class) | **44** across 6 verticals (medical 9 / aerospace 7 / automotive 11 / pharma 6 / food-safety 5 / chemicals 6) |
 | Cross-cutting overlays | **26** — iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas, privacy, hipaa, us-state-privacy |
 | **Sub-overlays** (class-overlay-shape deltas on cross-cutting overlays) | **26** — cmmc-level-1/2/3, soc-2-type-i/ii, iso-27001-cloud/privacy, nist-csf-tier-1/2/3/4, pci-dss-saq-a/a-ep/d-merchant/d-sp/p2pe, dora-ctpp/non-ctpp/tlpt, hitrust-e1/i1/r2, iso-37301-public-sector/financial-services/healthcare/general-business |
 | **Cross-overlays** (bind ACROSS specific vertical combinations) | **12** — combination-product, integrated-management-system, food-pharma-grade, connected-medical-device, cell-therapy-supply-chain, food-allergen-recall, defense-aerospace-cyber, digital-health-multi-region, **automotive-supply-chain** (v0.50.0), **clinical-trial-multi-region** (v0.50.0), **banking-resilience** (v0.50.0), **utility-cybersecurity** (v0.50.0) |
-| Registry — standards | **140** (v0.65.0 +5: GAMP 5 2nd ed. + IEC/IEEE/ISO 29119-1:2022 + FDA CSA Guidance 2026 + EU GMP Annex 11 + Annex 15) |
+| Registry — standards | **144** (v0.68.0 +4: Sarbanes-Oxley Act + SEC Exchange Act ICFR rules + COSO IC-IF 2013 + PCAOB AS 2201) |
 | Registry — jurisdictions | **20** (FDA / EMA / MHRA / WHO-PQ / Health Canada / EU MDR / PMDA / TGA / ANVISA / FAA / EASA / TCCA / NHTSA / UNECE / KBA / TC-MVS / FDA-Food / USDA-FSIS / EFSA / CFIA) |
 | **Validation family** (P2; risk-based CSV/CSA) | **3** — `validation-package` + `validation-package-fda` + `validation-package-eu` (v0.65.0) |
-| Document templates | **113** on disk; **1,012** clause→template bindings via `addresses:` declarations |
+| Document templates | **119** on disk; **1,031** clause→template bindings via `addresses:` declarations |
 | Example bundles (validated end-to-end) | **8** |
-| Total modules | **119** + general |
-| Spec entries (status: 6 :verified / 102 :tested / 5 :argued / 0 :open) | **113** |
+| Total modules | **120** + general |
+| Spec entries (status: 6 :verified / 103 :tested / 5 :argued / 0 :open) | **114** |
 | Engine CLI subcommands | **11** — `resolve`, `validate`, `regenerate`, `signatures`, `trace`, `trace-instances` (v0.66.0), `coverage`, `crosswalk`, `jurisdictions-query`, `registry`, `verify-deployment` |
 | Deepest composition tested in CI | **24-module ultra composite** (medical-devices + pharma + combination-product + connected-medical-device + digital-health-multi-region + sterile + hipaa + privacy + 11 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy + ISO 37301) |
 
