@@ -110,3 +110,12 @@ body:
           required: true
         - label: PHI-bearing detail (if any) is routed to an access-restricted record per my organization's complaint-handling SOP.
           required: true
+
+  - type: input
+    id: trace-links
+    attributes:
+      label: Trace links
+      description: "Instance-trace links in `rel:ID` syntax (P15 — folded into `openqms trace-instances`). e.g. the CAPA opened from this complaint."
+      placeholder: "relates_to:CAPA-2026-0034"
+    validations:
+      required: false

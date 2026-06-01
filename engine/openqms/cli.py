@@ -26,7 +26,10 @@ from .trace_instances import (
     DEFAULT_POLICY,
     build_report as build_instance_report,
     discover_records,
+    fetch_issues_via_gh,
     lint_records,
+    load_issues_json,
+    nodes_from_issues,
 )
 from .types import Bundle
 from .validation import validate
@@ -224,6 +227,21 @@ def main(argv: list[str] | None = None) -> int:
         "--policy",
         default=None,
         help="Path to a trace-policy.yaml. Default: the built-in policy.",
+    )
+    p_trace_instances.add_argument(
+        "--issues-json",
+        default=None,
+        help=(
+            "Path to a `gh issue list --json number,labels,body` export. "
+            "Issue-sourced records (CAPA/complaint/NCR by label) fold into "
+            "the same graph as the markdown records (P15.2)."
+        ),
+    )
+    p_trace_instances.add_argument(
+        "--github",
+        default=None,
+        metavar="OWNER/REPO",
+        help="Fetch issues live via the `gh` CLI for OWNER/REPO and fold them in.",
     )
     p_trace_instances.add_argument(
         "--format",
@@ -1084,10 +1102,6 @@ def _cmd_trace_instances(args) -> int:
     import yaml as _yaml
 
     root = Path(args.path)
-    if not root.is_dir():
-        print(f"error: records path not found: {root}", file=sys.stderr)
-        return 2
-
     policy = DEFAULT_POLICY
     if args.policy:
         try:
@@ -1096,7 +1110,24 @@ def _cmd_trace_instances(args) -> int:
             print(f"error: failed to read policy {args.policy!r}: {exc}", file=sys.stderr)
             return 2
 
-    nodes = discover_records(root)
+    nodes = []
+    if root.is_dir():
+        nodes.extend(discover_records(root))
+    elif not (args.issues_json or args.github):
+        print(
+            f"error: records path not found: {root} (and no --issues-json/--github)",
+            file=sys.stderr,
+        )
+        return 2
+    if args.issues_json:
+        nodes.extend(nodes_from_issues(load_issues_json(Path(args.issues_json))))
+    if args.github:
+        try:
+            nodes.extend(nodes_from_issues(fetch_issues_via_gh(args.github)))
+        except (subprocess.CalledProcessError, FileNotFoundError, json.JSONDecodeError) as exc:
+            print(f"error: gh issue fetch failed for {args.github!r}: {exc}", file=sys.stderr)
+            return 2
+
     lint = lint_records(nodes, require_scope=bool(policy.get("require_scope", True)))
     report = build_instance_report(nodes, policy)
     # Fold the static lint findings in front of the runtime findings.

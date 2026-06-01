@@ -57,3 +57,11 @@ body:
         - Critical
     validations:
       required: true
+  - type: input
+    id: trace-links
+    attributes:
+      label: Trace links
+      description: "Instance-trace links in `rel:ID` syntax (P15 — folded into `openqms trace-instances`). A CAPA is typically triggered_by an NCR / complaint / audit finding."
+      placeholder: "triggered_by:NCR-2026-0009; relates_to:CMPL-2026-0003"
+    validations:
+      required: false

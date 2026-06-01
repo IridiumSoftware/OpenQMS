@@ -9,7 +9,7 @@ Two layers of traceability ship in Open QMS:
 
 This page covers the second — the **cross-record graph** the reviewer named ("connectedness is where modern systems win"): requirement ↔ hazard ↔ mitigation ↔ test ↔ CAPA ↔ complaint ↔ post-market finding.
 
-> **Status:** P15.1a + **P15.1b** shipped — **Tier-1** (whole-record frontmatter) **and Tier-2** (in-body item tables) both walked. The GitHub-issue substrate (P15.2) is forthcoming. Full schema: `BUSINESS/companion_p15_trace_schema.md`.
+> **Status:** P15 complete — **Tier-1** (whole-record frontmatter), **Tier-2** (in-body item tables), **and the GitHub-issue substrate** (P15.2) all fold into one graph. Full schema: `BUSINESS/companion_p15_trace_schema.md`.
 
 ## How records join the graph
 
@@ -45,6 +45,23 @@ openqms trace-instances --path <your-records-dir> --policy trace-policy.yaml
 ```
 
 It runs the **static lint** (ID grammar + vocabulary + scope) and the **runtime invariants**, prints a json/md report, and **exits 1** if any error-severity finding exists — so it's a CI gate. The shipped worked example lives at `examples/trace-instances/` and is checked in CI.
+
+## GitHub issues (the third substrate)
+
+Many living records are **GitHub issues**, not files — CAPAs, complaints, nonconformances. The `capa` / `complaint` / `nonconformance` issue forms now carry a **`Trace links`** field, and the issue's **label** supplies the kind (`capa` → `CAPA`, `complaint` → `CMPL`, `ncr` → `NCR`). The synthetic ID is `KIND-<issue-number>` (e.g. `CAPA-7`).
+
+Fold them into the same graph:
+
+```bash
+# live, via the gh CLI:
+openqms trace-instances --path <records-dir> --github OWNER/REPO
+
+# or from a committed export snapshot (offline / CI-friendly):
+gh issue list --state all --json number,labels,body > issues.json
+openqms trace-instances --path <records-dir> --issues-json issues.json
+```
+
+A file-based hazard can be `mitigated_by` a file-based mitigation that is `verified_by` a file-based test, while a CAPA *issue* is `triggered_by` an NCR *issue* — and it all resolves in one graph. (Issues are read-only here; the markdown side stays the deterministic, offline-checkable core, which is why the example CI gate uses a committed `issues-export.example.json` rather than the live API.)
 
 ## The policy
 

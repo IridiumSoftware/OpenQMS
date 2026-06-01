@@ -1,0 +1,17 @@
+[
+  {
+    "number": 7,
+    "labels": [{"name": "capa"}, {"name": "capa-open"}],
+    "body": "### CAPA Type\n\nCorrective Action\n\n### Description of nonconformance or potential nonconformance\n\nRate-limit drift observed in a fielded infusion pump.\n\n### Trace links\n\ntriggered_by:NCR-3\n"
+  },
+  {
+    "number": 3,
+    "labels": [{"name": "ncr"}, {"name": "ncr-open"}],
+    "body": "### Description of nonconformance\n\nMeasured rate exceeded the programmed rate by >5% on unit SN-1182.\n\n### Trace links\n\n_No response_\n"
+  },
+  {
+    "number": 12,
+    "labels": [{"name": "question"}],
+    "body": "How do I configure CODEOWNERS?\n\n(non-QMS issue — carries no trace label, so it is ignored by trace-instances)\n"
+  }
+]
