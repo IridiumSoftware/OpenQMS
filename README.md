@@ -6,7 +6,7 @@ Open QMS resolves a `(product, jurisdictions, standards, modules)` bundle into a
 
 The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD for enforcement, Git for the audit trail.
 
-## Current scope (v0.64.0)
+## Current scope (v0.66.0)
 
 | Dimension | Count |
 |---|---|
@@ -15,13 +15,14 @@ The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD f
 | Cross-cutting overlays | **26** — iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301, recall-workflow, iso-31000, iso-37301, soc-2, pci-dss, hitrust-csf, nist-csf, dora, eu-gpsr, tisax, defense-cui, cmmc, osha-hcs, transport-hazmat, eu-biocides, tsca-pfas, privacy, hipaa, us-state-privacy |
 | **Sub-overlays** (class-overlay-shape deltas on cross-cutting overlays) | **26** — cmmc-level-1/2/3, soc-2-type-i/ii, iso-27001-cloud/privacy, nist-csf-tier-1/2/3/4, pci-dss-saq-a/a-ep/d-merchant/d-sp/p2pe, dora-ctpp/non-ctpp/tlpt, hitrust-e1/i1/r2, iso-37301-public-sector/financial-services/healthcare/general-business |
 | **Cross-overlays** (bind ACROSS specific vertical combinations) | **12** — combination-product, integrated-management-system, food-pharma-grade, connected-medical-device, cell-therapy-supply-chain, food-allergen-recall, defense-aerospace-cyber, digital-health-multi-region, **automotive-supply-chain** (v0.50.0), **clinical-trial-multi-region** (v0.50.0), **banking-resilience** (v0.50.0), **utility-cybersecurity** (v0.50.0) |
-| Registry — standards | **~135** (v0.50.0 +5 PUBLIC: ICH E6(R3) + EU CTR 536/2014 + NERC CIP + EU NIS2 + FFIEC IT Handbook) |
+| Registry — standards | **140** (v0.65.0 +5: GAMP 5 2nd ed. + IEC/IEEE/ISO 29119-1:2022 + FDA CSA Guidance 2026 + EU GMP Annex 11 + Annex 15) |
 | Registry — jurisdictions | **20** (FDA / EMA / MHRA / WHO-PQ / Health Canada / EU MDR / PMDA / TGA / ANVISA / FAA / EASA / TCCA / NHTSA / UNECE / KBA / TC-MVS / FDA-Food / USDA-FSIS / EFSA / CFIA) |
-| Document templates | **105** on disk (v0.55.0 +2 standalone SOPs IDENTITY-MAPPING-SOP + BACKUP-RESTORE-SOP); 379 in-module bindings via `addresses:` declarations |
+| **Validation family** (P2; risk-based CSV/CSA) | **3** — `validation-package` + `validation-package-fda` + `validation-package-eu` (v0.65.0) |
+| Document templates | **113** on disk; **1,012** clause→template bindings via `addresses:` declarations |
 | Example bundles (validated end-to-end) | **8** |
-| Total modules | **116** + general |
-| Spec entries (status: 6 :verified / 100 :tested / 5 :argued / 0 :open) | **111** |
-| Engine CLI subcommands | **10** — `resolve`, `validate`, `regenerate`, `signatures`, `trace`, `coverage` (v0.49.0), `crosswalk` (v0.49.0), `jurisdictions-query` (v0.49.0), `registry`, `verify-deployment` (v0.62.0) |
+| Total modules | **119** + general |
+| Spec entries (status: 6 :verified / 102 :tested / 5 :argued / 0 :open) | **113** |
+| Engine CLI subcommands | **11** — `resolve`, `validate`, `regenerate`, `signatures`, `trace`, `trace-instances` (v0.66.0), `coverage`, `crosswalk`, `jurisdictions-query`, `registry`, `verify-deployment` |
 | Deepest composition tested in CI | **24-module ultra composite** (medical-devices + pharma + combination-product + connected-medical-device + digital-health-multi-region + sterile + hipaa + privacy + 11 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy + ISO 37301) |
 
 The compose primitive validates 11-module composites: e.g., `pharma + pharma-sterile + pharma-biologics + atmp + iso-27001 + soc-2 + iso-31000 + iso-22301 + iso-14001 + iso-45001 + iso-50001` — the realistic shape for a clinical-stage biotech doing sterile ATMP manufacturing with full integrated management system + SOC 2 attestation + ISO 31000 risk framework.
@@ -158,9 +159,9 @@ open-qms/
 │   └── ISSUE_TEMPLATE/            # CAPA, change request, design input, NCR, complaint, supplier-evaluation, management-review
 ├── engine/                        # Generator engine (Python)
 │   ├── openqms/                   # Types, module loader, resolver, validation, registry, regenerate, signatures, CLI
-│   └── tests/                     # pytest + hypothesis property tests (108 tests)
+│   └── tests/                     # pytest + hypothesis property tests (286 tests)
 ├── BUSINESS/                      # Spec + design + companion docs (public as of v0.23.0)
-│   ├── ENGINE_SPEC.md             # 80 spec entries with logic tiers + evidence types + status
+│   ├── ENGINE_SPEC.md             # 113 spec entries with logic tiers + evidence types + status
 │   ├── DESIGN.md                  # Architectural narrative
 │   ├── artifact_registry.md       # S-ID → evidence file mapping
 │   ├── dashboard.md               # Status summary + priority stack
@@ -180,11 +181,11 @@ open-qms/
 │   ├── general/                   # Industry-agnostic substrate
 │   └── 7 cross-cutting overlays: iso-27001, regulated-ai, iso-14001, iso-45001, iso-50001, iso-37001, iso-22301
 ├── registry/                      # Standards + jurisdictions registry
-│   ├── standards.yaml             # 63 standards with aliases + edition + license_kind + superseded_by
+│   ├── standards.yaml             # 140 standards with aliases + edition + license_kind + superseded_by
 │   └── jurisdictions.yaml         # 20 jurisdictions with applicable_standards
 ├── bundles/                       # Stored bundle definitions + committed matrices (11 examples)
 ├── scripts/                       # Setup, validation, audit helpers
-└── templates/                     # 57 document templates organized by QMS area
+└── templates/                     # 113 document templates organized by QMS area
     ├── qms-policy/, qms-sops/, qms-forms/, qms-training/, qms-capa/
     ├── qms-suppliers/, qms-management-review/
     ├── qms-environmental/, qms-ohs/, qms-energy/, qms-abms/, qms-bcms/
@@ -227,12 +228,12 @@ open-qms/
 
 For full adoption pathways and module-by-module guidance, see [`docs/modules-catalog.md`](docs/modules-catalog.md).
 
-## Status (v0.22.0)
+## Status (v0.66.0)
 
-**80 spec entries** with rigorous status discipline (every entry carries evidence; zero `:open`):
+**113 spec entries** with rigorous status discipline (every entry carries evidence; zero `:open`):
 
 - **6 `:verified`** — invariant + architecture entries with hypothesis property tests (OQ-001 + OQ-002 + OQ-010 + OQ-011 + OQ-013 + OQ-015)
-- **67 `:tested`** — example-tested entries covering all modules + workflows + cross-cutting bindings
+- **102 `:tested`** — example-tested entries covering all modules + workflows + cross-cutting bindings + the validation-package family + instance-level traceability
 - **7 `:argued`** — manual-by-nature licensing claims + adopter-org-gated substrate enforcement + SOP-bound architecture decisions
 
 See `BUSINESS/ENGINE_SPEC.md` for the full spec, `BUSINESS/changelog.md` for release history, and `BUSINESS/dashboard.md` for the priority stack.

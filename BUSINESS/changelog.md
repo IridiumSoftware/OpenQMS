@@ -4,6 +4,16 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.67.0 DRAFT — 2026-06-01 — Public-surface cross-audit + sync (hygiene)
+
+**0 NEW spec entries.** Remediation only — engine unchanged at 0.66.0. A dedicated cross-audit of the **public surface** found it lagging the BUSINESS/ tracking by ~6 releases (user-flagged: the GitHub README still showed v0.64.0).
+
+- **Synced** `README.md` (v0.64.0→v0.66.0), `docs/index.md` (v0.63.0→v0.66.0), `docs/modules-catalog.md` (v0.64.0→v0.66.0) to current ground truth: **113** spec entries (6 `:verified` / 102 `:tested` / 5 `:argued` / 0 `:open`) · **119** modules · **113** templates / **1,012** clause→template bindings · **140** registry standards · **11** CLI subcommands · validation family + `trace-instances` now listed. Also fixed README architecture-tree comments frozen at "80 spec entries / 57 templates / 108 tests".
+- **Critical A1/A2 fix:** `docs/compliance-architecture.md` forward-work still listed **P2 + P15 as open** ("2 hard remaining") — directly contradicting the dashboard (15/15 closed) and the spec (OQ-128 / OQ-129 shipped). Both marked **✓ closed** (v0.65.0 / v0.66.0); the section now reads "all 15 priorities closed; 0 open."
+- New cross-audit `BUSINESS/audit_2026-06-01_v0_67.md`. Status counts unchanged: 6 `:verified` / 102 `:tested` / 5 `:argued` / 0 `:open` (total 113). Forward-work: **15 of 15 closed — queue empty.**
+
+---
+
 ## v0.66.0 DRAFT — 2026-06-01 — Instance-level traceability (P15) — forward-work arc complete
 
 **OQ-129 NEW `:tested` (Architecture-tier).** Closes compliance-architecture forward-work **P15** — the last hard priority. `openqms trace-instances` + `engine/openqms/trace_instances.py`: the instance-level cross-record trace graph (the analog of clause-level `openqms trace` / OQ-067).
