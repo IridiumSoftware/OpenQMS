@@ -4,6 +4,20 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.68.0 DRAFT — 2026-06-01 — Finance vertical (SOX / ICFR — 8th vertical)
+
+**OQ-130 NEW `:tested` (Module-tier).** The eighth vertical — the *QMS-of-financial-reporting*: Internal Control over Financial Reporting (ICFR) for US public companies.
+
+- **`modules/finance/`** — 16 clauses across the SOX/ICFR spine: Sarbanes-Oxley §302 / §404(a) / §404(b) + SEC Exchange Act 13a-15/15d-15 + COSO 2013 (5 components / 17 principles, incl. fraud risk + management override) + PCAOB AS 2201 (top-down scoping, risk-control matrix, design + operating-effectiveness testing, deficiency evaluation, ITGC).
+- **6 templates** (`templates/qms-finance/`): ICFR Risk-Control Matrix · Entity-Level Controls · ITGC Register · Control Test Plan & Results · SOX Certification (§302+§404) · Control Deficiency Log (a P15 Tier-2 trace table — deficiency = `NCR` → `triggers` `CAPA`).
+- **Registry +4:** Sarbanes-Oxley Act + SEC Exchange Act ICFR rules + COSO IC-IF 2013 + PCAOB AS 2201.
+- Composes with the existing financial overlays (iso-27001 ITGC · iso-37301-financial-services + soc-2 · dora/nist-csf/iso-22301 resilience) — all validated. **4 tests** (286 → 290); CI +4 validate steps; guide `docs/guide/finance-sox-icfr.md`.
+- **Public surface synced** (README / index / catalog → v0.68.0): verticals 7→8, modules 119→120, templates 113→119, standards 140→144, spec 113→114, CLI 10→11 (index).
+
+**Engine unchanged at 0.66.0** (finance is content). A0–A6 cross-audit `audit_2026-06-01_v0_68.md`. Status counts: 6 `:verified` / 103 `:tested` / 5 `:argued` / 0 `:open` (total 114). Forward-work arc remains 15/15 closed — finance is net-new scope beyond it.
+
+---
+
 ## v0.67.0 DRAFT — 2026-06-01 — Public-surface cross-audit + sync (hygiene)
 
 **0 NEW spec entries.** Remediation only — engine unchanged at 0.66.0. A dedicated cross-audit of the **public surface** found it lagging the BUSINESS/ tracking by ~6 releases (user-flagged: the GitHub README still showed v0.64.0).

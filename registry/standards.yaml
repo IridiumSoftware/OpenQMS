@@ -53,6 +53,51 @@ standards:
       - "CFR Part 11"
       - "21 CFR 11"
 
+  # === Finance vertical — SOX / ICFR ===
+
+  - id: "Sarbanes-Oxley Act (SOX)"
+    name: "Sarbanes-Oxley Act of 2002 — §302 + §404 (internal control over financial reporting)"
+    publisher: US Congress
+    edition: "2002 (Pub. L. 107-204)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "SOX"
+      - "Sarbanes-Oxley"
+      - "SOX 2002"
+
+  - id: "SEC Exchange Act (ICFR rules)"
+    name: "Securities Exchange Act Rules 13a-15 / 15d-15 — disclosure controls and ICFR"
+    publisher: US SEC
+    edition: "Rules 13a-15 / 15d-15 (current)"
+    kind: regulation
+    license_kind: public
+    aliases:
+      - "SEC 13a-15"
+      - "Exchange Act ICFR"
+
+  - id: "COSO IC-IF (2013)"
+    name: "COSO Internal Control — Integrated Framework (2013)"
+    publisher: Committee of Sponsoring Organizations of the Treadway Commission (COSO)
+    edition: "2013"
+    kind: guidance
+    license_kind: commercial
+    aliases:
+      - "COSO 2013"
+      - "COSO"
+      - "COSO IC-IF"
+
+  - id: "PCAOB AS 2201"
+    name: "PCAOB Auditing Standard 2201 — An Audit of ICFR That Is Integrated with an Audit of Financial Statements"
+    publisher: PCAOB
+    edition: "AS 2201 (formerly AS 5)"
+    kind: standard
+    license_kind: public
+    aliases:
+      - "AS 2201"
+      - "AS 5"
+      - "PCAOB AS5"
+
   # === Computerized-system validation (P2 validation-package) ===
 
   - id: "GAMP 5 (2nd Edition)"

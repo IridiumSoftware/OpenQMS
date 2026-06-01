@@ -60,6 +60,7 @@ nav:
   - Regulatory reference:
     - Overview: regulatory/overview.md
     - Medical devices: regulatory/medical-devices.md
+    - Finance (SOX / ICFR): guide/finance-sox-icfr.md
 
 markdown_extensions:
   - tables
