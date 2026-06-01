@@ -561,6 +561,26 @@ standards:
       - "EudraLex"
       - "EU GMP Vol 4"
 
+  - id: "EU GMP Annex 11"
+    name: "EudraLex Vol. 4 Annex 11 — Computerised Systems"
+    publisher: European Commission
+    edition: "2011 (current; revision in progress)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "Annex 11"
+      - "Computerised Systems"
+
+  - id: "EU GMP Annex 15"
+    name: "EudraLex Vol. 4 Annex 15 — Qualification and Validation"
+    publisher: European Commission
+    edition: "2015"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "Annex 15"
+      - "Qualification and Validation"
+
   - id: "PIC/S Annex 1"
     name: "PIC/S Guide to GMP for Medicinal Products — Annex 1: Manufacture of Sterile Medicinal Products"
     publisher: Pharmaceutical Inspection Co-operation Scheme (PIC/S)

@@ -21,7 +21,7 @@ The risk→tier mapping is **not rigid** (CSA §V.A.4) — the determination rec
    ```
    openqms validate --module medical-devices --module validation-package --module validation-package-fda
    ```
-   The **FDA** overlay (`validation-package-fda` — CSA framework + 21 CFR Part 11 + Part 820/QMSR predicate) ships now; the **EU** overlay (`validation-package-eu` — Annex 11/15) arrives in P2.3. Compose both for US+EU products. The overlay sets the regulatory framing — the CSA clauses bind to the same Assurance Determination / Record templates, and Part 11 e-records/e-sig controls land in `ELECTRONIC-RECORDS-CONTROLS-TEMPLATE`.
+   Both market overlays ship: **FDA** (`validation-package-fda` — CSA + 21 CFR Part 11 + Part 820/QMSR) and **EU** (`validation-package-eu` — ISO 13485 §7.5.6/7.6 backbone + GMP Annex 11/15 + ICH Q9). **Compose both** for US+EU products — the shared validation templates union both regimes' clause bindings without collision. The overlay sets the regulatory framing only: clauses bind to the same Assurance Determination / Record templates, e-records/e-sig controls land in `ELECTRONIC-RECORDS-CONTROLS-TEMPLATE` (Part 11 §§1–3 + Annex 11 §4), and the EU Annex 15 DQ/IQ/OQ/PQ path adds `QUALIFICATION-PROTOCOL-TEMPLATE`.
 
 2. **Inventory** your computerized systems (`SYSTEM-INVENTORY-TEMPLATE`) — classify each by intended use (directly / support / not part of production-or-QMS) and GAMP category.
 
