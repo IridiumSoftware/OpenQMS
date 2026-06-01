@@ -19,9 +19,9 @@ The risk→tier mapping is **not rigid** (CSA §V.A.4) — the determination rec
 
 1. **Compose the module** for your market:
    ```
-   openqms validate --module medical-devices --module validation-package
+   openqms validate --module medical-devices --module validation-package --module validation-package-fda
    ```
-   (FDA and EU market overlays — `validation-package-fda` / `validation-package-eu` — arrive in P2.2 / P2.3.)
+   The **FDA** overlay (`validation-package-fda` — CSA framework + 21 CFR Part 11 + Part 820/QMSR predicate) ships now; the **EU** overlay (`validation-package-eu` — Annex 11/15) arrives in P2.3. Compose both for US+EU products. The overlay sets the regulatory framing — the CSA clauses bind to the same Assurance Determination / Record templates, and Part 11 e-records/e-sig controls land in `ELECTRONIC-RECORDS-CONTROLS-TEMPLATE`.
 
 2. **Inventory** your computerized systems (`SYSTEM-INVENTORY-TEMPLATE`) — classify each by intended use (directly / support / not part of production-or-QMS) and GAMP category.
 

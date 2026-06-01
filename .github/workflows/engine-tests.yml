@@ -316,6 +316,11 @@ jobs:
           openqms validate --module medical-devices --module validation-package
           openqms validate --module pharma --module validation-package
           openqms validate --module medical-devices --module validation-package --module iso-27001 --module regulated-ai
+          # P2.2 — validation-package-fda (FDA CSA + 21 CFR Part 11 + Part 820/QMSR) market overlay
+          openqms validate --module validation-package-fda
+          openqms validate --module validation-package --module validation-package-fda
+          openqms validate --module medical-devices --module validation-package --module validation-package-fda
+          openqms validate --module pharma --module validation-package --module validation-package-fda
 
       - name: Coverage report (smoke check + repo-wide invariant)
         # v0.49.0 — `openqms coverage` per-module + aggregate coverage metrics.
