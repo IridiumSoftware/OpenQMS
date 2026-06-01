@@ -75,6 +75,17 @@ standards:
       - "ISO 29119-1"
       - "29119-1"
 
+  - id: "FDA CSA Guidance (2026)"
+    name: "Computer Software Assurance for Production and Quality Management System Software"
+    publisher: US FDA
+    edition: "2026-02-03 (final; supersedes 2025-09-24)"
+    kind: guidance
+    license_kind: public
+    aliases:
+      - "CSA"
+      - "Computer Software Assurance"
+      - "FDA CSA"
+
   - id: "EU MDR 2017/745"
     name: "Regulation on Medical Devices (EU MDR)"
     publisher: European Union

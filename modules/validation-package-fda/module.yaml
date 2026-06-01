@@ -1,0 +1,149 @@
+# Open QMS — validation-package-fda market overlay (P2.2)
+# US market dial for the P2 validation family. Refines the neutral
+# validation-package baseline with FDA's Computer Software Assurance (CSA)
+# framework + 21 CFR Part 11 (electronic records/signatures) + the
+# 21 CFR Part 820 (QMSR) predicate. Compose with the baseline:
+#   openqms validate --module validation-package --module validation-package-fda
+#
+# CSA-specific clauses bind to the baseline qms-validation templates (the
+# Assurance Determination + Record carry the CSA framing); Part 11 controls
+# bind to a dedicated electronic-records controls template. Rigor remains a
+# per-function determination output (CSA Table 1 tiers; classic CSV = the
+# robust-scripted tier) — this overlay sets the FDA regulatory framing, not
+# a different methodology. See BUSINESS/companion_p2_validation_package.md.
+#
+# Standards licensing: FDA guidances and CFR are public-domain US works.
+# Summaries are paraphrases (OQ-070); cite the source for normative text.
+
+name: validation-package-fda
+version: 0.1.0
+
+standards:
+  - FDA CSA Guidance (2026)
+  - 21 CFR Part 11
+  - 21 CFR 820
+
+clauses:
+  - id: VALFDA-INTENDED-USE
+    standard: FDA CSA Guidance (2026)
+    section: "V.A.1"
+    summary: |
+      Identify each system's (and feature/function's) intended use and
+      classify it as used directly as part of, in support of, or not part
+      of production or the quality management system. This determines
+      whether ISO 13485 §4.1.6/§7.5.6/§7.6 validation obligations apply.
+
+  - id: VALFDA-PROCESS-RISK
+    standard: FDA CSA Guidance (2026)
+    section: "V.A.2"
+    summary: |
+      Determine whether a feature/function poses high process risk — i.e.,
+      whether its failure may result in a quality problem that foreseeably
+      compromises safety (a medical device risk) — versus not-high process
+      risk. This is the documented manufacturer judgment that scopes rigor.
+
+  - id: VALFDA-ASSURANCE
+    standard: FDA CSA Guidance (2026)
+    section: "V.A.4"
+    summary: |
+      Select assurance activities commensurate with risk: high-process-risk
+      functions commensurate with the medical device risk; not-high
+      commensurate with the process risk. Scripted and/or unscripted methods
+      (Table 1 tiers); the risk-to-method mapping is not rigid. For
+      production/QMS software this supersedes Section 6 of the General
+      Principles of Software Validation.
+
+  - id: VALFDA-RECORD
+    standard: FDA CSA Guidance (2026)
+    section: "V.A.6"
+    summary: |
+      Establish the assurance record with the CSA-recommended content:
+      intended use; result of the risk-based analysis; description of
+      assurance activities; issues found; conclusion of acceptability (with
+      resolution or risk justification); who performed the work and when;
+      review/approval where appropriate. Prefer digital records (logs,
+      audit trails) over manual screenshots.
+
+  - id: VALFDA-CHANGE
+    standard: FDA CSA Guidance (2026)
+    section: "V.A.3"
+    summary: |
+      Assess changes to production/QMS software using the same risk
+      principles; for PMA/HDE devices apply the 30-day-notice vs annual-
+      report logic to determine how a change affecting the device is
+      reported.
+
+  - id: VALFDA-PART11-APPLICABILITY
+    standard: 21 CFR Part 11
+    section: "V.B (applicability)"
+    summary: |
+      Determine Part 11 applicability per record: a record required under
+      Part 820 that is created/maintained in electronic form is generally a
+      Part 11 electronic record. The enforcement discretion in the Part 11
+      scope-and-application guidance does not extend to the ISO 13485
+      §4.1.6/§7.5.6/§7.6 validation obligations.
+
+  - id: VALFDA-PART11-CONTROLS
+    standard: 21 CFR Part 11
+    section: "11.10"
+    summary: |
+      Apply closed-system controls to the electronic records produced or
+      maintained by the validated system, commensurate with risk —
+      validation, accurate/complete copies, record protection and retention,
+      limiting access, and secure computer-generated time-stamped audit
+      trails.
+
+  - id: VALFDA-PART11-ESIG
+    standard: 21 CFR Part 11
+    section: "Subpart C (11.50/11.100/11.200/11.300)"
+    summary: |
+      Where the assurance/validation record is electronically signed, apply
+      the signature-manifestation and signature-control requirements:
+      signed records show the signer, date/time, and meaning; signatures are
+      unique to one individual, linked to their records, and not reusable.
+
+  - id: VALFDA-QMSR
+    standard: 21 CFR 820
+    section: "QMSR (incorporates ISO 13485:2016)"
+    summary: |
+      The Quality Management System Regulation amends 21 CFR Part 820 to
+      incorporate ISO 13485:2016 by reference (effective 2026-02-02). The
+      software-validation obligations therefore sit at ISO 13485 §4.1.6,
+      §7.5.6, and §7.6 — the predicate this overlay's CSA framing serves.
+
+templates:
+  - path: templates/qms-validation/SYSTEM-INVENTORY-TEMPLATE.md
+    name: Computerized system inventory (FDA CSA overlay binding)
+    addresses:
+      - VALFDA-INTENDED-USE
+      - VALFDA-QMSR
+
+  - path: templates/qms-validation/ASSURANCE-DETERMINATION-TEMPLATE.md
+    name: Assurance determination (FDA CSA overlay binding)
+    addresses:
+      - VALFDA-INTENDED-USE
+      - VALFDA-PROCESS-RISK
+      - VALFDA-ASSURANCE
+
+  - path: templates/qms-validation/ASSURANCE-RECORD-TEMPLATE.md
+    name: Assurance record (FDA CSA overlay binding)
+    addresses:
+      - VALFDA-ASSURANCE
+      - VALFDA-RECORD
+
+  - path: templates/qms-validation/CHANGE-ASSESSMENT-TEMPLATE.md
+    name: Change assessment (FDA CSA overlay binding)
+    addresses:
+      - VALFDA-CHANGE
+
+  - path: templates/qms-validation/VALIDATION-MASTER-PLAN-TEMPLATE.md
+    name: Validation master plan (FDA regulatory-basis binding)
+    addresses:
+      - VALFDA-QMSR
+
+  - path: templates/qms-validation/ELECTRONIC-RECORDS-CONTROLS-TEMPLATE.md
+    name: Electronic records and signature controls (21 CFR Part 11)
+    addresses:
+      - VALFDA-PART11-APPLICABILITY
+      - VALFDA-PART11-CONTROLS
+      - VALFDA-PART11-ESIG
