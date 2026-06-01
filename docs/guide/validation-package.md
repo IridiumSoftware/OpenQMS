@@ -36,3 +36,5 @@ The risk→tier mapping is **not rigid** (CSA §V.A.4) — the determination rec
 It ships the framework, the determination, the tier-aware record, and the traceability — and (with P15) proves the artifact set matches each declared tier. It does **not** decide whether a function is high-risk, nor prove a system is fit for use. Those are your QA judgment (OQ-080).
 
 See `BUSINESS/companion_p2_validation_package.md` for the full design and the FDA-vs-EU market overlays.
+
+For a filled-in, end-to-end example, see [Open QMS self-validation](../examples/openqms-self-validation.md) — the project validating its own GitHub-hosted QMS workflow as a *not-high-process-risk* system.

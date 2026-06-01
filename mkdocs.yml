@@ -48,6 +48,10 @@ nav:
     - Release management: guide/release.md
     - Verify deployment: guide/verify-deployment.md
 
+  - Computerized-system validation:
+    - Overview (CSA / Part 11 / Annex 11): guide/validation-package.md
+    - Worked example — Open QMS self-validation: examples/openqms-self-validation.md
+
   - Schemas + maturity:
     - Template frontmatter schema: guide/template-frontmatter.md
     - Maturity model (startup-stage presets): guide/maturity-model.md
