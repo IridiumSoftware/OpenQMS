@@ -22,6 +22,12 @@ from .signatures import (
     extract_signatures_from_repo,
     signature_from_commit_data,
 )
+from .trace_instances import (
+    DEFAULT_POLICY,
+    build_report as build_instance_report,
+    discover_records,
+    lint_records,
+)
 from .types import Bundle
 from .validation import validate
 
@@ -196,6 +202,36 @@ def main(argv: list[str] | None = None) -> int:
         help="Output format: json (default) or md (markdown table).",
     )
     p_trace.add_argument(
+        "--output",
+        default="-",
+        help="Output path. Default: stdout.",
+    )
+
+    p_trace_instances = sub.add_parser(
+        "trace-instances",
+        help=(
+            "Walk record-producing markdown files, build the instance-level "
+            "cross-record trace graph, and check instance invariants against a "
+            "trace-policy (P15.1a — the instance-level analog of `trace`)."
+        ),
+    )
+    p_trace_instances.add_argument(
+        "--path",
+        default="examples/trace-instances",
+        help="Directory of record markdown files to walk. Default: examples/trace-instances.",
+    )
+    p_trace_instances.add_argument(
+        "--policy",
+        default=None,
+        help="Path to a trace-policy.yaml. Default: the built-in policy.",
+    )
+    p_trace_instances.add_argument(
+        "--format",
+        choices=("json", "md"),
+        default="json",
+        help="Output format: json (default) or md.",
+    )
+    p_trace_instances.add_argument(
         "--output",
         default="-",
         help="Output path. Default: stdout.",
@@ -383,6 +419,8 @@ def main(argv: list[str] | None = None) -> int:
         return _cmd_signatures(args)
     if args.cmd == "trace":
         return _cmd_trace(args)
+    if args.cmd == "trace-instances":
+        return _cmd_trace_instances(args)
     if args.cmd == "coverage":
         return _cmd_coverage(args)
     if args.cmd == "crosswalk":
@@ -1033,6 +1071,78 @@ def _format_trace_markdown(output: dict) -> str:
             tcell = ", ".join(f"`{t}`" for t in tlist) if tlist else "_(orphan)_"
             lines.append(f"| `{cid}` | {tcell} |")
         lines.append("")
+    return "\n".join(lines)
+
+
+def _cmd_trace_instances(args) -> int:
+    """`openqms trace-instances` — instance-level cross-record trace (P15.1a).
+
+    Walks record markdown under --path, runs the static lint surface +
+    runtime invariants against the policy, emits json/md, and exits 1 if
+    any error-severity finding is present (the CI gate).
+    """
+    import yaml as _yaml
+
+    root = Path(args.path)
+    if not root.is_dir():
+        print(f"error: records path not found: {root}", file=sys.stderr)
+        return 2
+
+    policy = DEFAULT_POLICY
+    if args.policy:
+        try:
+            policy = _yaml.safe_load(Path(args.policy).read_text(encoding="utf-8")) or {}
+        except (OSError, _yaml.YAMLError) as exc:
+            print(f"error: failed to read policy {args.policy!r}: {exc}", file=sys.stderr)
+            return 2
+
+    nodes = discover_records(root)
+    lint = lint_records(nodes, require_scope=bool(policy.get("require_scope", True)))
+    report = build_instance_report(nodes, policy)
+    # Fold the static lint findings in front of the runtime findings.
+    report["findings"] = (
+        [{"severity": f.severity, "message": f.message} for f in lint]
+        + report["findings"]
+    )
+    report["summary"]["errors"] = sum(1 for f in report["findings"] if f["severity"] == "error")
+    report["summary"]["warnings"] = sum(1 for f in report["findings"] if f["severity"] == "warning")
+
+    rendered = (
+        _format_trace_instances_markdown(report)
+        if args.format == "md"
+        else json.dumps(report, indent=2)
+    )
+    if args.output == "-":
+        print(rendered)
+    else:
+        Path(args.output).write_text(rendered + "\n", encoding="utf-8")
+        print(
+            f"wrote instance-trace report ({report['summary']['records']} records) "
+            f"to {args.output}"
+        )
+    return 1 if report["summary"]["errors"] else 0
+
+
+def _format_trace_instances_markdown(report: dict) -> str:
+    s = report["summary"]
+    lines = [
+        "# Open QMS — instance-level trace report",
+        "",
+        f"**Records:** {s['records']} · **Edges:** {s['edges']} · "
+        f"**Kinds:** {', '.join(s['kinds'])} · **Errors:** {s['errors']} · "
+        f"**Warnings:** {s['warnings']}",
+        "",
+    ]
+    if report["findings"]:
+        lines += ["## Findings", ""]
+        for f in report["findings"]:
+            lines.append(f"- **{f['severity']}** — {f['message']}")
+        lines.append("")
+    lines += ["## Records", "", "| Record | Kind | Outbound edges |", "|---|---|---|"]
+    for rid in sorted(report["nodes"].keys()):
+        edges = ", ".join(f"`{e}`" for e in report["edges"].get(rid, [])) or "—"
+        lines.append(f"| `{rid}` | {report['nodes'][rid]['kind']} | {edges} |")
+    lines.append("")
     return "\n".join(lines)
 
 
