@@ -1,0 +1,163 @@
+# Open QMS — validation-package baseline overlay module
+# Version 0.1.0 (P2.1) — market-NEUTRAL spine for risk-based computerized-
+# system validation of production / quality-management-system software.
+#
+# This is the baseline of the P2 validation family. It composes with any
+# vertical and is refined by two market overlays (added in P2.2 / P2.3):
+#   - validation-package-fda  (FDA CSA + 21 CFR Part 11 + Part 820/QMSR)
+#   - validation-package-eu   (EU GMP Annex 11 + Annex 15 + ISO 13485)
+# Run together via:
+#   openqms validate --module validation-package
+#   openqms validate --module medical-devices --module validation-package
+#
+# Rigor is a per-function determination output (CSA Table 1 tiers; classic
+# CSV = the robust-scripted tier), recorded in the Assurance Determination —
+# NOT a fork between modules. See BUSINESS/companion_p2_validation_package.md.
+#
+# Standards licensing: GAMP 5 (2nd ed.) and IEC/IEEE/ISO 29119-1:2022 are
+# commercially published copyrighted works; ISO 13485:2016 likewise. The
+# summaries below are paraphrases written for the manifest (OQ-070) — the
+# standard texts are not redistributed. Adopters must obtain licensed copies.
+
+name: validation-package
+version: 0.1.0
+
+standards:
+  - GAMP 5 (2nd Edition)
+  - ISO 13485:2016
+  - "IEC/IEEE/ISO 29119-1:2022"
+
+clauses:
+  - id: VALPKG-INVENTORY
+    standard: ISO 13485:2016
+    section: "4.1.6"
+    summary: |
+      Maintain an inventory of the computerized systems used as part of
+      production or the quality management system. For each system, record
+      its intended use, GAMP software category, risk classification, and
+      current validation/assurance status.
+
+  - id: VALPKG-INTENDED-USE
+    standard: GAMP 5 (2nd Edition)
+    section: "Concept — intended use"
+    summary: |
+      Establish each system's intended use and classify whether it is used
+      directly as part of, in support of, or not part of production or the
+      quality management system. This scopes which systems (and which
+      features/functions) require assurance.
+
+  - id: VALPKG-GAMP-CATEGORY
+    standard: GAMP 5 (2nd Edition)
+    section: "Software categories (1/3/4/5)"
+    summary: |
+      Classify each system by GAMP software category — 1 infrastructure,
+      3 non-configured product, 4 configured product, 5 custom/bespoke — to
+      inform the baseline rigor and shape of the life-cycle activities.
+
+  - id: VALPKG-RISK-DETERMINATION
+    standard: ISO 13485:2016
+    section: "4.1.6"
+    summary: |
+      Apply a documented, risk-based determination (quality risk management
+      per GAMP Appendix M3) so the assurance effort is proportionate to the
+      risk the system's failure poses to product quality and patient safety.
+      The determination is a recorded human judgment, made per function.
+
+  - id: VALPKG-ASSURANCE-ACTIVITIES
+    standard: "IEC/IEEE/ISO 29119-1:2022"
+    section: "Clause 4 — testing concepts"
+    summary: |
+      Select assurance (testing) activities commensurate with the determined
+      risk, drawing on the recognized testing taxonomy — scripted testing
+      (robust or limited) and/or unscripted testing (scenario, error
+      guessing, exploratory). The mapping of risk to method is not rigid.
+
+  - id: VALPKG-URS
+    standard: GAMP 5 (2nd Edition)
+    section: "Appendix D1 — User Requirements Specification"
+    summary: |
+      Document the user/functional requirements that define intended use and
+      form the basis for assurance. Each requirement is uniquely identified
+      and traceable to the assurance evidence that exercises it.
+
+  - id: VALPKG-VMP
+    standard: GAMP 5 (2nd Edition)
+    section: "Appendix M1 — Validation Planning"
+    summary: |
+      Maintain a validation master plan defining scope, approach, roles and
+      responsibilities, deliverables, and acceptance criteria across the
+      computerized-system inventory.
+
+  - id: VALPKG-RECORD
+    standard: ISO 13485:2016
+    section: "4.2.5"
+    summary: |
+      Establish the assurance record as objective evidence: intended use,
+      result of the risk determination, assurance activities performed,
+      issues found, a conclusion of acceptability (with resolution or risk
+      justification of issues), who performed the work and when, and review/
+      approval where appropriate.
+
+  - id: VALPKG-CHANGE
+    standard: ISO 13485:2016
+    section: "7.5.6"
+    summary: |
+      Assess changes to a validated system and revalidate proportionate to
+      the change's risk before the change takes effect, maintaining the
+      traceability between the change, the affected requirements, and the
+      re-performed assurance.
+
+  - id: VALPKG-PERIODIC
+    standard: GAMP 5 (2nd Edition)
+    section: "Appendix O8 — Periodic Review"
+    summary: |
+      Maintain the validated state across the operational life cycle through
+      periodic review and continuous monitoring, re-confirming that each
+      system remains fit for its intended use.
+
+  - id: VALPKG-MM-SOFTWARE
+    standard: ISO 13485:2016
+    section: "7.6"
+    summary: |
+      Validate software used in the monitoring and measurement of
+      requirements prior to initial use and, as necessary, after changes to
+      that software.
+
+templates:
+  - path: templates/qms-validation/SYSTEM-INVENTORY-TEMPLATE.md
+    name: Computerized system inventory
+    addresses:
+      - VALPKG-INVENTORY
+      - VALPKG-INTENDED-USE
+      - VALPKG-GAMP-CATEGORY
+      - VALPKG-MM-SOFTWARE
+
+  - path: templates/qms-validation/ASSURANCE-DETERMINATION-TEMPLATE.md
+    name: Assurance determination (risk-based)
+    addresses:
+      - VALPKG-INTENDED-USE
+      - VALPKG-RISK-DETERMINATION
+      - VALPKG-GAMP-CATEGORY
+      - VALPKG-ASSURANCE-ACTIVITIES
+
+  - path: templates/qms-validation/ASSURANCE-RECORD-TEMPLATE.md
+    name: Assurance record (tier-aware)
+    addresses:
+      - VALPKG-ASSURANCE-ACTIVITIES
+      - VALPKG-RECORD
+
+  - path: templates/qms-validation/URS-TEMPLATE.md
+    name: User requirements specification
+    addresses:
+      - VALPKG-URS
+
+  - path: templates/qms-validation/VALIDATION-MASTER-PLAN-TEMPLATE.md
+    name: Validation master plan
+    addresses:
+      - VALPKG-VMP
+      - VALPKG-PERIODIC
+
+  - path: templates/qms-validation/CHANGE-ASSESSMENT-TEMPLATE.md
+    name: Change assessment and revalidation
+    addresses:
+      - VALPKG-CHANGE
