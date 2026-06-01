@@ -4,6 +4,22 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.65.0 DRAFT — 2026-06-01 — Validation-package family (P2) + CI fix
+
+**OQ-128 NEW `:tested` (Module-tier).** Closes compliance-architecture forward-work **P2** — risk-based computerized-system validation for production / QMS software, grounded in the final FDA CSA guidance (issued 2026-02-03).
+
+- **3 composable modules:** `validation-package` (market-neutral baseline — GAMP 5 2nd ed. + ISO 13485 §4.1.6/7.5.6/7.6 + IEC/IEEE/ISO 29119-1) + `validation-package-fda` (CSA framework + 21 CFR Part 11 + Part 820/QMSR) + `validation-package-eu` (EU GMP Annex 11 + Annex 15 + ISO 13485 + ICH Q9).
+- **One baseline + two orthogonal dials:** rigor = per-function assurance-tier determination (CSA Table 1; classic CSV = the robust-scripted tier); market = which overlay(s) composed (FDA + EU compose together for US+EU products, no clause-id collision).
+- **8 new templates** (`templates/qms-validation/`) + **5 registry standards** + dogfood worked example (`docs/examples/openqms-self-validation.md` — Open QMS validates its own GitHub-hosted QMS as not-high-process-risk).
+- **19 new pytest tests** (251 → 265). CI +12 validate steps. Adopter guide `docs/guide/validation-package.md`. Designs: `companion_p2_validation_package.md` + `companion_p15_trace_schema.md`.
+- Phased **P2.1** (baseline) → **P2.2** (FDA) → **P2.3** (EU) → **P2.4** (dogfood); PRs #4–#7.
+
+**CI fix (PR #8).** The engine-tests "Install engine + dev deps" step ran `cd engine` twice and never put the uv venv on PATH — the workflow had been failing at install since ~2026-05-25, leaving every post-install step (lint / pytest / validate / coverage / trace) silently un-run for ~a week (undetected; `main` has no branch protection). Fixed; full pipeline green again (run 26746084880).
+
+**Engine package version unchanged at 0.64.0** — P2 is content + the CI fix is workflow-only; no `engine/openqms/*.py` changed. A0–A6 cross-audit: `audit_2026-06-01_v0_65.md`. Status counts: 6 `:verified` / 101 `:tested` / 5 `:argued` / 0 `:open` (total 112). Forward-work: 14 of 15 closed; **1 hard remaining (P15)**.
+
+---
+
 ## v0.64.0 DRAFT — 2026-05-25 — Omnibus + cross-audit (closes v0.52-v0.63 arc)
 
 **0 NEW entries.** Spec total unchanged at 111. Engine 0.63.0 → 0.64.0. Pure bookkeeping release closing the v0.52-v0.63 build arc cleanly.
