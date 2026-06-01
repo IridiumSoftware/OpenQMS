@@ -53,6 +53,28 @@ standards:
       - "CFR Part 11"
       - "21 CFR 11"
 
+  # === Computerized-system validation (P2 validation-package) ===
+
+  - id: "GAMP 5 (2nd Edition)"
+    name: "Good Automated Manufacturing Practice — A Risk-Based Approach to Compliant GxP Computerized Systems"
+    publisher: ISPE
+    edition: "2nd Edition (2022)"
+    kind: guidance
+    license_kind: commercial
+    aliases:
+      - "GAMP 5"
+      - "GAMP5"
+
+  - id: "IEC/IEEE/ISO 29119-1:2022"
+    name: "Software and systems engineering — Software testing — Part 1: General concepts"
+    publisher: "IEC/IEEE/ISO"
+    edition: "2022"
+    kind: standard
+    license_kind: commercial
+    aliases:
+      - "ISO 29119-1"
+      - "29119-1"
+
   - id: "EU MDR 2017/745"
     name: "Regulation on Medical Devices (EU MDR)"
     publisher: European Union

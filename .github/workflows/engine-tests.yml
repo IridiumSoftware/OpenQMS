@@ -305,6 +305,11 @@ jobs:
           openqms validate --module pharma --module privacy --module hipaa --module digital-health-multi-region --module clinical-trial-multi-region
           openqms validate --module iso-37301 --module iso-37301-financial-services --module dora --module dora-non-ctpp --module nist-csf --module nist-csf-tier-3 --module iso-22301 --module banking-resilience
           openqms validate --module manufacturing --module iso-27001 --module nist-csf --module nist-csf-tier-3 --module utility-cybersecurity
+          # P2.1 — validation-package baseline (risk-based computerized-system validation; CSA-framed, CSV = robust-scripted tier)
+          openqms validate --module validation-package
+          openqms validate --module medical-devices --module validation-package
+          openqms validate --module pharma --module validation-package
+          openqms validate --module medical-devices --module validation-package --module iso-27001 --module regulated-ai
 
       - name: Coverage report (smoke check + repo-wide invariant)
         # v0.49.0 — `openqms coverage` per-module + aggregate coverage metrics.
