@@ -4,6 +4,19 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.66.0 DRAFT — 2026-06-01 — Instance-level traceability (P15) — forward-work arc complete
+
+**OQ-129 NEW `:tested` (Architecture-tier).** Closes compliance-architecture forward-work **P15** — the last hard priority. `openqms trace-instances` + `engine/openqms/trace_instances.py`: the instance-level cross-record trace graph (the analog of clause-level `openqms trace` / OQ-067).
+
+- **Three substrates, one graph:** Tier-1 whole-record markdown frontmatter + Tier-2 in-body item tables (RMF hazards, SRS requirements) + the GitHub-issue substrate (CAPA/complaint/NCR by label, `KIND-<issue#>`, via `--github` live / `--issues-json` export).
+- **Typed directed edges** with auto-materialized inverse; static lint (ID grammar + vocabulary + scope) + runtime invariants (referential integrity + per-kind minimum edges + acyclicity) via a configurable `trace-policy.yaml`; exit 1 on error (CI gate).
+- Committed worked example `examples/trace-instances/` CI-gated at 0 errors (12 records / 16 edges). RMF template migrated to the Tier-2 shape; `capa`/`complaint`/`nonconformance` issue forms gained a `Trace links` field.
+- **21 pytest tests** (`test_trace_instances.py`); suite 265 → 286. Phased **P15.1a** (Tier-1) → **P15.1b** (Tier-2) → **P15.2** (issues); PRs #10–#12. Guide `docs/guide/instance-traceability.md`.
+
+**Engine 0.64.0 → 0.66.0** (P15 added engine code — first bump since the validation work; also reconciled the stale `uv.lock` openqms version 0.54.0 → 0.66.0). A0–A6 cross-audit: `audit_2026-06-01_v0_66.md`. Status counts: 6 `:verified` / 102 `:tested` / 5 `:argued` / 0 `:open` (total 113). **Forward-work: 15 of 15 closed — queue empty.** OQ-080 holds.
+
+---
+
 ## v0.65.0 DRAFT — 2026-06-01 — Validation-package family (P2) + CI fix
 
 **OQ-128 NEW `:tested` (Module-tier).** Closes compliance-architecture forward-work **P2** — risk-based computerized-system validation for production / QMS software, grounded in the final FDA CSA guidance (issued 2026-02-03).

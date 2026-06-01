@@ -1,6 +1,6 @@
 # Dashboard — Open QMS
 
-**Version:** v0.65.0 (cumulative; engine v0.64.0)
+**Version:** v0.66.0 (cumulative; engine v0.66.0)
 **Date:** 2026-06-01
 **Maintainer:** Aaron Green
 
@@ -15,13 +15,13 @@ Current state + priority stack. Read this first every session. For claim status,
 | `:proved` | 0 | — |
 | `:verified` | 0 | — |
 | `:verified` | 6 | Invariant (2, OQ-001 + OQ-002) · Architecture (4, OQ-010 + OQ-011 + OQ-013 + OQ-015) |
-| `:tested` | 101 | Architecture (8, OQ-012 + OQ-014 + OQ-115 + OQ-116 + OQ-117 + OQ-122 + OQ-124 + OQ-126) · Substrate (3) · Workflow (9) · Module (62, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-096 + OQ-098 + OQ-101..OQ-114 + OQ-118 + OQ-128) · Gap (19, OQ-060 + OQ-061 + OQ-062 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-067 + OQ-068 + OQ-069 + OQ-080 + OQ-097 + OQ-099 + OQ-100 + OQ-119 + OQ-120 + OQ-121 + OQ-123 + OQ-125 + OQ-127) |
+| `:tested` | 102 | Architecture (9, OQ-012 + OQ-014 + OQ-115 + OQ-116 + OQ-117 + OQ-122 + OQ-124 + OQ-126 + OQ-129) · Substrate (3) · Workflow (9) · Module (62, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-096 + OQ-098 + OQ-101..OQ-114 + OQ-118 + OQ-128) · Gap (19, OQ-060 + OQ-061 + OQ-062 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-067 + OQ-068 + OQ-069 + OQ-080 + OQ-097 + OQ-099 + OQ-100 + OQ-119 + OQ-120 + OQ-121 + OQ-123 + OQ-125 + OQ-127) |
 | `:benchmarked` | 0 | — |
 | `:argued` | 5 | Invariant (1, OQ-003) · Substrate (2, OQ-022 + OQ-023) · Licensing (2, OQ-070 + OQ-071) |
 | `:open` | 0 | — |
-| **Total** | **112** | — |
+| **Total** | **113** | — |
 
-Counts: 6 + 101 + 5 + 0 = 112 ✓. **Latest at v0.65.0**: Validation-package family (P2) closed — 3 composable modules (`validation-package` baseline + `-fda` + `-eu` market overlays) + 8 templates + 5 registry standards + dogfood worked example; CSA-framed (final FDA guidance 2026-02-03; classic CSV = the robust-scripted tier); 19 new pytest tests (251 → 265). **Also fixed a pre-existing CI breakage** — engine-tests had been failing at the install step since ~2026-05-25 (every post-install step silently un-run for ~a week; `main` has no branch protection); fixed in PR #8, full pipeline green again. Engine package unchanged at 0.64.0 (P2 is content + CI fix is workflow-only). A0–A6 cross-audit `audit_2026-06-01_v0_65.md`. Forward-work after v0.65.0: **14 of 15 closed; 1 hard remaining (P15)**. **Latest at v0.64.0**: Omnibus + cross-audit closing the v0.52-v0.63 arc. A0-A6 audit clean across A0-A4 + A6; 3 A5 findings remediated inline (README + catalog scope cells stale on `Spec entries: 103` and `Document templates: 103`; corrected to 111 + 105 respectively). New `BUSINESS/audit_2026-05-25_v0_63.md` + `BUSINESS/companion_v0_52_to_63.md` (12-release omnibus). `companion_index.md` updated. Forward-work after v0.64.0: 13 of 15 closed; 2 hard remaining (P2 + P15); medium + light queues empty. Engine 0.63.0 → 0.64.0.
+Counts: 6 + 102 + 5 + 0 = 113 ✓. **Latest at v0.66.0**: Instance-level traceability (P15) shipped — `openqms trace-instances` walks the cross-record graph across three substrates (Tier-1 whole-record frontmatter + Tier-2 in-body item tables + GitHub-issue export), the instance-level analog of clause-level `openqms trace`; typed edges + auto-materialized inverse + configurable `trace-policy.yaml`; CI-gated on a committed worked example (12 records / 16 edges / 0 errors); 21 tests (265 → 286). **Closes P15 — 15 of 15 forward-work priorities now closed; the queue is empty.** Engine 0.64.0 → 0.66.0 (P15 added engine code; also reconciled the stale `uv.lock` openqms version 0.54.0 → 0.66.0). A0–A6 cross-audit `audit_2026-06-01_v0_66.md`. **Latest at v0.65.0**: Validation-package family (P2) closed — 3 composable modules (`validation-package` baseline + `-fda` + `-eu` market overlays) + 8 templates + 5 registry standards + dogfood worked example; CSA-framed (final FDA guidance 2026-02-03; classic CSV = the robust-scripted tier); 19 new pytest tests (251 → 265). **Also fixed a pre-existing CI breakage** — engine-tests had been failing at the install step since ~2026-05-25 (every post-install step silently un-run for ~a week; `main` has no branch protection); fixed in PR #8, full pipeline green again. Engine package unchanged at 0.64.0 (P2 is content + CI fix is workflow-only). A0–A6 cross-audit `audit_2026-06-01_v0_65.md`. Forward-work after v0.65.0: **14 of 15 closed; 1 hard remaining (P15)**. **Latest at v0.64.0**: Omnibus + cross-audit closing the v0.52-v0.63 arc. A0-A6 audit clean across A0-A4 + A6; 3 A5 findings remediated inline (README + catalog scope cells stale on `Spec entries: 103` and `Document templates: 103`; corrected to 111 + 105 respectively). New `BUSINESS/audit_2026-05-25_v0_63.md` + `BUSINESS/companion_v0_52_to_63.md` (12-release omnibus). `companion_index.md` updated. Forward-work after v0.64.0: 13 of 15 closed; 2 hard remaining (P2 + P15); medium + light queues empty. Engine 0.63.0 → 0.64.0.
 
 **v0.63.0** (prior release): Pages site refresh. OQ-126 NEW `:tested` (Architecture-tier). New `openqms verify-deployment --policy <path>` + `engine/openqms/verify_deployment.py` + `scripts/verify-deployment.sh` + `deployment-policy.example.yaml` + `docs/guide/verify-deployment.md`. Queries adopter fork's actual GitHub config via `gh api` subprocess; compares vs declared policy; exit 1 on any error. 23 new pytest tests with injected gh_invoker for testability (count 228 → 251). Closes the reviewer's deepest P11 gap ("immutability + approval model are deployment controls, not intrinsic properties of the repo"). **Closes the medium queue entirely.** Engine 0.61.0 → 0.62.0. Forward-work after v0.62.0: 13 closed · 2 open (P2 + P15 hard only).
 
@@ -95,20 +95,15 @@ Phase 2+ = **additional regulatory modules** (regulated AI ✓ v0.12.0; aerospac
 
 ## Priority stack
 
-Canonical priority numbering follows the **Forward work** section of `docs/compliance-architecture.md` (P1–P15), which consolidates three 2026-05-25 feedback inputs: adopter-experience (P1–P4), independent-reviewer technical assessment (P5–P14), and the integration-architecture comment (P15). **14 of 15 closed as of v0.65.0; 1 hard item remains (P15).**
+Canonical priority numbering follows the **Forward work** section of `docs/compliance-architecture.md` (P1–P15), which consolidates three 2026-05-25 feedback inputs: adopter-experience (P1–P4), independent-reviewer technical assessment (P5–P14), and the integration-architecture comment (P15). **15 of 15 closed as of v0.66.0 — the forward-work queue is empty.**
 
 > **Numbering note.** This canonical P1–P15 scheme supersedes the original 2026-05-22 `P1–P10` + `P1.1/P1.2/P1.3` stack (the engine-MVP build-out). Every item in that old stack shipped across v0.1.1–v0.8.0 and is now a `:tested`/`:verified` spec entry — see the dated changelog below and `ENGINE_SPEC.md` for per-entry status. In particular, the **old-scheme "P2"** (make the medical-devices crosswalk machine-readable) closed at v0.9.0–v0.10.0 and is tracked as OQ-041..OQ-048 — it is **not** the validation-package P2 below.
 
-### Open — 1 remaining (hard, multi-session)
+### Open — none
 
-#### P15 — Integration-architecture cross-record trace network *(hard; added v0.56.0)*
+The compliance-architecture forward-work queue is **empty** as of v0.66.0. New work is tracked as fresh priorities / spec entries as it arises (next up, by maintainer intent: a finance vertical).
 
-- **Gap:** no enforced *instance-level* trace network across the living-record kinds — requirement ↔ hazard ↔ mitigation ↔ test ↔ CAPA ↔ complaint ↔ post-market-surveillance finding. The shipped trace (OQ-001 + OQ-067 `openqms trace`) is *clause-level*, one layer up at module YAML. Instance-level precedent today is partial: the RISK-MANAGEMENT-FILE template is a single-artifact view; complaint/nonconformance issue forms carry free-text `capa_link` with no engine validation.
-- **Plan:** (1) frontmatter schema for trace-link IDs across the ~7 record kinds; (2) convert free-text issue-template link fields to structured IDs; (3) new `openqms trace-instances` subcommand walking the cross-record graph; (4) instance-level zero-orphan invariant (every hazard ≥ 1 mitigation; every test ≥ 1 requirement; every CAPA ≥ 1 trigger); (5) frontmatter migration across ~20–40 record-producing templates; (6) CI gate; (7) docs.
-- **Strategic note:** the reviewer-named differentiator — *"connectedness is where modern systems win."* Comparable to P2 in scope.
-- **Source of truth:** `docs/compliance-architecture.md` → Integration-architecture priorities.
-
-### Closed — 14 of 15
+### Closed — 15 of 15
 
 | Priority | Effort | Closed | Spec | Deliverable |
 |---|---|---|---|---|
@@ -126,6 +121,7 @@ Canonical priority numbering follows the **Forward work** section of `docs/compl
 | P12 | light | v0.55.0 | OQ-120 | `IDENTITY-MAPPING-SOP-TEMPLATE.md` — HR→GitHub identity mapping (§11.100) |
 | P13 | light | v0.55.0 | OQ-120 | `BACKUP-RESTORE-SOP-TEMPLATE.md` — 3-2-1 posture + 13-step annual restoration-test runbook |
 | P14 | light | v0.55.0 | OQ-120 | `regulatory_review_cadence.md` — cadence + reviewer-qualification + honest 0/116 review-debt baseline |
+| P15 | hard | v0.66.0 | OQ-129 | Instance-level cross-record trace network — `openqms trace-instances` across Tier-1 frontmatter + Tier-2 item tables + GitHub issues |
 
 Per-priority closure detail lives in `docs/compliance-architecture.md`; per-release narrative in `changelog.md`. The original-scheme engine build-out (old P1–P10 + P1.1/1.2/1.3) is preserved in the dated changelog at the bottom of this file.
 
