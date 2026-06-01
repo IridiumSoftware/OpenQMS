@@ -74,6 +74,9 @@ Issue-sourced records (P15.2) use `KIND-<issue-number>` (e.g., `CAPA-123`), deri
 | `MIT` | Risk control / mitigation | RMF item table |
 | `TST` | Verification or validation test | `VERIFICATION-PROTOCOL`, `VALIDATION-PROTOCOL`, software test protocol |
 | `IQ` `OQ` `PQ` | Installation / Operational / Performance qualification | P2 — new |
+| `SYS` | Computerized system (validation inventory entry) | P2 — new |
+| `FUNC` | Feature / function / operation (CSA risk-determination unit) | P2 — new |
+| `VREC` | Assurance record (CSA evidence) | P2 — new |
 | `CAPA` | Corrective/preventive action | `capa.yml` |
 | `CMPL` | Complaint | `complaint.yml` |
 | `NCR` | Nonconformance | `nonconformance.yml` |
@@ -98,6 +101,8 @@ Edges are **directed and typed**. Store each edge **once** on either endpoint; t
 | `validated_by` | `validates` | URS validated_by PQ |
 | `triggered_by` | `triggers` | CAPA triggered_by CMPL / NCR / PMS / AUD |
 | `implements` | `implemented_by` | IQ / OQ / PQ implements VMP |
+| `part_of` | `comprises` | FUNC part_of SYS (structural containment; added 2026-05-31 per P2) |
+| `assured_by` | `assures` | FUNC assured_by VREC (CSA assurance evidence; added 2026-05-31 per P2) |
 | `relates_to` | `relates_to` | generic, symmetric — escape hatch |
 
 > **RESOLVED (2026-05-31):** keep typed edges — they are what make the zero-orphan invariants meaningful. (Rejected alternative: a single untyped `linked: [ids]`, which cannot express "every HAZ needs a *mitigation* specifically".)
