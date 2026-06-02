@@ -10,14 +10,11 @@ on:
       - 'registry/**'
       - 'bundles/**'
       - '.github/workflows/engine-tests.yml'
+  # No paths filter on pull_request: this job ("pytest + module validation") is a
+  # REQUIRED status check in branch protection. A paths filter here makes docs-only
+  # PRs skip it, leaving them BLOCKED forever waiting on a check that never reports.
+  # Running on every PR keeps the required check satisfiable. (push keeps its filter.)
   pull_request:
-    paths:
-      - 'engine/**'
-      - 'modules/**'
-      - 'templates/**'
-      - 'registry/**'
-      - 'bundles/**'
-      - '.github/workflows/engine-tests.yml'
 
 jobs:
   test:
