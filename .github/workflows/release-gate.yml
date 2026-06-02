@@ -14,7 +14,7 @@ jobs:
       contents: write
       issues: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Check required documents exist
         id: docs-check
@@ -43,7 +43,7 @@ jobs:
 
       - name: Check for open blocking issues
         id: issues-check
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             // Check for open issues with blocking labels
@@ -86,7 +86,7 @@ jobs:
 
       - name: Create release
         if: success()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const tag = context.ref.replace('refs/tags/', '');
