@@ -13,7 +13,6 @@ Current state + priority stack. Read this first every session. For claim status,
 | Status | Count | Tier breakdown |
 |---|---|---|
 | `:proved` | 0 | — |
-| `:verified` | 0 | — |
 | `:verified` | 6 | Invariant (2, OQ-001 + OQ-002) · Architecture (4, OQ-010 + OQ-011 + OQ-013 + OQ-015) |
 | `:tested` | 103 | Architecture (9, OQ-012 + OQ-014 + OQ-115 + OQ-116 + OQ-117 + OQ-122 + OQ-124 + OQ-126 + OQ-129) · Substrate (3) · Workflow (9) · Module (63, OQ-040..OQ-059 + OQ-072..OQ-079 + OQ-081..OQ-096 + OQ-098 + OQ-101..OQ-114 + OQ-118 + OQ-128 + OQ-130) · Gap (19, OQ-060 + OQ-061 + OQ-062 + OQ-063 + OQ-064 + OQ-065 + OQ-066 + OQ-067 + OQ-068 + OQ-069 + OQ-080 + OQ-097 + OQ-099 + OQ-100 + OQ-119 + OQ-120 + OQ-121 + OQ-123 + OQ-125 + OQ-127) |
 | `:benchmarked` | 0 | — |
