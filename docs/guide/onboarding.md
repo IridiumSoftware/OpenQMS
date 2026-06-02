@@ -4,7 +4,7 @@
 
 **Goal:** by the end of day 30, you can confidently navigate the repo, raise a PR that passes CI, sign your commits, and understand which workflows apply to your role.
 
-If you are evaluating Open QMS rather than working on it daily, start with [`README.md`](../../README.md) and [`docs/compliance-architecture.md`](../compliance-architecture.md) instead.
+If you are evaluating Open QMS rather than working on it daily, start with [`README.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/README.md) and [`docs/compliance-architecture.md`](../compliance-architecture.md) instead.
 
 ---
 
@@ -15,7 +15,7 @@ Your IT/Security team will have completed most of this before you start. Confirm
 - [ ] You have a GitHub account (corporate, not personal) with 2FA enabled
 - [ ] You are a member of the GitHub org + at least one team that grants you `triage` or `write` access to this repo
 - [ ] You have generated a GPG key per [`docs/guide/gpg-signing.md`](gpg-signing.md) and uploaded the public key to GitHub (Settings → SSH and GPG keys)
-- [ ] You have submitted your GPG fingerprint to IT/Security per [`templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md`](../../templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md) §3
+- [ ] You have submitted your GPG fingerprint to IT/Security per [`templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md) §3
 - [ ] HR has attested your identity-to-GitHub-account mapping (this is a privacy bar: GitHub's "Verified" badge does not certify you-the-person)
 - [ ] You can clone the repo + run `pre-commit` checks locally: `git clone <REPO>` + `cd <REPO>` + `git status`
 
@@ -27,13 +27,13 @@ If any checkbox is unchecked, **stop and resolve it before committing**. The aud
 
 Read these in order. Total reading time ~2 hours.
 
-1. [`README.md`](../../README.md) — what Open QMS is + current scope
+1. [`README.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/README.md) — what Open QMS is + current scope
 2. [`docs/compliance-architecture.md`](../compliance-architecture.md) — how the architecture maps to compliance topics
 3. [`docs/guide/quickstart.md`](quickstart.md) — running the engine locally
 4. [`docs/guide/doc-control.md`](doc-control.md) — how documents are controlled in GitHub
 5. [`docs/guide/gpg-signing.md`](gpg-signing.md) — how commits are signed
 6. [`docs/guide/signature-meaning.md`](signature-meaning.md) — the §11.50 trailer convention
-7. [`BUSINESS/dashboard.md`](../../BUSINESS/dashboard.md) — current status snapshot
+7. [`BUSINESS/dashboard.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/BUSINESS/dashboard.md) — current status snapshot
 
 Then read the **role-specific** guide for your role:
 
@@ -75,10 +75,10 @@ After merge, verify your commit shows as **Verified** on GitHub: navigate to the
 
 Pick the issue type closest to your role's day-to-day:
 
-- Engineer / Designer → [Design Input](../../.github/ISSUE_TEMPLATE/design-input.yml) form
-- Quality / Process owner → [CAPA](../../.github/ISSUE_TEMPLATE/capa.yml) or [Nonconformance](../../.github/ISSUE_TEMPLATE/nonconformance.yml) form
-- Document author → [Document Review](../../.github/ISSUE_TEMPLATE/document-review.yml) form (after authoring + on the document's review cadence)
-- Trainer / trainee → [Training Completion](../../.github/ISSUE_TEMPLATE/training-completion.yml) form
+- Engineer / Designer → [Design Input](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=design-input.yml) form
+- Quality / Process owner → [CAPA](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=capa.yml) or [Nonconformance](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=nonconformance.yml) form
+- Document author → [Document Review](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=document-review.yml) form (after authoring + on the document's review cadence)
+- Trainer / trainee → [Training Completion](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=training-completion.yml) form
 
 Open an issue using the form (do not free-write — the form fields are the record structure). Fill it in. Close it (or leave open if it tracks ongoing work). The closing commit is the signature.
 
@@ -97,7 +97,7 @@ If you do not yet have a real record to capture, **do not create a placeholder i
 - [ ] Know how to verify a commit signature: `git log --show-signature -1 <commit>`
 - [ ] Know who to ask when blocked (your CODEOWNERS team for code questions; Quality Manager for process questions; IT/Security for access questions)
 
-When this checklist is complete, file a [Training Completion](../../.github/ISSUE_TEMPLATE/training-completion.yml) issue with `Training topic: "Open QMS onboarding"` and `Completion method: "Self-study + supervisor sign-off"`. Your manager closes the issue with `Signature-Meaning: Approved`.
+When this checklist is complete, file a [Training Completion](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=training-completion.yml) issue with `Training topic: "Open QMS onboarding"` and `Completion method: "Self-study + supervisor sign-off"`. Your manager closes the issue with `Signature-Meaning: Approved`.
 
 That issue, closed, is the record that you are onboarded.
 

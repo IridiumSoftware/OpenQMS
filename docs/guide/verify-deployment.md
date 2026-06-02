@@ -112,7 +112,7 @@ changed configuration without going through the policy-update workflow.
 
 ## Policy schema
 
-See [`deployment-policy.example.yaml`](../../deployment-policy.example.yaml) for the full annotated example. All branch-protection fields are optional; declare only what your adopter policy actually requires. Missing fields mean "no check run."
+See [`deployment-policy.example.yaml`](https://github.com/IridiumSoftware/OpenQMS/blob/main/deployment-policy.example.yaml) for the full annotated example. All branch-protection fields are optional; declare only what your adopter policy actually requires. Missing fields mean "no check run."
 
 ---
 

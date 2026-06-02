@@ -14,13 +14,13 @@
 | **Daily** | Sign off on PRs touching controlled documents (`Signature-Meaning: Approved`) | PR review queue |
 | **Weekly** | Review open CAPA backlog; verify aging cases have status updates | [`docs/guide/capa-lifecycle.md`](capa-lifecycle.md) |
 | **Monthly** | Review training-completion backlog; chase outstanding completions | Training Completion issues |
-| **Quarterly** | Co-lead Access Review with IT/Security | [Access Review issue form](../../.github/ISSUE_TEMPLATE/access-review.yml) |
+| **Quarterly** | Co-lead Access Review with IT/Security | [Access Review issue form](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=access-review.yml) |
 | **Quarterly** | Internal audit cycle (rotating module scope) | Your internal audit programme |
-| **Annual** | Management Review meeting + record | [Management Review issue form](../../.github/ISSUE_TEMPLATE/management-review.yml) |
-| **Annual** | Restoration Test sign-off | [Restoration Test issue form](../../.github/ISSUE_TEMPLATE/restoration-test.yml) |
-| **Annual** | Document review for each controlled document past its `next_review` date | [Document Review issue form](../../.github/ISSUE_TEMPLATE/document-review.yml) |
+| **Annual** | Management Review meeting + record | [Management Review issue form](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=management-review.yml) |
+| **Annual** | Restoration Test sign-off | [Restoration Test issue form](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=restoration-test.yml) |
+| **Annual** | Document review for each controlled document past its `next_review` date | [Document Review issue form](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=document-review.yml) |
 | **On-trigger** | Standard revision response (cited standard updates → module review + finding-log) | Cited-standard publishers |
-| **On-trigger** | Regulatory review log review (when an independent reviewer submits one) | [Regulatory Review issue form](../../.github/ISSUE_TEMPLATE/regulatory-review.yml) + [`BUSINESS/regulatory_review_cadence.md`](../../BUSINESS/regulatory_review_cadence.md) |
+| **On-trigger** | Regulatory review log review (when an independent reviewer submits one) | [Regulatory Review issue form](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=regulatory-review.yml) + [`BUSINESS/regulatory_review_cadence.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/BUSINESS/regulatory_review_cadence.md) |
 
 ---
 
@@ -86,9 +86,9 @@ Training-trigger automation creates Training Completion issues per [`docs/guide/
 
 ## Quarterly — Access Review
 
-Joint with IT/Security per [`templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md`](../../templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md) §4.
+Joint with IT/Security per [`templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/templates/qms-policy/IDENTITY-MAPPING-SOP-TEMPLATE.md) §4.
 
-1. Open an [Access Review issue](../../.github/ISSUE_TEMPLATE/access-review.yml) at the start of the quarter.
+1. Open an [Access Review issue](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=access-review.yml) at the start of the quarter.
 2. Allocate ~2 hours for the review meeting with IT/Security.
 3. Walk every active row in the identity-mapping register.
 4. Document findings in the issue.
@@ -102,7 +102,7 @@ If findings are non-trivial, open follow-up CAPAs or NCRs to track remediation.
 
 The cornerstone record per ISO 13485 §5.6 / 21 CFR §820.20(c). Open Management Review issue form well in advance:
 
-1. ~30 days before review meeting: open [Management Review issue](../../.github/ISSUE_TEMPLATE/management-review.yml). Issue body becomes the agenda.
+1. ~30 days before review meeting: open [Management Review issue](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=management-review.yml). Issue body becomes the agenda.
 2. ~14 days before meeting: aggregate inputs:
    - CAPA status snapshot (`gh issue list -l capa-open`)
    - Complaint trends (`gh issue list -l complaint`)
@@ -123,9 +123,9 @@ The closed issue is the management review record.
 
 ## Annual — Restoration Test sign-off
 
-You do not run the restoration test — IT/Security Lead owns the execution. Your role is sign-off on the findings document per [`templates/qms-bcms/BACKUP-RESTORE-SOP-TEMPLATE.md`](../../templates/qms-bcms/BACKUP-RESTORE-SOP-TEMPLATE.md) §4 step 12.
+You do not run the restoration test — IT/Security Lead owns the execution. Your role is sign-off on the findings document per [`templates/qms-bcms/BACKUP-RESTORE-SOP-TEMPLATE.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/templates/qms-bcms/BACKUP-RESTORE-SOP-TEMPLATE.md) §4 step 12.
 
-1. IT/Security raises a [Restoration Test issue](../../.github/ISSUE_TEMPLATE/restoration-test.yml) when the test runs.
+1. IT/Security raises a [Restoration Test issue](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=restoration-test.yml) when the test runs.
 2. They commit the findings doc at `BUSINESS/restoration_test_YYYY-MM-DD.md`.
 3. You review the findings doc.
 4. You add a follow-up commit to the findings doc with `Signature-Meaning: Reviewed` + your `Signature-Role: Quality Manager`.
@@ -143,7 +143,7 @@ Workflow:
 
 1. Once a quarter, generate the queue: documents where `next_review < TODAY + 90`.
    - Future tooling (compliance-architecture P5) will surface this automatically; for now, manual `grep` works: `grep -lE "^next_review:" templates/ -r | xargs grep -lE "^next_review: 202[6789]-"`.
-2. For each document in the queue, open a [Document Review issue](../../.github/ISSUE_TEMPLATE/document-review.yml).
+2. For each document in the queue, open a [Document Review issue](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=document-review.yml).
 3. Assign the review to the document owner.
 4. Follow the 3-outcome flow (no changes / minor change / major revision).
 5. Once closed, the document's `last_review_date` should be bumped via a follow-up PR.

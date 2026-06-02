@@ -66,7 +66,7 @@ State transitions are tracked via **issue comments + labels**, not a separate wo
 
 ### 1. OPEN
 
-**Trigger:** anyone opens a CAPA issue using [`.github/ISSUE_TEMPLATE/capa.yml`](../../.github/ISSUE_TEMPLATE/capa.yml).
+**Trigger:** anyone opens a CAPA issue using [`.github/ISSUE_TEMPLATE/capa.yml`](https://github.com/IridiumSoftware/OpenQMS/blob/main/.github/ISSUE_TEMPLATE/capa.yml).
 
 **Required at this state:**
 - CAPA Type (Corrective / Preventive / Both)
@@ -214,7 +214,7 @@ State transitions are tracked via **issue comments + labels**, not a separate wo
 Common pattern: the CAPA's planned action is itself a substantive change to a controlled process or document. In that case, the CAPA opens a Change Request issue + linked PR. Workflow:
 
 1. CAPA in ACTION PLANNED state.
-2. Owner opens [Change Request issue](../../.github/ISSUE_TEMPLATE/change-request.yml) describing the change.
+2. Owner opens [Change Request issue](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=change-request.yml) describing the change.
 3. Change Request gets its own review + approval (typically QM + the functional CODEOWNERS team).
 4. PR raised + merged closes the Change Request.
 5. CAPA owner updates the CAPA issue: "Action completed via #NNN (Change Request)" + link.

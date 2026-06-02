@@ -6,7 +6,7 @@
 
 **Honest scope:** Open QMS is an open-source generator that produces GitHub-native QMS scaffolds. It is **infrastructure, not a validated commercial eQMS**. This document maps how the architecture addresses each common compliance topic, what is in-scope for the generator vs. the adopter's organizational responsibility, and where to find the evidence in this repo.
 
-For the formal claim discipline (every named behavior gets a spec entry + evidence file + status), see [`BUSINESS/ENGINE_SPEC.md`](../BUSINESS/ENGINE_SPEC.md) + [`BUSINESS/artifact_registry.md`](../BUSINESS/artifact_registry.md). For the per-release record, see [`BUSINESS/changelog.md`](../BUSINESS/changelog.md).
+For the formal claim discipline (every named behavior gets a spec entry + evidence file + status), see [`BUSINESS/ENGINE_SPEC.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/BUSINESS/ENGINE_SPEC.md) + [`BUSINESS/artifact_registry.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/BUSINESS/artifact_registry.md). For the per-release record, see [`BUSINESS/changelog.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/BUSINESS/changelog.md).
 
 ---
 
@@ -381,11 +381,11 @@ The reviewer's foundational point — *"the tool can prove 'each declared clause
 
 ## Cross-references
 
-- [`README.md`](../README.md) — adopter quick-start + scope summary
+- [`README.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/README.md) — adopter quick-start + scope summary
 - [`docs/modules-catalog.md`](modules-catalog.md) — full module inventory
 - [`docs/guide/`](guide/) — 12 adopter guides covering quickstart + configuration + doc control + GPG signing + signature meaning + training + supplier controls + complaints + management review + traceability + release + auditor walkthrough
-- [`BUSINESS/ENGINE_SPEC.md`](../BUSINESS/ENGINE_SPEC.md) — 102 formal spec entries with status, evidence type, depends-on
-- [`BUSINESS/artifact_registry.md`](../BUSINESS/artifact_registry.md) — per-entry evidence file mapping
-- [`BUSINESS/dashboard.md`](../BUSINESS/dashboard.md) — current status + priority stack
-- [`BUSINESS/changelog.md`](../BUSINESS/changelog.md) — per-release record
-- [`BUSINESS/audit_2026-05-25_v0_50.md`](../BUSINESS/audit_2026-05-25_v0_50.md) — most recent A0–A6 cross-audit
+- [`BUSINESS/ENGINE_SPEC.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/BUSINESS/ENGINE_SPEC.md) — 102 formal spec entries with status, evidence type, depends-on
+- [`BUSINESS/artifact_registry.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/BUSINESS/artifact_registry.md) — per-entry evidence file mapping
+- [`BUSINESS/dashboard.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/BUSINESS/dashboard.md) — current status + priority stack
+- [`BUSINESS/changelog.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/BUSINESS/changelog.md) — per-release record
+- [`BUSINESS/audit_2026-05-25_v0_50.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/BUSINESS/audit_2026-05-25_v0_50.md) — most recent A0–A6 cross-audit

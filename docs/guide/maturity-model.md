@@ -4,7 +4,7 @@
 
 **Goal:** explain what *should* be IN the QMS at each startup stage, *why* each addition matters at that stage, *what* triggers graduation between stages, and *how* opinionated this model is (vs alternative models that exist).
 
-For the actual bundle YAML files per stage, see [`presets/`](../../presets/). For the trust-gate framing, see [`docs/compliance-architecture.md`](../compliance-architecture.md).
+For the actual bundle YAML files per stage, see [`presets/`](https://github.com/IridiumSoftware/OpenQMS/tree/main/presets/). For the trust-gate framing, see [`docs/compliance-architecture.md`](../compliance-architecture.md).
 
 ---
 
@@ -134,13 +134,13 @@ For the full module catalog see [`docs/modules-catalog.md`](../modules-catalog.m
 
 ## Linkage
 
-- [`presets/`](../../presets/) — the 4 preset bundles
-- [`presets/README.md`](../../presets/README.md) — preset family index
+- [`presets/`](https://github.com/IridiumSoftware/OpenQMS/tree/main/presets/) — the 4 preset bundles
+- [`presets/README.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/presets/README.md) — preset family index
 - Per-preset READMEs:
-  - [`presets/pre-seed-README.md`](../../presets/pre-seed-README.md)
-  - [`presets/seed-README.md`](../../presets/seed-README.md)
-  - [`presets/series-a-README.md`](../../presets/series-a-README.md)
-  - [`presets/series-b-plus-README.md`](../../presets/series-b-plus-README.md)
+  - [`presets/pre-seed-README.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/presets/pre-seed-README.md)
+  - [`presets/seed-README.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/presets/seed-README.md)
+  - [`presets/series-a-README.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/presets/series-a-README.md)
+  - [`presets/series-b-plus-README.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/presets/series-b-plus-README.md)
 - [`docs/compliance-architecture.md`](../compliance-architecture.md) — trust-gate framing
 - [`docs/modules-catalog.md`](../modules-catalog.md) — full module catalog
-- [`BUSINESS/regulatory_review_cadence.md`](../../BUSINESS/regulatory_review_cadence.md) — per-module independent review cadence
+- [`BUSINESS/regulatory_review_cadence.md`](https://github.com/IridiumSoftware/OpenQMS/blob/main/BUSINESS/regulatory_review_cadence.md) — per-module independent review cadence
