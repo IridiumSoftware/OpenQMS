@@ -37,7 +37,7 @@ The OQ-011 compose primitive (built v0.4.0, unchanged since) handles composition
 
 ---
 
-## Verticals (7)
+## Verticals (8)
 
 | Module ID | Standards | Compatible class overlays | Example bundle | License mix |
 |---|---|---|---|---|
@@ -48,6 +48,7 @@ The OQ-011 compose primitive (built v0.4.0, unchanged since) handles composition
 | `pharma` | ICH Q7/Q9/Q10 / 21 CFR 210/211 / EudraLex Vol. 4 / PIC/S Annex 1 / 21 CFR Part 11 | atmp, pharma-sterile, pharma-biologics, pharma-imp, pharma-generic-biosimilar, pharma-clinical-stage | `example-drug-product` | **All PUBLIC** |
 | `food-safety` | ISO 22000 / FSSC 22000 v6 / Codex HACCP / 21 CFR 117 / 21 CFR 123 | food-usda-fsis, food-animal, food-produce-safety, food-intentional-adulteration, food-fsvp | `example-food-processor` | Mixed (Codex + CFR public; ISO + FSSC commercial) |
 | `chemicals` | EU REACH / EU CLP / UN GHS Rev. 10 / OECD GLP / TSCA | (none yet — OSHA HCS + DOT HazMat + biocides + cosmetics + pesticides forward) | `example-specialty-chemical` | **All PUBLIC** |
+| `finance` | Sarbanes-Oxley Act / SEC Exchange Act (ICFR rules) / COSO IC-IF 2013 / PCAOB AS 2201 | (none yet) | (none yet) | Mostly public (SOX / SEC / PCAOB); COSO commercial |
 
 ---
 
