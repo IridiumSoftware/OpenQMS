@@ -25,17 +25,17 @@ jobs:
       contents: read
       pull-requests: write  # for posting audit comment
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0  # full history needed for base-ref comparison
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@v3
+        uses: astral-sh/setup-uv@v7
         with:
           version: '0.11.7'
 
@@ -46,7 +46,7 @@ jobs:
 
       - name: Get changed files
         id: changed
-        uses: tj-actions/changed-files@v44
+        uses: tj-actions/changed-files@v47
         with:
           files: |
             **/*.md
@@ -73,7 +73,7 @@ jobs:
 
       - name: Upload audit artifact
         if: always() && steps.changed.outputs.any_changed == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: doc-control-audit-${{ github.event.pull_request.number }}
           path: |
@@ -96,7 +96,7 @@ jobs:
     name: Verify CODEOWNERS coverage
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Check CODEOWNERS coverage
         run: |

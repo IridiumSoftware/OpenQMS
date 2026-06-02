@@ -31,17 +31,17 @@ jobs:
     name: Capture CI logs + invariant outputs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0  # full history for signature + log capture
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@v3
+        uses: astral-sh/setup-uv@v7
         with:
           version: '0.11.7'
 
@@ -95,7 +95,7 @@ jobs:
           cd release-artifact && zip -r ../openqms-release-artifact.zip .
 
       - name: Upload release artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: openqms-release-artifact-${{ github.ref_name }}
           path: openqms-release-artifact.zip
@@ -103,7 +103,7 @@ jobs:
 
       - name: Attach to GitHub Release
         if: startsWith(github.ref, 'refs/tags/v')
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: openqms-release-artifact.zip
           fail_on_unmatched_files: false
