@@ -6,7 +6,7 @@ Open QMS resolves a `(product, jurisdictions, standards, modules)` bundle into a
 
 The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD for enforcement, Git for the audit trail.
 
-## Current scope (v0.68.0)
+## Current scope (v0.69.0)
 
 | Dimension | Count |
 |---|---|
@@ -19,7 +19,7 @@ The infrastructure runs directly on GitHub: pull requests for approvals, CI/CD f
 | Registry — jurisdictions | **20** (FDA / EMA / MHRA / WHO-PQ / Health Canada / EU MDR / PMDA / TGA / ANVISA / FAA / EASA / TCCA / NHTSA / UNECE / KBA / TC-MVS / FDA-Food / USDA-FSIS / EFSA / CFIA) |
 | **Validation family** (P2; risk-based CSV/CSA) | **3** — `validation-package` + `validation-package-fda` + `validation-package-eu` (v0.65.0) |
 | Document templates | **119** on disk; **1,031** clause→template bindings via `addresses:` declarations |
-| Example bundles (validated end-to-end) | **8** |
+| Example bundles (validated end-to-end) | **9** (incl. `example-samd-validated` — SaMD + the validation family) |
 | Total modules | **120** + general |
 | Spec entries (status: 6 :verified / 103 :tested / 5 :argued / 0 :open) | **114** |
 | Engine CLI subcommands | **11** — `resolve`, `validate`, `regenerate`, `signatures`, `trace`, `trace-instances` (v0.66.0), `coverage`, `crosswalk`, `jurisdictions-query`, `registry`, `verify-deployment` |
@@ -159,7 +159,7 @@ open-qms/
 │   └── ISSUE_TEMPLATE/            # CAPA, change request, design input, NCR, complaint, supplier-evaluation, management-review
 ├── engine/                        # Generator engine (Python)
 │   ├── openqms/                   # Types, module loader, resolver, validation, registry, regenerate, signatures, CLI
-│   └── tests/                     # pytest + hypothesis property tests (286 tests)
+│   └── tests/                     # pytest + hypothesis property tests (290 tests)
 ├── BUSINESS/                      # Spec + design + companion docs (public as of v0.23.0)
 │   ├── ENGINE_SPEC.md             # 113 spec entries with logic tiers + evidence types + status
 │   ├── DESIGN.md                  # Architectural narrative
@@ -238,7 +238,7 @@ For full adoption pathways and module-by-module guidance, see [`docs/modules-cat
 
 See `BUSINESS/ENGINE_SPEC.md` for the full spec, `BUSINESS/changelog.md` for release history, and `BUSINESS/dashboard.md` for the priority stack.
 
-**Test suite:** 108 pytest + hypothesis tests passing. CI runs validation on every overlay + composite + every example bundle's regenerate dry-run on every push touching `engine/`, `modules/`, `registry/`, `templates/`, or `bundles/`.
+**Test suite:** 290 pytest + hypothesis tests passing. CI runs validation on every overlay + composite + every example bundle's regenerate dry-run on every push touching `engine/`, `modules/`, `registry/`, `templates/`, or `bundles/`.
 
 ## Standards licensing — important
 

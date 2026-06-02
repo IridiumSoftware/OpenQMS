@@ -17,7 +17,7 @@ Comprehensive inventory of every regulatory module shipped with Open QMS as of v
 | Registry standards | **144** (v0.68.0 +4: Sarbanes-Oxley Act + SEC Exchange Act ICFR rules + COSO IC-IF 2013 + PCAOB AS 2201) |
 | Registry jurisdictions | **20** |
 | Document templates | **119** on disk; **1,031** clause→template bindings via `addresses:` declarations |
-| Example bundles | **8** (validated end-to-end with committed baseline matrices) |
+| Example bundles | **9** (validated end-to-end with committed baseline matrices) |
 | Spec entries | **114** (0 `:open`; OQ-119 through OQ-130 across the trust-gate + forward-work closures + Pages refresh + validation-package family OQ-128 + instance-level traceability OQ-129 + finance vertical OQ-130) |
 | Deepest composition tested in CI | **24-module ultra composite** (medical-devices + pharma + combination-product + connected-medical-device + digital-health-multi-region + sterile + hipaa + privacy + 11 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy + ISO 37301) |
 
@@ -151,13 +151,14 @@ Each composes with ANY vertical. Annex-SL-aligned overlays compose cleanly with 
 
 ---
 
-## Example bundles (8)
+## Example bundles (9)
 
 Each ships with a committed baseline matrix that acts as regression detection in CI.
 
 | Bundle | Vertical(s) | Cross-cutting | Jurisdictions |
 |---|---|---|---|
 | `example-samd` | medical-devices + samd | iso-27001 + regulated-ai | FDA, EU MDR |
+| `example-samd-validated` | medical-devices + samd | iso-27001 + **validation-package + -fda** (CSV/CSA computerized-system validation) | FDA |
 | `example-aircraft` | aerospace | regulated-ai + iso-27001 | FAA |
 | `example-vehicle` | automotive | regulated-ai + iso-27001 | NHTSA, UNECE, KBA |
 | `example-machine-shop` | manufacturing | iso-27001 | (empty — general mfg) |

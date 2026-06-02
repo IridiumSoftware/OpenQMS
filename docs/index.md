@@ -8,7 +8,7 @@ Open QMS is **infrastructure, not a validated QMS.** Adopters validate the deplo
 
 ---
 
-## Current scope — v0.68.0
+## Current scope — v0.69.0
 
 | Dimension | Count |
 |---|---|
@@ -23,10 +23,10 @@ Open QMS is **infrastructure, not a validated QMS.** Adopters validate the deplo
 | Registry standards | **144** (most PUBLIC license; commercial standards flagged) |
 | Registry jurisdictions | **20** |
 | Document templates | **119** with frontmatter schema validated in CI |
-| Example bundles | **8** vertical-specific + **4** stage-specific presets |
+| Example bundles | **9** vertical-specific + **4** stage-specific presets |
 | Spec entries (status) | **114** — 6 `:verified` / 103 `:tested` / 5 `:argued` / 0 `:open` |
 | Engine CLI subcommands | **11** — `resolve` · `validate` · `regenerate` · `signatures` · `trace` · `trace-instances` · `coverage` · `crosswalk` · `jurisdictions-query` · `registry` · `verify-deployment` |
-| Pytest suite | **251 tests** in CI gating every push |
+| Pytest suite | **290 tests** in CI gating every push |
 | Deepest composition tested in CI | **24-module ultra composite** (medical-devices + pharma + combination-product + connected-medical-device + digital-health-multi-region + sterile + HIPAA + privacy + 11 cross-cutting + IMS + SOC 2 + HITRUST + ISO 27001 cloud/privacy + ISO 37301) |
 
 ---
