@@ -22,7 +22,7 @@ trace_links:
   mitigated_by: [MIT-CARDIO-0011]     # typed, directed edge
 ```
 
-- **IDs** are `KIND-SCOPE-NNNN` (e.g. `HAZ-CARDIO-0007`). SCOPE is required for product-bound kinds (REQ/URS/HAZ/MIT/TST/IQ/OQ/PQ/FUNC) and optional for process kinds (CAPA/CMPL/NCR/CHG/AUD/SUP/SYS/VREC/PMS).
+- **IDs** are `KIND-SCOPE-NNNN` (e.g. `HAZ-CARDIO-0007`). SCOPE is required for product-bound kinds (REQ/URS/HAZ/MIT/TST/VMP/IQ/OQ/PQ/FUNC) and optional for process kinds (CAPA/CMPL/NCR/CHG/AUD/SUP/SYS/VREC/PMS).
 - **Edges are typed and directed**, and the **inverse is materialized automatically** — declare `mitigated_by` on the hazard *or* `mitigates` on the mitigation; the graph records both either way. Relationships: `derived_from` · `mitigated_by` · `verified_by` · `validated_by` · `triggered_by` · `implements` · `part_of` · `assured_by` · `relates_to`.
 
 ## Two tiers

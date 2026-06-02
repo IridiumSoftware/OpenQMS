@@ -5,7 +5,7 @@
 # Every referenced trace-link target must resolve to a known record.
 referential_integrity: error
 
-# Product-bound kinds (REQ/URS/HAZ/MIT/TST/IQ/OQ/PQ/FUNC) must carry a
+# Product-bound kinds (REQ/URS/HAZ/MIT/TST/VMP/IQ/OQ/PQ/FUNC) must carry a
 # SCOPE segment in their ID (KIND-SCOPE-NNNN). Set false for single-product forks.
 require_scope: true
 
