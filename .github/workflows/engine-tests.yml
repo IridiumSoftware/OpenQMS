@@ -376,6 +376,7 @@ jobs:
           openqms regenerate --bundle example-food-processor
           openqms regenerate --bundle example-cart
           openqms regenerate --bundle example-specialty-chemical
+          openqms regenerate --bundle example-samd-validated
 
       - name: Regenerate startup-stage presets (dry-run regression check)
         # v0.61.0 (P4) — same gating as example bundles, applied to the

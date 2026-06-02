@@ -4,6 +4,16 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.69.0 DRAFT — 2026-06-01 — Example bundle: example-samd-validated
+
+**0 NEW spec entries.** Adds a committed, CI-gated example bundle showcasing the **P2 validation family on a real product scope** — `bundles/example-samd-validated.yaml` (+ `.matrix.json`): a SaMD company (`medical-devices` + `samd` + `iso-27001`) that also validates the computerized systems it runs production / the QMS on (`validation-package` + `validation-package-fda` — CSA framework + 21 CFR Part 11 + Part 820/QMSR). The VALPKG + VALFDA clauses + `qms-validation` templates resolve into the matrix; `openqms regenerate --bundle example-samd-validated` is dry-run-gated in CI.
+
+- **Existing 8 bundles unchanged** — verified `(no changes)` on regenerate; they don't reference the validation scope, so adding modules/standards never drifted them. (Confirms the answer to "should the bundles be redone": no — a bundle resolves a fixed scope; new modules are additive.)
+- Example-bundle count **8 → 9** (README / index / catalog synced).
+- Engine unchanged at 0.66.0. **No separate cross-audit doc** — a single additive, regenerate-gated bundle does not warrant a full A0–A6 (the regenerate dry-run is the evidence; A5 count sync done inline). Status counts unchanged (114).
+
+---
+
 ## v0.68.0 DRAFT — 2026-06-01 — Finance vertical (SOX / ICFR — 8th vertical)
 
 **OQ-130 NEW `:tested` (Module-tier).** The eighth vertical — the *QMS-of-financial-reporting*: Internal Control over Financial Reporting (ICFR) for US public companies.

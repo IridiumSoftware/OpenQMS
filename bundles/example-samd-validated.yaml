@@ -1,0 +1,46 @@
+# Open QMS — example bundle definition
+# ------------------------------------
+# A SaMD (Software as a Medical Device) company that ALSO validates the
+# computerized systems it runs its production / QMS on — the P2
+# validation-package family composed onto the medical-devices + SaMD scope.
+# This is the worked example for the validation family: medical-devices +
+# samd (the device) + iso-27001 (ITGC / infosec) + validation-package
+# (the CSV/CSA baseline) + validation-package-fda (the FDA market dial:
+# CSA framework + 21 CFR Part 11 + Part 820/QMSR predicate).
+#
+# Sibling to bundles/example-samd.yaml — same device scope, plus the
+# computerized-system-validation layer that a real adopter running an eQMS
+# / LIMS / build pipeline under Part 11 would need. `openqms regenerate
+# --bundle example-samd-validated` is CI-gated in dry-run on every push.
+
+name: example-samd-validated
+product: ExampleSaMD-Validated
+
+jurisdictions:
+  - FDA
+
+standards:
+  - "ISO 13485:2016"
+  - "21 CFR 820"
+  - "21 CFR Part 11"
+  - "EU MDR 2017/745"
+  - "ISO 14971:2019"
+  - "IEC 62304:2006+A1:2015"
+  - "IEC 62366-1:2015+A1:2020"
+  - "IEC 60601-1:2005+A1+A2"
+  - "ISTA 2A"
+  - "ISTA 3A"
+  - "MDSAP"
+  - "IEC 82304-1:2016"
+  - "IMDRF SaMD N12"
+  - "ISO/IEC 27001:2022"
+  - "GAMP 5 (2nd Edition)"
+  - "IEC/IEEE/ISO 29119-1:2022"
+  - "FDA CSA Guidance (2026)"
+
+modules:
+  - medical-devices
+  - samd
+  - iso-27001
+  - validation-package
+  - validation-package-fda
