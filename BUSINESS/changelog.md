@@ -4,6 +4,26 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.70.0 DRAFT — 2026-06-02 — Public-surface + CI hygiene omnibus (#17-#20)
+
+**0 NEW spec entries.** Spec total unchanged at 114. Engine unchanged at 0.66.0. Bookkeeping release capturing four same-day hygiene PRs landed 2026-06-02 after the v0.69.0 release — surfaced while reviewing the public surface for the finance vertical.
+
+### What shipped
+
+- **#17 — dashboard duplicate-row fix.** `BUSINESS/dashboard.md`'s status-summary table carried a spurious second `:verified` row (`| :verified | 0 | — |`) between `:proved` and the real `:verified | 6`. ENGINE_SPEC's ladder defines a single `:verified` tier, so it was noise — it survived prior A0–A6 audits because the count check (`6+103+5+0=114`) excludes a zero row. Removed; table is now the canonical six-row ladder.
+- **#18 — finance listed across the public surface.** v0.68.0 added the finance vertical and bumped the *summary* count-cells to 8, but the *detailed* vertical listings were never updated. Added the `finance` row to the README "Verticals at a glance" table + `docs/modules-catalog.md` ("## Verticals (7)" → "(8)"), and refreshed `mkdocs.yml` `site_description` (was `116 modules / 7 verticals / v0.63.0`). **GitHub Pages rebuilt — finance now live as the 8th vertical.** Sync drift, not intentional omission.
+- **#19 — CI deadlock fix.** `engine-tests.yml` (whose job is the *required* status check `pytest + module validation`) had a `pull_request` paths filter (`engine/** · modules/** · templates/** · registry/** · bundles/**`). Docs-only PRs matched none → the required check never reported → such PRs were permanently BLOCKED (this is why #17 + #18 needed `--admin`). Removed the `pull_request` paths filter so the check runs on every PR; the `push` filter is retained. Verified end-to-end: #20 (docs-only) merged with no admin override.
+- **#20 — broken Pages links.** Rewrote **46** broken intra-repo links across 7 docs pages (6 guide pages + `compliance-architecture.md`) that used `../`/`../../` relative paths to files outside the `docs/` tree (`.github/ISSUE_TEMPLATE/*`, `BUSINESS/*`, `templates/*`, `presets/`, `README.md`, `deployment-policy.example.yaml`) and 404'd on the rendered site. Now absolute GitHub URLs: issue forms → `issues/new?template=…`, files → `blob/main/…`, `presets/` → `tree/main/…`. `mkdocs build --strict`: **44 warnings → 0**.
+
+### Bookkeeping
+
+- **No separate cross-audit or companion doc.** These four PRs close 0 spec entries and add no engine surface; the changelog is the appropriate record (same proportional call as v0.69.0). Repo invariants hold: 114 spec / 290 pytest pass / module + template lint clean / `mkdocs build --strict` 0 warnings. Status counts unchanged: 6 `:verified` / 103 `:tested` / 5 `:argued` / 0 `:open` (total 114).
+- **Version labels synced to v0.70.0:** `README.md`, `docs/index.md`, `docs/modules-catalog.md` (was lagging at v0.68.0), `mkdocs.yml`, and this dashboard.
+- **Merge notes:** #17 + #18 admin-merged (before #19 lifted the deadlock); #19 + #20 merged normally.
+- **Known future item (tracked separately):** GitHub Actions Node.js 20 deprecation — the runner forces Node 24 from **2026-06-16**; the workflow action versions need a bump before then.
+
+---
+
 ## v0.69.0 DRAFT — 2026-06-01 — Example bundle: example-samd-validated
 
 **0 NEW spec entries.** Adds a committed, CI-gated example bundle showcasing the **P2 validation family on a real product scope** — `bundles/example-samd-validated.yaml` (+ `.matrix.json`): a SaMD company (`medical-devices` + `samd` + `iso-27001`) that also validates the computerized systems it runs production / the QMS on (`validation-package` + `validation-package-fda` — CSA framework + 21 CFR Part 11 + Part 820/QMSR). The VALPKG + VALFDA clauses + `qms-validation` templates resolve into the matrix; `openqms regenerate --bundle example-samd-validated` is dry-run-gated in CI.

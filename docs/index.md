@@ -8,7 +8,7 @@ Open QMS is **infrastructure, not a validated QMS.** Adopters validate the deplo
 
 ---
 
-## Current scope — v0.69.0
+## Current scope — v0.70.0
 
 | Dimension | Count |
 |---|---|
