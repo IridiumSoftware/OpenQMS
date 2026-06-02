@@ -74,6 +74,7 @@ git commit -m "Refresh example-samd matrix"
 | **Pharma** | `pharma` | ICH Q7/Q9/Q10 + 21 CFR 210/211 + EudraLex Vol. 4 + PIC/S Annex 1 + 21 CFR Part 11 (all public license) | 1 (atmp — cell + gene therapy) |
 | **Food safety** | `food-safety` | ISO 22000 + FSSC 22000 v6 + Codex HACCP + 21 CFR 117 (FSMA) + 21 CFR 123 (Seafood HACCP) | (none yet — forward) |
 | **Chemicals** | `chemicals` | EU REACH + EU CLP + UN GHS Rev. 10 + OECD GLP + US TSCA (all public license) | (none yet — OSHA HCS + DOT HazMat + biocides + cosmetics + pesticides forward) |
+| **Finance** (SOX / ICFR) | `finance` | Sarbanes-Oxley Act + SEC Exchange Act (ICFR rules) + COSO IC-IF 2013 + PCAOB AS 2201 | (none yet) |
 
 ### Cross-cutting overlays
 
