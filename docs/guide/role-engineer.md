@@ -68,26 +68,26 @@ If unsure, **Authored** is correct for your own work and **Reviewed** is correct
 
 ### Design input (a NEW thing you want to build)
 
-- Open a [Design Input issue](../../.github/ISSUE_TEMPLATE/design-input.yml) BEFORE writing code.
+- Open a [Design Input issue](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=design-input.yml) BEFORE writing code.
 - Issue captures: rationale, requirements, success criteria, applicable standards.
 - Get Quality Manager / Product Owner sign-off on the issue before opening PRs.
 - Link your PRs to the issue via `Closes #NNN` (or `Refs #NNN` if multi-PR).
 
 ### Nonconformance (you discovered something broken in a controlled process)
 
-- Open an [NCR issue](../../.github/ISSUE_TEMPLATE/nonconformance.yml).
+- Open an [NCR issue](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=nonconformance.yml).
 - Be specific: which document, which clause, which behavior diverges.
 - If you know the fix, open a PR with `Closes #NNN`; otherwise leave triage to Quality Manager.
 
 ### CAPA (you discovered a process pattern that needs fixing)
 
-- Open a [CAPA issue](../../.github/ISSUE_TEMPLATE/capa.yml).
+- Open a [CAPA issue](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=capa.yml).
 - Be specific about whether it's Corrective (incident already happened), Preventive (incident not yet happened, you spotted the gap), or both.
 - See [`docs/guide/capa-lifecycle.md`](capa-lifecycle.md) for the full lifecycle.
 
 ### Complaint (an end-user / customer reported a defect)
 
-- Open a [Complaint issue](../../.github/ISSUE_TEMPLATE/complaint.yml).
+- Open a [Complaint issue](https://github.com/IridiumSoftware/OpenQMS/issues/new?template=complaint.yml).
 - **Do NOT include PHI / PII in the issue body** — the form captures triage metadata only; the identifiable record lives in the PHI-restricted store (see [`docs/guide/complaints.md`](complaints.md)).
 
 ---
