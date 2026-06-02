@@ -1,5 +1,5 @@
 site_name: Open QMS
-site_description: Open-source GitHub-native QMS generator — 120 modules across 8 verticals + 26 cross-cutting overlays + 26 sub-overlays + 12 cross-overlays; clause-to-template traceability invariant; v0.70.0
+site_description: Open-source GitHub-native QMS generator — 120 modules across 8 verticals + 26 cross-cutting overlays + 26 sub-overlays + 12 cross-overlays; clause-to-template traceability invariant; v0.71.0
 repo_url: https://github.com/IridiumSoftware/open-qms
 edit_uri: edit/main/docs/
 

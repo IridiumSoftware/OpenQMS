@@ -12,6 +12,7 @@ from pathlib import Path
 
 from openqms.trace_instances import (
     DEFAULT_POLICY,
+    PRODUCT_BOUND_KINDS,
     build_report,
     check_invariants,
     discover_records,
@@ -135,6 +136,32 @@ def test_clean_graph_report_has_zero_errors(tmp_path):
 
 def test_default_policy_is_well_formed():
     assert any(r["kind"] == "HAZ" for r in DEFAULT_POLICY["require"])
+
+
+# --- VMP: Validation Master Plan is a first-class product-bound kind ---
+
+def test_vmp_is_recognized_product_bound_kind(tmp_path):
+    # A VMP (Validation Master Plan) is a product-bound trace node; IQ/OQ/PQ
+    # qualification records `implements` it (inverse of `implemented_by`).
+    assert "VMP" in PRODUCT_BOUND_KINDS
+    _write(tmp_path / "vmp.md", "VMP", "VMP-THERMO-001")
+    _write(tmp_path / "iq.md", "IQ", "IQ-THERMO-0030", {"implements": ["VMP-THERMO-001"]})
+    nodes = discover_records(tmp_path)
+    assert "VMP" in {n.kind for n in nodes}
+    # IQ->VMP target resolves; no error-severity findings from lint or invariants
+    assert not [f for f in lint_records(nodes, require_scope=True) if f.severity == "error"]
+    assert not [
+        f
+        for f in check_invariants(nodes, {"referential_integrity": "error", "require": []})
+        if f.severity == "error"
+    ]
+
+
+def test_vmp_requires_scope_under_require_scope(tmp_path):
+    # As a product-bound kind, a scope-less VMP id is flagged when require_scope.
+    _write(tmp_path / "vmp.md", "VMP", "VMP-001")  # no SCOPE segment
+    nodes = discover_records(tmp_path)
+    assert any("SCOPE" in f.message for f in lint_records(nodes, require_scope=True))
 
 
 def test_shipped_example_records_validate_clean(repo_root):

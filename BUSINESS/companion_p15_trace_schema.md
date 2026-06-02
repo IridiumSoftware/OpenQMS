@@ -53,7 +53,7 @@ Build on the convention already in the wild (`RMF-XXX-001`, `SRS-XXX-001`): `KIN
 ```
 
 - `KIND` — 2–5 uppercase letters from the controlled record-kind vocabulary (§4).
-- `SCOPE` — product / system / project token, uppercase alnum (`CARDIO`, `PUMP2`). **RESOLVED (2026-05-31, refined): SCOPE mandatory for product-bound kinds** (`REQ` `URS` `HAZ` `MIT` `TST` `IQ` `OQ` `PQ` — design + V&V items inherently tied to one product) and **optional for process-level kinds** (`CAPA` `CMPL` `NCR` `CHG` `AUD` `SUP` — which may span products or be process-only). A single-product adopter fork may force scope-less everywhere via `require_scope: false` in `trace-policy.yaml`; the multi-product default requires it for the product-bound set.
+- `SCOPE` — product / system / project token, uppercase alnum (`CARDIO`, `PUMP2`). **RESOLVED (2026-05-31, refined): SCOPE mandatory for product-bound kinds** (`REQ` `URS` `HAZ` `MIT` `TST` `VMP` `IQ` `OQ` `PQ` — design + V&V items inherently tied to one product) and **optional for process-level kinds** (`CAPA` `CMPL` `NCR` `CHG` `AUD` `SUP` — which may span products or be process-only). A single-product adopter fork may force scope-less everywhere via `require_scope: false` in `trace-policy.yaml`; the multi-product default requires it for the product-bound set.
 - `NNNN` — zero-padded sequence, unique within `KIND-SCOPE` (or within `KIND` when scope-less).
 
 Regex (grammar accepts both forms; `require_scope` enforces which per kind): `^[A-Z]{2,5}-([A-Z0-9]+-)?\d{3,}$`
@@ -73,6 +73,7 @@ Issue-sourced records (P15.2) use `KIND-<issue-number>` (e.g., `CAPA-123`), deri
 | `HAZ` | Hazard / risk item | RMF item table |
 | `MIT` | Risk control / mitigation | RMF item table |
 | `TST` | Verification or validation test | `VERIFICATION-PROTOCOL`, `VALIDATION-PROTOCOL`, software test protocol |
+| `VMP` | Validation Master Plan (governs IQ/OQ/PQ; `implemented_by` them) | v0.71.0 — new |
 | `IQ` `OQ` `PQ` | Installation / Operational / Performance qualification | P2 — new |
 | `SYS` | Computerized system (validation inventory entry) | P2 — new |
 | `FUNC` | Feature / function / operation (CSA risk-determination unit) | P2 — new |

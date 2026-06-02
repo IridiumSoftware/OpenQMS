@@ -4,6 +4,24 @@ Versioned, top-down. Each entry summarizes spec deltas, evidence changes, and ma
 
 ---
 
+## v0.71.0 DRAFT — 2026-06-02 — Trace vocabulary: `VMP` (Validation Master Plan) is now a first-class kind
+
+**0 NEW spec entries** (extends OQ-129). Spec total unchanged at 114. **Engine 0.66.0 → 0.67.0** (engine-code change). Adds `VMP` to the instance-trace product-bound kind vocabulary, so a Validation Master Plan is a first-class trace node and IQ/OQ/PQ qualification records can `implements` it. The inverse (`implemented_by`) was already in the edge vocabulary — `companion_p15_trace_schema.md` §5 already documented "IQ/OQ/PQ implements VMP" — but `VMP` was not yet a registered KIND, so such a record failed the static lint with `unknown record_kind`. This closes that latent gap.
+
+### What shipped
+
+- `engine/openqms/trace_instances.py` — `VMP` added to `PRODUCT_BOUND_KINDS` (product/project-scoped; requires a SCOPE segment under `require_scope`). Vocabulary is now **10 product-bound + 9 process-level** kinds.
+- **2 new tests** (`engine/tests/test_trace_instances.py`): `VMP` recognized + `IQ implements VMP` resolves clean; a scope-less `VMP-001` is flagged under `require_scope`. Suite **290 → 292**.
+- Doc sync: `docs/guide/instance-traceability.md`, `trace-policy.example.yaml`, and `companion_p15_trace_schema.md` (§3 scope list + §4 kind table) now list `VMP`.
+- `engine/pyproject.toml` + `engine/uv.lock` → `openqms` 0.67.0 (regenerated with `uv lock`).
+
+### Notes
+
+- **No policy rule added.** The vocabulary makes `VMP` valid; whether to *require* `IQ/OQ/PQ implements VMP` (or `VMP comprises ≥1 IQ`) is a per-adopter `trace-policy.yaml` choice (CSA: risk→method is not rigid). The shipped `examples/trace-instances/` is unaffected (it has no VMP/IQ/OQ/PQ records).
+- Surfaced during hand-validation of the doc-control + trace-instances gates on a Class II device example. No separate companion/audit doc (single-term vocabulary extension; the changelog is the record). Status counts unchanged: 6 `:verified` / 103 `:tested` / 5 `:argued` / 0 `:open` (total 114). Full suite green (292).
+
+---
+
 ## v0.70.0 DRAFT — 2026-06-02 — Public-surface + CI hygiene omnibus (#17-#20)
 
 **0 NEW spec entries.** Spec total unchanged at 114. Engine unchanged at 0.66.0. Bookkeeping release capturing four same-day hygiene PRs landed 2026-06-02 after the v0.69.0 release — surfaced while reviewing the public surface for the finance vertical.

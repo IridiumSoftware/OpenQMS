@@ -31,7 +31,9 @@ from .template_schema import parse_frontmatter
 # Record kinds. Product-bound kinds require a SCOPE segment in the ID when
 # the policy sets require_scope; process-level kinds may be scope-less.
 PRODUCT_BOUND_KINDS: frozenset[str] = frozenset(
-    {"REQ", "URS", "HAZ", "MIT", "TST", "IQ", "OQ", "PQ", "FUNC"}
+    # VMP (Validation Master Plan) is product/project-scoped; IQ/OQ/PQ
+    # qualification records `implements` it (see INVERSE below).
+    {"REQ", "URS", "HAZ", "MIT", "TST", "VMP", "IQ", "OQ", "PQ", "FUNC"}
 )
 PROCESS_LEVEL_KINDS: frozenset[str] = frozenset(
     {"CAPA", "CMPL", "NCR", "CHG", "AUD", "SUP", "SYS", "VREC", "PMS"}
